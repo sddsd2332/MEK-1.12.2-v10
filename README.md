@@ -11,6 +11,10 @@ In order to practice the GUI effect of MEK’s final factory, GUI modifications 
 	
 The machine part of the recipe is still not finished!!!
 
+But I don’t have time to update now
+
+If anyone needs it, you can download it
+
 # Mekanism for Minecraft 1.12 #
 
 Mekanism is a Minecraft add-on featuring high-tech machinery that can be used to create powerful tools, 
