@@ -1,7 +1,7 @@
 
 [![Build Status](https://travis-ci.org/aidancbrady/Mekanism.svg?branch=master)](https://travis-ci.org/aidancbrady/Mekanism)
 
-# Mekanism for Minecraft 1.12 #
+
 
 # sddsd2332 #
 
@@ -11,7 +11,7 @@ In order to practice the GUI effect of MEK’s final factory, GUI modifications 
 	
 The machine part of the recipe is still not finished!!!
 
-
+# Mekanism for Minecraft 1.12 #
 
 Mekanism is a Minecraft add-on featuring high-tech machinery that can be used to create powerful tools, 
 armor, and weapons. You can find more detail on the features at the [**Official Website**](http://aidancbrady.com/mekanism/).
