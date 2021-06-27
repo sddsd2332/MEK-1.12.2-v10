@@ -1,0 +1,37 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mekanism:machine",
+    "textures": {
+      "sides": "mekanism:blocks/bin/binadvancedside",
+      "front": "mekanism:blocks/bin/binadvancedfront",
+      "west": "mekanism:blocks/bin/binadvancedside",
+      "east": "mekanism:blocks/bin/binadvancedside",
+      "south": "mekanism:blocks/bin/binadvancedside",
+      "up": "mekanism:blocks/bin/binadvancedtop",
+      "down": "mekanism:blocks/bin/binbottom"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "east":  {"y": 90},
+      "west":  {"y": -90}
+    },
+    "active": {
+      "true": {
+        "textures": {
+          "front": "mekanism:blocks/bin/binadvancedfronton",
+          "west": "mekanism:blocks/bin/binadvancedsideon",
+          "east": "mekanism:blocks/bin/binadvancedsideon",
+          "south": "mekanism:blocks/bin/binadvancedsideon",
+          "up": "mekanism:blocks/bin/binadvancedtopon"
+        }
+      },
+      "false": {}
+    },
+    "inventory": [{}]
+  }
+}
+

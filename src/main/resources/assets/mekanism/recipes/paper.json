@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "minecraft:paper",
+    "count": 6
+  },
+  "pattern": [
+    "SSS"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "ores": [
+        "pulpWood",
+        "dustWood"
+      ],
+      "type": "mekanism:multi_ore"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mekanism:logistical_sorter",
+    "textures": {
+      "all": "mekanism:blocks/models/logistical_sorter",
+      "led": "mekanism:blocks/models/logistical_sorter_led_off"
+    }
+  },
+  "variants": {
+    "normal": [{}],
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "east":  {"y": 90},
+      "west":  {"y": -90},
+      "up":    {"x": -90},
+      "down":  {"x": 90}
+    },
+    "active": {
+      "true": {"textures": {"led": "mekanism:blocks/models/logistical_sorter_led_on"}},
+      "false": {"textures": {"led": "mekanism:blocks/models/logistical_sorter_led_off"}}
+    },
+    "inventory": [{}]
+  }
+}
+

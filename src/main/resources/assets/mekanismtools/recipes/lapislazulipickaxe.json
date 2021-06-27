@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "mekanismtools:lapislazulipickaxe"
+  },
+  "pattern": [
+    "XXX",
+    " T ",
+    " T "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "T": {
+      "item": "#STICK_WOOD"
+    },
+    "X": {
+      "item": "#GEM_LAPIS"
+    }
+  }
+}

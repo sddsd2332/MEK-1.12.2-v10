@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "mekanismtools:bronzehelmet"
+  },
+  "pattern": [
+    "***",
+    "* *"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "*": {
+      "item": "#INGOT_BRONZE"
+    }
+  }
+}

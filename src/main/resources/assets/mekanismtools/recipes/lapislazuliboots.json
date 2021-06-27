@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "mekanismtools:lapislazuliboots"
+  },
+  "pattern": [
+    "* *",
+    "* *"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "#GEM_LAPIS"
+    }
+  }
+}

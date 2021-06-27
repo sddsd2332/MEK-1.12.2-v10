@@ -1,0 +1,37 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mekanism:machine",
+    "textures": {
+      "sides": "mekanism:blocks/pigment_extractor/Right",
+      "front": "mekanism:blocks/pigment_extractor/Front",
+      "west": "mekanism:blocks/pigment_extractor/Right",
+      "east": "mekanism:blocks/pigment_extractor/Left",
+      "south": "mekanism:blocks/pigment_extractor/Back",
+      "up": "mekanism:blocks/pigment_extractor/Top",
+      "down": "mekanism:blocks/pigment_extractor/Bottom"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "east":  {"y": 90},
+      "west":  {"y": -90}
+    },
+    "active": {
+      "true": {
+        "textures": {
+          "front": "mekanism:blocks/pigment_extractor/Front_active",
+          "west": "mekanism:blocks/pigment_extractor/Right_active",
+          "east": "mekanism:blocks/pigment_extractor/Left_active",
+          "south": "mekanism:blocks/pigment_extractor/Back",
+          "up": "mekanism:blocks/pigment_extractor/Top_active"
+        }
+      },
+      "false": {}
+    },
+    "inventory": [{}]
+  }
+}
+

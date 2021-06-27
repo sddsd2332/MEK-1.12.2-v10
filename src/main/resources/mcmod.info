@@ -1,0 +1,79 @@
+[
+  {
+    "modid": "mekanism",
+    "name": "Mekanism",
+    "description": "This is an unofficial version of Mekanism!!! Please note that in order to add the final factory version, some items have been modified, resulting in incomplete recipes. The recipe needs to be repaired. In order to achieve the final factory GUI effect, all factory guis are close to the display of the final factory. GUI",
+    "version": "${version}",
+    "mcversion": "${mc_version}",
+    "authorList": [
+      "aidancbrady",
+      "thommy101",
+      "thiakil",
+      "pupnewfster",
+      "dizzyd"
+    ],
+    "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
+    "useDependencyInformation": true,
+    "dependencies": [
+      "forge",
+      "redstoneflux",
+      "mcmultipart",
+      "jei",
+      "buildcraftcore",
+      "ic2",
+      "computercraft",
+      "galaticraft api",
+      "metallurgy",
+      "crafttweaker",
+      "cofhcore",
+      "cyclicmagic"
+    ],
+    "requiredMods": [
+      "forge@[14.23.5.2768,)"
+    ]
+  },
+  {
+    "modid": "mekanismgenerators",
+    "name": "Mekanism: Generators",
+    "description": "Generators module for Mekanism",
+    "version": "${version}",
+    "mcversion": "${mc_version}",
+    "authorList": [
+      "aidancbrady",
+      "thommy101",
+      "thiakil",
+      "pupnewfster",
+      "dizzyd"
+    ],
+    "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
+    "useDependencyInformation": true,
+    "dependencies": [
+      "mekanism@[${version}]"
+    ],
+    "requiredMods": [
+      "mekanism@[${version}]"
+    ]
+  },
+  {
+    "modid": "mekanismtools",
+    "name": "Mekanism: Tools",
+    "description": "Tools module for Mekanism",
+    "version": "${version}",
+    "mcversion": "${mc_version}",
+    "authorList": [
+      "aidancbrady",
+      "thommy101",
+      "thiakil",
+      "pupnewfster",
+      "dizzyd"
+    ],
+    "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
+    "useDependencyInformation": true,
+    "dependencies": [
+      "mekanism@[${version}]"
+    ],
+    "requiredMods": [
+      "mekanism@[${version}]"
+    ]
+  }
+]

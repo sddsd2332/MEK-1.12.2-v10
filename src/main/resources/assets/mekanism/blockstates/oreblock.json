@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mekanism:basic_cube"
+  },
+  "variants": {
+    "type": {
+      "osmium": {"textures": {"all": "mekanism:blocks/OsmiumOre"}},
+      "copper": {"textures": {"all": "mekanism:blocks/CopperOre"}},
+      "tin": {"textures": {"all": "mekanism:blocks/TinOre"}},
+	  "fluorite": {"textures": {"all": "mekanism:blocks/FluoriteOre"}},
+	  "lead": {"textures": {"all": "mekanism:blocks/LeadOre"}},
+	  "uranium": {"textures": {"all": "mekanism:blocks/UraniumOre"}}
+	  
+    },
+    "inventory": [{}]
+  }
+}
+
