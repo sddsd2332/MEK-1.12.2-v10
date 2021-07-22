@@ -8,8 +8,6 @@ This is an unofficial test version of MEK for sddsd2332, some machines have been
 
 In order to practice the GUI effect of MEK’s final factory, GUI modifications have been made to all factories now.
 	
-The machine part of the recipe is still not finished!!!
-
 Because I don’t have time to make it recently, maybe this is the last version
 
 If anyone needs it, you can download it
