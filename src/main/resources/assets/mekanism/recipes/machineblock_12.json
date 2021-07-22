@@ -4,31 +4,27 @@
     "data": 12
   },
   "pattern": [
-    " B ",
-    "ECE",
-    "OOO"
+    "COC",
+    "OTO",
+    "COC"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "ElectricPump"
+      "machineType": "Teleporter"
     }
   ],
   "key": {
-    "B": {
-      "item": "minecraft:bucket"
-    },
     "C": {
-      "item": "mekanism:basicblock",
-      "data": 8
+      "item": "#CIRCUITBASIC"
     },
-    "E": {
-      "item": "mekanism:enrichedalloy"
+    "T": {
+      "item": "mekanism:teleportationcore"
     },
     "O": {
-      "ore": "ingotOsmium",
-      "type": "forge:ore_dict"
+      "item": "mekanism:basicblock",
+      "data": 8
     }
   }
 }

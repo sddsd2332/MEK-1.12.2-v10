@@ -122,14 +122,14 @@ public class BlockStateMachine extends ExtendedBlockState {
         BASIC_FACTORY(MachineBlock.MACHINE_BLOCK_1, 5, "Factory", 11, TileEntityFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.BASIC),
         ADVANCED_FACTORY(MachineBlock.MACHINE_BLOCK_1, 6, "Factory", 11, TileEntityAdvancedFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ADVANCED),
         ELITE_FACTORY(MachineBlock.MACHINE_BLOCK_1, 7, "Factory", 11, TileEntityEliteFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ELITE),
+
         ULTIMATE_FACTORY(MachineBlock.MACHINE_BLOCK_1,8, "Factory", 11, TileEntityUltimateFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ULTIMATE),
-        METALLURGIC_INFUSER(MachineBlock.MACHINE_BLOCK_1,9, "MetallurgicInfuser", 12, TileEntityMetallurgicInfuser::new, true, true, true, Plane.HORIZONTAL, false),
+
+        METALLURGIC_INFUSER(MachineBlock.MACHINE_BLOCK_1, 9, "MetallurgicInfuser", 12, TileEntityMetallurgicInfuser::new, true, true, true, Plane.HORIZONTAL, false),
         PURIFICATION_CHAMBER(MachineBlock.MACHINE_BLOCK_1, 10, "PurificationChamber", 15, TileEntityPurificationChamber::new, true, false, true, Plane.HORIZONTAL, true),
         ENERGIZED_SMELTER(MachineBlock.MACHINE_BLOCK_1, 11, "EnergizedSmelter", 16, TileEntityEnergizedSmelter::new, true, false, true, Plane.HORIZONTAL, true),
         TELEPORTER(MachineBlock.MACHINE_BLOCK_1, 12, "Teleporter", 13, TileEntityTeleporter::new, true, false, false, BlockStateUtils.NO_ROTATION, false),
-        PERSONAL_CHEST(MachineBlock.MACHINE_BLOCK_1, 13, "PersonalChest", 19, TileEntityPersonalChest::new, true, true, false, Plane.HORIZONTAL, false),
-        LOGISTICAL_SORTER(MachineBlock.MACHINE_BLOCK_1, 14, "LogisticalSorter", 59, TileEntityLogisticalSorter::new, false, true, false, BlockStateUtils.ALL_FACINGS, true),
-        ELECTRIC_PUMP(MachineBlock.MACHINE_BLOCK_1, 15, "ElectricPump", 17, TileEntityElectricPump::new, true, true, false, Plane.HORIZONTAL, false),
+        ISOTOPIC_CENTRIFUGE(MachineBlock.MACHINE_BLOCK_1, 13, "IsotopicCentrifuge", 61, TileEntityIsotopicCentrifuge::new, false, true, false, Plane.HORIZONTAL, false),
 
         ROTARY_CONDENSENTRATOR(MachineBlock.MACHINE_BLOCK_2, 0, "RotaryCondensentrator", 7, TileEntityRotaryCondensentrator::new, true, true, false, Plane.HORIZONTAL, false),
         CHEMICAL_OXIDIZER(MachineBlock.MACHINE_BLOCK_2, 1, "ChemicalOxidizer", 29, TileEntityChemicalOxidizer::new, true, true, true, Plane.HORIZONTAL, true),
@@ -156,9 +156,12 @@ public class BlockStateMachine extends ExtendedBlockState {
         FORMULAIC_ASSEMBLICATOR(MachineBlock.MACHINE_BLOCK_3, 5, "FormulaicAssemblicator", 56, TileEntityFormulaicAssemblicator::new, true, false, true, Plane.HORIZONTAL, true),
         FUELWOOD_HEATER(MachineBlock.MACHINE_BLOCK_3, 6, "FuelwoodHeater", 58, TileEntityFuelwoodHeater::new, false, false, false, Plane.HORIZONTAL, true),
         CHARGEPAD(MachineBlock.MACHINE_BLOCK_3,7, "Chargepad", -1, TileEntityChargepad::new, true, true, false, Plane.HORIZONTAL, false),
-        Nutritional_Liquifier(MachineBlock.MACHINE_BLOCK_3, 8, "NutritionalLiquifier", 60, TileEntityNutritionalLiquifier::new, true, true, true, Plane.HORIZONTAL, true),
-        ISOTOPIC_CENTRIFUGE(MachineBlock.MACHINE_BLOCK_3, 9, "IsotopicCentrifuge", 61, TileEntityIsotopicCentrifuge::new, false, true, false, Plane.HORIZONTAL, false);
-        //INDUSTRIAL_ALARM(MachineBlock.MACHINE_BLOCK_3,10,"IndustrialAlarm",-1,TileEntityIndustrialAlarm::new,false,true,false, Plane.HORIZONTAL,true);
+        ELECTRIC_PUMP(MachineBlock.MACHINE_BLOCK_3, 8, "ElectricPump", 17, TileEntityElectricPump::new, true, true, false, Plane.HORIZONTAL, false),
+        PERSONAL_CHEST(MachineBlock.MACHINE_BLOCK_3, 9, "PersonalChest", 19, TileEntityPersonalChest::new, true, true, false, Plane.HORIZONTAL, false),
+        LOGISTICAL_SORTER(MachineBlock.MACHINE_BLOCK_3, 10, "LogisticalSorter", 59, TileEntityLogisticalSorter::new, false, true, false, BlockStateUtils.ALL_FACINGS, true),
+        Nutritional_Liquifier(MachineBlock.MACHINE_BLOCK_3, 11, "NutritionalLiquifier", 60, TileEntityNutritionalLiquifier::new, true, true, true, Plane.HORIZONTAL, true);
+
+        //INDUSTRIAL_ALARM(MachineBlock.MACHINE_BLOCK_3,12,"IndustrialAlarm",-1,TileEntityIndustrialAlarm::new,false,true,false, Plane.HORIZONTAL,true);
 
 
         public MachineBlock typeBlock;

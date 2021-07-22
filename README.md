@@ -1,4 +1,6 @@
 
+![Mekanism Logo](logo.png)
+
 [![Build Status](https://travis-ci.org/aidancbrady/Mekanism.svg?branch=master)](https://travis-ci.org/aidancbrady/Mekanism)
 
 
@@ -10,10 +12,6 @@ This is an unofficial test version of MEK for sddsd2332, some machines have been
 In order to practice the GUI effect of MEK’s final factory, GUI modifications have been made to all factories now.
 	
 The machine part of the recipe is still not finished!!!
-
-But I don’t have time to update now
-
-If anyone needs it, you can download it
 
 # Mekanism for Minecraft 1.12 #
 

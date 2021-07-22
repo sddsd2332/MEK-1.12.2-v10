@@ -72,7 +72,7 @@ public class MekanismFluids {
         GasRegistry.register(SpentNuclearWaste);
         GasRegistry.register(Antimatter);
         GasRegistry.register(FissileFule);
-        GasRegistry.register(SuperheatedSodium);
+        GasRegistry.register(SuperheatedSodium).registerFluid("liquidsuperheatedsodium");
         GasRegistry.register(UraniumHexafluoride);
         GasRegistry.register(URANIUMOXIDE);
 
@@ -99,5 +99,7 @@ public class MekanismFluids {
         FluidRegistry.addBucketForFluid(HeavyWater);
         FluidRegistry.addBucketForFluid(Brine.getFluid());
         FluidRegistry.addBucketForFluid(Lithium.getFluid());
+        FluidRegistry.addBucketForFluid(Polonium.getFluid());
+        FluidRegistry.addBucketForFluid(Antimatter.getFluid());
     }
 }

@@ -4,32 +4,48 @@
     "data": 13
   },
   "pattern": [
-    "SGS",
-    "CcC",
-    "SSS"
+    "ABA",
+    "CDC",
+    "EFE"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "PersonalChest"
+      "machineType": "IsotopicCentrifuge"
     }
   ],
   "key": {
-    "S": {
-      "ore": "ingotSteel",
+    "A": {
+      "ore": "blockTin",
       "type": "forge:ore_dict"
     },
-    "C": {
-      "ore": "chestWood",
-      "type": "forge:ore_dict"
+    "B": {
+      "item": "#CIRCUITULTIMATE"
     },
-    "c": {
-      "item": "#CIRCUITBASIC"
+	"C": {
+      "item": "mekanism:basicblock",
+      "data": 10
     },
-    "G": {
-      "ore": "blockGlass",
-      "type": "forge:ore_dict"
+    "D": {
+      "nbt": {
+        "tier": 3
+      },
+      "item": "mekanism:gastank",
+      "data": 0,
+      "type": "mekanism:item_nbt"
+    },
+    "E": {
+      "item": "mekanism:basicblock",
+      "data": 8 
+    },
+	"F": {
+      "nbt": {
+        "tier": 3
+      },
+      "item": "mekanism:energycube",
+      "data": 0,
+      "type": "mekanism:item_nbt"
     }
   }
 }

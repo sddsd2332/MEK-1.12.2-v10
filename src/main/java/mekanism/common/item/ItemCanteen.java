@@ -189,7 +189,6 @@ public class ItemCanteen extends ItemMekanism implements IGasItem {
             if (received != null) {
                 int max2 = player.getFoodStats().getFoodLevel() +received.amount;
                 player.getFoodStats().setFoodLevel(max2);
-                player.setHealth(max2);
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(1),2000,5));
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(3),4000,5));
                 player.addPotionEffect(new PotionEffect(Potion.getPotionById(5),4000,5));

@@ -20,8 +20,8 @@
       "item": "mekanism:energytablet"
     },
     "I": {
-      "item": "mekanism:machineblock",
-      "data": 13
+      "item": "mekanism:machineblock3",
+      "data": 9
     },
     "O": {
       "ore": "ingotRefinedObsidian",

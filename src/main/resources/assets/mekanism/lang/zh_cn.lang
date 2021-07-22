@@ -101,7 +101,7 @@ tile.BasicBlock.DynamicValve.name=动态阀门
 tile.BasicBlock.CopperBlock.name=铜块
 tile.BasicBlock.TinBlock.name=锡块
 tile.BasicBlock.ThermalEvaporationController.name=热力蒸馏控制器
-tile.BasicBlock.ThermalEvaporationValve.name==热力蒸馏阀门
+tile.BasicBlock.ThermalEvaporationValve.name=热力蒸馏阀门
 
 # Basic Block 2 (second ID iteration)
 tile.BasicBlock2.ThermalEvaporationBlock.name=热力蒸馏方块
@@ -133,12 +133,10 @@ tile.MachineBlock.MetallurgicInfuser.name=冶金灌注机
 tile.MachineBlock.PurificationChamber.name=净化仓
 tile.MachineBlock.EnergizedSmelter.name=充能冶炼炉
 tile.MachineBlock.Teleporter.name=传送机
-tile.MachineBlock.LogisticalSorter.name=物流整理机
 tile.MachineBlock.DigitalMiner.name=数字型采矿机
-tile.MachineBlock.ElectricPump.name=电动泵
-tile.MachineBlock.PersonalChest.name=私人箱子
+tile.MachineBlock.IsotopicCentrifuge.name=同位素离心机
 tile.MachineBlock.Chargepad.name=充电台
-
+tile.MachineBlock.NutritionalLiquifier.name=营养液化器
 
 # Machine Block 2 (second ID iteration)
 tile.MachineBlock2.RotaryCondensentrator.name=回旋式气液转换机
@@ -167,6 +165,9 @@ tile.MachineBlock3.ResistiveHeater.name=电阻加热装置
 tile.MachineBlock3.FormulaicAssemblicator.name=公式装配器
 tile.MachineBlock3.FuelwoodHeater.name=木料加热器
 tile.MachineBlock3.Chargepad.name=充电台
+tile.MachineBlock3.ElectricPump.name=电动泵
+tile.MachineBlock3.LogisticalSorter.name=物流整理机
+tile.MachineBlock3.PersonalChest.name=私人箱子
 tile.MachineBlock3.NutritionalLiquifier.name=营养液化器
 tile.MachineBlock3.IsotopicCentrifuge.name=同位素离心机
 
@@ -340,6 +341,16 @@ gas.tritium=氚
 gas.lithium=锂
 gas.fusionfuel=D-T燃料
 gas.nutritionalpaste=营养糊糊
+gas.nuclearwaste=核废料
+gas.plutonium=钚
+gas.polonium=钋
+gas.spentnuclearwaste=用尽的核废料
+gas.hydrofluoricacid=氢氟酸
+gas.antimatter=反物质
+gas.fissilefule=裂变燃料
+gas.superheatedsodium=过热的钠蒸汽
+gas.uraniumhexafluoride=六氟化铀
+gas.uraniumoxide=氧化铀
 
 gas.iron=铁浆液
 gas.gold=金浆液
@@ -383,7 +394,8 @@ fluid.liquiddeuterium=液态氘
 fluid.liquidtritium=液态氚
 fluid.liquidfusionfuel=液态D-T燃料
 fluid.steam=蒸汽
-
+fluid.liquidhydrofluoricacid=液态氢氟酸
+fluid.liquidsuperheatedsodium=液态的过热钠蒸汽
 # OreGas names
 oregas.iron=铁矿
 oregas.gold=金矿

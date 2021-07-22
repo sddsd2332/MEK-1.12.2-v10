@@ -163,7 +163,7 @@ public class GeneralConfig extends BaseConfig {
           "TCP port for the Voice server to listen on.", 1, 65535);
 
     //If this is less than 1, upgrades make machines worse. If less than 0, I don't even know.
-    public final IntOption maxUpgradeMultiplier = new IntOption(this, "general", "UpgradeModifier", 50,
+    public final IntOption maxUpgradeMultiplier = new IntOption(this, "general", "UpgradeModifier", 10,
           "Base factor for working out machine performance with upgrades - UpgradeModifier * (UpgradesInstalled/UpgradesPossible).", 1, Integer.MAX_VALUE);
 
     public final IntOption minerSilkMultiplier = new IntOption(this, "general", "MinerSilkMultiplier", 6,

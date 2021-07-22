@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "mekanism:basicblock2",
+    "data": 10
+  },
+  "pattern": [
+    "***",
+    "***",
+    "***"
+  ],
+  "type": "mekanism:ore_shaped",
+  "key": {
+    "*": {
+      "ore": "ingotUranium",
+      "type": "forge:ore_dict"
+    }
+  }
+}

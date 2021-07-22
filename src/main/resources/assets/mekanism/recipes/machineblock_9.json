@@ -4,27 +4,27 @@
     "data": 9
   },
   "pattern": [
-    "ECE",
-    "ORO",
-    "ECE"
+    "IFI",
+    "ROR",
+    "IFI"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "PurificationChamber"
+      "machineType": "MetallurgicInfuser"
     }
   ],
   "key": {
     "R": {
-      "item": "mekanism:machineblock",
-      "data": 0
+      "ore": "dustRedstone",
+      "type": "forge:ore_dict"
     },
-    "C": {
-      "item": "#CIRCUITADVANCED"
+    "F": {
+      "item": "minecraft:furnace"
     },
-    "E": {
-      "ore": "alloyAdvanced",
+    "I": {
+      "ore": "ingotIron",
       "type": "forge:ore_dict"
     },
     "O": {

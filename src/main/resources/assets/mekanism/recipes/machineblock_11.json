@@ -4,25 +4,30 @@
     "data": 11
   },
   "pattern": [
-    "COC",
-    "OTO",
-    "COC"
+    "RCR",
+    "GIG",
+    "RCR"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "Teleporter"
+      "machineType": "EnergizedSmelter"
     }
   ],
   "key": {
+    "R": {
+      "ore": "alloyBasic",
+      "type": "forge:ore_dict"
+    },
     "C": {
       "item": "#CIRCUITBASIC"
     },
-    "T": {
-      "item": "mekanism:teleportationcore"
+    "G": {
+      "ore": "blockGlass",
+      "type": "forge:ore_dict"
     },
-    "O": {
+    "I": {
       "item": "mekanism:basicblock",
       "data": 8
     }
