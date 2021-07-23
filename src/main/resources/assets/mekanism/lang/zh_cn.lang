@@ -903,6 +903,10 @@ tooltip.ResistiveHeater=一台能直接将能量转化成热能的机器
 tooltip.FormulaicAssemblicator=一台快速制作成品的机器
 tooltip.FuelwoodHeater=一台通过燃烧可燃物来生产热量的机器
 tooltip.QuantumEntangloporter=一台可以长距离跨维度传输物品的高级机器
+tooltip.canteen1=只能添加营养糊糊
+tooltip.canteen2=为什么这物品是如此的昂贵？
+tooltip.NutritionalLiquifier=一种能将任何食物加工成无害、易消化的营养糊剂的机器
+tooltip.IsotopicCentrifuge=一台只有一个目的的机器：非常非常快地旋转它装载的东西。
 
 tooltip.HeatGenerator=一台使用岩浆热量或者其它可燃资源产生能量的发电机。
 tooltip.SolarGenerator=一台使用太阳能量发电的发电机。

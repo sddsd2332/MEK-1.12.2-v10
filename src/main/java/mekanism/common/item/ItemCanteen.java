@@ -1,7 +1,6 @@
 package mekanism.common.item;
 
 
-import mekanism.api.EnumColor;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.IGasItem;
@@ -10,9 +9,11 @@ import mekanism.common.MekanismFluids;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.util.ItemDataUtils;
 import mekanism.common.util.LangUtils;
+import mekanism.common.util.MekanismUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -28,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class ItemCanteen extends ItemMekanism implements IGasItem {
+public class ItemCanteen extends Item implements IGasItem {
     public static final int TRANSFER_RATE = 100;
     public static final int ItemStack =50 ;
 
@@ -47,7 +48,8 @@ public class ItemCanteen extends ItemMekanism implements IGasItem {
         } else {
             list.add(LangUtils.localize("tooltip.stored") + " " + gasStack.getGas().getLocalizedName() + ": " + gasStack.amount);
         }
-        list.add(EnumColor.GREY + LangUtils.localize("tooltip.flowing") + ": " + (getFlowing(itemstack) ? EnumColor.DARK_GREEN : EnumColor.DARK_RED) + getFlowingStr(itemstack));
+        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen1"),itemstack));
+        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen2"),itemstack));
     }
 
     @Override
