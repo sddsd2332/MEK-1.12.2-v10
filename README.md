@@ -2,11 +2,12 @@
 ![Mekanism Logo](logo.png)
 
 
+![Update Display](updatedisplay.png)
+
+
 # sddsd2332 #
 
 This is an unofficial test version of MEK for sddsd2332, some machines have been modified.
-
-In order to practice the GUI effect of MEK’s final factory, GUI modifications have been made to all factories now.
 	
 Because I don’t have time to make it recently, maybe this is the last version
 
