@@ -208,7 +208,7 @@ public class RecipeRegistryHelper {
             return;
         }
         addRecipes(registry, Recipe.ISOTOPIC_CENTRIFUGE, IsotopicRecipeWrapper::new);
-        registry.addRecipeClickArea(GuiIsotopicCentrifuge.class, 64, 39, 48, 8, Recipe.ISOTOPIC_CENTRIFUGE.getJEICategory());
+        registry.addRecipeClickArea(GuiIsotopicCentrifuge.class, 61, 39, 55, 8, Recipe.ISOTOPIC_CENTRIFUGE.getJEICategory());
         registerRecipeItem(registry, MachineType.ISOTOPIC_CENTRIFUGE, Recipe.ISOTOPIC_CENTRIFUGE);
     }
 

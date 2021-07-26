@@ -32,8 +32,8 @@ public class IsotopicCentrifuge {
     }
 
     @ZenMethod
-    public static void removeRecipe(IIngredient gasInput, @Optional IIngredient gasOutput) {
-        if (IngredientHelper.checkNotNull(NAME, gasInput)) {
+    public static void removeRecipe(IIngredient gasOutput, @Optional IIngredient gasInput) {
+        if (IngredientHelper.checkNotNull(NAME, gasOutput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.ISOTOPIC_CENTRIFUGE, new IngredientWrapper(gasOutput),
                   new IngredientWrapper(gasInput)));
         }

@@ -169,7 +169,6 @@ tile.MachineBlock3.ElectricPump.name=电动泵
 tile.MachineBlock3.LogisticalSorter.name=物流整理机
 tile.MachineBlock3.PersonalChest.name=私人箱子
 tile.MachineBlock3.NutritionalLiquifier.name=营养液化器
-tile.MachineBlock3.IsotopicCentrifuge.name=同位素离心机
 
 # Plastic
 tile.PlasticBlock.name=塑料方块
@@ -202,20 +201,25 @@ tile.Transmitter.BasicPressurizedTube.name=基础加压管道
 tile.Transmitter.AdvancedPressurizedTube.name=高级加压管道
 tile.Transmitter.ElitePressurizedTube.name=精英加压管道
 tile.Transmitter.UltimatePressurizedTube.name=终极加压管道
+
 tile.Transmitter.BasicUniversalCable.name=基础通用线缆
 tile.Transmitter.AdvancedUniversalCable.name=高级通用线缆
 tile.Transmitter.EliteUniversalCable.name=精英通用线缆
 tile.Transmitter.UltimateUniversalCable.name=终极通用线缆
+
 tile.Transmitter.BasicMechanicalPipe.name=基础机械管道
 tile.Transmitter.AdvancedMechanicalPipe.name=高级机械管道
 tile.Transmitter.EliteMechanicalPipe.name=精英机械管道
 tile.Transmitter.UltimateMechanicalPipe.name=终极机械管道
+
 tile.Transmitter.BasicLogisticalTransporter.name=基础物流管道
 tile.Transmitter.AdvancedLogisticalTransporter.name=高级物流管道
 tile.Transmitter.EliteLogisticalTransporter.name=精英物流管道
 tile.Transmitter.UltimateLogisticalTransporter.name=终极物流管道
+
 tile.Transmitter.RestrictiveTransporter.name=限制传送管道
 tile.Transmitter.DiversionTransporter.name=转移传送管道
+
 tile.Transmitter.BasicThermodynamicConductor.name=基础热导线缆
 tile.Transmitter.AdvancedThermodynamicConductor.name=高级热导线缆
 tile.Transmitter.EliteThermodynamicConductor.name=精英热导线缆
@@ -946,7 +950,7 @@ sideData.Fill=充满
 sideData.Empty=排空
 sideData.Charge=充能
 sideData.Discharge=反充能
-sideData.Input_Output=输入/输出
+sideData.Input_Extra=输入/注入
 
 # Redstone control
 control.disabled=禁止

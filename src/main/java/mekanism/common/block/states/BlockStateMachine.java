@@ -122,9 +122,7 @@ public class BlockStateMachine extends ExtendedBlockState {
         BASIC_FACTORY(MachineBlock.MACHINE_BLOCK_1, 5, "Factory", 11, TileEntityFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.BASIC),
         ADVANCED_FACTORY(MachineBlock.MACHINE_BLOCK_1, 6, "Factory", 11, TileEntityAdvancedFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ADVANCED),
         ELITE_FACTORY(MachineBlock.MACHINE_BLOCK_1, 7, "Factory", 11, TileEntityEliteFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ELITE),
-
         ULTIMATE_FACTORY(MachineBlock.MACHINE_BLOCK_1,8, "Factory", 11, TileEntityUltimateFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ULTIMATE),
-
         METALLURGIC_INFUSER(MachineBlock.MACHINE_BLOCK_1, 9, "MetallurgicInfuser", 12, TileEntityMetallurgicInfuser::new, true, true, true, Plane.HORIZONTAL, false),
         PURIFICATION_CHAMBER(MachineBlock.MACHINE_BLOCK_1, 10, "PurificationChamber", 15, TileEntityPurificationChamber::new, true, false, true, Plane.HORIZONTAL, true),
         ENERGIZED_SMELTER(MachineBlock.MACHINE_BLOCK_1, 11, "EnergizedSmelter", 16, TileEntityEnergizedSmelter::new, true, false, true, Plane.HORIZONTAL, true),
@@ -321,7 +319,7 @@ public class BlockStateMachine extends ExtendedBlockState {
                 case Nutritional_Liquifier:
                     return MekanismConfig.current().usage.liquifierNutritional.val();
                 case ISOTOPIC_CENTRIFUGE:
-                    return 0;
+                    return MekanismConfig.current().usage.IsotopicCentrifuge.val();
                 //case INDUSTRIAL_ALARM:
                    // return 0;
                 default:
@@ -383,6 +381,8 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return MekanismConfig.current().storage.formulaicAssemblicator.val();
                 case Nutritional_Liquifier:
                     return MekanismConfig.current().storage.liquifierNutritional.val();
+                case ISOTOPIC_CENTRIFUGE:
+                    return MekanismConfig.current().storage.IsotopicCentrifuge.val();
                 //case INDUSTRIAL_ALARM:
                   //  return 0;
                 default:

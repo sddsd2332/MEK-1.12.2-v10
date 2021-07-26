@@ -1,8 +1,10 @@
 package mekanism.common.inventory.container;
 
 import mekanism.api.gas.IGasItem;
+import mekanism.common.inventory.slot.SlotEnergy.SlotDischarge;
 import mekanism.common.inventory.slot.SlotStorageTank;
 import mekanism.common.tile.TileEntityIsotopicCentrifuge;
+import mekanism.common.util.ChargeUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
@@ -12,9 +14,7 @@ import javax.annotation.Nonnull;
 
 public class ContainerIsotopicCentrifuge extends ContainerMekanism<TileEntityIsotopicCentrifuge> {
 
-    public ContainerIsotopicCentrifuge(InventoryPlayer inventory, TileEntityIsotopicCentrifuge tile) {
-        super(tile, inventory);
-    }
+    public ContainerIsotopicCentrifuge(InventoryPlayer inventory, TileEntityIsotopicCentrifuge tile) { super(tile, inventory); }
 
     @Nonnull
     @Override
@@ -38,15 +38,23 @@ public class ContainerIsotopicCentrifuge extends ContainerMekanism<TileEntityIso
                 } else if (!mergeItemStack(slotStack, 2, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (slotID >= 2 && slotID <= 28) {
-                if (!mergeItemStack(slotStack, 29, inventorySlots.size(), false)) {
+            }else if (ChargeUtils.canBeDischarged(slotStack)) {
+                if (slotID != 2) {
+                    if (!mergeItemStack(slotStack, 2, 3, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (!mergeItemStack(slotStack, 3, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (slotID > 28) {
-                if (!mergeItemStack(slotStack, 2, 28, false)) {
+            }  else if (slotID >= 3 && slotID <= 29) {
+                if (!mergeItemStack(slotStack, 30, inventorySlots.size(), false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!mergeItemStack(slotStack, 2, inventorySlots.size(), true)) {
+            } else if (slotID > 29) {
+                if (!mergeItemStack(slotStack, 3, 29, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!mergeItemStack(slotStack, 3, inventorySlots.size(), true)) {
                 return ItemStack.EMPTY;
             }
             if (slotStack.getCount() == 0) {
@@ -66,5 +74,6 @@ public class ContainerIsotopicCentrifuge extends ContainerMekanism<TileEntityIso
     protected void addSlots() {
         addSlotToContainer(new SlotStorageTank(tileEntity, 0, 5, 56));
         addSlotToContainer(new SlotStorageTank(tileEntity, 1, 155, 56));
+        addSlotToContainer(new SlotDischarge(tileEntity, 2, 155, 5));
     }
 }

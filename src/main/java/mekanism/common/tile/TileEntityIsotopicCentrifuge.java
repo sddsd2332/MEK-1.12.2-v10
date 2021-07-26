@@ -8,76 +8,54 @@ import mekanism.api.TileNetworkList;
 import mekanism.api.gas.*;
 import mekanism.common.Upgrade;
 import mekanism.common.Upgrade.IUpgradeInfoHandler;
-import mekanism.common.base.IBoundingBlock;
-import mekanism.common.base.IComparatorSupport;
-import mekanism.common.base.ISustainedData;
-import mekanism.common.base.ITankManager;
+import mekanism.common.base.*;
 import mekanism.common.block.states.BlockStateMachine;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.GasInput;
 import mekanism.common.recipe.machines.IsotopicRecipe;
-
 import mekanism.common.tile.prefab.TileEntityMachine;
 import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
-
 import net.minecraftforge.common.capabilities.Capability;
-
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-
 public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements ISustainedData,IBoundingBlock,IGasHandler,IUpgradeInfoHandler,ITankManager,IComparatorSupport{
-
-    public static final int MAX_GAS = 64000;
-
-    private static final int[] INPUT_SLOT = {0};
-    private static final int[] OUTPUT_SLOT = {1};
-    private static final int[] ENERGY_SLOT = {2};
-    private int currentRedstoneLevel;
-
+    public static final int MAX_GAS = 10000;
     public GasTank inputTank = new GasTank(MAX_GAS);
     public GasTank outputTank = new GasTank(MAX_GAS);
-    public RedstoneControl controlType = RedstoneControl.DISABLED;
-    private IsotopicRecipe cachedRecipe;
+    private static final int[] INPUT_SLOT = {0};
+    private static final int[] OUTPUT_SLOT = {1};
+    public int gasOutput = 256;
+    public IsotopicRecipe cachedRecipe;
+    private int currentRedstoneLevel;
+    public double clientEnergyUsed;
 
     public TileEntityIsotopicCentrifuge() {
-        super("machine.rotarycondensentrator", BlockStateMachine.MachineType.ISOTOPIC_CENTRIFUGE, 3);
-        inventory = NonNullList.withSize(6, ItemStack.EMPTY);
+        super("machine.washer", BlockStateMachine.MachineType.ISOTOPIC_CENTRIFUGE, 4);
+        inventory = NonNullList.withSize(5, ItemStack.EMPTY);
     }
-
-
     @Override
     public void onUpdate() {
         super.onUpdate();
         if (!world.isRemote) {
+            ChargeUtils.discharge(2, this);
             TileUtils.receiveGas(inventory.get(0), inputTank);
             TileUtils.drawGas(inventory.get(1), outputTank);
-            ChargeUtils.discharge(2,this);
-            IsotopicRecipe Recipe= getRecipe();
-            if (!inventory.get(0).isEmpty()) {
-
-                if (RecipeHandler.Recipe.ISOTOPIC_CENTRIFUGE.containsRecipe(inventory.get(0))){
-                      if (FluidContainerUtils.isFluidContainer(inventory.get(0))) {
-                          outputTank.draw(GasUtils.addGas(inventory.get(0), inputTank.getGas()), true);
-
-                    }
-                }
-            }
-            if (!inventory.get(1).isEmpty() && outputTank.getStored() > 0) {
-                outputTank.draw(GasUtils.addGas(inventory.get(1), outputTank.getGas()), true);
-                MekanismUtils.saveChunk(this);
-            }
             IsotopicRecipe recipe = getRecipe();
             if (canOperate(recipe) && getEnergy() >= energyPerTick && MekanismUtils.canFunction(this)) {
                 setActive(true);
-                operate(recipe);
+                int operations = operate(recipe);
+                double prev = getEnergy();
+                setEnergy(getEnergy() - energyPerTick * operations);
+                clientEnergyUsed = prev - getEnergy();
             } else if (prevEnergy >= getEnergy()) {
                 setActive(false);
             }
+            TileUtils.emitGas(this, outputTank, gasOutput, facing);
             prevEnergy = getEnergy();
             int newRedstoneLevel = getRedstoneLevel();
             if (newRedstoneLevel != currentRedstoneLevel) {
@@ -86,11 +64,6 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
             }
         }
     }
-
-    public boolean canOperate(IsotopicRecipe recipe) {
-        return recipe != null && recipe.canOperate(inputTank, outputTank);
-    }
-
     public IsotopicRecipe getRecipe() {
         GasInput input = getInput();
         if (cachedRecipe == null || !input.testEquality(cachedRecipe.getInput())) {
@@ -98,33 +71,98 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
         }
         return cachedRecipe;
     }
+
     public GasInput getInput() {
         return new GasInput(inputTank.getGas());
     }
-    @Nonnull
-    @Override
-    public int[] getSlotsForFace(@Nonnull EnumFacing side) {
-        if (side == MekanismUtils.getLeft(facing)) {
-            //Gas
-            return INPUT_SLOT;
-        } else if (side == MekanismUtils.getRight(facing)) {
-            //Fluid
-            return OUTPUT_SLOT;
-        }
-        return ENERGY_SLOT;
+
+    public boolean canOperate(IsotopicRecipe recipe) {
+        return recipe != null && recipe.canOperate(inputTank , outputTank);
+    }
+    public int operate(IsotopicRecipe recipe) {
+        int operations = getUpgradedUsage();
+        recipe.operate(inputTank, outputTank, operations);
+        return operations;
     }
 
-    public void operate(IsotopicRecipe recipe) {
-        recipe.operate(inputTank, outputTank, getUpgradedUsage());
+    public int getUpgradedUsage() {
+        int possibleProcess = (int) Math.pow(2, upgradeComponent.getUpgrades(Upgrade.SPEED));
+        possibleProcess = Math.min(Math.min(inputTank.getStored(), outputTank.getNeeded()), possibleProcess);
+        possibleProcess = Math.min((int) (getEnergy() / energyPerTick), possibleProcess);
+        return possibleProcess;
     }
     @Override
-    public void writeSustainedData(ItemStack itemStack) {
-        if (inputTank.getGas() != null) {
-            ItemDataUtils.setCompound(itemStack, "inputTank", inputTank.getGas().write(new NBTTagCompound()));
+    public void handlePacketData(ByteBuf dataStream) {
+        super.handlePacketData(dataStream);
+        if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
+            clientEnergyUsed = dataStream.readDouble();
+            TileUtils.readTankData(dataStream, inputTank);
+            TileUtils.readTankData(dataStream, outputTank);
         }
-        if (outputTank.getGas() != null) {
-            ItemDataUtils.setCompound(itemStack, "outputTank", outputTank.getGas().write(new NBTTagCompound()));
+    }
+
+    @Override
+    public TileNetworkList getNetworkedData(TileNetworkList data) {
+        super.getNetworkedData(data);
+        data.add(clientEnergyUsed);
+        TileUtils.addTankData(data, inputTank);
+        TileUtils.addTankData(data, outputTank);
+        return data;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTags) {
+        super.readFromNBT(nbtTags);
+        inputTank.read(nbtTags.getCompoundTag("rightTank"));
+        outputTank.read(nbtTags.getCompoundTag("centerTank"));
+    }
+
+    @Nonnull
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbtTags) {
+        super.writeToNBT(nbtTags);
+        nbtTags.setTag("rightTank", inputTank.write(new NBTTagCompound()));
+        nbtTags.setTag("centerTank", outputTank.write(new NBTTagCompound()));
+        return nbtTags;
+    }
+
+    public boolean canSetFacing(@Nonnull EnumFacing facing) {
+        return facing != EnumFacing.DOWN;
+    }
+
+    public GasTank getTank(EnumFacing side) {
+        if (side == MekanismUtils.getLeft(facing)) {
+            return inputTank;
+        } else if (side == MekanismUtils.getRight(facing)) {
+            return outputTank;
         }
+        return null;
+    }
+
+    @Override
+    public boolean canReceiveGas(EnumFacing side, Gas type) {
+        return side == EnumFacing.DOWN && inputTank.canReceive(type);
+    }
+
+    @Override
+    public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
+        if (canReceiveGas(side, stack != null ? stack.getGas() : null)) {
+            return inputTank.receive(stack, doTransfer);
+        }
+        return 0;
+    }
+
+    @Override
+    public GasStack drawGas(EnumFacing side, int amount, boolean doTransfer) {
+        if (canDrawGas(side, null)) {
+            return outputTank.draw(amount, doTransfer);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean canDrawGas(EnumFacing side, Gas type) {
+        return side == facing && outputTank.canDraw(type);
     }
 
     @Nonnull
@@ -133,6 +171,26 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
         return new GasTankInfo[]{inputTank, outputTank};
     }
 
+    @Override
+    public boolean isItemValidForSlot(int slot, @Nonnull ItemStack stack) {
+        return stack.getItem() instanceof IGasItem;
+    }
+
+    @Override
+    public boolean canExtractItem(int slotID, @Nonnull ItemStack itemstack, @Nonnull EnumFacing side) {
+        if (slotID == 1) {
+            return !itemstack.isEmpty() && itemstack.getItem() instanceof IGasItem && ((IGasItem) itemstack.getItem()).canProvideGas(itemstack, null);
+        } else if (slotID == 2) {
+            return ChargeUtils.canBeOutputted(itemstack, false);
+        }
+        return false;
+    }
+
+    @Nonnull
+    @Override
+    public int[] getSlotsForFace(@Nonnull EnumFacing side) {
+        return side == facing ? OUTPUT_SLOT : INPUT_SLOT;
+    }
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing side) {
@@ -160,89 +218,20 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
         return super.isCapabilityDisabled(capability, side);
     }
 
+    @Override
+    public void writeSustainedData(ItemStack itemStack) {
+        if (inputTank.getGas() != null) {
+            ItemDataUtils.setCompound(itemStack, "inputTank", inputTank.getGas().write(new NBTTagCompound()));
+        }
+        if (outputTank.getGas() != null) {
+            ItemDataUtils.setCompound(itemStack, "outputTank", outputTank.getGas().write(new NBTTagCompound()));
+        }
+    }
 
     @Override
     public void readSustainedData(ItemStack itemStack) {
         inputTank.setGas(GasStack.readFromNBT(ItemDataUtils.getCompound(itemStack, "inputTank")));
         outputTank.setGas(GasStack.readFromNBT(ItemDataUtils.getCompound(itemStack, "outputTank")));
-    }
-    @Override
-    public void onPlace() {
-        MekanismUtils.makeBoundingBlock(world, Coord4D.get(this).offset(EnumFacing.UP).getPos(), Coord4D.get(this));
-    }
-    @Override
-    public void onBreak() {
-        world.setBlockToAir(getPos().up());
-        world.setBlockToAir(getPos());
-    }
-    @Override
-    public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
-        if (canReceiveGas(side, stack != null ? stack.getGas() : null)) {
-            return inputTank.receive(stack, doTransfer);
-        }
-        return 0;
-    }
-
-    public int getUpgradedUsage() {
-        int possibleProcess = (int) Math.pow(2, upgradeComponent.getUpgrades(Upgrade.SPEED));
-        possibleProcess = Math.min(Math.min(inputTank.getStored(), outputTank.getNeeded()), possibleProcess);
-        return possibleProcess;
-    }
-
-    @Override
-    public void handlePacketData(ByteBuf dataStream) {
-        super.handlePacketData(dataStream);
-        if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
-            isActive = dataStream.readBoolean();
-            controlType = RedstoneControl.values()[dataStream.readInt()];
-            TileUtils.readTankData(dataStream, inputTank);
-            TileUtils.readTankData(dataStream, outputTank);
-        }
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbtTags) {
-        super.readFromNBT(nbtTags);
-        isActive = nbtTags.getBoolean("isActive");
-        controlType = RedstoneControl.values()[nbtTags.getInteger("controlType")];
-        inputTank.read(nbtTags.getCompoundTag("inputTank"));
-        outputTank.read(nbtTags.getCompoundTag("outputTank"));
-    }
-    @Override
-    public TileNetworkList getNetworkedData(TileNetworkList data) {
-        super.getNetworkedData(data);
-        data.add(isActive);
-        data.add(controlType.ordinal());
-        TileUtils.addTankData(data, inputTank);
-        TileUtils.addTankData(data, outputTank);
-        return data;
-    }
-
-    @Nonnull
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbtTags) {
-        super.writeToNBT(nbtTags);
-        nbtTags.setBoolean("isActive", isActive);
-        nbtTags.setInteger("controlType", controlType.ordinal());
-        nbtTags.setTag("inputTank", inputTank.write(new NBTTagCompound()));
-        nbtTags.setTag("outputTank", outputTank.write(new NBTTagCompound()));
-        return nbtTags;
-    }
-
-    @Override
-    public GasStack drawGas(EnumFacing side, int amount, boolean doTransfer) {
-        if (canDrawGas(side, null)) {
-            return outputTank.draw(amount, doTransfer);
-        }
-        return null;
-    }
-    @Override
-    public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return side == EnumFacing.DOWN && inputTank.canReceive(type);
-    }
-    @Override
-    public boolean canDrawGas(EnumFacing side, Gas type) {
-        return side == facing && outputTank.canDraw(type);
     }
 
     @Override
@@ -259,16 +248,14 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
     public int getRedstoneLevel() {
         return MekanismUtils.redstoneLevelFromContents(inputTank.getStored(), inputTank.getMaxGas());
     }
-    public boolean isItemValidForSlot(int slot, @Nonnull ItemStack stack) {
-        if (slot == 0) {
-            //Gas INPUT
-            return stack.getItem() instanceof IGasItem;
-        }else if (slot == 1) {
-            //Gas output
-            return stack.getItem() instanceof IGasItem;
-        } else if (slot == 2) {
-            return ChargeUtils.canBeDischarged(stack);
-        }
-        return false;
+    @Override
+    public void onPlace() {
+        MekanismUtils.makeBoundingBlock(world, Coord4D.get(this).offset(EnumFacing.UP).getPos(), Coord4D.get(this));
     }
+    @Override
+    public void onBreak() {
+        world.setBlockToAir(getPos().up());
+        world.setBlockToAir(getPos());
     }
+}
+

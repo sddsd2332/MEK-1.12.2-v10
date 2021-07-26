@@ -52,7 +52,7 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
 
     public static final int MAX_GAS = 10000;
     public static final int MAX_FLUID = 10000;
-    public static int WATER_USAGE = 5;
+    public static int WATER_USAGE = 1000;
     public FluidTank fluidTank = new FluidTank(MAX_FLUID);
     public GasTank inputTank = new GasTank(MAX_GAS);
     public GasTank outputTank = new GasTank(MAX_GAS);

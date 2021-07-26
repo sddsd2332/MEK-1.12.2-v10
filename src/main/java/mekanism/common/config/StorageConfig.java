@@ -40,7 +40,10 @@ public class StorageConfig extends BaseConfig {
     public final DoubleOption oxidationChamber = new DoubleOption(this, "storage", "OxidationChamberStorage", 80000D,
           "Base energy storage (Joules).");
 
-    public final DoubleOption liquifierNutritional = new DoubleOption(this, "storage", "OxidationChamberStorage", 80000D,
+    public final DoubleOption liquifierNutritional = new DoubleOption(this, "storage", "liquifierNutritionalStorage", 80000D,
+            "Base energy storage (Joules).");
+
+    public final DoubleOption IsotopicCentrifuge = new DoubleOption(this, "storage", "IsotopicCentrifugeStorage", 80000D,
             "Base energy storage (Joules).");
 
     public final DoubleOption chemicalInfuser = new DoubleOption(this, "storage", "ChemicalInfuserStorage", 80000D,

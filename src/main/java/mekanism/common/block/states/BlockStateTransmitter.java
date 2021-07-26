@@ -37,6 +37,7 @@ public class BlockStateTransmitter extends ExtendedBlockState {
         DIVERSION_TRANSPORTER("DiversionTransporter", Size.LARGE, TransmissionType.ITEM, true, false),
         THERMODYNAMIC_CONDUCTOR("ThermodynamicConductor", Size.SMALL, TransmissionType.HEAT, false, true);
 
+
         private String unlocalizedName;
         private Size size;
         private TransmissionType transmissionType;
