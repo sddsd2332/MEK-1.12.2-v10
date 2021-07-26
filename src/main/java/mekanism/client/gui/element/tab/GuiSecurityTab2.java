@@ -56,7 +56,7 @@ public class GuiSecurityTab2 extends GuiTileEntityElement<TileEntity> {
     }
 
     @Override
-    public void renderBackground(int xAxis, int yAxis, int guiWidth, int guiHeight) {
+        public void renderBackground(int xAxis, int yAxis, int guiWidth, int guiHeight) {
         mc.renderEngine.bindTexture(RESOURCE);
         guiObj.drawTexturedRect(guiWidth + 210, guiHeight + 32, 0, 0, 26, 26);
         SecurityMode mode = getSecurity();

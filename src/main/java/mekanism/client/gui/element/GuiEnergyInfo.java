@@ -23,7 +23,7 @@ public class GuiEnergyInfo extends GuiElement {
     }
 
     @Override
-    public Rectangle4i getBounds(int guiWidth, int guiHeight) {
+        public Rectangle4i getBounds(int guiWidth, int guiHeight) {
         return new Rectangle4i(guiWidth - 26, guiHeight + 138, 26, 26);
     }
 

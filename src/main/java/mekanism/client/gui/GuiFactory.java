@@ -6,12 +6,16 @@ import mekanism.api.TileNetworkList;
 import mekanism.api.gas.GasStack;
 import mekanism.api.infuse.InfuseType;
 import mekanism.client.gui.element.GuiEnergyInfo;
+import mekanism.client.gui.element.GuiRecipeType;
 import mekanism.client.gui.element.GuiRecipeType2;
+import mekanism.client.gui.element.GuiRedstoneControl;
 import mekanism.client.gui.element.GuiRedstoneControl2;
+import mekanism.client.gui.element.tab.GuiSecurityTab;
 import mekanism.client.gui.element.tab.GuiSecurityTab2;
 import mekanism.client.gui.element.tab.GuiSideConfigurationTab;
 import mekanism.client.gui.element.tab.GuiSortingTab;
 import mekanism.client.gui.element.tab.GuiTransporterConfigTab;
+import mekanism.client.gui.element.tab.GuiUpgradeTab;
 import mekanism.client.gui.element.tab.GuiUpgradeTab2;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.sound.SoundHandler;
@@ -47,13 +51,34 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
     public GuiFactory(InventoryPlayer inventory, TileEntityFactory tile) {
         super(tile, new ContainerFactory(inventory, tile));
         ySize += 11;
-        xSize += 34;
+        if (tile.tier == FactoryTier.ULTIMATE) {
+            xSize += 34;
+        }
+
 
         ResourceLocation resource = tileEntity.tier.guiLocation;
-        addGuiElement(new GuiRedstoneControl2(this, tileEntity, resource));
+        if (tile.tier == FactoryTier.ULTIMATE) {
         addGuiElement(new GuiSecurityTab2(this, tileEntity, resource));
         addGuiElement(new GuiUpgradeTab2(this, tileEntity, resource));
+        addGuiElement(new GuiRedstoneControl2(this, tileEntity, resource));
         addGuiElement(new GuiRecipeType2(this, tileEntity, resource));
+        }else if (tile.tier == FactoryTier.BASIC ) {
+            addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
+            addGuiElement(new GuiUpgradeTab(this, tileEntity, resource));
+            addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
+            addGuiElement(new GuiRecipeType(this, tileEntity, resource));
+        }else if (tile.tier == FactoryTier.ADVANCED ) {
+            addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
+            addGuiElement(new GuiUpgradeTab(this, tileEntity, resource));
+            addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
+            addGuiElement(new GuiRecipeType(this, tileEntity, resource));
+        }else if (tile.tier == FactoryTier.ELITE ) {
+            addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
+            addGuiElement(new GuiUpgradeTab(this, tileEntity, resource));
+            addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
+            addGuiElement(new GuiRecipeType(this, tileEntity, resource));
+        }
+
         addGuiElement(new GuiSideConfigurationTab(this, tileEntity, resource));
         addGuiElement(new GuiTransporterConfigTab(this, 34, tileEntity, resource));
         addGuiElement(new GuiSortingTab(this, tileEntity, resource));
