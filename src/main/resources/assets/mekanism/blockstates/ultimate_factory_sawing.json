@@ -3,12 +3,12 @@
   "defaults": {
     "model": "mekanism:machine",
     "textures": {
-      "sides": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactoryside",
-      "front": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactoryfront",
-      "south": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactoryback",
-      "west": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactoryside",
-      "east": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactoryside",
-      "up": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactorytop",
+      "sides": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactorySide",
+      "front": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactoryFront",
+      "south": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactoryBack",
+      "west": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactorySide",
+      "east": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactorySide",
+      "up": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactoryTop",
       "down": "mekanism:blocks/factory/ultimate/UltimateFactoryBottom"
     }
   },
@@ -22,11 +22,11 @@
     "active": {
       "true": {
         "textures": {
-          "front": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactoryfronton",
-          "south": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactorybackon",
-          "west": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactorysideon",
-          "east": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactorysideon",
-          "up": "mekanism:blocks/factory/ultimate/sawing/Ultimatesawingfactorytopon"
+          "front": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactoryFrontOn",
+          "south": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactoryBackOn",
+          "west": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactorySideOn",
+          "east": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactorySideOn",
+          "up": "mekanism:blocks/factory/ultimate/sawing/UltimateSawingFactoryTopOn"
         }
       },
       "false": {}

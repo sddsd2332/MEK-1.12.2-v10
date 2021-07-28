@@ -26,14 +26,43 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
     @Override
     protected void addSlots() {
         addSlotToContainer(new SlotDischarge(tileEntity, 1, 7, 13));
-        addSlotToContainer(new Slot(tileEntity, 2, 180, 75) {
-            @Override
-            public boolean isItemValid(ItemStack stack) {
-                MachineType swapType = MachineType.get(stack);
-                return swapType != null && !swapType.isFactory();
-            }
-        });
-        addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 112));
+        if (tileEntity.tier == FactoryTier.BASIC) {
+            addSlotToContainer(new Slot(tileEntity, 2, 180, 75) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    MachineType swapType = MachineType.get(stack);
+                    return swapType != null && !swapType.isFactory();
+                }
+            });
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 112));
+        }else if(tileEntity.tier == FactoryTier.ADVANCED) {
+            addSlotToContainer(new Slot(tileEntity, 2, 180, 75) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    MachineType swapType = MachineType.get(stack);
+                    return swapType != null && !swapType.isFactory();
+                }
+            });
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 112));
+        }else if(tileEntity.tier == FactoryTier.ELITE) {
+            addSlotToContainer(new Slot(tileEntity, 2, 180, 75) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    MachineType swapType = MachineType.get(stack);
+                    return swapType != null && !swapType.isFactory();
+                }
+            });
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 112));
+        }else if(tileEntity.tier == FactoryTier.ULTIMATE) {
+            addSlotToContainer(new Slot(tileEntity, 2, 180, 95) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    MachineType swapType = MachineType.get(stack);
+                    return swapType != null && !swapType.isFactory();
+                }
+            });
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 132));
+        }
         addSlotToContainer(new Slot(tileEntity, 4, 7, 57));
         if (tileEntity.tier == FactoryTier.BASIC) {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
