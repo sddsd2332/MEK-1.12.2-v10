@@ -142,4 +142,9 @@ public class APIHandler implements MekanismRecipeHelper {
         checkPhase();
         RecipeHandler.addIsotopicRecipe(inputGas, outputGas);
     }
+    @Override
+    public void addAntiprotonicNucleosynthesizerRecipe(ItemStack inputSolid,  GasStack inputGas, ItemStack outputSolid,  double extraEnergy, int ticks) {
+        checkPhase();
+        RecipeHandler.addNucleosynthesizerRecipe(inputSolid, inputGas, outputSolid, extraEnergy, ticks);
+    }
 }

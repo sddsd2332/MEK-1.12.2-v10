@@ -15,48 +15,7 @@ import mekanism.common.block.BlockMachine;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.tier.BaseTier;
 import mekanism.common.tier.FactoryTier;
-import mekanism.common.tile.TileEntityAdvancedFactory;
-import mekanism.common.tile.TileEntityAmbientAccumulator;
-import mekanism.common.tile.TileEntityChargepad;
-import mekanism.common.tile.TileEntityChemicalCrystallizer;
-import mekanism.common.tile.TileEntityChemicalDissolutionChamber;
-import mekanism.common.tile.TileEntityChemicalInfuser;
-import mekanism.common.tile.TileEntityChemicalInjectionChamber;
-import mekanism.common.tile.TileEntityChemicalOxidizer;
-import mekanism.common.tile.TileEntityChemicalWasher;
-import mekanism.common.tile.TileEntityCombiner;
-import mekanism.common.tile.TileEntityCrusher;
-import mekanism.common.tile.TileEntityDigitalMiner;
-import mekanism.common.tile.TileEntityElectricPump;
-import mekanism.common.tile.TileEntityElectrolyticSeparator;
-import mekanism.common.tile.TileEntityEliteFactory;
-import mekanism.common.tile.TileEntityEnergizedSmelter;
-import mekanism.common.tile.TileEntityEnrichmentChamber;
-import mekanism.common.tile.TileEntityFactory;
-import mekanism.common.tile.TileEntityFluidTank;
-import mekanism.common.tile.TileEntityFluidicPlenisher;
-import mekanism.common.tile.TileEntityFormulaicAssemblicator;
-import mekanism.common.tile.TileEntityFuelwoodHeater;
-import mekanism.common.tile.TileEntityLaser;
-import mekanism.common.tile.TileEntityLaserAmplifier;
-import mekanism.common.tile.TileEntityLaserTractorBeam;
-import mekanism.common.tile.TileEntityLogisticalSorter;
-import mekanism.common.tile.TileEntityMetallurgicInfuser;
-import mekanism.common.tile.TileEntityOredictionificator;
-import mekanism.common.tile.TileEntityOsmiumCompressor;
-import mekanism.common.tile.TileEntityPRC;
-import mekanism.common.tile.TileEntityPersonalChest;
-import mekanism.common.tile.TileEntityPrecisionSawmill;
-import mekanism.common.tile.TileEntityPurificationChamber;
-import mekanism.common.tile.TileEntityQuantumEntangloporter;
-import mekanism.common.tile.TileEntityResistiveHeater;
-import mekanism.common.tile.TileEntityRotaryCondensentrator;
-import mekanism.common.tile.TileEntitySeismicVibrator;
-import mekanism.common.tile.TileEntitySolarNeutronActivator;
-import mekanism.common.tile.TileEntityTeleporter;
-import mekanism.common.tile.TileEntityUltimateFactory;
-import mekanism.common.tile.TileEntityNutritionalLiquifier;
-import mekanism.common.tile.TileEntityIsotopicCentrifuge;
+import mekanism.common.tile.*;
 //import mekanism.common.tile.TileEntityIndustrialAlarm;
 import mekanism.common.util.LangUtils;
 import net.minecraft.block.Block;
@@ -128,6 +87,7 @@ public class BlockStateMachine extends ExtendedBlockState {
         ENERGIZED_SMELTER(MachineBlock.MACHINE_BLOCK_1, 11, "EnergizedSmelter", 16, TileEntityEnergizedSmelter::new, true, false, true, Plane.HORIZONTAL, true),
         TELEPORTER(MachineBlock.MACHINE_BLOCK_1, 12, "Teleporter", 13, TileEntityTeleporter::new, true, false, false, BlockStateUtils.NO_ROTATION, false),
         ISOTOPIC_CENTRIFUGE(MachineBlock.MACHINE_BLOCK_1, 13, "IsotopicCentrifuge", 61, TileEntityIsotopicCentrifuge::new, false, true, false, Plane.HORIZONTAL, false),
+        ANTIPROTONIC_NUCLEOSYNTHESIZER(MachineBlock.MACHINE_BLOCK_1, 14,"antiprotonicnucleosynthesizer",62, TileEntityAntiprotonicNucleosynthesizer::new, true, true, true, Plane.HORIZONTAL, true),
 
         ROTARY_CONDENSENTRATOR(MachineBlock.MACHINE_BLOCK_2, 0, "RotaryCondensentrator", 7, TileEntityRotaryCondensentrator::new, true, true, false, Plane.HORIZONTAL, false),
         CHEMICAL_OXIDIZER(MachineBlock.MACHINE_BLOCK_2, 1, "ChemicalOxidizer", 29, TileEntityChemicalOxidizer::new, true, true, true, Plane.HORIZONTAL, true),
@@ -322,6 +282,8 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return MekanismConfig.current().usage.IsotopicCentrifuge.val();
                 //case INDUSTRIAL_ALARM:
                    // return 0;
+                case ANTIPROTONIC_NUCLEOSYNTHESIZER:
+                    return MekanismConfig.current().usage.nucleosynthesizer.val();
                 default:
                     return 0;
             }
@@ -385,6 +347,8 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return MekanismConfig.current().storage.IsotopicCentrifuge.val();
                 //case INDUSTRIAL_ALARM:
                   //  return 0;
+                case ANTIPROTONIC_NUCLEOSYNTHESIZER:
+                    return MekanismConfig.current().storage.nucleosynthesizer.val();
                 default:
                     return 400 * getUsage();
             }

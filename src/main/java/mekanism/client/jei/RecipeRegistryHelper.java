@@ -7,20 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
-import mekanism.client.gui.GuiCombiner;
-import mekanism.client.gui.GuiCrusher;
-import mekanism.client.gui.GuiElectrolyticSeparator;
-import mekanism.client.gui.GuiEnergizedSmelter;
-import mekanism.client.gui.GuiEnrichmentChamber;
-import mekanism.client.gui.GuiMetallurgicInfuser;
-import mekanism.client.gui.GuiOsmiumCompressor;
-import mekanism.client.gui.GuiPRC;
-import mekanism.client.gui.GuiPrecisionSawmill;
-import mekanism.client.gui.GuiPurificationChamber;
-import mekanism.client.gui.GuiRotaryCondensentrator;
-import mekanism.client.gui.GuiSolarNeutronActivator;
-import mekanism.client.gui.GuiThermalEvaporationController;
-import mekanism.client.gui.GuiIsotopicCentrifuge;
+import mekanism.client.gui.*;
 import mekanism.client.gui.chemical.GuiChemicalCrystallizer;
 import mekanism.client.gui.chemical.GuiChemicalDissolutionChamber;
 import mekanism.client.gui.chemical.GuiChemicalInfuser;
@@ -38,13 +25,7 @@ import mekanism.client.jei.machine.chemical.ChemicalInfuserRecipeWrapper;
 import mekanism.client.jei.machine.chemical.ChemicalOxidizerRecipeWrapper;
 import mekanism.client.jei.machine.chemical.ChemicalWasherRecipeWrapper;
 import mekanism.client.jei.machine.chemical.NutritionalLiquifierRecipeWrapper;
-import mekanism.client.jei.machine.other.ElectrolyticSeparatorRecipeWrapper;
-import mekanism.client.jei.machine.other.MetallurgicInfuserRecipeWrapper;
-import mekanism.client.jei.machine.other.PRCRecipeWrapper;
-import mekanism.client.jei.machine.other.RotaryCondensentratorRecipeWrapper;
-import mekanism.client.jei.machine.other.SolarNeutronRecipeWrapper;
-import mekanism.client.jei.machine.other.ThermalEvaporationRecipeWrapper;
-import mekanism.client.jei.machine.other.IsotopicRecipeWrapper;
+import mekanism.client.jei.machine.other.*;
 import mekanism.common.Mekanism;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.states.BlockStateBasic.BasicBlockType;
@@ -210,6 +191,15 @@ public class RecipeRegistryHelper {
         addRecipes(registry, Recipe.ISOTOPIC_CENTRIFUGE, IsotopicRecipeWrapper::new);
         registry.addRecipeClickArea(GuiIsotopicCentrifuge.class, 61, 39, 55, 8, Recipe.ISOTOPIC_CENTRIFUGE.getJEICategory());
         registerRecipeItem(registry, MachineType.ISOTOPIC_CENTRIFUGE, Recipe.ISOTOPIC_CENTRIFUGE);
+    }
+
+    public static void registerAntiprotonicNucleosynthesizer(IModRegistry registry) {
+        if (!MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER, AntiprotonicNucleosynthesizerRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiAntiprotonicNucleosynthesizer.class, 75, 37, 36, 10, Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER.getJEICategory());
+        registerRecipeItem(registry, MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER, Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER);
     }
 
 

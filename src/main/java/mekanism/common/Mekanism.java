@@ -96,6 +96,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -526,6 +527,18 @@ public class Mekanism {
             RecipeHandler.addPRCRecipe(new  ItemStack(MekanismItems.OtherDust,64, 12), FluidRegistry.getFluidStack("liquidsuperheatedsodium", 10000), new GasStack(MekanismFluids.Polonium, 10000),
                     new ItemStack(MekanismItems.OtherDust, 1, 9), new GasStack(MekanismFluids.Antimatter, 1000), 100000, 10000);
         }
+        //Antiprotonic Nucleosynthesizer Recipes
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER)){
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL,1,8),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Blocks.QUARTZ_BLOCK),0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL,1,4),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Blocks.GLOWSTONE),0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(MekanismItems.Ingot,1,6),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Items.IRON_INGOT),0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Items.COAL),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Items.DIAMOND),0, 1000);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Items.DIAMOND),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Items.EMERALD),0, 1000);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL,1,14),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Blocks.REDSTONE_BLOCK),0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL,1,11),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Blocks.LAPIS_BLOCK),0, 500);
+        }
+
+
 
         //Solar Neutron Activator Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.SOLAR_NEUTRON_ACTIVATOR)) {
@@ -747,6 +760,7 @@ public class Mekanism {
         registerTileEntity(TileEntityOredictionificator.class, "oredictionificator");
         registerTileEntity(TileEntityOsmiumCompressor.class, "osmium_compressor");
         registerTileEntity(TileEntityPRC.class, "pressurized_reaction_chamber");
+        registerTileEntity(TileEntityAntiprotonicNucleosynthesizer.class, "antiprotonic_nucleosynthesizer");
         registerTileEntity(TileEntityPersonalChest.class, "personal_chest");
         registerTileEntity(TileEntityPrecisionSawmill.class, "precision_sawmill");
         registerTileEntity(TileEntityPressureDisperser.class, "pressure_disperser");

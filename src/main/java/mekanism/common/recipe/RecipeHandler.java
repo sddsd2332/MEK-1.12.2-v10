@@ -14,25 +14,9 @@ import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.infuse.InfuseType;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
-import mekanism.common.recipe.inputs.AdvancedMachineInput;
-import mekanism.common.recipe.inputs.ChemicalPairInput;
-import mekanism.common.recipe.inputs.DoubleMachineInput;
-import mekanism.common.recipe.inputs.FluidInput;
-import mekanism.common.recipe.inputs.GasInput;
-import mekanism.common.recipe.inputs.IWildInput;
-import mekanism.common.recipe.inputs.InfusionInput;
-import mekanism.common.recipe.inputs.IntegerInput;
-import mekanism.common.recipe.inputs.ItemStackInput;
-import mekanism.common.recipe.inputs.MachineInput;
-import mekanism.common.recipe.inputs.PressurizedInput;
+import mekanism.common.recipe.inputs.*;
 import mekanism.common.recipe.machines.*;
-import mekanism.common.recipe.outputs.ChanceOutput;
-import mekanism.common.recipe.outputs.ChemicalPairOutput;
-import mekanism.common.recipe.outputs.FluidOutput;
-import mekanism.common.recipe.outputs.GasOutput;
-import mekanism.common.recipe.outputs.ItemStackOutput;
-import mekanism.common.recipe.outputs.MachineOutput;
-import mekanism.common.recipe.outputs.PressurizedOutput;
+import mekanism.common.recipe.outputs.*;
 import mekanism.common.util.StackUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -259,6 +243,9 @@ public final class RecipeHandler {
     public static void addPRCRecipe(ItemStack inputSolid, FluidStack inputFluid, GasStack inputGas, ItemStack outputSolid, GasStack outputGas, double extraEnergy, int ticks) {
         addRecipe(Recipe.PRESSURIZED_REACTION_CHAMBER, new PressurizedRecipe(inputSolid, inputFluid, inputGas, outputSolid, outputGas, extraEnergy, ticks));
     }
+    public static void addNucleosynthesizerRecipe(ItemStack inputSolid, GasStack inputGas, ItemStack outputSolid, double extraEnergy, int ticks) {
+        addRecipe(Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER, new NucleosynthesizerRecipe(inputSolid,  inputGas, outputSolid, extraEnergy, ticks));
+    }
 
     public static void addThermalEvaporationRecipe(FluidStack inputFluid, FluidStack outputFluid) {
         addRecipe(Recipe.THERMAL_EVAPORATION_PLANT, new ThermalEvaporationRecipe(inputFluid, outputFluid));
@@ -439,6 +426,13 @@ public final class RecipeHandler {
         return getRecipe(input, Recipe.AMBIENT_ACCUMULATOR);
     }
 
+
+    @Nullable
+    public static NucleosynthesizerRecipe getNucleosynthesizerRecipe(@Nonnull NucleosynthesizerInput input) {
+        return getRecipe(input, Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER);
+    }
+
+
     /**
      * Gets the whether the input ItemStack is in a recipe
      *
@@ -526,6 +520,10 @@ public final class RecipeHandler {
 
         public static final Recipe<PressurizedInput, PressurizedOutput, PressurizedRecipe> PRESSURIZED_REACTION_CHAMBER = new Recipe<>(
               MachineType.PRESSURIZED_REACTION_CHAMBER, PressurizedInput.class, PressurizedOutput.class, PressurizedRecipe.class);
+
+        public static final Recipe<NucleosynthesizerInput, NucleosynthesizerOutput, NucleosynthesizerRecipe> ANTIPROTONIC_NUCLEOSYNTHESIZER = new Recipe<>(
+                MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER, NucleosynthesizerInput.class,NucleosynthesizerOutput.class, NucleosynthesizerRecipe.class);
+
 
         public static final Recipe<IntegerInput, GasOutput, AmbientGasRecipe> AMBIENT_ACCUMULATOR = new Recipe<>(
               MachineType.AMBIENT_ACCUMULATOR, IntegerInput.class, GasOutput.class, AmbientGasRecipe.class);

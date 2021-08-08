@@ -24,7 +24,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
     public MekRecipesCommand() {
         super("mekrecipes");
         subCommands = Stream.of("crystallizer", "dissolution", "chemicalInfuser", "injection", "oxidizer", "washer", "combiner", "crusher", "separator", "smelter",
-              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge").collect(Collectors.toList());
+              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer").collect(Collectors.toList());
     }
 
     @Override
@@ -192,6 +192,19 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                                 recipe.extraEnergy,
                                 recipe.ticks
                           ));
+                }
+                break;
+            case "antiprotonicnucleosynthesizer":
+                type = Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER;
+                for (NucleosynthesizerRecipe recipe : Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER.get().values()) {
+                    CraftTweakerAPI
+                            .logCommand(String.format("mods.mekanism.reaction.addRecipe(%s, %s, %s, %s, %s, %s, %s)",
+                                    RecipeInfoHelper.getItemName(recipe.getInput().getSolid()),
+                                    RecipeInfoHelper.getGasName(recipe.getInput().getGas()),
+                                    RecipeInfoHelper.getItemName(recipe.getOutput().getItemOutput()),
+                                    recipe.extraEnergy,
+                                    recipe.ticks
+                            ));
                 }
                 break;
             case "purification":

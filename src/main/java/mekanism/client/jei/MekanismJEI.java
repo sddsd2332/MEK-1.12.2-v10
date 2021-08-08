@@ -18,13 +18,7 @@ import mekanism.client.jei.machine.chemical.ChemicalInfuserRecipeCategory;
 import mekanism.client.jei.machine.chemical.ChemicalOxidizerRecipeCategory;
 import mekanism.client.jei.machine.chemical.ChemicalWasherRecipeCategory;
 import mekanism.client.jei.machine.chemical.NutritionalLiquifierRecipeCategory;
-import mekanism.client.jei.machine.other.ElectrolyticSeparatorRecipeCategory;
-import mekanism.client.jei.machine.other.MetallurgicInfuserRecipeCategory;
-import mekanism.client.jei.machine.other.PRCRecipeCategory;
-import mekanism.client.jei.machine.other.RotaryCondensentratorRecipeCategory;
-import mekanism.client.jei.machine.other.SolarNeutronRecipeCategory;
-import mekanism.client.jei.machine.other.ThermalEvaporationRecipeCategory;
-import mekanism.client.jei.machine.other.IsotopicRecipeCategory;
+import mekanism.client.jei.machine.other.*;
 import mekanism.common.MekanismBlocks;
 import mekanism.common.MekanismItems;
 import mekanism.common.base.IFactory;
@@ -114,7 +108,7 @@ public class MekanismJEI implements IModPlugin {
         addRecipeCategory(registry, MachineType.ELECTROLYTIC_SEPARATOR, new ElectrolyticSeparatorRecipeCategory(guiHelper));
         addRecipeCategory(registry, MachineType.METALLURGIC_INFUSER, new MetallurgicInfuserRecipeCategory(guiHelper));
         addRecipeCategory(registry, MachineType.PRESSURIZED_REACTION_CHAMBER, new PRCRecipeCategory(guiHelper));
-
+        addRecipeCategory(registry, MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER, new AntiprotonicNucleosynthesizerRecipeCategory(guiHelper));
         addRecipeCategory(registry, MachineType.Nutritional_Liquifier, new NutritionalLiquifierRecipeCategory(guiHelper));
 
         addRecipeCategory(registry, MachineType.ROTARY_CONDENSENTRATOR, new RotaryCondensentratorRecipeCategory(guiHelper, true));
@@ -179,6 +173,7 @@ public class MekanismJEI implements IModPlugin {
         RecipeRegistryHelper.registerNutritional(registry);
         RecipeRegistryHelper.registerWasher(registry);
         RecipeRegistryHelper.registerNeutronActivator(registry);
+        RecipeRegistryHelper.registerAntiprotonicNucleosynthesizer(registry);
         RecipeRegistryHelper.registerIsotopicCentrifuge(registry);
         RecipeRegistryHelper.registerSeparator(registry);
         RecipeRegistryHelper.registerEvaporationPlant(registry);

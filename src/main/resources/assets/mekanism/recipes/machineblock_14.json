@@ -1,0 +1,35 @@
+{
+  "result": {
+    "item": "mekanism:machineblock",
+    "data": 14
+  },
+  "pattern": [
+    "RCR",
+    "gIg",
+    "RCR"
+  ],
+  "type": "mekanism:ore_shaped",
+  "conditions": [
+    {
+      "type": "mekanism:recipe_enabled",
+      "machineType": "antiprotonicnucleosynthesizer"
+    }
+  ],
+  "key": {
+    "R": {
+      "ore": "alloyUltimate",
+      "type": "forge:ore_dict"
+    },
+    "C": {
+      "item": "#CIRCUITULTIMATE"
+    },
+    "g": {
+      "item": "mekanism:OtherDust",
+      "data": 11
+    },
+    "I": {
+      "item": "mekanism:basicblock",
+      "data": 8
+    }
+  }
+}

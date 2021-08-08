@@ -137,7 +137,8 @@ tile.MachineBlock.DigitalMiner.name=数字型采矿机
 tile.MachineBlock.IsotopicCentrifuge.name=同位素离心机
 tile.MachineBlock.Chargepad.name=充电台
 tile.MachineBlock.NutritionalLiquifier.name=营养液化器
-
+tile.MachineBlock.antiprotonicnucleosynthesizer.name=反质子核合成器
+tile.MachineBlock.AntiprotonicNucleosynthesizer.name=反质子核合成器
 # Machine Block 2 (second ID iteration)
 tile.MachineBlock2.RotaryCondensentrator.name=回旋式气液转换机
 tile.MachineBlock2.ChemicalOxidizer.name=化学氧化机

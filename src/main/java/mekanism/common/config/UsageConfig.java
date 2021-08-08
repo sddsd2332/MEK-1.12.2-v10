@@ -83,6 +83,9 @@ public class UsageConfig extends BaseConfig {
     public final DoubleOption IsotopicCentrifuge = new DoubleOption(this, "usage", "IsotopicCentrifugeUsage", 200D,
             "Energy per operation tick (Joules).");
 
+    public final DoubleOption nucleosynthesizer = new DoubleOption(this, "usage", "nucleosynthesizerUsage", 200D,
+            "Energy per operation tick (Joules).");
+
     public final IntOption teleporterBase = new IntOption(this, "usage", "TeleporterBaseUsage", 1000,
           "Base Joules cost for a teleportation.");
 

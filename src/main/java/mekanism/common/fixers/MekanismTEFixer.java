@@ -16,6 +16,7 @@ public class MekanismTEFixer extends TEFixer {
         putEntry("BoundingBlock", "bounding_block");
         putEntry("CardboardBox", "cardboard_box");
         putEntry("Chargepad", "chargepad");
+        putEntry("AntiprotonicNucleosynthesizer","antiprotonic_nucleosynthesizer");
       //  putEntry("IndustrialAlarm", "industrial_alarm");
         putEntry("ChemicalCrystallizer", "chemical_crystallizer");
         putEntry("ChemicalDissolutionChamber", "chemical_dissolution_chamber");
@@ -78,5 +79,6 @@ public class MekanismTEFixer extends TEFixer {
         putEntry("ThermodynamicConductor", "thermodynamic_conductor");
         putEntry("UltimateSmeltingFactory", "ultimate_smelting_factory");
         putEntry("UniversalCable", "universal_cable");
+       // putEntry("COMPOUNDCATHETER", "compound_catheter");
     }
 }

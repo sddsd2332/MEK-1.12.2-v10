@@ -12,50 +12,7 @@ import mekanism.api.EnumColor;
 import mekanism.api.Pos3D;
 import mekanism.client.SparkleAnimation.INodeChecker;
 import mekanism.client.entity.ParticleLaser;
-import mekanism.client.gui.GuiAmbientAccumulator;
-import mekanism.client.gui.GuiBoilerStats;
-import mekanism.client.gui.GuiCombiner;
-import mekanism.client.gui.GuiCrusher;
-import mekanism.client.gui.GuiDictionary;
-import mekanism.client.gui.GuiDigitalMiner;
-import mekanism.client.gui.GuiDynamicTank;
-import mekanism.client.gui.GuiElectricPump;
-import mekanism.client.gui.GuiElectrolyticSeparator;
-import mekanism.client.gui.GuiEnergizedSmelter;
-import mekanism.client.gui.GuiEnergyCube;
-import mekanism.client.gui.GuiEnrichmentChamber;
-import mekanism.client.gui.GuiFactory;
-import mekanism.client.gui.GuiFluidTank;
-import mekanism.client.gui.GuiFluidicPlenisher;
-import mekanism.client.gui.GuiFormulaicAssemblicator;
-import mekanism.client.gui.GuiFuelwoodHeater;
-import mekanism.client.gui.GuiGasTank;
-import mekanism.client.gui.GuiInductionMatrix;
-import mekanism.client.gui.GuiLaserAmplifier;
-import mekanism.client.gui.GuiLaserTractorBeam;
-import mekanism.client.gui.GuiLogisticalSorter;
-import mekanism.client.gui.GuiMatrixStats;
-import mekanism.client.gui.GuiMetallurgicInfuser;
-import mekanism.client.gui.GuiOredictionificator;
-import mekanism.client.gui.GuiOsmiumCompressor;
-import mekanism.client.gui.GuiPRC;
-import mekanism.client.gui.GuiPersonalChest;
-import mekanism.client.gui.GuiPrecisionSawmill;
-import mekanism.client.gui.GuiPurificationChamber;
-import mekanism.client.gui.GuiQuantumEntangloporter;
-import mekanism.client.gui.GuiResistiveHeater;
-import mekanism.client.gui.GuiRotaryCondensentrator;
-import mekanism.client.gui.GuiSecurityDesk;
-import mekanism.client.gui.GuiSeismicReader;
-import mekanism.client.gui.GuiSeismicVibrator;
-import mekanism.client.gui.GuiSideConfiguration;
-import mekanism.client.gui.GuiSolarNeutronActivator;
-import mekanism.client.gui.GuiTeleporter;
-import mekanism.client.gui.GuiThermalEvaporationController;
-import mekanism.client.gui.GuiThermoelectricBoiler;
-import mekanism.client.gui.GuiTransporterConfig;
-import mekanism.client.gui.GuiUpgradeManagement;
-import mekanism.client.gui.GuiIsotopicCentrifuge;
+import mekanism.client.gui.*;
 import mekanism.client.gui.chemical.GuiChemicalCrystallizer;
 import mekanism.client.gui.chemical.GuiChemicalDissolutionChamber;
 import mekanism.client.gui.chemical.GuiChemicalInfuser;
@@ -86,25 +43,7 @@ import mekanism.client.render.item.gear.RenderJetpack;
 import mekanism.client.render.item.gear.RenderScubaTank;
 import mekanism.client.render.item.machine.RenderMachineItem;
 import mekanism.client.render.obj.MekanismOBJLoader;
-import mekanism.client.render.tileentity.RenderBin;
-import mekanism.client.render.tileentity.RenderChemicalCrystallizer;
-import mekanism.client.render.tileentity.RenderChemicalDissolutionChamber;
-import mekanism.client.render.tileentity.RenderConfigurableMachine;
-import mekanism.client.render.tileentity.RenderDigitalMiner;
-import mekanism.client.render.tileentity.RenderDynamicTank;
-import mekanism.client.render.tileentity.RenderEnergyCube;
-import mekanism.client.render.tileentity.RenderFluidTank;
-import mekanism.client.render.tileentity.RenderGasTank;
-import mekanism.client.render.tileentity.RenderPersonalChest;
-import mekanism.client.render.tileentity.RenderQuantumEntangloporter;
-import mekanism.client.render.tileentity.RenderResistiveHeater;
-import mekanism.client.render.tileentity.RenderSecurityDesk;
-import mekanism.client.render.tileentity.RenderSeismicVibrator;
-import mekanism.client.render.tileentity.RenderSolarNeutronActivator;
-import mekanism.client.render.tileentity.RenderTeleporter;
-import mekanism.client.render.tileentity.RenderThermalEvaporationController;
-import mekanism.client.render.tileentity.RenderThermoelectricBoiler;
-import mekanism.client.render.tileentity.RenderIsotopicCentrifuge;
+import mekanism.client.render.tileentity.*;
 import mekanism.client.render.transmitter.RenderLogisticalTransporter;
 import mekanism.client.render.transmitter.RenderMechanicalPipe;
 import mekanism.client.render.transmitter.RenderPressurizedTube;
@@ -279,6 +218,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityThermodynamicConductor.class, new RenderThermodynamicConductor());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUniversalCable.class, new RenderUniversalCable());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIsotopicCentrifuge.class, new RenderIsotopicCentrifuge());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntiprotonicNucleosynthesizer.class, new RenderAntiprotonicNucleosynthesizer());
     }
 
     @Override
@@ -385,17 +325,20 @@ public class ClientProxy extends CommonProxy {
 
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock), 4, getInventoryMRL("digital_miner"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock), 13, getInventoryMRL("personal_chest"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock), 13, getInventoryMRL("isotopic_centrifuge"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock), 14, getInventoryMRL("antiprotonic_nucleosynthesizer"));
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock2), 6, getInventoryMRL("chemical_dissolution_chamber"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock2), 8, getInventoryMRL("chemical_crystallizer"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock2), 9, getInventoryMRL("seismic_vibrator"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock2), 11, getInventoryMRL("fluid_tank"));
 
+
+
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 0, getInventoryMRL("quantum_entangloporter"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 1, getInventoryMRL("solar_neutron_activator"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 4, getInventoryMRL("resistive_heater"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 9, getInventoryMRL("isotopic_centrifuge"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 9, getInventoryMRL("personal_chest"));
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.BasicBlock2), 9, getInventoryMRL("security_desk"));
 
@@ -819,6 +762,8 @@ public class ClientProxy extends CommonProxy {
                 return new GuiNutritionalLiquifier(player.inventory, (TileEntityNutritionalLiquifier) tileEntity);
             case 61:
                 return new GuiIsotopicCentrifuge(player.inventory, (TileEntityIsotopicCentrifuge) tileEntity);
+            case 62:
+                return new GuiAntiprotonicNucleosynthesizer(player.inventory, (TileEntityAntiprotonicNucleosynthesizer) tileEntity);
         }
         return null;
     }
@@ -952,6 +897,7 @@ public class ClientProxy extends CommonProxy {
         machineModelBake(modelRegistry, "solar_neutron_activator", MachineType.SOLAR_NEUTRON_ACTIVATOR);
         machineModelBake(modelRegistry, "chemical_dissolution_chamber", MachineType.CHEMICAL_DISSOLUTION_CHAMBER);
         machineModelBake(modelRegistry, "chemical_crystallizer", MachineType.CHEMICAL_CRYSTALLIZER);
+        machineModelBake(modelRegistry,"antiprotonic_nucleosynthesizer",MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER);
         machineModelBake(modelRegistry, "seismic_vibrator", MachineType.SEISMIC_VIBRATOR);
         machineModelBake(modelRegistry, "quantum_entangloporter", MachineType.QUANTUM_ENTANGLOPORTER);
         machineModelBake(modelRegistry, "resistive_heater", MachineType.RESISTIVE_HEATER);

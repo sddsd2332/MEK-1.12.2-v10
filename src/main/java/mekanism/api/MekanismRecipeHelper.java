@@ -165,6 +165,8 @@ public interface MekanismRecipeHelper {
     void addPRCRecipe(ItemStack inputSolid, FluidStack inputFluid, GasStack inputGas, ItemStack outputSolid,
           GasStack outputGas, double extraEnergy, int ticks);
 
+    void addAntiprotonicNucleosynthesizerRecipe(ItemStack inputSolid,  GasStack inputGas, ItemStack outputSolid, double extraEnergy, int ticks);
+
     void addThermalEvaporationRecipe(FluidStack inputFluid, FluidStack outputFluid);
 
     void addSolarNeutronRecipe(GasStack inputGas, GasStack outputGas);
