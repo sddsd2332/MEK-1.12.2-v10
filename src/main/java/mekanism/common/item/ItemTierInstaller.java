@@ -21,7 +21,7 @@ public class ItemTierInstaller extends ItemMekanism implements IMetaItem {
 
     public ItemTierInstaller() {
         super();
-        setMaxStackSize(1);
+        setMaxStackSize(16);
         setHasSubtypes(true);
     }
 

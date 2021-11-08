@@ -71,4 +71,5 @@ public class GuiRedstoneControl2 extends GuiTileEntityElement<TileEntity> {
             Mekanism.packetHandler.sendToServer(new RedstoneControlMessage(Coord4D.get(tileEntity), RedstoneControl.values()[ordinalToSet]));
         }
     }
+
 }

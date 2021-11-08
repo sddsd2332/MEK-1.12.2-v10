@@ -13,6 +13,7 @@
       "dizzyd"
     ],
     "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
+    "logoFile":"assets/mekanism/logo.png",
     "useDependencyInformation": true,
     "dependencies": [
       "forge",
@@ -46,6 +47,7 @@
       "dizzyd"
     ],
     "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
+    "logoFile":"assets/mekanism/logo.png",
     "useDependencyInformation": true,
     "dependencies": [
       "mekanism@[${version}]"
@@ -68,6 +70,7 @@
       "dizzyd"
     ],
     "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
+    "logoFile":"assets/mekanism/logo.png",
     "useDependencyInformation": true,
     "dependencies": [
       "mekanism@[${version}]"

@@ -1,11 +1,8 @@
 package mekanism.client.render;
 
 import javax.annotation.Nonnull;
-import mekanism.client.model.ModelArmoredJetpack;
-import mekanism.client.model.ModelFreeRunners;
-import mekanism.client.model.ModelGasMask;
-import mekanism.client.model.ModelJetpack;
-import mekanism.client.model.ModelScubaTank;
+
+import mekanism.client.model.*;
 import mekanism.client.render.MekanismRenderer.GlowInfo;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MekanismUtils.ResourceType;
@@ -133,13 +130,17 @@ public class ModelCustomArmor extends ModelBiped {
         ARMOREDJETPACK(1, MekanismUtils.getResource(ResourceType.RENDER, "Jetpack.png")),
         SCUBATANK(1, MekanismUtils.getResource(ResourceType.RENDER, "ScubaSet.png")),
         GASMASK(0, MekanismUtils.getResource(ResourceType.RENDER, "ScubaSet.png")),
-        FREERUNNERS(3, MekanismUtils.getResource(ResourceType.RENDER, "FreeRunners.png"));
+        FREERUNNERS(3, MekanismUtils.getResource(ResourceType.RENDER, "FreeRunners.png")),
+        MEKASUITHELMET(0,MekanismUtils.getResource(ResourceType.RENDER, "MekaSuitHelmet.png")),
+        MEKASUITCHEST(1,MekanismUtils.getResource(ResourceType.RENDER, "MekaSuitChest.png"));
 
         public static ModelJetpack jetpackModel = new ModelJetpack();
         public static ModelArmoredJetpack armoredJetpackModel = new ModelArmoredJetpack();
         public static ModelGasMask gasMaskModel = new ModelGasMask();
         public static ModelScubaTank scubaTankModel = new ModelScubaTank();
         public static ModelFreeRunners freeRunnersModel = new ModelFreeRunners();
+        public static ModelMekaSuitHelmet mekaSuitHelmet = new ModelMekaSuitHelmet();
+        public static ModelMekaSuitChest mekaSuitChest = new ModelMekaSuitChest();
         public int armorSlot;
         public ResourceLocation resource;
 
@@ -192,11 +193,16 @@ public class ModelCustomArmor extends ModelBiped {
                         ArmorModel.jetpackModel.render(0.0625F);
                     } else if (biped.modelType == ArmorModel.ARMOREDJETPACK) {
                         ArmorModel.armoredJetpackModel.render(0.0625F);
-                    } else if (biped.modelType == ArmorModel.SCUBATANK) {
+                    } else if (biped.modelType == ArmorModel.MEKASUITCHEST) {
+                        ArmorModel.mekaSuitChest.render(0.0625F);
+                    }else if (biped.modelType == ArmorModel.SCUBATANK) {
                         ArmorModel.scubaTankModel.render(0.0625F);
                     } else if (biped.modelType == ArmorModel.GASMASK) {
                         GlStateManager.translate(0, 0, -0.05F);
                         ArmorModel.gasMaskModel.render(0.0625F);
+                    } else if (biped.modelType == ArmorModel.MEKASUITHELMET) {
+                        GlStateManager.translate(0, 0, -0.05F);
+                        ArmorModel.mekaSuitHelmet.render(0.0625F);
                     } else if (biped.modelType == ArmorModel.FREERUNNERS) {
                         GlStateManager.scale(1.02F, 1.02F, 1.02F);
                         if (partRender == biped.bipedLeftLeg) {

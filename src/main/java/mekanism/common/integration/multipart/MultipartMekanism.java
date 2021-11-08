@@ -1,8 +1,5 @@
 package mekanism.common.integration.multipart;
 
-import static mekanism.common.block.states.BlockStateMachine.MachineBlock.MACHINE_BLOCK_1;
-import static mekanism.common.block.states.BlockStateMachine.MachineBlock.MACHINE_BLOCK_2;
-
 import java.util.Collection;
 import java.util.Collections;
 import javax.annotation.Nonnull;
@@ -54,6 +51,8 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static mekanism.common.block.states.BlockStateMachine.MachineBlock.*;
 
 @MCMPAddon
 public class MultipartMekanism implements IMCMPAddon {
@@ -185,8 +184,11 @@ public class MultipartMekanism implements IMCMPAddon {
             if (!MachineType.get(MACHINE_BLOCK_2, i).hasModel) {
                 FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.MachineBlock2, 1, i));
             }
+            if (!MachineType.get(MACHINE_BLOCK_3, i).hasModel) {
+                FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.MachineBlock3, 1, i));
+            }
         }
-
+        FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.BasicBlock3, 1, 0));
         FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.BasicBlock2, 1, 0));
         FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.CardboardBox));
     }

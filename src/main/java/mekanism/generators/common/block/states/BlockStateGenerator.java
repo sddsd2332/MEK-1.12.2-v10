@@ -78,6 +78,7 @@ public class BlockStateGenerator extends ExtendedBlockState {
         BIO_GENERATOR(GeneratorBlock.GENERATOR_BLOCK_1, 4, "BioGenerator", 4, 160000, TileEntityBioGenerator::new, true, Plane.HORIZONTAL, false, true),
         ADVANCED_SOLAR_GENERATOR(GeneratorBlock.GENERATOR_BLOCK_1, 5, "AdvancedSolarGenerator", 1, 200000, TileEntityAdvancedSolarGenerator::new, true, Plane.HORIZONTAL, false),
         WIND_GENERATOR(GeneratorBlock.GENERATOR_BLOCK_1, 6, "WindGenerator", 5, 200000, TileEntityWindGenerator::new, true, Plane.HORIZONTAL, false),
+
         TURBINE_ROTOR(GeneratorBlock.GENERATOR_BLOCK_1, 7, "TurbineRotor", -1, -1, TileEntityTurbineRotor::new, false, BlockStateUtils.NO_ROTATION, false),
         ROTATIONAL_COMPLEX(GeneratorBlock.GENERATOR_BLOCK_1, 8, "RotationalComplex", -1, -1, TileEntityRotationalComplex::new, false, BlockStateUtils.NO_ROTATION, false),
         ELECTROMAGNETIC_COIL(GeneratorBlock.GENERATOR_BLOCK_1, 9, "ElectromagneticCoil", -1, -1, TileEntityElectromagneticCoil::new, false, BlockStateUtils.NO_ROTATION, false),

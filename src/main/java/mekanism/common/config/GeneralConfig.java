@@ -127,23 +127,42 @@ public class GeneralConfig extends BaseConfig {
     public final IntOption disassemblerEnergyUsage = new IntOption(this, "general", "DisassemblerEnergyUsage", 10,
           "Base Energy (Joules) usage of the Atomic Disassembler. (Gets multiplied by speed factor)");
 
+    public final IntOption toolEnergyUsage = new IntOption(this, "general", "toolEnergyUsage", 10,
+            "Base Energy (Joules) usage of the mektool. (Gets multiplied by speed factor)");
+
     public final IntOption disassemblerEnergyUsageHoe = new IntOption(this, "general", "DisassemblerEnergyUsageHoe", 10,
           "Cost in Joules of using the Atomic Disassembler as a hoe.");
+
+    public final IntOption toolEnergyUsageHoe = new IntOption(this, "general", "toolEnergyUsageHoe", 10,
+            "Cost in Joules of using the mektool as a hoe.");
 
     public final IntOption disassemblerEnergyUsageWeapon = new IntOption(this, "general", "DisassemblerEnergyUsageWeapon", 2000,
           "Cost in Joules of using the Atomic Disassembler as a weapon.");
 
+    public final IntOption toolEnergyUsageWeapon = new IntOption(this, "general", "toolEnergyUsageWeapon", 2000,
+            "Cost in Joules of using the mektool as a weapon.");
+
     public final IntOption disassemblerMiningRange = new IntOption(this, "general", "DisassemblerMiningRange", 10,
           "The Range of the Atomic Disassembler Extended Vein Mining.");
+
+    public final IntOption toolMiningRange = new IntOption(this, "general", "toolMiningRange", 20,
+            "The Range of the mektool Extended Vein Mining.");
 
     public final IntOption disassemblerMiningCount = new IntOption(this, "general", "DisassemblerMiningCount", 128,
           "The max Atomic Disassembler Vein Mining Block Count.");
 
+    public final IntOption toolMiningCount = new IntOption(this, "general", "toolMiningCount", 256,
+            "The max Atomic Disassembler Vein Mining Block Count.");
+
     public final BooleanOption disassemblerSlowMode = new BooleanOption(this, "general", "DisassemblerSlowMode", true,
           "Enable the 'Slow' mode for the Atomic Disassembler.");
 
+
     public final BooleanOption disassemblerFastMode = new BooleanOption(this, "general", "DisassemblerFastMode", true,
           "Enable the 'Fast' mode for the Atomic Disassembler.");
+
+    public final BooleanOption toolVeryFastMode = new BooleanOption(this, "general", "toolveryFastMode", true,
+            "Enable the 'Fast' mode for the Atomic Disassembler.");
 
     public final BooleanOption disassemblerVeinMining = new BooleanOption(this, "general", "DisassemblerVeinMiningMode", true,
           "Enable the 'Vein Mining' mode for the Atomic Disassembler.");
@@ -154,10 +173,18 @@ public class GeneralConfig extends BaseConfig {
     public final IntOption disassemblerDamageMin = new IntOption(this, "general", "DisassemblerDamageMin", 4,
           "The amount of damage the Atomic Disassembler does when it is out of power. (Value is in number of half hearts)");
 
+    public final IntOption toolDamageMin = new IntOption(this, "general", "toolDamageMin", 20,
+            "The amount of damage the mektool does when it is out of power. (Value is in number of half hearts)");
+
     public final IntOption disassemblerDamageMax = new IntOption(this, "general", "DisassemblerDamageMax", 20,
           "The amount of damage the Atomic Disassembler does when it has at least DisassemblerEnergyUsageWeapon power stored. (Value is in number of half hearts)");
 
+    public final IntOption toolDamageMax = new IntOption(this, "general", "toolDamageMax", 256,
+            "The amount of damage the mektool does when it has at least DisassemblerEnergyUsageWeapon power stored. (Value is in number of half hearts)");
+
     public final DoubleOption disassemblerBatteryCapacity = new DoubleOption(this, "general", "DisassemblerBatteryCapacity", 1000000, "Maximum amount (joules) of energy the Atomic Disassembler can contain", 0, Double.MAX_VALUE).setRequiresGameRestart(true);
+
+    public final DoubleOption toolBatteryCapacity = new DoubleOption(this, "general", "toolBatteryCapacity", Long.MAX_VALUE, "Maximum amount (joules) of energy the Atomic Disassembler can contain", 0, Double.MAX_VALUE).setRequiresGameRestart(true);
 
     public final IntOption VOICE_PORT = new IntOption(this, "general", "VoicePort", 36123,
           "TCP port for the Voice server to listen on.", 1, 65535);
@@ -175,8 +202,15 @@ public class GeneralConfig extends BaseConfig {
     public final DoubleOption armoredJetpackDamageRatio = new DoubleOption(this, "general", "ArmoredJetpackDamageRatio", 0.8,
           "Damage absorb ratio of the Armored Jetpack.");
 
+
+    public final DoubleOption armoredMekaSuitHelmetDamageRatio = new DoubleOption(this, "general", "ArmoredMekaSuitHelmetDamageRatio", 20,
+            "Damage absorb ratio of the Armored MekaSuit Helmet.");
+
     public final IntOption armoredJetpackDamageMax = new IntOption(this, "general", "ArmoredJepackDamageMax", 115,
           "Max damage the Armored Jetpack can absorb.");
+
+    public final IntOption armoredMekaSuitHelmetDamageMax = new IntOption(this, "general", "MekaSuitHelmetDamageMax", 1000,
+            "Max damage the MekaSuit Helmet can absorb.");
 
     public final BooleanOption aestheticWorldDamage = new BooleanOption(this, "general", "AestheticWorldDamage", true,
           "If enabled, lasers can break blocks and the flamethrower starts fires.");

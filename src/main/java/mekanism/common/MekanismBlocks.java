@@ -2,6 +2,7 @@ package mekanism.common;
 
 import static mekanism.common.block.states.BlockStateBasic.BasicBlock.BASIC_BLOCK_1;
 import static mekanism.common.block.states.BlockStateBasic.BasicBlock.BASIC_BLOCK_2;
+import static mekanism.common.block.states.BlockStateBasic.BasicBlock.BASIC_BLOCK_3;
 import static mekanism.common.block.states.BlockStateMachine.MachineBlock.MACHINE_BLOCK_1;
 import static mekanism.common.block.states.BlockStateMachine.MachineBlock.MACHINE_BLOCK_2;
 import static mekanism.common.block.states.BlockStateMachine.MachineBlock.MACHINE_BLOCK_3;
@@ -41,6 +42,7 @@ public class MekanismBlocks {
 
     public static Block BasicBlock = BlockBasic.getBlockBasic(BASIC_BLOCK_1);
     public static Block BasicBlock2 = BlockBasic.getBlockBasic(BASIC_BLOCK_2);
+    public static Block BasicBlock3 = BlockBasic.getBlockBasic(BASIC_BLOCK_3);
     public static Block MachineBlock = BlockMachine.getBlockMachine(MACHINE_BLOCK_1);
     public static Block MachineBlock2 = BlockMachine.getBlockMachine(MACHINE_BLOCK_2);
     public static Block MachineBlock3 = BlockMachine.getBlockMachine(MACHINE_BLOCK_3);
@@ -68,6 +70,7 @@ public class MekanismBlocks {
     public static void registerBlocks(IForgeRegistry<Block> registry) {
         registry.register(init(BasicBlock, "BasicBlock"));
         registry.register(init(BasicBlock2, "BasicBlock2"));
+        registry.register(init(BasicBlock3, "BasicBlock3"));
         registry.register(init(MachineBlock, "MachineBlock"));
         registry.register(init(MachineBlock2, "MachineBlock2"));
         registry.register(init(MachineBlock3, "MachineBlock3"));
@@ -97,6 +100,7 @@ public class MekanismBlocks {
     public static void registerItemBlocks(IForgeRegistry<Item> registry) {
         registry.register(MekanismItems.init(new ItemBlockBasic(BasicBlock), "BasicBlock"));
         registry.register(MekanismItems.init(new ItemBlockBasic(BasicBlock2), "BasicBlock2"));
+        registry.register(MekanismItems.init(new ItemBlockBasic(BasicBlock3), "BasicBlock3"));
         registry.register(MekanismItems.init(new ItemBlockMachine(MachineBlock), "MachineBlock"));
         registry.register(MekanismItems.init(new ItemBlockMachine(MachineBlock2), "MachineBlock2"));
         registry.register(MekanismItems.init(new ItemBlockMachine(MachineBlock3), "MachineBlock3"));

@@ -1,40 +1,6 @@
 package mekanism.common;
 
-import mekanism.common.item.ItemAlloy;
-import mekanism.common.item.ItemAtomicDisassembler;
-import mekanism.common.item.ItemBalloon;
-import mekanism.common.item.ItemClump;
-import mekanism.common.item.ItemConfigurationCard;
-import mekanism.common.item.ItemConfigurator;
-import mekanism.common.item.ItemControlCircuit;
-import mekanism.common.item.ItemCraftingFormula;
-import mekanism.common.item.ItemCrystal;
-import mekanism.common.item.ItemDictionary;
-import mekanism.common.item.ItemDirtyDust;
-import mekanism.common.item.ItemDust;
-import mekanism.common.item.ItemElectricBow;
-import mekanism.common.item.ItemEnergized;
-import mekanism.common.item.ItemFlamethrower;
-import mekanism.common.item.ItemFreeRunners;
-import mekanism.common.item.ItemGasMask;
-import mekanism.common.item.ItemGaugeDropper;
-import mekanism.common.item.ItemHDPE;
-import mekanism.common.item.ItemIngot;
-import mekanism.common.item.ItemJetpack;
-import mekanism.common.item.ItemMekanism;
-import mekanism.common.item.ItemNetworkReader;
-import mekanism.common.item.ItemNugget;
-import mekanism.common.item.ItemOtherDust;
-import mekanism.common.item.ItemPortableTeleporter;
-import mekanism.common.item.ItemProxy;
-import mekanism.common.item.ItemRobit;
-import mekanism.common.item.ItemScubaTank;
-import mekanism.common.item.ItemSeismicReader;
-import mekanism.common.item.ItemShard;
-import mekanism.common.item.ItemTierInstaller;
-import mekanism.common.item.ItemUpgrade;
-import mekanism.common.item.ItemWalkieTalkie;
-import mekanism.common.item.ItemCanteen;
+import mekanism.common.item.*;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
@@ -86,6 +52,13 @@ public class MekanismItems {
     public static final ItemFreeRunners FreeRunners = new ItemFreeRunners();
     public static final Item Balloon = new ItemBalloon();
 
+    public static final ItemMekTool MekTool = new ItemMekTool();
+//    public static final ItemMekaSuitHelmet MekaSuitHelmet = new ItemMekaSuitHelmet();
+ //   public static final ItemMekaSuitChest MekaSuitChest = new ItemMekaSuitChest();
+
+
+
+
     //Multi-ID Items
     public static final Item OtherDust = new ItemOtherDust();
     public static final Item Dust = new ItemDust();
@@ -119,6 +92,7 @@ public class MekanismItems {
         registry.register(init(AnchorUpgrade, "AnchorUpgrade"));
         registry.register(init(Robit, "Robit"));
         registry.register(init(AtomicDisassembler, "AtomicDisassembler"));
+        registry.register(init(MekTool, "MekTool"));
         registry.register(init(EnrichedAlloy, "EnrichedAlloy"));
         registry.register(init(ReinforcedAlloy, "ReinforcedAlloy"));
         registry.register(init(AtomicAlloy, "AtomicAlloy"));
@@ -158,6 +132,9 @@ public class MekanismItems {
         registry.register(init(GaugeDropper, "GaugeDropper"));
         registry.register(init(TierInstaller, "TierInstaller"));
         registry.register(init(OtherDust, "OtherDust"));
+
+   //     registry.register(init(MekaSuitHelmet, "MekaSuitHelmet"));
+  //      registry.register(init(MekaSuitChest, "MekaSuitChest"));
     }
 
     public static Item init(Item item, String name) {

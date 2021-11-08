@@ -1,0 +1,242 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/cube_all",
+	"texture_size": [128, 128],
+	"textures": {
+		"0": "mekanism:blocks/models/fuel_rod_assembly",
+		"particle": "mekanism:blocks/models/fuel_rod_assembly"
+	},
+	"elements": [
+		{
+			"name": "core",
+			"from": [2, 3, 2],
+			"to": [14, 13, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 4, 8]},
+			"faces": {
+				"north": {"uv": [1.5, 6.25, 3, 7.5], "texture": "#0"},
+				"east": {"uv": [0, 6.25, 1.5, 7.5], "texture": "#0"},
+				"south": {"uv": [4.5, 6.25, 6, 7.5], "texture": "#0"},
+				"west": {"uv": [3, 6.25, 4.5, 7.5], "texture": "#0"},
+				"up": {"uv": [3, 6.25, 1.5, 4.75], "texture": "#0"},
+				"down": {"uv": [4.5, 4.75, 3, 6.25], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_1",
+			"from": [13, 1, 1],
+			"to": [15, 15, 3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.94118, 10.14706, 7.82353]},
+			"faces": {
+				"north": {"uv": [7.25, 5, 7.5, 6.75], "texture": "#0"},
+				"east": {"uv": [7, 5, 7.25, 6.75], "texture": "#0"},
+				"south": {"uv": [7.75, 5, 8, 6.75], "texture": "#0"},
+				"west": {"uv": [7.5, 5, 7.75, 6.75], "texture": "#0"},
+				"up": {"uv": [7.5, 5, 7.25, 4.75], "texture": "#0"},
+				"down": {"uv": [7.75, 4.75, 7.5, 5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_2",
+			"from": [9, 1, 1],
+			"to": [11, 15, 3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.94118, 10.14706, 7.82353]},
+			"faces": {
+				"north": {"uv": [7.25, 2.625, 7.5, 4.375], "texture": "#0"},
+				"east": {"uv": [7, 2.625, 7.25, 4.375], "texture": "#0"},
+				"south": {"uv": [7.75, 2.625, 8, 4.375], "texture": "#0"},
+				"west": {"uv": [7.5, 2.625, 7.75, 4.375], "texture": "#0"},
+				"up": {"uv": [7.5, 2.625, 7.25, 2.375], "texture": "#0"},
+				"down": {"uv": [7.75, 2.375, 7.5, 2.625], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_3",
+			"from": [13, 1, 5],
+			"to": [15, 15, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.94118, 10.14706, 7.82353]},
+			"faces": {
+				"north": {"uv": [7.25, 0.25, 7.5, 2], "texture": "#0"},
+				"east": {"uv": [7, 0.25, 7.25, 2], "texture": "#0"},
+				"south": {"uv": [7.75, 0.25, 8, 2], "texture": "#0"},
+				"west": {"uv": [7.5, 0.25, 7.75, 2], "texture": "#0"},
+				"up": {"uv": [7.5, 0.25, 7.25, 0], "texture": "#0"},
+				"down": {"uv": [7.75, 0, 7.5, 0.25], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_4",
+			"from": [1, 1, 1],
+			"to": [3, 15, 3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-4.05882, 10.14706, 7.82353]},
+			"faces": {
+				"north": {"uv": [6.25, 7, 6.5, 8.75], "texture": "#0"},
+				"east": {"uv": [6, 7, 6.25, 8.75], "texture": "#0"},
+				"south": {"uv": [6.75, 7, 7, 8.75], "texture": "#0"},
+				"west": {"uv": [6.5, 7, 6.75, 8.75], "texture": "#0"},
+				"up": {"uv": [6.5, 7, 6.25, 6.75], "texture": "#0"},
+				"down": {"uv": [6.75, 6.75, 6.5, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_5",
+			"from": [1, 1, 5],
+			"to": [3, 15, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-4.05882, 10.14706, 7.82353]},
+			"faces": {
+				"north": {"uv": [6.25, 5, 6.5, 6.75], "texture": "#0"},
+				"east": {"uv": [6, 5, 6.25, 6.75], "texture": "#0"},
+				"south": {"uv": [6.75, 5, 7, 6.75], "texture": "#0"},
+				"west": {"uv": [6.5, 5, 6.75, 6.75], "texture": "#0"},
+				"up": {"uv": [6.5, 5, 6.25, 4.75], "texture": "#0"},
+				"down": {"uv": [6.75, 4.75, 6.5, 5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_6",
+			"from": [1, 1, 9],
+			"to": [3, 15, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-4.05882, 10.14706, 7.82353]},
+			"faces": {
+				"north": {"uv": [6.25, 2.625, 6.5, 4.375], "texture": "#0"},
+				"east": {"uv": [6, 2.625, 6.25, 4.375], "texture": "#0"},
+				"south": {"uv": [6.75, 2.625, 7, 4.375], "texture": "#0"},
+				"west": {"uv": [6.5, 2.625, 6.75, 4.375], "texture": "#0"},
+				"up": {"uv": [6.5, 2.625, 6.25, 2.375], "texture": "#0"},
+				"down": {"uv": [6.75, 2.375, 6.5, 2.625], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_7",
+			"from": [5, 1, 1],
+			"to": [7, 15, 3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-4.05882, 10.14706, 7.82353]},
+			"faces": {
+				"north": {"uv": [6.25, 0.25, 6.5, 2], "texture": "#0"},
+				"east": {"uv": [6, 0.25, 6.25, 2], "texture": "#0"},
+				"south": {"uv": [6.75, 0.25, 7, 2], "texture": "#0"},
+				"west": {"uv": [6.5, 0.25, 6.75, 2], "texture": "#0"},
+				"up": {"uv": [6.5, 0.25, 6.25, 0], "texture": "#0"},
+				"down": {"uv": [6.75, 0, 6.5, 0.25], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_8",
+			"from": [1, 1, 13],
+			"to": [3, 15, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-4.05882, 10.14706, 19.82353]},
+			"faces": {
+				"north": {"uv": [1.25, 2.625, 1.5, 4.375], "texture": "#0"},
+				"east": {"uv": [1, 2.625, 1.25, 4.375], "texture": "#0"},
+				"south": {"uv": [1.75, 2.625, 2, 4.375], "texture": "#0"},
+				"west": {"uv": [1.5, 2.625, 1.75, 4.375], "texture": "#0"},
+				"up": {"uv": [1.5, 2.625, 1.25, 2.375], "texture": "#0"},
+				"down": {"uv": [1.75, 2.375, 1.5, 2.625], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_9",
+			"from": [9, 1, 13],
+			"to": [11, 15, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-4.05882, 10.14706, 19.82353]},
+			"faces": {
+				"north": {"uv": [0.25, 2.625, 0.5, 4.375], "texture": "#0"},
+				"east": {"uv": [0, 2.625, 0.25, 4.375], "texture": "#0"},
+				"south": {"uv": [0.75, 2.625, 1, 4.375], "texture": "#0"},
+				"west": {"uv": [0.5, 2.625, 0.75, 4.375], "texture": "#0"},
+				"up": {"uv": [0.5, 2.625, 0.25, 2.375], "texture": "#0"},
+				"down": {"uv": [0.75, 2.375, 0.5, 2.625], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_10",
+			"from": [5, 1, 13],
+			"to": [7, 15, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-4.05882, 10.14706, 19.82353]},
+			"faces": {
+				"north": {"uv": [1.25, 0.25, 1.5, 2], "texture": "#0"},
+				"east": {"uv": [1, 0.25, 1.25, 2], "texture": "#0"},
+				"south": {"uv": [1.75, 0.25, 2, 2], "texture": "#0"},
+				"west": {"uv": [1.5, 0.25, 1.75, 2], "texture": "#0"},
+				"up": {"uv": [1.5, 0.25, 1.25, 0], "texture": "#0"},
+				"down": {"uv": [1.75, 0, 1.5, 0.25], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_11",
+			"from": [13, 1, 13],
+			"to": [15, 15, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.94118, 10.14706, 19.82353]},
+			"faces": {
+				"north": {"uv": [0.25, 0.25, 0.5, 2], "texture": "#0"},
+				"east": {"uv": [0, 0.25, 0.25, 2], "texture": "#0"},
+				"south": {"uv": [0.75, 0.25, 1, 2], "texture": "#0"},
+				"west": {"uv": [0.5, 0.25, 0.75, 2], "texture": "#0"},
+				"up": {"uv": [0.5, 0.25, 0.25, 0], "texture": "#0"},
+				"down": {"uv": [0.75, 0, 0.5, 0.25], "texture": "#0"}
+			}
+		},
+		{
+			"name": "rod_12",
+			"from": [13, 1, 9],
+			"to": [15, 15, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.94118, 10.14706, 19.82353]},
+			"faces": {
+				"north": {"uv": [7.25, 7, 7.5, 8.75], "texture": "#0"},
+				"east": {"uv": [7, 7, 7.25, 8.75], "texture": "#0"},
+				"south": {"uv": [7.75, 7, 8, 8.75], "texture": "#0"},
+				"west": {"uv": [7.5, 7, 7.75, 8.75], "texture": "#0"},
+				"up": {"uv": [7.5, 7, 7.25, 6.75], "texture": "#0"},
+				"down": {"uv": [7.75, 6.75, 7.5, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "connector_ring_top",
+			"from": [0, 13, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 14.5, 0.5]},
+			"faces": {
+				"north": {"uv": [2, 4.375, 4, 4.75], "texture": "#0"},
+				"east": {"uv": [0, 4.375, 2, 4.75], "texture": "#0"},
+				"south": {"uv": [6, 4.375, 8, 4.75], "texture": "#0"},
+				"west": {"uv": [4, 4.375, 6, 4.75], "texture": "#0"},
+				"up": {"uv": [4, 4.375, 2, 2.375], "texture": "#0"},
+				"down": {"uv": [6, 2.375, 4, 4.375], "texture": "#0"}
+			}
+		},
+		{
+			"name": "connector_ring_bottom",
+			"from": [0, 0, 0],
+			"to": [16, 3, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 1.5, 0.5]},
+			"faces": {
+				"north": {"uv": [2, 2, 4, 2.375], "texture": "#0"},
+				"east": {"uv": [0, 2, 2, 2.375], "texture": "#0"},
+				"south": {"uv": [6, 2, 8, 2.375], "texture": "#0"},
+				"west": {"uv": [4, 2, 6, 2.375], "texture": "#0"},
+				"up": {"uv": [4, 2, 2, 0], "texture": "#0"},
+				"down": {"uv": [6, 0, 4, 2], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "fuel_rod_assembly",
+			"origin": [8, 4, 8],
+			"color": 0,
+			"children": [0,
+				{
+					"name": "rods",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+				},
+				{
+					"name": "connector_rings",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [13, 14]
+				}
+			]
+		}
+	]
+}

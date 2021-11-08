@@ -117,9 +117,10 @@ public class BlockStateMachine extends ExtendedBlockState {
         ELECTRIC_PUMP(MachineBlock.MACHINE_BLOCK_3, 8, "ElectricPump", 17, TileEntityElectricPump::new, true, true, false, Plane.HORIZONTAL, false),
         PERSONAL_CHEST(MachineBlock.MACHINE_BLOCK_3, 9, "PersonalChest", 19, TileEntityPersonalChest::new, true, true, false, Plane.HORIZONTAL, false),
         LOGISTICAL_SORTER(MachineBlock.MACHINE_BLOCK_3, 10, "LogisticalSorter", 59, TileEntityLogisticalSorter::new, false, true, false, BlockStateUtils.ALL_FACINGS, true),
-        Nutritional_Liquifier(MachineBlock.MACHINE_BLOCK_3, 11, "NutritionalLiquifier", 60, TileEntityNutritionalLiquifier::new, true, true, true, Plane.HORIZONTAL, true);
+        Nutritional_Liquifier(MachineBlock.MACHINE_BLOCK_3, 11, "NutritionalLiquifier", 60, TileEntityNutritionalLiquifier::new, true, true, true, Plane.HORIZONTAL, true),
 
         //INDUSTRIAL_ALARM(MachineBlock.MACHINE_BLOCK_3,12,"IndustrialAlarm",-1,TileEntityIndustrialAlarm::new,false,true,false, Plane.HORIZONTAL,true);
+        SUPERCHARGED_COIL(MachineBlock.MACHINE_BLOCK_3,12,"superchargedcoil",-1,TileEntitySuperchargedCoil::new,false,true,false,BlockStateUtils.ALL_FACINGS,false);
 
 
         public MachineBlock typeBlock;
@@ -284,6 +285,7 @@ public class BlockStateMachine extends ExtendedBlockState {
                    // return 0;
                 case ANTIPROTONIC_NUCLEOSYNTHESIZER:
                     return MekanismConfig.current().usage.nucleosynthesizer.val();
+
                 default:
                     return 0;
             }

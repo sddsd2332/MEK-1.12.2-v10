@@ -50,6 +50,7 @@ item.Flamethrower.name=Flamethrower
 item.GaugeDropper.name=Gauge Dropper
 item.BioFuel.name=Bio Fuel
 item.CraftingFormula.name=Crafting Formula
+item.Canteen.name=Canteen
 
 # Control Circuits
 item.BasicControlCircuit.name=Basic Control Circuit
@@ -101,6 +102,8 @@ tile.BasicBlock.CopperBlock.name=Copper Block
 tile.BasicBlock.TinBlock.name=Tin Block
 tile.BasicBlock.ThermalEvaporationController.name=Thermal Evaporation Controller
 tile.BasicBlock.ThermalEvaporationValve.name=Thermal Evaporation Valve
+tile.BasicBlock2.UraniumBlock.name=Uranium Block
+tile.BasicBlock2.LeadBlock.name=Lead Block
 
 # Basic Block 2 (second ID iteration)
 tile.BasicBlock2.ThermalEvaporationBlock.name=Thermal Evaporation Block
@@ -135,6 +138,10 @@ tile.MachineBlock.PersonalChest.name=Personal Chest
 tile.MachineBlock.Chargepad.name=Chargepad
 tile.MachineBlock.LogisticalSorter.name=Logistical Sorter
 tile.MachineBlock.DigitalMiner.name=Digital Miner
+tile.MachineBlock.IsotopicCentrifuge.name=Isotopic Centrifuge
+tile.MachineBlock.NutritionalLiquifier.name=Nutritional Liquifier
+tile.MachineBlock.antiprotonicnucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
+tile.MachineBlock.AntiprotonicNucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
 
 # Machine Block 2 (second ID iteration)
 tile.MachineBlock2.RotaryCondensentrator.name=Rotary Condensentrator
@@ -162,6 +169,11 @@ tile.MachineBlock3.Oredictionificator.name=Oredictionificator
 tile.MachineBlock3.ResistiveHeater.name=Resistive Heater
 tile.MachineBlock3.FormulaicAssemblicator.name=Formulaic Assemblicator
 tile.MachineBlock3.FuelwoodHeater.name=Fuelwood Heater
+tile.MachineBlock3.Chargepad.name=Chargepad
+tile.MachineBlock3.ElectricPump.name=Electric Pump
+tile.MachineBlock3.LogisticalSorter.name=Logistical Sorter
+tile.MachineBlock3.PersonalChest.name=Personal Chest
+tile.MachineBlock3.NutritionalLiquifier.name=Nutritional Liquifier
 
 # Plastic
 tile.PlasticBlock.name=Plastic Block
@@ -185,6 +197,9 @@ infuse.bio=Biomass
 tile.OreBlock.OsmiumOre.name=Osmium Ore
 tile.OreBlock.CopperOre.name=Copper Ore
 tile.OreBlock.TinOre.name=Tin Ore
+tile.OreBlock.UraniumOre.name=Uranium Ore
+tile.OreBlock.LeadOre.name=Lead Ore
+tile.OreBlock.FluoriteOre.name=Fluorite Ore
 
 # Transmitters
 tile.Transmitter.BasicPressurizedTube.name=Basic Pressurized Tube

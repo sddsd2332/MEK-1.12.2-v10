@@ -34,6 +34,7 @@ public class ModelAtomicDisassembler extends ModelBase {
         Shape1.setRotationPoint(0F, 0F, 0F);
         Shape1.setTextureSize(64, 32);
         Shape1.mirror = true;
+
         setRotation(Shape1, 0F, 0F, 0F);
         Shape2 = new ModelRenderer(this, 34, 9);
         Shape2.addBox(-0.5F, -3.5F, -3.5F, 2, 5, 2);

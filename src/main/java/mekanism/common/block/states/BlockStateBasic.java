@@ -10,22 +10,7 @@ import mekanism.common.Mekanism;
 import mekanism.common.MekanismBlocks;
 import mekanism.common.block.BlockBasic;
 import mekanism.common.tier.BaseTier;
-import mekanism.common.tile.TileEntityBin;
-import mekanism.common.tile.TileEntityBoilerCasing;
-import mekanism.common.tile.TileEntityBoilerValve;
-import mekanism.common.tile.TileEntityDynamicTank;
-import mekanism.common.tile.TileEntityDynamicValve;
-import mekanism.common.tile.TileEntityInductionCasing;
-import mekanism.common.tile.TileEntityInductionCell;
-import mekanism.common.tile.TileEntityInductionPort;
-import mekanism.common.tile.TileEntityInductionProvider;
-import mekanism.common.tile.TileEntityPressureDisperser;
-import mekanism.common.tile.TileEntitySecurityDesk;
-import mekanism.common.tile.TileEntityStructuralGlass;
-import mekanism.common.tile.TileEntitySuperheatingElement;
-import mekanism.common.tile.TileEntityThermalEvaporationBlock;
-import mekanism.common.tile.TileEntityThermalEvaporationController;
-import mekanism.common.tile.TileEntityThermalEvaporationValve;
+import mekanism.common.tile.*;
 import mekanism.common.util.LangUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -54,7 +39,8 @@ public class BlockStateBasic extends ExtendedBlockState {
 
     public enum BasicBlock {
         BASIC_BLOCK_1,
-        BASIC_BLOCK_2;
+        BASIC_BLOCK_2,
+        BASIC_BLOCK_3;
 
         private PropertyEnum<BasicBlockType> predicatedProperty;
 
@@ -71,6 +57,8 @@ public class BlockStateBasic extends ExtendedBlockState {
                     return MekanismBlocks.BasicBlock;
                 case BASIC_BLOCK_2:
                     return MekanismBlocks.BasicBlock2;
+                case BASIC_BLOCK_3:
+                    return MekanismBlocks.BasicBlock3;
                 default:
                     throw new IllegalStateException();
             }
@@ -107,7 +95,12 @@ public class BlockStateBasic extends ExtendedBlockState {
         BOILER_VALVE(BasicBlock.BASIC_BLOCK_2, 8, "BoilerValve", TileEntityBoilerValve::new, true, BlockStateUtils.NO_ROTATION, false, false, false, true),
         SECURITY_DESK(BasicBlock.BASIC_BLOCK_2, 9, "SecurityDesk", TileEntitySecurityDesk::new, true, Plane.HORIZONTAL, false, false, false, false, false, false),
         URANIUM_BLOCK(BasicBlock.BASIC_BLOCK_2, 10, "UraniumBlock", null, false, BlockStateUtils.NO_ROTATION, false, false, true),
-        lEAD_BLOCK(BasicBlock.BASIC_BLOCK_2, 11, "LeadBlock", null, false, BlockStateUtils.NO_ROTATION, false, false, true);
+        lEAD_BLOCK(BasicBlock.BASIC_BLOCK_2, 11, "LeadBlock", null, false, BlockStateUtils.NO_ROTATION, false, false, true),
+
+        SPS_CASING(BasicBlock.BASIC_BLOCK_3, 0, "SpsCasing", null, false, BlockStateUtils.NO_ROTATION, false, false, false),
+        FISSION_REACHER_CASING(BasicBlock.BASIC_BLOCK_3, 1, "FissionReacherCasing", null, false, BlockStateUtils.NO_ROTATION, false, false, false),
+        CONTROL_ROD_ASSEMBLY(BasicBlock.BASIC_BLOCK_3, 2, "ControlRodAssembly", null, false, BlockStateUtils.NO_ROTATION, false, false, false),
+        FISSION_FUEL_ASSEMBLY(BasicBlock.BASIC_BLOCK_3, 3, "FissionFuelAssembly", null, false, BlockStateUtils.NO_ROTATION, false, false, false);
 
         @Nonnull
         public BasicBlock blockType;

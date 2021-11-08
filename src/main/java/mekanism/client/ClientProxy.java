@@ -34,13 +34,7 @@ import mekanism.client.render.entity.RenderRobit;
 import mekanism.client.render.item.ItemLayerWrapper;
 import mekanism.client.render.item.RenderEnergyCubeItem;
 import mekanism.client.render.item.basicblock.RenderBasicBlockItem;
-import mekanism.client.render.item.gear.RenderArmoredJetpack;
-import mekanism.client.render.item.gear.RenderAtomicDisassembler;
-import mekanism.client.render.item.gear.RenderFlameThrower;
-import mekanism.client.render.item.gear.RenderFreeRunners;
-import mekanism.client.render.item.gear.RenderGasMask;
-import mekanism.client.render.item.gear.RenderJetpack;
-import mekanism.client.render.item.gear.RenderScubaTank;
+import mekanism.client.render.item.gear.*;
 import mekanism.client.render.item.machine.RenderMachineItem;
 import mekanism.client.render.obj.MekanismOBJLoader;
 import mekanism.client.render.tileentity.*;
@@ -237,6 +231,7 @@ public class ClientProxy extends CommonProxy {
         registerItemRender(MekanismItems.AnchorUpgrade);
         registerItemRender(MekanismItems.Robit);
         registerItemRender(MekanismItems.AtomicDisassembler);
+        registerItemRender(MekanismItems.MekTool);
         registerItemRender(MekanismItems.EnrichedAlloy);
         registerItemRender(MekanismItems.ReinforcedAlloy);
         registerItemRender(MekanismItems.AtomicAlloy);
@@ -275,6 +270,9 @@ public class ClientProxy extends CommonProxy {
         registerItemRender(MekanismItems.TierInstaller);
         registerItemRender(MekanismItems.OtherDust);
 
+      //  registerItemRender(MekanismItems.MekaSuitHelmet);
+    //    registerItemRender(MekanismItems.MekaSuitChest);
+
         ModelBakery.registerItemVariants(MekanismItems.WalkieTalkie, ItemWalkieTalkie.OFF_MODEL);
 
         for (int i = 1; i <= 9; i++) {
@@ -289,12 +287,17 @@ public class ClientProxy extends CommonProxy {
         MekanismItems.ScubaTank.setTileEntityItemStackRenderer(new RenderScubaTank());
         MekanismItems.FreeRunners.setTileEntityItemStackRenderer(new RenderFreeRunners());
         MekanismItems.AtomicDisassembler.setTileEntityItemStackRenderer(new RenderAtomicDisassembler());
+        MekanismItems.MekTool.setTileEntityItemStackRenderer(new RenderMekTool());
         MekanismItems.Flamethrower.setTileEntityItemStackRenderer(new RenderFlameThrower());
         Item.getItemFromBlock(MekanismBlocks.EnergyCube).setTileEntityItemStackRenderer(new RenderEnergyCubeItem());
         Item.getItemFromBlock(MekanismBlocks.MachineBlock).setTileEntityItemStackRenderer(new RenderMachineItem());
         Item.getItemFromBlock(MekanismBlocks.MachineBlock2).setTileEntityItemStackRenderer(new RenderMachineItem());
         Item.getItemFromBlock(MekanismBlocks.MachineBlock3).setTileEntityItemStackRenderer(new RenderMachineItem());
         Item.getItemFromBlock(MekanismBlocks.BasicBlock2).setTileEntityItemStackRenderer(new RenderBasicBlockItem());
+        Item.getItemFromBlock(MekanismBlocks.BasicBlock3).setTileEntityItemStackRenderer(new RenderBasicBlockItem());
+
+   //     MekanismItems.MekaSuitHelmet.setTileEntityItemStackRenderer(new RenderMekaSuitHelmet());
+    //    MekanismItems.MekaSuitChest.setTileEntityItemStackRenderer(new RenderMekaSuitChest());
     }
 
     private ModelResourceLocation getInventoryMRL(String type) {
@@ -308,6 +311,7 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomStateMapper(MekanismBlocks.MachineBlock3, machineMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.BasicBlock, basicMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.BasicBlock2, basicMapper);
+        ModelLoader.setCustomStateMapper(MekanismBlocks.BasicBlock3, basicMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.PlasticBlock, plasticMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.SlickPlasticBlock, plasticMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.GlowPlasticBlock, plasticMapper);
@@ -515,6 +519,7 @@ public class ClientProxy extends CommonProxy {
 
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(MekanismBlocks.BasicBlock), basicMesher);
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(MekanismBlocks.BasicBlock2), basicMesher);
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(MekanismBlocks.BasicBlock3), basicMesher);
 
         ItemMeshDefinition transmitterMesher = stack -> {
             TransmitterType type = TransmitterType.get(stack.getItemDamage());
@@ -764,6 +769,8 @@ public class ClientProxy extends CommonProxy {
                 return new GuiIsotopicCentrifuge(player.inventory, (TileEntityIsotopicCentrifuge) tileEntity);
             case 62:
                 return new GuiAntiprotonicNucleosynthesizer(player.inventory, (TileEntityAntiprotonicNucleosynthesizer) tileEntity);
+         //   case 63:
+        //        return new GuiSPS(player.inventory, (TileEntitySPSCasing) tileEntity);
         }
         return null;
     }
@@ -890,8 +897,17 @@ public class ClientProxy extends CommonProxy {
         ModelResourceLocation AtomicDisassemblerRL = getInventoryMRL("AtomicDisassembler");
         modelRegistry.putObject(AtomicDisassemblerRL, RenderAtomicDisassembler.model = new ItemLayerWrapper(modelRegistry.getObject(AtomicDisassemblerRL)));
 
+        ModelResourceLocation MekToolRL = getInventoryMRL("MekTool");
+        modelRegistry.putObject(MekToolRL, RenderMekTool.model = new ItemLayerWrapper(modelRegistry.getObject(MekToolRL)));
+
         ModelResourceLocation FlamethrowerRL = getInventoryMRL("Flamethrower");
         modelRegistry.putObject(FlamethrowerRL, RenderFlameThrower.model = new ItemLayerWrapper(modelRegistry.getObject(FlamethrowerRL)));
+
+        ModelResourceLocation MekaSuitHelmetRL = getInventoryMRL("MekaSuitHelmet");
+        modelRegistry.putObject(MekaSuitHelmetRL, RenderMekaSuitHelmet.model = new ItemLayerWrapper(modelRegistry.getObject(MekaSuitHelmetRL)));
+
+        ModelResourceLocation MekaSuitChestRL = getInventoryMRL("MekaSuitChest");
+        modelRegistry.putObject(MekaSuitChestRL, RenderMekaSuitChest.model = new ItemLayerWrapper(modelRegistry.getObject(MekaSuitChestRL)));
 
         machineModelBake(modelRegistry, "digital_miner", MachineType.DIGITAL_MINER);
         machineModelBake(modelRegistry, "solar_neutron_activator", MachineType.SOLAR_NEUTRON_ACTIVATOR);

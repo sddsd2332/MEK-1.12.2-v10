@@ -172,4 +172,6 @@ public interface MekanismRecipeHelper {
     void addSolarNeutronRecipe(GasStack inputGas, GasStack outputGas);
 
     void addIsotopicRecipe(GasStack inputGas, GasStack outputGas);
+
+   // void addSPSRecipe(GasStack inputGas, GasStack outputGas);
 }

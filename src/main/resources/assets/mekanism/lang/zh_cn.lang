@@ -51,7 +51,7 @@ item.GaugeDropper.name=滴量器
 item.BioFuel.name=生物燃料
 item.CraftingFormula.name=合成配方
 item.Canteen.name=水壶
-
+item.MekTool.name=§4☢☣✪拓荒者工具✪☣☢  §f【WIP】
 # Control Circuits
 item.BasicControlCircuit.name=基础控制电路
 item.AdvancedControlCircuit.name=高级控制电路
@@ -123,6 +123,10 @@ tile.BasicBlock2.SecurityDesk.name=机密桌
 tile.BasicBlock2.UraniumBlock.name=铀块
 tile.BasicBlock2.LeadBlock.name=铅块
 
+tile.BasicBlock3.SpsCasing.name=超临界移相器外壳[WIP]
+tile.BasicBlock3.FissionReacherCasing.name=裂变反应堆外壳[WIP]
+tile.BasicBlock3.ControlRodAssembly.name=控制棒组件[WIP]
+tile.BasicBlock3.FissionFuelAssembly.name=裂变燃料组件[WIP]
 # Machine Block
 tile.MachineBlock.EnrichmentChamber.name=富集仓
 tile.MachineBlock.OsmiumCompressor.name=锇压缩机
@@ -137,8 +141,9 @@ tile.MachineBlock.DigitalMiner.name=数字型采矿机
 tile.MachineBlock.IsotopicCentrifuge.name=同位素离心机
 tile.MachineBlock.Chargepad.name=充电台
 tile.MachineBlock.NutritionalLiquifier.name=营养液化器
-tile.MachineBlock.antiprotonicnucleosynthesizer.name=反质子核合成器
-tile.MachineBlock.AntiprotonicNucleosynthesizer.name=反质子核合成器
+tile.MachineBlock.antiprotonicnucleosynthesizer.name=反质子核合成器（WIP）
+tile.MachineBlock.AntiprotonicNucleosynthesizer.name=反质子核合成器（WIP）
+
 # Machine Block 2 (second ID iteration)
 tile.MachineBlock2.RotaryCondensentrator.name=回旋式气液转换机
 tile.MachineBlock2.ChemicalOxidizer.name=化学氧化机
@@ -170,7 +175,7 @@ tile.MachineBlock3.ElectricPump.name=电动泵
 tile.MachineBlock3.LogisticalSorter.name=物流整理机
 tile.MachineBlock3.PersonalChest.name=私人箱子
 tile.MachineBlock3.NutritionalLiquifier.name=营养液化器
-
+tile.MachineBlock3.superchargedcoil.name=增压线圈(WIP)
 # Plastic
 tile.PlasticBlock.name=塑料方块
 tile.SlickPlasticBlock.name=光滑塑料方块
@@ -331,13 +336,13 @@ item.leadNugget.name=铅颗粒
 # Gasses
 gas.hydrogen=氢气
 gas.oxygen=氧气
-gas.water=水蒸气
+gas.water=液化气态水
 gas.chlorine=氯
 gas.sulfurdioxide=二氧化硫
 gas.sulfurtrioxide=三氧化硫
 gas.sulfuricacid=硫酸
 gas.hydrogenchloride=氯化氢
-gas.liquidosmium=液态锇
+gas.liquidosmium=液化气态锇
 gas.ethene=乙烯
 gas.sodium=钠
 gas.brine=气态盐水
@@ -832,7 +837,16 @@ mekanism.tooltip.disassembler.normal=正常
 mekanism.tooltip.disassembler.slow=慢
 mekanism.tooltip.disassembler.fast=快
 mekanism.tooltip.disassembler.vein=矿脉
+mekanism.tooltip.disassembler.extended_vein=扩展静脉开采
 mekanism.tooltip.disassembler.off=关
+
+mekanism.tooltip.mektool.normal=正常
+mekanism.tooltip.mektool.slow=慢
+mekanism.tooltip.mektool.fast=快
+mekanism.tooltip.mektool.very_fast=更快
+mekanism.tooltip.mektool.vein=矿脉
+mekanism.tooltip.mektool.extended_vein=扩展静脉开采
+mekanism.tooltip.mektool.off=关
 
 tooltip.configurationCard.got=从%s恢复过滤器数据
 tooltip.configurationCard.set=导入类型%s的过滤器数据
@@ -873,6 +887,8 @@ tooltip.PressureDisperser=一种能保证蒸汽压力的多方块结构方块，
 tooltip.BoilerCasing=一种耐压方块，用于制作锅炉结构的外壳
 tooltip.BoilerValve=用于锅炉结构的阀门，能让水进入锅炉并导出产生的蒸汽
 tooltip.SecurityDesk=一个中央控制系统，用于管理你所有机器的安全设置
+tooltip.SpsCasing=能够抵抗相移反应产生的强烈化学和热效应的增强外壳。
+tooltip.FissionReacherCasing=裂变反应堆外壳
 
 tooltip.EnrichmentChamber=一台能将矿石磨成两份粉末的机器，也可以进行一些其他操作。
 tooltip.OsmiumCompressor=一台非常高级的设备，能够将锇矿石压缩成 多种粉末以制造相应金属锭。
@@ -912,6 +928,13 @@ tooltip.canteen1=只能添加营养糊糊
 tooltip.canteen2=为什么这物品是如此的昂贵？
 tooltip.NutritionalLiquifier=一种能将任何食物加工成无害、易消化的营养糊剂的机器
 tooltip.IsotopicCentrifuge=一台只有一个目的的机器：非常非常快地旋转它装载的东西。
+tooltip.antiprotonicnucleosynthesizer=一种以原子的方式利用少量反物质和大量能量转化各种资源的机器。
+tooltip.superchargedcoil=用于超临界移相器多方块结构供电。必须连接到超临界移相器端口[目前只是个装饰]
+
+tooltip.MekTool1=十分强大的挖掘机器
+tooltip.MekTool2=当冲满25%以上时，伤害会超级加倍
+tooltip.MekTool3=当冲满90%以上时，可能会带有秒杀效果？
+tooltip.MekTool4=§4☢☣✪危险工具，警告！✪☣☢
 
 tooltip.HeatGenerator=一台使用岩浆热量或者其它可燃资源产生能量的发电机。
 tooltip.SolarGenerator=一台使用太阳能量发电的发电机。

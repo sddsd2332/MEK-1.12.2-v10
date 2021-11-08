@@ -53,6 +53,7 @@ public class RenderFlameThrower extends MekanismItemStackRenderer {
         }
         flamethrower.render(0.0625F);
         GlStateManager.popMatrix();
+
     }
 
     @Nonnull

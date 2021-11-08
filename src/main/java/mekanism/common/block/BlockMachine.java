@@ -33,13 +33,7 @@ import mekanism.common.network.PacketLogisticalSorterGui.SorterGuiPacket;
 import mekanism.common.security.ISecurityItem;
 import mekanism.common.security.ISecurityTile;
 import mekanism.common.tier.FluidTankTier;
-import mekanism.common.tile.TileEntityFactory;
-import mekanism.common.tile.TileEntityFluidTank;
-import mekanism.common.tile.TileEntityLaser;
-import mekanism.common.tile.TileEntityLaserAmplifier;
-import mekanism.common.tile.TileEntityLogisticalSorter;
-import mekanism.common.tile.TileEntityMetallurgicInfuser;
-import mekanism.common.tile.TileEntityQuantumEntangloporter;
+import mekanism.common.tile.*;
 import mekanism.common.tile.prefab.TileEntityBasicBlock;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import mekanism.common.util.FluidContainerUtils;
@@ -103,6 +97,7 @@ public abstract class BlockMachine extends BlockMekanismContainer {
     //private static final AxisAlignedBB INDUSTRIAL_ALARM_BOUNDS = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     private static final AxisAlignedBB TANK_BOUNDS = new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
     private static final AxisAlignedBB LASER_BOUNDS = new AxisAlignedBB(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
+    private static final AxisAlignedBB SUPERCHARGED_COIL = new AxisAlignedBB(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
     private static final AxisAlignedBB LOGISTICAL_SORTER_BOUNDS = new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
 
     public BlockMachine() {
@@ -695,6 +690,10 @@ public abstract class BlockMachine extends BlockMekanismContainer {
                 if (tile instanceof TileEntityLogisticalSorter) {
                     return MultipartUtils.rotate(LOGISTICAL_SORTER_BOUNDS.offset(-0.5, -0.5, -0.5), ((TileEntityLogisticalSorter) tile).facing).offset(0.5, 0.5, 0.5);
                 }
+            case SUPERCHARGED_COIL:
+                if (tile instanceof TileEntitySuperchargedCoil) {
+                    return MultipartUtils.rotate(SUPERCHARGED_COIL.offset(-0.5, -0.5, -0.5), ((TileEntitySuperchargedCoil) tile).facing).offset(0.5, 0.5, 0.5);
+                }
             default:
                 return super.getBoundingBox(state, world, pos);
         }
@@ -733,6 +732,7 @@ public abstract class BlockMachine extends BlockMekanismContainer {
                 case PERSONAL_CHEST:
                 case LOGISTICAL_SORTER:
                 case LASER:
+                case SUPERCHARGED_COIL:
                     return BlockFaceShape.UNDEFINED;
                 case ELECTRIC_PUMP:
                 case FLUIDIC_PLENISHER:

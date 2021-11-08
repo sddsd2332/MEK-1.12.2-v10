@@ -96,7 +96,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -784,6 +783,9 @@ public class Mekanism {
         registerTileEntity(TileEntityUniversalCable.class, "universal_cable");
         registerTileEntity(TileEntityNutritionalLiquifier.class, "nutritional_liquifier");
 
+        registerTileEntity(TileEntitySuperchargedCoil.class,"supercharged_coil");
+
+
         //Register the TESRs
         proxy.registerTESRs();
 
@@ -846,6 +848,7 @@ public class Mekanism {
 
         MinecraftForge.EVENT_BUS.register(MekanismItems.GasMask);
         MinecraftForge.EVENT_BUS.register(MekanismItems.FreeRunners);
+    //    MinecraftForge.EVENT_BUS.register(MekanismItems.MekaSuitHelmet);
 
         if (Loader.isModLoaded("mcmultipart")) {
             //Set up multiparts
