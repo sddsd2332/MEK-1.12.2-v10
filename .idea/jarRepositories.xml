@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="MavenRepo" />
+      <option name="name" value="MavenRepo" />
+      <option name="url" value="https://repo.maven.apache.org/maven2/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="prog" />
+      <option name="name" value="prog" />
+      <option name="url" value="http://dvs1.progwml6.com/files/maven" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="amadornes" />
+      <option name="name" value="amadornes" />
+      <option name="url" value="https://maven.amadornes.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="deobfDeps" />
+      <option name="name" value="deobfDeps" />
+      <option name="url" value="file:/$USER_HOME$/.gradle/caches/minecraft/deobfedDeps/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="opencomputers" />
+      <option name="name" value="opencomputers" />
+      <option name="url" value="http://maven.cil.li/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="thiakil" />
+      <option name="name" value="thiakil" />
+      <option name="url" value="https://maven.thiakil.com" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="ForgeFS" />
+      <option name="name" value="ForgeFS" />
+      <option name="url" value="https://maven.minecraftforge.net" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="ic2" />
+      <option name="name" value="ic2" />
+      <option name="url" value="http://maven.ic2.player.to" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="tesla" />
+      <option name="name" value="tesla" />
+      <option name="url" value="https://maven.mcmoddev.com" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="minecraft" />
+      <option name="name" value="minecraft" />
+      <option name="url" value="https://libraries.minecraft.net/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="hwyla" />
+      <option name="name" value="hwyla" />
+      <option name="url" value="https://tehnut.info/maven" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="tterrag" />
+      <option name="name" value="tterrag" />
+      <option name="url" value="https://maven.tterrag.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="BlameJared - Crafttweaker" />
+      <option name="name" value="BlameJared - Crafttweaker" />
+      <option name="url" value="https://maven.blamejared.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="buildcraft" />
+      <option name="name" value="buildcraft" />
+      <option name="url" value="https://mod-buildcraft.com/maven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="curseforge" />
+      <option name="name" value="curseforge" />
+      <option name="url" value="https://minecraft.curseforge.com/api/maven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="CoFH Maven" />
+      <option name="name" value="CoFH Maven" />
+      <option name="url" value="https://maven.covers1624.net" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="hwyla" />
+      <option name="name" value="hwyla" />
+      <option name="url" value="file:/$PROJECT_DIR$/" />
+    </remote-repository>
+  </component>
+</project>
