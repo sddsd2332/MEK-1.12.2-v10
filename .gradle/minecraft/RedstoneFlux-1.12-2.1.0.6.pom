@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cofh</groupId>
+  <artifactId>RedstoneFlux</artifactId>
+  <version>1.12-2.1.0.6</version>
+  <name>RedstoneFlux</name>
+  <description>RedstoneFlux</description>
+  <url>https://github.com/CoFH/RedstoneFlux</url>
+  <developers>
+    <developer>
+      <id>TeamCoFH</id>
+      <name>TeamCoFH</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/CoFH/RedstoneFlux.git</connection>
+    <developerConnection>scm:git:git@github.com:CoFH/RedstoneFlux.git</developerConnection>
+    <url>https://github.com/CoFH/RedstoneFlux</url>
+  </scm>
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/CoFH/Feedback/issues</url>
+  </issueManagement>
+</project>
