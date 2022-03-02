@@ -18,8 +18,6 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew -Pnet.minecraftforge.gradle.disableUpdateChecker=true build
-    - name: Rename jar
-      run: mv build/libs/mekanism-*.jar build/libs/mekanism-${GITHUB_SHA::7}.jar
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
