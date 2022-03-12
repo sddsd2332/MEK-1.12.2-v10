@@ -29,7 +29,7 @@ public class ItemUpgrade extends ItemMekanism implements IUpgradeItem {
     public ItemUpgrade(Upgrade type) {
         super();
         upgrade = type;
-        setMaxStackSize(16);
+        setMaxStackSize(64);
     }
 
     @Override

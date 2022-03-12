@@ -5,7 +5,7 @@ import mekanism.common.recipe.inputs.AdvancedMachineInput;
 import mekanism.common.recipe.outputs.ItemStackOutput;
 import net.minecraft.item.ItemStack;
 
-public class OsmiumCompressorRecipe extends AdvancedMachineRecipe<OsmiumCompressorRecipe> {
+    public class OsmiumCompressorRecipe extends AdvancedMachineRecipe<OsmiumCompressorRecipe> {
 
     public OsmiumCompressorRecipe(AdvancedMachineInput input, ItemStackOutput output) {
         super(input, output);

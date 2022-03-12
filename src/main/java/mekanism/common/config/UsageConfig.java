@@ -17,6 +17,12 @@ public class UsageConfig extends BaseConfig {
     public final DoubleOption combiner = new DoubleOption(this, "usage", "CombinerUsage", 50D,
           "Energy per operation tick (Joules).");
 
+    public final DoubleOption alloy = new DoubleOption(this, "usage", "AlloyUsage", 50D,
+            "Energy per operation tick (Joules).");
+
+    public final DoubleOption cellcultivate = new DoubleOption(this, "usage", "CellCultivateUsage", 50D,
+            "Energy per operation tick (Joules).");
+
     public final DoubleOption crusher = new DoubleOption(this, "usage", "CrusherUsage", 50D,
           "Energy per operation tick (Joules).");
 
@@ -52,6 +58,15 @@ public class UsageConfig extends BaseConfig {
 
     public final DoubleOption precisionSawmill = new DoubleOption(this, "usage", "PrecisionSawmillUsage", 50D,
           "Energy per operation tick (Joules).");
+
+    public final DoubleOption cellExtractor = new DoubleOption(this, "usage", "CellExtractorUsage", 50D,
+            "Energy per operation tick (Joules).");
+
+    public final DoubleOption cellSeparator = new DoubleOption(this, "usage", "CellSeparatorUsage", 50D,
+            "Energy per operation tick (Joules).");
+
+    public final DoubleOption organicfarm = new DoubleOption(this, "usage", "OrganicFarmUsage", 50D,
+            "Energy per operation tick (Joules).");
 
     public final DoubleOption chemicalDissolutionChamber = new DoubleOption(this, "usage", "ChemicalDissolutionChamberUsage", 400D,
           "Energy per operation tick (Joules).");
@@ -94,4 +109,17 @@ public class UsageConfig extends BaseConfig {
 
     public final IntOption teleporterDimensionPenalty = new IntOption(this, "usage", "TeleporterDimensionPenalty", 10000,
           "Flat additional cost for interdimensional teleportation.");
+
+
+    public final DoubleOption stamping = new DoubleOption(this, "usage", "StampingUsage", 50D,
+            "Energy per operation tick (Joules).");
+
+    public final DoubleOption rolling = new DoubleOption(this, "usage", "RollingUsage", 50D,
+            "Energy per operation tick (Joules).");
+
+    public final DoubleOption brushed = new DoubleOption(this, "usage", "BrushedUsage", 50D,
+            "Energy per operation tick (Joules).");
+
+    public final DoubleOption turning = new DoubleOption(this, "usage", "TurningUsage", 50D,
+            "Energy per operation tick (Joules).");
 }

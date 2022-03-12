@@ -17,6 +17,7 @@ import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import mekanism.common.util.InventoryUtils;
 import mekanism.common.util.TileUtils;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
@@ -25,13 +26,15 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 public class TileEntityAmbientAccumulator extends TileEntityContainerBlock implements IGasHandler {
 
     public static Random gasRand = new Random();
-    public GasTank collectedGas = new GasTank(1000);
+    public GasTank collectedGas ;
     public int cachedDimensionId = 0;
+    public int gasOutput = 10;
     public AmbientGasRecipe cachedRecipe;
 
     public TileEntityAmbientAccumulator() {
         super("AmbientAccumulator");
         inventory = NonNullList.withSize(0, ItemStack.EMPTY);
+        collectedGas = new GasTank(1000);
     }
 
     @Override
@@ -44,6 +47,7 @@ public class TileEntityAmbientAccumulator extends TileEntityContainerBlock imple
             if (cachedRecipe != null && gasRand.nextDouble() < 0.05 && cachedRecipe.getOutput().applyOutputs(collectedGas, false, 1)) {
                 cachedRecipe.getOutput().applyOutputs(collectedGas, true, 1);
             }
+            TileUtils.emitGas(this, collectedGas, gasOutput, facing);
         }
     }
 
@@ -54,7 +58,10 @@ public class TileEntityAmbientAccumulator extends TileEntityContainerBlock imple
 
     @Override
     public GasStack drawGas(EnumFacing side, int amount, boolean doTransfer) {
-        return collectedGas.draw(amount, doTransfer);
+        if (canDrawGas(side, null)) {
+            return collectedGas.draw(amount, doTransfer);
+        }
+        return null;
     }
 
     @Override
@@ -64,7 +71,7 @@ public class TileEntityAmbientAccumulator extends TileEntityContainerBlock imple
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-        return type == collectedGas.getGasType();
+        return side == facing && collectedGas.canDraw(type);
     }
 
     @Override
@@ -105,4 +112,19 @@ public class TileEntityAmbientAccumulator extends TileEntityContainerBlock imple
         }
         return super.getCapability(capability, side);
     }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTags) {
+        super.readFromNBT(nbtTags);
+        collectedGas.read(nbtTags.getCompoundTag("collectedGas"));
+    }
+
+    @Nonnull
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbtTags) {
+        super.writeToNBT(nbtTags);
+        nbtTags.setTag("collectedGas", collectedGas.write(new NBTTagCompound()));
+        return nbtTags;
+    }
+
 }

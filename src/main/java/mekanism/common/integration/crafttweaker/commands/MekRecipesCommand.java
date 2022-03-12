@@ -24,7 +24,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
     public MekRecipesCommand() {
         super("mekrecipes");
         subCommands = Stream.of("crystallizer", "dissolution", "chemicalInfuser", "injection", "oxidizer", "washer", "combiner", "crusher", "separator", "smelter",
-              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer").collect(Collectors.toList());
+              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator").collect(Collectors.toList());
     }
 
     @Override
@@ -109,6 +109,16 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                     ));
                 }
                 break;
+            case "alloy":
+                type = Recipe.ALLOY;
+                for (AlloyRecipe recipe : Recipe.ALLOY.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.combiner.addRecipe(%s, %s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().itemStack),
+                            RecipeInfoHelper.getItemName(recipe.getInput().extraStack),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().output)
+                    ));
+                }
+                break;
             case "crusher":
                 type = Recipe.CRUSHER;
                 for (CrusherRecipe recipe : Recipe.CRUSHER.get().values()) {
@@ -176,6 +186,84 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                           RecipeInfoHelper.getItemName(recipe.getOutput().primaryOutput),
                           RecipeInfoHelper.getItemName(recipe.getOutput().secondaryOutput),
                           recipe.getOutput().secondaryChance
+                    ));
+                }
+            case "cellextractor":
+                type = Recipe.CELL_EXTRACTOR;
+                for (CellExtractorRecipe recipe : Recipe.CELL_EXTRACTOR.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.cellextractor.addRecipe(%s, %s, %s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().primaryOutput),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().secondaryOutput),
+                            recipe.getOutput().secondaryChance
+                    ));
+                }
+            case "cellseparator":
+                type = Recipe.CELL_SEPARATOR;
+                for (CellSeparatorRecipe recipe : Recipe.CELL_SEPARATOR.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.cellseparator.addRecipe(%s, %s, %s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().primaryOutput),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().secondaryOutput),
+                            recipe.getOutput().secondaryChance
+                    ));
+                }
+            case "organicfarm":
+                type = Recipe.ORGANIC_FARM;
+                for (FarmRecipe recipe : Recipe.ORGANIC_FARM.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.organicfarm.addRecipe(%s, %s, %s, %s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().itemStack),
+                            RecipeInfoHelper.getGasName(recipe.getInput().gasType),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().primaryOutput),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().secondaryOutput),
+                            recipe.getOutput().secondaryChance
+                    ));
+                }
+                break;
+            case "cellcultivate":
+                type = Recipe.CELL_CULTIVATE;
+                for (CellCultivateRecipe recipe : Recipe.CELL_CULTIVATE.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.cellcultivate.addRecipe(%s, %s, %s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().itemStack),
+                            RecipeInfoHelper.getItemName(recipe.getInput().extraStack),
+                            RecipeInfoHelper.getGasName(recipe.getInput().gasType),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().output)
+                    ));
+                }
+                break;
+            case "stamping":
+                type = Recipe.CRUSHER;
+                for (StampingRecipe recipe : Recipe.STAMPING.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.stamping.addRecipe(%s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().output)
+                    ));
+                }
+                break;
+            case "rolling":
+                type = Recipe.ROLLING;
+                for (RollingRecipe recipe : Recipe.ROLLING.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.rolling.addRecipe(%s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().output)
+                    ));
+                }
+                break;
+            case "brushed":
+                type = Recipe.BRUSHED;
+                for (BrushedRecipe recipe : Recipe.BRUSHED.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.brushed.addRecipe(%s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().output)
+                    ));
+                }
+                break;
+            case "turning":
+                type = Recipe.TURNING;
+                for (TurningRecipe recipe : Recipe.TURNING.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.turning.addRecipe(%s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().output)
                     ));
                 }
                 break;

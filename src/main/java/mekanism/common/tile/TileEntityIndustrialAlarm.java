@@ -1,4 +1,6 @@
+/*
 package mekanism.common.tile;
+
 
 import io.netty.buffer.ByteBuf;
 import mekanism.api.TileNetworkList;
@@ -71,3 +73,4 @@ public class TileEntityIndustrialAlarm extends TileEntityEffectsBlock implements
     }
 
 }
+*/

@@ -1,0 +1,37 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mekanism:machine",
+    "textures": {
+      "sides": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryRight",
+      "front": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryFront",
+      "south": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryBack",
+      "west": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryRight",
+      "east": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryLeft",
+      "up": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryTop",
+      "down": "mekanism:blocks/factory/creative/CreativeFactoryBottom"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "east":  {"y": 90},
+      "west":  {"y": -90}
+    },
+    "active": {
+      "true": {
+        "textures": {
+          "front": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryFrontOn",
+          "south": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryBackOn",
+          "west": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryRightOn",
+          "east": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryLeftOn",
+          "up": "mekanism:blocks/factory/creative/enriching/CreativeEnrichingFactoryTopOn"
+        }
+      },
+      "false": {}
+    },
+    "inventory": [{}]
+  }
+}
+

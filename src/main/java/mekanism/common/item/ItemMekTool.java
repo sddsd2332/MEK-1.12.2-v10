@@ -79,13 +79,13 @@ public class ItemMekTool extends ItemEnergized {
         float damage = (float) (minDamage + damageDifference * percent);
         if (attacker instanceof EntityPlayer) {
             if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.9 ) {
-           //     if(target.getHealth()/ target.getMaxHealth() > 0.1) {
-         //           target.setHealth(0.1F);
-          //      }
-          //      else {
+                if(target.getHealth()/ target.getMaxHealth() > 0.1) {
+                    target.setHealth(0.1F);
+                }
+                else {
                     target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage * 8096);
                     //target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 8096);
-           //     }
+                }
             }else if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.75 ) {
                 target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage * 4096);
                // target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 4096);

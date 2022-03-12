@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemHohlraum extends ItemMekanism implements IGasItem {
 
-    public static final int MAX_GAS = 10;
+    public static final int MAX_GAS = 100;
     public static final int TRANSFER_RATE = 1;
 
     public ItemHohlraum() {

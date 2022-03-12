@@ -47,6 +47,10 @@ public class MekanismFluids {
     public static final Gas UraniumHexafluoride  = new Gas("uraniumhexafluoride",0xFF809960);
     public static final Gas URANIUMOXIDE  = new Gas("uraniumoxide", 0xFFE1F573);
 
+    //sddsd2332 add new gas
+    public static final Gas NutrientSolution = new Gas("nutrientsolution", 0x1B9E7B);
+    public static final Gas OxygenEnrichedWater = new Gas("oxygenenrichedwater", 0x6CE2FF);
+
     public static void register() {
         GasRegistry.register(Hydrogen).registerFluid("liquidhydrogen");
         GasRegistry.register(Oxygen).registerFluid("liquidoxygen");
@@ -76,6 +80,9 @@ public class MekanismFluids {
         GasRegistry.register(UraniumHexafluoride);
         GasRegistry.register(URANIUMOXIDE);
 
+        //Register sddsd2332 add new gas
+        GasRegistry.register(NutrientSolution);
+        GasRegistry.register(OxygenEnrichedWater);
         //Register a new gas add fluid
         GasRegistry.register(HydrofluoricAcid).registerFluid("liquidhydrofluoricacid");
 
@@ -101,5 +108,6 @@ public class MekanismFluids {
         FluidRegistry.addBucketForFluid(Lithium.getFluid());
         FluidRegistry.addBucketForFluid(Polonium.getFluid());
         FluidRegistry.addBucketForFluid(Antimatter.getFluid());
+
     }
 }

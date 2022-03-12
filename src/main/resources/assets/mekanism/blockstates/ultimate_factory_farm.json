@@ -1,0 +1,37 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mekanism:machine",
+    "textures": {
+      "sides": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmRight",
+      "front": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmFront",
+      "south": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmBack",
+      "west": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmRight",
+      "east": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmLeft",
+      "up": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmTop",
+      "down": "mekanism:blocks/factory/ultimate/UltimateFactoryBottom"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "east":  {"y": 90},
+      "west":  {"y": -90}
+    },
+    "active": {
+      "true": {
+        "textures": {
+          "front": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmFrontOn",
+          "south": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmBackOn",
+          "west": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmRightOn",
+          "east": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmLeftOn",
+          "up": "mekanism:blocks/factory/ultimate/organicfarm/OrganicFarmTopOn"
+        }
+      },
+      "false": {}
+    },
+    "inventory": [{}]
+  }
+}
+

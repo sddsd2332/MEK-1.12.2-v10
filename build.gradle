@@ -12,6 +12,7 @@ buildscript {
 }
 
 plugins {
+
     id 'org.ajoberstar.grgit' version '3.1.1'
     id "com.matthewprenger.cursegradle" version "1.3.0"
     id 'java'
@@ -84,6 +85,10 @@ repositories {
         name 'thiakil'
         url 'https://maven.thiakil.com'
     }
+    maven {
+        name = 'GitHub Maven'
+        url = "https://jitpack.io"
+    }
 }
 
 group = "mekanism"
@@ -121,7 +126,7 @@ dependencies {
     compileOnly "com.mod-buildcraft:buildcraft-api:${buildcraft_version}"
     compileOnly "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}:api"
     runtime "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}"
-    compileOnly "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+  //  compileOnly "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
     compileOnly("CraftTweaker2:CraftTweaker2-API:${crafttweaker_version}") {
         exclude module: "asm-debug-all"
     }

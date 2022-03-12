@@ -7,6 +7,7 @@ tile.ObsidianTNT.name=Obsidian TNT
 item.EnrichedAlloy.name=Enriched Alloy
 item.ReinforcedAlloy.name=Reinforced Alloy
 item.AtomicAlloy.name=Atomic Alloy
+item.CosmicAlloy.name=Cosmic Alloy
 item.EnergyTablet.name=Energy Tablet
 item.SpeedUpgrade.name=Speed Upgrade
 item.EnergyUpgrade.name=Energy Upgrade
@@ -57,6 +58,7 @@ item.BasicControlCircuit.name=Basic Control Circuit
 item.AdvancedControlCircuit.name=Advanced Control Circuit
 item.EliteControlCircuit.name=Elite Control Circuit
 item.UltimateControlCircuit.name=Ultimate Control Circuit
+item.CreativeControlCircuit.name=Creative Control Circuit
 
 # Gas Tank
 tile.GasTankBasic.name=Basic Gas Tank
@@ -140,8 +142,7 @@ tile.MachineBlock.LogisticalSorter.name=Logistical Sorter
 tile.MachineBlock.DigitalMiner.name=Digital Miner
 tile.MachineBlock.IsotopicCentrifuge.name=Isotopic Centrifuge
 tile.MachineBlock.NutritionalLiquifier.name=Nutritional Liquifier
-tile.MachineBlock.antiprotonicnucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
-tile.MachineBlock.AntiprotonicNucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
+
 
 # Machine Block 2 (second ID iteration)
 tile.MachineBlock2.RotaryCondensentrator.name=Rotary Condensentrator
@@ -174,6 +175,10 @@ tile.MachineBlock3.ElectricPump.name=Electric Pump
 tile.MachineBlock3.LogisticalSorter.name=Logistical Sorter
 tile.MachineBlock3.PersonalChest.name=Personal Chest
 tile.MachineBlock3.NutritionalLiquifier.name=Nutritional Liquifier
+tile.MachineBlock3.OrganicFarm.name=Organic Farm
+tile.MachineBlock3.organicfarm.name=Organic Farm
+tile.MachineBlock3.antiprotonicnucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
+tile.MachineBlock3.AntiprotonicNucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
 
 # Plastic
 tile.PlasticBlock.name=Plastic Block
@@ -240,6 +245,7 @@ item.basicTierInstaller.name=Basic Tier Installer
 item.advancedTierInstaller.name=Advanced Tier Installer
 item.eliteTierInstaller.name=Elite Tier Installer
 item.ultimateTierInstaller.name=Ultimate Tier Installer
+item.creativeTierInstaller.name=Creative Tier Installer
 
 # Dust
 item.ironDust.name=Iron Dust
@@ -636,6 +642,7 @@ gui.factory.Purifying=Purifying
 gui.factory.Injecting=Injecting
 gui.factory.Infusing=Infusing
 gui.factory.Sawing=Sawing
+gui.factory.Farm=Farm
 
 gui.seismicReader.short=S. Reader
 gui.seismicReader.solids=Solids

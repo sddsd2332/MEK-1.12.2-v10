@@ -80,5 +80,14 @@ public class MekanismTEFixer extends TEFixer {
         putEntry("UltimateSmeltingFactory", "ultimate_smelting_factory");
         putEntry("UniversalCable", "universal_cable");
        // putEntry("COMPOUNDCATHETER", "compound_catheter");
+        putEntry("OrganicFarm", "organic_farm");
+        putEntry("Stamping", "stamping");
+        putEntry("Rolling", "rolling");
+        putEntry("Brushed", "brushed");
+        putEntry("Turning", "turning");
+        putEntry("AmbientAccumulatorFluid", "ambient_accumulator_fluid");
+        putEntry("Alloy","alloy");
+        putEntry("CellExtractor","cell_extractor");
+        putEntry("CellSeparator","cell_separator");
     }
 }

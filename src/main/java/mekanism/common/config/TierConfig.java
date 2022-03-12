@@ -90,7 +90,7 @@ public class TierConfig {
                   "Heat capacity of " + name + " thermodynamic conductor.");
             ConductorConductionInsulation = new DoubleOption(baseConfig, "tier", name + "ConductorConductionInsulation", ConductorTier.values()[tier.ordinal()].getBaseConductionInsulation(),
                   "Insulation value of " + name + " thermodynamic conductor.");
-        } else {
+       } else {
             InductionCellMaxEnergy = null;
             InductionProviderOutput = null;
             CableCapacity = null;

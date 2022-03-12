@@ -30,6 +30,7 @@ public enum CableTier implements ITier {
         return baseTier;
     }
 
+
     public int getCableCapacity() {
         return MekanismConfig.current().general.tiers.get(baseTier).CableCapacity.val();
     }

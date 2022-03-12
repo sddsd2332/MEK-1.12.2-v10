@@ -10,16 +10,10 @@ import mekanism.common.Mekanism;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
-import mekanism.common.recipe.inputs.AdvancedMachineInput;
-import mekanism.common.recipe.inputs.DoubleMachineInput;
-import mekanism.common.recipe.inputs.InfusionInput;
-import mekanism.common.recipe.inputs.ItemStackInput;
-import mekanism.common.recipe.machines.AdvancedMachineRecipe;
-import mekanism.common.recipe.machines.BasicMachineRecipe;
-import mekanism.common.recipe.machines.ChanceMachineRecipe;
-import mekanism.common.recipe.machines.DoubleMachineRecipe;
-import mekanism.common.recipe.machines.MachineRecipe;
-import mekanism.common.recipe.machines.MetallurgicInfuserRecipe;
+import mekanism.common.recipe.inputs.*;
+import mekanism.common.recipe.machines.*;
+import mekanism.common.tier.FactoryTier;
+import mekanism.common.tile.TileEntityFarmMachine;
 import mekanism.common.tile.prefab.TileEntityAdvancedElectricMachine;
 import mekanism.common.util.LangUtils;
 import mekanism.common.util.StackUtils;
@@ -69,7 +63,8 @@ public interface IFactory {
         BASIC,
         ADVANCED,
         DOUBLE,
-        CHANCE
+        CHANCE,
+        FARM
     }
 
     enum RecipeType implements IStringSerializable {
@@ -81,7 +76,16 @@ public interface IFactory {
         PURIFYING("Purifying", "purifier", MachineType.PURIFICATION_CHAMBER, MachineFuelType.ADVANCED, true, Recipe.PURIFICATION_CHAMBER),
         INJECTING("Injecting", "injection", MachineType.CHEMICAL_INJECTION_CHAMBER, MachineFuelType.ADVANCED, true, Recipe.CHEMICAL_INJECTION_CHAMBER),
         INFUSING("Infusing", "metalinfuser", MachineType.METALLURGIC_INFUSER, MachineFuelType.BASIC, false, Recipe.METALLURGIC_INFUSER),
-        SAWING("Sawing", "sawmill", MachineType.PRECISION_SAWMILL, MachineFuelType.CHANCE, false, Recipe.PRECISION_SAWMILL);
+        SAWING("Sawing", "sawmill", MachineType.PRECISION_SAWMILL, MachineFuelType.CHANCE, false, Recipe.PRECISION_SAWMILL),
+        FARM("Farm","farm",MachineType.ORGANIC_FARM,MachineFuelType.FARM,false,Recipe.ORGANIC_FARM),
+        STAMPING("Stamping","stamping",MachineType.STAMPING,MachineFuelType.BASIC, false, Recipe.STAMPING),
+        ROLLING("Rolling","rolling",MachineType.ROLLING,MachineFuelType.BASIC, false, Recipe.ROLLING),
+        BRUSHED ("Brushed","brushed",MachineType.BRUSHED,MachineFuelType.BASIC, false, Recipe.BRUSHED),
+        TURNING("Turning","turning",MachineType.TURNING,MachineFuelType.BASIC, false, Recipe.TURNING),
+        AllOY("Alloy","alloy",MachineType.ALLOY,MachineFuelType.DOUBLE,false,Recipe.ALLOY),
+        EXTRACTOR("Extractor","extractor",MachineType.CELL_EXTRACTOR,MachineFuelType.CHANCE,false, Recipe.CELL_EXTRACTOR),
+        SEPARATOR("Separator","separator",MachineType.CELL_SEPARATOR,MachineFuelType.CHANCE,false, Recipe.CELL_SEPARATOR);
+
 
         private String name;
         private SoundEvent sound;
@@ -90,6 +94,7 @@ public interface IFactory {
         private boolean fuelSpeed;
         private Recipe recipe;
         private TileEntityAdvancedElectricMachine cacheTile;
+        private TileEntityFarmMachine cacheTile2;
 
         RecipeType(String s, String s1, MachineType t, MachineFuelType ft, boolean speed, Recipe r) {
             name = s;
@@ -146,12 +151,21 @@ public interface IFactory {
             return getRecipe(new DoubleMachineInput(input, extra));
         }
 
+
         public ChanceMachineRecipe getChanceRecipe(ItemStackInput input) {
             return (ChanceMachineRecipe) RecipeHandler.getRecipe(input, recipe);
         }
 
         public ChanceMachineRecipe getChanceRecipe(ItemStack input) {
             return getChanceRecipe(new ItemStackInput(input));
+        }
+
+        public FarmMachineRecipe getFarmRecipe(AdvancedMachineInput input) {
+            return (FarmMachineRecipe) RecipeHandler.getRecipe(input, recipe);
+        }
+
+        public FarmMachineRecipe getFarmRecipe(ItemStack input, Gas gas) {
+            return getFarmRecipe(new AdvancedMachineInput(input,gas));
         }
 
         public MetallurgicInfuserRecipe getRecipe(InfusionInput input) {
@@ -162,14 +176,17 @@ public interface IFactory {
             return getRecipe(new InfusionInput(storage, input));
         }
 
+
         @Nullable
-        public MachineRecipe getAnyRecipe(ItemStack slotStack, ItemStack extraStack, Gas gasType, InfuseStorage infuse) {
+        public MachineRecipe getAnyRecipe(ItemStack slotStack, ItemStack extraStack,Gas gasType, InfuseStorage infuse) {
             if (fuelType == MachineFuelType.ADVANCED) {
                 return getRecipe(slotStack, gasType);
             } else if (fuelType == MachineFuelType.DOUBLE) {
                 return getRecipe(slotStack, extraStack);
-            } else if (fuelType == MachineFuelType.CHANCE) {
+            }else if (fuelType == MachineFuelType.CHANCE) {
                 return getChanceRecipe(slotStack);
+            } else if (fuelType == MachineFuelType.FARM) {
+                return getFarmRecipe(slotStack,gasType);
             } else if (this == INFUSING) {
                 if (infuse.getType() != null) {
                     return RecipeHandler.getMetallurgicInfuserRecipe(new InfusionInput(infuse, slotStack));
@@ -184,8 +201,10 @@ public interface IFactory {
         }
 
         public int getSecondaryEnergyPerTick() {
-            if (fuelType == MachineFuelType.ADVANCED) {
+            if (fuelType == MachineFuelType.ADVANCED ) {
                 return getTile().BASE_SECONDARY_ENERGY_PER_TICK;
+            }else if (fuelType ==MachineFuelType.FARM){
+                return getTile2().BASE_SECONDARY_ENERGY_PER_TICK;
             }
             return 0;
         }
@@ -193,17 +212,19 @@ public interface IFactory {
         public boolean canReceiveGas(EnumFacing side, Gas type) {
             if (fuelType == MachineFuelType.ADVANCED) {
                 return getTile().canReceiveGas(side, type);
+            }else if (fuelType ==MachineFuelType.FARM){
+                return getTile2().canReceiveGas(side, type);
             }
             return false;
         }
 
-        public boolean supportsGas() {
-            return fuelType == MachineFuelType.ADVANCED;
-        }
+        public boolean supportsGas() { return fuelType == MachineFuelType.ADVANCED||fuelType == MachineFuelType.FARM;}
 
         public boolean isValidGas(Gas gas) {
             if (fuelType == MachineFuelType.ADVANCED) {
                 return getTile().isValidGas(gas);
+            }else if (fuelType == MachineFuelType.FARM) {
+                return getTile2().isValidGas(gas);
             }
             return false;
         }
@@ -237,6 +258,7 @@ public interface IFactory {
                     }
                 }
             }
+
             return false;
         }
 
@@ -247,9 +269,20 @@ public interface IFactory {
             }
             return cacheTile;
         }
+        public TileEntityFarmMachine getTile2() {
+            if (cacheTile2 == null) {
+                MachineType type = MachineType.get(getStack());
+                cacheTile2 = (TileEntityFarmMachine) type.create();
+            }
+            return cacheTile2;
+        }
 
         public double getEnergyUsage() {
-            return type.getUsage();
+            if (type.factoryTier == FactoryTier.CREATIVE){
+                return 0;
+            }else {
+                return type.getUsage();
+            }
         }
 
         public int getMaxSecondaryEnergy() {
@@ -257,12 +290,17 @@ public interface IFactory {
         }
 
         public double getEnergyStorage() {
-            return type.getStorage();
+            if (type.factoryTier == FactoryTier.CREATIVE){
+                return  Double.MAX_VALUE;
+            }else {
+                return type.getStorage();
+            }
         }
 
         public ItemStack getStack() {
             return type.getStack();
         }
+
 
         public String getTranslationKey() {
             return name;

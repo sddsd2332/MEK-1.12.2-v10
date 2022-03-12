@@ -25,7 +25,7 @@ public class ItemAlloy extends ItemMekanism {
         if (MekanismConfig.current().general.allowTransmitterAlloyUpgrade.val() && CapabilityUtils.hasCapability(tile, Capabilities.ALLOY_INTERACTION_CAPABILITY, side)) {
             if (!world.isRemote) {
                 IAlloyInteraction interaction = CapabilityUtils.getCapability(tile, Capabilities.ALLOY_INTERACTION_CAPABILITY, side);
-                int ordinal = stack.getItem() == MekanismItems.EnrichedAlloy ? 1 : stack.getItem() == MekanismItems.ReinforcedAlloy ? 2 : 3;
+                int ordinal = stack.getItem() == MekanismItems.EnrichedAlloy ? 1 : stack.getItem() == MekanismItems.ReinforcedAlloy ? 2 : stack.getItem() == MekanismItems.CosmicAlloy ? 3 : 4;
                 interaction.onAlloyInteraction(player, hand, stack, ordinal);
             }
             return EnumActionResult.SUCCESS;

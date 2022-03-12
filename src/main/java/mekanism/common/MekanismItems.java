@@ -12,6 +12,7 @@ public class MekanismItems {
     public static final Item EnrichedAlloy = new ItemAlloy();
     public static final Item ReinforcedAlloy = new ItemAlloy();
     public static final Item AtomicAlloy = new ItemAlloy();
+    public static final Item CosmicAlloy = new ItemAlloy();
     public static final Item TeleportationCore = new ItemMekanism();
     public static final Item ElectrolyticCore = new ItemMekanism();
     public static final Item Substrate = new ItemMekanism();
@@ -96,6 +97,7 @@ public class MekanismItems {
         registry.register(init(EnrichedAlloy, "EnrichedAlloy"));
         registry.register(init(ReinforcedAlloy, "ReinforcedAlloy"));
         registry.register(init(AtomicAlloy, "AtomicAlloy"));
+        registry.register(init(CosmicAlloy,"CosmicAlloy"));
         registry.register(init(ItemProxy, "ItemProxy"));
         registry.register(init(ControlCircuit, "ControlCircuit"));
         registry.register(init(EnrichedIron, "EnrichedIron"));

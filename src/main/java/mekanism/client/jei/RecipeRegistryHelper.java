@@ -15,10 +15,7 @@ import mekanism.client.gui.chemical.GuiChemicalInjectionChamber;
 import mekanism.client.gui.chemical.GuiChemicalOxidizer;
 import mekanism.client.gui.chemical.GuiChemicalWasher;
 import mekanism.client.gui.chemical.GuiNutritionalLiquifier;
-import mekanism.client.jei.machine.AdvancedMachineRecipeWrapper;
-import mekanism.client.jei.machine.ChanceMachineRecipeWrapper;
-import mekanism.client.jei.machine.DoubleMachineRecipeWrapper;
-import mekanism.client.jei.machine.MachineRecipeWrapper;
+import mekanism.client.jei.machine.*;
 import mekanism.client.jei.machine.chemical.ChemicalCrystallizerRecipeWrapper;
 import mekanism.client.jei.machine.chemical.ChemicalDissolutionChamberRecipeWrapper;
 import mekanism.client.jei.machine.chemical.ChemicalInfuserRecipeWrapper;
@@ -65,6 +62,42 @@ public class RecipeRegistryHelper {
         registerRecipeItem(registry, MachineType.CRUSHER, Recipe.CRUSHER);
     }
 
+    public static void registerStamping(IModRegistry registry) {
+        if (!MachineType.STAMPING.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.STAMPING, MachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiStamping.class, 79, 40, 24, 7, Recipe.STAMPING.getJEICategory());
+        registerRecipeItem(registry, MachineType.STAMPING, Recipe.STAMPING);
+    }
+
+    public static void registerRolling(IModRegistry registry) {
+        if (!MachineType.ROLLING.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.ROLLING, MachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiRolling.class, 79, 40, 24, 7, Recipe.ROLLING.getJEICategory());
+        registerRecipeItem(registry, MachineType.ROLLING, Recipe.ROLLING);
+    }
+
+    public static void registerBrushed(IModRegistry registry) {
+        if (!MachineType.BRUSHED.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.BRUSHED, MachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiBrushed.class, 79, 40, 24, 7, Recipe.BRUSHED.getJEICategory());
+        registerRecipeItem(registry, MachineType.BRUSHED, Recipe.BRUSHED);
+    }
+
+    public static void registerTurning(IModRegistry registry) {
+        if (!MachineType.TURNING.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.TURNING, MachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiTurning.class, 79, 40, 24, 7, Recipe.TURNING.getJEICategory());
+        registerRecipeItem(registry, MachineType.TURNING, Recipe.TURNING);
+    }
+
     public static void registerCombiner(IModRegistry registry) {
         if (!MachineType.COMBINER.isEnabled()) {
             return;
@@ -72,6 +105,24 @@ public class RecipeRegistryHelper {
         addRecipes(registry, Recipe.COMBINER, DoubleMachineRecipeWrapper::new);
         registry.addRecipeClickArea(GuiCombiner.class, 79, 40, 24, 7, Recipe.COMBINER.getJEICategory());
         registerRecipeItem(registry, MachineType.COMBINER, Recipe.COMBINER);
+    }
+
+    public static void registerAlloy(IModRegistry registry) {
+        if (!MachineType.ALLOY.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.ALLOY, DoubleMachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiAlloy.class, 79, 40, 24, 7, Recipe.ALLOY.getJEICategory());
+        registerRecipeItem(registry, MachineType.ALLOY, Recipe.ALLOY);
+    }
+
+    public static void registerCellCultivate(IModRegistry registry) {
+        if (!MachineType.CELL_CULTIVATE.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.CELL_CULTIVATE, CultivateMachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiCellCultivate.class, 79, 40, 24, 7, Recipe.CELL_CULTIVATE.getJEICategory());
+        registerRecipeItem(registry, MachineType.CELL_CULTIVATE, Recipe.CELL_CULTIVATE);
     }
 
     public static void registerPurification(IModRegistry registry) {
@@ -108,6 +159,33 @@ public class RecipeRegistryHelper {
         addRecipes(registry, Recipe.PRECISION_SAWMILL, ChanceMachineRecipeWrapper::new);
         registry.addRecipeClickArea(GuiPrecisionSawmill.class, 79, 40, 24, 7, Recipe.PRECISION_SAWMILL.getJEICategory());
         registerRecipeItem(registry, MachineType.PRECISION_SAWMILL, Recipe.PRECISION_SAWMILL);
+    }
+
+    public static void registerCellExtractor(IModRegistry registry) {
+        if (!MachineType.CELL_EXTRACTOR.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.CELL_EXTRACTOR, ChanceMachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiCellExtractor.class, 79, 40, 24, 7, Recipe.CELL_EXTRACTOR.getJEICategory());
+        registerRecipeItem(registry, MachineType.CELL_EXTRACTOR, Recipe.CELL_EXTRACTOR);
+    }
+
+    public static void registerCellSeparator(IModRegistry registry) {
+        if (!MachineType.CELL_SEPARATOR.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.CELL_SEPARATOR, ChanceMachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiCellSeparator.class, 79, 40, 24, 7, Recipe.CELL_SEPARATOR.getJEICategory());
+        registerRecipeItem(registry, MachineType.CELL_SEPARATOR, Recipe.CELL_SEPARATOR);
+    }
+
+    public static void registerFarm(IModRegistry registry) {
+        if (!MachineType.ORGANIC_FARM.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.ORGANIC_FARM, FarmMachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiOrganicFarm.class, 79, 40, 24, 7, Recipe.ORGANIC_FARM.getJEICategory());
+        registerRecipeItem(registry, MachineType.ORGANIC_FARM, Recipe.ORGANIC_FARM);
     }
 
     public static void registerMetallurgicInfuser(IModRegistry registry) {

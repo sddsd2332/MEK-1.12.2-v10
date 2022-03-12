@@ -6,7 +6,7 @@ import mekanism.api.infuse.InfuseType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public interface MekanismRecipeHelper {
+public interface    MekanismRecipeHelper {
 
     /**
      * Add an Enrichment Chamber recipe.
@@ -174,4 +174,32 @@ public interface MekanismRecipeHelper {
     void addIsotopicRecipe(GasStack inputGas, GasStack outputGas);
 
    // void addSPSRecipe(GasStack inputGas, GasStack outputGas);
+
+
+    void addOrganicFarmRecipe(ItemStack input,Gas gas, ItemStack primaryOutput, ItemStack secondaryOutput, double chance);
+
+    void addOrganicFarmRecipe(ItemStack input,Gas gas, ItemStack primaryOutput);
+
+    void addAmbientGas(int dimensionID, String ambientGasName);
+
+    void addStampingRecipe(ItemStack input, ItemStack output);
+
+    void addRollingRecipe(ItemStack input, ItemStack output);
+
+    void addBrushedRecipe(ItemStack input, ItemStack output);
+
+    void addTurningRecipe(ItemStack input, ItemStack output);
+
+    void addAlloyRecipe(ItemStack input, ItemStack extra, ItemStack output);
+
+    void addCellCultivateRecipe(ItemStack input, ItemStack extra,Gas gas,ItemStack output);
+
+    void addCellExtractorRecipe(ItemStack input, ItemStack primaryOutput, ItemStack secondaryOutput, double chance);
+
+    void addCellExtractorRecipe(ItemStack input, ItemStack primaryOutput);
+
+    void addCellSeparatorRecipe(ItemStack input, ItemStack primaryOutput, ItemStack secondaryOutput, double chance);
+
+    void addCellSeparatorRecipe(ItemStack input, ItemStack primaryOutput);
+
 }

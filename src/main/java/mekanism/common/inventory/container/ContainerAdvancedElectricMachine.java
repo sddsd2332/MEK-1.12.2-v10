@@ -24,7 +24,7 @@ public class ContainerAdvancedElectricMachine<RECIPE extends AdvancedMachineReci
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
         ItemStack stack = ItemStack.EMPTY;
         Slot currentSlot = inventorySlots.get(slotID);
-        if (currentSlot != null && currentSlot.getHasStack()) {
+         if (currentSlot != null && currentSlot.getHasStack()) {
             ItemStack slotStack = currentSlot.getStack();
             stack = slotStack.copy();
             if (slotID == 2) {

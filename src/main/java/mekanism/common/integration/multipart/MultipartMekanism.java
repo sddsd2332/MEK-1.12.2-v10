@@ -187,6 +187,9 @@ public class MultipartMekanism implements IMCMPAddon {
             if (!MachineType.get(MACHINE_BLOCK_3, i).hasModel) {
                 FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.MachineBlock3, 1, i));
             }
+            if (!MachineType.get(MACHINE_BLOCK_4, i).hasModel) {
+                FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.MachineBlock4, 1, i));
+            }
         }
         FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.BasicBlock3, 1, 0));
         FMLInterModComms.sendMessage("ForgeMicroblock", "microMaterial", new ItemStack(MekanismBlocks.BasicBlock2, 1, 0));

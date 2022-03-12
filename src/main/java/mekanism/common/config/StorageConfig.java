@@ -13,6 +13,12 @@ public class StorageConfig extends BaseConfig {
     public final DoubleOption combiner = new DoubleOption(this, "storage", "CombinerStorage", 40000D,
           "Base energy storage (Joules).");
 
+    public final DoubleOption alloy = new DoubleOption(this, "storage", "AlloyStorage", 40000D,
+            "Base energy storage (Joules).");
+
+    public final DoubleOption cellcultivate = new DoubleOption(this, "storage", "CellCultivateStorage", 40000D,
+            "Base energy storage (Joules).");
+
     public final DoubleOption crusher = new DoubleOption(this, "storage", "CrusherStorage", 20000D,
           "Base energy storage (Joules).");
 
@@ -61,6 +67,15 @@ public class StorageConfig extends BaseConfig {
     public final DoubleOption precisionSawmill = new DoubleOption(this, "storage", "PrecisionSawmillStorage", 20000D,
           "Base energy storage (Joules).");
 
+    public final DoubleOption cellExtractor = new DoubleOption(this, "storage", "CellExtractorStorage", 20000D,
+            "Base energy storage (Joules).");
+
+    public final DoubleOption cellSeparator = new DoubleOption(this, "storage", "CellSeparatorStorage", 20000D,
+            "Base energy storage (Joules).");
+
+    public final DoubleOption organicfarm = new DoubleOption(this, "storage", "OrganicFarmStorage", 20000D,
+            "Base energy storage (Joules).");
+
     public final DoubleOption chemicalDissolutionChamber = new DoubleOption(this, "storage", "ChemicalDissolutionChamberStorage", 160000D,
           "Base energy storage (Joules).");
 
@@ -87,4 +102,17 @@ public class StorageConfig extends BaseConfig {
 
     public final DoubleOption teleporter = new DoubleOption(this, "storage", "TeleporterStorage", 5000000D,
           "Base energy storage (Joules).");
+
+    public final DoubleOption stamping = new DoubleOption(this, "storage", "StampingStorage", 20000D,
+            "Base energy storage (Joules).");
+
+    public final DoubleOption rolling = new DoubleOption(this, "storage", "RollingStorage", 20000D,
+            "Base energy storage (Joules).");
+
+    public final DoubleOption brushed = new DoubleOption(this, "storage", "BrushedStorage", 20000D,
+            "Base energy storage (Joules).");
+
+    public final DoubleOption turning = new DoubleOption(this, "storage", "TurningStorage", 20000D,
+            "Base energy storage (Joules).");
+
 }

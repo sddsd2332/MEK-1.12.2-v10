@@ -1,4 +1,4 @@
-package mekanism.common.tile;
+package mekanism.common.tile.transmitter;
 
 import mekanism.api.Coord4D;
 import mekanism.api.gas.GasStack;

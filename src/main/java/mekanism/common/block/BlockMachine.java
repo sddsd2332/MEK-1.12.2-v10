@@ -36,6 +36,7 @@ import mekanism.common.tier.FluidTankTier;
 import mekanism.common.tile.*;
 import mekanism.common.tile.prefab.TileEntityBasicBlock;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
+import mekanism.common.tile.transmitter.TileEntitySuperchargedCoil;
 import mekanism.common.util.FluidContainerUtils;
 import mekanism.common.util.InventoryUtils;
 import mekanism.common.util.ItemDataUtils;
@@ -290,6 +291,7 @@ public abstract class BlockMachine extends BlockMekanismContainer {
                     case ADVANCED_FACTORY:
                     case ELITE_FACTORY:
                     case ULTIMATE_FACTORY:
+                    case CREATIVE_FACTORY:
                         for (RecipeType recipe : RecipeType.values()) {
                             if (recipe.getType().isEnabled()) {
                                 ItemStack stack = new ItemStack(this, 1, type.meta);

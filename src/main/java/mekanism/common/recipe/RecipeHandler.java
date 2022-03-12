@@ -82,6 +82,7 @@ public final class RecipeHandler {
         addRecipe(Recipe.COMBINER, new CombinerRecipe(input, output));
     }
 
+
     /**
      * Add a Combiner recipe.
      *
@@ -91,6 +92,10 @@ public final class RecipeHandler {
      */
     public static void addCombinerRecipe(ItemStack input, ItemStack extra, ItemStack output) {
         addRecipe(Recipe.COMBINER, new CombinerRecipe(input, extra, output));
+    }
+
+    public static void addAlloyRecipe(ItemStack input, ItemStack extra,ItemStack output) {
+        addRecipe(Recipe.ALLOY, new AlloyRecipe(input, extra,output));
     }
 
     /**
@@ -165,6 +170,10 @@ public final class RecipeHandler {
     public static void addChemicalInjectionChamberRecipe(ItemStack input, Gas gas, ItemStack output) {
         addRecipe(Recipe.CHEMICAL_INJECTION_CHAMBER, new InjectionRecipe(input, gas, output));
     }
+
+
+
+
 
     /**
      * Add an Electrolytic Separator recipe.
@@ -263,6 +272,54 @@ public final class RecipeHandler {
         addRecipe(Recipe.AMBIENT_ACCUMULATOR, new AmbientGasRecipe(dimensionID, ambientGasName));
     }
 
+
+    public static void addOrganicFarmRecipe(ItemStack input,Gas gas ,ItemStack primaryOutput, ItemStack secondaryOutput, double chance) {
+        addRecipe(Recipe.ORGANIC_FARM, new FarmRecipe(input, gas,primaryOutput, secondaryOutput, chance));
+    }
+
+
+    public static void addOrganicFarmRecipe(ItemStack input,Gas gas, ItemStack primaryOutput) {
+        addRecipe(Recipe.ORGANIC_FARM, new FarmRecipe(input, gas, primaryOutput));
+    }
+
+    public static void addCellCultivateRecipe(ItemStack input,ItemStack extra, Gas gas,ItemStack output ){
+        addRecipe(Recipe.CELL_CULTIVATE, new CellCultivateRecipe(input,extra,gas,output));
+    }
+
+    public static void addStampingRecipe(ItemStack input, ItemStack output) {
+        addRecipe(Recipe.STAMPING, new StampingRecipe(input, output));
+    }
+
+    public static void addRollingRecipe(ItemStack input, ItemStack output) {
+        addRecipe(Recipe.ROLLING, new RollingRecipe(input, output));
+    }
+
+    public static void addBrushedRecipe(ItemStack input, ItemStack output) {
+        addRecipe(Recipe.BRUSHED, new BrushedRecipe(input, output));
+    }
+
+    public static void addTurningRecipe(ItemStack input, ItemStack output) {
+        addRecipe(Recipe.TURNING, new TurningRecipe(input, output));
+    }
+
+    public static void addCellExtractorRecipe(ItemStack input, ItemStack primaryOutput, ItemStack secondaryOutput, double chance) {
+        addRecipe(Recipe.CELL_EXTRACTOR, new CellExtractorRecipe(input, primaryOutput, secondaryOutput, chance));
+    }
+
+    public static void addCellExtractorRecipe(ItemStack input, ItemStack primaryOutput) {
+        addRecipe(Recipe.CELL_EXTRACTOR, new CellExtractorRecipe(input, primaryOutput));
+    }
+
+    public static void addCellSeparatorRecipe(ItemStack input, ItemStack primaryOutput, ItemStack secondaryOutput, double chance) {
+        addRecipe(Recipe.CELL_SEPARATOR, new CellSeparatorRecipe(input, primaryOutput, secondaryOutput, chance));
+    }
+
+    public static void addCellSeparatorRecipe(ItemStack input, ItemStack primaryOutput) {
+        addRecipe(Recipe.CELL_SEPARATOR, new CellSeparatorRecipe(input, primaryOutput));
+    }
+
+
+
     /**
      * Gets the Metallurgic Infuser Recipe for the InfusionInput in the parameters.
      *
@@ -270,6 +327,7 @@ public final class RecipeHandler {
      *
      * @return MetallurgicInfuserRecipe
      */
+
     @Nullable
     public static MetallurgicInfuserRecipe getMetallurgicInfuserRecipe(@Nonnull InfusionInput input) {
         return getRecipe(input, Recipe.METALLURGIC_INFUSER);
@@ -360,6 +418,21 @@ public final class RecipeHandler {
         return getRecipe(input, recipes);
     }
 
+
+    @Nullable
+    public static <RECIPE extends FarmMachineRecipe<RECIPE>> RECIPE getFarmRecipe(@Nonnull AdvancedMachineInput input, @Nonnull Map<AdvancedMachineInput, RECIPE> recipes) {
+        return getRecipe(input,recipes);
+    }
+
+
+
+    @Nullable
+    public static <RECIPE extends CultivateMachineRecipe<RECIPE>> RECIPE getCellCultivateRecipe(@Nonnull CultivateMachineInput input, @Nonnull Map<CultivateMachineInput,RECIPE> recipes){
+        return getRecipe(input,recipes);
+    }
+
+
+
     /**
      * Gets the Recipe of the given Input in the parameters, using the map in the parameters.
      *
@@ -369,8 +442,7 @@ public final class RecipeHandler {
      * @return Recipe
      */
     @Nullable
-    public static <INPUT extends MachineInput<INPUT>, RECIPE extends MachineRecipe<INPUT, ?, RECIPE>>
-    RECIPE getRecipe(@Nonnull INPUT input, @Nonnull Map<INPUT, RECIPE> recipes) {
+    public static <INPUT extends MachineInput<INPUT>, RECIPE extends MachineRecipe<INPUT, ?, RECIPE>> RECIPE getRecipe(@Nonnull INPUT input, @Nonnull Map<INPUT, RECIPE> recipes) {
         if (input.isValid()) {
             RECIPE recipe = recipes.get(input);
             if (recipe == null && input instanceof IWildInput) {
@@ -482,6 +554,9 @@ public final class RecipeHandler {
         public static final Recipe<DoubleMachineInput, ItemStackOutput, CombinerRecipe> COMBINER = new Recipe<>(
               MachineType.COMBINER, DoubleMachineInput.class, ItemStackOutput.class, CombinerRecipe.class);
 
+        public static final Recipe<DoubleMachineInput, ItemStackOutput, AlloyRecipe> ALLOY = new Recipe<>(
+                MachineType.ALLOY, DoubleMachineInput.class, ItemStackOutput.class, AlloyRecipe.class);
+
         public static final Recipe<ItemStackInput, ItemStackOutput, CrusherRecipe> CRUSHER = new Recipe<>(
               MachineType.CRUSHER, ItemStackInput.class, ItemStackOutput.class, CrusherRecipe.class);
 
@@ -503,11 +578,25 @@ public final class RecipeHandler {
         public static final Recipe<AdvancedMachineInput, ItemStackOutput, InjectionRecipe> CHEMICAL_INJECTION_CHAMBER = new Recipe<>(
               MachineType.CHEMICAL_INJECTION_CHAMBER, AdvancedMachineInput.class, ItemStackOutput.class, InjectionRecipe.class);
 
+
+        public static final Recipe<CultivateMachineInput,ItemStackOutput,CellCultivateRecipe> CELL_CULTIVATE = new Recipe<>(
+                MachineType.CELL_CULTIVATE,CultivateMachineInput.class, ItemStackOutput.class,CellCultivateRecipe.class);
+
+
         public static final Recipe<FluidInput, ChemicalPairOutput, SeparatorRecipe> ELECTROLYTIC_SEPARATOR = new Recipe<>(
               MachineType.ELECTROLYTIC_SEPARATOR, FluidInput.class, ChemicalPairOutput.class, SeparatorRecipe.class);
 
         public static final Recipe<ItemStackInput, ChanceOutput, SawmillRecipe> PRECISION_SAWMILL = new Recipe<>(
               MachineType.PRECISION_SAWMILL, ItemStackInput.class, ChanceOutput.class, SawmillRecipe.class);
+
+        public static final Recipe<ItemStackInput, ChanceOutput, CellExtractorRecipe> CELL_EXTRACTOR = new Recipe<>(
+                MachineType.CELL_EXTRACTOR, ItemStackInput.class, ChanceOutput.class, CellExtractorRecipe.class);
+
+        public static final Recipe<ItemStackInput, ChanceOutput, CellSeparatorRecipe> CELL_SEPARATOR = new Recipe<>(
+                MachineType.CELL_SEPARATOR, ItemStackInput.class, ChanceOutput.class, CellSeparatorRecipe.class);
+
+        public static final Recipe<AdvancedMachineInput, ChanceOutput, FarmRecipe> ORGANIC_FARM = new Recipe<>(
+                MachineType.ORGANIC_FARM, AdvancedMachineInput.class, ChanceOutput.class, FarmRecipe.class);
 
         public static final Recipe<ItemStackInput, GasOutput, DissolutionRecipe> CHEMICAL_DISSOLUTION_CHAMBER = new Recipe<>(
               MachineType.CHEMICAL_DISSOLUTION_CHAMBER, ItemStackInput.class, GasOutput.class, DissolutionRecipe.class);
@@ -528,6 +617,7 @@ public final class RecipeHandler {
         public static final Recipe<IntegerInput, GasOutput, AmbientGasRecipe> AMBIENT_ACCUMULATOR = new Recipe<>(
               MachineType.AMBIENT_ACCUMULATOR, IntegerInput.class, GasOutput.class, AmbientGasRecipe.class);
 
+
         public static final Recipe<FluidInput, FluidOutput, ThermalEvaporationRecipe> THERMAL_EVAPORATION_PLANT = new Recipe<>(
               "ThermalEvaporationPlant", FluidInput.class, FluidOutput.class, ThermalEvaporationRecipe.class);
 
@@ -536,6 +626,20 @@ public final class RecipeHandler {
 
         public static final Recipe<GasInput, GasOutput, IsotopicRecipe> ISOTOPIC_CENTRIFUGE = new Recipe<>(
                 MachineType.ISOTOPIC_CENTRIFUGE, GasInput.class, GasOutput.class, IsotopicRecipe.class);
+
+        public static final Recipe<ItemStackInput, ItemStackOutput, StampingRecipe> STAMPING = new Recipe<>(
+                MachineType.STAMPING, ItemStackInput.class, ItemStackOutput.class, StampingRecipe.class);
+
+        public static final Recipe<ItemStackInput, ItemStackOutput, RollingRecipe> ROLLING = new Recipe<>(
+                MachineType.ROLLING, ItemStackInput.class, ItemStackOutput.class, RollingRecipe.class);
+
+        public static final Recipe<ItemStackInput, ItemStackOutput, BrushedRecipe> BRUSHED = new Recipe<>(
+                MachineType.BRUSHED, ItemStackInput.class, ItemStackOutput.class, BrushedRecipe.class);
+
+        public static final Recipe<ItemStackInput, ItemStackOutput, TurningRecipe> TURNING = new Recipe<>(
+                MachineType.TURNING, ItemStackInput.class, ItemStackOutput.class, TurningRecipe.class);
+
+
 
         static {
             values = ImmutableList.copyOf(values);
@@ -631,6 +735,11 @@ public final class RecipeHandler {
                     if (StackUtils.equalsWildcard(stack, input)) {
                         return true;
                     }
+                } else if (entry.getKey() instanceof CultivateMachineInput) {
+                    ItemStack stack = ((CultivateMachineInput) entry.getKey()).itemStack;
+                    if (StackUtils.equalsWildcard(stack, input)) {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -656,6 +765,8 @@ public final class RecipeHandler {
                     toCheck = ((GasInput) entry.getKey()).ingredient.getGas();
                 } else if (entry.getKey() instanceof AdvancedMachineInput) {
                     toCheck = ((AdvancedMachineInput) entry.getKey()).gasType;
+                } else if (entry.getKey() instanceof CultivateMachineInput) {
+                    toCheck = ((CultivateMachineInput) entry.getKey()).gasType;
                 }
                 if (toCheck == input) {
                     return true;

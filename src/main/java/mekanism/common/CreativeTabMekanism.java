@@ -13,6 +13,6 @@ public class CreativeTabMekanism extends CreativeTabs {
     @Nonnull
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(MekanismItems.AtomicAlloy);
+        return new ItemStack(MekanismItems.CosmicAlloy);
     }
 }

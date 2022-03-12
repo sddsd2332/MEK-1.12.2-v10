@@ -23,10 +23,7 @@ import mekanism.common.item.ItemPortableTeleporter;
 import mekanism.common.item.ItemSeismicReader;
 import mekanism.common.network.PacketPortableTeleporter.PortableTeleporterMessage;
 import mekanism.common.tile.*;
-import mekanism.common.tile.prefab.TileEntityAdvancedElectricMachine;
-import mekanism.common.tile.prefab.TileEntityContainerBlock;
-import mekanism.common.tile.prefab.TileEntityDoubleElectricMachine;
-import mekanism.common.tile.prefab.TileEntityElectricMachine;
+import mekanism.common.tile.prefab.*;
 import mekanism.common.voice.VoiceServerManager;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -323,6 +320,24 @@ public class CommonProxy implements IGuiProvider {
                 return new ContainerIsotopicCentrifuge(player.inventory, (TileEntityIsotopicCentrifuge) tileEntity);
             case 62:
                 return new ContainerAntiprotonicNucleosynthesizer(player.inventory, (TileEntityAntiprotonicNucleosynthesizer) tileEntity);
+            case 63:
+                return new ContainerFarmMachine(player.inventory, (TileEntityFarmMachine) tileEntity);
+            case 64:
+                return new ContainerElectricMachine<>(player.inventory, (TileEntityElectricMachine) tileEntity);
+            case 65:
+                return new ContainerElectricMachine<>(player.inventory, (TileEntityElectricMachine) tileEntity);
+            case 66:
+                return new ContainerElectricMachine<>(player.inventory, (TileEntityElectricMachine) tileEntity);
+            case 67:
+                return new ContainerElectricMachine<>(player.inventory, (TileEntityElectricMachine) tileEntity);
+            case 68:
+                return new ContainerDoubleElectricMachine<>(player.inventory, (TileEntityDoubleElectricMachine) tileEntity);
+            case 69:
+                return new ContainerCultivateElectricMachine<>(player.inventory,(TileEntityCultivateElectricMachine) tileEntity);
+            case 70:
+                return new ContainerChanceMachine<>(player.inventory, (TileEntityChanceMachine) tileEntity);
+            case 71:
+                return new ContainerChanceMachine<>(player.inventory, (TileEntityChanceMachine) tileEntity);
         }
         return null;
     }

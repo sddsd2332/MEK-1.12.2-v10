@@ -17,6 +17,7 @@ import mekanism.common.tier.BaseTier;
 import mekanism.common.tier.FactoryTier;
 import mekanism.common.tile.*;
 //import mekanism.common.tile.TileEntityIndustrialAlarm;
+import mekanism.common.tile.transmitter.TileEntitySuperchargedCoil;
 import mekanism.common.util.LangUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -47,7 +48,8 @@ public class BlockStateMachine extends ExtendedBlockState {
     public enum MachineBlock {
         MACHINE_BLOCK_1,
         MACHINE_BLOCK_2,
-        MACHINE_BLOCK_3;
+        MACHINE_BLOCK_3,
+        MACHINE_BLOCK_4;
 
         PropertyEnum<MachineType> machineTypeProperty;
 
@@ -66,6 +68,8 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return MekanismBlocks.MachineBlock2;
                 case MACHINE_BLOCK_3:
                     return MekanismBlocks.MachineBlock3;
+                case MACHINE_BLOCK_4:
+                    return MekanismBlocks.MachineBlock4;
                 default:
                     return null;
             }
@@ -82,12 +86,13 @@ public class BlockStateMachine extends ExtendedBlockState {
         ADVANCED_FACTORY(MachineBlock.MACHINE_BLOCK_1, 6, "Factory", 11, TileEntityAdvancedFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ADVANCED),
         ELITE_FACTORY(MachineBlock.MACHINE_BLOCK_1, 7, "Factory", 11, TileEntityEliteFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ELITE),
         ULTIMATE_FACTORY(MachineBlock.MACHINE_BLOCK_1,8, "Factory", 11, TileEntityUltimateFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ULTIMATE),
-        METALLURGIC_INFUSER(MachineBlock.MACHINE_BLOCK_1, 9, "MetallurgicInfuser", 12, TileEntityMetallurgicInfuser::new, true, true, true, Plane.HORIZONTAL, false),
-        PURIFICATION_CHAMBER(MachineBlock.MACHINE_BLOCK_1, 10, "PurificationChamber", 15, TileEntityPurificationChamber::new, true, false, true, Plane.HORIZONTAL, true),
-        ENERGIZED_SMELTER(MachineBlock.MACHINE_BLOCK_1, 11, "EnergizedSmelter", 16, TileEntityEnergizedSmelter::new, true, false, true, Plane.HORIZONTAL, true),
-        TELEPORTER(MachineBlock.MACHINE_BLOCK_1, 12, "Teleporter", 13, TileEntityTeleporter::new, true, false, false, BlockStateUtils.NO_ROTATION, false),
-        ISOTOPIC_CENTRIFUGE(MachineBlock.MACHINE_BLOCK_1, 13, "IsotopicCentrifuge", 61, TileEntityIsotopicCentrifuge::new, false, true, false, Plane.HORIZONTAL, false),
-        ANTIPROTONIC_NUCLEOSYNTHESIZER(MachineBlock.MACHINE_BLOCK_1, 14,"antiprotonicnucleosynthesizer",62, TileEntityAntiprotonicNucleosynthesizer::new, true, true, true, Plane.HORIZONTAL, true),
+        CREATIVE_FACTORY(MachineBlock.MACHINE_BLOCK_1,9,"Factory", 11,TileEntityCreativeFactory::new,true, false, true, Plane.HORIZONTAL, true, FactoryTier.CREATIVE),
+        METALLURGIC_INFUSER(MachineBlock.MACHINE_BLOCK_1, 10, "MetallurgicInfuser", 12, TileEntityMetallurgicInfuser::new, true, true, true, Plane.HORIZONTAL, false),
+        PURIFICATION_CHAMBER(MachineBlock.MACHINE_BLOCK_1, 11, "PurificationChamber", 15, TileEntityPurificationChamber::new, true, false, true, Plane.HORIZONTAL, true),
+        ENERGIZED_SMELTER(MachineBlock.MACHINE_BLOCK_1, 12, "EnergizedSmelter", 16, TileEntityEnergizedSmelter::new, true, false, true, Plane.HORIZONTAL, true),
+        TELEPORTER(MachineBlock.MACHINE_BLOCK_1, 13, "Teleporter", 13, TileEntityTeleporter::new, true, false, false, BlockStateUtils.NO_ROTATION, false),
+        ISOTOPIC_CENTRIFUGE(MachineBlock.MACHINE_BLOCK_1, 14, "IsotopicCentrifuge", 61, TileEntityIsotopicCentrifuge::new, false, true, false, Plane.HORIZONTAL, false),
+
 
         ROTARY_CONDENSENTRATOR(MachineBlock.MACHINE_BLOCK_2, 0, "RotaryCondensentrator", 7, TileEntityRotaryCondensentrator::new, true, true, false, Plane.HORIZONTAL, false),
         CHEMICAL_OXIDIZER(MachineBlock.MACHINE_BLOCK_2, 1, "ChemicalOxidizer", 29, TileEntityChemicalOxidizer::new, true, true, true, Plane.HORIZONTAL, true),
@@ -108,7 +113,7 @@ public class BlockStateMachine extends ExtendedBlockState {
         
         QUANTUM_ENTANGLOPORTER(MachineBlock.MACHINE_BLOCK_3, 0, "QuantumEntangloporter", 46, TileEntityQuantumEntangloporter::new, true, false, false, BlockStateUtils.ALL_FACINGS, false),
         SOLAR_NEUTRON_ACTIVATOR(MachineBlock.MACHINE_BLOCK_3, 1, "SolarNeutronActivator", 47, TileEntitySolarNeutronActivator::new, false, true, false, Plane.HORIZONTAL, true),
-        AMBIENT_ACCUMULATOR(MachineBlock.MACHINE_BLOCK_3, 2, "AmbientAccumulator", 48, TileEntityAmbientAccumulator::new, true, false, false, BlockStateUtils.NO_ROTATION, true),
+        AMBIENT_ACCUMULATOR(MachineBlock.MACHINE_BLOCK_3, 2, "AmbientAccumulator", 48, TileEntityAmbientAccumulator::new, true, true, false, Plane.HORIZONTAL, true),
         OREDICTIONIFICATOR(MachineBlock.MACHINE_BLOCK_3, 3, "Oredictionificator", 52, TileEntityOredictionificator::new, false, false, false, Plane.HORIZONTAL, true),
         RESISTIVE_HEATER(MachineBlock.MACHINE_BLOCK_3, 4, "ResistiveHeater", 53, TileEntityResistiveHeater::new, true, false, false, Plane.HORIZONTAL, true),
         FORMULAIC_ASSEMBLICATOR(MachineBlock.MACHINE_BLOCK_3, 5, "FormulaicAssemblicator", 56, TileEntityFormulaicAssemblicator::new, true, false, true, Plane.HORIZONTAL, true),
@@ -120,8 +125,19 @@ public class BlockStateMachine extends ExtendedBlockState {
         Nutritional_Liquifier(MachineBlock.MACHINE_BLOCK_3, 11, "NutritionalLiquifier", 60, TileEntityNutritionalLiquifier::new, true, true, true, Plane.HORIZONTAL, true),
 
         //INDUSTRIAL_ALARM(MachineBlock.MACHINE_BLOCK_3,12,"IndustrialAlarm",-1,TileEntityIndustrialAlarm::new,false,true,false, Plane.HORIZONTAL,true);
-        SUPERCHARGED_COIL(MachineBlock.MACHINE_BLOCK_3,12,"superchargedcoil",-1,TileEntitySuperchargedCoil::new,false,true,false,BlockStateUtils.ALL_FACINGS,false);
+        SUPERCHARGED_COIL(MachineBlock.MACHINE_BLOCK_3,12,"superchargedcoil",-1, TileEntitySuperchargedCoil::new,false,true,false,BlockStateUtils.ALL_FACINGS,false),
+        ORGANIC_FARM(MachineBlock.MACHINE_BLOCK_3,13,"organicfarm",63,TileEntityOrganicFarm::new,true,false,true, Plane.HORIZONTAL, true),
+        ANTIPROTONIC_NUCLEOSYNTHESIZER(MachineBlock.MACHINE_BLOCK_3, 14,"antiprotonicnucleosynthesizer",62, TileEntityAntiprotonicNucleosynthesizer::new, true, true, true, Plane.HORIZONTAL, true),
 
+
+        STAMPING(MachineBlock.MACHINE_BLOCK_4,0,"Stamping",64,TileEntityStamping::new,true,false,true, Plane.HORIZONTAL, true),
+        ROLLING(MachineBlock.MACHINE_BLOCK_4,1,"Rolling",65,TileEntityRolling::new,true,false,true, Plane.HORIZONTAL, true),
+        BRUSHED(MachineBlock.MACHINE_BLOCK_4,2,"Brushed",66,TileEntityBrushed::new,true,false,true, Plane.HORIZONTAL, true),
+        TURNING(MachineBlock.MACHINE_BLOCK_4,3,"Turning",67,TileEntityTurning::new,true,false,true, Plane.HORIZONTAL, true),
+        ALLOY(MachineBlock.MACHINE_BLOCK_4,4,"Alloy",68,TileEntityAlloy::new,true,false,true,Plane.HORIZONTAL, true),
+        CELL_CULTIVATE(MachineBlock.MACHINE_BLOCK_4,5,"CellCultivate",69,TileEntityCellCultivate::new,true,false,true,Plane.HORIZONTAL, true),
+        CELL_EXTRACTOR(MachineBlock.MACHINE_BLOCK_4,6,"CellExtractor",70,TileEntityCellExtractor::new,true,false,true,Plane.HORIZONTAL, true),
+        CELL_SEPARATOR(MachineBlock.MACHINE_BLOCK_4,7,"CellSeparator",71,TileEntityCellSeparator::new,true,false,true,Plane.HORIZONTAL, true);
 
         public MachineBlock typeBlock;
         public int meta;
@@ -200,7 +216,7 @@ public class BlockStateMachine extends ExtendedBlockState {
         }
 
         public boolean isValidMachine() {
-            return this != AMBIENT_ACCUMULATOR;
+            return this != CELL_CULTIVATE;
         }
 
         public TileEntity create() {
@@ -285,7 +301,24 @@ public class BlockStateMachine extends ExtendedBlockState {
                    // return 0;
                 case ANTIPROTONIC_NUCLEOSYNTHESIZER:
                     return MekanismConfig.current().usage.nucleosynthesizer.val();
-
+                case ORGANIC_FARM:
+                    return MekanismConfig.current().usage.organicfarm.val();
+                case STAMPING:
+                    return MekanismConfig.current().usage.stamping.val();
+                case ROLLING:
+                    return MekanismConfig.current().usage.rolling.val();
+                case BRUSHED:
+                    return MekanismConfig.current().usage.brushed.val();
+                case TURNING:
+                    return MekanismConfig.current().usage.turning.val();
+                case ALLOY:
+                    return MekanismConfig.current().usage.alloy.val();
+                case CELL_CULTIVATE:
+                    return MekanismConfig.current().usage.cellcultivate.val();
+                case CELL_EXTRACTOR:
+                    return MekanismConfig.current().usage.cellExtractor.val();
+                case CELL_SEPARATOR:
+                    return MekanismConfig.current().usage.cellSeparator.val();
                 default:
                     return 0;
             }
@@ -351,6 +384,24 @@ public class BlockStateMachine extends ExtendedBlockState {
                   //  return 0;
                 case ANTIPROTONIC_NUCLEOSYNTHESIZER:
                     return MekanismConfig.current().storage.nucleosynthesizer.val();
+                case ORGANIC_FARM:
+                    return MekanismConfig.current().storage.organicfarm.val();
+                case STAMPING:
+                    return MekanismConfig.current().storage.stamping.val();
+                case ROLLING:
+                    return MekanismConfig.current().storage.rolling.val();
+                case BRUSHED:
+                    return MekanismConfig.current().storage.brushed.val();
+                case TURNING:
+                    return MekanismConfig.current().storage.turning.val();
+                case ALLOY:
+                    return MekanismConfig.current().storage.alloy.val();
+                case CELL_CULTIVATE:
+                    return MekanismConfig.current().storage.cellcultivate.val();
+                case CELL_EXTRACTOR:
+                    return MekanismConfig.current().storage.cellExtractor.val();
+                case CELL_SEPARATOR:
+                    return MekanismConfig.current().storage.cellSeparator.val();
                 default:
                     return 400 * getUsage();
             }
@@ -424,7 +475,7 @@ public class BlockStateMachine extends ExtendedBlockState {
                 builder.append(facing.getName());
             }
 
-            if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY || type == MachineType.ULTIMATE_FACTORY) {
+            if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY || type == MachineType.ULTIMATE_FACTORY|| type == MachineType.CREATIVE_FACTORY) {
                 RecipeType recipe = state.getValue(recipeProperty);
                 nameOverride = type.getName() + "_" + recipe.getName();
             }

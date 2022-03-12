@@ -8,10 +8,7 @@ import mekanism.api.gas.GasRegistry;
 import mekanism.api.gas.GasStack;
 import mekanism.client.gui.element.GuiProgress.ProgressBar;
 import mekanism.client.jei.gas.GasStackRenderer;
-import mekanism.client.jei.machine.AdvancedMachineRecipeCategory;
-import mekanism.client.jei.machine.ChanceMachineRecipeCategory;
-import mekanism.client.jei.machine.DoubleMachineRecipeCategory;
-import mekanism.client.jei.machine.MachineRecipeCategory;
+import mekanism.client.jei.machine.*;
 import mekanism.client.jei.machine.chemical.ChemicalCrystallizerRecipeCategory;
 import mekanism.client.jei.machine.chemical.ChemicalDissolutionChamberRecipeCategory;
 import mekanism.client.jei.machine.chemical.ChemicalInfuserRecipeCategory;
@@ -83,6 +80,7 @@ public class MekanismJEI implements IModPlugin {
         registry.registerSubtypeInterpreter(Item.getItemFromBlock(MekanismBlocks.MachineBlock), NBT_INTERPRETER);
         registry.registerSubtypeInterpreter(Item.getItemFromBlock(MekanismBlocks.MachineBlock2), NBT_INTERPRETER);
         registry.registerSubtypeInterpreter(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), NBT_INTERPRETER);
+        registry.registerSubtypeInterpreter(Item.getItemFromBlock(MekanismBlocks.MachineBlock4), NBT_INTERPRETER);
         registry.registerSubtypeInterpreter(Item.getItemFromBlock(MekanismBlocks.BasicBlock), NBT_INTERPRETER);
         registry.registerSubtypeInterpreter(Item.getItemFromBlock(MekanismBlocks.BasicBlock2), NBT_INTERPRETER);
         registry.registerSubtypeInterpreter(Item.getItemFromBlock(MekanismBlocks.BasicBlock3), NBT_INTERPRETER);
@@ -122,6 +120,12 @@ public class MekanismJEI implements IModPlugin {
         addRecipeCategory(registry, MachineType.COMBINER, new DoubleMachineRecipeCategory(guiHelper, Recipe.COMBINER.getJEICategory(),
               "tile.MachineBlock.Combiner.name", ProgressBar.STONE));
 
+        addRecipeCategory(registry, MachineType.ALLOY, new DoubleMachineRecipeCategory(guiHelper, Recipe.ALLOY.getJEICategory(),
+                "tile.MachineBlock4.Alloy.name", ProgressBar.STONE));
+
+        addRecipeCategory(registry, MachineType.CELL_CULTIVATE, new CultivateMachineRecipeCategory(guiHelper, Recipe.CELL_CULTIVATE.getJEICategory(),
+                "tile.MachineBlock4.CellCultivate.name", ProgressBar.YELLOW));
+
         addRecipeCategory(registry, MachineType.PURIFICATION_CHAMBER, new AdvancedMachineRecipeCategory(guiHelper, Recipe.PURIFICATION_CHAMBER.getJEICategory(),
               "tile.MachineBlock.PurificationChamber.name", ProgressBar.RED));
         addRecipeCategory(registry, MachineType.OSMIUM_COMPRESSOR, new AdvancedMachineRecipeCategory(guiHelper, Recipe.OSMIUM_COMPRESSOR.getJEICategory(),
@@ -132,6 +136,9 @@ public class MekanismJEI implements IModPlugin {
         addRecipeCategory(registry, MachineType.PRECISION_SAWMILL, new ChanceMachineRecipeCategory(guiHelper, Recipe.PRECISION_SAWMILL.getJEICategory(),
               "tile.MachineBlock2.PrecisionSawmill.name", ProgressBar.PURPLE));
 
+        addRecipeCategory(registry, MachineType.ORGANIC_FARM, new FarmMachineRecipeCategory(guiHelper, Recipe.ORGANIC_FARM.getJEICategory(),
+                "tile.MachineBlock3.OrganicFarm.name", ProgressBar.PURPLE));
+
         addRecipeCategory(registry, MachineType.ENRICHMENT_CHAMBER, new MachineRecipeCategory(guiHelper, Recipe.ENRICHMENT_CHAMBER.getJEICategory(),
               "tile.MachineBlock.EnrichmentChamber.name", ProgressBar.BLUE));
         addRecipeCategory(registry, MachineType.CRUSHER, new MachineRecipeCategory(guiHelper, Recipe.CRUSHER.getJEICategory(), "tile.MachineBlock.Crusher.name",
@@ -139,8 +146,26 @@ public class MekanismJEI implements IModPlugin {
         addRecipeCategory(registry, MachineType.ENERGIZED_SMELTER, new MachineRecipeCategory(guiHelper, Recipe.ENERGIZED_SMELTER.getJEICategory(),
               "tile.MachineBlock.EnergizedSmelter.name", ProgressBar.BLUE));
 
+        addRecipeCategory(registry, MachineType.STAMPING, new MachineRecipeCategory(guiHelper, Recipe.STAMPING.getJEICategory(), "tile.MachineBlock4.Stamping.name",
+                ProgressBar.CRUSH));
+        addRecipeCategory(registry, MachineType.ROLLING, new MachineRecipeCategory(guiHelper, Recipe.ROLLING.getJEICategory(), "tile.MachineBlock4.Rolling.name",
+                ProgressBar.CRUSH));
+        addRecipeCategory(registry, MachineType.BRUSHED, new MachineRecipeCategory(guiHelper, Recipe.BRUSHED.getJEICategory(), "tile.MachineBlock4.Brushed.name",
+                ProgressBar.CRUSH));
+        addRecipeCategory(registry, MachineType.TURNING, new MachineRecipeCategory(guiHelper, Recipe.TURNING.getJEICategory(), "tile.MachineBlock4.Turning.name",
+                ProgressBar.CRUSH));
+        addRecipeCategory(registry, MachineType.CELL_EXTRACTOR, new ChanceMachineRecipeCategory(guiHelper, Recipe.CELL_EXTRACTOR.getJEICategory(),
+                "tile.MachineBlock4.CellExtractor.name", ProgressBar.PURPLE));
+        addRecipeCategory(registry, MachineType.CELL_SEPARATOR, new ChanceMachineRecipeCategory(guiHelper, Recipe.CELL_SEPARATOR.getJEICategory(),
+                "tile.MachineBlock4.CellSeparator.name", ProgressBar.PURPLE));
+
+
+
+
         //There is no config option to disable the thermal evaporation plant
         registry.addRecipeCategories(new ThermalEvaporationRecipeCategory(guiHelper));
+
+
     }
 
     private void addRecipeCategory(IRecipeCategoryRegistration registry, MachineType type, BaseRecipeCategory category) {
@@ -182,6 +207,18 @@ public class MekanismJEI implements IModPlugin {
         RecipeRegistryHelper.registerCondensentrator(registry);
         RecipeRegistryHelper.registerSmelter(registry);
         RecipeRegistryHelper.registerFormulaicAssemblicator(registry);
+        RecipeRegistryHelper.registerFarm(registry);
+
+        RecipeRegistryHelper.registerStamping(registry);
+        RecipeRegistryHelper.registerRolling(registry);
+        RecipeRegistryHelper.registerBrushed(registry);
+        RecipeRegistryHelper.registerTurning(registry);
+        RecipeRegistryHelper.registerAlloy(registry);
+        RecipeRegistryHelper.registerCellCultivate(registry);
+
+        RecipeRegistryHelper.registerCellExtractor(registry);
+        RecipeRegistryHelper.registerCellSeparator(registry);
+
         registry.getRecipeTransferRegistry().addRecipeTransferHandler(ContainerRobitInventory.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
     }
 }

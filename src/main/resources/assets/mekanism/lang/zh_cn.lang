@@ -7,6 +7,7 @@ tile.ObsidianTNT.name=黑曜石TNT
 item.EnrichedAlloy.name=富集合金
 item.ReinforcedAlloy.name=强化合金
 item.AtomicAlloy.name=原子合金
+item.CosmicAlloy.name=宇宙合金
 item.EnergyTablet.name=能量板
 item.SpeedUpgrade.name=速度升级
 item.EnergyUpgrade.name=能量升级
@@ -57,6 +58,7 @@ item.BasicControlCircuit.name=基础控制电路
 item.AdvancedControlCircuit.name=高级控制电路
 item.EliteControlCircuit.name=精英控制电路
 item.UltimateControlCircuit.name=终极控制电路
+item.CreativeControlCircuit.name=创造控制电路
 
 # Gas Tank
 tile.GasTankBasic.name=基础燃气储罐
@@ -141,8 +143,7 @@ tile.MachineBlock.DigitalMiner.name=数字型采矿机
 tile.MachineBlock.IsotopicCentrifuge.name=同位素离心机
 tile.MachineBlock.Chargepad.name=充电台
 tile.MachineBlock.NutritionalLiquifier.name=营养液化器
-tile.MachineBlock.antiprotonicnucleosynthesizer.name=反质子核合成器（WIP）
-tile.MachineBlock.AntiprotonicNucleosynthesizer.name=反质子核合成器（WIP）
+
 
 # Machine Block 2 (second ID iteration)
 tile.MachineBlock2.RotaryCondensentrator.name=回旋式气液转换机
@@ -176,6 +177,19 @@ tile.MachineBlock3.LogisticalSorter.name=物流整理机
 tile.MachineBlock3.PersonalChest.name=私人箱子
 tile.MachineBlock3.NutritionalLiquifier.name=营养液化器
 tile.MachineBlock3.superchargedcoil.name=增压线圈(WIP)
+tile.MachineBlock3.AmbientAccumulator.name=环境气体收集器
+tile.MachineBlock3.OrganicFarm.name=有机农场
+tile.MachineBlock3.organicfarm.name=有机农场
+tile.MachineBlock3.antiprotonicnucleosynthesizer.name=反质子核合成器（WIP）
+
+tile.MachineBlock4.Stamping.name=数控冲床
+tile.MachineBlock4.Rolling.name=数控轧制机
+tile.MachineBlock4.Brushed.name=数控拉丝机
+tile.MachineBlock4.Turning.name=数控车床
+tile.MachineBlock4.Alloy.name=合金炉
+tile.MachineBlock4.CellCultivate.name=细胞培养机
+tile.MachineBlock4.CellExtractor.name=细胞提取机
+tile.MachineBlock4.CellSeparator.name=细胞分离机
 # Plastic
 tile.PlasticBlock.name=塑料方块
 tile.SlickPlasticBlock.name=光滑塑料方块
@@ -242,10 +256,11 @@ tile.EnergyCubeUltimate.name=终极能量立方
 tile.EnergyCubeCreative.name=创造能量立方
 
 # Factory Installers
-item.basicTierInstaller.name=基础工厂安装器
-item.advancedTierInstaller.name=高级工厂安装器
-item.eliteTierInstaller.name=精英工厂安装器
-item.ultimateTierInstaller.name=终极工厂安装器
+item.basicTierInstaller.name=基础升级安装器
+item.advancedTierInstaller.name=高级升级安装器
+item.eliteTierInstaller.name=精英升级安装器
+item.ultimateTierInstaller.name=终极升级安装器
+item.creativeTierInstaller.name=创造升级安装器
 
 # Dust
 item.ironDust.name=铁粉
@@ -361,6 +376,9 @@ gas.fissilefule=裂变燃料
 gas.superheatedsodium=过热的钠蒸汽
 gas.uraniumhexafluoride=六氟化铀
 gas.uraniumoxide=氧化铀
+
+gas.nutrientsolution=营养液
+gas.oxygenenrichedwater=富氧水
 
 gas.iron=铁浆液
 gas.gold=金浆液
@@ -664,6 +682,15 @@ gui.factory.Purifying=提纯
 gui.factory.Injecting=压射
 gui.factory.Infusing=灌注
 gui.factory.Sawing=切割
+gui.factory.Farm=农场
+gui.factory.Stamping=冲压
+gui.factory.Rolling=压延
+gui.factory.Brushed=拉丝
+gui.factory.Turning=车削
+gui.factory.Alloy=合金
+gui.factory.Extractor=提取
+gui.factory.Separator=分离
+
 
 gui.seismicReader.short=地震读取器
 gui.seismicReader.solids=固体
@@ -930,6 +957,8 @@ tooltip.NutritionalLiquifier=一种能将任何食物加工成无害、易消化
 tooltip.IsotopicCentrifuge=一台只有一个目的的机器：非常非常快地旋转它装载的东西。
 tooltip.antiprotonicnucleosynthesizer=一种以原子的方式利用少量反物质和大量能量转化各种资源的机器。
 tooltip.superchargedcoil=用于超临界移相器多方块结构供电。必须连接到超临界移相器端口[目前只是个装饰]
+tooltip.organicfarm=一个非常强大的单方块农场机器
+tooltip.AmbientAccumulator=一个能收集当前维度包含的气体[警告！退出存档，将不会保留内部气体]
 
 tooltip.MekTool1=十分强大的挖掘机器
 tooltip.MekTool2=当冲满25%以上时，伤害会超级加倍
@@ -975,7 +1004,7 @@ sideData.Empty=排空
 sideData.Charge=充能
 sideData.Discharge=反充能
 sideData.Input_Extra=输入/注入
-
+sideData.Output2=输出2
 # Redstone control
 control.disabled=禁止
 control.high=高

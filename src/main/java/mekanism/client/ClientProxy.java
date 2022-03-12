@@ -80,13 +80,7 @@ import mekanism.common.item.ItemPortableTeleporter;
 import mekanism.common.item.ItemSeismicReader;
 import mekanism.common.item.ItemWalkieTalkie;
 import mekanism.common.network.PacketPortableTeleporter.PortableTeleporterMessage;
-import mekanism.common.recipe.machines.CombinerRecipe;
-import mekanism.common.recipe.machines.CrusherRecipe;
-import mekanism.common.recipe.machines.EnrichmentRecipe;
-import mekanism.common.recipe.machines.InjectionRecipe;
-import mekanism.common.recipe.machines.OsmiumCompressorRecipe;
-import mekanism.common.recipe.machines.PurificationRecipe;
-import mekanism.common.recipe.machines.SmeltingRecipe;
+import mekanism.common.recipe.machines.*;
 import mekanism.common.tier.BaseTier;
 import mekanism.common.tier.GasTankTier;
 import mekanism.common.tile.*;
@@ -185,6 +179,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDynamicValve.class, new RenderDynamicTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEliteFactory.class, new RenderConfigurableMachine<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUltimateFactory.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCreativeFactory.class, new RenderConfigurableMachine<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnergizedSmelter.class, new RenderConfigurableMachine<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnergyCube.class, new RenderEnergyCube());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnrichmentChamber.class, new RenderConfigurableMachine<>());
@@ -213,6 +208,16 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUniversalCable.class, new RenderUniversalCable());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIsotopicCentrifuge.class, new RenderIsotopicCentrifuge());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntiprotonicNucleosynthesizer.class, new RenderAntiprotonicNucleosynthesizer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOrganicFarm.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStamping.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRolling.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBrushed.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTurning.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAlloy.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCellCultivate.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCellExtractor.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCellSeparator.class, new RenderConfigurableMachine<>());
+
     }
 
     @Override
@@ -235,6 +240,7 @@ public class ClientProxy extends CommonProxy {
         registerItemRender(MekanismItems.EnrichedAlloy);
         registerItemRender(MekanismItems.ReinforcedAlloy);
         registerItemRender(MekanismItems.AtomicAlloy);
+        registerItemRender(MekanismItems.CosmicAlloy);
         registerItemRender(MekanismItems.ItemProxy);
         registerItemRender(MekanismItems.ControlCircuit);
         registerItemRender(MekanismItems.EnrichedIron);
@@ -293,6 +299,7 @@ public class ClientProxy extends CommonProxy {
         Item.getItemFromBlock(MekanismBlocks.MachineBlock).setTileEntityItemStackRenderer(new RenderMachineItem());
         Item.getItemFromBlock(MekanismBlocks.MachineBlock2).setTileEntityItemStackRenderer(new RenderMachineItem());
         Item.getItemFromBlock(MekanismBlocks.MachineBlock3).setTileEntityItemStackRenderer(new RenderMachineItem());
+        Item.getItemFromBlock(MekanismBlocks.MachineBlock4).setTileEntityItemStackRenderer(new RenderMachineItem());
         Item.getItemFromBlock(MekanismBlocks.BasicBlock2).setTileEntityItemStackRenderer(new RenderBasicBlockItem());
         Item.getItemFromBlock(MekanismBlocks.BasicBlock3).setTileEntityItemStackRenderer(new RenderBasicBlockItem());
 
@@ -309,6 +316,7 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomStateMapper(MekanismBlocks.MachineBlock, machineMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.MachineBlock2, machineMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.MachineBlock3, machineMapper);
+        ModelLoader.setCustomStateMapper(MekanismBlocks.MachineBlock4, machineMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.BasicBlock, basicMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.BasicBlock2, basicMapper);
         ModelLoader.setCustomStateMapper(MekanismBlocks.BasicBlock3, basicMapper);
@@ -329,8 +337,8 @@ public class ClientProxy extends CommonProxy {
 
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock), 4, getInventoryMRL("digital_miner"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock), 13, getInventoryMRL("isotopic_centrifuge"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock), 14, getInventoryMRL("antiprotonic_nucleosynthesizer"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock), 14, getInventoryMRL("isotopic_centrifuge"));
+
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock2), 6, getInventoryMRL("chemical_dissolution_chamber"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock2), 8, getInventoryMRL("chemical_crystallizer"));
@@ -343,6 +351,7 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 1, getInventoryMRL("solar_neutron_activator"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 4, getInventoryMRL("resistive_heater"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 9, getInventoryMRL("personal_chest"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 14, getInventoryMRL("antiprotonic_nucleosynthesizer"));
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.BasicBlock2), 9, getInventoryMRL("security_desk"));
 
@@ -359,7 +368,7 @@ public class ClientProxy extends CommonProxy {
             String resource = "mekanism:" + type.getName();
             RecipeType recipePointer = null;
 
-            if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY|| type == MachineType.ULTIMATE_FACTORY) {
+            if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY|| type == MachineType.ULTIMATE_FACTORY || type == MachineType.CREATIVE_FACTORY) {
                 recipePointer = RecipeType.values()[0];
                 resource = "mekanism:" + type.getName() + "_" + recipePointer.getName();
             }
@@ -379,7 +388,7 @@ public class ClientProxy extends CommonProxy {
                     machineResources.put(resource, model);
                     modelsToAdd.add(model);
 
-                    if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY || type == MachineType.ULTIMATE_FACTORY) {
+                    if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY || type == MachineType.ULTIMATE_FACTORY || type == MachineType.CREATIVE_FACTORY) {
                         if (recipePointer.ordinal() < RecipeType.values().length - 1) {
                             recipePointer = RecipeType.values()[recipePointer.ordinal() + 1];
                             resource = "mekanism:" + type.getName() + "_" + recipePointer.getName();
@@ -489,7 +498,7 @@ public class ClientProxy extends CommonProxy {
             MachineType type = MachineType.get(stack);
             if (type != null) {
                 String resource = "mekanism:" + type.getName();
-                if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY || type == MachineType.ULTIMATE_FACTORY) {
+                if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY || type == MachineType.ULTIMATE_FACTORY || type == MachineType.CREATIVE_FACTORY) {
                     RecipeType recipe = ((ItemBlockMachine) stack.getItem()).getRecipeTypeOrNull(stack);
                     if (recipe != null) {
                         resource = "mekanism:" + type.getName() + "_" + recipe.getName();
@@ -503,6 +512,7 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(MekanismBlocks.MachineBlock), machineMesher);
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(MekanismBlocks.MachineBlock2), machineMesher);
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), machineMesher);
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(MekanismBlocks.MachineBlock4), machineMesher);
 
         ItemMeshDefinition basicMesher = stack -> {
             BasicBlockType type = BasicBlockType.get(stack);
@@ -771,6 +781,24 @@ public class ClientProxy extends CommonProxy {
                 return new GuiAntiprotonicNucleosynthesizer(player.inventory, (TileEntityAntiprotonicNucleosynthesizer) tileEntity);
          //   case 63:
         //        return new GuiSPS(player.inventory, (TileEntitySPSCasing) tileEntity);
+            case 63:
+                return new GuiOrganicFarm(player.inventory, (TileEntityOrganicFarm) tileEntity);
+            case 64:
+                return new GuiStamping(player.inventory, (TileEntityElectricMachine<StampingRecipe>) tileEntity);
+            case 65:
+                return new GuiRolling(player.inventory, (TileEntityElectricMachine<RollingRecipe>) tileEntity);
+            case 66:
+                return new GuiBrushed(player.inventory, (TileEntityElectricMachine<BrushedRecipe>) tileEntity);
+            case 67:
+                return new GuiTurning(player.inventory, (TileEntityElectricMachine<TurningRecipe>) tileEntity);
+            case 68:
+                return new GuiAlloy(player.inventory, (TileEntityDoubleElectricMachine<AlloyRecipe>) tileEntity);
+            case 69:
+                return new GuiCellCultivate(player.inventory,(TileEntityCellCultivate) tileEntity);
+            case 70:
+                return new GuiCellExtractor(player.inventory, (TileEntityChanceMachine) tileEntity);
+            case 71:
+                return new GuiCellSeparator(player.inventory, (TileEntityCellSeparator) tileEntity);
         }
         return null;
     }
@@ -829,7 +857,7 @@ public class ClientProxy extends CommonProxy {
                 return (int) (color.getColor(0) * 255) << 16 | (int) (color.getColor(1) * 255) << 8 | (int) (color.getColor(2) * 255);
             }
             return -1;
-        }, MekanismBlocks.MachineBlock, MekanismBlocks.MachineBlock2, MekanismBlocks.MachineBlock3);
+        }, MekanismBlocks.MachineBlock, MekanismBlocks.MachineBlock2, MekanismBlocks.MachineBlock3,MekanismBlocks.MachineBlock4);
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
                   EnumDyeColor color = state.getValue(colorProperty);
                   EnumColor dye = EnumColor.DYES[color.getDyeDamage()];
@@ -842,7 +870,7 @@ public class ClientProxy extends CommonProxy {
                 return (int) (color.getColor(0) * 255) << 16 | (int) (color.getColor(1) * 255) << 8 | (int) (color.getColor(2) * 255);
             }
             return -1;
-        }, MekanismBlocks.MachineBlock, MekanismBlocks.MachineBlock2, MekanismBlocks.MachineBlock3);
+        }, MekanismBlocks.MachineBlock, MekanismBlocks.MachineBlock2, MekanismBlocks.MachineBlock3,MekanismBlocks.MachineBlock4);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
                   EnumDyeColor dyeColor = EnumDyeColor.byDyeDamage(stack.getItemDamage() & 15);
                   EnumColor dye = EnumColor.DYES[dyeColor.getDyeDamage()];

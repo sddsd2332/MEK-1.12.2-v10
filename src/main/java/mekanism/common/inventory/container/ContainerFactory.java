@@ -2,6 +2,7 @@ package mekanism.common.inventory.container;
 
 import javax.annotation.Nonnull;
 import mekanism.api.infuse.InfuseRegistry;
+import mekanism.common.base.IFactory;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.inventory.slot.SlotEnergy.SlotDischarge;
@@ -35,15 +36,15 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
                 }
             });
             addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 112));
-        }else if(tileEntity.tier == FactoryTier.ULTIMATE) {
-            addSlotToContainer(new Slot(tileEntity, 2, 180, 95) {
+        }else if(tileEntity.tier == FactoryTier.ULTIMATE || tileEntity.tier == FactoryTier.CREATIVE) {
+            addSlotToContainer(new Slot(tileEntity, 2, 180, 95 ) {
                 @Override
                 public boolean isItemValid(ItemStack stack) {
                     MachineType swapType = MachineType.get(stack);
                     return swapType != null && !swapType.isFactory();
                 }
             });
-            addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 132));
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 132 ));
         }
         addSlotToContainer(new Slot(tileEntity, 4, 7, 57));
         if (tileEntity.tier == FactoryTier.BASIC) {
@@ -52,7 +53,11 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
             }
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new SlotOutput(tileEntity, getOutputSlotIndex(i), 55 + (i * 38), 57));
+            //    if (tileEntity.getRecipeType() == RecipeType.SAWING||tileEntity.getRecipeType() == RecipeType.FARM){
+          //          addSlotToContainer(new SlotOutput(tileEntity,getsecondaryOutputSlotIndex(i),55+(i * 38), 57+18));
+          //      }
             }
+
         } else if (tileEntity.tier == FactoryTier.ADVANCED) {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new FactoryInputSlot(tileEntity, getInputSlotIndex(i), 35 + (i * 26), 13, i));
@@ -63,11 +68,19 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
         } else if (tileEntity.tier == FactoryTier.ELITE) {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new FactoryInputSlot(tileEntity, getInputSlotIndex(i), 29 + (i * 19), 13, i));
+
             }
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new SlotOutput(tileEntity, getOutputSlotIndex(i), 29 + (i * 19), 57));
             }
         }else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+            for (int i = 0; i < tileEntity.tier.processes; i++) {
+                addSlotToContainer(new FactoryInputSlot(tileEntity, getInputSlotIndex(i), 27 + (i * 19), 13, i));
+            }
+            for (int i = 0; i < tileEntity.tier.processes; i++) {
+                addSlotToContainer(new SlotOutput(tileEntity, getOutputSlotIndex(i), 27 + (i * 19), 57));
+            }
+        }else if (tileEntity.tier == FactoryTier.CREATIVE) {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new FactoryInputSlot(tileEntity, getInputSlotIndex(i), 27 + (i * 19), 13, i));
             }
@@ -183,6 +196,11 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
     private int getOutputSlotIndex(int processNumber) {
         return tileEntity.tier.processes + getInputSlotIndex(processNumber);
     }
+
+    private  int getsecondaryOutputSlotIndex(int processNumber){
+        return  tileEntity.tier.processes + getOutputSlotIndex(processNumber);
+    }
+
 
     private int getInputSlotIndex(int processNumber) {
         return 5 + processNumber;

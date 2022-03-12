@@ -21,16 +21,14 @@ public class ItemControlCircuit extends ItemMekanism implements IMetaItem {
 
     @Override
     public int getVariants() {
-        return BaseTier.values().length - 1;
+        return BaseTier.values().length ;
     }
 
     @Override
     public void getSubItems(@Nonnull CreativeTabs tabs, @Nonnull NonNullList<ItemStack> itemList) {
         if (isInCreativeTab(tabs)) {
             for (BaseTier tier : BaseTier.values()) {
-                if (tier.isObtainable()) {
                     itemList.add(new ItemStack(this, 1, tier.ordinal()));
-                }
             }
         }
     }

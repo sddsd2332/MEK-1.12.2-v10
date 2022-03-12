@@ -193,6 +193,9 @@ public class GeneralConfig extends BaseConfig {
     public final IntOption maxUpgradeMultiplier = new IntOption(this, "general", "UpgradeModifier", 10,
           "Base factor for working out machine performance with upgrades - UpgradeModifier * (UpgradesInstalled/UpgradesPossible).", 1, Integer.MAX_VALUE);
 
+
+
+
     public final IntOption minerSilkMultiplier = new IntOption(this, "general", "MinerSilkMultiplier", 6,
           "Energy multiplier for using silk touch mode with the Digital Miner.");
 
@@ -323,6 +326,12 @@ public class GeneralConfig extends BaseConfig {
 
     public final DoubleOption sawdustChanceLog = new DoubleOption(this, "general", "SawdustChanceLog", 1D,
           "Chance of producing sawdust per operation in the precision sawmill when turning logs into planks.").setRequiresGameRestart(true);
+
+    public final DoubleOption seed = new DoubleOption(this, "general", "seed", 1D,
+            "When turning seeds into crops, the chance to produce seeds for each operation in Organic Farm").setRequiresGameRestart(true);
+
+    public final DoubleOption log = new DoubleOption(this, "general", "log", 1D,
+            "When turning seeds into crops, the opportunity to produce log in each operation in Organic Farm.").setRequiresGameRestart(true);
 
     public final TypeConfigManager<MachineType> machinesManager = new TypeConfigManager<>(this, "machines", MachineType.class, MachineType::getValidMachines, MachineType::getBlockName);
 

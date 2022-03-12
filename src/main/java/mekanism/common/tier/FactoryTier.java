@@ -5,11 +5,14 @@ import mekanism.common.Mekanism;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import net.minecraft.util.ResourceLocation;
 
+
 public enum FactoryTier implements ITier {
+
     BASIC(3, new ResourceLocation(Mekanism.MODID, "gui/factory/GuiBasicFactory.png")),
     ADVANCED(5, new ResourceLocation(Mekanism.MODID, "gui/factory/GuiAdvancedFactory.png")),
     ELITE(7, new ResourceLocation(Mekanism.MODID, "gui/factory/GuiEliteFactory.png")),
-    ULTIMATE(9, new ResourceLocation(Mekanism.MODID, "gui/factory/GuiUltimateFactory.png"));
+    ULTIMATE(9, new ResourceLocation(Mekanism.MODID, "gui/factory/GuiUltimateFactory.png")),
+    CREATIVE(11,new ResourceLocation(Mekanism.MODID, "gui/factory/GuiCreativeFactory.png"));
 
     public final int processes;
     public final ResourceLocation guiLocation;
@@ -39,5 +42,9 @@ public enum FactoryTier implements ITier {
         if (MachineType.ULTIMATE_FACTORY.isEnabled()) {
             consumer.accept(FactoryTier.ULTIMATE);
         }
+        if (MachineType.CREATIVE_FACTORY.isEnabled()) {
+            consumer.accept(FactoryTier.CREATIVE);
+        }
+
     }
 }

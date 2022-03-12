@@ -16,16 +16,7 @@ import mekanism.common.recipe.ingredients.IMekanismIngredient;
 import mekanism.common.recipe.ingredients.IngredientMekIngredientWrapper;
 import mekanism.common.recipe.ingredients.ItemStackMekIngredient;
 import mekanism.common.recipe.ingredients.OredictMekIngredient;
-import mekanism.common.recipe.inputs.AdvancedMachineInput;
-import mekanism.common.recipe.inputs.ChemicalPairInput;
-import mekanism.common.recipe.inputs.DoubleMachineInput;
-import mekanism.common.recipe.inputs.FluidInput;
-import mekanism.common.recipe.inputs.GasInput;
-import mekanism.common.recipe.inputs.InfusionInput;
-import mekanism.common.recipe.inputs.IntegerInput;
-import mekanism.common.recipe.inputs.ItemStackInput;
-import mekanism.common.recipe.inputs.MachineInput;
-import mekanism.common.recipe.inputs.PressurizedInput;
+import mekanism.common.recipe.inputs.*;
 import mekanism.common.recipe.outputs.ChanceOutput;
 import mekanism.common.recipe.outputs.ChemicalPairOutput;
 import mekanism.common.recipe.outputs.FluidOutput;
@@ -108,6 +99,9 @@ public class IngredientHelper {
         } else if (in instanceof DoubleMachineInput) {
             DoubleMachineInput input = (DoubleMachineInput) in;
             return matches(input.itemStack, toMatch.getLeft()) && matches(input.extraStack, toMatch.getRight());
+        } else if (in instanceof CultivateMachineInput) {
+            CultivateMachineInput input = (CultivateMachineInput) in;
+            return matches(input.itemStack, toMatch.getLeft()) && matches(input.extraStack, toMatch.getRight()) && matches(input.gasType, toMatch.getRight());
         } else if (in instanceof PressurizedInput) {
             PressurizedInput input = (PressurizedInput) in;
             return matches(input.getSolid(), toMatch.getLeft()) && matches(input.getFluid(), toMatch.getMiddle()) && matches(input.getGas(), toMatch.getRight());

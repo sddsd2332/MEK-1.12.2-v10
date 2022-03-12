@@ -65,14 +65,9 @@ import mekanism.common.recipe.machines.SmeltingRecipe;
 import mekanism.common.recipe.outputs.ItemStackOutput;
 import mekanism.common.security.SecurityFrequency;
 import mekanism.common.tier.BaseTier;
+import mekanism.common.tier.FactoryTier;
 import mekanism.common.tile.*;
-import mekanism.common.tile.transmitter.TileEntityDiversionTransporter;
-import mekanism.common.tile.transmitter.TileEntityLogisticalTransporter;
-import mekanism.common.tile.transmitter.TileEntityMechanicalPipe;
-import mekanism.common.tile.transmitter.TileEntityPressurizedTube;
-import mekanism.common.tile.transmitter.TileEntityRestrictiveTransporter;
-import mekanism.common.tile.transmitter.TileEntityThermodynamicConductor;
-import mekanism.common.tile.transmitter.TileEntityUniversalCable;
+import mekanism.common.tile.transmitter.*;
 import mekanism.common.transmitters.grid.EnergyNetwork.EnergyTransferEvent;
 import mekanism.common.transmitters.grid.FluidNetwork.FluidTransferEvent;
 import mekanism.common.transmitters.grid.GasNetwork.GasTransferEvent;
@@ -215,6 +210,8 @@ public class Mekanism {
         MekanismFluids.register();
     }
 
+
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         // Register blocks and tile entities
@@ -262,7 +259,8 @@ public class Mekanism {
      * Adds all in-game crafting, smelting and machine recipes.
      */
     public static void addRecipes() {
-        //Furnace Recipes
+
+
         GameRegistry.addSmelting(new ItemStack(MekanismBlocks.OreBlock, 1, 0), new ItemStack(MekanismItems.Ingot, 1, 1), 1.0F);
         GameRegistry.addSmelting(new ItemStack(MekanismBlocks.OreBlock, 1, 1), new ItemStack(MekanismItems.Ingot, 1, 5), 1.0F);
         GameRegistry.addSmelting(new ItemStack(MekanismBlocks.OreBlock, 1, 2), new ItemStack(MekanismItems.Ingot, 1, 6), 1.0F);
@@ -310,6 +308,10 @@ public class Mekanism {
             RecipeHandler.addCombinerRecipe(new ItemStack(Items.COAL, 3), new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.COAL_ORE));
         }
 
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ALLOY)) {
+            RecipeHandler.addAlloyRecipe(new ItemStack(MekanismItems.Ingot, 3, 5), new ItemStack(MekanismItems.Ingot, 1, 6), new ItemStack(MekanismItems.Ingot, 4, 2));
+        }
+
         //Osmium Compressor Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.OSMIUM_COMPRESSOR)) {
             RecipeHandler.addOsmiumCompressorRecipe(new ItemStack(Items.GLOWSTONE_DUST), new ItemStack(MekanismItems.Ingot, 1, 3));
@@ -328,8 +330,8 @@ public class Mekanism {
             RecipeHandler.addCrusherRecipe(new ItemStack(Items.FLINT), new ItemStack(Items.GUNPOWDER));
             RecipeHandler.addCrusherRecipe(new ItemStack(Blocks.SANDSTONE), new ItemStack(Blocks.SAND, 2));
             RecipeHandler.addCrusherRecipe(new ItemStack(Blocks.RED_SANDSTONE), new ItemStack(Blocks.SAND, 2, 1));
-            RecipeHandler.addCrusherRecipe(new ItemStack(MekanismItems.OtherDust,1,7), new ItemStack(MekanismItems.OtherDust,1,8));
-            RecipeHandler.addCrusherRecipe(new ItemStack(Items.COAL,1,1), new ItemStack(MekanismItems.OtherDust,1,9));
+            RecipeHandler.addCrusherRecipe(new ItemStack(MekanismItems.OtherDust, 1, 7), new ItemStack(MekanismItems.OtherDust, 1, 8));
+            RecipeHandler.addCrusherRecipe(new ItemStack(Items.COAL, 1, 1), new ItemStack(MekanismItems.OtherDust, 1, 9));
 
             for (int i = 0; i < 16; i++) {
                 RecipeHandler.addCrusherRecipe(new ItemStack(Blocks.WOOL, 1, i), new ItemStack(Items.STRING, 4));
@@ -356,6 +358,22 @@ public class Mekanism {
             RecipeHandler.addCrusherRecipe(new ItemStack(Blocks.CACTUS), new ItemStack(MekanismItems.BioFuel, 2));
         }
 
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.STAMPING)) {
+            RecipeHandler.addStampingRecipe(new ItemStack(Blocks.DIRT), new ItemStack(Blocks.SAND, 2));
+        }
+
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ROLLING)) {
+            RecipeHandler.addRollingRecipe(new ItemStack(Blocks.DIRT), new ItemStack(Blocks.SAND, 2));
+        }
+
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.BRUSHED)) {
+            RecipeHandler.addBrushedRecipe(new ItemStack(Blocks.DIRT), new ItemStack(Blocks.SAND, 2));
+        }
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.TURNING)) {
+            RecipeHandler.addTurningRecipe(new ItemStack(Blocks.DIRT), new ItemStack(Blocks.SAND, 2));
+        }
+
+
         //Purification Chamber Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.PURIFICATION_CHAMBER)) {
             RecipeHandler.addPurificationChamberRecipe(new ItemStack(Blocks.GRAVEL), new ItemStack(Items.FLINT));
@@ -367,7 +385,7 @@ public class Mekanism {
             RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(Blocks.HARDENED_CLAY), MekanismFluids.Water, new ItemStack(Blocks.CLAY));
             RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(Items.BRICK), MekanismFluids.Water, new ItemStack(Items.CLAY_BALL));
             RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(Items.GUNPOWDER), MekanismFluids.HydrogenChloride, new ItemStack(MekanismItems.OtherDust, 1, 3));
-            RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(MekanismItems.OtherDust,1,10), MekanismFluids.HydrogenChloride, new ItemStack(MekanismItems.OtherDust, 1, 12));
+            RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(MekanismItems.OtherDust, 1, 10), MekanismFluids.HydrogenChloride, new ItemStack(MekanismItems.OtherDust, 1, 12));
         }
 
         //Precision Sawmill Recipes
@@ -417,6 +435,47 @@ public class Mekanism {
             RecipeHandler.addPrecisionSawmillRecipe(new ItemStack(Blocks.DARK_OAK_FENCE_GATE), new ItemStack(Blocks.PLANKS, 2, 5), new ItemStack(Items.STICK, 4), 1);
         }
 
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ORGANIC_FARM)) {
+            // 木头
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 0), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG, 6, 0), new ItemStack(Blocks.SAPLING, 1, 0), MekanismConfig.current().general.log.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 1), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG, 6, 1), new ItemStack(Blocks.SAPLING, 1, 1), MekanismConfig.current().general.log.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 2), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG, 6, 2), new ItemStack(Blocks.SAPLING, 1, 2), MekanismConfig.current().general.log.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 3), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG, 6, 3), new ItemStack(Blocks.SAPLING, 1, 3), MekanismConfig.current().general.log.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 4), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG2, 6, 0), new ItemStack(Blocks.SAPLING, 1, 4), MekanismConfig.current().general.log.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 5), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG2, 6, 1), new ItemStack(Blocks.SAPLING, 1, 5), MekanismConfig.current().general.log.val());
+            // 农作物
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.NETHER_WART, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.NETHER_WART, 3));
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.REEDS, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.REEDS, 3));
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.CARROT, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.CARROT, 3));
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.DYE, 1, 3), MekanismFluids.NutrientSolution, new ItemStack(Items.DYE, 3, 3));
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.POTATO, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.POTATO, 3), new ItemStack(Items.POISONOUS_POTATO, 1), 0.15);
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.PUMPKIN_SEEDS, 1), MekanismFluids.NutrientSolution, new ItemStack(Blocks.PUMPKIN, 1), new ItemStack(Items.PUMPKIN_SEEDS, 1), MekanismConfig.current().general.seed.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.MELON_SEEDS, 1), MekanismFluids.NutrientSolution, new ItemStack(Blocks.MELON_BLOCK, 1), new ItemStack(Items.MELON_SEEDS, 1), MekanismConfig.current().general.seed.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.WHEAT_SEEDS, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.WHEAT, 3), new ItemStack(Items.WHEAT_SEEDS, 1), MekanismConfig.current().general.seed.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.BEETROOT_SEEDS, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.BEETROOT, 3), new ItemStack(Items.BEETROOT_SEEDS, 1), MekanismConfig.current().general.seed.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.CHORUS_FLOWER, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.CHORUS_FRUIT, 3), new ItemStack(Blocks.CHORUS_FLOWER, 1), MekanismConfig.current().general.log.val());
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.BROWN_MUSHROOM, 1), MekanismFluids.NutrientSolution, new ItemStack(Blocks.BROWN_MUSHROOM, 3));
+            RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.RED_MUSHROOM, 1), MekanismFluids.NutrientSolution, new ItemStack(Blocks.RED_MUSHROOM, 3));
+
+        }
+
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CELL_EXTRACTOR)){
+            RecipeHandler.addCellExtractorRecipe(new ItemStack(Blocks.IRON_ORE),new ItemStack(Blocks.IRON_BLOCK),new ItemStack(Items.IRON_INGOT),1);
+        }
+
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CELL_SEPARATOR)){
+            RecipeHandler.addCellSeparatorRecipe(new ItemStack(Blocks.IRON_ORE),new ItemStack(Blocks.IRON_BLOCK),new ItemStack(Items.IRON_INGOT),1);
+        }
+
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CELL_CULTIVATE)){
+            RecipeHandler.addCellCultivateRecipe(new ItemStack(Items.APPLE), new ItemStack(Blocks.DIRT),MekanismFluids.NutrientSolution,new ItemStack(Items.APPLE,5));
+        }
+
+        //AMBIENT_ACCUMULATOR
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.AMBIENT_ACCUMULATOR)) {
+            RecipeHandler.addAmbientGas(0, "oxygen");
+        }
+
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.METALLURGIC_INFUSER)) {
             InfuseType carbon = InfuseRegistry.get("CARBON");
             InfuseType bio = InfuseRegistry.get("BIO");
@@ -453,23 +512,25 @@ public class Mekanism {
             RecipeHandler.addMetallurgicInfuserRecipe(obsidian, 10, new ItemStack(MekanismItems.ReinforcedAlloy), new ItemStack(MekanismItems.AtomicAlloy));
         }
 
-            //Chemical Infuser Recipes
+        //Chemical Infuser Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CHEMICAL_INFUSER)) {
             RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Oxygen, 1), new GasStack(MekanismFluids.SulfurDioxide, 2), new GasStack(MekanismFluids.SulfurTrioxide, 2));
             RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.SulfurTrioxide, 1), new GasStack(MekanismFluids.Water, 1), new GasStack(MekanismFluids.SulfuricAcid, 1));
             RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Hydrogen, 1), new GasStack(MekanismFluids.Chlorine, 1), new GasStack(MekanismFluids.HydrogenChloride, 1));
             RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Deuterium, 1), new GasStack(MekanismFluids.Tritium, 1), new GasStack(MekanismFluids.FusionFuel, 2));
             RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.HydrofluoricAcid, 1), new GasStack(MekanismFluids.URANIUMOXIDE, 1), new GasStack(MekanismFluids.UraniumHexafluoride, 1));
+            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.Oxygen, 2), new GasStack(MekanismFluids.Water, 1), new GasStack(MekanismFluids.OxygenEnrichedWater, 1));
+            RecipeHandler.addChemicalInfuserRecipe(new GasStack(MekanismFluids.OxygenEnrichedWater, 1), new GasStack(MekanismFluids.NutritionalPaste, 10), new GasStack(MekanismFluids.NutrientSolution, 1));
         }
 
         //Electrolytic Separator Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ELECTROLYTIC_SEPARATOR)) {
             RecipeHandler.addElectrolyticSeparatorRecipe(FluidRegistry.getFluidStack("water", 2), 2 * MekanismConfig.current().general.FROM_H2.val(),
-                  new GasStack(MekanismFluids.Hydrogen, 2), new GasStack(MekanismFluids.Oxygen, 1));
+                    new GasStack(MekanismFluids.Hydrogen, 2), new GasStack(MekanismFluids.Oxygen, 1));
             RecipeHandler.addElectrolyticSeparatorRecipe(FluidRegistry.getFluidStack("brine", 10), 2 * MekanismConfig.current().general.FROM_H2.val(),
-                  new GasStack(MekanismFluids.Sodium, 1), new GasStack(MekanismFluids.Chlorine, 1));
+                    new GasStack(MekanismFluids.Sodium, 1), new GasStack(MekanismFluids.Chlorine, 1));
             RecipeHandler.addElectrolyticSeparatorRecipe(FluidRegistry.getFluidStack("heavywater", 2), MekanismConfig.current().usage.heavyWaterElectrolysis.val(),
-                  new GasStack(MekanismFluids.Deuterium, 2), new GasStack(MekanismFluids.Oxygen, 1));
+                    new GasStack(MekanismFluids.Deuterium, 2), new GasStack(MekanismFluids.Oxygen, 1));
         }
 
         //Thermal Evaporation Plant Recipes
@@ -481,15 +542,15 @@ public class Mekanism {
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CHEMICAL_CRYSTALLIZER)) {
             RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFluids.Lithium, 100), new ItemStack(MekanismItems.OtherDust, 1, 4));
             RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFluids.Brine, 15), new ItemStack(MekanismItems.Salt));
-            RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFluids.Antimatter, 1000), new ItemStack(MekanismItems.OtherDust,1,11));
+            RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFluids.Antimatter, 1000), new ItemStack(MekanismItems.OtherDust, 1, 11));
         }
         //CHEMICAL WASHER Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CHEMICAL_WASHER)) {
-            RecipeHandler.addChemicalWasherRecipe(new GasStack(MekanismFluids.FissileFule,10000),new GasStack(MekanismFluids.NuclearWaste,1));
+            RecipeHandler.addChemicalWasherRecipe(new GasStack(MekanismFluids.FissileFule, 10000), new GasStack(MekanismFluids.NuclearWaste, 1));
         }
         //CHEMICAL DISSOLUTION_CHAMBERRecipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CHEMICAL_DISSOLUTION_CHAMBER)) {
-            RecipeHandler.addChemicalDissolutionChamberRecipe(new ItemStack(MekanismItems.OtherDust,1,7),new GasStack(MekanismFluids.HydrofluoricAcid,100));
+            RecipeHandler.addChemicalDissolutionChamberRecipe(new ItemStack(MekanismItems.OtherDust, 1, 7), new GasStack(MekanismFluids.HydrofluoricAcid, 100));
         }
 
 
@@ -512,31 +573,30 @@ public class Mekanism {
         //Pressurized Reaction Chamber Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.PRESSURIZED_REACTION_CHAMBER)) {
             RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.BioFuel, 2), new FluidStack(FluidRegistry.WATER, 10), new GasStack(MekanismFluids.Hydrogen, 100),
-                  new ItemStack(MekanismItems.Substrate), new GasStack(MekanismFluids.Ethene, 100), 0, 100);
+                    new ItemStack(MekanismItems.Substrate), new GasStack(MekanismFluids.Ethene, 100), 0, 100);
             RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.Substrate), new FluidStack(MekanismFluids.Ethene.getFluid(), 50),
-                  new GasStack(MekanismFluids.Oxygen, 10), new ItemStack(MekanismItems.Polyethene), new GasStack(MekanismFluids.Oxygen, 5), 1000, 60);
+                    new GasStack(MekanismFluids.Oxygen, 10), new ItemStack(MekanismItems.Polyethene), new GasStack(MekanismFluids.Oxygen, 5), 1000, 60);
             RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.Substrate), new FluidStack(FluidRegistry.WATER, 200), new GasStack(MekanismFluids.Ethene, 100),
-                  new ItemStack(MekanismItems.Substrate, 8), new GasStack(MekanismFluids.Oxygen, 10), 200, 400);
+                    new ItemStack(MekanismItems.Substrate, 8), new GasStack(MekanismFluids.Oxygen, 10), 200, 400);
             RecipeHandler.addPRCRecipe(new ItemStack(Items.COAL, 1, OreDictionary.WILDCARD_VALUE), new FluidStack(FluidRegistry.WATER, 100), new GasStack(MekanismFluids.Oxygen, 100),
-                  new ItemStack(MekanismItems.OtherDust, 1, 3), new GasStack(MekanismFluids.Hydrogen, 100), 0, 100);
-            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.OtherDust,1, 8), new FluidStack(FluidRegistry.WATER, 10000), new GasStack(MekanismFluids.Plutonium, 1000),
-                    new ItemStack(MekanismItems.OtherDust, 1, 10), new GasStack(MekanismFluids.SpentNuclearWaste, 1000),100000 , 2000);
-            RecipeHandler.addPRCRecipe(new  ItemStack(MekanismItems.OtherDust,1, 8), new FluidStack(FluidRegistry.WATER, 10000), new GasStack(MekanismFluids.Polonium, 1000),
+                    new ItemStack(MekanismItems.OtherDust, 1, 3), new GasStack(MekanismFluids.Hydrogen, 100), 0, 100);
+            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.OtherDust, 1, 8), new FluidStack(FluidRegistry.WATER, 10000), new GasStack(MekanismFluids.Plutonium, 1000),
+                    new ItemStack(MekanismItems.OtherDust, 1, 10), new GasStack(MekanismFluids.SpentNuclearWaste, 1000), 100000, 2000);
+            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.OtherDust, 1, 8), new FluidStack(FluidRegistry.WATER, 10000), new GasStack(MekanismFluids.Polonium, 1000),
                     new ItemStack(MekanismItems.OtherDust, 1, 14), new GasStack(MekanismFluids.SpentNuclearWaste, 1000), 100000, 2000);
-            RecipeHandler.addPRCRecipe(new  ItemStack(MekanismItems.OtherDust,64, 12), FluidRegistry.getFluidStack("liquidsuperheatedsodium", 10000), new GasStack(MekanismFluids.Polonium, 10000),
+            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.OtherDust, 64, 12), FluidRegistry.getFluidStack("liquidsuperheatedsodium", 10000), new GasStack(MekanismFluids.Polonium, 10000),
                     new ItemStack(MekanismItems.OtherDust, 1, 9), new GasStack(MekanismFluids.Antimatter, 1000), 100000, 10000);
         }
         //Antiprotonic Nucleosynthesizer Recipes
-        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER)){
-            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL,1,8),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Blocks.QUARTZ_BLOCK),0, 500);
-            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL,1,4),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Blocks.GLOWSTONE),0, 500);
-            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(MekanismItems.Ingot,1,6),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Items.IRON_INGOT),0, 500);
-            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Items.COAL),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Items.DIAMOND),0, 1000);
-            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Items.DIAMOND),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Items.EMERALD),0, 1000);
-            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL,1,14),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Blocks.REDSTONE_BLOCK),0, 500);
-            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL,1,11),new GasStack(MekanismFluids.Antimatter,500),new ItemStack(Blocks.LAPIS_BLOCK),0, 500);
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER)) {
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL, 1, 8), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Blocks.QUARTZ_BLOCK), 0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL, 1, 4), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Blocks.GLOWSTONE), 0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(MekanismItems.Ingot, 1, 6), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Items.IRON_INGOT), 0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Items.COAL), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Items.DIAMOND), 0, 1000);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Items.DIAMOND), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Items.EMERALD), 0, 1000);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL, 1, 14), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Blocks.REDSTONE_BLOCK), 0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL, 1, 11), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Blocks.LAPIS_BLOCK), 0, 500);
         }
-
 
 
         //Solar Neutron Activator Recipes
@@ -546,8 +606,8 @@ public class Mekanism {
         }
         //Chemical Oxidizer Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CHEMICAL_OXIDIZER)) {
-            RecipeHandler.addChemicalOxidizerRecipe(new  ItemStack(MekanismItems.OtherDust,1,12), new GasStack(MekanismFluids.FissileFule, 2000));
-            RecipeHandler.addChemicalOxidizerRecipe(new ItemStack(MekanismItems.OtherDust,1,13), new GasStack(MekanismFluids.URANIUMOXIDE, 250));
+            RecipeHandler.addChemicalOxidizerRecipe(new ItemStack(MekanismItems.OtherDust, 1, 12), new GasStack(MekanismFluids.FissileFule, 2000));
+            RecipeHandler.addChemicalOxidizerRecipe(new ItemStack(MekanismItems.OtherDust, 1, 13), new GasStack(MekanismFluids.URANIUMOXIDE, 250));
         }
 
         //Isotopic Centrifuge Recipes
@@ -556,41 +616,41 @@ public class Mekanism {
             RecipeHandler.addIsotopicRecipe(new GasStack(MekanismFluids.NuclearWaste, 10), new GasStack(MekanismFluids.Plutonium, 1));
         }
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.Nutritional_Liquifier)) {
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.APPLE, 1), new GasStack(MekanismFluids.NutritionalPaste, 100 ));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BAKED_POTATO,1), new GasStack(MekanismFluids.NutritionalPaste, 125));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BEEF,1), new GasStack(MekanismFluids.NutritionalPaste, 75));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BEETROOT,1), new GasStack(MekanismFluids.NutritionalPaste, 25));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BEETROOT_SOUP,1), new GasStack(MekanismFluids.NutritionalPaste, 150));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BREAD,1), new GasStack(MekanismFluids.NutritionalPaste, 125));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.CARROT,1), new GasStack(MekanismFluids.NutritionalPaste, 75));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.CHICKEN,1), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.CHORUS_FRUIT,1), new GasStack(MekanismFluids.NutritionalPaste, 100));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.FISH,1,0), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.FISH,1,1), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.FISH,1,2), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.FISH,1,3), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_FISH,1,0), new GasStack(MekanismFluids.NutritionalPaste, 125));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_FISH,1,1), new GasStack(MekanismFluids.NutritionalPaste, 125));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_BEEF,1), new GasStack(MekanismFluids.NutritionalPaste, 200));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_CHICKEN,1), new GasStack(MekanismFluids.NutritionalPaste, 150));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_MUTTON,1), new GasStack(MekanismFluids.NutritionalPaste, 150));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_PORKCHOP,1), new GasStack(MekanismFluids.NutritionalPaste, 200));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_RABBIT,1), new GasStack(MekanismFluids.NutritionalPaste, 125));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKIE,1), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.GOLDEN_APPLE,1,0), new GasStack(MekanismFluids.NutritionalPaste, 150));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.GOLDEN_APPLE,1,1), new GasStack(MekanismFluids.NutritionalPaste, 300));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.GOLDEN_CARROT,1), new GasStack(MekanismFluids.NutritionalPaste, 150));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.MELON,1), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.MUSHROOM_STEW,1), new GasStack(MekanismFluids.NutritionalPaste, 150));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.MUTTON,1), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.POISONOUS_POTATO,1), new GasStack(MekanismFluids.NutritionalPaste, 10));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.PORKCHOP,1), new GasStack(MekanismFluids.NutritionalPaste, 75));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.POTATO,1), new GasStack(MekanismFluids.NutritionalPaste, 50));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.PUMPKIN_PIE,1), new GasStack(MekanismFluids.NutritionalPaste, 200));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.RABBIT,1), new GasStack(MekanismFluids.NutritionalPaste, 75));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.RABBIT_STEW,1), new GasStack(MekanismFluids.NutritionalPaste, 250));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.ROTTEN_FLESH,1), new GasStack(MekanismFluids.NutritionalPaste, 10));
-            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.SPIDER_EYE,1), new GasStack(MekanismFluids.NutritionalPaste, 10));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.APPLE, 1), new GasStack(MekanismFluids.NutritionalPaste, 100));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BAKED_POTATO, 1), new GasStack(MekanismFluids.NutritionalPaste, 125));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BEEF, 1), new GasStack(MekanismFluids.NutritionalPaste, 75));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BEETROOT, 1), new GasStack(MekanismFluids.NutritionalPaste, 25));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BEETROOT_SOUP, 1), new GasStack(MekanismFluids.NutritionalPaste, 150));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BREAD, 1), new GasStack(MekanismFluids.NutritionalPaste, 125));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.CARROT, 1), new GasStack(MekanismFluids.NutritionalPaste, 75));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.CHICKEN, 1), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.CHORUS_FRUIT, 1), new GasStack(MekanismFluids.NutritionalPaste, 100));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.FISH, 1, 0), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.FISH, 1, 1), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.FISH, 1, 2), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.FISH, 1, 3), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_FISH, 1, 0), new GasStack(MekanismFluids.NutritionalPaste, 125));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_FISH, 1, 1), new GasStack(MekanismFluids.NutritionalPaste, 125));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_BEEF, 1), new GasStack(MekanismFluids.NutritionalPaste, 200));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_CHICKEN, 1), new GasStack(MekanismFluids.NutritionalPaste, 150));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_MUTTON, 1), new GasStack(MekanismFluids.NutritionalPaste, 150));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_PORKCHOP, 1), new GasStack(MekanismFluids.NutritionalPaste, 200));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKED_RABBIT, 1), new GasStack(MekanismFluids.NutritionalPaste, 125));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.COOKIE, 1), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.GOLDEN_APPLE, 1, 0), new GasStack(MekanismFluids.NutritionalPaste, 150));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.GOLDEN_APPLE, 1, 1), new GasStack(MekanismFluids.NutritionalPaste, 300));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.GOLDEN_CARROT, 1), new GasStack(MekanismFluids.NutritionalPaste, 150));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.MELON, 1), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.MUSHROOM_STEW, 1), new GasStack(MekanismFluids.NutritionalPaste, 150));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.MUTTON, 1), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.POISONOUS_POTATO, 1), new GasStack(MekanismFluids.NutritionalPaste, 10));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.PORKCHOP, 1), new GasStack(MekanismFluids.NutritionalPaste, 75));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.POTATO, 1), new GasStack(MekanismFluids.NutritionalPaste, 50));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.PUMPKIN_PIE, 1), new GasStack(MekanismFluids.NutritionalPaste, 200));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.RABBIT, 1), new GasStack(MekanismFluids.NutritionalPaste, 75));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.RABBIT_STEW, 1), new GasStack(MekanismFluids.NutritionalPaste, 250));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.ROTTEN_FLESH, 1), new GasStack(MekanismFluids.NutritionalPaste, 10));
+            RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.SPIDER_EYE, 1), new GasStack(MekanismFluids.NutritionalPaste, 10));
 
         }
 
@@ -614,6 +674,7 @@ public class Mekanism {
         OreDictionary.registerOre("alloyAdvanced", new ItemStack(MekanismItems.EnrichedAlloy));
         OreDictionary.registerOre("alloyElite", new ItemStack(MekanismItems.ReinforcedAlloy));
         OreDictionary.registerOre("alloyUltimate", new ItemStack(MekanismItems.AtomicAlloy));
+
 
         //GregoriousT?
         OreDictionary.registerOre("itemSalt", MekanismItems.Salt);
@@ -711,6 +772,7 @@ public class Mekanism {
         //Tile entities
         registerTileEntity(TileEntityAdvancedBoundingBlock.class, "advanced_bounding_block");
         registerTileEntity(TileEntityAdvancedFactory.class, "advanced_smelting_factory");
+        registerTileEntity(TileEntityCreativeFactory.class, "creative_smelting_factory");
         registerTileEntity(TileEntityAmbientAccumulator.class, "ambient_accumulator");
         registerTileEntity(TileEntityBin.class, "bin");
         registerTileEntity(TileEntityBoilerCasing.class, "boiler_casing");
@@ -782,10 +844,16 @@ public class Mekanism {
         registerTileEntity(TileEntityThermodynamicConductor.class, "thermodynamic_conductor");
         registerTileEntity(TileEntityUniversalCable.class, "universal_cable");
         registerTileEntity(TileEntityNutritionalLiquifier.class, "nutritional_liquifier");
-
+        registerTileEntity(TileEntityOrganicFarm.class, "organic_farm");
         registerTileEntity(TileEntitySuperchargedCoil.class,"supercharged_coil");
-
-
+        registerTileEntity(TileEntityStamping.class, "stamping");
+        registerTileEntity(TileEntityRolling.class, "rolling");
+        registerTileEntity(TileEntityBrushed.class, "brushed");
+        registerTileEntity(TileEntityTurning.class, "turning");
+        registerTileEntity(TileEntityAlloy.class, "alloy");
+        registerTileEntity(TileEntityCellCultivate.class, "cell_cultivate");
+        registerTileEntity(TileEntityCellExtractor.class, "cell_extractor");
+        registerTileEntity(TileEntityCellSeparator.class, "cell_separator");
         //Register the TESRs
         proxy.registerTESRs();
 
@@ -1016,7 +1084,7 @@ public class Mekanism {
         event.blacklist(MekanismBlocks.MachineBlock, 4);  // Digital Miner
         event.blacklist(MekanismBlocks.MachineBlock2, 9); // Seismic Vibrator
         event.blacklist(MekanismBlocks.MachineBlock3, 1); // Solar Neutron Activator
-        event.blacklist(MekanismBlocks.MachineBlock3, 9); // Isotopic Centrifuge
+        event.blacklist(MekanismBlocks.MachineBlock, 14); // Isotopic Centrifuge
 
         // Minecraft unobtainable
         event.blacklist(Blocks.BEDROCK, 0);

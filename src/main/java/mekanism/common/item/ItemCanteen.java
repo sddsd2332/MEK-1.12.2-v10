@@ -191,17 +191,17 @@ public class ItemCanteen extends Item implements IGasItem {
             if (received != null) {
                 int max2 = player.getFoodStats().getFoodLevel() +received.amount;
                 player.getFoodStats().setFoodLevel(max2);
-          //      player.addPotionEffect(new PotionEffect(Potion.getPotionById(1),2000,5));
-          //      player.addPotionEffect(new PotionEffect(Potion.getPotionById(3),4000,5));
-          //      player.addPotionEffect(new PotionEffect(Potion.getPotionById(5),4000,5));
-           //     player.addPotionEffect(new PotionEffect(Potion.getPotionById(6),20,5));
-           //     player.addPotionEffect(new PotionEffect(Potion.getPotionById(8),2000,5));
-           //     player.addPotionEffect(new PotionEffect(Potion.getPotionById(10),4000,5));
-           //     player.addPotionEffect(new PotionEffect(Potion.getPotionById(11),4000,5));
-            //    player.addPotionEffect(new PotionEffect(Potion.getPotionById(12),4000,5));
-           //     player.addPotionEffect(new PotionEffect(Potion.getPotionById(16),2000,5));
-           //     player.addPotionEffect(new PotionEffect(Potion.getPotionById(22),4000,5));
-           //     player.addPotionEffect(new PotionEffect(Potion.getPotionById(23),4000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(1),2000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(3),4000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(5),4000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(6),20,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(8),2000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(10),4000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(11),4000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(12),4000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(16),2000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(22),4000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(23),4000,5));
             }
             return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
         }
