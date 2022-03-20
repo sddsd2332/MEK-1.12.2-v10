@@ -4,32 +4,32 @@
     "data": 11
   },
   "pattern": [
-    "RCR",
-    "GIG",
-    "RCR"
+    "ECE",
+    "ORO",
+    "ECE"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "EnergizedSmelter"
+      "machineType": "PurificationChamber"
     }
   ],
   "key": {
     "R": {
-      "ore": "alloyBasic",
-      "type": "forge:ore_dict"
+      "item": "mekanism:machineblock",
+      "data": 0
     },
     "C": {
-      "item": "#CIRCUITBASIC"
+      "item": "#CIRCUITADVANCED"
     },
-    "G": {
-      "ore": "blockGlass",
+    "E": {
+      "ore": "alloyAdvanced",
       "type": "forge:ore_dict"
     },
-    "I": {
-      "item": "mekanism:basicblock",
-      "data": 8
+    "O": {
+      "ore": "ingotOsmium",
+      "type": "forge:ore_dict"
     }
   }
 }

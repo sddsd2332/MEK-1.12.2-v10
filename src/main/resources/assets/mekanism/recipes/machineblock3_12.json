@@ -1,50 +1,46 @@
 {
   "result": {
-    "item": "mekanism:machineblock",
-    "data": 14
+    "item": "mekanism:machineblock3",
+    "data": 12
   },
   "pattern": [
-    "ABA",
-    "CDC",
-    "EFE"
+    "ADA",
+    "BCB",
+    "FEF"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "IsotopicCentrifuge"
+      "machineType": "superchargedcoil"
     }
   ],
   "key": {
     "A": {
-      "ore": "blockTin",
+      "ore": "ingotCopper",
       "type": "forge:ore_dict"
     },
     "B": {
       "item": "#CIRCUITULTIMATE"
     },
 	"C": {
-      "item": "mekanism:basicblock",
-      "data": 10
+      "item": "mekanism:machineblock2",
+      "data": 13
     },
     "D": {
-      "nbt": {
-        "tier": 3
-      },
-      "item": "mekanism:gastank",
-      "data": 0,
-      "type": "mekanism:item_nbt"
+      "ore": "PoloniumPellet",
+      "type": "forge:ore_dict"
     },
     "E": {
       "item": "mekanism:basicblock",
-      "data": 8 
+      "data": 8
     },
-	"F": {
+    "F": {
       "nbt": {
         "tier": 3
       },
-      "item": "mekanism:energycube",
-      "data": 0,
+      "item": "mekanism:basicblock2",
+      "data": 4,
       "type": "mekanism:item_nbt"
     }
   }

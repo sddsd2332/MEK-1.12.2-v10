@@ -1,16 +1,16 @@
 {
   "result": {
     "nbt": {
-      "recipeType": 0
+      "recipeType": 11
     },
     "item": "mekanism:machineblock",
-    "data": 5,
+    "data": 6,
     "type": "mekanism:item_nbt"
   },
   "pattern": [
-    "RCR",
-    "iOi",
-    "RCR"
+    "ECE",
+    "oOo",
+    "ECE"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
@@ -20,20 +20,24 @@
     }
   ],
   "key": {
-    "R": {
-      "ore": "alloyBasic",
+    "C": {
+      "item": "#CIRCUITADVANCED"
+    },
+    "E": {
+      "ore": "alloyAdvanced",
       "type": "forge:ore_dict"
     },
-    "C": {
-      "item": "#CIRCUITBASIC"
-    },
-    "i": {
-      "ore": "ingotIron",
+    "o": {
+      "ore": "ingotOsmium",
       "type": "forge:ore_dict"
     },
     "O": {
+      "nbt": {
+        "recipeType": 11
+      },
       "item": "mekanism:machineblock",
-      "data": 12
+      "data": 5,
+      "type": "mekanism:item_nbt"
     }
   }
 }

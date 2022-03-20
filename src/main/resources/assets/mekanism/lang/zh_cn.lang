@@ -399,7 +399,7 @@ gas.cleanTin=纯净锡浆液
 gas.cleanSilver=纯净银浆液
 gas.cleanObsidian=纯净黑曜石浆液
 gas.cleanLead=纯净铅浆液
-gas.cleanuranium=纯净铀浆液
+gas.cleanUranium=纯净铀浆液
 
 # BC Fuel Gases
 gas.fuel=气化燃油
@@ -470,6 +470,8 @@ upgrade.muffling=降噪
 upgrade.muffling.desc=减少机器发出的噪音.
 upgrade.anchor=锚
 upgrade.anchor.desc=保存机器的载入.
+
+null.name=无效物品/方块（放置会导致关闭游戏！）
 
 # Key description text
 mekanism.key.mode=模式切换

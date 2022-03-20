@@ -1,7 +1,7 @@
 {
   "result": {
-    "item": "mekanism:machineblock2",
-    "data": 4
+    "item": "mekanism:machineblock3",
+    "data": 2
   },
   "pattern": [
     "ABA",
@@ -12,21 +12,17 @@
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "ElectrolyticSeparator"
+      "machineType": "AmbientAccumulator"
     }
   ],
   "key": {
     "A": {
-      "ore": "alloyAdvanced",
+      "ore": "blockSteel",
       "type": "forge:ore_dict"
     },
     "B": {
-      "nbt": {
-        "tier": 0
-      },
-      "item": "mekanism:machineblock2",
-      "data": 11,
-      "type": "mekanism:item_nbt"
+      "item": "mekanism:basicblock",
+      "data": 10
     },
     "C": {
       "nbt": {
@@ -37,7 +33,12 @@
       "type": "mekanism:item_nbt"
     },
     "D": {
-      "item": "mekanism:electrolyticcore"
+      "nbt": {
+        "tier": 0
+      },
+      "item": "mekanism:transmitter",
+      "data": 2,
+      "type": "mekanism:item_nbt"
     },
     "E": {
       "item": "#CIRCUITBASIC"

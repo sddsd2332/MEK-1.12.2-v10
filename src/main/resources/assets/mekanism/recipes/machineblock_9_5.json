@@ -1,15 +1,15 @@
 {
   "result": {
     "nbt": {
-      "recipeType": 0
+      "recipeType": 5
     },
     "item": "mekanism:machineblock",
-    "data": 5,
+    "data": 9,
     "type": "mekanism:item_nbt"
   },
   "pattern": [
     "RCR",
-    "iOi",
+    "gOg",
     "RCR"
   ],
   "type": "mekanism:ore_shaped",
@@ -21,19 +21,23 @@
   ],
   "key": {
     "R": {
-      "ore": "alloyBasic",
-      "type": "forge:ore_dict"
+      "item": "mekanism:cosmicalloy"
     },
     "C": {
-      "item": "#CIRCUITBASIC"
+      "item": "mekanism:controlcircuit",
+	  "data": 4
     },
-    "i": {
-      "ore": "ingotIron",
-      "type": "forge:ore_dict"
+    "g": {
+      "item": "mekanism:OtherDust",
+      "data": 11
     },
     "O": {
+      "nbt": {
+        "recipeType": 5
+      },
       "item": "mekanism:machineblock",
-      "data": 12
+      "data": 8,
+      "type": "mekanism:item_nbt"
     }
   }
 }

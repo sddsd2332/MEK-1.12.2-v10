@@ -1,15 +1,15 @@
 {
   "result": {
     "nbt": {
-      "recipeType": 0
+      "recipeType": 12
     },
     "item": "mekanism:machineblock",
-    "data": 5,
+    "data": 8,
     "type": "mekanism:item_nbt"
   },
   "pattern": [
     "RCR",
-    "iOi",
+    "gOg",
     "RCR"
   ],
   "type": "mekanism:ore_shaped",
@@ -21,19 +21,23 @@
   ],
   "key": {
     "R": {
-      "ore": "alloyBasic",
+      "ore": "alloyUltimate",
       "type": "forge:ore_dict"
     },
     "C": {
-      "item": "#CIRCUITBASIC"
+      "item": "#CIRCUITULTIMATE"
     },
-    "i": {
-      "ore": "ingotIron",
+    "g": {
+      "ore": "gemDiamond",
       "type": "forge:ore_dict"
     },
     "O": {
+      "nbt": {
+        "recipeType": 12
+      },
       "item": "mekanism:machineblock",
-      "data": 12
+      "data": 7,
+      "type": "mekanism:item_nbt"
     }
   }
 }

@@ -133,8 +133,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.BLACK, new int[]{4,5,6,7}));
         configComponent.setConfig(TransmissionType.ITEM, new byte[]{4, 0, 0, 3, 1, 2});
 
-
-
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.DARK_RED, new int[]{0}));
         configComponent.fillConfig(TransmissionType.GAS, 1);
@@ -493,8 +491,8 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                 }
             }
         }
-        
-        
+
+
     }
 
 
@@ -1136,90 +1134,20 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
     @Override
     public void recalculateUpgradables(Upgrade upgrade) {
         super.recalculateUpgradables(upgrade);
-        if (tier ==FactoryTier.BASIC){
-            switch (upgrade) {
-                case ENERGY:
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/3; // incorporate speed upgrades
-                     break;
-                     case GAS:
-                         secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/3;
-                         break;
-                         case SPEED:
-                             ticksRequired = MekanismUtils.getTicks(this, BASE_TICKS_REQUIRED)/3;
-                             energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/3;
-                             secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/3;
-                             break;
-                             default:
-                                 break;
-            }
-        }
-        if (tier ==FactoryTier.ADVANCED){
-            switch (upgrade) {
-                case ENERGY:
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/5; // incorporate speed upgrades
-                    break;
-                case GAS:
-                    secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/5;
-                    break;
-                case SPEED:
-                    ticksRequired = MekanismUtils.getTicks(this, BASE_TICKS_REQUIRED)/5;
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/5;
-                    secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/5;
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (tier ==FactoryTier.ELITE){
-            switch (upgrade) {
-                case ENERGY:
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/7; // incorporate speed upgrades
-                    break;
-                case GAS:
-                    secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/7;
-                    break;
-                case SPEED:
-                    ticksRequired = MekanismUtils.getTicks(this, BASE_TICKS_REQUIRED)/7;
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/7;
-                    secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/7;
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (tier ==FactoryTier.ULTIMATE){
-            switch (upgrade) {
-                case ENERGY:
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/9; // incorporate speed upgrades
-                    break;
-                case GAS:
-                    secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/9;
-                    break;
-                case SPEED:
-                    ticksRequired = MekanismUtils.getTicks(this, BASE_TICKS_REQUIRED)/9;
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/9;
-                    secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/9;
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (tier ==FactoryTier.CREATIVE){
-            switch (upgrade) {
-                case ENERGY:
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK); // incorporate speed upgrades
-                    break;
-                case GAS:
-                    secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/11;
-                    break;
-                case SPEED:
-                    ticksRequired = MekanismUtils.getTicks(this, BASE_TICKS_REQUIRED)/11;
-                    energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK)/11;
-                    secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType)/11;
-                    break;
-                default:
-                    break;
-            }
+        switch (upgrade) {
+            case ENERGY:
+                energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK); // incorporate speed upgrades
+                break;
+            case GAS:
+                secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType);
+                break;
+            case SPEED:
+                ticksRequired = MekanismUtils.getTicks(this, BASE_TICKS_REQUIRED);
+                energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK);
+                secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType);
+                break;
+            default:
+                break;
         }
     }
 

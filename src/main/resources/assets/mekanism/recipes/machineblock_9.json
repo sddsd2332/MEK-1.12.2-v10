@@ -1,35 +1,43 @@
 {
   "result": {
+    "nbt": {
+      "recipeType": 0
+    },
     "item": "mekanism:machineblock",
-    "data": 9
+    "data": 9,
+    "type": "mekanism:item_nbt"
   },
   "pattern": [
-    "IFI",
-    "ROR",
-    "IFI"
+    "RCR",
+    "gOg",
+    "RCR"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "MetallurgicInfuser"
+      "machineType": "Factory"
     }
   ],
   "key": {
-    "R": {
-      "ore": "dustRedstone",
-      "type": "forge:ore_dict"
+     "R": {
+      "item": "mekanism:cosmicalloy"
     },
-    "F": {
-      "item": "minecraft:furnace"
+    "C": {
+      "item": "mekanism:controlcircuit",
+	  "data": 4
     },
-    "I": {
-      "ore": "ingotIron",
-      "type": "forge:ore_dict"
+    "g": {
+      "item": "mekanism:OtherDust",
+      "data": 11
     },
     "O": {
-      "ore": "ingotOsmium",
-      "type": "forge:ore_dict"
+      "nbt": {
+        "recipeType": 0
+      },
+      "item": "mekanism:machineblock",
+      "data": 8,
+      "type": "mekanism:item_nbt"
     }
   }
 }

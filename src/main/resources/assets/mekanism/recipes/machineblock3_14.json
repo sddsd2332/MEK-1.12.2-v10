@@ -1,28 +1,33 @@
 {
   "result": {
     "item": "mekanism:machineblock",
-    "data": 13
+    "data": 14
   },
   "pattern": [
-    "COC",
-    "OTO",
-    "COC"
+    "RCR",
+    "gIg",
+    "RCR"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "Teleporter"
+      "machineType": "antiprotonicnucleosynthesizer"
     }
   ],
   "key": {
+    "R": {
+      "ore": "alloyUltimate",
+      "type": "forge:ore_dict"
+    },
     "C": {
-      "item": "#CIRCUITBASIC"
+      "item": "#CIRCUITULTIMATE"
     },
-    "T": {
-      "item": "mekanism:teleportationcore"
+    "g": {
+      "item": "mekanism:OtherDust",
+      "data": 11
     },
-    "O": {
+    "I": {
       "item": "mekanism:basicblock",
       "data": 8
     }

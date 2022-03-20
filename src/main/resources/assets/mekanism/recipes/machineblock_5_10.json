@@ -1,18 +1,22 @@
 {
   "result": {
+    "nbt": {
+      "recipeType": 10
+    },
     "item": "mekanism:machineblock",
-    "data": 12
+    "data": 5,
+    "type": "mekanism:item_nbt"
   },
   "pattern": [
     "RCR",
-    "GIG",
+    "iOi",
     "RCR"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "EnergizedSmelter"
+      "machineType": "Factory"
     }
   ],
   "key": {
@@ -23,13 +27,13 @@
     "C": {
       "item": "#CIRCUITBASIC"
     },
-    "G": {
-      "ore": "blockGlass",
+    "i": {
+      "ore": "ingotIron",
       "type": "forge:ore_dict"
     },
-    "I": {
-      "item": "mekanism:basicblock",
-      "data": 8
+    "O": {
+      "item": "mekanism:machineblock4",
+      "data": 0
     }
   }
 }

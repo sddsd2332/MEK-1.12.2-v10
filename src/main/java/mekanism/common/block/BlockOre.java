@@ -13,7 +13,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
 /**
- * Block class for handling multiple ore block IDs. 0: Osmium Ore 1: Copper Ore 2: Tin Ore 3£ºFluorite Ore 4£ºLead Ore 5£ºUranium Ore
+ * Block class for handling multiple ore block IDs.
+ * 0: Osmium Ore
+ * 1: Copper Ore
+ * 2: Tin Ore
+ * 3: Fluorite Ore
+ * 4: Lead Ore
+ * 5: Uranium Ore
  *
  * @author AidanBrady
  */

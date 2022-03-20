@@ -1,0 +1,48 @@
+{
+  "result": {
+    "nbt": {
+      "tier": 4,
+      "mekData": {
+        "energyStored": 1.7976931348623157E308
+      }
+    },
+    "item": "mekanism:energycube",
+    "data": 0,
+    "type": "mekanism:item_nbt"
+  },
+  "pattern": [
+    "ATA",
+    "dEd",
+    "ATA"
+  ],
+  "type": "mekanism:ore_shaped",
+  "key": {
+    "A": {
+      "item": "mekanism:cosmicalloy"
+    },
+    "d": {
+      "nbt": {
+        "tier": 3
+      },
+      "item": "mekanism:basicblock2",
+      "data": 4,
+      "type": "mekanism:item_nbt"
+    },
+    "T": {
+      "nbt": {
+        "tier": 3
+      },
+      "item": "mekanism:basicblock2",
+      "data": 3,
+      "type": "mekanism:item_nbt"
+    },
+    "E": {
+      "nbt": {
+        "tier": 4
+      },
+      "item": "mekanism:energycube",
+      "data": 0,
+      "type": "mekanism:item_nbt"
+    }
+  }
+}
