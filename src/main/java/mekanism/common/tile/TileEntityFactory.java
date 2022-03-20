@@ -81,7 +81,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
     /**
      * How many ticks it takes, by default, to run an operation.
      */
-    public int BASE_TICKS_REQUIRED = 200;
+    public int BASE_TICKS_REQUIRED;
     /**
      * How many ticks it takes, with upgrades, to run an operation
      */
@@ -155,6 +155,12 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         cachedRecipe = new MachineRecipe[tier.processes];
         gasTank = new GasTank(TileEntityAdvancedElectricMachine.MAX_GAS * tier.processes);
         maxInfuse = BASE_MAX_INFUSE * tier.processes;
+        if (tier != FactoryTier.CREATIVE){
+            BASE_TICKS_REQUIRED = 200;
+        }else {
+            BASE_TICKS_REQUIRED = 1;
+        }
+
 
         setRecipeType(recipeType);
     }
@@ -224,182 +230,98 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (tier != FactoryTier.CREATIVE) {
-            if (!world.isRemote) {
-                if (ticker == 1) {
-                    world.notifyNeighborsOfStateChange(getPos(), getBlockType(), true);
-                }
-                ChargeUtils.discharge(1, this);
+        if (!world.isRemote) {
+            if (ticker == 1) {
+                world.notifyNeighborsOfStateChange(getPos(), getBlockType(), true);
+            }
+            ChargeUtils.discharge(1, this);
 
-                handleSecondaryFuel();
-                sortInventory();
-                ItemStack machineSwapItem = inventory.get(2);
-                if (!machineSwapItem.isEmpty() && machineSwapItem.getItem() instanceof ItemBlockMachine && inventory.get(3).isEmpty()) {
+            handleSecondaryFuel();
+            sortInventory();
+            ItemStack machineSwapItem = inventory.get(2);
+            if (!machineSwapItem.isEmpty() && machineSwapItem.getItem() instanceof ItemBlockMachine && inventory.get(3).isEmpty()) {
 
-                    MachineType swapType = MachineType.get(machineSwapItem);
+                MachineType swapType = MachineType.get(machineSwapItem);
 
-                    if (swapType != null && !swapType.isFactory()) {
+                if (swapType != null && !swapType.isFactory()) {
 
-                        RecipeType toSet = RecipeType.getFromMachineType(swapType);
+                    RecipeType toSet = RecipeType.getFromMachineType(swapType);
 
-                        if (toSet != null && recipeType != toSet) {
-                            if (recipeTicks < RECIPE_TICKS_REQUIRED) {
-                                recipeTicks++;
-                            } else {
-                                recipeTicks = 0;
-                                ItemStack returnStack = getMachineStack();
-
-                                upgradeComponent.write(ItemDataUtils.getDataMap(returnStack));
-                                upgradeComponent.setSupported(Upgrade.GAS, toSet.fuelEnergyUpgrades());
-                                upgradeComponent.read(ItemDataUtils.getDataMapIfPresentNN(machineSwapItem));
-
-                                inventory.set(2, ItemStack.EMPTY);
-                                inventory.set(3, returnStack);
-
-                                setRecipeType(toSet);
-                                gasTank.setGas(null);
-                                secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType);
-                                world.notifyNeighborsOfStateChange(getPos(), getBlockType(), true);
-                                MekanismUtils.saveChunk(this);
-                            }
+                    if (toSet != null && recipeType != toSet) {
+                        if (recipeTicks < RECIPE_TICKS_REQUIRED) {
+                            recipeTicks++;
                         } else {
                             recipeTicks = 0;
+                            ItemStack returnStack = getMachineStack();
+
+                            upgradeComponent.write(ItemDataUtils.getDataMap(returnStack));
+                            upgradeComponent.setSupported(Upgrade.GAS, toSet.fuelEnergyUpgrades());
+                            upgradeComponent.read(ItemDataUtils.getDataMapIfPresentNN(machineSwapItem));
+
+                            inventory.set(2, ItemStack.EMPTY);
+                            inventory.set(3, returnStack);
+
+                            setRecipeType(toSet);
+                            gasTank.setGas(null);
+                            secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType);
+                            world.notifyNeighborsOfStateChange(getPos(), getBlockType(), true);
+                            MekanismUtils.saveChunk(this);
                         }
-                    }
-                } else {
-                    recipeTicks = 0;
-                }
-
-                double prev = getEnergy();
-
-                secondaryEnergyThisTick = recipeType.fuelEnergyUpgrades() ? StatUtils.inversePoisson(secondaryEnergyPerTick) : (int) Math.ceil(secondaryEnergyPerTick);
-
-                for (int process = 0; process < tier.processes; process++) {
-                    if (MekanismUtils.canFunction(this) && canOperate(getInputSlot(process), getOutputSlot(process))
-                            && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
-                        if ((progress[process] + 1) < ticksRequired) {
-                            progress[process]++;
-                            gasTank.draw(secondaryEnergyThisTick, true);
-                            electricityStored = energyPerTick;
-                        } else if ((progress[process] + 1) >= ticksRequired) {
-                            operate(getInputSlot(process), getOutputSlot(process));
-                            progress[process] = 0;
-                            gasTank.draw(secondaryEnergyThisTick, true);
-                            electricityStored = energyPerTick;
-                        }
-                    }
-
-                    if (!canOperate(getInputSlot(process), getOutputSlot(process))) {
-                        if (!(recipeType.getFuelType() == MachineFuelType.ADVANCED || recipeType.getFuelType() == MachineFuelType.FARM/* || recipeType.getFuelType() == MachineFuelType.CULTIVATE */ && recipeType.hasRecipe(inventory.get(getInputSlot(process))))) {
-                            progress[process] = 0;
-                        }
+                    } else {
+                        recipeTicks = 0;
                     }
                 }
-
-                boolean hasOperation = false;
-
-                for (int i = 0; i < tier.processes; i++) {
-                    if (canOperate(getInputSlot(i), getOutputSlot(i))) {
-                        hasOperation = true;
-                        break;
-                    }
-                }
-
-                if (MekanismUtils.canFunction(this) && hasOperation && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
-                    setActive(true);
-                } else if (prevEnergy >= getEnergy()) {
-                    setActive(false);
-                }
-                lastUsage = prev - getEnergy();
-                prevEnergy = getEnergy();
+            } else {
+                recipeTicks = 0;
             }
-        }else {
-            if (!world.isRemote) {
-                if (ticker == 1) {
-                    world.notifyNeighborsOfStateChange(getPos(), getBlockType(), true);
-                }
-                ChargeUtils.discharge(1, this);
 
-                handleSecondaryFuel();
-                sortInventory();
-                ItemStack machineSwapItem = inventory.get(2);
-                if (!machineSwapItem.isEmpty() && machineSwapItem.getItem() instanceof ItemBlockMachine && inventory.get(3).isEmpty()) {
+            double prev = getEnergy();
 
-                    MachineType swapType = MachineType.get(machineSwapItem);
+            secondaryEnergyThisTick = recipeType.fuelEnergyUpgrades() ? StatUtils.inversePoisson(secondaryEnergyPerTick) : (int) Math.ceil(secondaryEnergyPerTick);
 
-                    if (swapType != null && !swapType.isFactory()) {
-
-                        RecipeType toSet = RecipeType.getFromMachineType(swapType);
-
-                        if (toSet != null && recipeType != toSet) {
-                            if (recipeTicks < 5) {
-                                recipeTicks++;
-                            } else {
-                                recipeTicks = 0;
-                                ItemStack returnStack = getMachineStack();
-
-                                upgradeComponent.write(ItemDataUtils.getDataMap(returnStack));
-                                upgradeComponent.setSupported(Upgrade.GAS, toSet.fuelEnergyUpgrades());
-                                upgradeComponent.read(ItemDataUtils.getDataMapIfPresentNN(machineSwapItem));
-
-                                inventory.set(2, ItemStack.EMPTY);
-                                inventory.set(3, returnStack);
-
-                                setRecipeType(toSet);
-                                gasTank.setGas(null);
-                                secondaryEnergyPerTick = 0;
-                                world.notifyNeighborsOfStateChange(getPos(), getBlockType(), true);
-                                MekanismUtils.saveChunk(this);
-                            }
-                        } else {
-                            recipeTicks = 0;
+            for (int process = 0; process < tier.processes; process++) {
+                if (MekanismUtils.canFunction(this) && canOperate(getInputSlot(process), getOutputSlot(process))
+                        && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
+                    if ((progress[process] + 1) < ticksRequired) {
+                        progress[process]++;
+                        gasTank.draw(secondaryEnergyThisTick, true);
+                        if (tier != FactoryTier.CREATIVE) {
+                            electricityStored -= energyPerTick;
                         }
-                    }
-                } else {
-                    recipeTicks = 0;
-                }
 
-                double prev = getEnergy();
-
-                secondaryEnergyThisTick = recipeType.fuelEnergyUpgrades() ? StatUtils.inversePoisson(secondaryEnergyPerTick) : (int) Math.ceil(secondaryEnergyPerTick);
-
-                for (int process = 0; process < tier.processes; process++) {
-                    if (MekanismUtils.canFunction(this) && canOperate(getInputSlot(process), getOutputSlot(process))
-                            && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
-                        if ((progress[process] + 1) < 1) {
-                            progress[process]++;
-                            gasTank.draw(secondaryEnergyThisTick, true);
-                        } else if ((progress[process] + 1) >= 0) {
-                            operate(getInputSlot(process), getOutputSlot(process));
-                            progress[process] = 0;
-                            gasTank.draw(secondaryEnergyThisTick, true);
-                        }
-                    }
-
-                    if (!canOperate(getInputSlot(process), getOutputSlot(process))) {
-                        if (!(recipeType.getFuelType() == MachineFuelType.ADVANCED || recipeType.getFuelType() == MachineFuelType.FARM/* || recipeType.getFuelType() == MachineFuelType.CULTIVATE */&& recipeType.hasRecipe(inventory.get(getInputSlot(process))))) {
-                            progress[process] = 0;
+                    } else if ((progress[process] + 1) >= ticksRequired) {
+                        operate(getInputSlot(process), getOutputSlot(process));
+                        progress[process] = 0;
+                        gasTank.draw(secondaryEnergyThisTick, true);
+                        if (tier != FactoryTier.CREATIVE) {
+                            electricityStored -= energyPerTick;
                         }
                     }
                 }
 
-                boolean hasOperation = false;
-
-                for (int i = 0; i < tier.processes; i++) {
-                    if (canOperate(getInputSlot(i), getOutputSlot(i))) {
-                        hasOperation = true;
-                        break;
+                if (!canOperate(getInputSlot(process), getOutputSlot(process))) {
+                    if (!(recipeType.getFuelType() == MachineFuelType.ADVANCED || recipeType.getFuelType() == MachineFuelType.FARM/* || recipeType.getFuelType() == MachineFuelType.CULTIVATE */&& recipeType.hasRecipe(inventory.get(getInputSlot(process))))) {
+                        progress[process] = 0;
                     }
                 }
-
-                if (MekanismUtils.canFunction(this) && hasOperation && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
-                    setActive(true);
-                } else if (prevEnergy >= getEnergy()) {
-                    setActive(false);
-                }
-                lastUsage = prev - getEnergy();
-                prevEnergy = getEnergy();
             }
+
+            boolean hasOperation = false;
+
+            for (int i = 0; i < tier.processes; i++) {
+                if (canOperate(getInputSlot(i), getOutputSlot(i))) {
+                    hasOperation = true;
+                    break;
+                }
+            }
+
+            if (MekanismUtils.canFunction(this) && hasOperation && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
+                setActive(true);
+            } else if (prevEnergy >= getEnergy()) {
+                setActive(false);
+            }
+            lastUsage = prev - getEnergy();
+            prevEnergy = getEnergy();
         }
     }
 
@@ -1142,7 +1064,11 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                 secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType);
                 break;
             case SPEED:
-                ticksRequired = MekanismUtils.getTicks(this, BASE_TICKS_REQUIRED);
+                if (tier != FactoryTier.CREATIVE){
+                    ticksRequired = MekanismUtils.getTicks(this, BASE_TICKS_REQUIRED);
+                }else {
+                    ticksRequired = BASE_TICKS_REQUIRED;
+                }
                 energyPerTick = MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK);
                 secondaryEnergyPerTick = getSecondaryEnergyPerTick(recipeType);
                 break;

@@ -115,7 +115,7 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
         }
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         }
-        if (tileEntity.tier == FactoryTier.ULTIMATE) {
+        else if (tileEntity.tier == FactoryTier.ULTIMATE) {
             if (xAxis >= 199 && xAxis <= 203 && yAxis >= 17 && yAxis <= 69) {
                 displayTooltip(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), xAxis, yAxis);
             } else if (xAxis >= 8 && xAxis <= 202 && yAxis >= 78 && yAxis <= 83) {
@@ -129,7 +129,7 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
             }
             super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         }
-        if (tileEntity.tier == FactoryTier.CREATIVE) {
+        else if (tileEntity.tier == FactoryTier.CREATIVE) {
             if (xAxis >= 237 && xAxis <= 241 && yAxis >= 17 && yAxis <= 69) {
                 displayTooltip(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), xAxis, yAxis);
             } else if (xAxis >= 8 && xAxis <= 240 && yAxis >= 78 && yAxis <= 83) {

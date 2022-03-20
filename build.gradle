@@ -241,6 +241,7 @@ task fullBuild(type: Delete) {
 
 runClient {
     jvmArgs "-Dfml.coreMods.load=mekanism.coremod.MekanismCoremod"
+    args '--username', 'sddsd2332'
 }
 
 runServer {
