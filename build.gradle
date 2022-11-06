@@ -89,6 +89,9 @@ repositories {
         name = 'GitHub Maven'
         url = "https://jitpack.io"
     }
+    maven {
+        setUrl("https://maven.cleanroommc.com")
+    }
 }
 
 group = "mekanism"
@@ -138,6 +141,10 @@ dependencies {
     compileOnly("appeng:appliedenergistics2:${ae2_version}:api") {
         exclude module: "jei_1.12.2"
     }
+
+    compileOnly files("libs/groovyscript-0.0.1.jar")
+   //runtime ("libs/groovyscript-0.0.1.jar")
+    deobfCompile "zone.rong:mixinbooter:4.2"
 }
 
 processResources {
@@ -342,6 +349,7 @@ if (System.getenv("CURSEFORGE_KEY") != null || project.hasProperty('curseforgeKe
                     optionalDependency "metallurgy-4-reforged"
                     optionalDependency "opencomputers"
                     optionalDependency "cyclic"
+                    optionalDependency "groovyscript"
                 }
             }
             addArtifact apiJar

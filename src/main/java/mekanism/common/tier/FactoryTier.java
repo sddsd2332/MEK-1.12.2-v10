@@ -14,7 +14,7 @@ public enum FactoryTier implements ITier {
     ULTIMATE(9, new ResourceLocation(Mekanism.MODID, "gui/factory/GuiUltimateFactory.png")),
     CREATIVE(11,new ResourceLocation(Mekanism.MODID, "gui/factory/GuiCreativeFactory.png"));
 
-    public final int processes;
+        public final int processes;
     public final ResourceLocation guiLocation;
     private final BaseTier baseTier;
 

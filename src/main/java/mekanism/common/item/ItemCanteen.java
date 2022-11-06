@@ -29,14 +29,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class ItemCanteen extends Item implements IGasItem {
+public class ItemCanteen extends ItemMekanism implements IGasItem {
     public static final int TRANSFER_RATE = 100;
     public static final int ItemStack =50 ;
 
     public ItemCanteen(){
         this.setMaxStackSize(1);
         this.setNoRepair();
-        setCreativeTab(Mekanism.tabMekanism);
     }
 
     @Override

@@ -105,7 +105,7 @@ public class GuiMekanismConfig extends GuiConfig {
         }
 
         @Override
-        protected GuiScreen buildChildScreen() {
+            protected GuiScreen buildChildScreen() {
             return new GuiConfig(owningScreen, new ConfigElement(Mekanism.configuration.getCategory("client")).getChildElements(), owningScreen.modID,
                   Configuration.CATEGORY_CLIENT, false, false, GuiConfig.getAbridgedConfigPath(Mekanism.configuration.toString()));
         }

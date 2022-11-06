@@ -525,7 +525,9 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                             gasTank.receive(item.removeGas(extra, gasStack.amount), true);
                         } else {
                             gasTank.receive(gasStack, true);
-                            extra.shrink(1);
+                            if (tier != FactoryTier.CREATIVE) {
+                                extra.shrink(1);
+                            }
                         }
                     }
                 }
@@ -539,7 +541,9 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                             gasTank.receive(item.removeGas(extra, gasStack.amount), true);
                         } else {
                             gasTank.receive(gasStack, true);
-                            extra.shrink(1);
+                            if (tier != FactoryTier.CREATIVE) {
+                                extra.shrink(1);
+                            }
                         }
                     }
                 }

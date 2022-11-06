@@ -17,10 +17,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants.NBT;
 
 public enum Upgrade {
-    SPEED("speed", 100, EnumColor.RED),
-    ENERGY("energy", 100, EnumColor.BRIGHT_GREEN),
+    SPEED("speed", MekanismConfig.current().general.maxSpeedUpgrade.val(), EnumColor.RED),
+    ENERGY("energy", MekanismConfig.current().general.maxEnergyUpgrade.val(), EnumColor.BRIGHT_GREEN),
     FILTER("filter", 1, EnumColor.DARK_AQUA),
-    GAS("gas", 100, EnumColor.YELLOW),
+    GAS("gas", MekanismConfig.current().general.maxGasUpgrade.val(), EnumColor.YELLOW),
     MUFFLING("muffling", 4, EnumColor.DARK_GREY),
     ANCHOR("anchor", 1, EnumColor.DARK_GREEN);
 

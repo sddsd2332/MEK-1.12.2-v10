@@ -184,7 +184,7 @@ public class GeneralConfig extends BaseConfig {
 
     public final DoubleOption disassemblerBatteryCapacity = new DoubleOption(this, "general", "DisassemblerBatteryCapacity", 1000000, "Maximum amount (joules) of energy the Atomic Disassembler can contain", 0, Double.MAX_VALUE).setRequiresGameRestart(true);
 
-    public final DoubleOption toolBatteryCapacity = new DoubleOption(this, "general", "toolBatteryCapacity", Long.MAX_VALUE, "Maximum amount (joules) of energy the Atomic Disassembler can contain", 0, Double.MAX_VALUE).setRequiresGameRestart(true);
+    public final DoubleOption toolBatteryCapacity = new DoubleOption(this, "general", "toolBatteryCapacity", 10000000, "Maximum amount (joules) of energy the Atomic Disassembler can contain", 0, Double.MAX_VALUE).setRequiresGameRestart(true);
 
     public final IntOption VOICE_PORT = new IntOption(this, "general", "VoicePort", 36123,
           "TCP port for the Voice server to listen on.", 1, 65535);
@@ -194,6 +194,14 @@ public class GeneralConfig extends BaseConfig {
           "Base factor for working out machine performance with upgrades - UpgradeModifier * (UpgradesInstalled/UpgradesPossible).", 1, Integer.MAX_VALUE);
 
 
+    public final IntOption maxSpeedUpgrade = new IntOption(this, "general", "UpgradeSpeed", 10,
+            "Number of speed upgrades that can be placed on all machine pairs", 1, Integer.MAX_VALUE).setRequiresGameRestart(true);
+
+    public final IntOption maxEnergyUpgrade = new IntOption(this, "general", "UpgradeEnergy", 10,
+            "Number of energy upgrades that can be placed on all machine pairs", 1, Integer.MAX_VALUE).setRequiresGameRestart(true);
+
+    public final IntOption maxGasUpgrade = new IntOption(this, "general", "UpgradeGas", 10,
+            "Number of Gas upgrades that can be placed on all machine pairs", 1, Integer.MAX_VALUE).setRequiresGameRestart(true);
 
 
     public final IntOption minerSilkMultiplier = new IntOption(this, "general", "MinerSilkMultiplier", 6,

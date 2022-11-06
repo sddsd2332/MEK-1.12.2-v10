@@ -22,6 +22,7 @@ import mekanism.common.block.states.BlockStateTransmitter.TransmitterType;
 import mekanism.common.integration.computer.CCPeripheral;
 import mekanism.common.integration.computer.OCDriver;
 import mekanism.common.integration.crafttweaker.CrafttweakerIntegration;
+import mekanism.common.integration.groovyscript.mekgrs;
 import mekanism.common.integration.wrenches.Wrenches;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
@@ -64,6 +65,7 @@ public final class MekanismHooks {
     public static final String CYCLIC_MOD_ID = "cyclicmagic";
     public static final String MYSTICALAGRICULTURE_MOD_ID = "mysticalagriculture";
     public static final String CRAFTTWEAKER_MOD_ID = "crafttweaker";
+    public static final String GROOVYSCRIPT_MOD_ID = "groovyscript";
 
     public boolean AE2Loaded = false;
     public boolean BuildCraftLoaded = false;
@@ -77,6 +79,7 @@ public final class MekanismHooks {
     public boolean OCLoaded = false;
     public boolean RFLoaded = false;
     public boolean TeslaLoaded = false;
+    public boolean GroovyScriptLoaded = false;
 
     public void hookPreInit() {
         AE2Loaded = Loader.isModLoaded(APPLIED_ENERGISTICS_2_MOD_ID);
@@ -91,6 +94,9 @@ public final class MekanismHooks {
         OCLoaded = Loader.isModLoaded(OPENCOMPUTERS_MOD_ID);
         RFLoaded = Loader.isModLoaded(REDSTONEFLUX_MOD_ID);
         TeslaLoaded = Loader.isModLoaded(TESLA_MOD_ID);
+
+        GroovyScriptLoaded = Loader.isModLoaded(GROOVYSCRIPT_MOD_ID);
+
     }
 
     public void hookInit() {
@@ -130,12 +136,22 @@ public final class MekanismHooks {
         }
         if (MALoaded) {
             registerMysticalAgricultureRecipes();
+            Mekanism.logger.info("Hooked into Mystical Agriculture successfully.");
         }
         if (CraftTweakerLoaded) {
             //CraftTweaker must be ran after all other recipe changes
             CrafttweakerIntegration.registerCommands();
             CrafttweakerIntegration.applyRecipeChanges();
+            Mekanism.logger.info("Hooked into Craft Tweaker successfully.");
         }
+
+        if (GroovyScriptLoaded){
+            // GroovyScript: a new recipe modifier (can be hot loaded)
+            new mekgrs();
+            Mekanism.logger.info("Hooked into GroovyScript successfully.");
+
+        }
+
         Wrenches.initialise();
     }
 

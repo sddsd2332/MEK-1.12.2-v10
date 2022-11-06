@@ -442,7 +442,8 @@ public final class RecipeHandler {
      * @return Recipe
      */
     @Nullable
-    public static <INPUT extends MachineInput<INPUT>, RECIPE extends MachineRecipe<INPUT, ?, RECIPE>> RECIPE getRecipe(@Nonnull INPUT input, @Nonnull Map<INPUT, RECIPE> recipes) {
+    public static <INPUT extends MachineInput<INPUT>, RECIPE extends MachineRecipe<INPUT, ?, RECIPE>> RECIPE
+    getRecipe(@Nonnull INPUT input, @Nonnull Map<INPUT, RECIPE> recipes) {
         if (input.isValid()) {
             RECIPE recipe = recipes.get(input);
             if (recipe == null && input instanceof IWildInput) {

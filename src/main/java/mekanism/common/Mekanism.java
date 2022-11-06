@@ -65,7 +65,6 @@ import mekanism.common.recipe.machines.SmeltingRecipe;
 import mekanism.common.recipe.outputs.ItemStackOutput;
 import mekanism.common.security.SecurityFrequency;
 import mekanism.common.tier.BaseTier;
-import mekanism.common.tier.FactoryTier;
 import mekanism.common.tile.*;
 import mekanism.common.tile.transmitter.*;
 import mekanism.common.transmitters.grid.EnergyNetwork.EnergyTransferEvent;
@@ -904,6 +903,7 @@ public class Mekanism {
                 proxy.throwApiPresentException();
             }
         }
+
 
         File config = event.getSuggestedConfigurationFile();
 
