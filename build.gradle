@@ -92,6 +92,10 @@ repositories {
     maven {
         setUrl("https://maven.cleanroommc.com")
     }
+    maven {
+        name 'CB Maven'
+        url "http://chickenbones.net/maven/"
+    }
 }
 
 group = "mekanism"
@@ -142,9 +146,11 @@ dependencies {
         exclude module: "jei_1.12.2"
     }
 
-    compileOnly files("libs/groovyscript-0.0.1.jar")
-   //runtime ("libs/groovyscript-0.0.1.jar")
+    compileOnly files("libs/groovyscript-0.1.0-2023-1-13.jar")
+   //runtime ("libs/groovyscript-0.2.0.jar")
     deobfCompile "zone.rong:mixinbooter:4.2"
+
+    //compile "codechicken:CodeChickenLib:1.12.2-3.2.0.+:deobf"
 }
 
 processResources {
@@ -255,133 +261,9 @@ runServer {
     jvmArgs "-Dfml.coreMods.load=mekanism.coremod.MekanismCoremod"
 }
 
-uploadArchives {
-    if(System.getenv("LOCAL_MAVEN") != null) {
-        repositories {
-            mavenDeployer {
-                repository(url: "file://"+System.getenv("LOCAL_MAVEN"))
-                pom {
-                    groupId = project.group
-                    version = project.version
-                    if (System.getenv("MAVEN_ARTIFACT") != null) {
-                        artifactId = System.getenv("MAVEN_ARTIFACT")
-                    } else {
-                        artifactId = "Mekanism"
-                    }
-                    project {
-                        name = "Mekanism"
-                        packaging 'jar'
-                        description 'Mekanism is a Minecraft add-on featuring high-tech machinery that can be used to create powerful tools, armor, and weapons.'
-                        url 'http://aidancbrady.com/mekanism/'
-                        scm {
-                            url 'https://github.com/mekanism-mod/Mekanism.git'
-                        }
-                        issueManagement {
-                            system 'github'
-                            url 'https://github.com/mekanism-mod/Mekanism/issues'
-                        }
-                        licenses {
-                            license {
-                                name = 'MIT'
-                                distribution 'repo'
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//Attempt to resolve GBK errors
+tasks.withType(JavaCompile) {
 
-tasks.curseforge.dependsOn coreJar, toolsJar, generatorsJar, apiJar
+options.encoding = "UTF-8"
 
-if (System.getenv("CURSEFORGE_KEY") != null || project.hasProperty('curseforgeKey')) {
-    println "Enabling Curseforge config"
-    curseforge {
-        apiKey = System.getenv("CURSEFORGE_KEY") ?: project.findProperty("curseforgeKey")
-
-        def generatedChangelog = "Unable to generate changelog :("
-        def currentCommit = System.getenv("GIT_COMMIT")
-        def prevCommit = System.getenv("GIT_PREVIOUS_SUCCESSFUL_COMMIT") ?: System.getenv("GIT_PREVIOUS_COMMIT")
-
-        if (currentCommit != null && prevCommit != null) {
-            generatedChangelog = "<pre>"
-            grgit.log {
-                range(prevCommit, currentCommit)
-            }.reverse().each { commit ->
-                String message = commit.shortMessage
-                if (!message.startsWith("Merge branch") && !message.startsWith("Merge pull request")) {//Ignore PRs and Merges
-                    message = message.replaceAll("#(\\d+)", {match->//turn issues/prs into links (github currently supports prs being linked as issues)
-                        return "<a href=\"https://github.com/mekanism-mod/Mekanism/issues/${match[1]}\">${match[0]}</a>"
-                    })
-                    generatedChangelog += "<a href=\"https://github.com/mekanism-mod/Mekanism/commit/${commit.id}\">${commit.getAbbreviatedId()}</a> - ${message}\n"
-                }
-            }
-            generatedChangelog += "</pre>"
-            println "Changelog generated"
-        }
-
-        def releaseNotesFile = project.file("docs/release_${mod_version}.html")
-        if (releaseNotesFile.exists()){
-            def releaseNotes = releaseNotesFile.getText()
-            generatedChangelog = "$releaseNotes<br> $generatedChangelog"
-        }
-
-        //Core
-        project {
-            id = '268560'
-            changelogType = "html"
-            changelog = generatedChangelog
-            // A file can also be set using: changelog = file('changelog.txt')
-            releaseType = 'release'
-            mainArtifact (coreJar){
-                relations {
-                    optionalDependency "jei"
-                    optionalDependency "crafttweaker"
-                    optionalDependency "industrial-craft"
-                    optionalDependency "mcmultipart"
-                    optionalDependency "tesla"
-                    optionalDependency "cc-tweaked"
-                    optionalDependency "the-one-probe"
-                    optionalDependency "hwyla"
-                    optionalDependency "applied-energistics-2"
-                    optionalDependency "redstone-flux"
-                    optionalDependency "metallurgy-4-reforged"
-                    optionalDependency "opencomputers"
-                    optionalDependency "cyclic"
-                    optionalDependency "groovyscript"
-                }
-            }
-            addArtifact apiJar
-            addGameVersion '1.12.2'
-        }
-
-        //Tools
-        project {
-            id = '268567'
-            changelogType = "html"
-            changelog = generatedChangelog
-            releaseType = 'release'
-            mainArtifact(toolsJar){
-                relations {
-                    requiredDependency "mekanism"
-                }
-            }
-            addGameVersion '1.12.2'
-        }
-
-        //Generators
-        project {
-            id = '268566'
-            changelogType = "html"
-            changelog = generatedChangelog
-            releaseType = 'release'
-            mainArtifact(generatorsJar) {
-                relations {
-                    requiredDependency "mekanism"
-                }
-            }
-            addGameVersion '1.12.2'
-        }
-    }
 }
