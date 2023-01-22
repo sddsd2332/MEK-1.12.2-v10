@@ -1,29 +1,14 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Arrays;
-import java.util.Objects;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.api.EnumColor;
 import mekanism.api.IConfigCardAccess.ISpecialConfigData;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
-import mekanism.api.gas.IGasItem;
+import mekanism.api.gas.*;
 import mekanism.api.infuse.InfuseObject;
 import mekanism.api.infuse.InfuseRegistry;
 import mekanism.api.transmitters.TransmissionType;
-import mekanism.common.InfuseStorage;
-import mekanism.common.Mekanism;
-import mekanism.common.MekanismBlocks;
-import mekanism.common.MekanismItems;
-import mekanism.common.PacketHandler;
-import mekanism.common.SideData;
-import mekanism.common.Upgrade;
+import mekanism.common.*;
 import mekanism.common.base.IComparatorSupport;
 import mekanism.common.base.IFactory.MachineFuelType;
 import mekanism.common.base.IFactory.RecipeType;
@@ -32,29 +17,22 @@ import mekanism.common.base.ISustainedData;
 import mekanism.common.base.ITierUpgradeable;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.capabilities.Capabilities;
-import mekanism.common.content.transporter.HashedItem;
 import mekanism.common.integration.computer.IComputerIntegration;
 import mekanism.common.item.ItemBlockMachine;
 import mekanism.common.recipe.GasConversionHandler;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.*;
 import mekanism.common.recipe.machines.*;
+import mekanism.common.recipe.outputs.ChanceOutput;
 import mekanism.common.recipe.outputs.ItemStackOutput;
+import mekanism.common.recipe.outputs.PressurizedOutput;
 import mekanism.common.tier.BaseTier;
 import mekanism.common.tier.FactoryTier;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityAdvancedElectricMachine;
 import mekanism.common.tile.prefab.TileEntityMachine;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.GasUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.LangUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.StackUtils;
-import mekanism.common.util.StatUtils;
-import mekanism.common.util.TileUtils;
+import mekanism.common.util.*;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -62,7 +40,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.*;
+
+@SuppressWarnings("rawtypes")
 public class TileEntityFactory extends TileEntityMachine implements IComputerIntegration, ISideConfiguration, IGasHandler, ISpecialConfigData, ITierUpgradeable,
       ISustainedData, IComparatorSupport {
 
@@ -381,42 +365,174 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                 //If something went wrong finding the tier don't sort it
                 return;
             }
-           for (int i = 0; i < inputSlots.length; i++) {
-                int slotID = inputSlots[i];
-                ItemStack stack = inventory.get(slotID);
-                int count = stack.getCount();
-                ItemStack output = inventory.get(tier.processes + slotID);
-                for (int j = i + 1; j < inputSlots.length; j++) {
-                    int checkSlotID = inputSlots[j];
-                    ItemStack checkStack = inventory.get(checkSlotID);
-                    if (Math.abs(count - checkStack.getCount()) < 2 ||
-                        !InventoryUtils.areItemsStackable(stack, checkStack)) {
-                        continue;
+            Map<String, ProcessDescription> recipeSlots = new HashMap<>();
+            List<Integer> freeSlots = new ArrayList<>();
+            List<Integer> outputBlockedSlots = new ArrayList<>();
+            for (int slotID : inputSlots) {
+                ItemStack inStack = inventory.get(slotID);
+                ItemStack outStack = inventory.get(slotID + tier.processes);
+                MachineRecipe slotRecipe = getSlotRecipe(slotID, inStack);
+                if (slotRecipe != null) {
+                    ItemStack recipeIn = getRecipeInput(slotRecipe);
+                    ItemStack recipeOut = getRecipeOutput(slotRecipe);
+
+                    // We don't care about extras here since there's no possibility to have
+                    //  recipes with different extras in one factory at the same time
+                    String id = new ImmutablePair<>(recipeIn, recipeOut).toString();
+
+                    if (!recipeSlots.containsKey(id)) {
+                        recipeSlots.put(id, new ProcessDescription(recipeIn, recipeOut));
                     }
 
-                    //Output/Input will not match
-                    // Only check if the input spot is empty otherwise assume it works
-                    if (stack.isEmpty() && !inputProducesOutput(checkSlotID, checkStack, output, true) ||
-                        checkStack.isEmpty() && !inputProducesOutput(slotID, stack, inventory.get(tier.processes + checkSlotID), true)) {
-                        continue;
+                    recipeSlots.get(id).occupySlot(slotID);
+                } else {
+                    if (outStack.getCount() <= 0 || outStack.isEmpty()) {
+                        freeSlots.add(slotID);
+                    } else {
+                        outputBlockedSlots.add(slotID);
+                    }
+                }
+            }
+
+            if (recipeSlots.size() == 0) return;
+
+            int freePerSlot = freeSlots.size() / recipeSlots.size();
+            int excess = freeSlots.size() - (freePerSlot * recipeSlots.size());
+
+            for (Map.Entry<String, ProcessDescription> line : recipeSlots.entrySet()) {
+                int takeSlots = freePerSlot;
+
+                if (excess > 0) {
+                    takeSlots += 1;
+                    excess -= 1;
+                }
+
+                while (takeSlots > 0) {
+                    line.getValue().occupySlot(freeSlots.get(0));
+                    freeSlots.remove(0);
+                    takeSlots -= 1;
+                }
+
+                Set<Integer> taken = new HashSet<>();
+
+                outputBlockedSlots.forEach(slot -> {
+                    ItemStack outStack = inventory.get(slot + tier.processes);
+                    ItemStack recipeOutStack = line.getValue().getOutput();
+
+                    if (taken.contains(slot)) return;
+
+                    if (outStack.isItemEqual(recipeOutStack) || recipeOutStack.isEmpty()) {
+                        taken.add(slot);
+                        line.getValue().occupySlot(slot);
+                    }
+                });
+
+            }
+
+            for (Map.Entry<String, ProcessDescription> line : recipeSlots.entrySet()) {
+                int total = line.getValue().getOccupiedSlots().stream()
+                        .map(v -> inventory.get(v).getCount())
+                        .reduce(0, Integer::sum);
+                int count = line.getValue().getOccupiedSlots().size();
+
+                if (count == 0) continue;
+
+                int minCount = line.getValue().getInput().getCount();
+
+                int itemsPerSlot = total / count;
+                int excessItems = total - (itemsPerSlot * count);
+
+                for (Integer slot : line.getValue().getOccupiedSlots()) {
+                    int actualCount = itemsPerSlot;
+
+                    if (excessItems > 0) {
+                        excessItems -= 1;
+                        actualCount += 1;
                     }
 
-                    //Balance the two slots
-                    int total = count + checkStack.getCount();
-                    ItemStack newStack = stack.isEmpty() ? checkStack : stack;
-                    inventory.set(slotID, StackUtils.size(newStack, (total + 1) / 2));
-                    inventory.set(checkSlotID, StackUtils.size(newStack, total / 2));
+                    actualCount = Math.max(actualCount, minCount);
 
-                    markDirty();
-                    return;
+                    if (total - actualCount < minCount) {
+                        actualCount = total;
+                    }
 
+                    inventory.set(slot, StackUtils.size(line.getValue().getInput(), actualCount));
+
+                    total -= actualCount;
                 }
             }
         }
-
-
     }
 
+
+    public ItemStack getRecipeOutput(MachineRecipe recipe) {
+        if (recipe.recipeOutput instanceof ItemStackOutput) {
+            return ((ItemStackOutput) recipe.recipeOutput).output;
+        } else if (recipe.recipeOutput instanceof ChanceOutput) {
+            return ((ChanceOutput) recipe.recipeOutput).primaryOutput;
+        } else if (recipe.recipeOutput instanceof PressurizedOutput) {
+            return ((PressurizedOutput) recipe.recipeOutput).getItemOutput();
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    public ItemStack getRecipeInput(MachineRecipe recipe) {
+        if (recipe.recipeInput instanceof ItemStackInput) {
+            return ((ItemStackInput) recipe.recipeInput).ingredient;
+        } else if (recipe.recipeInput instanceof AdvancedMachineInput) {
+            AdvancedMachineInput advancedInput = (AdvancedMachineInput) recipe.recipeInput;
+            return advancedInput.itemStack;
+        } else if (recipe.recipeInput instanceof DoubleMachineInput) {
+            DoubleMachineInput doubleMachineInput = (DoubleMachineInput) recipe.recipeInput;
+            return doubleMachineInput.itemStack;
+        } else if (recipe.recipeInput instanceof InfusionInput) {
+            InfusionInput infusionInput = (InfusionInput) recipe.recipeInput;
+            return infusionInput.inputStack;
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    public MachineRecipe getSlotRecipe(int slotID, ItemStack fallbackInput) {
+        int process = getOperation(slotID);
+        //cached recipe may be invalid
+        MachineRecipe cached = cachedRecipe[process];
+        ItemStack extra = inventory.get(4);
+        if (cached == null) {
+            cached = recipeType.getAnyRecipe(fallbackInput, extra, gasTank.getGasType(), infuseStored);
+
+            if (cached == null) { // We have not enough input probably
+                cached = recipeType.getAnyRecipe(StackUtils.size(fallbackInput, fallbackInput.getMaxStackSize()), extra, gasTank.getGasType(), infuseStored);
+            }
+        } else {
+            ItemStack recipeInput = ItemStack.EMPTY;
+            boolean secondaryMatch = true;
+            if (cached.recipeInput instanceof ItemStackInput) {
+                recipeInput = ((ItemStackInput) cached.recipeInput).ingredient;
+            } else if (cached.recipeInput instanceof AdvancedMachineInput) {
+                AdvancedMachineInput advancedInput = (AdvancedMachineInput) cached.recipeInput;
+                recipeInput = advancedInput.itemStack;
+                secondaryMatch = gasTank.getGasType() == null || advancedInput.gasType == gasTank.getGasType();
+            } else if (cached.recipeInput instanceof DoubleMachineInput) {
+                DoubleMachineInput doubleMachineInput = (DoubleMachineInput) cached.recipeInput;
+                recipeInput = doubleMachineInput.itemStack;
+                secondaryMatch = extra.isEmpty() || ItemStack.areItemsEqual(doubleMachineInput.extraStack, extra);
+            } else if (cached.recipeInput instanceof InfusionInput) {
+                InfusionInput infusionInput = (InfusionInput) cached.recipeInput;
+                recipeInput = infusionInput.inputStack;
+                secondaryMatch = infuseStored.getAmount() == 0 || infuseStored.getType() == infusionInput.infuse.getType();
+            }
+            //If there is no cached item input or it doesn't match our fallback
+            // then it is an out of date cache so we compare against the new one
+            // and update the cache while we are at it
+            if (recipeInput.isEmpty() || !secondaryMatch || !ItemStack.areItemsEqual(recipeInput, fallbackInput)) {
+                cached = recipeType.getAnyRecipe(fallbackInput, extra, gasTank.getGasType(), infuseStored);
+            }
+        }
+
+        return cached;
+    }
 
 
     /**
@@ -595,10 +711,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return true;
         } else if (tier == FactoryTier.CREATIVE && slotID >= 16 && slotID <= 26) {
             return true;
-        } else if (recipeType.getFuelType() == MachineFuelType.CHANCE || recipeType.getFuelType() == MachineFuelType.FARM && slotID == 4) {
-            return true;
-        }
-        return false;
+        } else  return recipeType.getFuelType() == MachineFuelType.CHANCE  || recipeType.getFuelType() == MachineFuelType.FARM && slotID == 4;
     }
 
     @Override
@@ -920,7 +1033,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         if (LangUtils.canLocalize("tile." + tier.getBaseTier().getName() + recipeType.getTranslationKey() + "Factory")) {
             return LangUtils.localize("tile." + tier.getBaseTier().getName() + recipeType.getTranslationKey() + "Factory");
         }
-        return tier.getBaseTier().getLocalizedName() + " " + recipeType.getLocalizedName() + " " + super.getName();
+        return tier.getBaseTier().getLocalizedName() + recipeType.getLocalizedName() + super.getName();
     }
 
     @Override
@@ -1094,7 +1207,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
 
     @Override
     public String getDataType() {
-        return tier.getBaseTier().getLocalizedName() + " " + recipeType.getLocalizedName() + " " + super.getName();
+        return tier.getBaseTier().getLocalizedName() + recipeType.getLocalizedName() + super.getName();
     }
 
     @Override
@@ -1112,5 +1225,33 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
     @Override
     public int getRedstoneLevel() {
         return Container.calcRedstoneFromInventory(this);
+    }
+
+    private class ProcessDescription {
+        private final ItemStack input;
+        private final ItemStack output;
+        private final Set<Integer> occupiedSlots;
+
+        public ProcessDescription(ItemStack input, ItemStack output) {
+            this.input = input;
+            this.output = output;
+            this.occupiedSlots = new HashSet<>();
+        }
+
+        public ItemStack getInput() {
+            return input;
+        }
+
+        public ItemStack getOutput() {
+            return output;
+        }
+
+        public Set<Integer> getOccupiedSlots() {
+            return occupiedSlots;
+        }
+
+        void occupySlot(Integer slot) {
+            occupiedSlots.add(slot);
+        }
     }
 }

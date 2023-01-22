@@ -33,7 +33,7 @@ public class RenderMekaSuitHelmet extends MekanismItemStackRenderer {
         GlStateManager.translate(0.1F, 0.2F, 0);
         MekanismRenderer.bindTexture(MekanismUtils.getResource(ResourceType.RENDER, "MekaSuitHelmet.png"));
 
-        mekaSuitHelmet.render(0.0625F);
+        mekaSuitHelmet.render(0.085F);
 
 
         GlStateManager.popMatrix();

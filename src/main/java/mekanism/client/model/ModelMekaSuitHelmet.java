@@ -3,14 +3,17 @@ package mekanism.client.model;
 
 
 import mekanism.client.render.MekanismRenderer;
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 @SideOnly(Side.CLIENT)
-public class ModelMekaSuitHelmet extends ModelBase {
+public class ModelMekaSuitHelmet extends ModelBiped {
 	ModelRenderer bone;
 	ModelRenderer helmet_head_center1_r1;
 	ModelRenderer bone2;
@@ -276,6 +279,7 @@ public class ModelMekaSuitHelmet extends ModelBase {
 		bone25.render(size);
 		bone26.render(size);
 		MekanismRenderer.disableGlow(glowInfo);
+
 
 	}
 

@@ -1,10 +1,16 @@
-/*package mekanism.common.item;
+package mekanism.common.item;
 
+import ibxm.Player;
 import mekanism.client.render.ModelCustomArmor;
 import mekanism.client.render.ModelCustomArmor.ArmorModel;
 import mekanism.common.Mekanism;
+import mekanism.common.MekanismItems;
 import mekanism.common.config.MekanismConfig;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelPlayer;
+import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +19,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,11 +42,15 @@ public class ItemMekaSuitHelmet extends ItemArmor implements ISpecialArmor {
     }
 
 
-
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
         return "mekanism:render/NullArmor.png";
     }
+
+
+
+
+
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -56,7 +67,7 @@ public class ItemMekaSuitHelmet extends ItemArmor implements ISpecialArmor {
                 MekanismConfig.current().general.armoredMekaSuitHelmetDamageMax.val());
     }
 
-    public int getArmorDisplay(EntityPlayer player, @Nonnull ItemStack armor, int slot) {
+    public int getArmorDisplay(EntityPlayer player, @Nonnull ItemStack armor, int slot){
         return 20;
     }
 
@@ -65,8 +76,4 @@ public class ItemMekaSuitHelmet extends ItemArmor implements ISpecialArmor {
     }
 
 
-
-
 }
-
- */

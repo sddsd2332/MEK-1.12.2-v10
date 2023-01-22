@@ -2,7 +2,6 @@ package mekanism.common.inventory.container;
 
 import javax.annotation.Nonnull;
 import mekanism.api.infuse.InfuseRegistry;
-import mekanism.common.base.IFactory;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.inventory.slot.SlotEnergy.SlotDischarge;
@@ -195,10 +194,6 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
 
     private int getOutputSlotIndex(int processNumber) {
         return tileEntity.tier.processes + getInputSlotIndex(processNumber);
-    }
-
-    private  int getsecondaryOutputSlotIndex(int processNumber){
-        return  tileEntity.tier.processes + getOutputSlotIndex(processNumber);
     }
 
 

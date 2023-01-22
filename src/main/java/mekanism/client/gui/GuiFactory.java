@@ -48,7 +48,7 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
             xSize += 34 +19 +19;
         }
 
-
+        //TODO:修改这个更改GUI
         ResourceLocation resource = tileEntity.tier.guiLocation;
         if (tile.tier == FactoryTier.CREATIVE) {
             addGuiElement(new GuiSecurityTab3(this, tileEntity, resource));
@@ -245,6 +245,9 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
         }
     }
 
+
+
+    //TODO:修改这个更改GUI
     @Override
     protected ResourceLocation getGuiLocation() {
         return tileEntity.tier.guiLocation;

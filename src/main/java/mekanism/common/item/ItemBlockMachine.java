@@ -177,7 +177,7 @@ public class ItemBlockMachine extends ItemBlock implements IEnergizedItem, ISpec
                 if (LangUtils.canLocalize(langKey)) {
                     return LangUtils.localize(langKey);
                 }
-                return tier.getLocalizedName() + " " + recipeType.getLocalizedName() + " " + super.getItemStackDisplayName(itemstack);
+                return tier.getLocalizedName() + recipeType.getLocalizedName() + super.getItemStackDisplayName(itemstack);
             }
         } else if (type == MachineType.FLUID_TANK) {
             return LangUtils.localize("tile.FluidTank" + getBaseTier(itemstack).getSimpleName() + ".name");

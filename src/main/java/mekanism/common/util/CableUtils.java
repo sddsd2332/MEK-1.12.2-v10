@@ -147,9 +147,13 @@ public final class CableUtils {
                 }
                 int curHandlers = target.getHandlers().size();
                 if (curHandlers > 0) {
+                    // Firestarter start :: optimize emit
+                    /*
                     Set<EnergyAcceptorTarget> targets = new HashSet<>();
                     targets.add(target);
-                    double sent = EmitUtils.sendToAcceptors(targets, curHandlers, energyToSend);
+                     */
+                    double sent = EmitUtils.sendToAcceptors(java.util.Collections.singleton(target), curHandlers, energyToSend);
+                    // Firestarter end
                     if (emitter instanceof TileEntityInductionPort) {
                         //Streamline sideless removal method for induction port.
                         ((TileEntityInductionPort) emitter).removeEnergy(sent, false);

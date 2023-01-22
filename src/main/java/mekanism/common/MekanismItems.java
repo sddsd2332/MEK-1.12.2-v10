@@ -54,7 +54,7 @@ public class MekanismItems {
     public static final Item Balloon = new ItemBalloon();
 
     public static final ItemMekTool MekTool = new ItemMekTool();
-//    public static final ItemMekaSuitHelmet MekaSuitHelmet = new ItemMekaSuitHelmet();
+  //  public static final ItemMekaSuitHelmet MekaSuitHelmet = new ItemMekaSuitHelmet();
  //   public static final ItemMekaSuitChest MekaSuitChest = new ItemMekaSuitChest();
 
 

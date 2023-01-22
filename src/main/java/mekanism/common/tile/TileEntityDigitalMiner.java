@@ -175,7 +175,7 @@ public class TileEntityDigitalMiner extends TileEntityElectricBlock implements I
 
             ChargeUtils.discharge(27, this);
 
-            if (MekanismUtils.canFunction(this) && running && getEnergy() >= getPerTick() && searcher.state == State.FINISHED && oresToMine.size() > 0) {
+            if (MekanismUtils.canFunction(this) && running && getEnergy() >= getPerTick() && searcher.state == State.FINISHED && !oresToMine.isEmpty()) {
                 setActive(true);
                 if (delay > 0) {
                     delay--;
@@ -479,7 +479,8 @@ public class TileEntityDigitalMiner extends TileEntityElectricBlock implements I
 
     public void start() {
         if (searcher.state == State.IDLE) {
-            searcher.setChunkCache(new ChunkCache(getWorld(), getStartingCoord().getPos(), getStartingCoord().getPos().add(radius, maxY - minY, radius), 0));
+            BlockPos startingPos = getStartingCoord().getPos();
+            searcher.setChunkCache(new ChunkCache(getWorld(), startingPos, startingPos.add(getDiameter(), maxY - minY + 1, getDiameter()), 0));
             searcher.start();
         }
         running = true;

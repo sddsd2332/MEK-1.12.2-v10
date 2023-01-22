@@ -276,7 +276,7 @@ public class ClientProxy extends CommonProxy {
         registerItemRender(MekanismItems.TierInstaller);
         registerItemRender(MekanismItems.OtherDust);
 
-      //  registerItemRender(MekanismItems.MekaSuitHelmet);
+     //   registerItemRender(MekanismItems.MekaSuitHelmet);
     //    registerItemRender(MekanismItems.MekaSuitChest);
 
         ModelBakery.registerItemVariants(MekanismItems.WalkieTalkie, ItemWalkieTalkie.OFF_MODEL);
@@ -293,7 +293,6 @@ public class ClientProxy extends CommonProxy {
         MekanismItems.ScubaTank.setTileEntityItemStackRenderer(new RenderScubaTank());
         MekanismItems.FreeRunners.setTileEntityItemStackRenderer(new RenderFreeRunners());
         MekanismItems.AtomicDisassembler.setTileEntityItemStackRenderer(new RenderAtomicDisassembler());
-        MekanismItems.MekTool.setTileEntityItemStackRenderer(new RenderMekTool());
         MekanismItems.Flamethrower.setTileEntityItemStackRenderer(new RenderFlameThrower());
         Item.getItemFromBlock(MekanismBlocks.EnergyCube).setTileEntityItemStackRenderer(new RenderEnergyCubeItem());
         Item.getItemFromBlock(MekanismBlocks.MachineBlock).setTileEntityItemStackRenderer(new RenderMachineItem());
@@ -303,7 +302,8 @@ public class ClientProxy extends CommonProxy {
         Item.getItemFromBlock(MekanismBlocks.BasicBlock2).setTileEntityItemStackRenderer(new RenderBasicBlockItem());
         Item.getItemFromBlock(MekanismBlocks.BasicBlock3).setTileEntityItemStackRenderer(new RenderBasicBlockItem());
 
-   //     MekanismItems.MekaSuitHelmet.setTileEntityItemStackRenderer(new RenderMekaSuitHelmet());
+        MekanismItems.MekTool.setTileEntityItemStackRenderer(new RenderMekTool());
+    //    MekanismItems.MekaSuitHelmet.setTileEntityItemStackRenderer(new RenderMekaSuitHelmet());
     //    MekanismItems.MekaSuitChest.setTileEntityItemStackRenderer(new RenderMekaSuitChest());
     }
 
@@ -799,6 +799,10 @@ public class ClientProxy extends CommonProxy {
                 return new GuiCellExtractor(player.inventory, (TileEntityChanceMachine) tileEntity);
             case 71:
                 return new GuiCellSeparator(player.inventory, (TileEntityCellSeparator) tileEntity);
+            /*case 72:
+                return new GuiFactory2(player.inventory, (TileEntityFactory) tileEntity);
+
+             */
         }
         return null;
     }
@@ -931,8 +935,10 @@ public class ClientProxy extends CommonProxy {
         ModelResourceLocation FlamethrowerRL = getInventoryMRL("Flamethrower");
         modelRegistry.putObject(FlamethrowerRL, RenderFlameThrower.model = new ItemLayerWrapper(modelRegistry.getObject(FlamethrowerRL)));
 
-        ModelResourceLocation MekaSuitHelmetRL = getInventoryMRL("MekaSuitHelmet");
-        modelRegistry.putObject(MekaSuitHelmetRL, RenderMekaSuitHelmet.model = new ItemLayerWrapper(modelRegistry.getObject(MekaSuitHelmetRL)));
+
+        /*取消对Meka Suit在GUI中的3D渲染**/
+        //ModelResourceLocation MekaSuitHelmetRL = getInventoryMRL("MekaSuitHelmet");
+        // modelRegistry.putObject(MekaSuitHelmetRL, RenderMekaSuitHelmet.model = new ItemLayerWrapper(modelRegistry.getObject(MekaSuitHelmetRL)));
 
         ModelResourceLocation MekaSuitChestRL = getInventoryMRL("MekaSuitChest");
         modelRegistry.putObject(MekaSuitChestRL, RenderMekaSuitChest.model = new ItemLayerWrapper(modelRegistry.getObject(MekaSuitChestRL)));

@@ -916,7 +916,7 @@ public class Mekanism {
 
         MinecraftForge.EVENT_BUS.register(MekanismItems.GasMask);
         MinecraftForge.EVENT_BUS.register(MekanismItems.FreeRunners);
-    //    MinecraftForge.EVENT_BUS.register(MekanismItems.MekaSuitHelmet);
+      //  MinecraftForge.EVENT_BUS.register(MekanismItems.MekaSuitHelmet);
 
         if (Loader.isModLoaded("mcmultipart")) {
             //Set up multiparts

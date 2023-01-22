@@ -31,7 +31,7 @@ import net.minecraftforge.fluids.FluidTank;
 
 public class FusionReactor {
 
-    public static final int MAX_INJECTION = 98;//this is the effective cap in the GUI, as text field is limited to 2 chars
+    public static final int MAX_INJECTION = 1000;//this is the effective cap in the GUI, as text field is limited to 4 chars
     //Reaction characteristics
     public static double burnTemperature = TemperatureUnit.AMBIENT.convertFromK(1E8, true);
     public static double burnRatio = 1;
@@ -134,7 +134,13 @@ public class FusionReactor {
     public void injectFuel() {
         int amountNeeded = getFuelTank().getNeeded();
         int amountAvailable = 2 * Math.min(getDeuteriumTank().getStored(), getTritiumTank().getStored());
+        if (injectionRate >MAX_INJECTION + 1){
+            injectionRate = MAX_INJECTION;
+        }
         int amountToInject = Math.min(amountNeeded, Math.min(amountAvailable, injectionRate));
+        if (amountToInject >MAX_INJECTION){
+            amountToInject = MAX_INJECTION;
+        }
         amountToInject -= amountToInject % 2;
         getDeuteriumTank().draw(amountToInject / 2, true);
         getTritiumTank().draw(amountToInject / 2, true);
@@ -345,8 +351,14 @@ public class FusionReactor {
     }
 
     public void setInjectionRate(int rate) {
+        if (injectionRate >MAX_INJECTION + 1){
+            injectionRate = MAX_INJECTION;
+        }
         injectionRate = rate;
         int capRate = Math.min(Math.max(1, rate), MAX_INJECTION);
+        if (capRate > MAX_INJECTION){
+            capRate = MAX_INJECTION;
+        }
         capRate -= capRate % 2;
 
         controller.waterTank.setCapacity(TileEntityReactorController.MAX_WATER * capRate);

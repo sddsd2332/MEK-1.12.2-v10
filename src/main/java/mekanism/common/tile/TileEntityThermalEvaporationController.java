@@ -52,7 +52,7 @@ public class TileEntityThermalEvaporationController extends TileEntityThermalEva
     public FluidTank outputTank = new FluidTank(MAX_OUTPUT);
 
     public Set<Coord4D> tankParts = new HashSet<>();
-    public IEvaporationSolar[] solars = new IEvaporationSolar[4];
+    public IEvaporationSolar[] solars = new IEvaporationSolar[MAX_SOLARS];
 
     public boolean temperatureSet = false;
 
