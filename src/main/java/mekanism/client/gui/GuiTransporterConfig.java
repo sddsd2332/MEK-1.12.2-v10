@@ -102,7 +102,7 @@ public class GuiTransporterConfig extends GuiMekanismTile<TileEntityContainerBlo
         String text = LangUtils.localize("gui.configuration.transporter");
         fontRenderer.drawString(text, (xSize / 2) - (fontRenderer.getStringWidth(text) / 2), 5, 0x404040);
         text = LangUtils.localize("gui.strictInput") + " (" + LangUtils.transOnOff(configurable.getEjector().hasStrictInput()) + ")";
-        renderScaledText(text, 53, 17, 0x00CD00, 70);
+        renderScaledText(text, 53, 17, 0x33ff99, 70);
         fontRenderer.drawString(LangUtils.localize("gui.input"), 48, 81, 0x787878);
         fontRenderer.drawString(LangUtils.localize("gui.output"), 114, 68, 0x787878);
         int xAxis = mouseX - guiLeft;

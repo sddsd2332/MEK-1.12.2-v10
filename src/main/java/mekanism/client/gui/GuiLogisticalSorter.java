@@ -173,15 +173,15 @@ public class GuiLogisticalSorter extends GuiFilterHolder<TileEntityLogisticalSor
 
         // Write to info display
         fontRenderer.drawString(tileEntity.getName(), 43, 6, 0x404040);
-        fontRenderer.drawString(LangUtils.localize("gui.filters") + ":", 11, 19, 0x00CD00);
-        fontRenderer.drawString("T: " + tileEntity.filters.size(), 11, 28, 0x00CD00);
-        fontRenderer.drawString(LangUtils.localize("mekanism.gui.logisticalSorter.singleItem") + ":", 12, 48, 0x00CD00);
-        fontRenderer.drawString(LangUtils.transOnOff(tileEntity.singleItem), 27, 60, 0x00CD00);
-        fontRenderer.drawString(LangUtils.localize("mekanism.gui.logisticalSorter.roundRobin") + ":", 12, 74, 0x00CD00);
-        fontRenderer.drawString(LangUtils.transOnOff(tileEntity.roundRobin), 27, 86, 0x00CD00);
-        fontRenderer.drawString(LangUtils.localize("mekanism.gui.logisticalSorter.autoEject") + ":", 12, 100, 0x00CD00);
-        fontRenderer.drawString(LangUtils.transOnOff(tileEntity.autoEject), 27, 112, 0x00CD00);
-        fontRenderer.drawString(LangUtils.localize("mekanism.gui.logisticalSorter.default") + ":", 12, 126, 0x00CD00);
+        fontRenderer.drawString(LangUtils.localize("gui.filters") + ":", 11, 19, 0x33ff99);
+        fontRenderer.drawString("T: " + tileEntity.filters.size(), 11, 28, 0x33ff99);
+        fontRenderer.drawString(LangUtils.localize("mekanism.gui.logisticalSorter.singleItem") + ":", 12, 48, 0x33ff99);
+        fontRenderer.drawString(LangUtils.transOnOff(tileEntity.singleItem), 27, 60, 0x33ff99);
+        fontRenderer.drawString(LangUtils.localize("mekanism.gui.logisticalSorter.roundRobin") + ":", 12, 74, 0x33ff99);
+        fontRenderer.drawString(LangUtils.transOnOff(tileEntity.roundRobin), 27, 86, 0x33ff99);
+        fontRenderer.drawString(LangUtils.localize("mekanism.gui.logisticalSorter.autoEject") + ":", 12, 100, 0x33ff99);
+        fontRenderer.drawString(LangUtils.transOnOff(tileEntity.autoEject), 27, 112, 0x33ff99);
+        fontRenderer.drawString(LangUtils.localize("mekanism.gui.logisticalSorter.default") + ":", 12, 126, 0x33ff99);
 
         // Draw filters
         for (int i = 0; i < 4; i++) {

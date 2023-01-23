@@ -134,7 +134,7 @@ public class GuiUpgradeManagement extends GuiMekanism {
     private void renderText(String text, int x, int y, float size, boolean scale) {
         GlStateManager.pushMatrix();
         GlStateManager.scale(size, size, size);
-        fontRenderer.drawString(text, scale ? (int) ((1F / size) * x) : x, scale ? (int) ((1F / size) * y) : y, 0x00CD00);
+        fontRenderer.drawString(text, scale ? (int) ((1F / size) * x) : x, scale ? (int) ((1F / size) * y) : y, 0x33ff99);
         GlStateManager.popMatrix();
     }
 

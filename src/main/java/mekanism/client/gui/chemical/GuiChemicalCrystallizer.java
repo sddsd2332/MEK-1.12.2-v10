@@ -74,15 +74,15 @@ public class GuiChemicalCrystallizer extends GuiMekanismTile<TileEntityChemicalC
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString(tileEntity.getName(), 37, 4, 0x404040);
         if (tileEntity.inputTank.getGas() != null) {
-            fontRenderer.drawString(tileEntity.inputTank.getGas().getGas().getLocalizedName(), 29, 15, 0x00CD00);
+            fontRenderer.drawString(tileEntity.inputTank.getGas().getGas().getLocalizedName(), 29, 15, 0x33ff99);
             if (tileEntity.inputTank.getGas().getGas() instanceof OreGas) {
-                fontRenderer.drawString("(" + ((OreGas) tileEntity.inputTank.getGas().getGas()).getOreName() + ")", 29, 24, 0x00CD00);
+                fontRenderer.drawString("(" + ((OreGas) tileEntity.inputTank.getGas().getGas()).getOreName() + ")", 29, 24, 0x33ff99);
             } else {
                 CrystallizerRecipe recipe = tileEntity.getRecipe();
                 if (recipe == null) {
-                    fontRenderer.drawString("(" + LangUtils.localize("gui.noRecipe") + ")", 29, 24, 0x00CD00);
+                    fontRenderer.drawString("(" + LangUtils.localize("gui.noRecipe") + ")", 29, 24, 0x33ff99);
                 } else {
-                    fontRenderer.drawString("(" + recipe.recipeOutput.output.getDisplayName() + ")", 29, 24, 0x00CD00);
+                    fontRenderer.drawString("(" + recipe.recipeOutput.output.getDisplayName() + ")", 29, 24, 0x33ff99);
                 }
             }
         }
