@@ -48,7 +48,7 @@ import java.util.*;
 
 @SuppressWarnings("rawtypes")
 public class TileEntityFactory extends TileEntityMachine implements IComputerIntegration, ISideConfiguration, IGasHandler, ISpecialConfigData, ITierUpgradeable,
-      ISustainedData, IComparatorSupport {
+        ISustainedData, IComparatorSupport {
 
     private static final String[] methods = new String[]{"getEnergy", "getProgress", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded"};
     private final MachineRecipe[] cachedRecipe;
@@ -126,8 +126,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
 
         ejectorComponent = new TileComponentEjector(this);
         ejectorComponent.setOutputData(TransmissionType.ITEM, configComponent.getOutputs(TransmissionType.ITEM).get(2));
-
-
     }
 
     public TileEntityFactory(FactoryTier type, MachineType machine) {
@@ -197,7 +195,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             int output = getOutputSlot(i);
             if (!inventory.get(output).isEmpty()) {
                 int newOutput = 5 + factory.tier.processes + i;
-                    factory.inventory.set(newOutput, inventory.get(output));
+                factory.inventory.set(newOutput, inventory.get(output));
             }
         }
 
@@ -260,9 +258,11 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             }
 
             double prev = getEnergy();
-
+            if (tier == FactoryTier.CREATIVE){
+                energyPerTick = 0;
+                electricityStored = Integer.MAX_VALUE;
+            }
             secondaryEnergyThisTick = recipeType.fuelEnergyUpgrades() ? StatUtils.inversePoisson(secondaryEnergyPerTick) : (int) Math.ceil(secondaryEnergyPerTick);
-
             for (int process = 0; process < tier.processes; process++) {
                 if (MekanismUtils.canFunction(this) && canOperate(getInputSlot(process), getOutputSlot(process))
                         && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
@@ -298,7 +298,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                     break;
                 }
             }
-
             if (MekanismUtils.canFunction(this) && hasOperation && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
                 setActive(true);
             } else if (prevEnergy >= getEnergy()) {
@@ -464,7 +463,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         }
     }
 
-
     public ItemStack getRecipeOutput(MachineRecipe recipe) {
         if (recipe.recipeOutput instanceof ItemStackOutput) {
             return ((ItemStackOutput) recipe.recipeOutput).output;
@@ -534,7 +532,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         return cached;
     }
 
-
     /**
      * Checks if the cached recipe (or recipe for current factory if the cache is out of date) can produce a specific output.
      *
@@ -542,7 +539,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
      * @param fallbackInput Used if the cached recipe is null or to validate the cached recipe is not out of date.
      * @param output        The output we want.
      * @param updateCache   True to make the cached recipe get updated if it is out of date.
-     *
      * @return True if the recipe produces the given output.
      */
     public boolean inputProducesOutput(int slotID, ItemStack fallbackInput, ItemStack output, boolean updateCache) {
@@ -681,12 +677,12 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                 InfuseObject pendingInfusionInput = InfuseRegistry.getObject(extra);
                 if (pendingInfusionInput != null) {
                     if (infuseStored.getType() == null || infuseStored.getType() == pendingInfusionInput.type) {
-                           if (infuseStored.getAmount() + pendingInfusionInput.stored <= maxInfuse) {
-                               infuseStored.increase(pendingInfusionInput);
-                               if (tier != FactoryTier.CREATIVE) {
-                                   extra.shrink(1);
-                               }
-                           }
+                        if (infuseStored.getAmount() + pendingInfusionInput.stored <= maxInfuse) {
+                            infuseStored.increase(pendingInfusionInput);
+                            if (tier != FactoryTier.CREATIVE) {
+                                extra.shrink(1);
+                            }
+                        }
                     }
                 }
             }
@@ -796,7 +792,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
     }
 
     public int getScaledRecipeProgress(int i) {
-
         return recipeTicks * i / RECIPE_TICKS_REQUIRED;
     }
 
@@ -844,8 +839,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return recipe != null && recipe.canOperate(inventory, inputSlot, outputSlot, 4);
         }
 
-
-
         if (recipeType == RecipeType.INFUSING) {
             if (cachedRecipe[process] instanceof MetallurgicInfuserRecipe && ((MetallurgicInfuserRecipe) cachedRecipe[process]).inputMatches(inventory, inputSlot, infuseStored)) {
                 return ((MetallurgicInfuserRecipe) cachedRecipe[process]).canOperate(inventory, inputSlot, outputSlot, infuseStored);
@@ -864,7 +857,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         }
         BasicMachineRecipe<?> recipe = recipeType.getRecipe(inventory.get(inputSlot));
         cachedRecipe[process] = recipe;
-        return recipe != null && recipe.canOperate(inventory , inputSlot, outputSlot);
+        return recipe != null && recipe.canOperate(inventory, inputSlot, outputSlot);
 
     }
 
@@ -1070,7 +1063,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                     return new Object[]{"No such operation found."};
                 }
                 return new Object[]{
-                      canOperate(getInputSlot((Integer) arguments[0]), getOutputSlot((Integer) arguments[0]))};
+                        canOperate(getInputSlot((Integer) arguments[0]), getOutputSlot((Integer) arguments[0]))};
             case 4:
                 return new Object[]{getMaxEnergy()};
             case 5:
@@ -1144,7 +1137,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return false;
         }
         return capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.CONFIG_CARD_CAPABILITY
-               || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY || super.hasCapability(capability, side);
+                || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override
@@ -1153,7 +1146,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return null;
         }
         if (capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.CONFIG_CARD_CAPABILITY
-            || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY) {
+                || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY) {
             return (T) this;
         }
         return super.getCapability(capability, side);

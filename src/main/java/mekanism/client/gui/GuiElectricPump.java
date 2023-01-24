@@ -47,10 +47,10 @@ public class GuiElectricPump extends GuiMekanismTile<TileEntityElectricPump> {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 94) + 2, 0x404040);
-        fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), 51, 26, 0x00CD00);
+        fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), 51, 26, 0x33ff99);
         String text = tileEntity.fluidTank.getFluid() != null ? LangUtils.localizeFluidStack(tileEntity.fluidTank.getFluid()) + ": " + tileEntity.fluidTank.getFluid().amount
                                                               : LangUtils.localize("gui.noFluid");
-        renderScaledText(text, 51, 35, 0x00CD00, 74);
+        renderScaledText(text, 51, 35, 0x33ff99, 74);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 

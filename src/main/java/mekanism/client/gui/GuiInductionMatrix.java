@@ -32,10 +32,10 @@ public class GuiInductionMatrix extends GuiMekanismTile<TileEntityInductionCasin
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 94) + 2, 0x404040);
-        fontRenderer.drawString(LangUtils.localize("gui.input") + ":", 53, 26, 0x00CD00);
-        fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getLastInput()) + "/t", 53, 35, 0x00CD00);
-        fontRenderer.drawString(LangUtils.localize("gui.output") + ":", 53, 44, 0x00CD00);
-        fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getLastOutput()) + "/t", 53, 53, 0x00CD00);
+        fontRenderer.drawString(LangUtils.localize("gui.input") + ":", 53, 26, 0x33ff99);
+        fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getLastInput()) + "/t", 53, 35, 0x33ff99);
+        fontRenderer.drawString(LangUtils.localize("gui.output") + ":", 53, 44, 0x33ff99);
+        fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getLastOutput()) + "/t", 53, 53, 0x33ff99);
         int xAxis = mouseX - guiLeft;
         int yAxis = mouseY - guiTop;
         if (xAxis >= 7 && xAxis <= 39 && yAxis >= 14 && yAxis <= 72) {

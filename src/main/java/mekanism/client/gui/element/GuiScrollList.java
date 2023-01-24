@@ -134,7 +134,7 @@ public class GuiScrollList extends GuiElement {
             for (int i = 0; i < size; i++) {
                 int index = getScrollIndex() + i;
                 if (index <= textEntries.size() - 1) {
-                    renderScaledText(textEntries.get(index), xPosition + 1, yPosition + 1 + (10 * i), 0x00CD00, xSize - 6);
+                    renderScaledText(textEntries.get(index), xPosition + 1, yPosition + 1 + (10 * i), 0x33ff99, xSize - 6);
                 }
             }
         }
