@@ -26,7 +26,7 @@ public class GuiConfigTypeTab extends GuiElement {
     }
 
     private static ResourceLocation getResource(TransmissionType t) {
-        return MekanismUtils.getResource(ResourceType.GUI_ELEMENT, "Gui" + t.getTransmission() + "Tab_colored.png");
+        return MekanismUtils.getResource(ResourceType.GUI_ELEMENT, "Gui" + t.getTransmission() + "Tab.png");
     }
 
     public void setY(int y) {
