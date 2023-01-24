@@ -40,28 +40,31 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMachine<NucleosynthesizerInput, NucleosynthesizerOutput, NucleosynthesizerRecipe> implements  IGasHandler,
+public class TileEntityAntiprotonicNucleosynthesizer
+        extends TileEntityBasicMachine<NucleosynthesizerInput, NucleosynthesizerOutput, NucleosynthesizerRecipe>
+        implements IGasHandler,
         ISustainedData, ITankManager {
 
-    private static final String[] methods = new String[]{"getEnergy", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded",
-             "getGasStored"};
+    private static final String[] methods = new String[] { "getEnergy", "getProgress", "isActive", "facing",
+            "canOperate", "getMaxEnergy", "getEnergyNeeded",
+            "getGasStored" };
     public GasTank inputGasTank = new GasTank(10000);
 
-
     public TileEntityAntiprotonicNucleosynthesizer() {
-        super("prc", MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER, 3, 100, new ResourceLocation(Mekanism.MODID, "gui/GuiPRC.png"));
-        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY,  TransmissionType.GAS);
+        super("prc", MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER, 3, 100,
+                new ResourceLocation(Mekanism.MODID, "gui/GuiPRC.png"));
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY,
+                TransmissionType.GAS);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.DARK_RED, new int[]{0}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.DARK_GREEN, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.DARK_BLUE, new int[]{2}));
-        configComponent.setConfig(TransmissionType.ITEM, new byte[]{2, 1, 0, 0, 0, 3});
-
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[] { 0 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.GREEN, new int[] { 1 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.BLUE, new int[] { 2 }));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 2, 1, 0, 0, 0, 3 });
 
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.DARK_RED, new int[]{1}));
-        configComponent.setConfig(TransmissionType.GAS, new byte[]{0, 0, 0, 0, 1, 0});
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.RED, new int[] { 1 }));
+        configComponent.setConfig(TransmissionType.GAS, new byte[] { 0, 0, 0, 0, 1, 0 });
 
         configComponent.setInputConfig(TransmissionType.ENERGY);
 
@@ -88,11 +91,14 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
                 setActive(true);
                 if ((operatingTicks + 1) < ticksRequired) {
                     operatingTicks++;
-                    electricityStored -= MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK + recipe.extraEnergy);
-                } else if ((operatingTicks + 1) >= ticksRequired && getEnergy() >= MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK + recipe.extraEnergy)) {
+                    electricityStored -= MekanismUtils.getEnergyPerTick(this,
+                            BASE_ENERGY_PER_TICK + recipe.extraEnergy);
+                } else if ((operatingTicks + 1) >= ticksRequired && getEnergy() >= MekanismUtils.getEnergyPerTick(this,
+                        BASE_ENERGY_PER_TICK + recipe.extraEnergy)) {
                     operate(recipe);
                     operatingTicks = 0;
-                    electricityStored -= MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK + recipe.extraEnergy);
+                    electricityStored -= MekanismUtils.getEnergyPerTick(this,
+                            BASE_ENERGY_PER_TICK + recipe.extraEnergy);
                 }
             } else {
                 BASE_TICKS_REQUIRED = 100;
@@ -131,7 +137,7 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
 
     @Override
     public NucleosynthesizerInput getInput() {
-        return new NucleosynthesizerInput(inventory.get(0),  inputGasTank.getGas());
+        return new NucleosynthesizerInput(inventory.get(0), inputGasTank.getGas());
     }
 
     @Override
@@ -202,21 +208,21 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         switch (method) {
             case 0:
-                return new Object[]{getEnergy()};
+                return new Object[] { getEnergy() };
             case 1:
-                return new Object[]{operatingTicks};
+                return new Object[] { operatingTicks };
             case 2:
-                return new Object[]{isActive};
+                return new Object[] { isActive };
             case 3:
-                return new Object[]{facing};
+                return new Object[] { facing };
             case 4:
-                return new Object[]{canOperate(getRecipe())};
+                return new Object[] { canOperate(getRecipe()) };
             case 5:
-                return new Object[]{getMaxEnergy()};
+                return new Object[] { getMaxEnergy() };
             case 6:
-                return new Object[]{getMaxEnergy() - getEnergy()};
+                return new Object[] { getMaxEnergy() - getEnergy() };
             case 7:
-                return new Object[]{inputGasTank.getStored()};
+                return new Object[] { inputGasTank.getStored() };
             default:
                 throw new NoSuchMethodException();
         }
@@ -237,7 +243,8 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1) && inputGasTank.canReceive(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1)
+                && inputGasTank.canReceive(type);
     }
 
     @Override
@@ -248,7 +255,7 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
     @Nonnull
     @Override
     public GasTankInfo[] getTankInfo() {
-        return new GasTankInfo[]{inputGasTank};
+        return new GasTankInfo[] { inputGasTank };
     }
 
     @Override
@@ -256,7 +263,7 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
         if (isCapabilityDisabled(capability, side)) {
             return false;
         }
-        return capability == Capabilities.GAS_HANDLER_CAPABILITY  || super.hasCapability(capability, side);
+        return capability == Capabilities.GAS_HANDLER_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override
@@ -271,7 +278,8 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
-        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
+        return configComponent.isCapabilityDisabled(capability, side, facing)
+                || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
@@ -290,6 +298,6 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
 
     @Override
     public Object[] getTanks() {
-        return new Object[]{inputGasTank};
+        return new Object[] { inputGasTank };
     }
 }

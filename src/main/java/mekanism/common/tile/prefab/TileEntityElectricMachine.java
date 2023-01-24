@@ -21,12 +21,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 
-public abstract class TileEntityElectricMachine<RECIPE extends BasicMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<ItemStackInput, ItemStackOutput, RECIPE> {
+public abstract class TileEntityElectricMachine<RECIPE extends BasicMachineRecipe<RECIPE>>
+        extends TileEntityUpgradeableMachine<ItemStackInput, ItemStackOutput, RECIPE> {
 
-    private static final String[] methods = new String[]{"getEnergy", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded"};
+    private static final String[] methods = new String[] { "getEnergy", "getProgress", "isActive", "facing",
+            "canOperate", "getMaxEnergy", "getEnergyNeeded" };
 
     /**
-     * A simple electrical machine. This has 3 slots - the input slot (0), the energy slot (1), output slot (2), and the upgrade slot (3). It will not run if it does not
+     * A simple electrical machine. This has 3 slots - the input slot (0), the
+     * energy slot (1), output slot (2), and the upgrade slot (3). It will not run
+     * if it does not
      * have enough energy.
      *
      * @param soundPath     - location of the sound effect
@@ -38,11 +42,11 @@ public abstract class TileEntityElectricMachine<RECIPE extends BasicMachineRecip
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.DARK_RED, new int[]{0}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.DARK_BLUE, new int[]{2}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.DARK_GREEN, new int[]{1}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[] { 0 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.BLUE, new int[] { 2 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.GREEN, new int[] { 1 }));
 
-        configComponent.setConfig(TransmissionType.ITEM, new byte[]{3, 1, 0, 0, 0, 2});
+        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 3, 1, 0, 0, 0, 2 });
         configComponent.setInputConfig(TransmissionType.ENERGY);
 
         inventory = NonNullList.withSize(4, ItemStack.EMPTY);
@@ -89,7 +93,8 @@ public abstract class TileEntityElectricMachine<RECIPE extends BasicMachineRecip
         if (slotID == 2) {
             return false;
         } else if (slotID == 3) {
-            return itemstack.getItem() == MekanismItems.SpeedUpgrade || itemstack.getItem() == MekanismItems.EnergyUpgrade;
+            return itemstack.getItem() == MekanismItems.SpeedUpgrade
+                    || itemstack.getItem() == MekanismItems.EnergyUpgrade;
         } else if (slotID == 0) {
             return RecipeHandler.isInRecipe(itemstack, getRecipes());
         } else if (slotID == 1) {
@@ -140,19 +145,19 @@ public abstract class TileEntityElectricMachine<RECIPE extends BasicMachineRecip
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         switch (method) {
             case 0:
-                return new Object[]{getEnergy()};
+                return new Object[] { getEnergy() };
             case 1:
-                return new Object[]{operatingTicks};
+                return new Object[] { operatingTicks };
             case 2:
-                return new Object[]{isActive};
+                return new Object[] { isActive };
             case 3:
-                return new Object[]{facing};
+                return new Object[] { facing };
             case 4:
-                return new Object[]{canOperate(getRecipe())};
+                return new Object[] { canOperate(getRecipe()) };
             case 5:
-                return new Object[]{getMaxEnergy()};
+                return new Object[] { getMaxEnergy() };
             case 6:
-                return new Object[]{getMaxEnergy() - getEnergy()};
+                return new Object[] { getMaxEnergy() - getEnergy() };
             default:
                 throw new NoSuchMethodException();
         }

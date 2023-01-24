@@ -13,18 +13,20 @@ import mekanism.common.recipe.machines.FarmRecipe;
 import mekanism.common.util.InventoryUtils;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityOrganicFarm extends TileEntityFarmMachine<FarmRecipe>{
+public class TileEntityOrganicFarm extends TileEntityFarmMachine<FarmRecipe> {
     public TileEntityOrganicFarm() {
-        super("injection", MachineType.ORGANIC_FARM,BASE_TICKS_REQUIRED, BASE_GAS_PER_TICK);
+        super("injection", MachineType.ORGANIC_FARM, BASE_TICKS_REQUIRED, BASE_GAS_PER_TICK);
         configComponent.addSupported(TransmissionType.GAS);
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.DARK_RED, new int[]{0}));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.RED, new int[] { 0 }));
         configComponent.fillConfig(TransmissionType.GAS, 1);
         configComponent.setCanEject(TransmissionType.GAS, false);
     }
 
     @Override
-    public Map<AdvancedMachineInput, FarmRecipe> getRecipes() {return Recipe.ORGANIC_FARM.get();}
+    public Map<AdvancedMachineInput, FarmRecipe> getRecipes() {
+        return Recipe.ORGANIC_FARM.get();
+    }
 
     @Override
     public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
@@ -36,10 +38,10 @@ public class TileEntityOrganicFarm extends TileEntityFarmMachine<FarmRecipe>{
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && gasTank.canReceive(type) && isValidGas(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && gasTank.canReceive(type)
+                && isValidGas(type);
 
     }
-
 
     @Override
     public boolean isValidGas(Gas gas) {
@@ -55,6 +57,5 @@ public class TileEntityOrganicFarm extends TileEntityFarmMachine<FarmRecipe>{
     public boolean useStatisticalMechanics() {
         return true;
     }
-
 
 }

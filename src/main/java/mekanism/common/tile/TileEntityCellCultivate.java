@@ -17,19 +17,18 @@ import java.util.Map;
 
 public class TileEntityCellCultivate extends TileEntityCultivateElectricMachine<CellCultivateRecipe> {
 
-    public  TileEntityCellCultivate(){
-        super("combiner", MachineType.CELL_CULTIVATE,BASE_TICKS_REQUIRED, BASE_GAS_PER_TICK);
+    public TileEntityCellCultivate() {
+        super("combiner", MachineType.CELL_CULTIVATE, BASE_TICKS_REQUIRED, BASE_GAS_PER_TICK);
         configComponent.addSupported(TransmissionType.GAS);
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.DARK_RED, new int[]{0}));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.RED, new int[] { 0 }));
         configComponent.fillConfig(TransmissionType.GAS, 1);
         configComponent.setCanEject(TransmissionType.GAS, false);
-
 
     }
 
     @Override
-    public Map<CultivateMachineInput,CellCultivateRecipe> getRecipes() {
+    public Map<CultivateMachineInput, CellCultivateRecipe> getRecipes() {
         return RecipeHandler.Recipe.CELL_CULTIVATE.get();
     }
 
@@ -43,9 +42,11 @@ public class TileEntityCellCultivate extends TileEntityCultivateElectricMachine<
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && gasTank.canReceive(type) && isValidGas(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && gasTank.canReceive(type)
+                && isValidGas(type);
 
     }
+
     @Override
     public boolean isValidGas(Gas gas) {
         return RecipeHandler.Recipe.CELL_CULTIVATE.containsRecipe(gas);

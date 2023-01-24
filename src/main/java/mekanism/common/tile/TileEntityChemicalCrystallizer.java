@@ -37,7 +37,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine implements IGasHandler, ISideConfiguration, ISustainedData, ITankManager, IConfigCardAccess {
+public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
+        implements IGasHandler, ISideConfiguration, ISustainedData, ITankManager, IConfigCardAccess {
 
     public static final int MAX_GAS = 10000;
 
@@ -50,17 +51,18 @@ public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
 
     public TileEntityChemicalCrystallizer() {
         super("machine.crystallizer", MachineType.CHEMICAL_CRYSTALLIZER, 3, 200);
-        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY,
+                TransmissionType.GAS);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Gas", EnumColor.PURPLE, new int[]{0}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.DARK_BLUE, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.DARK_GREEN, new int[]{2}));
-        configComponent.setConfig(TransmissionType.ITEM, new byte[]{0, 3, 0, 0, 1, 2});
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Gas", EnumColor.ORANGE, new int[] { 0 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.BLUE, new int[] { 1 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.GREEN, new int[] { 2 }));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 0, 3, 0, 0, 1, 2 });
 
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.YELLOW, new int[]{0}));
-        configComponent.setConfig(TransmissionType.GAS, new byte[]{-1, -1, -1, -1, 1, -1});
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.YELLOW, new int[] { 0 }));
+        configComponent.setConfig(TransmissionType.GAS, new byte[] { -1, -1, -1, -1, 1, -1 });
         configComponent.setCanEject(TransmissionType.GAS, false);
 
         configComponent.setInputConfig(TransmissionType.ENERGY);
@@ -156,7 +158,7 @@ public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
         return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && inputTank.canReceive(type) &&
-               Recipe.CHEMICAL_CRYSTALLIZER.containsRecipe(type);
+                Recipe.CHEMICAL_CRYSTALLIZER.containsRecipe(type);
     }
 
     @Override
@@ -180,7 +182,7 @@ public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
     @Override
     @Nonnull
     public GasTankInfo[] getTankInfo() {
-        return new GasTankInfo[]{inputTank};
+        return new GasTankInfo[] { inputTank };
     }
 
     @Override
@@ -188,7 +190,8 @@ public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
         if (isCapabilityDisabled(capability, side)) {
             return false;
         }
-        return capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.CONFIG_CARD_CAPABILITY || super.hasCapability(capability, side);
+        return capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.CONFIG_CARD_CAPABILITY
+                || super.hasCapability(capability, side);
     }
 
     @Override
@@ -204,14 +207,17 @@ public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
-        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
+        return configComponent.isCapabilityDisabled(capability, side, facing)
+                || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
     public boolean isItemValidForSlot(int slotID, @Nonnull ItemStack itemstack) {
         if (slotID == 0) {
-            return !itemstack.isEmpty() && itemstack.getItem() instanceof IGasItem && ((IGasItem) itemstack.getItem()).getGas(itemstack) != null &&
-                   Recipe.CHEMICAL_CRYSTALLIZER.containsRecipe(((IGasItem) itemstack.getItem()).getGas(itemstack).getGas());
+            return !itemstack.isEmpty() && itemstack.getItem() instanceof IGasItem
+                    && ((IGasItem) itemstack.getItem()).getGas(itemstack) != null &&
+                    Recipe.CHEMICAL_CRYSTALLIZER
+                            .containsRecipe(((IGasItem) itemstack.getItem()).getGas(itemstack).getGas());
         } else if (slotID == 2) {
             return ChargeUtils.canBeDischarged(itemstack);
         }
@@ -221,7 +227,8 @@ public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
     @Override
     public boolean canExtractItem(int slotID, @Nonnull ItemStack itemstack, @Nonnull EnumFacing side) {
         if (slotID == 0) {
-            return !itemstack.isEmpty() && itemstack.getItem() instanceof IGasItem && ((IGasItem) itemstack.getItem()).getGas(itemstack) == null;
+            return !itemstack.isEmpty() && itemstack.getItem() instanceof IGasItem
+                    && ((IGasItem) itemstack.getItem()).getGas(itemstack) == null;
         } else if (slotID == 1) {
             return true;
         } else if (slotID == 2) {
@@ -265,6 +272,6 @@ public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
 
     @Override
     public Object[] getTanks() {
-        return new Object[]{inputTank};
+        return new Object[] { inputTank };
     }
 }

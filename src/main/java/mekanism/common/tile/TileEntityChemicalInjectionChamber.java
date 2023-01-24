@@ -20,7 +20,7 @@ public class TileEntityChemicalInjectionChamber extends TileEntityAdvancedElectr
         super("injection", MachineType.CHEMICAL_INJECTION_CHAMBER, BASE_TICKS_REQUIRED, BASE_GAS_PER_TICK);
         configComponent.addSupported(TransmissionType.GAS);
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.DARK_RED, new int[]{0}));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.RED, new int[] { 0 }));
         configComponent.fillConfig(TransmissionType.GAS, 1);
         configComponent.setCanEject(TransmissionType.GAS, false);
     }
@@ -40,7 +40,8 @@ public class TileEntityChemicalInjectionChamber extends TileEntityAdvancedElectr
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && gasTank.canReceive(type) && isValidGas(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && gasTank.canReceive(type)
+                && isValidGas(type);
 
     }
 

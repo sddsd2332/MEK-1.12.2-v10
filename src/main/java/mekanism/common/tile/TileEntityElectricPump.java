@@ -58,14 +58,15 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityElectricPump extends TileEntityElectricBlock implements IFluidHandlerWrapper, ISustainedTank, IConfigurable, IRedstoneControl, IUpgradeTile,
-      ITankManager, IComputerIntegration, ISecurityTile, IComparatorSupport {
+public class TileEntityElectricPump extends TileEntityElectricBlock
+        implements IFluidHandlerWrapper, ISustainedTank, IConfigurable, IRedstoneControl, IUpgradeTile,
+        ITankManager, IComputerIntegration, ISecurityTile, IComparatorSupport {
 
-    private static final int[] UPSLOTS = {0};
-    private static final int[] DOWNSLOTS = {1};
-    private static final int[] SIDESLOTS = {2};
+    private static final int[] UPSLOTS = { 0 };
+    private static final int[] DOWNSLOTS = { 1 };
+    private static final int[] SIDESLOTS = { 2 };
 
-    private static final String[] methods = new String[]{"reset"};
+    private static final String[] methods = new String[] { "reset" };
     /**
      * This pump's tank
      */
@@ -124,7 +125,8 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
                 if ((operatingTicks + 1) < ticksRequired) {
                     operatingTicks++;
                 } else {
-                    if (fluidTank.getFluid() == null || fluidTank.getFluid().amount + Fluid.BUCKET_VOLUME <= fluidTank.getCapacity()) {
+                    if (fluidTank.getFluid() == null
+                            || fluidTank.getFluid().amount + Fluid.BUCKET_VOLUME <= fluidTank.getCapacity()) {
                         if (!suck(true)) {
                             suckedLastOperation = false;
                             reset();
@@ -146,9 +148,12 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
         if (!world.isRemote) {
             if (fluidTank.getFluid() != null) {
                 TileEntity tileEntity = Coord4D.get(this).offset(EnumFacing.UP).getTileEntity(world);
-                if (CapabilityUtils.hasCapability(tileEntity, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.DOWN)) {
-                    IFluidHandler handler = CapabilityUtils.getCapability(tileEntity, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.DOWN);
-                    FluidStack toDrain = new FluidStack(fluidTank.getFluid(), Math.min(256 * (upgradeComponent.getUpgrades(Upgrade.SPEED) + 1), fluidTank.getFluidAmount()));
+                if (CapabilityUtils.hasCapability(tileEntity, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY,
+                        EnumFacing.DOWN)) {
+                    IFluidHandler handler = CapabilityUtils.getCapability(tileEntity,
+                            CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.DOWN);
+                    FluidStack toDrain = new FluidStack(fluidTank.getFluid(), Math
+                            .min(256 * (upgradeComponent.getUpgrades(Upgrade.SPEED) + 1), fluidTank.getFluidAmount()));
                     fluidTank.drain(handler.fill(toDrain, true), true);
                 }
             }
@@ -168,11 +173,13 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
         List<Coord4D> tempPumpList = Arrays.asList(recurringNodes.toArray(new Coord4D[0]));
         Collections.shuffle(tempPumpList);
 
-        //First see if there are any fluid blocks touching the pump - if so, sucks and adds the location to the recurring list
+        // First see if there are any fluid blocks touching the pump - if so, sucks and
+        // adds the location to the recurring list
         for (EnumFacing orientation : EnumFacing.VALUES) {
             Coord4D wrapper = Coord4D.get(this).offset(orientation);
             FluidStack fluid = MekanismUtils.getFluid(world, wrapper, hasFilter());
-            if (fluid != null && (activeType == null || fluid.getFluid() == activeType) && (fluidTank.getFluid() == null || fluidTank.getFluid().isFluidEqual(fluid))) {
+            if (fluid != null && (activeType == null || fluid.getFluid() == activeType)
+                    && (fluidTank.getFluid() == null || fluidTank.getFluid().isFluidEqual(fluid))) {
                 if (take) {
                     activeType = fluid.getFluid();
                     recurringNodes.add(wrapper);
@@ -185,11 +192,14 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
             }
         }
 
-        //Finally, go over the recurring list of nodes and see if there is a fluid block available to suck - if not, will iterate around the recurring block, attempt to suck,
-        //and then add the adjacent block to the recurring list
+        // Finally, go over the recurring list of nodes and see if there is a fluid
+        // block available to suck - if not, will iterate around the recurring block,
+        // attempt to suck,
+        // and then add the adjacent block to the recurring list
         for (Coord4D wrapper : tempPumpList) {
             FluidStack fluid = MekanismUtils.getFluid(world, wrapper, hasFilter());
-            if (fluid != null && (activeType == null || fluid.getFluid() == activeType) && (fluidTank.getFluid() == null || fluidTank.getFluid().isFluidEqual(fluid))) {
+            if (fluid != null && (activeType == null || fluid.getFluid() == activeType)
+                    && (fluidTank.getFluid() == null || fluidTank.getFluid().isFluidEqual(fluid))) {
                 if (take) {
                     activeType = fluid.getFluid();
                     fluidTank.fill(fluid, true);
@@ -200,12 +210,13 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
                 return true;
             }
 
-            //Add all the blocks surrounding this recurring node to the recurring node list
+            // Add all the blocks surrounding this recurring node to the recurring node list
             for (EnumFacing orientation : EnumFacing.VALUES) {
                 Coord4D side = wrapper.offset(orientation);
                 if (Coord4D.get(this).distanceTo(side) <= MekanismConfig.current().general.maxPumpRange.val()) {
                     fluid = MekanismUtils.getFluid(world, side, hasFilter());
-                    if (fluid != null && (activeType == null || fluid.getFluid() == activeType) && (fluidTank.getFluid() == null || fluidTank.getFluid().isFluidEqual(fluid))) {
+                    if (fluid != null && (activeType == null || fluid.getFluid() == activeType)
+                            && (fluidTank.getFluid() == null || fluidTank.getFluid().isFluidEqual(fluid))) {
                         if (take) {
                             activeType = fluid.getFluid();
                             recurringNodes.add(side);
@@ -306,7 +317,7 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
     @Override
     public boolean isItemValidForSlot(int slotID, @Nonnull ItemStack itemstack) {
         if (slotID == 0) {
-            //Only allow empty fluid containers
+            // Only allow empty fluid containers
             return FluidContainerUtils.isFluidContainer(itemstack) && FluidUtil.getFluidContained(itemstack) == null;
         } else if (slotID == 2) {
             return ChargeUtils.canBeDischarged(itemstack);
@@ -346,7 +357,7 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
     @Override
     public FluidTankInfo[] getTankInfo(EnumFacing direction) {
         if (direction == EnumFacing.UP) {
-            return new FluidTankInfo[]{fluidTank.getInfo()};
+            return new FluidTankInfo[] { fluidTank.getInfo() };
         }
         return PipeUtils.EMPTY;
     }
@@ -385,7 +396,8 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
     @Override
     public EnumActionResult onSneakRightClick(EntityPlayer player, EnumFacing side) {
         reset();
-        player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY + LangUtils.localize("tooltip.configurator.pumpReset")));
+        player.sendMessage(new TextComponentString(EnumColor.BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY
+                + LangUtils.localize("tooltip.configurator.pumpReset")));
         return EnumActionResult.SUCCESS;
     }
 
@@ -396,7 +408,9 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing side) {
-        return capability == Capabilities.CONFIGURABLE_CAPABILITY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, side);
+        return capability == Capabilities.CONFIGURABLE_CAPABILITY
+                || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
+                || super.hasCapability(capability, side);
     }
 
     @Override
@@ -433,7 +447,7 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
 
     @Override
     public Object[] getTanks() {
-        return new Object[]{fluidTank};
+        return new Object[] { fluidTank };
     }
 
     @Override
@@ -445,7 +459,7 @@ public class TileEntityElectricPump extends TileEntityElectricBlock implements I
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         if (method == 0) {
             reset();
-            return new Object[]{"Pump calculation reset."};
+            return new Object[] { "Pump calculation reset." };
         }
         throw new NoSuchMethodException();
     }

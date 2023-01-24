@@ -42,15 +42,18 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedMachineRecipe<RECIPE>> extends
-      TileEntityUpgradeableMachine<AdvancedMachineInput, ItemStackOutput, RECIPE> implements IGasHandler, ISustainedData {
+        TileEntityUpgradeableMachine<AdvancedMachineInput, ItemStackOutput, RECIPE>
+        implements IGasHandler, ISustainedData {
 
-    private static final String[] methods = new String[]{"getEnergy", "getSecondaryStored", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy",
-                                                         "getEnergyNeeded"};
+    private static final String[] methods = new String[] { "getEnergy", "getSecondaryStored", "getProgress", "isActive",
+            "facing", "canOperate", "getMaxEnergy",
+            "getEnergyNeeded" };
     public static final int BASE_TICKS_REQUIRED = 200;
     public static final int BASE_GAS_PER_TICK = 1;
     public static int MAX_GAS = 210;
     /**
-     * How much secondary energy (fuel) this machine uses per tick, not including upgrades.
+     * How much secondary energy (fuel) this machine uses per tick, not including
+     * upgrades.
      */
     public int BASE_SECONDARY_ENERGY_PER_TICK;
     /**
@@ -62,26 +65,32 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
     public Gas prevGas;
 
     /**
-     * Advanced Electric Machine -- a machine like this has a total of 4 slots. Input slot (0), fuel slot (1), output slot (2), energy slot (3), and the upgrade slot (4).
-     * The machine will not run if it does not have enough electricity, or if it doesn't have enough fuel ticks.
+     * Advanced Electric Machine -- a machine like this has a total of 4 slots.
+     * Input slot (0), fuel slot (1), output slot (2), energy slot (3), and the
+     * upgrade slot (4).
+     * The machine will not run if it does not have enough electricity, or if it
+     * doesn't have enough fuel ticks.
      *
      * @param soundPath        - location of the sound effect
      * @param type             - the type of this machine
      * @param ticksRequired    - how many ticks it takes to smelt an item.
-     * @param secondaryPerTick - how much secondary energy (fuel) this machine uses per tick.
+     * @param secondaryPerTick - how much secondary energy (fuel) this machine uses
+     *                         per tick.
      */
-    public TileEntityAdvancedElectricMachine(String soundPath, MachineType type, int ticksRequired, int secondaryPerTick) {
+    public TileEntityAdvancedElectricMachine(String soundPath, MachineType type, int ticksRequired,
+            int secondaryPerTick) {
         super(soundPath, type, 4, ticksRequired, MekanismUtils.getResource(ResourceType.GUI, "GuiAdvancedMachine.png"));
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.DARK_RED, new int[]{0}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.DARK_BLUE, new int[]{2}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.DARK_GREEN, new int[]{3}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.PURPLE, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.BLACK, new int[]{1,0}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[] { 0 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.BLUE, new int[] { 2 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.GREEN, new int[] { 3 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.ORANGE, new int[] { 1 }));
+        configComponent.addOutput(TransmissionType.ITEM,
+                new SideData("Input_Extra", EnumColor.PURPLE, new int[] { 1, 0 }));
 
-        configComponent.setConfig(TransmissionType.ITEM, new byte[]{4, 1, 0, 3, 0, 2});
+        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 4, 1, 0, 3, 0, 2 });
         configComponent.setInputConfig(TransmissionType.ENERGY);
 
         gasTank = new GasTank(MAX_GAS);
@@ -100,7 +109,7 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
 
     @Override
     protected void upgradeInventory(TileEntityFactory factory) {
-        //Advanced Machine
+        // Advanced Machine
         factory.gasTank.setGas(gasTank.getGas());
 
         factory.inventory.set(5, inventory.get(0));
@@ -133,9 +142,11 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
             handleSecondaryFuel();
             boolean inactive = false;
             RECIPE recipe = getRecipe();
-            secondaryEnergyThisTick = useStatisticalMechanics() ? StatUtils.inversePoisson(secondaryEnergyPerTick) : (int) Math.ceil(secondaryEnergyPerTick);
+            secondaryEnergyThisTick = useStatisticalMechanics() ? StatUtils.inversePoisson(secondaryEnergyPerTick)
+                    : (int) Math.ceil(secondaryEnergyPerTick);
 
-            if (canOperate(recipe) && MekanismUtils.canFunction(this) && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
+            if (canOperate(recipe) && MekanismUtils.canFunction(this) && getEnergy() >= energyPerTick
+                    && gasTank.getStored() >= secondaryEnergyThisTick) {
                 setActive(true);
                 operatingTicks++;
                 if (operatingTicks >= ticksRequired) {
@@ -189,7 +200,8 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
         if (slotID == 2) {
             return false;
         } else if (slotID == 4) {
-            return itemstack.getItem() == MekanismItems.SpeedUpgrade || itemstack.getItem() == MekanismItems.EnergyUpgrade;
+            return itemstack.getItem() == MekanismItems.SpeedUpgrade
+                    || itemstack.getItem() == MekanismItems.EnergyUpgrade;
         } else if (slotID == 0) {
             for (AdvancedMachineInput input : getRecipes().keySet()) {
                 if (ItemHandlerHelper.canItemStacksStack(input.itemStack, itemstack)) {
@@ -302,7 +314,7 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
     @Override
     @Nonnull
     public GasTankInfo[] getTankInfo() {
-        return new GasTankInfo[]{gasTank};
+        return new GasTankInfo[] { gasTank };
     }
 
     @Override
@@ -340,21 +352,21 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         switch (method) {
             case 0:
-                return new Object[]{getEnergy()};
+                return new Object[] { getEnergy() };
             case 1:
-                return new Object[]{gasTank.getStored()};
+                return new Object[] { gasTank.getStored() };
             case 2:
-                return new Object[]{operatingTicks};
+                return new Object[] { operatingTicks };
             case 3:
-                return new Object[]{isActive};
+                return new Object[] { isActive };
             case 4:
-                return new Object[]{facing};
+                return new Object[] { facing };
             case 5:
-                return new Object[]{canOperate(getRecipe())};
+                return new Object[] { canOperate(getRecipe()) };
             case 6:
-                return new Object[]{maxEnergy};
+                return new Object[] { maxEnergy };
             case 7:
-                return new Object[]{maxEnergy - getEnergy()};
+                return new Object[] { maxEnergy - getEnergy() };
             default:
                 throw new NoSuchMethodException();
         }

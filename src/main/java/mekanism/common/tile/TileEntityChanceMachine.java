@@ -22,20 +22,23 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class TileEntityChanceMachine<RECIPE extends ChanceMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<ItemStackInput, ChanceOutput, RECIPE> {
+public abstract class TileEntityChanceMachine<RECIPE extends ChanceMachineRecipe<RECIPE>>
+        extends TileEntityUpgradeableMachine<ItemStackInput, ChanceOutput, RECIPE> {
 
-    private static final String[] methods = new String[]{"getEnergy", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded"};
+    private static final String[] methods = new String[] { "getEnergy", "getProgress", "isActive", "facing",
+            "canOperate", "getMaxEnergy", "getEnergyNeeded" };
 
     public TileEntityChanceMachine(String soundPath, MachineType type, int ticksRequired, ResourceLocation location) {
         super(soundPath, type, 3, ticksRequired, location);
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.DARK_RED, new int[]{0}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.DARK_GREEN, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.DARK_BLUE, new int[]{2, 4}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[] { 0 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.GREEN, new int[] { 1 }));
+        configComponent.addOutput(TransmissionType.ITEM,
+                new SideData("Output", EnumColor.BLUE, new int[] { 2, 4 }));
 
-        configComponent.setConfig(TransmissionType.ITEM, new byte[]{2, 1, 0, 0, 0, 3});
+        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 2, 1, 0, 0, 0, 3 });
         configComponent.setInputConfig(TransmissionType.ENERGY);
 
         inventory = NonNullList.withSize(5, ItemStack.EMPTY);
@@ -46,8 +49,8 @@ public abstract class TileEntityChanceMachine<RECIPE extends ChanceMachineRecipe
 
     @Override
     protected void upgradeInventory(TileEntityFactory factory) {
-        //Chance Machine
-        factory.configComponent.getOutputs(TransmissionType.ITEM).get(2).availableSlots = new int[]{4, 8, 9, 10};
+        // Chance Machine
+        factory.configComponent.getOutputs(TransmissionType.ITEM).get(2).availableSlots = new int[] { 4, 8, 9, 10 };
 
         factory.inventory.set(5, inventory.get(0));
         factory.inventory.set(1, inventory.get(1));
@@ -83,7 +86,8 @@ public abstract class TileEntityChanceMachine<RECIPE extends ChanceMachineRecipe
     @Override
     public boolean isItemValidForSlot(int slotID, @Nonnull ItemStack itemstack) {
         if (slotID == 3) {
-            return itemstack.getItem() == MekanismItems.SpeedUpgrade || itemstack.getItem() == MekanismItems.EnergyUpgrade;
+            return itemstack.getItem() == MekanismItems.SpeedUpgrade
+                    || itemstack.getItem() == MekanismItems.EnergyUpgrade;
         } else if (slotID == 0) {
             return RecipeHandler.isInRecipe(itemstack, getRecipes());
         } else if (slotID == 1) {
@@ -139,19 +143,19 @@ public abstract class TileEntityChanceMachine<RECIPE extends ChanceMachineRecipe
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         switch (method) {
             case 0:
-                return new Object[]{getEnergy()};
+                return new Object[] { getEnergy() };
             case 1:
-                return new Object[]{operatingTicks};
+                return new Object[] { operatingTicks };
             case 2:
-                return new Object[]{isActive};
+                return new Object[] { isActive };
             case 3:
-                return new Object[]{facing};
+                return new Object[] { facing };
             case 4:
-                return new Object[]{canOperate(getRecipe())};
+                return new Object[] { canOperate(getRecipe()) };
             case 5:
-                return new Object[]{getMaxEnergy()};
+                return new Object[] { getMaxEnergy() };
             case 6:
-                return new Object[]{getMaxEnergy() - getEnergy()};
+                return new Object[] { getMaxEnergy() - getEnergy() };
             default:
                 throw new NoSuchMethodException();
         }

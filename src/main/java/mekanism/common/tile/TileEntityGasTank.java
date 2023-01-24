@@ -41,10 +41,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityGasTank extends TileEntityContainerBlock implements IGasHandler, IRedstoneControl, ISideConfiguration, ISecurityTile, ITierUpgradeable,
-      IComputerIntegration, IComparatorSupport {
+public class TileEntityGasTank extends TileEntityContainerBlock
+        implements IGasHandler, IRedstoneControl, ISideConfiguration, ISecurityTile, ITierUpgradeable,
+        IComputerIntegration, IComparatorSupport {
 
-    private static final String[] methods = new String[]{"getMaxGas", "getStoredGas", "getGas"};
+    private static final String[] methods = new String[] { "getMaxGas", "getStoredGas", "getGas" };
     /**
      * The type of gas stored in this tank.
      */
@@ -72,10 +73,10 @@ public class TileEntityGasTank extends TileEntityContainerBlock implements IGasH
         configComponent = new TileComponentConfig(this, TransmissionType.GAS, TransmissionType.ITEM);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Fill", EnumColor.DARK_BLUE, new int[]{0}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Empty", EnumColor.DARK_RED, new int[]{1}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Fill", EnumColor.BLUE, new int[] { 0 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Empty", EnumColor.RED, new int[] { 1 }));
 
-        configComponent.setConfig(TransmissionType.ITEM, new byte[]{2, 1, 0, 0, 0, 0});
+        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 2, 1, 0, 0, 0, 0 });
         configComponent.setCanEject(TransmissionType.ITEM, false);
         configComponent.setIOConfig(TransmissionType.GAS);
         configComponent.setEjecting(TransmissionType.GAS, true);
@@ -94,13 +95,19 @@ public class TileEntityGasTank extends TileEntityContainerBlock implements IGasH
     public void onUpdate() {
         if (!world.isRemote) {
             TileUtils.drawGas(inventory.get(0), gasTank, tier != GasTankTier.CREATIVE);
-            if (TileUtils.receiveGas(inventory.get(1), gasTank) && tier == GasTankTier.CREATIVE && gasTank.getGas() != null) {
+            if (TileUtils.receiveGas(inventory.get(1), gasTank) && tier == GasTankTier.CREATIVE
+                    && gasTank.getGas() != null) {
                 gasTank.getGas().amount = Integer.MAX_VALUE;
             }
-            if (gasTank.getGas() != null && MekanismUtils.canFunction(this) && (tier == GasTankTier.CREATIVE || dumping != GasMode.DUMPING)) {
+            if (gasTank.getGas() != null && MekanismUtils.canFunction(this)
+                    && (tier == GasTankTier.CREATIVE || dumping != GasMode.DUMPING)) {
                 if (configComponent.isEjecting(TransmissionType.GAS)) {
-                    GasStack toSend = new GasStack(gasTank.getGas().getGas(), Math.min(gasTank.getStored(), tier.getOutput()));
-                    gasTank.draw(GasUtils.emit(toSend, this, configComponent.getSidesForData(TransmissionType.GAS, facing, 2)), tier != GasTankTier.CREATIVE);
+                    GasStack toSend = new GasStack(gasTank.getGas().getGas(),
+                            Math.min(gasTank.getStored(), tier.getOutput()));
+                    gasTank.draw(
+                            GasUtils.emit(toSend, this,
+                                    configComponent.getSidesForData(TransmissionType.GAS, facing, 2)),
+                            tier != GasTankTier.CREATIVE);
                 }
             }
 
@@ -147,10 +154,13 @@ public class TileEntityGasTank extends TileEntityContainerBlock implements IGasH
     @Override
     public boolean canExtractItem(int slotID, @Nonnull ItemStack itemstack, @Nonnull EnumFacing side) {
         if (slotID == 1) {
-            return itemstack.getItem() instanceof IGasItem && ((IGasItem) itemstack.getItem()).getGas(itemstack) == null;
+            return itemstack.getItem() instanceof IGasItem
+                    && ((IGasItem) itemstack.getItem()).getGas(itemstack) == null;
         } else if (slotID == 0) {
-            return itemstack.getItem() instanceof IGasItem && ((IGasItem) itemstack.getItem()).getGas(itemstack) != null &&
-                   ((IGasItem) itemstack.getItem()).getGas(itemstack).amount == ((IGasItem) itemstack.getItem()).getMaxGas(itemstack);
+            return itemstack.getItem() instanceof IGasItem && ((IGasItem) itemstack.getItem()).getGas(itemstack) != null
+                    &&
+                    ((IGasItem) itemstack.getItem()).getGas(itemstack).amount == ((IGasItem) itemstack.getItem())
+                            .getMaxGas(itemstack);
         }
         return false;
     }
@@ -158,9 +168,11 @@ public class TileEntityGasTank extends TileEntityContainerBlock implements IGasH
     @Override
     public boolean isItemValidForSlot(int slotID, @Nonnull ItemStack itemstack) {
         if (slotID == 0) {
-            return itemstack.getItem() instanceof IGasItem && (gasTank.getGas() == null || ((IGasItem) itemstack.getItem()).canReceiveGas(itemstack, gasTank.getGas().getGas()));
+            return itemstack.getItem() instanceof IGasItem && (gasTank.getGas() == null
+                    || ((IGasItem) itemstack.getItem()).canReceiveGas(itemstack, gasTank.getGas().getGas()));
         } else if (slotID == 1) {
-            return itemstack.getItem() instanceof IGasItem && (gasTank.getGas() == null || ((IGasItem) itemstack.getItem()).canProvideGas(itemstack, gasTank.getGas().getGas()));
+            return itemstack.getItem() instanceof IGasItem && (gasTank.getGas() == null
+                    || ((IGasItem) itemstack.getItem()).canProvideGas(itemstack, gasTank.getGas().getGas()));
         }
         return false;
     }
@@ -206,7 +218,7 @@ public class TileEntityGasTank extends TileEntityContainerBlock implements IGasH
     @Nonnull
     @Override
     public GasTankInfo[] getTankInfo() {
-        return new GasTankInfo[]{gasTank};
+        return new GasTankInfo[] { gasTank };
     }
 
     @Override
@@ -229,7 +241,8 @@ public class TileEntityGasTank extends TileEntityContainerBlock implements IGasH
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
-        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
+        return configComponent.isCapabilityDisabled(capability, side, facing)
+                || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
@@ -344,11 +357,11 @@ public class TileEntityGasTank extends TileEntityContainerBlock implements IGasH
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         switch (method) {
             case 0:
-                return new Object[]{gasTank.getMaxGas()};
+                return new Object[] { gasTank.getMaxGas() };
             case 1:
-                return new Object[]{gasTank.getStored()};
+                return new Object[] { gasTank.getStored() };
             case 2:
-                return new Object[]{gasTank.getGas()};
+                return new Object[] { gasTank.getGas() };
             default:
                 throw new NoSuchMethodException();
         }
@@ -377,7 +390,7 @@ public class TileEntityGasTank extends TileEntityContainerBlock implements IGasH
                     return dumpingOption;
                 case DUMPING_EXCESS:
                     return dumpingExcessOption;
-                default://should not happen;
+                default:// should not happen;
                     return idleOption;
             }
         }

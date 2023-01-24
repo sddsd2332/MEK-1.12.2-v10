@@ -43,11 +43,13 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Contract;
 
-public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine implements IComputerIntegration, ISideConfiguration, IConfigCardAccess, ITierUpgradeable,
-      ISustainedData {
+public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine
+        implements IComputerIntegration, ISideConfiguration, IConfigCardAccess, ITierUpgradeable,
+        ISustainedData {
 
-    private static final String[] methods = new String[]{"getEnergy", "getProgress", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded", "getInfuse",
-                                                         "getInfuseNeeded"};
+    private static final String[] methods = new String[] { "getEnergy", "getProgress", "facing", "canOperate",
+            "getMaxEnergy", "getEnergyNeeded", "getInfuse",
+            "getInfuseNeeded" };
     /**
      * The maxiumum amount of infuse this machine can store.
      */
@@ -64,12 +66,13 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.DARK_RED, new int[]{2}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.DARK_BLUE, new int[]{3}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.DARK_GREEN, new int[]{4}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Infuse", EnumColor.PURPLE, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.BLACK, new int[]{1,2}));
-        configComponent.setConfig(TransmissionType.ITEM, new byte[]{4, 0, 0, 3, 1, 2});
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[] { 2 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.BLUE, new int[] { 3 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.GREEN, new int[] { 4 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Infuse", EnumColor.ORANGE, new int[] { 1 }));
+        configComponent.addOutput(TransmissionType.ITEM,
+                new SideData("Input_Extra", EnumColor.PURPLE, new int[] { 1, 2 }));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 4, 0, 0, 3, 1, 2 });
 
         inventory = NonNullList.withSize(5, ItemStack.EMPTY);
 
@@ -129,7 +132,7 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
         TileEntityFactory factory = Objects.requireNonNull((TileEntityFactory) world.getTileEntity(getPos()));
         RecipeType type = RecipeType.INFUSING;
 
-        //Basic
+        // Basic
         factory.facing = facing;
         factory.clientFacing = clientFacing;
         factory.ticker = ticker;
@@ -137,10 +140,10 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
         factory.redstoneLastTick = redstoneLastTick;
         factory.doAutoSync = doAutoSync;
 
-        //Electric
+        // Electric
         factory.electricityStored = electricityStored;
 
-        //Machine
+        // Machine
         factory.progress[0] = operatingTicks;
         factory.setActive(isActive);
         factory.setControlType(getControlType());
@@ -148,7 +151,8 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
         factory.upgradeComponent.readFrom(upgradeComponent);
         factory.upgradeComponent.setUpgradeSlot(0);
         factory.ejectorComponent.readFrom(ejectorComponent);
-        factory.ejectorComponent.setOutputData(TransmissionType.ITEM, factory.configComponent.getOutputs(TransmissionType.ITEM).get(2));
+        factory.ejectorComponent.setOutputData(TransmissionType.ITEM,
+                factory.configComponent.getOutputs(TransmissionType.ITEM).get(2));
         factory.setRecipeType(type);
         factory.upgradeComponent.setSupported(Upgrade.GAS, type.fuelEnergyUpgrades());
         factory.securityComponent.readFrom(securityComponent);
@@ -158,7 +162,7 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
             factory.configComponent.setEjecting(transmission, configComponent.isEjecting(transmission));
         }
 
-        //Infuser
+        // Infuser
         factory.infuseStored.copyFrom(infuseStored);
 
         factory.inventory.set(5, inventory.get(2));
@@ -189,9 +193,11 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
             return false;
         } else if (slotID == 1) {
             InfuseObject infuseObject = InfuseRegistry.getObject(itemstack);
-            return infuseObject != null && (infuseStored.getType() == null || infuseStored.getType() == infuseObject.type);
+            return infuseObject != null
+                    && (infuseStored.getType() == null || infuseStored.getType() == infuseObject.type);
         } else if (slotID == 0) {
-            return itemstack.getItem() == MekanismItems.SpeedUpgrade || itemstack.getItem() == MekanismItems.EnergyUpgrade;
+            return itemstack.getItem() == MekanismItems.SpeedUpgrade
+                    || itemstack.getItem() == MekanismItems.EnergyUpgrade;
         } else if (slotID == 2) {
             if (infuseStored.getType() != null) {
                 return RecipeHandler.getMetallurgicInfuserRecipe(new InfusionInput(infuseStored, itemstack)) != null;
@@ -292,21 +298,21 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         switch (method) {
             case 0:
-                return new Object[]{getEnergy()};
+                return new Object[] { getEnergy() };
             case 1:
-                return new Object[]{operatingTicks};
+                return new Object[] { operatingTicks };
             case 2:
-                return new Object[]{facing};
+                return new Object[] { facing };
             case 3:
-                return new Object[]{canOperate(RecipeHandler.getMetallurgicInfuserRecipe(getInput()))};
+                return new Object[] { canOperate(RecipeHandler.getMetallurgicInfuserRecipe(getInput())) };
             case 4:
-                return new Object[]{getMaxEnergy()};
+                return new Object[] { getMaxEnergy() };
             case 5:
-                return new Object[]{getMaxEnergy() - getEnergy()};
+                return new Object[] { getMaxEnergy() - getEnergy() };
             case 6:
-                return new Object[]{infuseStored};
+                return new Object[] { infuseStored };
             case 7:
-                return new Object[]{MAX_INFUSE - infuseStored.getAmount()};
+                return new Object[] { MAX_INFUSE - infuseStored.getAmount() };
             default:
                 throw new NoSuchMethodException();
         }
@@ -359,7 +365,8 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
-        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
+        return configComponent.isCapabilityDisabled(capability, side, facing)
+                || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
