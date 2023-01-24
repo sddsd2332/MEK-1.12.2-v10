@@ -20,7 +20,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class TileEntityDiversionTransporter extends TileEntityLogisticalTransporter {
 
-    public int[] modes = { 0, 0, 0, 0, 0, 0 };
+    public int[] modes = {0, 0, 0, 0, 0, 0};
 
     @Override
     public TransmitterType getTransmitterType() {
@@ -105,8 +105,8 @@ public class TileEntityDiversionTransporter extends TileEntityLogisticalTranspor
         }
         refreshConnections();
         notifyTileChange();
-        player.sendMessage(new TextComponentString(EnumColor.BLUE + Mekanism.LOG_TAG + EnumColor.GREY + " " +
-                LangUtils.localize("tooltip.configurator.toggleDiverter") + ": " + EnumColor.RED + description));
+        player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + EnumColor.GREY + " " +
+                                                   LangUtils.localize("tooltip.configurator.toggleDiverter") + ": " + EnumColor.RED + description));
         Mekanism.packetHandler.sendUpdatePacket(this);
         return EnumActionResult.SUCCESS;
     }

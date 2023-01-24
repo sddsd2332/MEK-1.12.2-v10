@@ -33,12 +33,10 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityEnergyCube extends TileEntityElectricBlock
-        implements IComputerIntegration, IRedstoneControl, ISideConfiguration, ISecurityTile, ITierUpgradeable,
-        IConfigCardAccess, IComparatorSupport {
+public class TileEntityEnergyCube extends TileEntityElectricBlock implements IComputerIntegration, IRedstoneControl, ISideConfiguration, ISecurityTile, ITierUpgradeable,
+      IConfigCardAccess, IComparatorSupport {
 
-    private static final String[] methods = new String[] { "getEnergy", "getOutput", "getMaxEnergy",
-            "getEnergyNeeded" };
+    private static final String[] methods = new String[]{"getEnergy", "getOutput", "getMaxEnergy", "getEnergyNeeded"};
     /**
      * This Energy Cube's tier.
      */
@@ -64,10 +62,10 @@ public class TileEntityEnergyCube extends TileEntityElectricBlock
         configComponent = new TileComponentConfig(this, TransmissionType.ENERGY, TransmissionType.ITEM);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Charge", EnumColor.BLUE, new int[] { 0 }));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Discharge", EnumColor.RED, new int[] { 1 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Charge", EnumColor.DARK_BLUE, new int[]{0}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Discharge", EnumColor.DARK_RED, new int[]{1}));
 
-        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 0, 0, 0, 0, 2, 1 });
+        configComponent.setConfig(TransmissionType.ITEM, new byte[]{0, 0, 0, 0, 2, 1});
         configComponent.setCanEject(TransmissionType.ITEM, false);
         configComponent.setIOConfig(TransmissionType.ENERGY);
         configComponent.setEjecting(TransmissionType.ENERGY, true);
@@ -174,13 +172,13 @@ public class TileEntityEnergyCube extends TileEntityElectricBlock
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         switch (method) {
             case 0:
-                return new Object[] { getEnergy() };
+                return new Object[]{getEnergy()};
             case 1:
-                return new Object[] { tier.getOutput() };
+                return new Object[]{tier.getOutput()};
             case 2:
-                return new Object[] { getMaxEnergy() };
+                return new Object[]{getMaxEnergy()};
             case 3:
-                return new Object[] { (getMaxEnergy() - getEnergy()) };
+                return new Object[]{(getMaxEnergy() - getEnergy())};
             default:
                 throw new NoSuchMethodException();
         }
@@ -283,8 +281,7 @@ public class TileEntityEnergyCube extends TileEntityElectricBlock
 
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing side) {
-        // Special isCapabilityDisabled override not needed here as it already gets
-        // handled in TileEntityElectricBlock
+        //Special isCapabilityDisabled override not needed here as it already gets handled in TileEntityElectricBlock
         if (capability == Capabilities.CONFIG_CARD_CAPABILITY) {
             return Capabilities.CONFIG_CARD_CAPABILITY.cast(this);
         }

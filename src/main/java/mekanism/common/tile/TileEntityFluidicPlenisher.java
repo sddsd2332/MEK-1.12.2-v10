@@ -51,11 +51,10 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityFluidicPlenisher extends TileEntityElectricBlock
-        implements IComputerIntegration, IConfigurable, IFluidHandlerWrapper, ISustainedTank,
-        IUpgradeTile, IRedstoneControl, ISecurityTile, IComparatorSupport {
+public class TileEntityFluidicPlenisher extends TileEntityElectricBlock implements IComputerIntegration, IConfigurable, IFluidHandlerWrapper, ISustainedTank,
+      IUpgradeTile, IRedstoneControl, ISecurityTile, IComparatorSupport {
 
-    private static final String[] methods = new String[] { "reset" };
+    private static final String[] methods = new String[]{"reset"};
     private static EnumSet<EnumFacing> dirs = EnumSet.complementOf(EnumSet.of(EnumFacing.UP));
     public Set<Coord4D> activeNodes = new LinkedHashSet<>();
     public Set<Coord4D> usedNodes = new HashSet<>();
@@ -99,8 +98,7 @@ public class TileEntityFluidicPlenisher extends TileEntityElectricBlock
                 });
             }
 
-            if (MekanismUtils.canFunction(this) && getEnergy() >= energyPerTick && fluidTank.getFluid() != null
-                    && fluidTank.getFluid().getFluid().canBePlacedInWorld()) {
+            if (MekanismUtils.canFunction(this) && getEnergy() >= energyPerTick && fluidTank.getFluid() != null && fluidTank.getFluid().getFluid().canBePlacedInWorld()) {
                 if (!finishedCalc) {
                     setEnergy(getEnergy() - energyPerTick);
                 }
@@ -114,8 +112,7 @@ public class TileEntityFluidicPlenisher extends TileEntityElectricBlock
 
                         if (canReplace(below, false, false) && fluidTank.getFluidAmount() >= Fluid.BUCKET_VOLUME) {
                             if (fluidTank.getFluid().getFluid().canBePlacedInWorld()) {
-                                world.setBlockState(below.getPos(), MekanismUtils
-                                        .getFlowingBlock(fluidTank.getFluid().getFluid()).getDefaultState(), 3);
+                                world.setBlockState(below.getPos(), MekanismUtils.getFlowingBlock(fluidTank.getFluid().getFluid()).getDefaultState(), 3);
                                 setEnergy(getEnergy() - energyPerTick);
                                 fluidTank.drain(Fluid.BUCKET_VOLUME, true);
                             }
@@ -157,8 +154,7 @@ public class TileEntityFluidicPlenisher extends TileEntityElectricBlock
             if (coord.exists(world)) {
                 FluidStack fluid = fluidTank.getFluid();
                 if (canReplace(coord, true, false) && fluid != null) {
-                    world.setBlockState(coord.getPos(),
-                            MekanismUtils.getFlowingBlock(fluid.getFluid()).getDefaultState(), 3);
+                    world.setBlockState(coord.getPos(), MekanismUtils.getFlowingBlock(fluid.getFluid()).getDefaultState(), 3);
                     fluidTank.drain(Fluid.BUCKET_VOLUME, true);
                 }
 
@@ -304,17 +300,17 @@ public class TileEntityFluidicPlenisher extends TileEntityElectricBlock
     @Override
     public int[] getSlotsForFace(@Nonnull EnumFacing side) {
         if (side == EnumFacing.UP) {
-            return new int[] { 0 };
+            return new int[]{0};
         } else if (side == EnumFacing.DOWN) {
-            return new int[] { 1 };
+            return new int[]{1};
         }
-        return new int[] { 2 };
+        return new int[]{2};
     }
 
     @Override
     public FluidTankInfo[] getTankInfo(EnumFacing direction) {
         if (direction == EnumFacing.UP) {
-            return new FluidTankInfo[] { fluidTank.getInfo() };
+            return new FluidTankInfo[]{fluidTank.getInfo()};
         }
         return PipeUtils.EMPTY;
     }
@@ -354,8 +350,7 @@ public class TileEntityFluidicPlenisher extends TileEntityElectricBlock
         activeNodes.clear();
         usedNodes.clear();
         finishedCalc = false;
-        player.sendMessage(new TextComponentString(EnumColor.BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY
-                + LangUtils.localize("tooltip.configurator.plenisherReset")));
+        player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY + LangUtils.localize("tooltip.configurator.plenisherReset")));
         return EnumActionResult.SUCCESS;
     }
 
@@ -366,9 +361,7 @@ public class TileEntityFluidicPlenisher extends TileEntityElectricBlock
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing side) {
-        return capability == Capabilities.CONFIGURABLE_CAPABILITY
-                || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
-                || super.hasCapability(capability, side);
+        return capability == Capabilities.CONFIGURABLE_CAPABILITY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override
@@ -393,7 +386,7 @@ public class TileEntityFluidicPlenisher extends TileEntityElectricBlock
             activeNodes.clear();
             usedNodes.clear();
             finishedCalc = false;
-            return new Object[] { "Plenisher calculation reset." };
+            return new Object[]{"Plenisher calculation reset."};
         }
         throw new NoSuchMethodException();
     }

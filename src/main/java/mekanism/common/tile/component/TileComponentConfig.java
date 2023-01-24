@@ -26,7 +26,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 public class TileComponentConfig implements ITileComponent {
 
-    public static SideData EMPTY = new SideData("Empty", EnumColor.PURPLE, InventoryUtils.EMPTY);
+    public static SideData EMPTY = new SideData("Empty", EnumColor.BLACK, InventoryUtils.EMPTY);
 
     public TileEntityContainerBlock tileEntity;
     private List<TransmissionType> transmissions = new ArrayList<>();
@@ -95,8 +95,7 @@ public class TileComponentConfig implements ITileComponent {
         } else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             type = TransmissionType.FLUID;
         }
-        // Energy is handled by the TileEntityElectricBlock anyways in the super clauses
-        // so no need to bother with it
+        //Energy is handled by the TileEntityElectricBlock anyways in the super clauses so no need to bother with it
         if (type != null) {
             return supports(type) && hasSideForData(type, tileDirection, 0, side);
         }
@@ -118,14 +117,14 @@ public class TileComponentConfig implements ITileComponent {
 
     public void setIOConfig(TransmissionType type) {
         addOutput(type, new SideData("None", EnumColor.GREY, IOState.OFF));
-        addOutput(type, new SideData("Input", EnumColor.GREEN, IOState.INPUT));
-        addOutput(type, new SideData("Output", EnumColor.RED, IOState.OUTPUT));
-        setConfig(type, new byte[] { 1, 1, 2, 1, 1, 1 });
+        addOutput(type, new SideData("Input", EnumColor.DARK_GREEN, IOState.INPUT));
+        addOutput(type, new SideData("Output", EnumColor.DARK_RED, IOState.OUTPUT));
+        setConfig(type, new byte[]{1, 1, 2, 1, 1, 1});
     }
 
     public void setInputConfig(TransmissionType type) {
         addOutput(type, new SideData("None", EnumColor.GREY, IOState.OFF));
-        addOutput(type, new SideData("Input", EnumColor.GREEN, IOState.INPUT));
+        addOutput(type, new SideData("Input", EnumColor.DARK_GREEN, IOState.INPUT));
         fillConfig(type, 1);
         setCanEject(type, false);
     }

@@ -47,12 +47,11 @@ import net.minecraftforge.fml.common.Optional.Method;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 @InterfaceList({
-        @Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = MekanismHooks.IC2_MOD_ID),
-        @Interface(iface = "ic2.api.energy.tile.IEnergySource", modid = MekanismHooks.IC2_MOD_ID),
-        @Interface(iface = "ic2.api.tile.IEnergyStorage", modid = MekanismHooks.IC2_MOD_ID)
+      @Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = MekanismHooks.IC2_MOD_ID),
+      @Interface(iface = "ic2.api.energy.tile.IEnergySource", modid = MekanismHooks.IC2_MOD_ID),
+      @Interface(iface = "ic2.api.tile.IEnergyStorage", modid = MekanismHooks.IC2_MOD_ID)
 })
-public class TileEntityInductionPort extends TileEntityInductionCasing
-        implements IEnergyWrapper, IConfigurable, IActiveState, IComparatorSupport {
+public class TileEntityInductionPort extends TileEntityInductionCasing implements IEnergyWrapper, IConfigurable, IActiveState, IComparatorSupport {
 
     private boolean ic2Registered = false;
     private int currentRedstoneLevel;
@@ -61,10 +60,8 @@ public class TileEntityInductionPort extends TileEntityInductionCasing
      * false = input, true = output
      */
     public boolean mode;
-    private CapabilityWrapperManager<IEnergyWrapper, TeslaIntegration> teslaManager = new CapabilityWrapperManager<>(
-            IEnergyWrapper.class, TeslaIntegration.class);
-    private CapabilityWrapperManager<IEnergyWrapper, ForgeEnergyIntegration> forgeEnergyManager = new CapabilityWrapperManager<>(
-            IEnergyWrapper.class, ForgeEnergyIntegration.class);
+    private CapabilityWrapperManager<IEnergyWrapper, TeslaIntegration> teslaManager = new CapabilityWrapperManager<>(IEnergyWrapper.class, TeslaIntegration.class);
+    private CapabilityWrapperManager<IEnergyWrapper, ForgeEnergyIntegration> forgeEnergyManager = new CapabilityWrapperManager<>(IEnergyWrapper.class, ForgeEnergyIntegration.class);
 
     public TileEntityInductionPort() {
         super("InductionPort");
@@ -244,8 +241,7 @@ public class TileEntityInductionPort extends TileEntityInductionCasing
     @Method(modid = MekanismHooks.IC2_MOD_ID)
     public int addEnergy(int amount) {
         addEnergy(IC2Integration.fromEU(amount), false);
-        // IC2 returns the amount of energy inside after the value, instead of amount
-        // actually added/removed
+        //IC2 returns the amount of energy inside after the value, instead of amount actually added/removed
         return IC2Integration.toEUAsInt(getEnergy());
     }
 
@@ -323,8 +319,7 @@ public class TileEntityInductionPort extends TileEntityInductionCasing
     @Method(modid = MekanismHooks.IC2_MOD_ID)
     public double injectEnergy(EnumFacing direction, double amount, double voltage) {
         TileEntity tile = MekanismUtils.getTileEntity(world, getPos().offset(direction));
-        if (tile == null || CapabilityUtils.hasCapability(tile, Capabilities.GRID_TRANSMITTER_CAPABILITY,
-                direction.getOpposite())) {
+        if (tile == null || CapabilityUtils.hasCapability(tile, Capabilities.GRID_TRANSMITTER_CAPABILITY, direction.getOpposite())) {
             return amount;
         }
         return amount - IC2Integration.toEU(acceptEnergy(direction, IC2Integration.fromEU(amount), false));
@@ -350,10 +345,9 @@ public class TileEntityInductionPort extends TileEntityInductionCasing
     public EnumActionResult onSneakRightClick(EntityPlayer player, EnumFacing side) {
         if (!world.isRemote) {
             mode = !mode;
-            String modeText = " " + (mode ? EnumColor.RED : EnumColor.GREEN) + LangUtils.transOutputInput(mode)
-                    + ".";
-            player.sendMessage(new TextComponentString(EnumColor.BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY +
-                    LangUtils.localize("tooltip.configurator.inductionPortMode") + modeText));
+            String modeText = " " + (mode ? EnumColor.DARK_RED : EnumColor.DARK_GREEN) + LangUtils.transOutputInput(mode) + ".";
+            player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY +
+                                                       LangUtils.localize("tooltip.configurator.inductionPortMode") + modeText));
             Mekanism.packetHandler.sendUpdatePacket(this);
             markDirty();
         }
@@ -387,20 +381,15 @@ public class TileEntityInductionPort extends TileEntityInductionCasing
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing) {
-        return capability == Capabilities.ENERGY_STORAGE_CAPABILITY
-                || capability == Capabilities.ENERGY_ACCEPTOR_CAPABILITY
-                || capability == Capabilities.ENERGY_OUTPUTTER_CAPABILITY
-                || capability == Capabilities.CONFIGURABLE_CAPABILITY
-                || capability == CapabilityEnergy.ENERGY || isTesla(capability, facing)
-                || super.hasCapability(capability, facing);
+        return capability == Capabilities.ENERGY_STORAGE_CAPABILITY || capability == Capabilities.ENERGY_ACCEPTOR_CAPABILITY
+               || capability == Capabilities.ENERGY_OUTPUTTER_CAPABILITY || capability == Capabilities.CONFIGURABLE_CAPABILITY
+               || capability == CapabilityEnergy.ENERGY || isTesla(capability, facing) || super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
-        if (capability == Capabilities.ENERGY_STORAGE_CAPABILITY
-                || capability == Capabilities.ENERGY_ACCEPTOR_CAPABILITY ||
-                capability == Capabilities.ENERGY_OUTPUTTER_CAPABILITY
-                || capability == Capabilities.CONFIGURABLE_CAPABILITY) {
+        if (capability == Capabilities.ENERGY_STORAGE_CAPABILITY || capability == Capabilities.ENERGY_ACCEPTOR_CAPABILITY ||
+            capability == Capabilities.ENERGY_OUTPUTTER_CAPABILITY || capability == Capabilities.CONFIGURABLE_CAPABILITY) {
             return (T) this;
         }
         if (isTesla(capability, facing)) {
@@ -413,18 +402,15 @@ public class TileEntityInductionPort extends TileEntityInductionCasing
     }
 
     private boolean isTesla(@Nonnull Capability capability, EnumFacing side) {
-        return capability == Capabilities.TESLA_HOLDER_CAPABILITY
-                || (capability == Capabilities.TESLA_CONSUMER_CAPABILITY && sideIsConsumer(side))
-                || (capability == Capabilities.TESLA_PRODUCER_CAPABILITY && sideIsOutput(side));
+        return capability == Capabilities.TESLA_HOLDER_CAPABILITY || (capability == Capabilities.TESLA_CONSUMER_CAPABILITY && sideIsConsumer(side))
+               || (capability == Capabilities.TESLA_PRODUCER_CAPABILITY && sideIsOutput(side));
     }
 
     @Nonnull
     @Override
     public int[] getSlotsForFace(@Nonnull EnumFacing side) {
-        // Inserting into input make it draw power from the item inserted
-        return (!world.isRemote && structure != null) || (world.isRemote && clientHasStructure)
-                ? mode ? CHARGE_SLOT : DISCHARGE_SLOT
-                : InventoryUtils.EMPTY;
+        //Inserting into input make it draw power from the item inserted
+        return (!world.isRemote && structure != null) || (world.isRemote && clientHasStructure) ? mode ? CHARGE_SLOT : DISCHARGE_SLOT : InventoryUtils.EMPTY;
     }
 
     @Override
