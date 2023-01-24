@@ -26,7 +26,7 @@ public class GuiConfigTypeTab extends GuiElement {
     }
 
     private static ResourceLocation getResource(TransmissionType t) {
-        return MekanismUtils.getResource(ResourceType.GUI_ELEMENT, "Gui" + t.getTransmission() + "Tab.png");
+        return MekanismUtils.getResource(ResourceType.GUI_ELEMENT, "Gui" + t.getTransmission() + "Tab_colored.png");
     }
 
     public void setY(int y) {
@@ -64,7 +64,8 @@ public class GuiConfigTypeTab extends GuiElement {
         if (visible) {
             mc.renderEngine.bindTexture(RESOURCE);
             guiObj.drawTexturedRect(guiWidth + getLeftBound(false) - 4, guiHeight + yPos, 0, left ? 0 : 26, 26, 26);
-            guiObj.drawTexturedRect(guiWidth + getLeftBound(true), guiHeight + yPos + 4, 26, inBounds(xAxis, yAxis) ? 0 : 18, 18, 18);
+            guiObj.drawTexturedRect(guiWidth + getLeftBound(true), guiHeight + yPos + 4, 26,
+                    inBounds(xAxis, yAxis) ? 0 : 18, 18, 18);
             mc.renderEngine.bindTexture(defaultLocation);
         }
     }
