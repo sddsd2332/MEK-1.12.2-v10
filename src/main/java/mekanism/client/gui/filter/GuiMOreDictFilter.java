@@ -49,7 +49,7 @@ public class GuiMOreDictFilter extends GuiOreDictFilter<MOreDictFilter, TileEnti
 
     @Override
     protected ResourceLocation getGuiLocation() {
-        return MekanismUtils.getResource(ResourceType.GUI, "GuiMOreDictFilter.png");
+        return MekanismUtils.getResource(ResourceType.GUI, "GuimFilter.png");
     }
 
     @Override

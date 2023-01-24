@@ -12,25 +12,25 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiRecipeType2 extends GuiTileEntityElement<TileEntityFactory> {
 
     public GuiRecipeType2(IGuiWrapper gui, TileEntityFactory tile, ResourceLocation def) {
-        super(MekanismUtils.getResource(ResourceType.GUI_ELEMENT, "GuiRecipeType2.png"), gui, def, tile);
+        super(MekanismUtils.getResource(ResourceType.GUI_ELEMENT, "GuiRecipeType.png"), gui, def, tile);
     }
 
     @Override
     public Rectangle4i getBounds(int guiWidth, int guiHeight) {
-        return new Rectangle4i(guiWidth + 176, guiHeight + 90, 26, 63);
+        return new Rectangle4i(guiWidth + 176 + 34, guiHeight + 70, 26, 63);
     }
 
     @Override
     protected boolean inBounds(int xAxis, int yAxis) {
-        return xAxis >= 180 && xAxis <= 196 && (yAxis >= 95 && yAxis <= 111 || yAxis >= 132 && yAxis <= 148);
+        return xAxis >= 180  + 34 && xAxis <= 196  + 34 && (yAxis >= 75 && yAxis <= 91 || yAxis >= 112 && yAxis <= 128);
     }
 
     @Override
     public void renderBackground(int xAxis, int yAxis, int guiWidth, int guiHeight) {
         mc.renderEngine.bindTexture(RESOURCE);
-        guiObj.drawTexturedRect(guiWidth + 176, guiHeight + 90, 0, 0, 26, 63);
+        guiObj.drawTexturedRect(guiWidth + 176 + 34, guiHeight + 70, 0, 0, 26, 63);
         int displayInt = tileEntity.getScaledRecipeProgress(15);
-        guiObj.drawTexturedRect(guiWidth + 181, guiHeight + 114, 26, 0, 10, displayInt);
+        guiObj.drawTexturedRect(guiWidth + 181 + 34, guiHeight + 94, 26, 0, 10, displayInt);
         mc.renderEngine.bindTexture(defaultLocation);
     }
 

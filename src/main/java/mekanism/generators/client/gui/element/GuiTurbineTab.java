@@ -24,7 +24,7 @@ public class GuiTurbineTab extends GuiTabElementType<TileEntityTurbineCasing, Tu
     }
 
     public enum TurbineTab implements TabType {
-        MAIN("GuiGasesTab_uncolored.png", 6, "gui.main"),
+        MAIN("GuiGasesTab.png", 6, "gui.main"),
         STAT("GuiStatsTab.png", 7, "gui.stats");
 
         private final String description;

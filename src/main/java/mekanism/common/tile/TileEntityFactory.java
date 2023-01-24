@@ -48,7 +48,7 @@ import java.util.*;
 
 @SuppressWarnings("rawtypes")
 public class TileEntityFactory extends TileEntityMachine implements IComputerIntegration, ISideConfiguration, IGasHandler, ISpecialConfigData, ITierUpgradeable,
-        ISustainedData, IComparatorSupport {
+      ISustainedData, IComparatorSupport {
 
     private static final String[] methods = new String[]{"getEnergy", "getProgress", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded"};
     private final MachineRecipe[] cachedRecipe;
@@ -110,15 +110,15 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.DARK_RED, new int[]{5, 6, 7}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.DARK_BLUE, new int[]{8, 9, 10}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.DARK_GREEN, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.PURPLE, new int[]{4}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.BLACK, new int[]{4,5,6,7}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[]{5, 6, 7}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{8, 9, 10}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{1}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.YELLOW, new int[]{4}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{4,5,6,7}));
         configComponent.setConfig(TransmissionType.ITEM, new byte[]{4, 0, 0, 3, 1, 2});
 
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.DARK_RED, new int[]{0}));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.RED, new int[]{0}));
         configComponent.fillConfig(TransmissionType.GAS, 1);
         configComponent.setCanEject(TransmissionType.GAS, false);
 
@@ -126,6 +126,8 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
 
         ejectorComponent = new TileComponentEjector(this);
         ejectorComponent.setOutputData(TransmissionType.ITEM, configComponent.getOutputs(TransmissionType.ITEM).get(2));
+
+
     }
 
     public TileEntityFactory(FactoryTier type, MachineType machine) {
@@ -142,8 +144,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         }else {
             BASE_TICKS_REQUIRED = 1;
         }
-
-
         setRecipeType(recipeType);
     }
 
@@ -195,7 +195,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             int output = getOutputSlot(i);
             if (!inventory.get(output).isEmpty()) {
                 int newOutput = 5 + factory.tier.processes + i;
-                factory.inventory.set(newOutput, inventory.get(output));
+                    factory.inventory.set(newOutput, inventory.get(output));
             }
         }
 
@@ -392,7 +392,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                     }
                 }
             }
-
             if (recipeSlots.size() == 0) return;
 
             int freePerSlot = freeSlots.size() / recipeSlots.size();
@@ -499,7 +498,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         ItemStack extra = inventory.get(4);
         if (cached == null) {
             cached = recipeType.getAnyRecipe(fallbackInput, extra, gasTank.getGasType(), infuseStored);
-
             if (cached == null) { // We have not enough input probably
                 cached = recipeType.getAnyRecipe(StackUtils.size(fallbackInput, fallbackInput.getMaxStackSize()), extra, gasTank.getGasType(), infuseStored);
             }
@@ -792,6 +790,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
     }
 
     public int getScaledRecipeProgress(int i) {
+
         return recipeTicks * i / RECIPE_TICKS_REQUIRED;
     }
 
@@ -884,7 +883,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             ChanceMachineRecipe<?> recipe = (ChanceMachineRecipe<?>) cachedRecipe[process];
             recipe.operate(inventory, inputSlot, outputSlot, 4);
         } else if (recipeType.getFuelType() == MachineFuelType.FARM && cachedRecipe[process] instanceof FarmMachineRecipe) {
-           FarmMachineRecipe<?> recipe = (FarmMachineRecipe<?>) cachedRecipe[process];
+            FarmMachineRecipe<?> recipe = (FarmMachineRecipe<?>) cachedRecipe[process];
             recipe.operate(inventory, inputSlot,gasTank, secondaryEnergyThisTick, outputSlot, 4);
         } else if (recipeType == RecipeType.INFUSING && cachedRecipe[process] instanceof MetallurgicInfuserRecipe) {
             MetallurgicInfuserRecipe recipe = (MetallurgicInfuserRecipe) cachedRecipe[process];
@@ -1063,7 +1062,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                     return new Object[]{"No such operation found."};
                 }
                 return new Object[]{
-                        canOperate(getInputSlot((Integer) arguments[0]), getOutputSlot((Integer) arguments[0]))};
+                      canOperate(getInputSlot((Integer) arguments[0]), getOutputSlot((Integer) arguments[0]))};
             case 4:
                 return new Object[]{getMaxEnergy()};
             case 5:
@@ -1137,7 +1136,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return false;
         }
         return capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.CONFIG_CARD_CAPABILITY
-                || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY || super.hasCapability(capability, side);
+               || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override
@@ -1146,7 +1145,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return null;
         }
         if (capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.CONFIG_CARD_CAPABILITY
-                || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY) {
+            || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY) {
             return (T) this;
         }
         return super.getCapability(capability, side);
@@ -1220,7 +1219,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         return Container.calcRedstoneFromInventory(this);
     }
 
-    private class ProcessDescription {
+    private static class ProcessDescription {
         private final ItemStack input;
         private final ItemStack output;
         private final Set<Integer> occupiedSlots;
@@ -1243,7 +1242,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return occupiedSlots;
         }
 
-        void occupySlot(Integer slot) {
+        public void occupySlot(Integer slot) {
             occupiedSlots.add(slot);
         }
     }

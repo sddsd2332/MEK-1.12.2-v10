@@ -139,7 +139,8 @@ public class BlockStateMachine extends ExtendedBlockState {
         CELL_EXTRACTOR(MachineBlock.MACHINE_BLOCK_4,6,"CellExtractor",70,TileEntityCellExtractor::new,true,false,true,Plane.HORIZONTAL, true),
         CELL_SEPARATOR(MachineBlock.MACHINE_BLOCK_4,7,"CellSeparator",71,TileEntityCellSeparator::new,true,false,true,Plane.HORIZONTAL, true)/*,
 
-        BASIC_FACTORY2(MachineBlock.MACHINE_BLOCK_4, 8, "Factory", 11, TileEntityFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.BASIC),
+        BASIC_FACTORY2(MachineBlock.MACHINE_BLOCK_4, 8, "Factory", 11, TileEntityFactory2::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.BASIC),
+
         ADVANCED_FACTORY2(MachineBlock.MACHINE_BLOCK_4, 9, "Factory", 11, TileEntityAdvancedFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ADVANCED),
         ELITE_FACTORY2(MachineBlock.MACHINE_BLOCK_4, 10, "Factory", 11, TileEntityEliteFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ELITE),
         ULTIMATE_FACTORY2(MachineBlock.MACHINE_BLOCK_4,11, "Factory", 11, TileEntityUltimateFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ULTIMATE),

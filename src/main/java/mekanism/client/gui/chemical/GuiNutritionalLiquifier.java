@@ -52,7 +52,7 @@ public class GuiNutritionalLiquifier extends GuiChemical<TileEntityNutritionalLi
 
     @Override
     protected ResourceLocation getGuiLocation() {
-        return MekanismUtils.getResource(ResourceType.GUI, "GuiNutritionalLiquifier.png");
+        return MekanismUtils.getResource(ResourceType.GUI, "GuiChemical.png");
     }
 
     @Override

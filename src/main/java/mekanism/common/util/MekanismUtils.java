@@ -1140,6 +1140,11 @@ public final class MekanismUtils {
     public enum ResourceType {
         GUI("gui"),
         GUI_ELEMENT("gui/elements"),
+        GUI_BASIC_FACTORY("gui/factory/basic"),
+        GUI_ADVANCED_FACTORY("gui/factory/advanced"),
+        GUI_ELITE_FACTORY("gui/factory/elite"),
+        GUI_ULTIMATE_FACTORY("gui/factory/ultimate"),
+        GUI_CREATIVE_FACTORY("gui/factory/creative"),
         SOUND("sound"),
         RENDER("render"),
         TEXTURE_BLOCKS("textures/blocks"),

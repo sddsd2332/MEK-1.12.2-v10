@@ -56,6 +56,7 @@ public class GuiHeatInfo extends GuiElement {
     public void mouseClicked(int xAxis, int yAxis, int button) {
         if (button == 0 && inBounds(xAxis, yAxis)) {
             MekanismConfig.current().general.tempUnit.set(TempType.values()[(MekanismConfig.current().general.tempUnit.val().ordinal() + 1) % TempType.values().length]);
+
         }
     }
 }

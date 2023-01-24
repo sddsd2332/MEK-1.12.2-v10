@@ -24,7 +24,7 @@ public class GuiReactorTab extends GuiTabElementType<TileEntityReactorController
     }
 
     public enum ReactorTab implements TabType {
-        HEAT("GuiHeatTab_uncolored.png", 11, "gui.heat", 6),
+        HEAT("GuiHeatTab.png", 11, "gui.heat", 6),
         FUEL("GuiFuelTab.png", 12, "gui.fuel", 34),
         STAT("GuiStatsTab.png", 13, "gui.stats", 62);
 
