@@ -51,8 +51,8 @@ public class GuiGasTank extends GuiMekanismTile<TileEntityGasTank> {
         renderScaledText(LangUtils.localize("gui.gas") + ": "
                 + (tileEntity.gasTank.getGas() != null ? tileEntity.gasTank.getGas().getGas().getLocalizedName()
                         : LangUtils.localize("gui.none")),
-                45, 49, 0x404040, 112);
-        fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, ySize - 96 + 2, 0x33ff99);
+                45, 49, 0x33ff99, 112);
+        fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, ySize - 96 + 2, 0x404040);
         String name = LangUtils.localize(tileEntity.dumping.getLangKey());
         fontRenderer.drawString(name, 156 - fontRenderer.getStringWidth(name), 73, 0x404040);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
