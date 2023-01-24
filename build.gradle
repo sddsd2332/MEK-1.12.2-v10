@@ -142,10 +142,14 @@ dependencies {
     }
     compileOnly "dan200.computercraft:ComputerCraft:${computercraft_version}:api"
     compileOnly "mcjty.theoneprobe:TheOneProbe-1.12:${top_version}:api"
-    compileOnly("appeng:appliedenergistics2:${ae2_version}:api") {
+    /*
+	compileOnly("appeng:appliedenergistics2:${ae2_version}:api") {
         exclude module: "jei_1.12.2"
     }
-
+	*/
+	compileOnly files("libs/appliedenergistics2-rv6-stable-7.jar"){
+        exclude module: "jei_1.12.2"
+	}
     compileOnly files("libs/groovyscript-0.1.0-2023-1-13.jar")
    //runtime ("libs/groovyscript-0.2.0.jar")
     deobfCompile "zone.rong:mixinbooter:4.2"
