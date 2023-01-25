@@ -4,9 +4,9 @@
     "data": 4
   },
   "pattern": [
-    "ABA",
-    "CDC",
-    "EFE"
+    "IRI",
+    "ECE",
+    "IRI"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
@@ -16,35 +16,19 @@
     }
   ],
   "key": {
-    "A": {
-      "ore": "alloyAdvanced",
+    "R": {
+      "ore": "dustRedstone",
       "type": "forge:ore_dict"
     },
-    "B": {
-      "nbt": {
-        "tier": 0
-      },
-      "item": "mekanism:machineblock2",
-      "data": 11,
-      "type": "mekanism:item_nbt"
-    },
     "C": {
-      "nbt": {
-        "tier": 0
-      },
-      "item": "mekanism:gastank",
-      "data": 0,
-      "type": "mekanism:item_nbt"
-    },
-    "D": {
       "item": "mekanism:electrolyticcore"
     },
     "E": {
-      "item": "#CIRCUITBASIC"
+      "item": "mekanism:enrichedalloy"
     },
-    "F": {
-      "item": "mekanism:basicblock",
-      "data": 8
+    "I": {
+      "ore": "ingotIron",
+      "type": "forge:ore_dict"
     }
   }
 }

@@ -27,8 +27,8 @@
       "item": "#CIRCUITBASIC"
     },
     "E": {
-      "item": "mekanism:machineblock3",
-      "data": 9
+      "item": "mekanism:machineblock",
+      "data": 13
     },
     "G": {
       "nbt": {

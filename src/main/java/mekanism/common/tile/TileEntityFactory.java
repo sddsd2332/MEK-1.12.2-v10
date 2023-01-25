@@ -114,7 +114,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{8, 9, 10}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{1}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.YELLOW, new int[]{4}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{4,5,6,7}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{4, 5, 6, 7}));
         configComponent.setConfig(TransmissionType.ITEM, new byte[]{4, 0, 0, 3, 1, 2});
 
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
@@ -149,12 +149,21 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
 
     @Override
     public boolean upgrade(BaseTier upgradeTier) {
-        if (upgradeTier.ordinal() != tier.ordinal() + 1 || tier == FactoryTier.CREATIVE) {
+        if (tier == FactoryTier.ELITE || tier == FactoryTier.ULTIMATE){
+            if (upgradeTier.ordinal() != tier.ordinal() + 1) {
+                return false;
+            }
+            world.setBlockToAir(getPos());
+            world.setBlockState(getPos(), MekanismBlocks.MachineBlock3.getStateFromMeta(4 + tier.ordinal() + 1), 3);
+        }else if (tier == FactoryTier.BASIC || tier == FactoryTier.ADVANCED){
+            if (upgradeTier.ordinal() != tier.ordinal() + 1) {
+                return false;
+            }
+            world.setBlockToAir(getPos());
+            world.setBlockState(getPos(), MekanismBlocks.MachineBlock.getStateFromMeta(5 + tier.ordinal() + 1), 3);
+        }else
             return false;
-        }
 
-        world.setBlockToAir(getPos());
-        world.setBlockState(getPos(), MekanismBlocks.MachineBlock.getStateFromMeta(5 + tier.ordinal() + 1), 3);
 
         TileEntityFactory factory = Objects.requireNonNull((TileEntityFactory) world.getTileEntity(getPos()));
 
@@ -729,31 +738,67 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             if (slotID >= 8 && slotID <= 10) {
                 return false;
             } else if (slotID >= 5 && slotID <= 7) {
-                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
+                        || recipeType.getFuelType() == MachineFuelType.FARM
+                        || recipeType == RecipeType.INFUSING
+                        || recipeType.getFuelType() == MachineFuelType.CHANCE
+                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
+                ) {
+                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+
+                }else return recipeType.getRecipe(itemstack) !=null;
             }
         } else if (tier == FactoryTier.ADVANCED) {
             if (slotID >= 10 && slotID <= 14) {
                 return false;
             } else if (slotID >= 5 && slotID <= 9) {
-                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
+                        || recipeType.getFuelType() == MachineFuelType.FARM
+                        || recipeType == RecipeType.INFUSING
+                        || recipeType.getFuelType() == MachineFuelType.CHANCE
+                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
+                ) {
+                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                }else return recipeType.getRecipe(itemstack) !=null;
             }
         } else if (tier == FactoryTier.ELITE) {
             if (slotID >= 12 && slotID <= 18) {
                 return false;
             } else if (slotID >= 5 && slotID <= 11) {
-                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
+                        || recipeType.getFuelType() == MachineFuelType.FARM
+                        || recipeType == RecipeType.INFUSING
+                        || recipeType.getFuelType() == MachineFuelType.CHANCE
+                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
+                ) {
+                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                }else return recipeType.getRecipe(itemstack) !=null;
             }
         } else if (tier == FactoryTier.ULTIMATE) {
             if (slotID >= 14 && slotID <= 22) {
                 return false;
             } else if (slotID >= 5 && slotID <= 13) {
-                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
+                        || recipeType.getFuelType() == MachineFuelType.FARM
+                        || recipeType == RecipeType.INFUSING
+                        || recipeType.getFuelType() == MachineFuelType.CHANCE
+                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
+                ) {
+                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                }else return recipeType.getRecipe(itemstack) !=null;
             }
         }else if (tier == FactoryTier.CREATIVE) {
             if (slotID >= 16 && slotID <= 26) {
                 return false;
             } else if (slotID >= 5 && slotID <= 15) {
-                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
+                        || recipeType.getFuelType() == MachineFuelType.FARM
+                        || recipeType == RecipeType.INFUSING
+                        || recipeType.getFuelType() == MachineFuelType.CHANCE
+                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
+                ) {
+                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
+                }else return recipeType.getRecipe(itemstack) !=null;
             }
         }
 

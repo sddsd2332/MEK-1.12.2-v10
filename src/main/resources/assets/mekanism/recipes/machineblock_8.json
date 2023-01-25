@@ -1,43 +1,35 @@
 {
   "result": {
-    "nbt": {
-      "recipeType": 0
-    },
     "item": "mekanism:machineblock",
-    "data": 8,
-    "type": "mekanism:item_nbt"
+    "data": 8
   },
   "pattern": [
-    "RCR",
-    "gOg",
-    "RCR"
+    "IFI",
+    "ROR",
+    "IFI"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "Factory"
+      "machineType": "MetallurgicInfuser"
     }
   ],
   "key": {
     "R": {
-      "ore": "alloyUltimate",
+      "ore": "dustRedstone",
       "type": "forge:ore_dict"
     },
-    "C": {
-      "item": "#CIRCUITULTIMATE"
+    "F": {
+      "item": "minecraft:furnace"
     },
-    "g": {
-      "ore": "gemDiamond",
+    "I": {
+      "ore": "ingotIron",
       "type": "forge:ore_dict"
     },
     "O": {
-      "nbt": {
-        "recipeType": 0
-      },
-      "item": "mekanism:machineblock",
-      "data": 7,
-      "type": "mekanism:item_nbt"
+      "ore": "ingotOsmium",
+      "type": "forge:ore_dict"
     }
   }
 }

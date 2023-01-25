@@ -4,48 +4,26 @@
     "data": 14
   },
   "pattern": [
-    "ABA",
-    "CDC",
-    "EFE"
+    "PPP",
+    "SES"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "IsotopicCentrifuge"
+      "machineType": "Chargepad"
     }
   ],
   "key": {
-    "A": {
-      "ore": "blockTin",
+    "P": {
+      "item": "minecraft:stone_pressure_plate"
+    },
+    "S": {
+      "ore": "ingotSteel",
       "type": "forge:ore_dict"
     },
-    "B": {
-      "item": "#CIRCUITULTIMATE"
-    },
-	"C": {
-      "item": "mekanism:basicblock",
-      "data": 10
-    },
-    "D": {
-      "nbt": {
-        "tier": 3
-      },
-      "item": "mekanism:gastank",
-      "data": 0,
-      "type": "mekanism:item_nbt"
-    },
     "E": {
-      "item": "mekanism:basicblock",
-      "data": 8 
-    },
-	"F": {
-      "nbt": {
-        "tier": 3
-      },
-      "item": "mekanism:energycube",
-      "data": 0,
-      "type": "mekanism:item_nbt"
+      "item": "mekanism:energytablet"
     }
   }
 }
