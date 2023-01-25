@@ -42,3 +42,7 @@ mods.Mekanism.CellExtractor.removeByInput(item('minecraft:iron_ore'))
 //CellSeparator
 mods.Mekanism.CellSeparator.add(item('minecraft:stone'),item('minecraft:stone:1'),item('minecraft:stone:2'),1)
 mods.Mekanism.CellSeparator.removeByInput(item('minecraft:iron_ore'))
+
+//Energized Smelter
+//mods.mekanism.Smelter.removeByInput(item('minecraft:gold_ore'))
+mods.mekanism.Smelter.add(item('minecraft:iron_ore'),item('minecraft:iron_ingot'))
