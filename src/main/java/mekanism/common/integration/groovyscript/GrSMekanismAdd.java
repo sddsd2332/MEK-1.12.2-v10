@@ -20,6 +20,8 @@ public class GrSMekanismAdd extends Mekanism {
     public Alloy alloy = new Alloy();
     public CellExtractor cellExtractor = new CellExtractor();
     public CellSeparator cellSeparator = new CellSeparator();
+    public Smelter smelter = new Smelter();
+
 
     public GrSMekanismAdd(){
         addRegistry(nutritionalLiquifier);
@@ -35,7 +37,7 @@ public class GrSMekanismAdd extends Mekanism {
         addRegistry(alloy);
         addRegistry(cellExtractor);
         addRegistry(cellSeparator);
-
+        addRegistry(smelter);
     }
 
 
