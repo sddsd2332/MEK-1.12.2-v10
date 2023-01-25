@@ -23,18 +23,25 @@ public class GuiDynamicTank extends GuiEmbeddedGaugeTile<TileEntityDynamicTank> 
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
+        fontRenderer.drawString(tileEntity.getName(),
+                (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 94) + 2, 0x404040);
-        fontRenderer.drawString(LangUtils.localize("gui.volume") + ": " + tileEntity.clientCapacity / TankUpdateProtocol.FLUID_PER_TANK, 53, 26, 0x33ff99);
+        fontRenderer.drawString(
+                LangUtils.localize("gui.volume") + ": " + tileEntity.clientCapacity / TankUpdateProtocol.FLUID_PER_TANK,
+                53, 26, 0x33ff99);
         FluidStack fluidStored = tileEntity.structure != null ? tileEntity.structure.fluidStored : null;
-        renderScaledText(fluidStored != null ? LangUtils.localizeFluidStack(fluidStored) + ":" : LangUtils.localize("gui.noFluid"), 53, 44, 0x33ff99, 74);
+        renderScaledText(fluidStored != null ? LangUtils.localizeFluidStack(fluidStored) + ":"
+                : LangUtils.localize("gui.noFluid"), 53, 44, 0x33ff99, 74);
         if (fluidStored != null) {
             fontRenderer.drawString(fluidStored.amount + "mB", 53, 53, 0x33ff99);
         }
         int xAxis = mouseX - guiLeft;
         int yAxis = mouseY - guiTop;
         if (xAxis >= 7 && xAxis <= 39 && yAxis >= 14 && yAxis <= 72) {
-            displayTooltip(fluidStored != null ? LangUtils.localizeFluidStack(fluidStored) + ": " + fluidStored.amount + "mB" : LangUtils.localize("gui.empty"), xAxis, yAxis);
+            displayTooltip(
+                    fluidStored != null ? LangUtils.localizeFluidStack(fluidStored) + ": " + fluidStored.amount + "mB"
+                            : LangUtils.localize("gui.empty"),
+                    xAxis, yAxis);
         }
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
@@ -51,7 +58,7 @@ public class GuiDynamicTank extends GuiEmbeddedGaugeTile<TileEntityDynamicTank> 
 
     @Override
     protected ResourceLocation getGuiLocation() {
-        return MekanismUtils.getResource(ResourceType.GUI, "GuiInductionMatrix_DynamicTank.png");
+        return MekanismUtils.getResource(ResourceType.GUI, "GuiDynamicTank.png");
     }
 
     @Override
