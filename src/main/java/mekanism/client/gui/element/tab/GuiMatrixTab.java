@@ -22,7 +22,7 @@ public class GuiMatrixTab extends GuiTabElementType<TileEntityInductionCasing, M
     }
 
     public enum MatrixTab implements TabType {
-        MAIN("GuiEnergyTab.png", 49, "gui.main"),
+        MAIN("GuiEnergyTab_uncolored.png", 49, "gui.main"),
         STAT("GuiStatsTab.png", 50, "gui.stats");
 
         private final String description;

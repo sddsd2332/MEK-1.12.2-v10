@@ -23,14 +23,23 @@ public class GuiInductionMatrix extends GuiMekanismTile<TileEntityInductionCasin
         super(tile, new ContainerInductionMatrix(inventory, tile));
         ResourceLocation resource = getGuiLocation();
         addGuiElement(new GuiMatrixTab(this, tileEntity, MatrixTab.STAT, resource));
-        addGuiElement(new GuiEnergyInfo(() -> Arrays.asList(LangUtils.localize("gui.storing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()),
-              LangUtils.localize("gui.input") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getLastInput()) + "/t",
-              LangUtils.localize("gui.output") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getLastOutput()) + "/t"), this, resource));
+        addGuiElement(
+                new GuiEnergyInfo(
+                        () -> Arrays.asList(
+                                LangUtils.localize("gui.storing") + ": "
+                                        + MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(),
+                                                tileEntity.getMaxEnergy()),
+                                LangUtils.localize("gui.input") + ": "
+                                        + MekanismUtils.getEnergyDisplay(tileEntity.getLastInput()) + "/t",
+                                LangUtils.localize("gui.output") + ": "
+                                        + MekanismUtils.getEnergyDisplay(tileEntity.getLastOutput()) + "/t"),
+                        this, resource));
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
+        fontRenderer.drawString(tileEntity.getName(),
+                (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 94) + 2, 0x404040);
         fontRenderer.drawString(LangUtils.localize("gui.input") + ":", 53, 26, 0x33ff99);
         fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getLastInput()) + "/t", 53, 35, 0x33ff99);
@@ -39,7 +48,8 @@ public class GuiInductionMatrix extends GuiMekanismTile<TileEntityInductionCasin
         int xAxis = mouseX - guiLeft;
         int yAxis = mouseY - guiTop;
         if (xAxis >= 7 && xAxis <= 39 && yAxis >= 14 && yAxis <= 72) {
-            displayTooltip(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), xAxis, yAxis);
+            displayTooltip(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), xAxis,
+                    yAxis);
         }
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
@@ -55,10 +65,10 @@ public class GuiInductionMatrix extends GuiMekanismTile<TileEntityInductionCasin
 
     @Override
     protected ResourceLocation getGuiLocation() {
-        return MekanismUtils.getResource(ResourceType.GUI, "GuiInductionMatrix_DynamicTank.png");
+        return MekanismUtils.getResource(ResourceType.GUI, "GuiInductionMatrix.png");
     }
 
-    public void displayGauge(int xPos, int yPos, int scale, int side /*0-left, 1-right*/) {
+    public void displayGauge(int xPos, int yPos, int scale, int side /* 0-left, 1-right */) {
         int start = 0;
         while (true) {
             int renderRemaining;
@@ -70,7 +80,8 @@ public class GuiInductionMatrix extends GuiMekanismTile<TileEntityInductionCasin
                 scale = 0;
             }
             mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-            drawTexturedModalRect(guiLeft + xPos, guiTop + yPos + 58 - renderRemaining - start, MekanismRenderer.energyIcon, 16, renderRemaining);
+            drawTexturedModalRect(guiLeft + xPos, guiTop + yPos + 58 - renderRemaining - start,
+                    MekanismRenderer.energyIcon, 16, renderRemaining);
             start += 16;
             if (renderRemaining == 0 || scale == 0) {
                 break;

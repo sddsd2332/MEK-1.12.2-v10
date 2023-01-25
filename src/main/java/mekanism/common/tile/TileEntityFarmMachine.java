@@ -32,16 +32,20 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<AdvancedMachineInput, ChanceOutput, RECIPE>implements IGasHandler, ISustainedData {
+public abstract class TileEntityFarmMachine<RECIPE extends FarmMachineRecipe<RECIPE>>
+        extends TileEntityUpgradeableMachine<AdvancedMachineInput, ChanceOutput, RECIPE>
+        implements IGasHandler, ISustainedData {
 
-    private static final String[] methods = new String[]{"getEnergy","getSecondaryStored","getProgress","isActive","facing","canOperate", "getMaxEnergy", "getEnergyNeeded"};
+    private static final String[] methods = new String[] { "getEnergy", "getSecondaryStored", "getProgress", "isActive",
+            "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded" };
 
     public static final int BASE_TICKS_REQUIRED = 200;
     public static final int BASE_GAS_PER_TICK = 1;
     public static int MAX_GAS = 210;
 
     /**
-     * How much secondary energy (fuel) this machine uses per tick, not including upgrades.
+     * How much secondary energy (fuel) this machine uses per tick, not including
+     * upgrades.
      */
     public int BASE_SECONDARY_ENERGY_PER_TICK;
     /**
@@ -52,17 +56,19 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
     public GasTank gasTank;
     public Gas prevGas;
 
-    public TileEntityFarmMachine(String soundPath, MachineType type, int ticksRequired,int secondaryPerTick){
-        super(soundPath, type, 5, ticksRequired, MekanismUtils.getResource(MekanismUtils.ResourceType.GUI, "GuiAdvancedMachine.png"));
+    public TileEntityFarmMachine(String soundPath, MachineType type, int ticksRequired, int secondaryPerTick) {
+        super(soundPath, type, 5, ticksRequired,
+                MekanismUtils.getResource(MekanismUtils.ResourceType.GUI, "GuiAdvancedMachine.png"));
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[]{0}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{2,4}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{3}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.YELLOW, new int[]{1}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[] { 0 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[] { 2, 4 }));
+        configComponent.addOutput(TransmissionType.ITEM,
+                new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[] { 3 }));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.ORANGE, new int[] { 1 }));
 
-        configComponent.setConfig(TransmissionType.ITEM, new byte[]{2, 1, 0, 0, 0, 3});
+        configComponent.setConfig(TransmissionType.ITEM, new byte[] { 2, 1, 0, 0, 0, 3 });
         configComponent.setInputConfig(TransmissionType.ENERGY);
 
         gasTank = new GasTank(MAX_GAS);
@@ -82,7 +88,7 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
     @Override
     protected void upgradeInventory(TileEntityFactory factory) {
 
-        factory.configComponent.getOutputs(TransmissionType.ITEM).get(2).availableSlots = new int[]{4, 8, 9, 10};
+        factory.configComponent.getOutputs(TransmissionType.ITEM).get(2).availableSlots = new int[] { 4, 8, 9, 10 };
         factory.gasTank.setGas(gasTank.getGas());
         factory.inventory.set(5, inventory.get(0));
         factory.inventory.set(4, inventory.get(1));
@@ -106,8 +112,10 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
             handleSecondaryFuel();
             boolean inactive = false;
             RECIPE recipe = getRecipe();
-            secondaryEnergyThisTick = useStatisticalMechanics() ? StatUtils.inversePoisson(secondaryEnergyPerTick) : (int) Math.ceil(secondaryEnergyPerTick);
-            if (canOperate(recipe) && MekanismUtils.canFunction(this) && getEnergy() >= energyPerTick&& gasTank.getStored() >= secondaryEnergyThisTick){
+            secondaryEnergyThisTick = useStatisticalMechanics() ? StatUtils.inversePoisson(secondaryEnergyPerTick)
+                    : (int) Math.ceil(secondaryEnergyPerTick);
+            if (canOperate(recipe) && MekanismUtils.canFunction(this) && getEnergy() >= energyPerTick
+                    && gasTank.getStored() >= secondaryEnergyThisTick) {
                 setActive(true);
                 operatingTicks++;
                 if (operatingTicks >= ticksRequired) {
@@ -129,6 +137,7 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
             }
         }
     }
+
     public void handleSecondaryFuel() {
         ItemStack itemStack = inventory.get(1);
         int needed = gasTank.getNeeded();
@@ -159,7 +168,8 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
         if (slotID == 2 || slotID == 4) {
             return false;
         } else if (slotID == 5) {
-            return itemstack.getItem() == MekanismItems.SpeedUpgrade || itemstack.getItem() == MekanismItems.EnergyUpgrade;
+            return itemstack.getItem() == MekanismItems.SpeedUpgrade
+                    || itemstack.getItem() == MekanismItems.EnergyUpgrade;
         } else if (slotID == 0) {
             for (AdvancedMachineInput input : getRecipes().keySet()) {
                 if (ItemHandlerHelper.canItemStacksStack(input.itemStack, itemstack)) {
@@ -183,20 +193,20 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
     public RECIPE getRecipe() {
         AdvancedMachineInput input = getInput();
         if (cachedRecipe == null || !input.testEquality(cachedRecipe.getInput())) {
-            cachedRecipe = RecipeHandler.getFarmRecipe(input,getRecipes());
+            cachedRecipe = RecipeHandler.getFarmRecipe(input, getRecipes());
         }
         return cachedRecipe;
     }
 
     @Override
     public void operate(RECIPE recipe) {
-        recipe.operate(inventory, 0,  gasTank, secondaryEnergyThisTick,2,4);
+        recipe.operate(inventory, 0, gasTank, secondaryEnergyThisTick, 2, 4);
         markDirty();
     }
 
     @Override
     public boolean canOperate(RECIPE recipe) {
-        return recipe != null && recipe.canOperate(inventory, 0, gasTank, secondaryEnergyThisTick,2,4);
+        return recipe != null && recipe.canOperate(inventory, 0, gasTank, secondaryEnergyThisTick, 2, 4);
     }
 
     @Override
@@ -214,7 +224,6 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
         return data;
     }
 
-
     @Override
     public void readFromNBT(NBTTagCompound nbtTags) {
         super.readFromNBT(nbtTags);
@@ -230,7 +239,6 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
         nbtTags.setTag("gasTank", gasTank.write(new NBTTagCompound()));
         return nbtTags;
     }
-
 
     public int getScaledGasLevel(int i) {
         return gasTank.getStored() * i / gasTank.getMaxGas();
@@ -267,7 +275,7 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
     @Override
     @Nonnull
     public GasTankInfo[] getTankInfo() {
-        return new GasTankInfo[]{gasTank};
+        return new GasTankInfo[] { gasTank };
     }
 
     @Override
@@ -310,21 +318,21 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
     public Object[] invoke(int method, Object[] arguments) throws NoSuchMethodException {
         switch (method) {
             case 0:
-                return new Object[]{getEnergy()};
+                return new Object[] { getEnergy() };
             case 1:
-                return new Object[]{gasTank.getStored()};
+                return new Object[] { gasTank.getStored() };
             case 2:
-                return new Object[]{operatingTicks};
+                return new Object[] { operatingTicks };
             case 3:
-                return new Object[]{isActive};
+                return new Object[] { isActive };
             case 4:
-                return new Object[]{facing};
+                return new Object[] { facing };
             case 5:
-                return new Object[]{canOperate(getRecipe())};
+                return new Object[] { canOperate(getRecipe()) };
             case 6:
-                return new Object[]{maxEnergy};
+                return new Object[] { maxEnergy };
             case 7:
-                return new Object[]{maxEnergy - getEnergy()};
+                return new Object[] { maxEnergy - getEnergy() };
             default:
                 throw new NoSuchMethodException();
         }
@@ -339,6 +347,5 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
     public void readSustainedData(ItemStack itemStack) {
         GasUtils.readSustainedData(gasTank, itemStack);
     }
-
 
 }
