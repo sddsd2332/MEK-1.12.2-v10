@@ -55,16 +55,22 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
             });
             addSlotToContainer(new SlotOutput(tileEntity, 3, 180 + 72, 112 ));
         }
-        addSlotToContainer(new Slot(tileEntity, 4, 7, 57));
+
+        //如果是这些类型的工厂，则添加额外插槽 --可能会导致shift左键放不进第一个插槽
+        if(tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
+                || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM
+                || tileEntity.getRecipeType() == RecipeType.INFUSING
+                || tileEntity.getRecipeType().getFuelType() == MachineFuelType.CHANCE
+                || tileEntity.getRecipeType().getFuelType() == MachineFuelType.DOUBLE
+        ){
+            addSlotToContainer(new Slot(tileEntity, 4, 7, 57));
+        }
         if (tileEntity.tier == FactoryTier.BASIC) {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new FactoryInputSlot(tileEntity, getInputSlotIndex(i), 55 + (i * 38), 13, i));
             }
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new SlotOutput(tileEntity, getOutputSlotIndex(i), 55 + (i * 38), 57));
-            //    if (tileEntity.getRecipeType() == RecipeType.SAWING||tileEntity.getRecipeType() == RecipeType.FARM){
-          //          addSlotToContainer(new SlotOutput(tileEntity,getsecondaryOutputSlotIndex(i),55+(i * 38), 57+18));
-          //      }
             }
 
         } else if (tileEntity.tier == FactoryTier.ADVANCED) {
@@ -97,6 +103,8 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
                 addSlotToContainer(new SlotOutput(tileEntity, getOutputSlotIndex(i), 27 + (i * 19), 57));
             }
         }
+
+
     }
 
     @Override
