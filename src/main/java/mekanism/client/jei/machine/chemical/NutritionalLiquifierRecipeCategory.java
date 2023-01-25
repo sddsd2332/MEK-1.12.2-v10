@@ -22,7 +22,7 @@ import mezz.jei.api.ingredients.IIngredients;
 public class NutritionalLiquifierRecipeCategory<WRAPPER extends NutritionalLiquifierRecipeWrapper<NutritionalRecipe>> extends BaseRecipeCategory<WRAPPER> {
 
     public NutritionalLiquifierRecipeCategory(IGuiHelper helper) {
-        super(helper, "mekanism:gui/GuiNutritionalLiquifier.png", Recipe.Nutritional_Liquifier.getJEICategory(),
+        super(helper, "mekanism:gui/GuiChemical.png", Recipe.Nutritional_Liquifier.getJEICategory(),
               "tile.MachineBlock.NutritionalLiquifier.name", ProgressBar.LARGE_RIGHT, 20, 12, 132, 62);
     }
 

@@ -2,6 +2,7 @@ package mekanism.common.inventory.container;
 
 import javax.annotation.Nonnull;
 import mekanism.api.infuse.InfuseRegistry;
+import mekanism.common.base.IFactory.MachineFuelType;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.inventory.slot.SlotEnergy.SlotDischarge;
@@ -35,15 +36,24 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
                 }
             });
             addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 112));
-        }else if(tileEntity.tier == FactoryTier.ULTIMATE || tileEntity.tier == FactoryTier.CREATIVE) {
-            addSlotToContainer(new Slot(tileEntity, 2, 180, 95 ) {
+        }else if(tileEntity.tier == FactoryTier.ULTIMATE ) {
+            addSlotToContainer(new Slot(tileEntity, 2, 180 + 34, 75) {
                 @Override
                 public boolean isItemValid(ItemStack stack) {
                     MachineType swapType = MachineType.get(stack);
                     return swapType != null && !swapType.isFactory();
                 }
             });
-            addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 132 ));
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180 + 34, 112 ));
+        }else if (tileEntity.tier == FactoryTier.CREATIVE){
+            addSlotToContainer(new Slot(tileEntity, 2, 180 + 72, 75) {
+                @Override
+                public boolean isItemValid(ItemStack stack) {
+                    MachineType swapType = MachineType.get(stack);
+                    return swapType != null && !swapType.isFactory();
+                }
+            });
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180 + 72, 112 ));
         }
         addSlotToContainer(new Slot(tileEntity, 4, 7, 57));
         if (tileEntity.tier == FactoryTier.BASIC) {
@@ -91,7 +101,39 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
 
     @Override
     protected int getInventoryOffset() {
-        return 95;
+        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED ||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM ||tileEntity.getRecipeType() == RecipeType.INFUSING){
+            return 95;
+        }else if (tileEntity.tier == FactoryTier.ULTIMATE|| tileEntity.tier == FactoryTier.CREATIVE){
+            return 87;
+        }else {
+            return 88;
+        }
+    }
+
+    @Override
+    protected void addInventorySlots(InventoryPlayer inventory) {
+        int offset = getInventoryOffset();
+        for (int slotY = 0; slotY < 3; slotY++) {
+            for (int slotX = 0; slotX < 9; slotX++) {
+                if (tileEntity.tier == FactoryTier.CREATIVE){
+                    addSlotToContainer(new Slot(inventory, slotX + slotY * 9 + 9, 44 + slotX * 18, offset + slotY * 18));
+                }else if (tileEntity.tier == FactoryTier.ULTIMATE){
+                    addSlotToContainer(new Slot(inventory, slotX + slotY * 9 + 9, 27 + slotX * 18, offset + slotY * 18));
+                }else {
+                    addSlotToContainer(new Slot(inventory, slotX + slotY * 9 + 9, 8 + slotX * 18, offset + slotY * 18));
+                }
+            }
+        }
+        offset += 58;
+        for (int slotY = 0; slotY < 9; slotY++) {
+            if (tileEntity.tier == FactoryTier.CREATIVE){
+                addSlotToContainer(new Slot(inventory, slotY, 44 + slotY * 18, offset));
+            }else if (tileEntity.tier == FactoryTier.ULTIMATE){
+                addSlotToContainer(new Slot(inventory, slotY, 27 + slotY * 18, offset));
+            }else {
+                addSlotToContainer(new Slot(inventory, slotY, 8 + slotY * 18, offset));
+            }
+        }
     }
 
     @Nonnull

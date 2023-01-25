@@ -1,5 +1,7 @@
 package mekanism.client.gui.element.tab;
 
+import java.util.Arrays;
+import java.util.UUID;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.client.MekanismClient;
@@ -26,9 +28,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Arrays;
-import java.util.UUID;
-
 @SideOnly(Side.CLIENT)
 public class GuiSecurityTab3 extends GuiTileEntityElement<TileEntity> {
 
@@ -48,18 +47,18 @@ public class GuiSecurityTab3 extends GuiTileEntityElement<TileEntity> {
 
     @Override
     public Rectangle4i getBounds(int guiWidth, int guiHeight) {
-        return new Rectangle4i(guiWidth + 208, guiHeight + 131, 26, 26);
+        return new Rectangle4i(guiWidth + 176 + 72, guiHeight + 32, 26, 26);
     }
 
     @Override
     protected boolean inBounds(int xAxis, int yAxis) {
-        return xAxis >= 208+3 && xAxis <= 226+3 && yAxis >= 135 && yAxis <= 154;
+        return xAxis >= 179 + 72 && xAxis <= 197 + 72 && yAxis >= 36 && yAxis <= 54;
     }
 
     @Override
-        public void renderBackground(int xAxis, int yAxis, int guiWidth, int guiHeight) {
+    public void renderBackground(int xAxis, int yAxis, int guiWidth, int guiHeight) {
         mc.renderEngine.bindTexture(RESOURCE);
-        guiObj.drawTexturedRect(guiWidth + 208, guiHeight + 131, 0, 0, 26, 26);
+        guiObj.drawTexturedRect(guiWidth + 176 + 72, guiHeight + 32, 0, 0, 26, 26);
         SecurityMode mode = getSecurity();
         SecurityData data = MekanismClient.clientSecurityMap.get(getOwner());
         if (data != null && data.override) {
@@ -67,9 +66,9 @@ public class GuiSecurityTab3 extends GuiTileEntityElement<TileEntity> {
         }
         int renderX = 26 + (18 * mode.ordinal());
         if (getOwner() != null && getOwner().equals(mc.player.getUniqueID()) && (data == null || !data.override)) {
-            guiObj.drawTexturedRect(guiWidth + 208+3, guiHeight + 135 , renderX, inBounds(xAxis, yAxis) ? 0 : 18, 18, 18);
+            guiObj.drawTexturedRect(guiWidth + 179 + 72, guiHeight + 36, renderX, inBounds(xAxis, yAxis) ? 0 : 18, 18, 18);
         } else {
-            guiObj.drawTexturedRect(guiWidth + 208+3, guiHeight + 135 , renderX, 36, 18, 18);
+            guiObj.drawTexturedRect(guiWidth + 179 + 72, guiHeight + 36, renderX, 36, 18, 18);
         }
         mc.renderEngine.bindTexture(defaultLocation);
     }

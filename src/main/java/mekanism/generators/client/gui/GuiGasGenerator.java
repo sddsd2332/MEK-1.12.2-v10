@@ -49,6 +49,6 @@ public class GuiGasGenerator extends GuiMekanismTile<TileEntityGasGenerator> {
 
     @Override
     protected ResourceLocation getGuiLocation() {
-        return MekanismUtils.getResource(ResourceType.GUI, "GuiGasGenerator.png");
+        return MekanismUtils.getResource(ResourceType.GUI, "GuiBlank.png");
     }
 }

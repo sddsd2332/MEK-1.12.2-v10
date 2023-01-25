@@ -54,7 +54,7 @@ public class GuiIsotopicCentrifuge extends GuiChemical<TileEntityIsotopicCentrif
 
     @Override
     protected ResourceLocation getGuiLocation() {
-        return MekanismUtils.getResource(ResourceType.GUI, "GuiIsotopicCentrifuge.png");
+        return MekanismUtils.getResource(ResourceType.GUI, "GuiChemical.png");
     }
 
     @Override

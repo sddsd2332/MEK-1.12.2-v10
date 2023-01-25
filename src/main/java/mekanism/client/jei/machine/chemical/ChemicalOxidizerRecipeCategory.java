@@ -21,7 +21,7 @@ import mezz.jei.api.ingredients.IIngredients;
 public class ChemicalOxidizerRecipeCategory<WRAPPER extends ChemicalOxidizerRecipeWrapper<OxidationRecipe>> extends BaseRecipeCategory<WRAPPER> {
 
     public ChemicalOxidizerRecipeCategory(IGuiHelper helper) {
-        super(helper, "mekanism:gui/GuiChemicalOxidizer.png", Recipe.CHEMICAL_OXIDIZER.getJEICategory(),
+        super(helper, "mekanism:gui/GuiChemical.png", Recipe.CHEMICAL_OXIDIZER.getJEICategory(),
               "tile.MachineBlock2.ChemicalOxidizer.name", ProgressBar.LARGE_RIGHT, 20, 12, 132, 62);
     }
 

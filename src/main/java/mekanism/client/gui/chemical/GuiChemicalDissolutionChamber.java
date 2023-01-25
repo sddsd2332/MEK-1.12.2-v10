@@ -53,7 +53,7 @@ public class GuiChemicalDissolutionChamber extends GuiChemical<TileEntityChemica
 
     @Override
     protected ResourceLocation getGuiLocation() {
-        return MekanismUtils.getResource(ResourceType.GUI, "GuiChemicalDissolutionChamber.png");
+        return MekanismUtils.getResource(ResourceType.GUI, "GuiChemical.png");
     }
 
     @Override

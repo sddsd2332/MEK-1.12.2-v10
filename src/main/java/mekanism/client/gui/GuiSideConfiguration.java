@@ -126,9 +126,9 @@ public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlo
         String title = currentType.localize() + " " + LangUtils.localize("gui.config");
         fontRenderer.drawString(title, (xSize / 2) - (fontRenderer.getStringWidth(title) / 2), 5, 0x404040);
         if (configurable.getConfig().canEject(currentType)) {
-            fontRenderer.drawString(LangUtils.localize("gui.eject") + ": " + (configurable.getConfig().isEjecting(currentType) ? "On" : "Off"), 53, 17, 0x00CD00);
+            fontRenderer.drawString(LangUtils.localize("gui.eject") + ": " + (configurable.getConfig().isEjecting(currentType) ? "On" : "Off"), 53, 17, 0x33ff99);
         } else {
-            fontRenderer.drawString(LangUtils.localize("gui.noEject"), 53, 17, 0x00CD00);
+            fontRenderer.drawString(LangUtils.localize("gui.noEject"), 53, 17, 0x33ff99);
         }
         fontRenderer.drawString(LangUtils.localize("gui.slots"), 77, 81, 0x787878);
         int xAxis = mouseX - guiLeft;

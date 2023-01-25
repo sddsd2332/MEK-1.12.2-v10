@@ -126,7 +126,7 @@ public class GuiTItemStackFilter extends GuiItemStackFilter<TItemStackFilter, Ti
         fontRenderer.drawString(sizeModeString, 141, 46, 0x404040);
         drawTransporterForegroundLayer(mouseX, mouseY, filter.getItemStack());
         if (!filter.getItemStack().isEmpty()) {
-            renderScaledText(filter.getItemStack().getDisplayName(), 35, 41, 0x00CD00, 89);
+            renderScaledText(filter.getItemStack().getDisplayName(), 35, 41, 0x33ff99, 89);
         }
 
         int xAxis = mouseX - guiLeft;

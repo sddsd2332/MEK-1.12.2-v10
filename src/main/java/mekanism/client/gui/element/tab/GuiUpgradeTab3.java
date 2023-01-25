@@ -24,19 +24,19 @@ public class GuiUpgradeTab3 extends GuiTileEntityElement<TileEntity> {
 
     @Override
     public Rectangle4i getBounds(int guiWidth, int guiHeight) {
-        return new Rectangle4i(guiWidth + 208, guiHeight + 94, 26, 26);
+        return new Rectangle4i(guiWidth + 176 + 72, guiHeight + 6, 26, 26);
     }
 
     @Override
     protected boolean inBounds(int xAxis, int yAxis) {
-        return xAxis >= 208 && xAxis <= 226 && yAxis >= 98 && yAxis <= 116;
+        return xAxis >= 179 + 72 && xAxis <= 197 + 72 && yAxis >= 10 && yAxis <= 28;
     }
 
     @Override
     public void renderBackground(int xAxis, int yAxis, int guiWidth, int guiHeight) {
         mc.renderEngine.bindTexture(RESOURCE);
-        guiObj.drawTexturedRect(guiWidth + 208, guiHeight + 94, 0, 0, 26, 26);
-        guiObj.drawTexturedRect(guiWidth + 208+3, guiHeight + 98, 26, inBounds(xAxis, yAxis) ? 0 : 18, 18, 18);
+        guiObj.drawTexturedRect(guiWidth + 176 + 72, guiHeight + 6, 0, 0, 26, 26);
+        guiObj.drawTexturedRect(guiWidth + 179 + 72, guiHeight + 10, 26, inBounds(xAxis, yAxis) ? 0 : 18, 18, 18);
         mc.renderEngine.bindTexture(defaultLocation);
     }
 
