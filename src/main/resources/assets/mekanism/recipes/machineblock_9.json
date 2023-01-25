@@ -1,43 +1,35 @@
 {
   "result": {
-    "nbt": {
-      "recipeType": 0
-    },
     "item": "mekanism:machineblock",
-    "data": 9,
-    "type": "mekanism:item_nbt"
+    "data": 9
   },
   "pattern": [
-    "RCR",
-    "gOg",
-    "RCR"
+    "ECE",
+    "ORO",
+    "ECE"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "Factory"
+      "machineType": "PurificationChamber"
     }
   ],
   "key": {
-     "R": {
-      "item": "mekanism:cosmicalloy"
+    "R": {
+      "item": "mekanism:machineblock",
+      "data": 0
     },
     "C": {
-      "item": "mekanism:controlcircuit",
-	  "data": 4
+      "item": "#CIRCUITADVANCED"
     },
-    "g": {
-      "item": "mekanism:OtherDust",
-      "data": 11
+    "E": {
+      "ore": "alloyAdvanced",
+      "type": "forge:ore_dict"
     },
     "O": {
-      "nbt": {
-        "recipeType": 0
-      },
-      "item": "mekanism:machineblock",
-      "data": 8,
-      "type": "mekanism:item_nbt"
+      "ore": "ingotOsmium",
+      "type": "forge:ore_dict"
     }
   }
 }

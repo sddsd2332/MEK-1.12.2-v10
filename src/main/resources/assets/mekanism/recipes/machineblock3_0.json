@@ -4,9 +4,9 @@
     "data": 0
   },
   "pattern": [
-    "ABA",
-    "CDE",
-    "FGF"
+    "OCO",
+    "ATA",
+    "OCO"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
@@ -17,39 +17,18 @@
   ],
   "key": {
     "A": {
-      "ore": "AntimatterPellet",
-      "type": "forge:ore_dict"
-    },
-    "B": {
-      "ore": "blockRefinedObsidian",
+      "ore": "alloyUltimate",
       "type": "forge:ore_dict"
     },
     "C": {
-      "item": "mekanism:machineblock3",
-      "data": 9
-    },
-    "D": {
-      "nbt": {
-        "tier": 3
-      },
-      "item": "mekanism:basicblock2",
-      "data": 3,
-      "type": "mekanism:item_nbt"
-    },
-    "E": {
-      "nbt": {
-        "tier": 3
-      },
-      "item": "mekanism:gastank",
-      "data": 0,
-      "type": "mekanism:item_nbt"
-    },
-    "F": {
-      "item": "mekanism:machineblock",
-      "data": 13
-    },
-    "G": {
       "item": "#CIRCUITULTIMATE"
+    },
+    "T": {
+      "item": "mekanism:teleportationcore"
+    },
+    "O": {
+      "ore": "ingotRefinedObsidian",
+      "type": "forge:ore_dict"
     }
   }
 }

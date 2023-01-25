@@ -17,8 +17,8 @@
   ],
   "key": {
     "P": {
-      "item": "mekanism:machineblock3",
-      "data": 8
+      "item": "mekanism:machineblock",
+      "data": 12
     },
     "C": {
       "item": "#CIRCUITBASIC"

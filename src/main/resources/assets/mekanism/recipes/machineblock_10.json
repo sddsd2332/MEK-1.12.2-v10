@@ -4,32 +4,32 @@
     "data": 10
   },
   "pattern": [
-    "IFI",
-    "ROR",
-    "IFI"
+    "RCR",
+    "GIG",
+    "RCR"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "MetallurgicInfuser"
+      "machineType": "EnergizedSmelter"
     }
   ],
   "key": {
     "R": {
-      "ore": "dustRedstone",
+      "ore": "alloyBasic",
       "type": "forge:ore_dict"
     },
-    "F": {
-      "item": "minecraft:furnace"
+    "C": {
+      "item": "#CIRCUITBASIC"
+    },
+    "G": {
+      "ore": "blockGlass",
+      "type": "forge:ore_dict"
     },
     "I": {
-      "ore": "ingotIron",
-      "type": "forge:ore_dict"
-    },
-    "O": {
-      "ore": "ingotOsmium",
-      "type": "forge:ore_dict"
+      "item": "mekanism:basicblock",
+      "data": 8
     }
   }
 }

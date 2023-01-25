@@ -52,7 +52,7 @@ item.GaugeDropper.name=Gauge Dropper
 item.BioFuel.name=Bio Fuel
 item.CraftingFormula.name=Crafting Formula
 item.Canteen.name=Canteen
-
+item.MekTool.name=Meka-Tool
 # Control Circuits
 item.BasicControlCircuit.name=Basic Control Circuit
 item.AdvancedControlCircuit.name=Advanced Control Circuit
@@ -104,8 +104,7 @@ tile.BasicBlock.CopperBlock.name=Copper Block
 tile.BasicBlock.TinBlock.name=Tin Block
 tile.BasicBlock.ThermalEvaporationController.name=Thermal Evaporation Controller
 tile.BasicBlock.ThermalEvaporationValve.name=Thermal Evaporation Valve
-tile.BasicBlock2.UraniumBlock.name=Uranium Block
-tile.BasicBlock2.LeadBlock.name=Lead Block
+
 
 # Basic Block 2 (second ID iteration)
 tile.BasicBlock2.ThermalEvaporationBlock.name=Thermal Evaporation Block
@@ -124,7 +123,13 @@ tile.BasicBlock2.PressureDisperser.name=Pressure Disperser
 tile.BasicBlock2.BoilerCasing.name=Boiler Casing
 tile.BasicBlock2.BoilerValve.name=Boiler Valve
 tile.BasicBlock2.SecurityDesk.name=Security Desk
+tile.BasicBlock2.UraniumBlock.name=Uranium Block
+tile.BasicBlock2.LeadBlock.name=Lead Block										 
 
+tile.BasicBlock3.SpsCasing.name=SPS Casing[WIP]
+tile.BasicBlock3.FissionReacherCasing.name=Fission Reactor Casing[WIP]
+tile.BasicBlock3.ControlRodAssembly.name=Control Rod Assembly[WIP]
+tile.BasicBlock3.FissionFuelAssembly.name=Fission Fuel Assembly[WIP]															 
 # Machine Block
 tile.MachineBlock.EnrichmentChamber.name=Enrichment Chamber
 tile.MachineBlock.OsmiumCompressor.name=Osmium Compressor
@@ -140,9 +145,6 @@ tile.MachineBlock.PersonalChest.name=Personal Chest
 tile.MachineBlock.Chargepad.name=Chargepad
 tile.MachineBlock.LogisticalSorter.name=Logistical Sorter
 tile.MachineBlock.DigitalMiner.name=Digital Miner
-tile.MachineBlock.IsotopicCentrifuge.name=Isotopic Centrifuge
-tile.MachineBlock.NutritionalLiquifier.name=Nutritional Liquifier
-
 
 # Machine Block 2 (second ID iteration)
 tile.MachineBlock2.RotaryCondensentrator.name=Rotary Condensentrator
@@ -157,7 +159,6 @@ tile.MachineBlock2.ChemicalWasher.name=Chemical Washer
 tile.MachineBlock2.ChemicalCrystallizer.name=Chemical Crystallizer
 tile.MachineBlock2.SeismicVibrator.name=Seismic Vibrator
 tile.MachineBlock2.PressurizedReactionChamber.name=Pressurized Reaction Chamber
-tile.MachineBlock2.PressurizedReactionChamber.short.name=PRC
 tile.MachineBlock2.FluidicPlenisher.name=Fluidic Plenisher
 tile.MachineBlock2.Laser.name=Laser
 tile.MachineBlock2.LaserAmplifier.name=Laser Amplifier
@@ -170,16 +171,22 @@ tile.MachineBlock3.Oredictionificator.name=Oredictionificator
 tile.MachineBlock3.ResistiveHeater.name=Resistive Heater
 tile.MachineBlock3.FormulaicAssemblicator.name=Formulaic Assemblicator
 tile.MachineBlock3.FuelwoodHeater.name=Fuelwood Heater
-tile.MachineBlock3.Chargepad.name=Chargepad
-tile.MachineBlock3.ElectricPump.name=Electric Pump
-tile.MachineBlock3.LogisticalSorter.name=Logistical Sorter
-tile.MachineBlock3.PersonalChest.name=Personal Chest
 tile.MachineBlock3.NutritionalLiquifier.name=Nutritional Liquifier
+tile.MachineBlock3.SuperchargedCoil.name=Supercharged Coil(WIP)
+tile.MachineBlock3.AmbientAccumulator.name=Ambient gas collectors
+tile.MachineBlock3.IsotopicCentrifuge.name=Isotopic Centrifuge
 tile.MachineBlock3.OrganicFarm.name=Organic Farm
-tile.MachineBlock3.organicfarm.name=Organic Farm
 tile.MachineBlock3.antiprotonicnucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
-tile.MachineBlock3.AntiprotonicNucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
+tile.MachineBlock3.Factory.name=Factory
 
+tile.MachineBlock4.Stamping.name=CNC punching machine
+tile.MachineBlock4.Rolling.name=CNC rolling machine
+tile.MachineBlock4.Brushed.name=CNC wire drawing machine
+tile.MachineBlock4.Turning.name=CNC lathes
+tile.MachineBlock4.Alloy.name=Alloy furnace
+tile.MachineBlock4.CellCultivate.name=Cell culture machines
+tile.MachineBlock4.CellExtractor.name=Cell extractor
+tile.MachineBlock4.CellSeparator.name=Cell separator
 # Plastic
 tile.PlasticBlock.name=Plastic Block
 tile.SlickPlasticBlock.name=Slick Plastic Block
@@ -261,6 +268,15 @@ item.silverDust.name=Silver Dust
 item.leadDust.name=Lead Dust
 item.sulfurDust.name=Sulfur Dust
 item.lithiumDust.name=Lithium Dust
+item.uraniumDust.name=Uranium Dust
+item.fluoriteDust.name=Fluorite
+item.fluoritedustDust.name=Fluorite Dust
+item.charcoaldustDust.name=Charcoal Dust
+item.plutoniumpelletDust.name=Plutonium Pellet
+item.antimatterpelletDust.name=Antimatter Pellet
+item.reprocessedfissilefragmentDust.name=Reprocessed Fissile Fragment
+item.yellowcakeuraniumDust.name=Yellow Cake Uranium
+item.poloniumpelletDust.name=Polonium Pellet			   
 
 # Clumps
 item.ironClump.name=Iron Clump
@@ -270,7 +286,7 @@ item.copperClump.name=Copper Clump
 item.tinClump.name=Tin Clump
 item.silverClump.name=Silver Clump
 item.leadClump.name=Lead Clump
-
+item.uraniumClump.name=Uranium Clump
 # Shards
 item.ironShard.name=Iron Shard
 item.goldShard.name=Gold Shard
@@ -279,6 +295,7 @@ item.copperShard.name=Copper Shard
 item.tinShard.name=Tin Shard
 item.silverShard.name=Silver Shard
 item.leadShard.name=Lead Shard
+item.uraniumShard.name=Uranium Shard
 
 # Crystals
 item.ironCrystal.name=Iron Crystal
@@ -288,6 +305,7 @@ item.copperCrystal.name=Copper Crystal
 item.tinCrystal.name=Tin Crystal
 item.silverCrystal.name=Silver Crystal
 item.leadCrystal.name=Lead Crystal
+item.uraniumCrystal.name=Uranium Crystal
 
 # Dirty Dust
 item.dirtyIronDust.name=Dirty Iron Dust
@@ -297,6 +315,7 @@ item.dirtyCopperDust.name=Dirty Copper Dust
 item.dirtyTinDust.name=Dirty Tin Dust
 item.dirtySilverDust.name=Dirty Silver Dust
 item.dirtyLeadDust.name=Dirty Lead Dust
+item.dirtyUraniumDust.name=Dirty Uranium Dust
 
 # Ingots
 item.obsidianIngot.name=Refined Obsidian Ingot
@@ -306,6 +325,8 @@ item.glowstoneIngot.name=Glowstone Ingot
 item.steelIngot.name=Steel Ingot
 item.copperIngot.name=Copper Ingot
 item.tinIngot.name=Tin Ingot
+item.uraniumIngot.name=Uranium Ingot
+item.leadIngot.name=Lead Ingot
 
 # Nuggets
 item.obsidianNugget.name=Refined Obsidian Nugget
@@ -315,6 +336,8 @@ item.glowstoneNugget.name=Glowstone Nugget
 item.steelNugget.name=Steel Nugget
 item.copperNugget.name=Copper Nugget
 item.tinNugget.name=Tin Nugget
+item.uraniumNugget.name=Ultimate Nugget
+item.leadNugget.name=Lead Nugget 
 
 # Gasses
 gas.hydrogen=Hydrogen
@@ -333,6 +356,20 @@ gas.deuterium=Deuterium
 gas.tritium=Tritium
 gas.lithium=Lithium
 gas.fusionfuel=D-T Fuel
+gas.nutritionalpaste=Nutritional Paste
+gas.nuclearwaste=Nuclear Wastewater
+gas.plutonium=Plutonium
+gas.polonium=Polonium
+gas.spentnuclearwaste=Spent Nuclear Waste
+gas.hydrofluoricacid=Hydrofluoric Acid
+gas.antimatter=Antimatter
+gas.fissilefule=Fissile Fuel
+gas.superheatedsodium=Superheated Sodium
+gas.uraniumhexafluoride=Uranium Hexafluoride
+gas.uraniumoxide=Uranium Oxide
+
+gas.nutrientsolution=Nutrient solution
+gas.oxygenenrichedwater=Oxygen-rich water								 
 
 gas.iron=Iron Slurry
 gas.gold=Gold Slurry
@@ -342,6 +379,7 @@ gas.tin=Tin Slurry
 gas.silver=Silver Slurry
 gas.obsidian=Obsidian Slurry
 gas.lead=Lead Slurry
+gas.uranium=Uranium Slurry
 
 gas.cleanIron=Clean Iron Slurry
 gas.cleanGold=Clean Gold Slurry
@@ -374,7 +412,8 @@ fluid.liquiddeuterium=Liquid Deuterium
 fluid.liquidtritium=Liquid Tritium
 fluid.liquidfusionfuel=Liquid D-T Fuel
 fluid.steam=Steam
-
+fluid.liquidhydrofluoricacid=Liquid Hydrofluric Acid
+fluid.liquidsuperheatedsodium=Superheated Sodium
 # OreGas names
 oregas.iron=Iron Ore
 oregas.gold=Gold Ore
@@ -384,6 +423,7 @@ oregas.tin=Tin Ore
 oregas.silver=Silver Ore
 oregas.obsidian=Obsidian Ore
 oregas.lead=Lead Ore
+oregas.uranium=Uranium Ore
 
 # Tier names
 tier.Basic=Basic
@@ -646,6 +686,13 @@ gui.factory.Injecting=Injecting
 gui.factory.Infusing=Infusing
 gui.factory.Sawing=Sawing
 gui.factory.Farm=Farm
+gui.factory.Stamping=Stamping
+gui.factory.Rolling=Rolling
+gui.factory.Brushed=Brushed
+gui.factory.Turning=Turning
+gui.factory.Alloy=Alloy
+gui.factory.Extractor=Extractor
+gui.factory.Separator=Separator
 
 gui.seismicReader.short=S. Reader
 gui.seismicReader.solids=Solids
@@ -829,6 +876,14 @@ mekanism.tooltip.disassembler.vein=vein
 mekanism.tooltip.disassembler.extended_vein=extended vein mining
 mekanism.tooltip.disassembler.off=off
 
+mekanism.tooltip.mektool.normal=normal
+mekanism.tooltip.mektool.slow=slow
+mekanism.tooltip.mektool.fast=fast
+mekanism.tooltip.mektool.very_fast=very fast
+mekanism.tooltip.mektool.vein=vein
+mekanism.tooltip.mektool.extended_vein=extended
+mekanism.tooltip.mektool.off=off
+
 tooltip.configurationCard.got=Retrieved configuration data from %s
 tooltip.configurationCard.set=Injected configuration data of type %s
 tooltip.configurationCard.unequal=Unequal configuration data formats
@@ -869,6 +924,8 @@ tooltip.PressureDisperser=A block used disperse steam throughout a multiblock st
 tooltip.BoilerCasing=A pressure-resistant, dense casing used in the creation of a Thermoelectric Boiler multiblock.
 tooltip.BoilerValve=A valve that can be placed on a Thermoelectric Boiler multiblock, allowing for the insertion of energy and water along with the extraction of produced steam.
 tooltip.SecurityDesk=A central control hub for managing the security of all your owned machinery.
+tooltip.SpsCasing=Reinforced housing capable of resisting the strong chemical and thermal effects of phase shift reactions.
+tooltip.FissionReacherCasing=Fission Reactor Casing
 
 tooltip.EnrichmentChamber=A simple machine used to enrich ores into two of their dust counterparts, as well as perform many other operations.
 tooltip.OsmiumCompressor=A fairly advanced machine used to compress osmium into various dusts in order to create their ingot counterparts.
@@ -906,6 +963,19 @@ tooltip.ResistiveHeater=A condensed, coiled resistor capable of converting elect
 tooltip.FormulaicAssemblicator=A machine that uses energy to rapidly craft items and blocks from Crafting Formulas. Doubles as an advanced crafting bench.
 tooltip.FuelwoodHeater=A machine that is capable of producing large quantities of heat energy by burning combustible items.
 tooltip.QuantumEntangloporter=A highly-advanced block capable of transmitting any practical resource across long distances and dimensions.
+tooltip.canteen1=Only Nutritional Paste can be added
+tooltip.canteen2=Why is this item so expensive?
+tooltip.NutritionalLiquifier=A machine that processes any food into a harmless, easily digestible nutritional paste
+tooltip.IsotopicCentrifuge=A machine with only one purpose: to spin very, very fast what it loads.
+tooltip.antiprotonicnucleosynthesizer=A machine that uses a small amount of antimatter and a large amount of energy to convert various resources in an atomic way.
+tooltip.superchargedcoil=It is used to power supercritical phase shifter multi-block structure. Must be connected to the supercritical phase shifter port [currently just a decoration]
+tooltip.OrganicFarm=A very powerful one-block farm machine
+tooltip.AmbientAccumulator=One that can collect the gases contained in the current dimension [Warning! Exit the archive, the internal gas will not be retained]
+
+tooltip.MekTool1=A very powerful excavating machine
+tooltip.MekTool2=When flushed above 25%, the damage is super doubled
+tooltip.MekTool3=When it is more than 90%, it may have a flash sale effect?
+tooltip.MekTool4=¡ì4???Dangerous tools, warning!???
 
 tooltip.HeatGenerator=A generator that uses the heat of lava or other burnable resources to produce energy.
 tooltip.SolarGenerator=A generator that uses the power of the sun to produce energy.
@@ -946,7 +1016,7 @@ sideData.Fill=Fill
 sideData.Empty=Empty
 sideData.Charge=Charge
 sideData.Discharge=Discharge
-
+sideData.Input_Extra=Input/Extra
 # Redstone control
 control.disabled=Disabled
 control.high=High
