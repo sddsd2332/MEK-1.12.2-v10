@@ -165,17 +165,7 @@ public class TileEntityChemicalCrystallizer extends TileEntityOperationalMachine
     @Override
     public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
         if (canReceiveGas(side, stack.getGas())) {
-            if (stack == null) {
-                return 0;
-            }
-            int recipeAmount = Recipe.CHEMICAL_CRYSTALLIZER.get().get(new GasInput(stack)).recipeInput.ingredient.amount;
-            int receivable = inputTank.receive(stack, false);
-            int stored = inputTank.stored != null ? inputTank.stored.amount : 0;
-            int newStored = stored + receivable;
-
-            int amount = newStored - stored - newStored % recipeAmount;
-
-            return inputTank.receive(stack.copy().withAmount(amount), doTransfer);
+            return inputTank.receive(stack, doTransfer);
         }
         return 0;
     }

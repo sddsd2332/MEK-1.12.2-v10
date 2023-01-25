@@ -84,39 +84,28 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
             this.buttonList.add(this.infuserDumpButton = new GuiButtonImage(1, this.guiLeft+148, this.guiTop+77, 21, 10, 147, 72, 0, MekanismUtils.getResource(ResourceType.GUI, "GuiMetallurgicInfuser.png")){
                 @Override
                 public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
-                    if (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM
-                    ) {
+                    if (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED|| GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
                         super.drawButton(mc, mouseX, mouseY, partialTicks);
                     }
                 }
 
                 @Override
                 public boolean mousePressed(@NotNull Minecraft mc, int mouseX, int mouseY) {
-                    return (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM
-                    ) && super.mousePressed(mc, mouseX, mouseY);
+                    return GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED|| GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM && super.mousePressed(mc, mouseX, mouseY);
                 }
             });
         }else if (tileEntity.tier == FactoryTier.ULTIMATE){
             this.buttonList.add(this.infuserDumpButton = new GuiButtonImage(1, this.guiLeft+182, this.guiTop+77, 21, 10, 147, 72, 0, MekanismUtils.getResource(ResourceType.GUI, "GuiMetallurgicInfuser.png")){
                 @Override
                 public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
-                    if (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
+                    if (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED|| GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
                         super.drawButton(mc, mouseX, mouseY, partialTicks);
                     }
                 }
 
                 @Override
                 public boolean mousePressed(@NotNull Minecraft mc, int mouseX, int mouseY) {
-                    return (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM
-                    )&& super.mousePressed(mc, mouseX, mouseY);
+                    return (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM )&& super.mousePressed(mc, mouseX, mouseY);
                 }
             });
         }else {
@@ -124,7 +113,7 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
                 @Override
                 public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
                     if (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
+                            //|| GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
                             || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM
                     ) {
                         super.drawButton(mc, mouseX, mouseY, partialTicks);
@@ -133,10 +122,10 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
 
                 @Override
                 public boolean mousePressed(@NotNull Minecraft mc, int mouseX, int mouseY) {
-                    return (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
-                            || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
+                    return GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
+                            //|| GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
                             || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM
-                    )&& super.mousePressed(mc, mouseX, mouseY);
+                            && super.mousePressed(mc, mouseX, mouseY);
                 }
             });
         }
