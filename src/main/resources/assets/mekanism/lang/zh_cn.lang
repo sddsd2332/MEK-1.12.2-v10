@@ -52,7 +52,7 @@ item.GaugeDropper.name=滴量器
 item.BioFuel.name=生物燃料
 item.CraftingFormula.name=合成配方
 item.Canteen.name=水壶
-item.MekTool.name=§4☢☣✪拓荒者工具✪☣☢  §f【WIP】
+item.MekTool.name=§4☢☣✪拓荒者工具✪☣☢§f【WIP】
 # Control Circuits
 item.BasicControlCircuit.name=基础控制电路
 item.AdvancedControlCircuit.name=高级控制电路
@@ -139,12 +139,11 @@ tile.MachineBlock.MetallurgicInfuser.name=冶金灌注机
 tile.MachineBlock.PurificationChamber.name=净化仓
 tile.MachineBlock.EnergizedSmelter.name=充能冶炼炉
 tile.MachineBlock.Teleporter.name=传送机
-tile.MachineBlock.DigitalMiner.name=数字型采矿机
-tile.MachineBlock.IsotopicCentrifuge.name=同位素离心机
+tile.MachineBlock.ElectricPump.name=电动泵
+tile.MachineBlock.PersonalChest.name=私人箱子
 tile.MachineBlock.Chargepad.name=充电台
-tile.MachineBlock.NutritionalLiquifier.name=营养液化器
-
-
+tile.MachineBlock.LogisticalSorter.name=物流整理机
+tile.MachineBlock.DigitalMiner.name=数字型采矿机
 # Machine Block 2 (second ID iteration)
 tile.MachineBlock2.RotaryCondensentrator.name=回旋式气液转换机
 tile.MachineBlock2.ChemicalOxidizer.name=化学氧化机
@@ -170,16 +169,13 @@ tile.MachineBlock3.Oredictionificator.name=矿典转换器
 tile.MachineBlock3.ResistiveHeater.name=电阻加热装置
 tile.MachineBlock3.FormulaicAssemblicator.name=公式装配器
 tile.MachineBlock3.FuelwoodHeater.name=木料加热器
-tile.MachineBlock3.Chargepad.name=充电台
-tile.MachineBlock3.ElectricPump.name=电动泵
-tile.MachineBlock3.LogisticalSorter.name=物流整理机
-tile.MachineBlock3.PersonalChest.name=私人箱子
 tile.MachineBlock3.NutritionalLiquifier.name=营养液化器
-tile.MachineBlock3.superchargedcoil.name=增压线圈(WIP)
+tile.MachineBlock3.SuperchargedCoil.name=增压线圈(WIP)
 tile.MachineBlock3.AmbientAccumulator.name=环境气体收集器
+tile.MachineBlock3.IsotopicCentrifuge.name=同位素离心机
 tile.MachineBlock3.OrganicFarm.name=有机农场
-tile.MachineBlock3.organicfarm.name=有机农场
 tile.MachineBlock3.antiprotonicnucleosynthesizer.name=反质子核合成器（WIP）
+tile.MachineBlock3.Factory.name=工厂
 
 tile.MachineBlock4.Stamping.name=数控冲床
 tile.MachineBlock4.Rolling.name=数控轧制机
@@ -220,25 +216,20 @@ tile.Transmitter.BasicPressurizedTube.name=基础加压管道
 tile.Transmitter.AdvancedPressurizedTube.name=高级加压管道
 tile.Transmitter.ElitePressurizedTube.name=精英加压管道
 tile.Transmitter.UltimatePressurizedTube.name=终极加压管道
-
 tile.Transmitter.BasicUniversalCable.name=基础通用线缆
 tile.Transmitter.AdvancedUniversalCable.name=高级通用线缆
 tile.Transmitter.EliteUniversalCable.name=精英通用线缆
 tile.Transmitter.UltimateUniversalCable.name=终极通用线缆
-
 tile.Transmitter.BasicMechanicalPipe.name=基础机械管道
 tile.Transmitter.AdvancedMechanicalPipe.name=高级机械管道
 tile.Transmitter.EliteMechanicalPipe.name=精英机械管道
 tile.Transmitter.UltimateMechanicalPipe.name=终极机械管道
-
 tile.Transmitter.BasicLogisticalTransporter.name=基础物流管道
 tile.Transmitter.AdvancedLogisticalTransporter.name=高级物流管道
 tile.Transmitter.EliteLogisticalTransporter.name=精英物流管道
 tile.Transmitter.UltimateLogisticalTransporter.name=终极物流管道
-
 tile.Transmitter.RestrictiveTransporter.name=限制传送管道
 tile.Transmitter.DiversionTransporter.name=转移传送管道
-
 tile.Transmitter.BasicThermodynamicConductor.name=基础热导线缆
 tile.Transmitter.AdvancedThermodynamicConductor.name=高级热导线缆
 tile.Transmitter.EliteThermodynamicConductor.name=精英热导线缆
@@ -364,8 +355,8 @@ gas.deuterium=氘
 gas.tritium=氚
 gas.lithium=锂
 gas.fusionfuel=D-T燃料
-gas.nutritionalpaste=营养糊糊
-gas.nuclearwaste=核废料
+gas.nutritionalpaste=营养糊剂
+gas.nuclearwaste=核废水
 gas.plutonium=钚
 gas.polonium=钋
 gas.spentnuclearwaste=用尽的核废料
@@ -475,6 +466,7 @@ null.name=无效物品/方块（放置会导致关闭游戏！）
 # Key description text
 mekanism.key.mode=模式切换
 mekanism.key.armorMode=装甲模式切换
+mekanism.key.feetMode=靴子模式开关
 mekanism.key.voice=声音
 
 # Entities
@@ -484,14 +476,18 @@ entity.BabySkeleton.name=骷髅射手宝宝
 # Config Gui
 mekanism.configgui.ctgy.general=通用机械常规设定
 mekanism.configgui.ctgy.machines=机器设定
+mekanism.configgui.ctgy.tier=层设定
 mekanism.configgui.ctgy.usage=能耗设定
 mekanism.configgui.ctgy.client=客户端设定
+mekanism.configgui.ctgy.storage=机器能量存储设置
 
 # Config Tooltips
 mekanism.configgui.ctgy.general.tooltip=通用机械及其下所有模块的常规设定
 mekanism.configgui.ctgy.machines.tooltip=是否启用特定机器的设定
+mekanism.configgui.ctgy.tier.tooltip=有关 通用机械 机器层层及其相应值的设置
 mekanism.configgui.ctgy.usage.tooltip=有关机械以及能耗的设定
 mekanism.configgui.ctgy.client.tooltip=通用机械及其下所有模块在客户端的特殊设定
+mekanism.configgui.ctgy.storage.tooltip=有关机械及其最大储能的设置
 
 # Gui text
 gui.condensentrating=凝聚液体中...
@@ -554,7 +550,7 @@ gui.inductionMatrix=输导矩阵
 gui.matrixStats=矩阵统计
 gui.turbineStats=涡轮数据
 gui.boilerStats=锅炉数据
-gui.main=Main
+gui.main=主页
 gui.outputting=输出
 gui.receiving=输入
 gui.dimensions=世界
@@ -566,6 +562,7 @@ gui.dynamicTank=动态储罐
 gui.industrialTurbine=工业涡轮
 gui.thermoelectricBoiler=热力锅炉
 gui.visuals=外观
+mekanism.gui.visuals.toobig=半径太大，无法显示视觉对象
 gui.noEject=无法输出
 gui.undefined=未定义
 gui.owner=所有者
@@ -579,7 +576,8 @@ gui.index=列表
 gui.producing=产出
 gui.maxOutput=最大输出
 gui.storing=存量
-gui.skyBlocked=Sky blocked
+gui.skyBlocked=天空被阻挡
+gui.noWind=无风
 gui.using=消耗
 gui.needed=需要
 mekanism.gui.bufferfree=空闲能量缓冲
@@ -647,6 +645,10 @@ gui.entityDetection=实体检测
 gui.energyContents=能量含量
 gui.redstoneOutput=红石输出
 gui.maxWaterOutput=最大水输出
+gui.stockControl=库存控制
+gui.allowDefault=允许默认值
+gui.sizeMode=大小模式
+mekanism.gui.sizeModeConflict=当前没有效果，因为单项模式已打开。
 
 gui.reactor.injectionRate=输入速率
 
@@ -744,7 +746,11 @@ gui.password=密码
 
 mekanism.gui.logisticalSorter.default=默认
 mekanism.gui.logisticalSorter.autoEject=自动
+mekanism.gui.logisticalSorter.autoEject.tooltip=自动将物料弹出到连接的库存。
 mekanism.gui.logisticalSorter.roundRobin=循环模式
+mekanism.gui.logisticalSorter.roundRobin.tooltip=发送物料时在所有连接的库存之间循环。
+mekanism.gui.logisticalSorter.singleItem=单个
+mekanism.gui.logisticalSorter.singleItem.tooltip=每次发送单个项目而不是整个堆栈（覆盖 ItemStack 筛选器中设置的最小值和最大值）。
 
 gui.teleporter.notReady=未准备
 gui.teleporter.ready=已准备
@@ -790,6 +796,8 @@ tooltip.configurator.rotate=旋转
 tooltip.configurator.wrench=扳手
 tooltip.configurator.pumpReset=重置电力泵计数
 tooltip.configurator.toggleDiverter=分流模式更改为
+tooltip.configurator.toggleMode=%s 行为被撞到
+tooltip.configurator.viewMode=当前 %s 行为
 tooltip.configurator.noLink=无链接
 tooltip.configurator.linkMsg=绑定到
 tooltip.configurator.dim=位面
@@ -830,6 +838,7 @@ tooltip.diversionDesc=可受红石信号控制
 tooltip.noGas=无气体存储
 tooltip.stored=已存储
 tooltip.channel=频道
+tooltip.walkie_disabled=语音服务器已禁用.
 tooltip.mode=模式
 tooltip.efficiency=效率
 tooltip.modeToggle=模式切换至
@@ -901,7 +910,7 @@ tooltip.Bin=一个能存储大量单种物品的方块。
 tooltip.TeleporterFrame=传送框架用于搭建传送门结构，允许传送门在其中打开
 tooltip.SteelCasing=坚固耐用的钢制机壳，是机械的基础
 tooltip.DynamicTank=动态储罐多方块结构的框架，可以存储大量液体
-tooltip.StructuralGlass=一种用新型材料制作的强化玻璃，可以挖掘。 用于制作各种多方块机器结构
+tooltip.StructuralGlass=一种用新型材料制作的强化玻璃，可以挖掘。用于制作各种多方块机器结构
 tooltip.DynamicValve=动态储罐的连接口，允许液体管道与动态储罐交互
 tooltip.ThermalEvaporationController=热力蒸馏塔的控制器，作为结构的核心。每个蒸馏塔只能有一个
 tooltip.ThermalEvaporationValve=用于热力蒸馏塔的阀门，可以使热力蒸馏塔和外界管道交互
@@ -919,8 +928,8 @@ tooltip.SpsCasing=能够抵抗相移反应产生的强烈化学和热效应的�
 tooltip.FissionReacherCasing=裂变反应堆外壳
 
 tooltip.EnrichmentChamber=一台能将矿石磨成两份粉末的机器，也可以进行一些其他操作。
-tooltip.OsmiumCompressor=一台非常高级的设备，能够将锇矿石压缩成 多种粉末以制造相应金属锭。
-tooltip.Combiner=A machine 一台用来将粉末与圆石融合为相应矿石的机器。
+tooltip.OsmiumCompressor=一台非常高级的设备，能够将锇矿石压缩成多种粉末以制造相应金属锭。
+tooltip.Combiner=一台用来将粉末与圆石融合为相应矿石的机器。
 tooltip.Crusher=一台用来将金属锭磨成相应粉末的机器，也可以进行一些其他操作。
 tooltip.DigitalMiner=一台高度先进，以过滤为基础功能的自动采矿机，它可以挖掘/采集最大32格范围内的所有方块。
 tooltip.MetallurgicInfuser=一台用来将多种材料的金属熔炼成合金或其他化合物的设备。
@@ -932,7 +941,7 @@ tooltip.Chargepad=通用充能板，能够为各种模组中的物品补充能�
 tooltip.LogisticalSorter=一台以过滤为基础功能的高级整理机器，能够自动将指定物品弹射到依附的物品栏或物流管道中。
 tooltip.RotaryCondensentrator=一台能够将气体和其液态形式相互转化的机器。
 tooltip.ChemicalInjectionChamber=一台能够将矿物处理成4个碎片的精英机器，是四倍产量的第一步。
-tooltip.ElectrolyticSeparator=一台使用电解将特定气体 分离成两种不同气体的机器。
+tooltip.ElectrolyticSeparator=一台使用电解将特定气体分离成两种不同气体的机器。
 tooltip.PrecisionSawmill=一台更有效地处理原木和木制品的机器，同时也能获得锯屑。
 tooltip.ChemicalDissolutionChamber=一台能够通过化学手段溶解矿石里的所有杂质，从而得到未经处理的矿物浆液的终极机器。
 tooltip.ChemicalWasher=一台能够清理未经处理的浆液，为结晶作准备的终极机器。
@@ -952,13 +961,13 @@ tooltip.ResistiveHeater=一台能直接将能量转化成热能的机器
 tooltip.FormulaicAssemblicator=一台快速制作成品的机器
 tooltip.FuelwoodHeater=一台通过燃烧可燃物来生产热量的机器
 tooltip.QuantumEntangloporter=一台可以长距离跨维度传输物品的高级机器
-tooltip.canteen1=只能添加营养糊糊
+tooltip.canteen1=只能添加营养糊剂
 tooltip.canteen2=为什么这物品是如此的昂贵？
 tooltip.NutritionalLiquifier=一种能将任何食物加工成无害、易消化的营养糊剂的机器
 tooltip.IsotopicCentrifuge=一台只有一个目的的机器：非常非常快地旋转它装载的东西。
 tooltip.antiprotonicnucleosynthesizer=一种以原子的方式利用少量反物质和大量能量转化各种资源的机器。
 tooltip.superchargedcoil=用于超临界移相器多方块结构供电。必须连接到超临界移相器端口[目前只是个装饰]
-tooltip.organicfarm=一个非常强大的单方块农场机器
+tooltip.OrganicFarm=一个非常强大的单方块农场机器
 tooltip.AmbientAccumulator=一个能收集当前维度包含的气体[警告！退出存档，将不会保留内部气体]
 
 tooltip.MekTool1=十分强大的挖掘机器
@@ -971,13 +980,14 @@ tooltip.SolarGenerator=一台使用太阳能量发电的发电机。
 tooltip.GasGenerator=一台利用不同的气体供能的发电机。
 tooltip.BioGenerator=一台利用燃烧有机材料产生能量的发电机。
 tooltip.AdvancedSolarGenerator=一台直接吸收大部分太阳光产生能量的高级发电机。
+tooltip.WindGenerator=利用风力产生能量的发电机，在更高的水平上效率更高。
 tooltip.TurbineRotor=放置在工业涡轮中的钢制转子
 tooltip.RotationalComplex=放置在涡轮转子上方的转化元件，能够将转子的动能转化。
 tooltip.ElectromagneticCoil=一块类似磁铁的装置，能使得动能在其中转化为电磁能，它必须放置在旋钮装置的上方并保证它们是相连的。
 tooltip.TurbineCasing=用于工业涡轮的耐压外壳
 tooltip.TurbineValve=用于输送蒸汽并导出能量的工业涡轮阀门
 tooltip.TurbineVent=用于将剩余蒸汽排出的涡轮外壳，它们必须安装在旋钮装置以上的位置。
-tooltip.SaturatingCondenser=一块可以将工业涡轮机产生的蒸汽处理成水的方块。 可以放置在复杂旋钮装置上任意位置。
+tooltip.SaturatingCondenser=一块可以将工业涡轮机产生的蒸汽处理成水的方块。可以放置在复杂旋钮装置上任意位置。
 
 tooltip.ReactorGlass=能用于聚变反应结构的强化玻璃。
 tooltip.ReactorLaserFocusMatrix=一个可吸收光能并加热聚变反应堆的强化玻璃板。
@@ -987,8 +997,8 @@ tooltip.ReactorNeutronCapturePlate=一个能用于阻隔聚变辐射或协助氚
 tooltip.ReactorPort=一个强化的框架方块，能处理聚变反应堆中气体和能量的输送。
 tooltip.ReactorLogicAdapter=一个可以通过红石信号来对反应堆进行基本监控的的方块。
 
-tooltip.OsmiumOre=一种牢固的材料，它能够在这个世界任何高度被发现。 它因经常用于机器建造而闻名。
-tooltip.CopperOre=一种常见的导电材料，能够用于线缆的产出。 它耐高温的特性也使它成为生成高级机械的重要材料。
+tooltip.OsmiumOre=一种牢固的材料，它能够在这个世界任何高度被发现。它因经常用于机器建造而闻名。
+tooltip.CopperOre=一种常见的导电材料，能够用于线缆的产出。它耐高温的特性也使它成为生成高级机械的重要材料。
 tooltip.TinOre=一种轻盈，但牢固的导电材料，比铜要略微稀有点。
 
 # Side data
@@ -1005,7 +1015,6 @@ sideData.Empty=排空
 sideData.Charge=充能
 sideData.Discharge=反充能
 sideData.Input_Extra=输入/注入
-sideData.Output2=输出2
 # Redstone control
 control.disabled=禁止
 control.high=高
@@ -1123,6 +1132,17 @@ gui.maxCasing=壳体最高温度
 gui.passiveGeneration=被动产能
 gui.steamProduction=蒸汽产量
 
+# Config Gui
+mekanism.configgui.ctgy.generators.general=常规设置
+mekanism.configgui.ctgy.generators.generators=发电机设置
+mekanism.configgui.ctgy.generators.generation=生成设置
+
+# Config Tooltips
+mekanism.configgui.ctgy.generators.general.tooltip=关于Mekanism生成器常规配置的设置
+mekanism.configgui.ctgy.generators.generators.tooltip=有关启用和禁用特定生成器的设置
+mekanism.configgui.ctgy.generators.generation.tooltip=有关发电机能源使用的设置
+
+
 #########
 # TOOLS
 #########
@@ -1215,3 +1235,28 @@ mekanism.configgui.ctgy.tools.tools=工具平衡
 mekanism.configgui.ctgy.tools.general.tooltip=通用机械工具的常规配置设定
 mekanism.configgui.ctgy.tools.armor.tooltip=通用机械护甲的保护值以及平衡的设定
 mekanism.configgui.ctgy.tools.tools.tooltip=通用机械工具的效率值以及平衡的设定
+
+# Commands
+cmd.mek.usage=
+cmd.mek.debug.usage=启用调试
+cmd.mek.debug=调试
+cmd.mek.testrules.usage=设置世界规则进行测试（无生物生成、日光周期或天气）
+cmd.mek.testrules=生物生成，日光循环和天气禁用！
+cmd.mek.tp.usage=传送到新坐标，保存堆栈上的最后一个位置
+cmd.mek.tp=传送到 %d,%d,%d - 在堆栈上保存了最后一个位置
+cmd.mek.tp.missing.args=传送需要三个坐标： x, y, z
+cmd.mek.tpop.usage=返回到堆栈上的最后一个位置
+cmd.mek.tpop=返回至 %d,%d,%d; %d 堆栈上的位置
+cmd.mek.tpop.empty.stack=堆栈上没有位置
+
+cmd.mek.chunk.usage=
+cmd.mek.chunk.watch.usage=将调用方的区块添加到加载/卸载事件的监视列表
+cmd.mek.chunk.watch=区块 %d,%d 已添加到观察列表
+cmd.mek.chunk.unwatch.usage=从块加载/卸载事件的监视列表中删除调用方的块
+cmd.mek.chunk.unwatch=区块 %d,%d 已从观察列表中删除
+cmd.mek.chunk.clear.usage=从监视列表中删除块加载/卸载事件的所有块
+cmd.mek.chunk.clear=%d 从监视列表中删除的区块
+cmd.mek.chunk.flush=%d 已卸载的块
+
+#chat messages
+chat.mek.multiblockformed=多方块形成

@@ -4,32 +4,27 @@
     "data": 11
   },
   "pattern": [
-    "ECE",
-    "ORO",
-    "ECE"
+    "COC",
+    "OTO",
+    "COC"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "PurificationChamber"
+      "machineType": "Teleporter"
     }
   ],
   "key": {
-    "R": {
-      "item": "mekanism:machineblock",
-      "data": 0
-    },
     "C": {
-      "item": "#CIRCUITADVANCED"
+      "item": "#CIRCUITBASIC"
     },
-    "E": {
-      "ore": "alloyAdvanced",
-      "type": "forge:ore_dict"
+    "T": {
+      "item": "mekanism:teleportationcore"
     },
     "O": {
-      "ore": "ingotOsmium",
-      "type": "forge:ore_dict"
+      "item": "mekanism:basicblock",
+      "data": 8
     }
   }
 }

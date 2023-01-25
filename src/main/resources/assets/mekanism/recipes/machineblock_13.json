@@ -4,27 +4,32 @@
     "data": 13
   },
   "pattern": [
-    "COC",
-    "OTO",
-    "COC"
+    "SGS",
+    "CcC",
+    "SSS"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "Teleporter"
+      "machineType": "PersonalChest"
     }
   ],
   "key": {
+    "S": {
+      "ore": "ingotSteel",
+      "type": "forge:ore_dict"
+    },
     "C": {
+      "ore": "chestWood",
+      "type": "forge:ore_dict"
+    },
+    "c": {
       "item": "#CIRCUITBASIC"
     },
-    "T": {
-      "item": "mekanism:teleportationcore"
-    },
-    "O": {
-      "item": "mekanism:basicblock",
-      "data": 8
+    "G": {
+      "ore": "blockGlass",
+      "type": "forge:ore_dict"
     }
   }
 }

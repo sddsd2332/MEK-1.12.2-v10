@@ -1,39 +1,30 @@
 {
   "result": {
-    "nbt": {
-      "recipeType": 11
-    },
     "item": "mekanism:machineblock",
-    "data": 5,
-    "type": "mekanism:item_nbt"
+    "data": 15
   },
   "pattern": [
-    "RCR",
-    "iOi",
-    "RCR"
+    "IPI",
+    "ICI",
+    "III"
   ],
   "type": "mekanism:ore_shaped",
   "conditions": [
     {
       "type": "mekanism:recipe_enabled",
-      "machineType": "Factory"
+      "machineType": "LogisticalSorter"
     }
   ],
   "key": {
-    "R": {
-      "ore": "alloyBasic",
-      "type": "forge:ore_dict"
+    "P": {
+      "item": "minecraft:piston"
     },
     "C": {
       "item": "#CIRCUITBASIC"
     },
-    "i": {
+    "I": {
       "ore": "ingotIron",
       "type": "forge:ore_dict"
-    },
-    "O": {
-      "item": "mekanism:machineblock4",
-      "data": 1
     }
   }
 }

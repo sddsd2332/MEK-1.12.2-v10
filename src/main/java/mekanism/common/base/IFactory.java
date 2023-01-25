@@ -72,23 +72,19 @@ public interface IFactory {
         SMELTING("Smelting", "smelter", MachineType.ENERGIZED_SMELTER, MachineFuelType.BASIC, false, Recipe.ENERGIZED_SMELTER),
         ENRICHING("Enriching", "enrichment", MachineType.ENRICHMENT_CHAMBER, MachineFuelType.BASIC, false, Recipe.ENRICHMENT_CHAMBER),
         CRUSHING("Crushing", "crusher", MachineType.CRUSHER, MachineFuelType.BASIC, false, Recipe.CRUSHER),
+        COMPRESSING("Compressing", "compressor", MachineType.OSMIUM_COMPRESSOR, MachineFuelType.ADVANCED, false, Recipe.OSMIUM_COMPRESSOR),
+        COMBINING("Combining", "combiner", MachineType.COMBINER, MachineFuelType.DOUBLE, false, Recipe.COMBINER),
+        PURIFYING("Purifying", "purifier", MachineType.PURIFICATION_CHAMBER, MachineFuelType.ADVANCED, true, Recipe.PURIFICATION_CHAMBER),
+        INJECTING("Injecting", "injection", MachineType.CHEMICAL_INJECTION_CHAMBER, MachineFuelType.ADVANCED, true, Recipe.CHEMICAL_INJECTION_CHAMBER),
         INFUSING("Infusing", "metalinfuser", MachineType.METALLURGIC_INFUSER, MachineFuelType.BASIC, false, Recipe.METALLURGIC_INFUSER),
+        SAWING("Sawing", "sawmill", MachineType.PRECISION_SAWMILL, MachineFuelType.CHANCE, false, Recipe.PRECISION_SAWMILL),
         STAMPING("Stamping","stamping",MachineType.STAMPING,MachineFuelType.BASIC, false, Recipe.STAMPING),
         ROLLING("Rolling","rolling",MachineType.ROLLING,MachineFuelType.BASIC, false, Recipe.ROLLING),
         BRUSHED ("Brushed","brushed",MachineType.BRUSHED,MachineFuelType.BASIC, false, Recipe.BRUSHED),
         TURNING("Turning","turning",MachineType.TURNING,MachineFuelType.BASIC, false, Recipe.TURNING),
-
-        COMPRESSING("Compressing", "compressor", MachineType.OSMIUM_COMPRESSOR, MachineFuelType.ADVANCED, false, Recipe.OSMIUM_COMPRESSOR),
-        PURIFYING("Purifying", "purifier", MachineType.PURIFICATION_CHAMBER, MachineFuelType.ADVANCED, true, Recipe.PURIFICATION_CHAMBER),
-        INJECTING("Injecting", "injection", MachineType.CHEMICAL_INJECTION_CHAMBER, MachineFuelType.ADVANCED, true, Recipe.CHEMICAL_INJECTION_CHAMBER),
-
-        COMBINING("Combining", "combiner", MachineType.COMBINER, MachineFuelType.DOUBLE, false, Recipe.COMBINER),
         AllOY("Alloy","alloy",MachineType.ALLOY,MachineFuelType.DOUBLE,false,Recipe.ALLOY),
-
-        SAWING("Sawing", "sawmill", MachineType.PRECISION_SAWMILL, MachineFuelType.CHANCE, false, Recipe.PRECISION_SAWMILL),
         EXTRACTOR("Extractor","extractor",MachineType.CELL_EXTRACTOR,MachineFuelType.CHANCE,false, Recipe.CELL_EXTRACTOR),
         SEPARATOR("Separator","separator",MachineType.CELL_SEPARATOR,MachineFuelType.CHANCE,false, Recipe.CELL_SEPARATOR),
-
         FARM("Farm","farm",MachineType.ORGANIC_FARM,MachineFuelType.FARM,false,Recipe.ORGANIC_FARM);
 
 

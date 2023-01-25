@@ -23,8 +23,8 @@
       "item": "#CIRCUITBASIC"
     },
     "S": {
-      "item": "mekanism:machineblock3",
-      "data": 10
+      "item": "mekanism:machineblock",
+      "data": 15
     },
     "T": {
       "item": "mekanism:teleportationcore"
