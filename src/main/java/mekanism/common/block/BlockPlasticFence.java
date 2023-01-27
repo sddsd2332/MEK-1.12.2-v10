@@ -22,7 +22,7 @@ public class BlockPlasticFence extends BlockFence {
         super(BlockPlastic.PLASTIC, BlockPlastic.PLASTIC.getMaterialMapColor());
         setHardness(5F);
         setResistance(10F);
-        setCreativeTab(Mekanism.tabMekanism);
+        setCreativeTab(Mekanism.tabMekanismAddition);
     }
 
     @Nonnull

@@ -103,6 +103,45 @@ public class ItemBlockBasic extends ItemBlock implements IEnergizedItem, ITierIt
         return i;
     }
 
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        BasicBlockType type = BasicBlockType.get(itemstack);
+        if (type == BasicBlockType.BIN) {
+            BinTier tier= BinTier.values()[getBaseTier(itemstack).ordinal()];
+            if (tier == BinTier.BASIC){
+                return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.BasicBlock.Bin" + getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == BinTier.ADVANCED){
+                return EnumColor.RED + LangUtils.localize("tile.BasicBlock.Bin" + getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == BinTier.ELITE){
+                return EnumColor.AQUA + LangUtils.localize("tile.BasicBlock.Bin" + getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == BinTier.ULTIMATE){
+                return EnumColor.PURPLE + LangUtils.localize("tile.BasicBlock.Bin" + getBaseTier(itemstack).getSimpleName() + ".name");
+            }else return EnumColor.ORANGE + LangUtils.localize("tile.BasicBlock.Bin" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else if (type == BasicBlockType.INDUCTION_CELL){
+            InductionCellTier tier = InductionCellTier.values()[getBaseTier(itemstack).ordinal()];
+            if (tier == InductionCellTier.BASIC){
+                return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.BasicBlock2.InductionCell"+ getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == InductionCellTier.ADVANCED){
+                return EnumColor.RED + LangUtils.localize("tile.BasicBlock2.InductionCell"+ getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == InductionCellTier.ELITE){
+                return EnumColor.AQUA + LangUtils.localize("tile.BasicBlock2.InductionCell"+ getBaseTier(itemstack).getSimpleName() + ".name");
+            }else return EnumColor.PURPLE + LangUtils.localize("tile.BasicBlock2.InductionCell"+ getBaseTier(itemstack).getSimpleName() + ".name");
+
+
+        }else if (type == BasicBlockType.INDUCTION_PROVIDER){
+            InductionProviderTier tier = InductionProviderTier.values()[getBaseTier(itemstack).ordinal()];
+            if (tier == InductionProviderTier.BASIC){
+                return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.BasicBlock2.InductionProvider"+ getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == InductionProviderTier.ADVANCED){
+                return EnumColor.RED + LangUtils.localize("tile.BasicBlock2.InductionProvider"+ getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == InductionProviderTier.ELITE){
+                return EnumColor.AQUA + LangUtils.localize("tile.BasicBlock2.InductionProvider"+ getBaseTier(itemstack).getSimpleName() + ".name");
+            }return EnumColor.PURPLE + LangUtils.localize("tile.BasicBlock2.InductionProvider"+ getBaseTier(itemstack).getSimpleName() + ".name");
+        }
+        return super.getItemStackDisplayName(itemstack);
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(@Nonnull ItemStack itemstack, World world, @Nonnull List<String> list, @Nonnull ITooltipFlag flag) {

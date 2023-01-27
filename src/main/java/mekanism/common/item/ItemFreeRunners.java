@@ -80,6 +80,12 @@ public class ItemFreeRunners extends ItemArmor implements IEnergizedItem, ISpeci
         return model;
     }
 
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        return EnumColor.AQUA +  LangUtils.localize("item.FreeRunners.name");
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {

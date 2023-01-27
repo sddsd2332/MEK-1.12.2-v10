@@ -50,6 +50,12 @@ public class ItemMekTool extends ItemEnergized {
         return state.getBlock() != Blocks.BEDROCK;
     }
 
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        return EnumColor.PURPLE +  LangUtils.localize("item.MekTool.name");
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {
@@ -60,7 +66,7 @@ public class ItemMekTool extends ItemEnergized {
         list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool1"),itemstack));
         list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool2"),itemstack));
         list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool3"),itemstack));
-        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool4"),itemstack));
+        list.addAll(MekanismUtils.splitTooltip(EnumColor.RED + LangUtils.localize("tooltip.MekTool4"),itemstack));
     }
 
     @Override

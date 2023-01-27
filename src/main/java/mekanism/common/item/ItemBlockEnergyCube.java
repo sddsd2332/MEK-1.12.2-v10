@@ -103,7 +103,16 @@ public class ItemBlockEnergyCube extends ItemBlock implements IEnergizedItem, IS
     @Nonnull
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
+        EnergyCubeTier tier = EnergyCubeTier.values()[getBaseTier(itemstack).ordinal()];
+        if (tier == EnergyCubeTier.BASIC) {
+            return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else if (tier == EnergyCubeTier.ADVANCED){
+            return EnumColor.RED + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else if (tier == EnergyCubeTier.ELITE){
+            return EnumColor.AQUA + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else if (tier == EnergyCubeTier.ULTIMATE){
+            return EnumColor.PURPLE +LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else return EnumColor.ORANGE + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
     }
 
     @Override

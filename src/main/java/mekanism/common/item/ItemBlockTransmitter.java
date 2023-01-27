@@ -9,6 +9,7 @@ import mekanism.client.MekKeyHandler;
 import mekanism.client.MekanismKeyHandler;
 import mekanism.common.Mekanism;
 import mekanism.common.base.ITierItem;
+import mekanism.common.block.states.BlockStateTransmitter;
 import mekanism.common.block.states.BlockStateTransmitter.TransmitterType;
 import mekanism.common.integration.MekanismHooks;
 import mekanism.common.integration.multipart.MultipartMekanism;
@@ -65,6 +66,25 @@ public class ItemBlockTransmitter extends ItemBlockMultipartAble implements ITie
         return place;
     }
 
+
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        TransmitterType type = TransmitterType.get(itemstack.getItemDamage());
+        BaseTier tier = getBaseTier(itemstack);
+        boolean not1 = type != TransmitterType.RESTRICTIVE_TRANSPORTER;
+        boolean not2 = type != TransmitterType.DIVERSION_TRANSPORTER;
+        if (tier == BaseTier.BASIC && (not1 && not2)){
+            return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.Transmitter." + getBaseTier(itemstack).getSimpleName() + type.getTranslationKey() + ".name");
+        }else if (tier == BaseTier.ADVANCED && (not1 && not2)){
+            return EnumColor.RED + LangUtils.localize("tile.Transmitter." + getBaseTier(itemstack).getSimpleName() + type.getTranslationKey() + ".name");
+        }else if (tier == BaseTier.ELITE && (not1 && not2)){
+            return EnumColor.AQUA + LangUtils.localize("tile.Transmitter." + getBaseTier(itemstack).getSimpleName() + type.getTranslationKey() + ".name");
+        }else if (tier == BaseTier.ULTIMATE && (not1 && not2)){
+            return EnumColor.PURPLE + LangUtils.localize("tile.Transmitter." + getBaseTier(itemstack).getSimpleName() + type.getTranslationKey() + ".name");
+        }else return LangUtils.localize("tile.Transmitter." + type.getTranslationKey() + ".name");
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(@Nonnull ItemStack itemstack, World world, @Nonnull List<String> list, @Nonnull ITooltipFlag flag) {
@@ -72,8 +92,7 @@ public class ItemBlockTransmitter extends ItemBlockMultipartAble implements ITie
             TransmissionType transmission = TransmitterType.values()[itemstack.getItemDamage()].getTransmission();
             BaseTier tier = getBaseTier(itemstack);
             if (transmission == TransmissionType.ENERGY) {
-                list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY +
-                         MekanismUtils.getEnergyDisplay(CableTier.get(tier).getCableCapacity()) + "/t");
+                list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY + MekanismUtils.getEnergyDisplay(CableTier.get(tier).getCableCapacity()) + "/t");
             } else if (transmission == TransmissionType.FLUID) {
                 list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY + PipeTier.get(tier).getPipeCapacity() + "mB/t");
                 list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.pumpRate") + ": " + EnumColor.GREY + PipeTier.get(tier).getPipePullAmount() + "mB/t");

@@ -276,6 +276,13 @@ public class ClientProxy extends CommonProxy {
         registerItemRender(MekanismItems.TierInstaller);
         registerItemRender(MekanismItems.OtherDust);
 
+        registerItemRender(MekanismItems.PlutoniumPellet);
+        registerItemRender(MekanismItems.AntimatterPellet);
+        registerItemRender(MekanismItems.ReprocessedFissileFragment);
+        registerItemRender(MekanismItems.YellowCakeUranium);
+        registerItemRender(MekanismItems.PoloniumPellet);
+
+
      //   registerItemRender(MekanismItems.MekaSuitHelmet);
     //    registerItemRender(MekanismItems.MekaSuitChest);
 

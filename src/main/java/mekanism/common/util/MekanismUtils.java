@@ -130,7 +130,7 @@ public final class MekanismUtils {
      * @return factory with defined tier and recipe type
      */
     public static ItemStack getFactory(FactoryTier tier, RecipeType type) {
-        if (tier ==FactoryTier.ULTIMATE || tier == FactoryTier.CREATIVE){
+        if (tier == FactoryTier.ULTIMATE || tier == FactoryTier.CREATIVE){
             ItemStack itemstack = new ItemStack(MekanismBlocks.MachineBlock3, 1, 4 + tier.ordinal());
             ((IFactory) itemstack.getItem()).setRecipeType(type.ordinal(), itemstack);
             return itemstack;

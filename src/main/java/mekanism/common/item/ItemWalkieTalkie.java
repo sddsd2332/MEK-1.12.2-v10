@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemWalkieTalkie extends ItemMekanism implements IItemNetwork {
+public class ItemWalkieTalkie extends ItemMekanismAddition implements IItemNetwork {
 
     public static ModelResourceLocation OFF_MODEL = new ModelResourceLocation(new ResourceLocation(Mekanism.MODID, "WalkieTalkie"), "inventory");
 

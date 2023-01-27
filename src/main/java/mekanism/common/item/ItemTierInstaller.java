@@ -2,10 +2,13 @@ package mekanism.common.item;
 
 import java.util.Locale;
 import javax.annotation.Nonnull;
+
+import mekanism.api.EnumColor;
 import mekanism.common.base.IMetaItem;
 import mekanism.common.base.ITierUpgradeable;
 import mekanism.common.tier.BaseTier;
 import mekanism.common.tile.prefab.TileEntityBasicBlock;
+import mekanism.common.util.LangUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -72,5 +75,20 @@ public class ItemTierInstaller extends ItemMekanism implements IMetaItem {
     @Override
     public String getTranslationKey(ItemStack item) {
         return "item." + BaseTier.values()[item.getItemDamage()].getSimpleName().toLowerCase(Locale.ROOT) + "TierInstaller";
+    }
+
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        BaseTier tier =  BaseTier.values()[itemstack.getItemDamage()];
+        if (tier == BaseTier.BASIC){
+           return  EnumColor.BRIGHT_GREEN  + LangUtils.localize( "item." + BaseTier.values()[itemstack.getItemDamage()].getSimpleName().toLowerCase(Locale.ROOT) + "TierInstaller.name");
+        }else if (tier == BaseTier.ADVANCED){
+            return  EnumColor.RED  + LangUtils.localize( "item." + BaseTier.values()[itemstack.getItemDamage()].getSimpleName().toLowerCase(Locale.ROOT) + "TierInstaller.name");
+        }else if (tier == BaseTier.ELITE){
+            return  EnumColor.AQUA  + LangUtils.localize( "item." + BaseTier.values()[itemstack.getItemDamage()].getSimpleName().toLowerCase(Locale.ROOT) + "TierInstaller.name");
+        }else if (tier == BaseTier.ULTIMATE){
+            return  EnumColor.PURPLE  + LangUtils.localize( "item." + BaseTier.values()[itemstack.getItemDamage()].getSimpleName().toLowerCase(Locale.ROOT) + "TierInstaller.name");
+        }else return  EnumColor.ORANGE  + LangUtils.localize( "item." + BaseTier.values()[itemstack.getItemDamage()].getSimpleName().toLowerCase(Locale.ROOT) + "TierInstaller.name");
     }
 }

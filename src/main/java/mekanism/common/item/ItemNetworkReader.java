@@ -13,6 +13,7 @@ import mekanism.api.transmitters.TransmitterNetworkRegistry;
 import mekanism.common.Mekanism;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.util.CapabilityUtils;
+import mekanism.common.util.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -113,4 +114,11 @@ public class ItemNetworkReader extends ItemEnergized {
     public boolean canSend(ItemStack itemstack) {
         return false;
     }
+
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        return EnumColor.YELLOW +  LangUtils.localize("item.NetworkReader.name");
+    }
+
 }

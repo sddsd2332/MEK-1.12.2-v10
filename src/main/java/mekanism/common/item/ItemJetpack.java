@@ -59,6 +59,14 @@ public class ItemJetpack extends ItemArmor implements IGasItem, ISpecialArmor {
         return MathHelper.hsvToRGB(Math.max(0.0F, (float) (1 - getDurabilityForDisplay(stack))) / 3.0F, 1.0F, 1.0F);
     }
 
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        if (this == MekanismItems.ArmoredJetpack){
+            return EnumColor.AQUA +  LangUtils.localize("item.ArmoredJetpack.name");
+        }else return EnumColor.AQUA +  LangUtils.localize("item.Jetpack.name");
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {

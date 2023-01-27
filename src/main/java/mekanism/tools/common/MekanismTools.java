@@ -48,6 +48,8 @@ public class MekanismTools implements IModule {
      */
     public static Version versionNumber = new Version(999, 999, 999);
 
+    public static CreativeTabMekanismTools  tabMekanismTools = new CreativeTabMekanismTools();
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         ToolsItem.registerItems(event.getRegistry());

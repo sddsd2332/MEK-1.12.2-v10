@@ -114,7 +114,7 @@ public enum ToolsItem {
         //TODO: Make name be part of item instead of added on this extra layer.
         // Also make them have underscores rather than "fake" capitalization that is just to make it easier to read in the enum
         // This note is for 1.14 when we are going to be mass changing ids anyways to flatten things
-        this.item = item.setTranslationKey(name).setRegistryName(new ResourceLocation(MekanismTools.MODID, name)).setCreativeTab(Mekanism.tabMekanism);
+        this.item = item.setTranslationKey(name).setRegistryName(new ResourceLocation(MekanismTools.MODID, name)).setCreativeTab(MekanismTools.tabMekanismTools);
     }
 
     @Nonnull

@@ -77,7 +77,7 @@ public abstract class BlockGenerator extends BlockMekanismContainer {
         super(Material.IRON);
         setHardness(3.5F);
         setResistance(8F);
-        setCreativeTab(Mekanism.tabMekanism);
+        setCreativeTab(MekanismGenerators.tabMekanismGenerators);
     }
 
     public static BlockGenerator getGeneratorBlock(GeneratorBlock block) {

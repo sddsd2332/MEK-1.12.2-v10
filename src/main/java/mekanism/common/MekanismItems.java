@@ -52,6 +52,11 @@ public class MekanismItems {
     public static final ItemJetpack ArmoredJetpack = new ItemJetpack();
     public static final ItemFreeRunners FreeRunners = new ItemFreeRunners();
     public static final Item Balloon = new ItemBalloon();
+    public static final Item PlutoniumPellet = new ItemMekanism();;
+    public static final Item AntimatterPellet = new ItemMekanism();;
+    public static final Item ReprocessedFissileFragment = new ItemMekanism();;
+    public static final Item YellowCakeUranium = new ItemMekanism();;
+    public static final Item PoloniumPellet = new ItemMekanism();;
 
     public static final ItemMekTool MekTool = new ItemMekTool();
   //  public static final ItemMekaSuitHelmet MekaSuitHelmet = new ItemMekaSuitHelmet();
@@ -137,6 +142,12 @@ public class MekanismItems {
 
    //     registry.register(init(MekaSuitHelmet, "MekaSuitHelmet"));
   //      registry.register(init(MekaSuitChest, "MekaSuitChest"));
+
+        registry.register(init(PlutoniumPellet,"PlutoniumPellet"));
+        registry.register(init(AntimatterPellet,"AntimatterPellet"));
+        registry.register(init(ReprocessedFissileFragment,"ReprocessedFissileFragment"));
+        registry.register(init(YellowCakeUranium,"YellowCakeUranium"));
+        registry.register(init(PoloniumPellet, "PoloniumPellet"));
     }
 
     public static Item init(Item item, String name) {

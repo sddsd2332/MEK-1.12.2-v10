@@ -169,7 +169,7 @@ public class ItemBlockMachine extends ItemBlock implements IEnergizedItem, ISpec
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
         MachineType type = MachineType.get(itemstack);
-        if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY|| type == MachineType.ULTIMATE_FACTORY|| type == MachineType.CREATIVE_FACTORY) {
+        if (type == MachineType.BASIC_FACTORY || type == MachineType.ADVANCED_FACTORY || type == MachineType.ELITE_FACTORY || type == MachineType.ULTIMATE_FACTORY || type == MachineType.CREATIVE_FACTORY) {
             BaseTier tier = type.factoryTier.getBaseTier();
             RecipeType recipeType = getRecipeTypeOrNull(itemstack);
             if (recipeType != null) {
@@ -177,10 +177,28 @@ public class ItemBlockMachine extends ItemBlock implements IEnergizedItem, ISpec
                 if (LangUtils.canLocalize(langKey)) {
                     return LangUtils.localize(langKey);
                 }
-                return tier.getLocalizedName() + recipeType.getLocalizedName() + super.getItemStackDisplayName(itemstack);
+                if (type == MachineType.BASIC_FACTORY){
+                    return EnumColor.BRIGHT_GREEN + tier.getLocalizedName() + recipeType.getLocalizedName() + super.getItemStackDisplayName(itemstack);
+                }else if (type == MachineType.ADVANCED_FACTORY){
+                    return EnumColor.RED +tier.getLocalizedName() + recipeType.getLocalizedName() + super.getItemStackDisplayName(itemstack);
+                }else if (type == MachineType.ELITE_FACTORY){
+                    return EnumColor.AQUA +tier.getLocalizedName() + recipeType.getLocalizedName() + super.getItemStackDisplayName(itemstack);
+                }else if (type == MachineType.ULTIMATE_FACTORY){
+                    return EnumColor.PURPLE +tier.getLocalizedName() + recipeType.getLocalizedName() + super.getItemStackDisplayName(itemstack);
+                } else return EnumColor.ORANGE +tier.getLocalizedName() + recipeType.getLocalizedName() + super.getItemStackDisplayName(itemstack);
+
             }
         } else if (type == MachineType.FLUID_TANK) {
-            return LangUtils.localize("tile.FluidTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+            FluidTankTier tier = FluidTankTier.values()[getBaseTier(itemstack).ordinal()];
+            if (tier == FluidTankTier.BASIC){
+                return EnumColor.BRIGHT_GREEN +LangUtils.localize("tile.FluidTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == FluidTankTier.ADVANCED){
+                return EnumColor.RED + LangUtils.localize("tile.FluidTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == FluidTankTier.ELITE){
+                return EnumColor.AQUA + LangUtils.localize("tile.FluidTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+            }else if (tier == FluidTankTier.ULTIMATE){
+                return EnumColor.PURPLE + LangUtils.localize("tile.FluidTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+            }else return EnumColor.ORANGE + LangUtils.localize("tile.FluidTank" + getBaseTier(itemstack).getSimpleName() + ".name");
         }
         return super.getItemStackDisplayName(itemstack);
     }

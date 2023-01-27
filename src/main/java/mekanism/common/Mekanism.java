@@ -178,6 +178,7 @@ public class Mekanism {
      * Mekanism creative tab
      */
     public static CreativeTabMekanism tabMekanism = new CreativeTabMekanism();
+    public static CreativeTabMekanismAddition tabMekanismAddition = new CreativeTabMekanismAddition();
     /**
      * List of Mekanism modules loaded
      */
@@ -384,7 +385,7 @@ public class Mekanism {
             RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(Blocks.HARDENED_CLAY), MekanismFluids.Water, new ItemStack(Blocks.CLAY));
             RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(Items.BRICK), MekanismFluids.Water, new ItemStack(Items.CLAY_BALL));
             RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(Items.GUNPOWDER), MekanismFluids.HydrogenChloride, new ItemStack(MekanismItems.OtherDust, 1, 3));
-            RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(MekanismItems.OtherDust, 1, 10), MekanismFluids.HydrogenChloride, new ItemStack(MekanismItems.OtherDust, 1, 12));
+            RecipeHandler.addChemicalInjectionChamberRecipe(new ItemStack(MekanismItems.PlutoniumPellet, 1), MekanismFluids.HydrogenChloride, new ItemStack(MekanismItems.ReprocessedFissileFragment, 1));
         }
 
         //Precision Sawmill Recipes
@@ -541,7 +542,7 @@ public class Mekanism {
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CHEMICAL_CRYSTALLIZER)) {
             RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFluids.Lithium, 100), new ItemStack(MekanismItems.OtherDust, 1, 4));
             RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFluids.Brine, 15), new ItemStack(MekanismItems.Salt));
-            RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFluids.Antimatter, 1000), new ItemStack(MekanismItems.OtherDust, 1, 11));
+            RecipeHandler.addChemicalCrystallizerRecipe(new GasStack(MekanismFluids.Antimatter, 1000), new ItemStack(MekanismItems.AntimatterPellet,1));
         }
         //CHEMICAL WASHER Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CHEMICAL_WASHER)) {
@@ -580,10 +581,10 @@ public class Mekanism {
             RecipeHandler.addPRCRecipe(new ItemStack(Items.COAL, 1, OreDictionary.WILDCARD_VALUE), new FluidStack(FluidRegistry.WATER, 100), new GasStack(MekanismFluids.Oxygen, 100),
                     new ItemStack(MekanismItems.OtherDust, 1, 3), new GasStack(MekanismFluids.Hydrogen, 100), 0, 100);
             RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.OtherDust, 1, 8), new FluidStack(FluidRegistry.WATER, 10000), new GasStack(MekanismFluids.Plutonium, 1000),
-                    new ItemStack(MekanismItems.OtherDust, 1, 10), new GasStack(MekanismFluids.SpentNuclearWaste, 1000), 100000, 2000);
+                    new ItemStack(MekanismItems.PlutoniumPellet, 1), new GasStack(MekanismFluids.SpentNuclearWaste, 1000), 100000, 2000);
             RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.OtherDust, 1, 8), new FluidStack(FluidRegistry.WATER, 10000), new GasStack(MekanismFluids.Polonium, 1000),
-                    new ItemStack(MekanismItems.OtherDust, 1, 14), new GasStack(MekanismFluids.SpentNuclearWaste, 1000), 100000, 2000);
-            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.OtherDust, 64, 12), FluidRegistry.getFluidStack("liquidsuperheatedsodium", 10000), new GasStack(MekanismFluids.Polonium, 10000),
+                    new ItemStack(MekanismItems.PoloniumPellet, 1), new GasStack(MekanismFluids.SpentNuclearWaste, 1000), 100000, 2000);
+            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.ReprocessedFissileFragment, 64), FluidRegistry.getFluidStack("liquidsuperheatedsodium", 10000), new GasStack(MekanismFluids.Polonium, 10000),
                     new ItemStack(MekanismItems.OtherDust, 1, 9), new GasStack(MekanismFluids.Antimatter, 1000), 100000, 10000);
         }
         //Antiprotonic Nucleosynthesizer Recipes
@@ -605,8 +606,8 @@ public class Mekanism {
         }
         //Chemical Oxidizer Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.CHEMICAL_OXIDIZER)) {
-            RecipeHandler.addChemicalOxidizerRecipe(new ItemStack(MekanismItems.OtherDust, 1, 12), new GasStack(MekanismFluids.FissileFule, 2000));
-            RecipeHandler.addChemicalOxidizerRecipe(new ItemStack(MekanismItems.OtherDust, 1, 13), new GasStack(MekanismFluids.URANIUMOXIDE, 250));
+            RecipeHandler.addChemicalOxidizerRecipe(new ItemStack(MekanismItems.ReprocessedFissileFragment, 1), new GasStack(MekanismFluids.FissileFule, 2000));
+            RecipeHandler.addChemicalOxidizerRecipe(new ItemStack(MekanismItems.YellowCakeUranium, 1), new GasStack(MekanismFluids.URANIUMOXIDE, 250));
         }
 
         //Isotopic Centrifuge Recipes
@@ -690,11 +691,11 @@ public class Mekanism {
         OreDictionary.registerOre("Fluorite", new ItemStack(MekanismItems.OtherDust, 1, 7));
         OreDictionary.registerOre("FluoriteDust", new ItemStack(MekanismItems.OtherDust, 1, 8));
         OreDictionary.registerOre("CharCoalDust", new ItemStack(MekanismItems.OtherDust, 1, 9));
-        OreDictionary.registerOre("PlutoniumPellet", new ItemStack(MekanismItems.OtherDust, 1, 10));
-        OreDictionary.registerOre("AntimatterPellet", new ItemStack(MekanismItems.OtherDust, 1, 11));
-        OreDictionary.registerOre("ReprocessedFissileFragment", new ItemStack(MekanismItems.OtherDust, 1, 12));
-        OreDictionary.registerOre("YellowCakeUranium", new ItemStack(MekanismItems.OtherDust, 1, 13));
-        OreDictionary.registerOre("PoloniumPellet", new ItemStack(MekanismItems.OtherDust, 1, 14));
+        OreDictionary.registerOre("PlutoniumPellet", new ItemStack(MekanismItems.PlutoniumPellet, 1));
+        OreDictionary.registerOre("AntimatterPellet", new ItemStack(MekanismItems.AntimatterPellet, 1));
+        OreDictionary.registerOre("ReprocessedFissileFragment", new ItemStack(MekanismItems.ReprocessedFissileFragment, 1));
+        OreDictionary.registerOre("YellowCakeUranium", new ItemStack(MekanismItems.YellowCakeUranium, 1));
+        OreDictionary.registerOre("PoloniumPellet", new ItemStack(MekanismItems.PoloniumPellet, 1));
 
 
         OreDictionary.registerOre("ingotRefinedObsidian", new ItemStack(MekanismItems.Ingot, 1, 0));

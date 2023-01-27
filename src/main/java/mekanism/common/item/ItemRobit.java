@@ -28,6 +28,12 @@ public class ItemRobit extends ItemEnergized implements ISustainedInventory {
         super(100000);
     }
 
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        return EnumColor.AQUA +  LangUtils.localize("item.Robit.name");
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {

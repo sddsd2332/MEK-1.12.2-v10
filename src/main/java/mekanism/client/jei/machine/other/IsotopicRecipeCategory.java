@@ -15,7 +15,7 @@ public class IsotopicRecipeCategory<WRAPPER extends IsotopicRecipeWrapper<Isotop
 
     public IsotopicRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/nei/GuiIsotopicCentrifuge.png", Recipe.ISOTOPIC_CENTRIFUGE.getJEICategory(),
-              "tile.MachineBlock.IsotopicCentrifuge.name", null, 3, 3, 170, 70);
+              "tile.MachineBlock3.IsotopicCentrifuge.name", null, 3, 3, 170, 79);
     }
 
     @Override

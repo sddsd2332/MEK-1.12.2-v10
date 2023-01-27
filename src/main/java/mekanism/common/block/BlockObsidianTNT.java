@@ -22,7 +22,7 @@ public class BlockObsidianTNT extends Block {
 
     public BlockObsidianTNT() {
         super(Material.TNT);
-        setCreativeTab(Mekanism.tabMekanism);
+        setCreativeTab(Mekanism.tabMekanismAddition);
     }
 
     @Override

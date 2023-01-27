@@ -8,10 +8,7 @@ import mekanism.api.MekanismAPI;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 import mekanism.api.infuse.InfuseRegistry;
-import mekanism.common.FuelHandler;
-import mekanism.common.Mekanism;
-import mekanism.common.MekanismFluids;
-import mekanism.common.Version;
+import mekanism.common.*;
 import mekanism.common.base.IModule;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.fixers.MekanismDataFixers.MekFixers;
@@ -65,6 +62,8 @@ public class MekanismGenerators implements IModule {
     public static final int DATA_VERSION = 1;
 
     public static MultiblockManager<SynchronizedTurbineData> turbineManager = new MultiblockManager<>("industrialTurbine");
+
+    public static CreativeTabMekanismGenerators tabMekanismGenerators = new CreativeTabMekanismGenerators();
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {

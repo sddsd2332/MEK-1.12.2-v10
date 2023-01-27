@@ -72,7 +72,17 @@ public class ItemBlockGasTank extends ItemBlock implements IGasItem, ISustainedI
     @Nonnull
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+        GasTankTier tier = GasTankTier.values()[getBaseTier(itemstack).ordinal()];
+        if (tier == GasTankTier.BASIC){
+            return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else if (tier == GasTankTier.ADVANCED){
+            return EnumColor.RED + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else if (tier == GasTankTier.ELITE){
+            return EnumColor.AQUA + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else if (tier == GasTankTier.ULTIMATE){
+            return EnumColor.PURPLE + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+        }else return EnumColor.ORANGE + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+
     }
 
     @Override

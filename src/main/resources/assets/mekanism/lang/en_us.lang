@@ -272,11 +272,11 @@ item.uraniumDust.name=Uranium Dust
 item.fluoriteDust.name=Fluorite
 item.fluoritedustDust.name=Fluorite Dust
 item.charcoaldustDust.name=Charcoal Dust
-item.plutoniumpelletDust.name=Plutonium Pellet
-item.antimatterpelletDust.name=Antimatter Pellet
-item.reprocessedfissilefragmentDust.name=Reprocessed Fissile Fragment
-item.yellowcakeuraniumDust.name=Yellow Cake Uranium
-item.poloniumpelletDust.name=Polonium Pellet			   
+item.PlutoniumPellet.name=Plutonium Pellet
+item.AntimatterPellet.name=Antimatter Pellet
+item.ReprocessedFissileFragment.name=Reprocessed Fissile Fragment
+item.YellowCakeUranium.name=Yellow Cake Uranium
+item.PoloniumPellet.name=Polonium Pellet
 
 # Clumps
 item.ironClump.name=Iron Clump
@@ -1084,7 +1084,9 @@ reactor.depleted.desc=The reactor has insufficient fuel to sustain a reaction
 
 # Creative tab
 itemGroup.tabMekanism=Mekanism
-
+itemGroup.tabMekanismTools=Mekanism Tools
+itemGroup.tabMekanismGenerators=Mekanism Generators
+itemGroup.tabMekanismAddition=Mekanism Addition
 ############
 # GENERATORS
 ############

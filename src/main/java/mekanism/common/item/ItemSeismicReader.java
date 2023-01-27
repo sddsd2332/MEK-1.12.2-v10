@@ -32,6 +32,12 @@ public class ItemSeismicReader extends ItemEnergized {
         return false;
     }
 
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        return EnumColor.YELLOW +  LangUtils.localize("item.SeismicReader.name");
+    }
+
     @Override
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {
         if (!MekKeyHandler.getIsKeyPressed(MekanismKeyHandler.sneakKey)) {

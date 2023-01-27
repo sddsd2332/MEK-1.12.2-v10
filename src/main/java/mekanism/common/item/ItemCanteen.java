@@ -1,6 +1,7 @@
 package mekanism.common.item;
 
 
+import mekanism.api.EnumColor;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.IGasItem;
@@ -44,11 +45,12 @@ public class ItemCanteen extends ItemMekanism implements IGasItem {
         GasStack gasStack = getGas(itemstack);
         if (gasStack == null) {
             list.add(LangUtils.localize("tooltip.noGas") + ".");
+            list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen1"),itemstack));
+            list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen2"),itemstack));
         } else {
             list.add(LangUtils.localize("tooltip.stored") + " " + gasStack.getGas().getLocalizedName() + ": " + gasStack.amount);
         }
-        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen1"),itemstack));
-        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen2"),itemstack));
+
     }
 
     @Override
@@ -116,22 +118,6 @@ public class ItemCanteen extends ItemMekanism implements IGasItem {
         return getGas(itemstack) != null ? getGas(itemstack).amount : 0;
     }
 
-    public void toggleFlowing(ItemStack stack) {
-        setFlowing(stack, !getFlowing(stack));
-    }
-
-    public boolean getFlowing(ItemStack stack) {
-        return ItemDataUtils.getBoolean(stack, "flowing");
-    }
-
-    public String getFlowingStr(ItemStack stack) {
-        boolean flowing = getFlowing(stack);
-        return LangUtils.localize("tooltip." + (flowing ? "yes" : "no"));
-    }
-
-    public void setFlowing(ItemStack stack, boolean flowing) {
-        ItemDataUtils.setBoolean(stack, "flowing", flowing);
-    }
 
     @Override
     public boolean canReceiveGas(ItemStack itemstack, Gas type) {
@@ -159,11 +145,6 @@ public class ItemCanteen extends ItemMekanism implements IGasItem {
         }
     }
 
-    public ItemStack getEmptyItem() {
-        ItemStack empty = new ItemStack(this);
-        setGas(empty, null);
-        return empty;
-    }
 
     @Override
     public void getSubItems(@Nonnull CreativeTabs tabs, @Nonnull NonNullList<ItemStack> list) {

@@ -40,6 +40,12 @@ public class ItemScubaTank extends ItemArmor implements IGasItem {
         setCreativeTab(Mekanism.tabMekanism);
     }
 
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        return EnumColor.AQUA +  LangUtils.localize("item.ScubaTank.name");
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {

@@ -2,6 +2,8 @@ package mekanism.common.item;
 
 import java.util.List;
 import javax.annotation.Nonnull;
+
+import mekanism.api.EnumColor;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.IGasItem;
@@ -35,7 +37,6 @@ public class ItemGaugeDropper extends ItemMekanism implements IGasItem {
     public ItemGaugeDropper() {
         super();
         setMaxStackSize(1);
-        setCreativeTab(Mekanism.tabMekanism);
     }
 
     public ItemStack getEmptyItem() {
@@ -50,6 +51,13 @@ public class ItemGaugeDropper extends ItemMekanism implements IGasItem {
             list.add(getEmptyItem());
         }
     }
+
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
+        return EnumColor.YELLOW +  LangUtils.localize("item.GaugeDropper.name");
+    }
+
 
     @Override
     public boolean showDurabilityBar(ItemStack stack) {

@@ -23,7 +23,7 @@ public class NutritionalLiquifierRecipeCategory<WRAPPER extends NutritionalLiqui
 
     public NutritionalLiquifierRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/GuiChemical.png", Recipe.Nutritional_Liquifier.getJEICategory(),
-              "tile.MachineBlock.NutritionalLiquifier.name", ProgressBar.LARGE_RIGHT, 20, 12, 132, 62);
+              "tile.MachineBlock3.NutritionalLiquifier.name", ProgressBar.LARGE_RIGHT, 20, 12, 132, 62);
     }
 
     @Override

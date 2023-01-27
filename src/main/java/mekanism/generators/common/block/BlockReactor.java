@@ -44,7 +44,7 @@ public abstract class BlockReactor extends Block implements ITileEntityProvider 
         super(Material.IRON);
         setHardness(3.5F);
         setResistance(8F);
-        setCreativeTab(Mekanism.tabMekanism);
+        setCreativeTab(MekanismGenerators.tabMekanismGenerators);
     }
 
     public static BlockReactor getReactorBlock(ReactorBlock block) {

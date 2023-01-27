@@ -25,12 +25,12 @@ item.CompressedDiamond.name=富集钻石
 item.CompressedObsidian.name=富集黑曜石
 item.PortableTeleporter.name=便携传送器
 item.TeleportationCore.name=传送核心
-item.Configurator.name=调整器
+item.Configurator.name=配置器
 item.NetworkReader.name=网络读取器
 item.WalkieTalkie.name=步话机
-item.Jetpack.name=喷射背包
+item.Jetpack.name=喷气背包
 item.ScubaTank.name=潜水罐
-item.GasMask.name=燃气面具
+item.GasMask.name=潜水面罩
 item.Dictionary.name=辞典
 item.ElectrolyticCore.name=电解核心
 item.Sawdust.name=锯屑
@@ -52,7 +52,7 @@ item.GaugeDropper.name=滴量器
 item.BioFuel.name=生物燃料
 item.CraftingFormula.name=合成配方
 item.Canteen.name=水壶
-item.MekTool.name=§4☢☣✪拓荒者工具✪☣☢§f【WIP】
+item.MekTool.name=☢☣✪拓荒者工具✪☣☢
 # Control Circuits
 item.BasicControlCircuit.name=基础控制电路
 item.AdvancedControlCircuit.name=高级控制电路
@@ -270,11 +270,11 @@ item.uraniumDust.name=铀粉
 item.fluoriteDust.name=氟石
 item.fluoritedustDust.name=氟石粉
 item.charcoaldustDust.name=木炭粉
-item.plutoniumpelletDust.name=钚球
-item.antimatterpelletDust.name=反物质球
-item.reprocessedfissilefragmentDust.name=再处理裂变碎片
-item.yellowcakeuraniumDust.name=铀黄饼
-item.poloniumpelletDust.name=钋球
+item.PlutoniumPellet.name=钚球
+item.AntimatterPellet.name=反物质球
+item.ReprocessedFissileFragment.name=再处理裂变碎片
+item.YellowCakeUranium.name=铀黄饼
+item.PoloniumPellet.name=钋球
 
 # Clumps
 item.ironClump.name=铁碎块
@@ -973,7 +973,7 @@ tooltip.AmbientAccumulator=一个能收集当前维度包含的气体[警告！�
 tooltip.MekTool1=十分强大的挖掘机器
 tooltip.MekTool2=当冲满25%以上时，伤害会超级加倍
 tooltip.MekTool3=当冲满90%以上时，可能会带有秒杀效果？
-tooltip.MekTool4=§4☢☣✪危险工具，警告！✪☣☢
+tooltip.MekTool4=☢☣✪危险工具，警告！✪☣☢
 
 tooltip.HeatGenerator=一台使用岩浆热量或者其它可燃资源产生能量的发电机。
 tooltip.SolarGenerator=一台使用太阳能量发电的发电机。
@@ -1082,6 +1082,9 @@ reactor.depleted.desc=反应没有足够的燃料维持
 
 # Creative tab
 itemGroup.tabMekanism=通用机械
+itemGroup.tabMekanismTools=通用机械工具
+itemGroup.tabMekanismGenerators=通用机械发电机
+itemGroup.tabMekanismAddition=通用机械附加
 
 #############
 # GENERATORS

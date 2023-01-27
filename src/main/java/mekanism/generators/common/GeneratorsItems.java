@@ -1,8 +1,8 @@
 package mekanism.generators.common;
 
-import mekanism.common.item.ItemMekanism;
 import mekanism.common.util.MekanismUtils;
 import mekanism.generators.common.item.ItemHohlraum;
+import mekanism.generators.common.tile.ItemMekanismGenerators;
 import mekanism.generators.common.tile.turbine.TileEntityTurbineRotor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,9 +16,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 @ObjectHolder(MekanismGenerators.MODID)
 public class GeneratorsItems {
 
-    public static final Item SolarPanel = new ItemMekanism();
+    public static final Item SolarPanel = new ItemMekanismGenerators();
     public static final ItemHohlraum Hohlraum = new ItemHohlraum();
-    public static final Item TurbineBlade = new ItemMekanism() {
+    public static final Item TurbineBlade = new ItemMekanismGenerators() {
         @Override
         public boolean doesSneakBypassUse(ItemStack stack, IBlockAccess world, BlockPos pos, EntityPlayer player) {
             return MekanismUtils.getTileEntitySafe(world, pos) instanceof TileEntityTurbineRotor;
