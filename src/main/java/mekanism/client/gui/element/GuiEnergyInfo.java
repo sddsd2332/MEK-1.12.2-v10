@@ -36,7 +36,8 @@ public class GuiEnergyInfo extends GuiElement {
     public void renderBackground(int xAxis, int yAxis, int guiWidth, int guiHeight) {
         mc.renderEngine.bindTexture(RESOURCE);
         guiObj.drawTexturedRect(guiWidth - 26, guiHeight + 138, 0, 0, 26, 26);
-
+        int outputOrdinal = (MekanismConfig.current().general.energyUnit.val().ordinal() + 1) % EnergyType.values().length;
+        guiObj.drawTexturedRect(guiWidth - 21, guiHeight + 142, 26 + 18 * outputOrdinal,inBounds(xAxis, yAxis) ? 0 : 0, 18, 18);
         mc.renderEngine.bindTexture(defaultLocation);
     }
 
