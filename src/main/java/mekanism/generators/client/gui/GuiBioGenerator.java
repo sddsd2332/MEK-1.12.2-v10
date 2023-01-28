@@ -43,6 +43,11 @@ public class GuiBioGenerator extends GuiMekanismTile<TileEntityBioGenerator> {
         fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy()), 51, 26, 0x33ff99);
         fontRenderer.drawString(LangUtils.localize("gui.bioGenerator.bioFuel") + ": " + tileEntity.bioFuelSlot.fluidStored, 51, 35, 0x33ff99);
         fontRenderer.drawString(LangUtils.localize("gui.out") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxOutput()) + "/t", 51, 44, 0x33ff99);
+        int xAxis = mouseX - guiLeft;
+        int yAxis = mouseY - guiTop;
+        if (xAxis >= 7 && xAxis <= 11 && yAxis >= 17 && yAxis <= 69) {
+            displayTooltip(tileEntity.bioFuelSlot.fluidStored> 0 ? LangUtils.localize("gui.bioGenerator.bioFuel") + ":" +tileEntity.bioFuelSlot.fluidStored : LangUtils.localize("gui.empty"), xAxis, yAxis);
+        }
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 

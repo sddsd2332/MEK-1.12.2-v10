@@ -151,7 +151,7 @@ public abstract class GuiGauge<T> extends GuiElement {
         STANDARD_YELLOW(EnumColor.YELLOW, 18, 60, 0, 60, 1, "GuiGaugeStandard.png"),
         STANDARD_RED(EnumColor.DARK_RED, 18, 60, 0, 120, 1, "GuiGaugeStandard.png"),
         STANDARD_ORANGE(EnumColor.ORANGE, 18, 60, 0, 180, 1, "GuiGaugeStandard.png"),
-        STANDARD_BLUE(EnumColor.DARK_BLUE, 18, 60, 0, 240, 1, "GuiGaugeStandard.png"),
+        STANDARD_BLUE(EnumColor.DARK_BLUE, 18, 60, 18, 60, 1, "GuiGaugeStandard.png"),
         WIDE(null, 66, 50, 0, 0, 4, "GuiGaugeWide.png"),
         WIDE_YELLOW(EnumColor.YELLOW, 66, 50, 0, 50, 4, "GuiGaugeWide.png"),
         WIDE_RED(EnumColor.DARK_RED, 66, 50, 0, 100, 4, "GuiGaugeWide.png"),

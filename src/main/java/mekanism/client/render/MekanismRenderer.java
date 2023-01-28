@@ -56,6 +56,7 @@ public class MekanismRenderer {
 
     public static final GlowInfo NO_GLOW = new GlowInfo(0, 0, false);
 
+    public static TextureAtlasSprite bioethanolIcon;
     public static TextureAtlasSprite energyIcon;
     public static TextureAtlasSprite heatIcon;
     public static TextureAtlasSprite laserIcon;
@@ -369,6 +370,7 @@ public class MekanismRenderer {
         energyIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidEnergy"));
         heatIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidHeat"));
         laserIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/Laser"));
+        bioethanolIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID,"blocks/liquid/liquidbioethanol"));
 
         event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidHeavyWater"));
 

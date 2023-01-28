@@ -23,6 +23,8 @@ public class MekanismFluids {
           new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidHeavyWater"));
     public static final Fluid Steam = new Fluid("steam", new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidSteam"),
           new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidSteam")).setGaseous(true);
+    public static final Fluid BioEthanol = new Fluid("bioethanol", new ResourceLocation(Mekanism.MODID, "blocks/liquid/liquidBioEthanol"),
+            new ResourceLocation(Mekanism.MODID, "blocks/liquid/liquidBioEthanol"));
 
     //Internal gases
     public static final Gas LiquidOsmium = new Gas("liquidosmium", 0x52bdca);
@@ -90,6 +92,7 @@ public class MekanismFluids {
 
         FluidRegistry.registerFluid(HeavyWater);
         FluidRegistry.registerFluid(Steam);
+        FluidRegistry.registerFluid(BioEthanol);
 
         for (Resource resource : Resource.values()) {
             String name = resource.getName();
@@ -108,6 +111,6 @@ public class MekanismFluids {
         FluidRegistry.addBucketForFluid(Lithium.getFluid());
         FluidRegistry.addBucketForFluid(Polonium.getFluid());
         FluidRegistry.addBucketForFluid(Antimatter.getFluid());
-
+        FluidRegistry.addBucketForFluid(BioEthanol);
     }
 }
