@@ -39,11 +39,11 @@ public class GuiIsotopicCentrifuge extends GuiChemical<TileEntityIsotopicCentrif
             return Arrays.asList(LangUtils.localize("gui.using") + ": " + usage + "/t",
                     LangUtils.localize("gui.needed") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxEnergy() - tileEntity.getEnergy()));
         }, this, resource));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.inputTank, GuiGauge.Type.STANDARD, this, resource, 26, 13));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.outputTank, GuiGauge.Type.STANDARD, this, resource, 133, 13));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 154, 4).with(SlotOverlay.POWER));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 4, 55).with(SlotOverlay.MINUS));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 154, 55).with(SlotOverlay.PLUS));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.inputTank, GuiGauge.Type.STANDARD_RED, this, resource, 26, 13));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.outputTank, GuiGauge.Type.STANDARD_BLUE, this, resource, 133, 13));
+        addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 154, 4).with(SlotOverlay.POWER));
+        addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 4, 55).with(SlotOverlay.MINUS));
+        addGuiElement(new GuiSlot(SlotType.OUTPUT, this, resource, 154, 55).with(SlotOverlay.PLUS));
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {

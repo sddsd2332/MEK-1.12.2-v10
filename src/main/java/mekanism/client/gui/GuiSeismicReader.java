@@ -126,7 +126,7 @@ public class GuiSeismicReader extends GuiScreen {
             GlStateManager.pushMatrix();
             GlStateManager.translate(guiLeft + 72, guiTop + 16, 0);
             GlStateManager.scale(renderScale, renderScale, renderScale);
-            fontRenderer.drawString(capitalised, 0, 0, 0x919191);
+            fontRenderer.drawString(capitalised, 0, 0, 0x33ff99);
             GlStateManager.popMatrix();
 
             if (tooltip.intersects(new Rectangle(mouseX, mouseY, 1, 1))) {
@@ -136,7 +136,7 @@ public class GuiSeismicReader extends GuiScreen {
                 GlStateManager.pushMatrix();
                 drawTexturedModalRect(renderX, renderY, 0, 0, fontLengthX, 16);
                 drawTexturedModalRect(renderX + fontLengthX, renderY, 0, 16, 2, 16);
-                fontRenderer.drawString(capitalised, renderX + 4, renderY + 4, 0x919191);
+                fontRenderer.drawString(capitalised, renderX + 4, renderY + 4, 0x33ff99);
                 GlStateManager.popMatrix();
             }
 
@@ -150,8 +150,8 @@ public class GuiSeismicReader extends GuiScreen {
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(guiLeft + 72, guiTop + 26, 0);
-        GlStateManager.scale(0.7F, 0.7F, 0.7F);
-        fontRenderer.drawString(LangUtils.localize("gui.abundancy") + ": " + frequency, 0, 0, 0x919191);
+       // GlStateManager.scale(0.7F, 0.7F, 0.7F);
+        fontRenderer.drawString(LangUtils.localize("gui.abundancy") + ": " + frequency, 0, 0, 0x33ff99);
         GlStateManager.popMatrix();
         MekanismRenderer.resetColor();
         super.drawScreen(mouseX, mouseY, partialTick);

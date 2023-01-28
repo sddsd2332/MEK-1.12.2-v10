@@ -58,8 +58,8 @@ public class GuiChemicalCrystallizer extends GuiMekanismTile<TileEntityChemicalC
             return Arrays.asList(LangUtils.localize("gui.using") + ": " + multiplier + "/t",
                   LangUtils.localize("gui.needed") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxEnergy() - tileEntity.getEnergy()));
         }, this, resource));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.inputTank, GuiGauge.Type.STANDARD, this, resource, 5, 4));
-        addGuiElement(new GuiSlot(SlotType.EXTRA, this, resource, 5, 64).with(SlotOverlay.PLUS));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.inputTank, GuiGauge.Type.STANDARD_RED, this, resource, 5, 4));
+        addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 5, 64).with(SlotOverlay.PLUS));
         addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 154, 4).with(SlotOverlay.POWER));
         addGuiElement(new GuiSlot(SlotType.OUTPUT, this, resource, 130, 56));
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {

@@ -32,8 +32,8 @@ public class GuiBioGenerator extends GuiMekanismTile<TileEntityBioGenerator> {
               LangUtils.localize("gui.producing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getActive() ? MekanismConfig.current().generators.bioGeneration.val() : 0) + "/t",
               LangUtils.localize("gui.maxOutput") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxOutput()) + "/t"), this, resource));
         addGuiElement(new GuiPowerBar(this, tileEntity, resource, 164, 15));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 16, 34));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 142, 34).with(SlotOverlay.POWER));
+        addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 16, 34));
+        addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 142, 34).with(SlotOverlay.POWER));
     }
 
     @Override

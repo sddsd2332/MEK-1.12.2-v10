@@ -38,9 +38,9 @@ public class GuiReactorFuel extends GuiReactorInfo {
               LangUtils.localize("gui.storing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()),
               LangUtils.localize("gui.producing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getReactor().getPassiveGeneration(false, true)) + "/t")
                                                                     : new ArrayList<>(), this, resource));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.deuteriumTank, Type.SMALL, this, resource, 25, 64));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.deuteriumTank, Type.SMALL_RED, this, resource, 25, 64));
         addGuiElement(new GuiGasGauge(() -> tileEntity.fuelTank, Type.STANDARD, this, resource, 79, 50));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.tritiumTank, Type.SMALL, this, resource, 133, 64));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.tritiumTank, Type.SMALL_RED, this, resource, 133, 64));
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {

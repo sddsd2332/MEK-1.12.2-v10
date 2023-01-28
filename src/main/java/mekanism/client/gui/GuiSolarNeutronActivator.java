@@ -30,10 +30,10 @@ public class GuiSolarNeutronActivator extends GuiMekanismTile<TileEntitySolarNeu
         addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
         addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
         addGuiElement(new GuiUpgradeTab(this, tileEntity, resource));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 4, 55).with(SlotOverlay.MINUS));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 154, 55).with(SlotOverlay.PLUS));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.inputTank, GuiGauge.Type.STANDARD, this, resource, 25, 13));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.outputTank, GuiGauge.Type.STANDARD, this, resource, 133, 13));
+        addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 4, 55).with(SlotOverlay.MINUS));
+        addGuiElement(new GuiSlot(SlotType.OUTPUT, this, resource, 154, 55).with(SlotOverlay.PLUS));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.inputTank, GuiGauge.Type.STANDARD_RED, this, resource, 25, 13));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.outputTank, GuiGauge.Type.STANDARD_BLUE, this, resource, 133, 13));
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {

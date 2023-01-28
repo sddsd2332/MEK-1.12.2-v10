@@ -45,15 +45,15 @@ public class GuiElectrolyticSeparator extends GuiMekanismTile<TileEntityElectrol
             return Arrays.asList(LangUtils.localize("gui.using") + ": " + usage + "/t",
                   LangUtils.localize("gui.needed") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxEnergy() - tileEntity.getEnergy()));
         }, this, resource));
-        addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD, this, resource, 5, 10));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.leftTank, GuiGauge.Type.SMALL, this, resource, 58, 18));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.rightTank, GuiGauge.Type.SMALL, this, resource, 100, 18));
+        addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD_RED, this, resource, 5, 10));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.leftTank, GuiGauge.Type.SMALL_BLUE, this, resource, 58, 18));
+        addGuiElement(new GuiGasGauge(() -> tileEntity.rightTank, GuiGauge.Type.SMALL_ORANGE, this, resource, 100, 18));
         addGuiElement(new GuiPowerBar(this, tileEntity, resource, 164, 15));
         addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 25, 34));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 58, 51));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 100, 51));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 142, 34).with(SlotOverlay.POWER));
+        addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 25, 34));
+        addGuiElement(new GuiSlot(SlotType.OUTPUT, this, resource, 58, 51));
+        addGuiElement(new GuiSlot(SlotType.EXTRA, this, resource, 100, 51));
+        addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 142, 34).with(SlotOverlay.POWER));
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {

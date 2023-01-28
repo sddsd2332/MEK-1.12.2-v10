@@ -121,10 +121,4 @@ public class ItemPortableTeleporter extends ItemEnergized implements IOwnerItem 
         }
         ItemDataUtils.setCompound(stack, "frequency", frequency.getIdentity().serialize());
     }
-    @Nonnull
-    @Override
-    public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return EnumColor.AQUA +  LangUtils.localize("item.PortableTeleporter.name");
-    }
-
 }

@@ -27,7 +27,7 @@ public class GuiSolarGenerator extends GuiMekanismTile<TileEntitySolarGenerator>
         addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
         addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
         addGuiElement(new GuiEnergyInfo(Collections::emptyList, this, resource));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 142, 34).with(SlotOverlay.POWER));
+        addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 142, 34).with(SlotOverlay.POWER));
     }
 
     @Override

@@ -84,7 +84,7 @@ public class GuiTeleporter extends GuiMekanismTile<TileEntityTeleporter> {
                 return getEnergy() / getMaxEnergy();
             }
         }, resource, 158, 26));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 152, 6).with(SlotOverlay.POWER));
+        addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 152, 6).with(SlotOverlay.POWER));
         addGuiElement(scrollList = new GuiScrollList(this, resource, 28, 37, 120, 4));
         if (tileEntity.frequency != null) {
             privateMode = !tileEntity.frequency.publicFreq;
