@@ -21,6 +21,8 @@ public class GrSMekanismAdd extends Mekanism {
     public CellExtractor cellExtractor = new CellExtractor();
     public CellSeparator cellSeparator = new CellSeparator();
     public Smelter smelter = new Smelter();
+    public FusionCooling fusion = new FusionCooling();
+
 
 
     public GrSMekanismAdd(){
@@ -38,6 +40,9 @@ public class GrSMekanismAdd extends Mekanism {
         addRegistry(cellExtractor);
         addRegistry(cellSeparator);
         addRegistry(smelter);
+       // if (){
+            addRegistry(fusion);
+      //  }
     }
 
 

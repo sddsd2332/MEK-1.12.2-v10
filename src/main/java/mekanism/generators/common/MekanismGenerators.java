@@ -30,6 +30,7 @@ import net.minecraftforge.common.util.CompoundDataFixer;
 import net.minecraftforge.common.util.ModFixs;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -138,6 +139,9 @@ public class MekanismGenerators implements IModule {
         for (ItemStack ore : OreDictionary.getOres("dustGold", false)) {
             RecipeHandler.addMetallurgicInfuserRecipe(InfuseRegistry.get("CARBON"), 10, StackUtils.size(ore, 4), GeneratorsItems.Hohlraum.getEmptyItem());
         }
+
+        RecipeHandler.addFusionCoolingRecipe(FluidRegistry.getFluidStack("water",1),FluidRegistry.getFluidStack("steam",1));
+        RecipeHandler.addFusionCoolingRecipe(FluidRegistry.getFluidStack("liquidsodium",1),FluidRegistry.getFluidStack("liquidsuperheatedsodium",1));
     }
 
     @Override

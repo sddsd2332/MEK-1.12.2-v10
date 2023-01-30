@@ -171,10 +171,6 @@ public final class RecipeHandler {
         addRecipe(Recipe.CHEMICAL_INJECTION_CHAMBER, new InjectionRecipe(input, gas, output));
     }
 
-
-
-
-
     /**
      * Add an Electrolytic Separator recipe.
      *
@@ -258,6 +254,10 @@ public final class RecipeHandler {
 
     public static void addThermalEvaporationRecipe(FluidStack inputFluid, FluidStack outputFluid) {
         addRecipe(Recipe.THERMAL_EVAPORATION_PLANT, new ThermalEvaporationRecipe(inputFluid, outputFluid));
+    }
+
+    public static void addFusionCoolingRecipe(FluidStack inputFluid, FluidStack outputFluid) {
+        addRecipe(Recipe.FUSION_COOLING,new FusionCoolingRecipe(inputFluid, outputFluid));
     }
 
     public static void addSolarNeutronRecipe(GasStack inputGas, GasStack outputGas) {
@@ -480,6 +480,11 @@ public final class RecipeHandler {
     }
 
     @Nullable
+    public static FusionCoolingRecipe getFusionCoolingRecipe(@Nonnull FluidInput input) {
+        return getRecipe(input,Recipe.FUSION_COOLING);
+    }
+
+    @Nullable
     public static SolarNeutronRecipe getSolarNeutronRecipe(@Nonnull GasInput input) {
         return getRecipe(input, Recipe.SOLAR_NEUTRON_ACTIVATOR);
     }
@@ -621,6 +626,10 @@ public final class RecipeHandler {
 
         public static final Recipe<FluidInput, FluidOutput, ThermalEvaporationRecipe> THERMAL_EVAPORATION_PLANT = new Recipe<>(
               "ThermalEvaporationPlant", FluidInput.class, FluidOutput.class, ThermalEvaporationRecipe.class);
+
+        public static final Recipe<FluidInput, FluidOutput,FusionCoolingRecipe> FUSION_COOLING = new Recipe<>(
+                "FusionCooling",FluidInput.class, FluidOutput.class, FusionCoolingRecipe.class);
+
 
         public static final Recipe<GasInput, GasOutput, SolarNeutronRecipe> SOLAR_NEUTRON_ACTIVATOR = new Recipe<>(
               MachineType.SOLAR_NEUTRON_ACTIVATOR, GasInput.class, GasOutput.class, SolarNeutronRecipe.class);

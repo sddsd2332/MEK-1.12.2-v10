@@ -228,4 +228,11 @@ public class APIHandler implements MekanismRecipeHelper {
         RecipeHandler.addCellSeparatorRecipe(input, primaryOutput);
     }
 
+
+    @Override
+    public void addFusionCoolingRecipe(FluidStack inputFluid, FluidStack outputFluid) {
+        checkPhase();
+        RecipeHandler.addFusionCoolingRecipe(inputFluid, outputFluid);
+    }
+
 }

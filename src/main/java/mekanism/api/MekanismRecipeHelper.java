@@ -6,7 +6,7 @@ import mekanism.api.infuse.InfuseType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public interface    MekanismRecipeHelper {
+public interface MekanismRecipeHelper {
 
     /**
      * Add an Enrichment Chamber recipe.
@@ -202,4 +202,5 @@ public interface    MekanismRecipeHelper {
 
     void addCellSeparatorRecipe(ItemStack input, ItemStack primaryOutput);
 
+    void addFusionCoolingRecipe(FluidStack inputFluid, FluidStack outputFluid);
 }

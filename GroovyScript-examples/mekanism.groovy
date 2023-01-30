@@ -46,3 +46,7 @@ mods.Mekanism.CellSeparator.removeByInput(item('minecraft:iron_ore'))
 //Energized Smelter
 //mods.mekanism.Smelter.removeByInput(item('minecraft:gold_ore'))
 mods.mekanism.Smelter.add(item('minecraft:iron_ore'),item('minecraft:iron_ingot'))
+
+//Fusion reactor cooling recipes
+mods.Mekanism.FusionReactor.removeByInput(fluid('liquidsodium'))
+mods.Mekanism.FusionReactor.add(fluid('liquidsodium'),fluid('water'))

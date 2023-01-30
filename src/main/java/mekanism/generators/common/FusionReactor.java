@@ -12,6 +12,10 @@ import mekanism.common.Mekanism;
 import mekanism.common.MekanismFluids;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.network.PacketTileEntity.TileEntityMessage;
+import mekanism.common.recipe.RecipeHandler;
+import mekanism.common.recipe.RecipeHandler.Recipe;
+import mekanism.common.recipe.inputs.FluidInput;
+import mekanism.common.recipe.machines.FusionCoolingRecipe;
 import mekanism.common.util.UnitDisplayUtils.TemperatureUnit;
 import mekanism.generators.common.item.ItemHohlraum;
 import mekanism.generators.common.tile.reactor.TileEntityReactorBlock;
@@ -25,6 +29,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -160,6 +165,7 @@ public class FusionReactor {
         plasmaTemperature -= plasmaCaseHeat / plasmaHeatCapacity;
         caseTemperature += plasmaCaseHeat / caseHeatCapacity;
 
+        FusionCoolingRecipe recipe = getRecipe();
         //Transfer from casing to water if necessary
         if (activelyCooled) {
             double caseWaterHeat = caseWaterConductivity * lastCaseTemperature;
@@ -167,7 +173,7 @@ public class FusionReactor {
             waterToVaporize = Math.min(waterToVaporize, Math.min(getWaterTank().getFluidAmount(), getSteamTank().getCapacity() - getSteamTank().getFluidAmount()));
             if (waterToVaporize > 0) {
                 getWaterTank().drain(waterToVaporize, true);
-                getSteamTank().fill(new FluidStack(FluidRegistry.getFluid("steam"), waterToVaporize), true);
+                getSteamTank().fill(new FluidStack(recipe.recipeOutput.output.getFluid(), waterToVaporize), true);
             }
 
             caseWaterHeat = waterToVaporize * enthalpyOfVaporization / steamTransferEfficiency;
@@ -182,6 +188,10 @@ public class FusionReactor {
         double caseAirHeat = caseAirConductivity * lastCaseTemperature;
         caseTemperature -= caseAirHeat / caseHeatCapacity;
         setBufferedEnergy(getBufferedEnergy() + caseAirHeat * thermocoupleEfficiency);
+    }
+
+    public FusionCoolingRecipe getRecipe() {
+        return RecipeHandler.getFusionCoolingRecipe(new FluidInput(controller.waterTank.getFluid()));
     }
 
     public FluidTank getWaterTank() {
@@ -452,5 +462,12 @@ public class FusionReactor {
 
     public NonNullList<ItemStack> getInventory() {
         return isFormed() ? controller.inventory : null;
+    }
+
+    public boolean hasRecipe(Fluid fluid) {
+        if (fluid == null) {
+            return false;
+        }
+        return Recipe.FUSION_COOLING.containsRecipe(fluid);
     }
 }

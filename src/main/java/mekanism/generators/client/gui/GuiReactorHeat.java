@@ -85,20 +85,23 @@ public class GuiReactorHeat extends GuiReactorInfo {
                 return "Case: " + MekanismUtils.getTemperatureDisplay(level, TemperatureUnit.KELVIN);
             }
         }, Type.STANDARD_YELLOW, this, resource, 61, 50));
+
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {
                 return tileEntity.getCaseTemp() > 0 ? 1 : 0;
             }
         }, ProgressBar.SMALL_RIGHT, this, resource, 81, 60));
+
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {
                 return (tileEntity.getCaseTemp() > 0 && tileEntity.waterTank.getFluidAmount() > 0 && tileEntity.steamTank.getFluidAmount() < tileEntity.steamTank.getCapacity()) ? 1 : 0;
             }
         }, ProgressBar.SMALL_RIGHT, this, resource, 81, 90));
-        addGuiElement(new GuiFluidGauge(() -> tileEntity.waterTank, Type.SMALL_RED, this, resource, 115, 84));
-        addGuiElement(new GuiFluidGauge(() -> tileEntity.steamTank, Type.SMALL_BLUE, this, resource, 151, 84));
+
+        addGuiElement(new GuiFluidGauge(() -> tileEntity.waterTank, GuiFluidGauge.Type.SMALL_RED, this, resource, 115, 84));
+        addGuiElement(new GuiFluidGauge(() -> tileEntity.steamTank, GuiFluidGauge.Type.SMALL_BLUE, this, resource, 151, 84));
         addGuiElement(new GuiEnergyGauge(() -> tileEntity, Type.SMALL_BLUE, this, resource, 115, 46));
         addGuiElement(new GuiReactorTab(this, tileEntity, ReactorTab.FUEL, resource));
         addGuiElement(new GuiReactorTab(this, tileEntity, ReactorTab.STAT, resource));
@@ -108,5 +111,6 @@ public class GuiReactorHeat extends GuiReactorInfo {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         fontRenderer.drawString(tileEntity.getName(), 46, 6, 0x404040);
+
     }
 }

@@ -18,14 +18,7 @@ import mekanism.common.MekanismFluids;
 import mekanism.common.base.FluidHandlerWrapper;
 import mekanism.common.base.IFluidHandlerWrapper;
 import mekanism.common.capabilities.Capabilities;
-import mekanism.common.util.CableUtils;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.EmitUtils;
-import mekanism.common.util.HeatUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.LangUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.PipeUtils;
+import mekanism.common.util.*;
 import mekanism.generators.common.item.ItemHohlraum;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -109,12 +102,12 @@ public class TileEntityReactorPort extends TileEntityReactorBlock implements IFl
 
     @Override
     public boolean canFill(EnumFacing from, @Nonnull FluidStack fluid) {
-        return getReactor() != null && !fluidEject && fluid.getFluid() == FluidRegistry.WATER;
+        return getReactor() != null && !fluidEject && getReactor().hasRecipe(fluid.getFluid());
     }
 
     @Override
     public boolean canDrain(EnumFacing from, @Nullable FluidStack fluid) {
-        return getReactor() != null && (fluid == null || fluid.getFluid() == FluidRegistry.getFluid("steam"));
+        return getReactor() != null && (fluid == null || FluidContainerUtils.canDrain(getReactor().controller.steamTank.getFluid(), fluid));
     }
 
     @Override

@@ -26,6 +26,7 @@ import mekanism.common.inventory.container.robit.ContainerRobitInventory;
 import mekanism.common.item.ItemBlockEnergyCube;
 import mekanism.common.item.ItemBlockGasTank;
 import mekanism.common.recipe.RecipeHandler.Recipe;
+import mekanism.generators.common.MekanismGenerators;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
@@ -40,6 +41,7 @@ import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.Loader;
 
 @JEIPlugin
 public class MekanismJEI implements IModPlugin {
@@ -165,6 +167,8 @@ public class MekanismJEI implements IModPlugin {
         //There is no config option to disable the thermal evaporation plant
         registry.addRecipeCategories(new ThermalEvaporationRecipeCategory(guiHelper));
 
+        //Check if Mekanism Generators is installed
+        registry.addRecipeCategories(new FusionCoolingRecipeCategory(guiHelper));
 
     }
 
@@ -218,6 +222,10 @@ public class MekanismJEI implements IModPlugin {
 
         RecipeRegistryHelper.registerCellExtractor(registry);
         RecipeRegistryHelper.registerCellSeparator(registry);
+
+        if (Loader.isModLoaded(MekanismGenerators.MODID)){
+            RecipeRegistryHelper.registerFusionCooling(registry);
+        }
 
         registry.getRecipeTransferRegistry().addRecipeTransferHandler(ContainerRobitInventory.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
     }

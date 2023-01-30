@@ -1083,7 +1083,7 @@ reactor.capacity=Heat Capacity Met
 reactor.capacity.desc=The reactor's core heat capacity has been met
 reactor.depleted=Insufficient Fuel
 reactor.depleted.desc=The reactor has insufficient fuel to sustain a reaction
-
+gui.FusionCooling=Fusion reactor cooling formula (1:1)
 # Creative tab
 itemGroup.tabMekanism=Mekanism
 itemGroup.tabMekanismTools=Mekanism Tools

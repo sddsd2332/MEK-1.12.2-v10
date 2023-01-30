@@ -24,7 +24,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
     public MekRecipesCommand() {
         super("mekrecipes");
         subCommands = Stream.of("crystallizer", "dissolution", "chemicalInfuser", "injection", "oxidizer", "washer", "combiner", "crusher", "separator", "smelter",
-              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator").collect(Collectors.toList());
+              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator","fusioncooling").collect(Collectors.toList());
     }
 
     @Override
@@ -318,6 +318,15 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                 type = Recipe.THERMAL_EVAPORATION_PLANT;
                 for (ThermalEvaporationRecipe recipe : Recipe.THERMAL_EVAPORATION_PLANT.get().values()) {
                     CraftTweakerAPI.logCommand(String.format("mods.mekanism.thermalevaporation.addRecipe(%s, %s)",
+                          RecipeInfoHelper.getFluidName(recipe.getInput().ingredient),
+                          RecipeInfoHelper.getFluidName(recipe.getOutput().output)
+                    ));
+                }
+                break;
+            case "fusioncooling":
+                type = Recipe.FUSION_COOLING;
+                for (FusionCoolingRecipe recipe : Recipe.FUSION_COOLING.get().values()){
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.fusioncooling.addRecipe(%s, %s)",
                           RecipeInfoHelper.getFluidName(recipe.getInput().ingredient),
                           RecipeInfoHelper.getFluidName(recipe.getOutput().output)
                     ));

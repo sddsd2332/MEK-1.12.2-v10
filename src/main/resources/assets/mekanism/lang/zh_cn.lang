@@ -1081,6 +1081,7 @@ reactor.capacity=热满足
 reactor.capacity.desc=反应堆温度已经趋于稳定
 reactor.depleted=燃料不足
 reactor.depleted.desc=反应没有足够的燃料维持
+gui.FusionCooling=聚变反应堆冷却配方(1:1)
 
 # Creative tab
 itemGroup.tabMekanism=通用机械

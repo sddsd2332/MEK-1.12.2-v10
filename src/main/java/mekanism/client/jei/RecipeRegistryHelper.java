@@ -37,10 +37,14 @@ import mekanism.common.recipe.machines.SmeltingRecipe;
 import mekanism.common.recipe.outputs.MachineOutput;
 import mekanism.common.tier.FactoryTier;
 import mekanism.common.util.MekanismUtils;
+import mekanism.generators.client.gui.GuiReactorHeat;
+import mekanism.generators.common.MekanismGenerators;
+import mekanism.generators.common.block.states.BlockStateReactor.ReactorBlockType;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.fml.common.Loader;
 
 public class RecipeRegistryHelper {
 
@@ -295,6 +299,15 @@ public class RecipeRegistryHelper {
         addRecipes(registry, Recipe.THERMAL_EVAPORATION_PLANT, ThermalEvaporationRecipeWrapper::new);
         registry.addRecipeClickArea(GuiThermalEvaporationController.class, 49, 20, 78, 38, Recipe.THERMAL_EVAPORATION_PLANT.getJEICategory());
         registry.addRecipeCatalyst(BasicBlockType.THERMAL_EVAPORATION_CONTROLLER.getStack(1), Recipe.THERMAL_EVAPORATION_PLANT.getJEICategory());
+    }
+
+    public static void registerFusionCooling(IModRegistry registry) {
+        if (Loader.isModLoaded(MekanismGenerators.MODID)){
+            addRecipes(registry, Recipe.FUSION_COOLING, FusionCoolingRecipeWrapper::new);
+            registry.addRecipeClickArea(GuiReactorHeat.class, 133, 84, 18, 30, Recipe.FUSION_COOLING.getJEICategory());
+            registry.addRecipeCatalyst(ReactorBlockType.REACTOR_CONTROLLER.getStack(1), Recipe.FUSION_COOLING.getJEICategory());
+            registry.addRecipeCatalyst(ReactorBlockType.REACTOR_PORT.getStack(1), Recipe.FUSION_COOLING.getJEICategory());
+        }
     }
 
     public static void registerReactionChamber(IModRegistry registry) {
