@@ -152,9 +152,11 @@ public class Mekanism {
      */
     public static MekanismHooks hooks = new MekanismHooks();
     /**
-     * Mekanism configuration instance
+     * Mekanism configuration instances
      */
     public static Configuration configuration;
+    public static Configuration configurationgenerators;
+    public static Configuration configurationtools;
     /**
      * Mekanism version number
      */
@@ -906,10 +908,12 @@ public class Mekanism {
         }
 
 
-        File config = event.getSuggestedConfigurationFile();
+
 
         //Set the mod's configuration
-        configuration = new Configuration(config);
+        configuration = new Configuration(new File("config/mekanism/Mekanism.cfg"));
+        configurationgenerators = new Configuration(new File("config/mekanism/MekanismGenerators.cfg"));
+        configurationtools = new Configuration(new File("config/mekanism/MekanismTools.cfg"));
 
         //Load configuration
         proxy.loadConfiguration();

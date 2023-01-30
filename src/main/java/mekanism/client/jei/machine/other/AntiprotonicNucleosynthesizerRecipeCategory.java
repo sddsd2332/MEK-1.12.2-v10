@@ -24,7 +24,7 @@ public class AntiprotonicNucleosynthesizerRecipeCategory<WRAPPER extends Antipro
 
     public AntiprotonicNucleosynthesizerRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/nei/GuiPRC.png", Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER.getJEICategory(),
-              "tile.MachineBlock3.antiprotonicnucleosynthesizer.name",  GuiProgress.ProgressBar.MEDIUM, 3, 11, 170, 68);
+              "tile.MachineBlock3.antiprotonicnucleosynthesizer.name",  GuiProgress.ProgressBar.MEDIUM, 20, 10, 150, 60);
     }
 
     @Override

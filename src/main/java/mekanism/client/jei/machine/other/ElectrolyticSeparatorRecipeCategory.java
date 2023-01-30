@@ -32,19 +32,19 @@ public class ElectrolyticSeparatorRecipeCategory<WRAPPER extends ElectrolyticSep
 
     @Override
     protected void addGuiElements() {
-        guiElements.add(GuiFluidGauge.getDummy(GuiGauge.Type.STANDARD, this, guiLocation, 5, 10));
-        guiElements.add(GuiGasGauge.getDummy(GuiGauge.Type.SMALL, this, guiLocation, 58, 18));
-        guiElements.add(GuiGasGauge.getDummy(GuiGauge.Type.SMALL, this, guiLocation, 100, 18));
+        guiElements.add(GuiFluidGauge.getDummy(GuiGauge.Type.STANDARD_RED, this, guiLocation, 5, 10));
+        guiElements.add(GuiGasGauge.getDummy(GuiGauge.Type.SMALL_BLUE, this, guiLocation, 58, 18));
+        guiElements.add(GuiGasGauge.getDummy(GuiGauge.Type.SMALL_ORANGE, this, guiLocation, 100, 18));
         guiElements.add(new GuiPowerBar(this, new IPowerInfoHandler() {
             @Override
             public double getLevel() {
                 return 1F;
             }
         }, guiLocation, 164, 15));
-        guiElements.add(new GuiSlot(SlotType.NORMAL, this, guiLocation, 25, 34));
-        guiElements.add(new GuiSlot(SlotType.NORMAL, this, guiLocation, 58, 51));
-        guiElements.add(new GuiSlot(SlotType.NORMAL, this, guiLocation, 100, 51));
-        guiElements.add(new GuiSlot(SlotType.NORMAL, this, guiLocation, 142, 34).with(SlotOverlay.POWER));
+        guiElements.add(new GuiSlot(SlotType.INPUT, this, guiLocation, 25, 34));
+        guiElements.add(new GuiSlot(SlotType.OUTPUT, this, guiLocation, 58, 51));
+        guiElements.add(new GuiSlot(SlotType.EXTRA, this, guiLocation, 100, 51));
+        guiElements.add(new GuiSlot(SlotType.POWER, this, guiLocation, 142, 34).with(SlotOverlay.POWER));
         guiElements.add(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {

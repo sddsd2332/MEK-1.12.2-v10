@@ -160,7 +160,9 @@ public class ItemBlockBasic extends ItemBlock implements IEnergizedItem, ITierIt
                     int cap = BinTier.values()[getBaseTier(itemstack).ordinal()].getStorage();
                     list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY +
                              (cap == Integer.MAX_VALUE ? LangUtils.localize("gui.infinite") : cap) + " " + LangUtils.localize("transmission.Items"));
-                } else if (type == BasicBlockType.INDUCTION_CELL) {
+                }
+
+                else if (type == BasicBlockType.INDUCTION_CELL) {
                     InductionCellTier tier = InductionCellTier.values()[getBaseTier(itemstack).ordinal()];
                     list.add(tier.getBaseTier().getColor() + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY + MekanismUtils.getEnergyDisplay(tier.getMaxEnergy()));
                 } else if (type == BasicBlockType.INDUCTION_PROVIDER) {

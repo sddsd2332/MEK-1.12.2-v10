@@ -15,7 +15,7 @@ public class SolarNeutronRecipeCategory<WRAPPER extends SolarNeutronRecipeWrappe
 
     public SolarNeutronRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/nei/GuiSolarNeutronActivator.png", Recipe.SOLAR_NEUTRON_ACTIVATOR.getJEICategory(),
-              "tile.MachineBlock3.SolarNeutronActivator.name", null, 3, 12, 170, 70);
+              "tile.MachineBlock3.SolarNeutronActivator.name", null, 3, 12, 170, 63);
     }
 
     @Override

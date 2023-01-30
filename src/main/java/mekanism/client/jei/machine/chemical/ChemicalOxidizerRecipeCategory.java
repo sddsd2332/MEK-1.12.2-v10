@@ -27,8 +27,8 @@ public class ChemicalOxidizerRecipeCategory<WRAPPER extends ChemicalOxidizerReci
 
     @Override
     protected void addGuiElements() {
-        guiElements.add(GuiGasGauge.getDummy(GuiGauge.Type.STANDARD, this, guiLocation, 133, 13));
-        guiElements.add(new GuiSlot(SlotType.NORMAL, this, guiLocation, 25, 35));
+        guiElements.add(GuiGasGauge.getDummy(GuiGauge.Type.STANDARD_BLUE, this, guiLocation, 133, 13));
+        guiElements.add(new GuiSlot(SlotType.INPUT, this, guiLocation, 25, 35));
         guiElements.add(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {
