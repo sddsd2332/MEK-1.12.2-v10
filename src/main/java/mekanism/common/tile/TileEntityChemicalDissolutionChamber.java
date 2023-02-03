@@ -2,6 +2,8 @@ package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
 import javax.annotation.Nonnull;
+
+import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
@@ -9,9 +11,12 @@ import mekanism.api.gas.GasTank;
 import mekanism.api.gas.GasTankInfo;
 import mekanism.api.gas.IGasHandler;
 import mekanism.api.gas.IGasItem;
+import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.MekanismFluids;
+import mekanism.common.SideData;
 import mekanism.common.Upgrade;
 import mekanism.common.base.IComparatorSupport;
+import mekanism.common.base.ISideConfiguration;
 import mekanism.common.base.ISustainedData;
 import mekanism.common.base.ITankManager;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
@@ -19,6 +24,8 @@ import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.ItemStackInput;
 import mekanism.common.recipe.machines.DissolutionRecipe;
+import mekanism.common.tile.component.TileComponentConfig;
+import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.component.TileComponentUpgrade;
 import mekanism.common.tile.prefab.TileEntityMachine;
 import mekanism.common.util.ChargeUtils;
@@ -37,7 +44,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileEntityChemicalDissolutionChamber extends TileEntityMachine implements IGasHandler, ISustainedData, ITankManager, IComparatorSupport {
+public class TileEntityChemicalDissolutionChamber extends TileEntityMachine implements IGasHandler, ISideConfiguration, ISustainedData, ITankManager, IComparatorSupport {
 
     public static final int MAX_GAS = 10000;
     public static final int BASE_INJECT_USAGE = 1;
@@ -52,9 +59,30 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
     public int ticksRequired = BASE_TICKS_REQUIRED;
     public DissolutionRecipe cachedRecipe;
 
+    public TileComponentEjector ejectorComponent;
+    public TileComponentConfig configComponent;
+
     public TileEntityChemicalDissolutionChamber() {
         super("machine.dissolution", MachineType.CHEMICAL_DISSOLUTION_CHAMBER, 4);
         inventory = NonNullList.withSize(5, ItemStack.EMPTY);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM,TransmissionType.ENERGY, TransmissionType.GAS);
+
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Gas", EnumColor.YELLOW, new int[]{0}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[]{1}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{3}));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[]{0, 3, 0, 0, 2, 1});
+
+
+        configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.YELLOW, new int[]{1}));
+        configComponent.setConfig(TransmissionType.GAS, new byte[]{0, 0, 0, 0, 1, 1});
+
+        configComponent.setInputConfig(TransmissionType.ENERGY);
+
+        ejectorComponent = new TileComponentEjector(this);
+        ejectorComponent.setOutputData(TransmissionType.GAS, configComponent.getOutputs(TransmissionType.GAS).get(1));
+
         upgradeComponent.setSupported(Upgrade.GAS);
     }
 
@@ -97,7 +125,7 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
                 operatingTicks = 0;
             }
             prevEnergy = getEnergy();
-            TileUtils.emitGas(this, outputTank, gasOutput, MekanismUtils.getRight(facing));
+           // TileUtils.emitGas(this, outputTank, gasOutput, MekanismUtils.getRight(facing));
         }
     }
 
@@ -122,6 +150,7 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
     @Nonnull
     @Override
     public int[] getSlotsForFace(@Nonnull EnumFacing side) {
+       /*
         if (side == MekanismUtils.getLeft(facing) || side == EnumFacing.UP) {
             return new int[]{1};
         } else if (side == EnumFacing.DOWN) {
@@ -130,6 +159,8 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
             return new int[]{2};
         }
         return InventoryUtils.EMPTY;
+        */
+        return configComponent.getOutput(TransmissionType.ITEM, side, facing).availableSlots;
     }
 
     public double getScaledProgress() {
@@ -214,12 +245,16 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
 
     @Override
     public GasStack drawGas(EnumFacing side, int amount, boolean doTransfer) {
+        if (canDrawGas(side, null)) {
+            return outputTank.draw(amount, doTransfer);
+        }
         return null;
     }
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return side == MekanismUtils.getLeft(facing) && injectTank.canReceive(type) && isValidGas(type);
+        //return side == MekanismUtils.getLeft(facing) && injectTank.canReceive(type) && isValidGas(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1) && injectTank.canReceive(type);
     }
 
     private boolean isValidGas(Gas gas) {
@@ -229,7 +264,8 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-        return false;
+       // return false;
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(2) && outputTank.canDraw(type);
     }
 
     @Override
@@ -258,12 +294,15 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
+       /*
         if (capability == Capabilities.GAS_HANDLER_CAPABILITY) {
             return side != null && side != MekanismUtils.getLeft(facing) && side != MekanismUtils.getRight(facing);
         } else if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return side == facing || side == facing.getOpposite();
         }
         return super.isCapabilityDisabled(capability, side);
+        */
+        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
@@ -315,5 +354,20 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
     @Override
     public int getRedstoneLevel() {
         return Container.calcRedstoneFromInventory(this);
+    }
+
+    @Override
+    public TileComponentConfig getConfig() {
+        return configComponent;
+    }
+
+    @Override
+    public EnumFacing getOrientation() {
+        return facing;
+    }
+
+    @Override
+    public TileComponentEjector getEjector() {
+        return ejectorComponent;
     }
 }

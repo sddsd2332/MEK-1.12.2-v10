@@ -4,8 +4,11 @@ import io.netty.buffer.ByteBuf;
 import java.util.List;
 import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
+import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.*;
+import mekanism.api.transmitters.TransmissionType;
+import mekanism.common.SideData;
 import mekanism.common.Upgrade;
 import mekanism.common.Upgrade.IUpgradeInfoHandler;
 import mekanism.common.base.*;
@@ -14,6 +17,8 @@ import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.GasInput;
 import mekanism.common.recipe.machines.IsotopicRecipe;
+import mekanism.common.tile.component.TileComponentConfig;
+import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityMachine;
 import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
@@ -23,7 +28,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements ISustainedData,IBoundingBlock,IGasHandler,IUpgradeInfoHandler,ITankManager,IComparatorSupport{
+public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements ISustainedData,IBoundingBlock,IGasHandler,IUpgradeInfoHandler,ITankManager,IComparatorSupport,ISideConfiguration{
     public static final int MAX_GAS = 10000;
     public GasTank inputTank = new GasTank(MAX_GAS);
     public GasTank outputTank = new GasTank(MAX_GAS);
@@ -34,8 +39,31 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
     private int currentRedstoneLevel;
     public double clientEnergyUsed;
 
+    public TileComponentEjector ejectorComponent;
+    public TileComponentConfig configComponent;
+
     public TileEntityIsotopicCentrifuge() {
         super("machine.washer", BlockStateMachine.MachineType.ISOTOPIC_CENTRIFUGE, 4);
+        configComponent = new TileComponentConfig(this,TransmissionType.ITEM,TransmissionType.ENERGY,TransmissionType.GAS);
+        
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.BRIGHT_GREEN, new int[]{0}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{1}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{2}));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[]{1, 3, 2, 0, 0, 0});
+        configComponent.setCanEject(TransmissionType.ITEM, false);
+
+        
+        configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.YELLOW, new int[]{0}));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Output", EnumColor.INDIGO, new int[]{1}));
+        configComponent.setConfig(TransmissionType.GAS, new byte[]{1, 0, 2, 0, 0, 0});
+        
+        configComponent.setInputConfig(TransmissionType.ENERGY);
+        
+        ejectorComponent = new TileComponentEjector(this);
+        ejectorComponent.setOutputData(TransmissionType.GAS, configComponent.getOutputs(TransmissionType.GAS).get(2));
+
         inventory = NonNullList.withSize(5, ItemStack.EMPTY);
     }
     @Override
@@ -55,7 +83,7 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
             } else if (prevEnergy >= getEnergy()) {
                 setActive(false);
             }
-            TileUtils.emitGas(this, outputTank, gasOutput, facing);
+         //   TileUtils.emitGas(this, outputTank, gasOutput, facing);
             prevEnergy = getEnergy();
             int newRedstoneLevel = getRedstoneLevel();
             if (newRedstoneLevel != currentRedstoneLevel) {
@@ -127,26 +155,17 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
     }
 
     public boolean canSetFacing(@Nonnull EnumFacing facing) {
-        return facing != EnumFacing.DOWN;
-    }
-
-    public GasTank getTank(EnumFacing side) {
-        if (side == MekanismUtils.getLeft(facing)) {
-            return inputTank;
-        } else if (side == MekanismUtils.getRight(facing)) {
-            return outputTank;
-        }
-        return null;
+        return facing != EnumFacing.DOWN && facing != EnumFacing.UP;
     }
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return side == EnumFacing.DOWN && inputTank.canReceive(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && inputTank.canReceive(type);
     }
 
     @Override
     public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
-        if (canReceiveGas(side, stack != null ? stack.getGas() : null)) {
+        if (canReceiveGas(side, stack.getGas())) {
             return inputTank.receive(stack, doTransfer);
         }
         return 0;
@@ -162,7 +181,7 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-        return side == facing && outputTank.canDraw(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1) && outputTank.canDraw(type);
     }
 
     @Nonnull
@@ -189,7 +208,7 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
     @Nonnull
     @Override
     public int[] getSlotsForFace(@Nonnull EnumFacing side) {
-        return side == facing ? OUTPUT_SLOT : INPUT_SLOT;
+        return configComponent.getOutput(TransmissionType.ITEM, side, facing).availableSlots;
     }
 
     @Override
@@ -212,10 +231,7 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
-        if (capability == Capabilities.GAS_HANDLER_CAPABILITY) {
-            return side != null && side != facing && side != EnumFacing.DOWN;
-        }
-        return super.isCapabilityDisabled(capability, side);
+        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
@@ -256,6 +272,21 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
     public void onBreak() {
         world.setBlockToAir(getPos().up());
         world.setBlockToAir(getPos());
+    }
+
+    @Override
+    public TileComponentConfig getConfig() {
+        return configComponent;
+    }
+
+    @Override
+    public EnumFacing getOrientation() {
+        return facing;
+    }
+
+    @Override
+    public TileComponentEjector getEjector() {
+        return ejectorComponent;
     }
 }
 

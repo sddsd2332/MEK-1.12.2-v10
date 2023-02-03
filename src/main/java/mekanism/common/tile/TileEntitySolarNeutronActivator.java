@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.List;
 import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
+import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
@@ -11,24 +12,23 @@ import mekanism.api.gas.GasTank;
 import mekanism.api.gas.GasTankInfo;
 import mekanism.api.gas.IGasHandler;
 import mekanism.api.gas.IGasItem;
+import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.Mekanism;
+import mekanism.common.SideData;
 import mekanism.common.Upgrade;
 import mekanism.common.Upgrade.IUpgradeInfoHandler;
-import mekanism.common.base.IActiveState;
-import mekanism.common.base.IBoundingBlock;
-import mekanism.common.base.IComparatorSupport;
-import mekanism.common.base.IRedstoneControl;
-import mekanism.common.base.ISustainedData;
-import mekanism.common.base.ITankManager;
-import mekanism.common.base.IUpgradeTile;
+import mekanism.common.base.*;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.GasInput;
 import mekanism.common.recipe.machines.SolarNeutronRecipe;
 import mekanism.common.security.ISecurityTile;
+import mekanism.common.tile.component.TileComponentConfig;
+import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.component.TileComponentSecurity;
 import mekanism.common.tile.component.TileComponentUpgrade;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
+import mekanism.common.util.InventoryUtils;
 import mekanism.common.util.ItemDataUtils;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.TileUtils;
@@ -43,7 +43,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock implements IRedstoneControl, IBoundingBlock, IGasHandler, IActiveState, ISustainedData,
-      ITankManager, ISecurityTile, IUpgradeTile, IUpgradeInfoHandler, IComparatorSupport {
+      ITankManager, ISecurityTile, IUpgradeTile, IUpgradeInfoHandler, IComparatorSupport , ISideConfiguration {
 
     public static final int MAX_GAS = 10000;
     private static final int[] INPUT_SLOT = {0};
@@ -65,9 +65,29 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
     public TileComponentUpgrade upgradeComponent = new TileComponentUpgrade(this, 3);
     public TileComponentSecurity securityComponent = new TileComponentSecurity(this);
 
+    public TileComponentEjector ejectorComponent;
+    public TileComponentConfig configComponent;
+
     public TileEntitySolarNeutronActivator() {
         super("SolarNeutronActivator");
         upgradeComponent.setSupported(Upgrade.ENERGY, false);
+
+        configComponent = new TileComponentConfig(this,TransmissionType.ITEM,TransmissionType.GAS);
+
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.BRIGHT_GREEN, new int[]{0}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{1}));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[]{1, 0, 2, 0, 0, 0});
+        configComponent.setCanEject(TransmissionType.ITEM, false);
+
+        configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.YELLOW, new int[]{0}));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Output", EnumColor.INDIGO, new int[]{1}));
+        configComponent.setConfig(TransmissionType.GAS, new byte[]{1, 0, 2, 0, 0, 0});
+
+        ejectorComponent = new TileComponentEjector(this);
+        ejectorComponent.setOutputData(TransmissionType.GAS, configComponent.getOutputs(TransmissionType.GAS).get(2));
+
         inventory = NonNullList.withSize(4, ItemStack.EMPTY);
     }
 
@@ -101,7 +121,7 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
                 setActive(false);
             }
 
-            TileUtils.emitGas(this, outputTank, gasOutput, facing);
+           // TileUtils.emitGas(this, outputTank, gasOutput, facing);
             // Every 20 ticks (once a second), send update to client. Note that this is a 50% reduction in network
             // traffic from previous implementation that send the update every 10 ticks.
             if (world.getTotalWorldTime() % 20 == 0) {
@@ -201,7 +221,13 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
 
     @Override
     public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
+        /*
         if (canReceiveGas(side, stack != null ? stack.getGas() : null)) {
+            return inputTank.receive(stack, doTransfer);
+        }
+        return 0;
+        */
+        if (canReceiveGas(side, stack.getGas())) {
             return inputTank.receive(stack, doTransfer);
         }
         return 0;
@@ -217,12 +243,14 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return side == EnumFacing.DOWN && inputTank.canReceive(type);
+      //  return side == EnumFacing.DOWN && inputTank.canReceive(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && inputTank.canReceive(type);
     }
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-        return side == facing && outputTank.canDraw(type);
+      //  return side == facing && outputTank.canDraw(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1) && outputTank.canDraw(type);
     }
 
     @Nonnull
@@ -251,10 +279,13 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
+       /*
         if (capability == Capabilities.GAS_HANDLER_CAPABILITY) {
             return side != null && side != facing && side != EnumFacing.DOWN;
         }
         return super.isCapabilityDisabled(capability, side);
+        */
+        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
@@ -350,7 +381,10 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
     @Nonnull
     @Override
     public int[] getSlotsForFace(@Nonnull EnumFacing side) {
+        /*
         return side == facing ? OUTPUT_SLOT : INPUT_SLOT;
+        */
+        return configComponent.getOutput(TransmissionType.ITEM, side, facing).availableSlots;
     }
 
     @Override
@@ -362,4 +396,20 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
     public int getRedstoneLevel() {
         return MekanismUtils.redstoneLevelFromContents(inputTank.getStored(), inputTank.getMaxGas());
     }
+
+    @Override
+    public TileComponentConfig getConfig() {
+        return configComponent;
+    }
+
+    @Override
+    public EnumFacing getOrientation() {
+        return facing;
+    }
+
+    @Override
+    public TileComponentEjector getEjector() {
+        return ejectorComponent;
+    }
+
 }

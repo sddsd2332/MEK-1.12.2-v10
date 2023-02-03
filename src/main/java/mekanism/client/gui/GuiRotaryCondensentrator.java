@@ -51,8 +51,13 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
             return Arrays.asList(LangUtils.localize("gui.using") + ": " + usage + "/t",
                   LangUtils.localize("gui.needed") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxEnergy() - tileEntity.getEnergy()));
         }, this, resource));
-        addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD, this, resource, 133, 13));
-        addGuiElement(new GuiGasGauge(() -> tileEntity.gasTank, GuiGauge.Type.STANDARD, this, resource, 25, 13));
+        if (tileEntity.mode == 1){
+            addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD_RED, this, resource, 133, 13));
+            addGuiElement(new GuiGasGauge(() -> tileEntity.gasTank, GuiGauge.Type.STANDARD_BLUE, this, resource, 25, 13));
+        }else if (tileEntity.mode == 0){
+            addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD_BLUE, this, resource, 133, 13));
+            addGuiElement(new GuiGasGauge(() -> tileEntity.gasTank, GuiGauge.Type.STANDARD_RED, this, resource, 25, 13));
+        }
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {
@@ -81,11 +86,8 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
     public void initGui() {
         super.initGui();
         buttonList.clear();
-        if (tileEntity.mode == 0){
-            buttonList.add(toggleButton = new GuiButtonDisableableImage(0, guiLeft + 4, guiTop + 4, 18, 18, 176, 18, -18, getGuiLocation()));
-        }else if (tileEntity.mode == 1) {
-            buttonList.add(toggleButton = new GuiButtonDisableableImage(1, guiLeft + 4, guiTop + 4, 18, 18, 194, 18, -18, getGuiLocation()));
-        }
+        int outputOrdinal = tileEntity.mode;
+        buttonList.add(toggleButton = new GuiButtonDisableableImage(0, guiLeft + 4, guiTop + 4, 18, 18, 176 + outputOrdinal * 18, 18, -18, getGuiLocation()));
     }
 
     @Override

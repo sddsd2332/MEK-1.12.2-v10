@@ -2,6 +2,8 @@ package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
 import javax.annotation.Nonnull;
+
+import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
@@ -9,6 +11,9 @@ import mekanism.api.gas.GasTank;
 import mekanism.api.gas.GasTankInfo;
 import mekanism.api.gas.IGasHandler;
 import mekanism.api.gas.IGasItem;
+import mekanism.api.transmitters.TransmissionType;
+import mekanism.common.SideData;
+import mekanism.common.base.ISideConfiguration;
 import mekanism.common.base.ISustainedData;
 import mekanism.common.base.ITankManager;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
@@ -16,6 +21,8 @@ import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.ItemStackInput;
 import mekanism.common.recipe.machines.OxidationRecipe;
+import mekanism.common.tile.component.TileComponentConfig;
+import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityOperationalMachine;
 import mekanism.common.util.ChargeUtils;
 import mekanism.common.util.InventoryUtils;
@@ -31,7 +38,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine implements ISustainedData, ITankManager, IGasHandler {
+public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine implements ISustainedData, ISideConfiguration,ITankManager, IGasHandler {
 
     public static final int MAX_GAS = 10000;
     public GasTank gasTank = new GasTank(MAX_GAS);
@@ -39,8 +46,29 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
 
     public OxidationRecipe cachedRecipe;
 
+    public TileComponentEjector ejectorComponent;
+    public TileComponentConfig configComponent;
+
+
     public TileEntityChemicalOxidizer() {
         super("machine.oxidizer", MachineType.CHEMICAL_OXIDIZER, 3, 100);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM,TransmissionType.ENERGY, TransmissionType.GAS);
+
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[]{0}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{1}));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[]{0, 2, 0, 0, 1, 0});
+        configComponent.setCanEject(TransmissionType.ITEM, false);
+
+        configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Output", EnumColor.AQUA, new int[]{0}));
+        configComponent.setConfig(TransmissionType.GAS, new byte[]{0, 0, 0, 0, 0, 1});
+
+        configComponent.setInputConfig(TransmissionType.ENERGY);
+
+        ejectorComponent = new TileComponentEjector(this);
+        ejectorComponent.setOutputData(TransmissionType.GAS, configComponent.getOutputs(TransmissionType.GAS).get(1));
+
         inventory = NonNullList.withSize(4, ItemStack.EMPTY);
     }
 
@@ -65,7 +93,7 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
                 setActive(false);
             }
             prevEnergy = getEnergy();
-            TileUtils.emitGas(this, gasTank, gasOutput, MekanismUtils.getRight(facing));
+          //  TileUtils.emitGas(this, gasTank, gasOutput, MekanismUtils.getRight(facing));
         }
     }
 
@@ -90,6 +118,7 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
     @Nonnull
     @Override
     public int[] getSlotsForFace(@Nonnull EnumFacing side) {
+        /*
         if (side == MekanismUtils.getLeft(facing)) {
             return new int[]{0};
         } else if (side.getAxis() == Axis.Y) {
@@ -98,6 +127,8 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
             return new int[]{2};
         }
         return InventoryUtils.EMPTY;
+         */
+        return configComponent.getOutput(TransmissionType.ITEM, side, facing).availableSlots;
     }
 
     public OxidationRecipe getRecipe() {
@@ -175,12 +206,15 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
+        /*
         if (capability == Capabilities.GAS_HANDLER_CAPABILITY) {
             return side != null && side != MekanismUtils.getRight(facing);
         } else if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return side == facing || side == facing.getOpposite();
         }
         return super.isCapabilityDisabled(capability, side);
+         */
+        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
@@ -221,12 +255,28 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-        return side == MekanismUtils.getRight(facing) && gasTank.canDraw(type);
+       // return side == MekanismUtils.getRight(facing) && gasTank.canDraw(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(2) && gasTank.canDraw(type);
     }
 
     @Nonnull
     @Override
     public GasTankInfo[] getTankInfo() {
         return new GasTankInfo[]{gasTank};
+    }
+
+    @Override
+    public TileComponentConfig getConfig() {
+        return configComponent;
+    }
+
+    @Override
+    public EnumFacing getOrientation() {
+        return facing;
+    }
+
+    @Override
+    public TileComponentEjector getEjector() {
+        return ejectorComponent;
     }
 }

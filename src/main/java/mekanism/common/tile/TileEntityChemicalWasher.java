@@ -3,6 +3,8 @@ package mekanism.common.tile;
 import io.netty.buffer.ByteBuf;
 import java.util.List;
 import javax.annotation.Nonnull;
+
+import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
@@ -10,19 +12,19 @@ import mekanism.api.gas.GasTank;
 import mekanism.api.gas.GasTankInfo;
 import mekanism.api.gas.IGasHandler;
 import mekanism.api.gas.IGasItem;
+import mekanism.api.transmitters.TransmissionType;
+import mekanism.common.SideData;
 import mekanism.common.Upgrade;
 import mekanism.common.Upgrade.IUpgradeInfoHandler;
-import mekanism.common.base.FluidHandlerWrapper;
-import mekanism.common.base.IComparatorSupport;
-import mekanism.common.base.IFluidHandlerWrapper;
-import mekanism.common.base.ISustainedData;
-import mekanism.common.base.ITankManager;
+import mekanism.common.base.*;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.inputs.GasInput;
 import mekanism.common.recipe.machines.WasherRecipe;
+import mekanism.common.tile.component.TileComponentConfig;
+import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityMachine;
 import mekanism.common.util.ChargeUtils;
 import mekanism.common.util.FluidContainerUtils;
@@ -47,7 +49,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileEntityChemicalWasher extends TileEntityMachine implements IGasHandler, IFluidHandlerWrapper, ISustainedData, IUpgradeInfoHandler, ITankManager,
+public class TileEntityChemicalWasher extends TileEntityMachine implements IGasHandler, ISideConfiguration, IFluidHandlerWrapper, ISustainedData, IUpgradeInfoHandler, ITankManager,
       IComparatorSupport {
 
     public static final int MAX_GAS = 10000;
@@ -63,9 +65,35 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
     private int currentRedstoneLevel;
     public double clientEnergyUsed;
 
+    public TileComponentEjector ejectorComponent;
+    public TileComponentConfig configComponent;
+
     public TileEntityChemicalWasher() {
         super("machine.washer", MachineType.CHEMICAL_WASHER, 4);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM,TransmissionType.ENERGY, TransmissionType.GAS,TransmissionType.FLUID);
+
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{3}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{2}));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[]{0, 1, 0, 0, 0, 2});
+        configComponent.setCanEject(TransmissionType.ITEM, false);
+
+        configComponent.addOutput(TransmissionType.FLUID, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.FLUID, new SideData("Fluid", EnumColor.RED, new int[]{0}));
+        configComponent.setConfig(TransmissionType.FLUID, new byte[]{0, 1, 0, 0, 0, 0});
+        configComponent.setCanEject(TransmissionType.FLUID, false);
+
+        configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.YELLOW, new int[]{1}));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Output", EnumColor.INDIGO, new int[]{2}));
+        configComponent.setConfig(TransmissionType.GAS, new byte[]{0, 0, 0, 0, 1, 2});
+
+        configComponent.setInputConfig(TransmissionType.ENERGY);
+        ejectorComponent = new TileComponentEjector(this);
+        ejectorComponent.setOutputData(TransmissionType.GAS, configComponent.getOutputs(TransmissionType.GAS).get(2));
+
         inventory = NonNullList.withSize(5, ItemStack.EMPTY);
+
     }
 
     @Override
@@ -85,7 +113,7 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
             } else if (prevEnergy >= getEnergy()) {
                 setActive(false);
             }
-            TileUtils.emitGas(this, outputTank, gasOutput, MekanismUtils.getRight(facing));
+          //  TileUtils.emitGas(this, outputTank, gasOutput, MekanismUtils.getRight(facing));
             prevEnergy = getEnergy();
             int newRedstoneLevel = getRedstoneLevel();
             if (newRedstoneLevel != currentRedstoneLevel) {
@@ -185,17 +213,25 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
+        /*
         if (getTank(side) == inputTank) {
             return getTank(side).canReceive(type) && Recipe.CHEMICAL_WASHER.containsRecipe(type);
         }
         return false;
+         */
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1) && inputTank.canReceive(type);
     }
 
 
     @Override
     public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
+        /*
         if (canReceiveGas(side, stack != null ? stack.getGas() : null)) {
             return getTank(side).receive(stack, doTransfer);
+        }
+         */
+        if (canReceiveGas(side, stack.getGas())) {
+            return inputTank.receive(stack, doTransfer);
         }
         return 0;
     }
@@ -203,14 +239,15 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
     @Override
     public GasStack drawGas(EnumFacing side, int amount, boolean doTransfer) {
         if (canDrawGas(side, null)) {
-            return getTank(side).draw(amount, doTransfer);
+            return outputTank.draw(amount, doTransfer);
         }
         return null;
     }
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-        return getTank(side) == outputTank && getTank(side).canDraw(type);
+      //  return getTank(side) == outputTank && getTank(side).canDraw(type);
+        return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(2) && outputTank.canDraw(type);
     }
 
     @Nonnull
@@ -242,6 +279,7 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
     @Nonnull
     @Override
     public int[] getSlotsForFace(@Nonnull EnumFacing side) {
+        /*
         if (side == MekanismUtils.getLeft(facing)) {
             return new int[]{0};
         } else if (side == MekanismUtils.getRight(facing)) {
@@ -250,6 +288,8 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
             return new int[2];
         }
         return InventoryUtils.EMPTY;
+         */
+        return configComponent.getOutput(TransmissionType.ITEM, side, facing).availableSlots;
     }
 
     @Override
@@ -274,12 +314,15 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
+        /*
         if (capability == Capabilities.GAS_HANDLER_CAPABILITY) {
             return side != null && getTank(side) == null;
         } else if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return side == facing || side == facing.getOpposite();
         }
         return super.isCapabilityDisabled(capability, side);
+         */
+        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
@@ -289,15 +332,24 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
 
     @Override
     public boolean canFill(EnumFacing from, @Nonnull FluidStack fluid) {
-        return from == EnumFacing.UP && fluid.getFluid().equals(FluidRegistry.WATER);
+        //return from == EnumFacing.UP && fluid.getFluid().equals(FluidRegistry.WATER);
+        SideData data = configComponent.getOutput(TransmissionType.FLUID, from, facing);
+        if (data.hasSlot(0)) {
+            return FluidContainerUtils.canFill(fluidTank.getFluid(), fluid);
+        }
+        return false;
     }
 
     @Override
     public FluidTankInfo[] getTankInfo(EnumFacing from) {
+        /*
         if (from == EnumFacing.UP) {
             return new FluidTankInfo[]{fluidTank.getInfo()};
         }
         return PipeUtils.EMPTY;
+         */
+        SideData data = configComponent.getOutput(TransmissionType.FLUID, from, facing);
+        return data.getFluidTankInfo(this);
     }
 
     @Override
@@ -339,4 +391,20 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
     public int getRedstoneLevel() {
         return MekanismUtils.redstoneLevelFromContents(inputTank.getStored(), inputTank.getMaxGas());
     }
+
+    @Override
+    public TileComponentConfig getConfig() {
+        return configComponent;
+    }
+
+    @Override
+    public EnumFacing getOrientation() {
+        return facing;
+    }
+
+    @Override
+    public TileComponentEjector getEjector() {
+        return ejectorComponent;
+    }
+
 }

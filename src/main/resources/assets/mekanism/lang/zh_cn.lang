@@ -506,6 +506,7 @@ gui.output=输出
 gui.delete=删除
 gui.status=状态
 gui.autoEject=自动弹射
+gui.clear=清除侧面配置
 gui.itemstack=物品栈
 gui.oredict=矿物辞典
 gui.material=材料

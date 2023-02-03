@@ -43,6 +43,7 @@ public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlo
     private List<GuiSideDataButton> sideDataButtons = new ArrayList<>();
     private GuiButton backButton;
     private GuiButton autoEjectButton;
+    private GuiButton clearButton;
     private int buttonID = 0;
 
     public GuiSideConfiguration(EntityPlayer player, ISideConfiguration tile) {
@@ -79,6 +80,7 @@ public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlo
             buttonList.add(button);
             sideDataButtons.add(button);
         }
+        buttonList.add(clearButton = new GuiButtonDisableableImage(buttonID++,guiLeft + 156,guiTop + 75,14,14,218,14,-14, getGuiLocation()));
     }
 
     @Override
@@ -90,11 +92,14 @@ public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlo
             Mekanism.packetHandler.sendToServer(new SimpleGuiMessage(Coord4D.get(tile), 0, guiId));
         } else if (guibutton.id == autoEjectButton.id) {
             Mekanism.packetHandler.sendToServer(new ConfigurationUpdateMessage(ConfigurationPacket.EJECT, Coord4D.get(tile), 0, 0, currentType));
+        } else if(guibutton.id == clearButton.id){
+            for (int i = 0; i < slotPosMap.size(); i++){
+                Mekanism.packetHandler.sendToServer(new ConfigurationUpdateMessage(ConfigurationPacket.SIDE_DATA,Coord4D.get(tile),2, i,currentType));
+            }
         } else {
             for (GuiSideDataButton button : sideDataButtons) {
                 if (guibutton.id == button.id) {
-                    Mekanism.packetHandler.sendToServer(new ConfigurationUpdateMessage(ConfigurationPacket.SIDE_DATA, Coord4D.get(tile),
-                          Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? 2 : 0, button.getSlotPosMapIndex(), currentType));
+                    Mekanism.packetHandler.sendToServer(new ConfigurationUpdateMessage(ConfigurationPacket.SIDE_DATA, Coord4D.get(tile), Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? 2 : 0, button.getSlotPosMapIndex(), currentType));
                     break;
                 }
             }
@@ -144,6 +149,9 @@ public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlo
         }
         if (autoEjectButton.isMouseOver()) {
             displayTooltip(LangUtils.localize("gui.autoEject"), xAxis, yAxis);
+        }
+        if (clearButton.isMouseOver()){
+            displayTooltip(LangUtils.localize("gui.clear"), xAxis, yAxis);
         }
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }

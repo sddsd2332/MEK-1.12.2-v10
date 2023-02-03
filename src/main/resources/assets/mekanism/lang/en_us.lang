@@ -506,6 +506,7 @@ gui.output=Output
 gui.delete=Delete
 gui.status=Status
 gui.autoEject=Auto-eject
+gui.clear=Clear side
 gui.itemstack=ItemStack
 gui.oredict=OreDict
 gui.material=Material
