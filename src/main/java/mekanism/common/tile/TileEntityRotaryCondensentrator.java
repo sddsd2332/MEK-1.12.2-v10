@@ -4,6 +4,8 @@ import io.netty.buffer.ByteBuf;
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
@@ -12,24 +14,19 @@ import mekanism.api.gas.GasTank;
 import mekanism.api.gas.GasTankInfo;
 import mekanism.api.gas.IGasHandler;
 import mekanism.api.gas.IGasItem;
+import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.Mekanism;
+import mekanism.common.SideData;
 import mekanism.common.Upgrade;
 import mekanism.common.Upgrade.IUpgradeInfoHandler;
-import mekanism.common.base.FluidHandlerWrapper;
-import mekanism.common.base.IComparatorSupport;
-import mekanism.common.base.IFluidHandlerWrapper;
-import mekanism.common.base.ISustainedData;
-import mekanism.common.base.ITankManager;
+import mekanism.common.base.*;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.network.PacketTileEntity.TileEntityMessage;
+import mekanism.common.tile.component.TileComponentConfig;
+import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityMachine;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.FluidContainerUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.PipeUtils;
-import mekanism.common.util.TileUtils;
+import mekanism.common.util.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -44,7 +41,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityRotaryCondensentrator extends TileEntityMachine implements ISustainedData, IFluidHandlerWrapper, IGasHandler, IUpgradeInfoHandler, ITankManager,
+public class TileEntityRotaryCondensentrator extends TileEntityMachine implements ISustainedData, ISideConfiguration, IFluidHandlerWrapper, IGasHandler, IUpgradeInfoHandler, ITankManager,
       IComparatorSupport {
 
     private static final int[] GAS_SLOTS = {0, 1};
@@ -64,8 +61,33 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
     public double clientEnergyUsed;
     private int currentRedstoneLevel;
 
+    public TileComponentEjector ejectorComponent;
+    public TileComponentConfig configComponent;
+
     public TileEntityRotaryCondensentrator() {
         super("machine.rotarycondensentrator", MachineType.ROTARY_CONDENSENTRATOR, 5);
+        configComponent = new TileComponentConfig(this,TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS,TransmissionType.FLUID);
+
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{4}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Fluid", EnumColor.DARK_AQUA, new int[]{2,3}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Gas", EnumColor.YELLOW, new int[]{0,1}));
+        configComponent.setConfig(TransmissionType.ITEM, new byte[]{0, 1, 0, 0, 3, 2});
+
+        configComponent.addOutput(TransmissionType.FLUID, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.FLUID, new SideData("Fluid", EnumColor.RED, new int[]{1}));
+        configComponent.setConfig(TransmissionType.FLUID, new byte[]{0, 0, 0, 0, 0, 1});
+
+        configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
+        configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.YELLOW, new int[]{0}));
+        configComponent.setConfig(TransmissionType.GAS, new byte[]{0, 0, 0, 0, 1, 0});
+        configComponent.setInputConfig(TransmissionType.ENERGY);
+        ejectorComponent = new TileComponentEjector(this);
+        ejectorComponent.setOutputData(TransmissionType.GAS, configComponent.getOutputs(TransmissionType.GAS).get(1));
+        ejectorComponent.setOutputData(TransmissionType.FLUID, configComponent.getOutputs(TransmissionType.FLUID).get(1));
+
+
+
         inventory = NonNullList.withSize(6, ItemStack.EMPTY);
     }
 
@@ -97,7 +119,8 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
                 }
             } else if (mode == 1) {
                 TileUtils.drawGas(inventory.get(0), gasTank);
-                TileUtils.emitGas(this, gasTank, gasOutput, MekanismUtils.getLeft(facing));
+                //TODO:如果可以 则删除下面这行
+              //  TileUtils.emitGas(this, gasTank, gasOutput, MekanismUtils.getLeft(facing));
 
                 if (FluidContainerUtils.isFluidContainer(inventory.get(2))) {
                     FluidContainerUtils.handleContainerItemEmpty(this, fluidTank, 2, 3);
@@ -212,22 +235,30 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
 
     @Override
     public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
-        return gasTank.receive(stack, doTransfer);
+        if (canReceiveGas(side, stack.getGas())) {
+            return gasTank.receive(stack, doTransfer);
+        }
+        return 0;
     }
 
     @Override
     public GasStack drawGas(EnumFacing side, int amount, boolean doTransfer) {
-        return gasTank.draw(amount, doTransfer);
+        if (canDrawGas(side, null)) {
+            return gasTank.draw(amount, doTransfer);
+        }
+        return null;
     }
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-        return mode == 1 && side == MekanismUtils.getLeft(facing) && gasTank.canDraw(type);
+       // return mode == 1 && side == MekanismUtils.getLeft(facing) && gasTank.canDraw(type);
+        return mode == 1 && configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1) && gasTank.canDraw(type);
     }
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-        return mode == 0 && side == MekanismUtils.getLeft(facing) && gasTank.canReceive(type);
+        // return mode == 0 && side == MekanismUtils.getLeft(facing) && gasTank.canReceive(type);
+        return mode == 0 && configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && gasTank.canReceive(type);
     }
 
     @Nonnull
@@ -258,10 +289,13 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
 
     @Override
     public boolean isCapabilityDisabled(@Nonnull Capability<?> capability, EnumFacing side) {
+       /*
         if (capability == Capabilities.GAS_HANDLER_CAPABILITY) {
             return side != null && side != MekanismUtils.getLeft(facing);
         }
         return super.isCapabilityDisabled(capability, side);
+        */
+        return configComponent.isCapabilityDisabled(capability, side, facing) || super.isCapabilityDisabled(capability, side);
     }
 
     @Override
@@ -293,20 +327,26 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
 
     @Override
     public boolean canFill(EnumFacing from, @Nonnull FluidStack fluid) {
-        return mode == 1 && from == MekanismUtils.getRight(facing) && (fluidTank.getFluid() == null ? isValidFluid(fluid) : fluidTank.getFluid().isFluidEqual(fluid));
+       // return mode == 1 && from == MekanismUtils.getRight(facing) && (fluidTank.getFluid() == null ? isValidFluid(fluid) : fluidTank.getFluid().isFluidEqual(fluid));
+        return mode == 1 /*&& configComponent.getOutput(TransmissionType.FLUID, from, facing).hasSlot(3)  */&& FluidContainerUtils.canFill(fluidTank.getFluid(), fluid);
     }
 
     @Override
     public boolean canDrain(EnumFacing from, @Nullable FluidStack fluid) {
-        return mode == 0 && from == MekanismUtils.getRight(facing) && FluidContainerUtils.canDrain(fluidTank.getFluid(), fluid);
+       // return mode == 0 && from == MekanismUtils.getRight(facing) && FluidContainerUtils.canDrain(fluidTank.getFluid(), fluid);
+        return mode == 0 && configComponent.getOutput(TransmissionType.FLUID, from, facing).hasSlot(3)  && FluidContainerUtils.canDrain(fluidTank.getFluid(), fluid);
     }
 
     @Override
     public FluidTankInfo[] getTankInfo(EnumFacing from) {
+        /*
         if (from == MekanismUtils.getRight(facing)) {
             return new FluidTankInfo[]{fluidTank.getInfo()};
         }
         return PipeUtils.EMPTY;
+         */
+        SideData data = configComponent.getOutput(TransmissionType.FLUID, from, facing);
+        return data.getFluidTankInfo(this);
     }
 
     @Override
@@ -327,6 +367,7 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
     @Nonnull
     @Override
     public int[] getSlotsForFace(@Nonnull EnumFacing side) {
+       /*
         if (side == MekanismUtils.getLeft(facing)) {
             //Gas
             return GAS_SLOTS;
@@ -335,6 +376,8 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
             return LIQUID_SLOTS;
         }
         return ENERGY_SLOT;
+        */
+        return configComponent.getOutput(TransmissionType.ITEM, side, facing).availableSlots;
     }
 
     @Override
@@ -357,5 +400,20 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
             return MekanismUtils.redstoneLevelFromContents(gasTank.getStored(), gasTank.getMaxGas());
         }
         return MekanismUtils.redstoneLevelFromContents(fluidTank.getFluidAmount(), fluidTank.getCapacity());
+    }
+
+    @Override
+    public TileComponentConfig getConfig() {
+        return configComponent;
+    }
+
+    @Override
+    public EnumFacing getOrientation() {
+        return facing;
+    }
+
+    @Override
+    public TileComponentEjector getEjector() {
+        return ejectorComponent;
     }
 }

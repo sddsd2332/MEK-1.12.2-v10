@@ -16,6 +16,8 @@ import mekanism.client.gui.element.gauge.GuiFluidGauge;
 import mekanism.client.gui.element.gauge.GuiGasGauge;
 import mekanism.client.gui.element.gauge.GuiGauge;
 import mekanism.client.gui.element.tab.GuiSecurityTab;
+import mekanism.client.gui.element.tab.GuiSideConfigurationTab;
+import mekanism.client.gui.element.tab.GuiTransporterConfigTab;
 import mekanism.client.gui.element.tab.GuiUpgradeTab;
 import mekanism.common.Mekanism;
 import mekanism.common.inventory.container.ContainerRotaryCondensentrator;
@@ -41,6 +43,8 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
         addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
         addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
         addGuiElement(new GuiUpgradeTab(this, tileEntity, resource));
+        addGuiElement(new GuiSideConfigurationTab(this, tileEntity, resource));
+        addGuiElement(new GuiTransporterConfigTab(this, 34, tileEntity, resource));
         addGuiElement(new GuiSlot(SlotType.OUTPUT, this, resource, 4, 24).with(SlotOverlay.PLUS));
         addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 4, 55).with(SlotOverlay.MINUS));
         addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 154, 24));
@@ -51,6 +55,7 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
             return Arrays.asList(LangUtils.localize("gui.using") + ": " + usage + "/t",
                   LangUtils.localize("gui.needed") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxEnergy() - tileEntity.getEnergy()));
         }, this, resource));
+
         if (tileEntity.mode == 1){
             addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD_RED, this, resource, 133, 13));
             addGuiElement(new GuiGasGauge(() -> tileEntity.gasTank, GuiGauge.Type.STANDARD_BLUE, this, resource, 25, 13));
@@ -58,6 +63,9 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
             addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD_BLUE, this, resource, 133, 13));
             addGuiElement(new GuiGasGauge(() -> tileEntity.gasTank, GuiGauge.Type.STANDARD_RED, this, resource, 25, 13));
         }
+
+
+
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override
             public double getProgress() {
@@ -69,7 +77,10 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
                 return tileEntity.mode == 0;
             }
         }, ProgressBar.LARGE_RIGHT, this, resource, 62, 38));
+
+
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
+
             @Override
             public double getProgress() {
                 return tileEntity.getActive() ? 1 : 0;
@@ -88,7 +99,10 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
         buttonList.clear();
         int outputOrdinal = tileEntity.mode;
         buttonList.add(toggleButton = new GuiButtonDisableableImage(0, guiLeft + 4, guiTop + 4, 18, 18, 176 + outputOrdinal * 18, 18, -18, getGuiLocation()));
+
     }
+
+
 
     @Override
     protected void actionPerformed(GuiButton guibutton) throws IOException {
