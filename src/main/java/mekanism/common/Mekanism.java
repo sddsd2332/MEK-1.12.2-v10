@@ -475,7 +475,7 @@ public class Mekanism {
 
         //AMBIENT_ACCUMULATOR
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.AMBIENT_ACCUMULATOR)) {
-            RecipeHandler.addAmbientGas(0, "oxygen");
+            RecipeHandler.addAmbientGas(0, new GasStack(MekanismFluids.UnstableDimensional,1));
         }
 
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.METALLURGIC_INFUSER)) {

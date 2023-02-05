@@ -180,7 +180,7 @@ public interface MekanismRecipeHelper {
 
     void addOrganicFarmRecipe(ItemStack input,Gas gas, ItemStack primaryOutput);
 
-    void addAmbientGas(int dimensionID, String ambientGasName);
+    void addAmbientGas(int dimensionID, GasStack outputGas);
 
     void addStampingRecipe(ItemStack input, ItemStack output);
 

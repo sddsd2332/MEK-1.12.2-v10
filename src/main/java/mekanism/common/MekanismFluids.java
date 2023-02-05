@@ -52,6 +52,7 @@ public class MekanismFluids {
     //sddsd2332 add new gas
     public static final Gas NutrientSolution = new Gas("nutrientsolution", 0x1B9E7B);
     public static final Gas OxygenEnrichedWater = new Gas("oxygenenrichedwater", 0x6CE2FF);
+    public static final Gas UnstableDimensional = new Gas("unstabledimensional",0xFF9C1A);
 
     public static void register() {
         GasRegistry.register(Hydrogen).registerFluid("liquidhydrogen");
@@ -85,6 +86,7 @@ public class MekanismFluids {
         //Register sddsd2332 add new gas
         GasRegistry.register(NutrientSolution);
         GasRegistry.register(OxygenEnrichedWater);
+        GasRegistry.register(UnstableDimensional);
         //Register a new gas add fluid
         GasRegistry.register(HydrofluoricAcid).registerFluid("liquidhydrofluoricacid");
 

@@ -1,7 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Random;
 import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.Gas;
@@ -25,16 +24,16 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class TileEntityAmbientAccumulator extends TileEntityContainerBlock implements IGasHandler {
 
-    public static Random gasRand = new Random();
     public GasTank collectedGas ;
-    public int cachedDimensionId = 0;
+    public int cachedDimensionId;
     public int gasOutput = 10;
     public AmbientGasRecipe cachedRecipe;
+    public int chance = 100;
 
     public TileEntityAmbientAccumulator() {
         super("AmbientAccumulator");
         inventory = NonNullList.withSize(0, ItemStack.EMPTY);
-        collectedGas = new GasTank(1000);
+        collectedGas = new GasTank(10000);
     }
 
     @Override
@@ -44,7 +43,9 @@ public class TileEntityAmbientAccumulator extends TileEntityContainerBlock imple
                 cachedDimensionId = world.provider.getDimension();
                 cachedRecipe = RecipeHandler.getDimensionGas(new IntegerInput(cachedDimensionId));
             }
-            if (cachedRecipe != null && gasRand.nextDouble() < 0.05 && cachedRecipe.getOutput().applyOutputs(collectedGas, false, 1)) {
+
+            final int randomchance = this.world.rand.nextInt(chance);
+            if (cachedRecipe != null && randomchance == 1 && cachedRecipe.getOutput().applyOutputs(collectedGas, false, 1)) {
                 cachedRecipe.getOutput().applyOutputs(collectedGas, true, 1);
             }
             TileUtils.emitGas(this, collectedGas, gasOutput, facing);

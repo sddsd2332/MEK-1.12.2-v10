@@ -371,7 +371,7 @@ gas.uraniumoxide=Uranium Oxide
 
 gas.nutrientsolution=Nutrient solution
 gas.oxygenenrichedwater=Oxygen-rich water								 
-
+gas.unstabledimensional=Unstable dimensional gases
 gas.iron=Iron Slurry
 gas.gold=Gold Slurry
 gas.osmium=Osmium Slurry
@@ -665,7 +665,9 @@ gui.upgrades.effect=Effect
 gui.chemicalInfuser.short=C. Infuser
 gui.chemicalDissolutionChamber.short=C. Dissolution Chamber
 gui.thermalEvaporationController.short=Thermal E. Controller
-
+gui.dimension=The current dimension
+gui.dimensionGas=The gas currently produced
+gui.probability=Probability
 gui.dictionary.noKey=No key.
 
 gui.configuration=Configuration

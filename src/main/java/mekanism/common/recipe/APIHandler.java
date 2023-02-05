@@ -156,9 +156,9 @@ public class APIHandler implements MekanismRecipeHelper {
     }
 
     @Override
-    public void addAmbientGas(int dimensionID, String ambientGasName) {
+    public void addAmbientGas(int dimensionID, GasStack outputGas) {
         checkPhase();
-        RecipeHandler.addAmbientGas(dimensionID,ambientGasName);
+        RecipeHandler.addAmbientGas(dimensionID,outputGas);
     }
 
 

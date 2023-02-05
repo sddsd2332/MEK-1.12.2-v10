@@ -370,7 +370,7 @@ gas.uraniumoxide=氧化铀
 
 gas.nutrientsolution=营养液
 gas.oxygenenrichedwater=富氧水
-
+gas.unstabledimensional=不稳定维度气体
 gas.iron=铁浆液
 gas.gold=金浆液
 gas.osmium=锇浆液
@@ -665,7 +665,9 @@ gui.upgrades.effect=效果
 gui.chemicalInfuser.short=化学灌注器
 gui.chemicalDissolutionChamber.short=化学溶解室
 gui.thermalEvaporationController.short=热力蒸馏塔
-
+gui.dimension=当前维度
+gui.dimensionGas=当前产出气体
+gui.probability=当前概率
 gui.dictionary.noKey=无关键字.
 
 gui.configuration=配置

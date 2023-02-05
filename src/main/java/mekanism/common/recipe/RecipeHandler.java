@@ -268,8 +268,8 @@ public final class RecipeHandler {
         addRecipe(Recipe.ISOTOPIC_CENTRIFUGE, new IsotopicRecipe(inputGas, outputGas));
     }
 
-    public static void addAmbientGas(int dimensionID, String ambientGasName) {
-        addRecipe(Recipe.AMBIENT_ACCUMULATOR, new AmbientGasRecipe(dimensionID, ambientGasName));
+    public static void addAmbientGas(int dimensionID, GasStack outputGas) {
+        addRecipe(Recipe.AMBIENT_ACCUMULATOR, new AmbientGasRecipe(dimensionID, outputGas));
     }
 
 

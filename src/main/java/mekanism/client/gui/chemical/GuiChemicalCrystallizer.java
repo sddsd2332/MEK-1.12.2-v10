@@ -72,7 +72,7 @@ public class GuiChemicalCrystallizer extends GuiMekanismTile<TileEntityChemicalC
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRenderer.drawString(tileEntity.getName(), 37, 4, 0x404040);
+        fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 4, 0x404040);
         if (tileEntity.inputTank.getGas() != null) {
             fontRenderer.drawString(tileEntity.inputTank.getGas().getGas().getLocalizedName(), 29, 15, 0x33ff99);
             if (tileEntity.inputTank.getGas().getGas() instanceof OreGas) {

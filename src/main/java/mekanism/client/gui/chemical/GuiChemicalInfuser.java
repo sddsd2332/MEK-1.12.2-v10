@@ -12,6 +12,8 @@ import mekanism.client.gui.element.GuiSlot.SlotType;
 import mekanism.client.gui.element.gauge.GuiGasGauge;
 import mekanism.client.gui.element.gauge.GuiGauge;
 import mekanism.client.gui.element.tab.GuiSecurityTab;
+import mekanism.client.gui.element.tab.GuiSideConfigurationTab;
+import mekanism.client.gui.element.tab.GuiTransporterConfigTab;
 import mekanism.client.gui.element.tab.GuiUpgradeTab;
 import mekanism.common.inventory.container.ContainerChemicalInfuser;
 import mekanism.common.tile.TileEntityChemicalInfuser;
@@ -31,6 +33,8 @@ public class GuiChemicalInfuser extends GuiChemical<TileEntityChemicalInfuser> {
         ResourceLocation resource = getGuiLocation();
         addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
         addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
+        addGuiElement(new GuiSideConfigurationTab(this, tileEntity, resource));
+        addGuiElement(new GuiTransporterConfigTab(this, 34, tileEntity, resource));
         addGuiElement(new GuiUpgradeTab(this, tileEntity, resource));
         addGuiElement(new GuiEnergyInfo(() -> {
             String usage = MekanismUtils.getEnergyDisplay(tileEntity.clientEnergyUsed);
@@ -65,7 +69,7 @@ public class GuiChemicalInfuser extends GuiChemical<TileEntityChemicalInfuser> {
 
     @Override
     protected void drawForegroundText() {
-        fontRenderer.drawString(LangUtils.localize("gui.chemicalInfuser.short"), 5, 5, 0x404040);
+        fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 5, 0x404040);
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 96) + 4, 0x404040);
     }
 }

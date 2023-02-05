@@ -62,6 +62,6 @@ public class GuiChemicalDissolutionChamber extends GuiChemical<TileEntityChemica
 
     @Override
     protected void drawForegroundText() {
-        fontRenderer.drawString(LangUtils.localize("gui.chemicalDissolutionChamber.short"), 35, 4, 0x404040);
+        fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 4, 0x404040);
     }
 }
