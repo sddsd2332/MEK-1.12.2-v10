@@ -1013,7 +1013,7 @@ public class Mekanism {
         // Add all furnace recipes to the energized smelter
         // Must happen after CraftTweaker for vanilla stuff has run.
         for (Entry<ItemStack, ItemStack> entry : FurnaceRecipes.instance().getSmeltingList().entrySet()) {
-            if (entry.getKey().getItemDamage() == OreDictionary.WILDCARD_VALUE){
+            if (entry.getKey().getItemDamage() == OreDictionary.WILDCARD_VALUE) {
                 for (ItemStack logEntry : OreDictionary.getOres("logWood", false)) {
                     logEntry = StackUtils.size(logEntry, 1);
                     if (!Recipe.ENERGIZED_SMELTER.containsRecipe(logEntry)) {
@@ -1024,7 +1024,7 @@ public class Mekanism {
                         RecipeHandler.addSmeltingRecipe(logEntry,new ItemStack(Items.COAL,1,1));
                     }
                 }
-                SmeltingRecipe recipe = new SmeltingRecipe(new ItemStack(entry.getKey().getItem()), new ItemStack(entry.getValue().getItem()));
+                SmeltingRecipe recipe = new SmeltingRecipe(new ItemStack(entry.getKey().getItem()), new ItemStack(entry.getValue().getItem(), entry.getValue().getCount(), entry.getValue().getItemDamage()));
                 Recipe.ENERGIZED_SMELTER.put(recipe);
             } else {
                 SmeltingRecipe recipe = new SmeltingRecipe(new ItemStackInput(entry.getKey()), new ItemStackOutput(entry.getValue()));
