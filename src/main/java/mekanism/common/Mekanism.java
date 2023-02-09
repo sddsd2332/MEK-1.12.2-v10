@@ -1024,6 +1024,16 @@ public class Mekanism {
                         RecipeHandler.addSmeltingRecipe(logEntry,new ItemStack(Items.COAL,1,1));
                     }
                 }
+                for (ItemStack sand : OreDictionary.getOres("sand", false)) {
+                    sand = StackUtils.size(sand, 1);
+                    if (!Recipe.ENERGIZED_SMELTER.containsRecipe(sand)) {
+                        for (int i = 0; i < 16; i++) {
+                            RecipeHandler.addSmeltingRecipe(new ItemStack(sand.getItem(),1,i),new ItemStack(Blocks.GLASS,1));
+                        }
+                    }else {
+                        RecipeHandler.addSmeltingRecipe(sand,new ItemStack(Blocks.GLASS,1));
+                    }
+                }
                 SmeltingRecipe recipe = new SmeltingRecipe(new ItemStack(entry.getKey().getItem()), new ItemStack(entry.getValue().getItem(), entry.getValue().getCount(), entry.getValue().getItemDamage()));
                 Recipe.ENERGIZED_SMELTER.put(recipe);
             } else {
