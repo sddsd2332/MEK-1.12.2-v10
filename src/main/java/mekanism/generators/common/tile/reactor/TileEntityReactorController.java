@@ -36,9 +36,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 public class TileEntityReactorController extends TileEntityReactorBlock implements IActiveState {
 
-    public static final int MAX_WATER = 100 * Fluid.BUCKET_VOLUME;
+    public static final int MAX_WATER = Fluid.BUCKET_VOLUME * 100;
     public static final int MAX_STEAM = MAX_WATER * 100;
-    public static final int MAX_FUEL = Fluid.BUCKET_VOLUME;
+    public static final int MAX_FUEL = Fluid.BUCKET_VOLUME * 10;
 
     public FluidTank waterTank = new FluidTank(MAX_WATER);
     public FluidTank steamTank = new FluidTank(MAX_STEAM);

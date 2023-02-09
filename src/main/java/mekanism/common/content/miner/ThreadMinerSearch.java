@@ -13,6 +13,7 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.ChunkCache;
 import net.minecraftforge.fluids.IFluidBlock;
 
@@ -121,15 +122,24 @@ public class ThreadMinerSearch extends Thread {
     }
 
     public enum State {
-        IDLE("Not ready"),
-        SEARCHING("Searching"),
-        PAUSED("Paused"),
-        FINISHED("Ready");
+        IDLE("gui.teleporter.notReady"),
+        SEARCHING("gui.teleporter.Searching"),
+        PAUSED("gui.teleporter.Paused"),
+        FINISHED("gui.teleporter.ready");
 
         public String desc;
 
         State(String s) {
             desc = s;
         }
+
+        public String localize() {
+            return I18n.translateToLocal(getTranslationKey());
+        }
+
+        public String getTranslationKey() {
+            return desc;
+        }
     }
+
 }

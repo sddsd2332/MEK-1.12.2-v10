@@ -8,6 +8,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 public interface MekanismRecipeHelper {
 
+    void addSmeltingRecipe(ItemStack input, ItemStack output);
+
     /**
      * Add an Enrichment Chamber recipe.
      *

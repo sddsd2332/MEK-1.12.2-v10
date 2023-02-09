@@ -409,13 +409,13 @@ public class ModelDigitalMiner extends ModelBase {
         monitor1.setTextureSize(256, 128);
         monitor1.mirror = true;
         setRotation(monitor1, 0.0872665F, -0.2094395F, 0F);
-        monitor2 = new ModelRenderer(this, 88, 20);
+        monitor2 = new ModelRenderer(this, 152, 20);
         monitor2.addBox(0F, -5F, -2F, 14, 10, 2);
         monitor2.setRotationPoint(-7F, 3F, -3F);
         monitor2.setTextureSize(256, 128);
         monitor2.mirror = true;
         setRotation(monitor2, 0.0872665F, 0F, 0F);
-        monitor3 = new ModelRenderer(this, 88, 20);
+        monitor3 = new ModelRenderer(this, 152, 32);
         monitor3.addBox(0F, -5F, -2F, 14, 10, 2);
         monitor3.setRotationPoint(8F, 3F, -3F);
         monitor3.setTextureSize(256, 128);

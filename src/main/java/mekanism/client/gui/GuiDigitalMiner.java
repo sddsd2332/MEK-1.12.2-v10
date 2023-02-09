@@ -70,8 +70,8 @@ public class GuiDigitalMiner extends GuiMekanismTile<TileEntityDigitalMiner> {
             ret.add(LangUtils.localize("mekanism.gui.bufferfree") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxEnergy() - tileEntity.getEnergy()));
             return ret;
         }, this, resource));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 151, 5).with(SlotOverlay.POWER));
-        addGuiElement(new GuiSlot(SlotType.NORMAL, this, resource, 143, 26));
+        addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 151, 5).with(SlotOverlay.POWER));
+        addGuiElement(new GuiSlot(SlotType.EXTRA, this, resource, 143, 26));
         ySize += 64;
     }
 
@@ -142,7 +142,7 @@ public class GuiDigitalMiner extends GuiMekanismTile<TileEntityDigitalMiner> {
             runningType = LangUtils.localize("gui.idle");
         }
         fontRenderer.drawString(runningType, 9, 10, 0x33ff99);
-        fontRenderer.drawString(tileEntity.searcher.state.desc, 9, 19, 0x33ff99);
+        fontRenderer.drawString(tileEntity.searcher.state.localize(), 9, 19, 0x33ff99);
 
         fontRenderer.drawString(LangUtils.localize("gui.eject") + ": " + LangUtils.localize("gui." + (tileEntity.doEject ? "on" : "off")), 9, 30, 0x33ff99);
         fontRenderer.drawString(LangUtils.localize("gui.digitalMiner.pull") + ": " + LangUtils.localize("gui." + (tileEntity.doPull ? "on" : "off")), 9, 39, 0x33ff99);

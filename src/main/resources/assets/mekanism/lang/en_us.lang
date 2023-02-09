@@ -54,6 +54,14 @@ item.BioFuel.name=Bio Fuel
 item.CraftingFormula.name=Crafting Formula
 item.Canteen.name=Canteen
 item.MekTool.name=Meka-Tool
+
+item.EnergyTabletCraft.name=Energy Tablet - Crafting
+item.EnergyCubeBasicCraft.name=Basic Energy Cube - Crafting
+item.EnergyCubeAdvancedCraft.name=Advanced Energy Cube - Crafting
+item.EnergyCubeEliteCraft.name=Elite Energy Cube - Crafting
+item.EnergyCubeUltimateCraft.name=Ultimate Energy Cube - Crafting
+item.EnergyCubeCreativeCraft.name=Creative Energy Cube - Crafting
+
 # Control Circuits
 item.BasicControlCircuit.name=Basic Control Circuit
 item.AdvancedControlCircuit.name=Advanced Control Circuit
@@ -177,7 +185,7 @@ tile.MachineBlock3.SuperchargedCoil.name=Supercharged Coil(WIP)
 tile.MachineBlock3.AmbientAccumulator.name=Ambient gas collectors
 tile.MachineBlock3.IsotopicCentrifuge.name=Isotopic Centrifuge
 tile.MachineBlock3.OrganicFarm.name=Organic Farm
-tile.MachineBlock3.antiprotonicnucleosynthesizer.name=Antiprotonic Nucleosynthesizer£¨WIP£©
+tile.MachineBlock3.antiprotonicnucleosynthesizer.name=Antiprotonic Nucleosynthesizerï¼ˆWIPï¼‰
 tile.MachineBlock3.Factory.name=Factory
 
 tile.MachineBlock4.Stamping.name=CNC punching machine
@@ -757,6 +765,8 @@ mekanism.gui.logisticalSorter.singleItem=Single
 mekanism.gui.logisticalSorter.singleItem.tooltip=Sends a single item instead of a whole stack each time (overrides min and max set in ItemStack filters).
 
 gui.teleporter.notReady=Not ready
+gui.teleporter.Searching=Searching
+gui.teleporter.Paused=Paused
 gui.teleporter.ready=Ready
 gui.teleporter.noFrame=No frame
 gui.teleporter.noLink=No link
@@ -980,7 +990,7 @@ tooltip.AmbientAccumulator=One that can collect the gases contained in the curre
 tooltip.MekTool1=A very powerful excavating machine
 tooltip.MekTool2=When flushed above 25%, the damage is super doubled
 tooltip.MekTool3=When it is more than 90%, it may have a flash sale effect?
-tooltip.MekTool4=¡ì4???Dangerous tools, warning!???
+tooltip.MekTool4=â˜¢â˜£âœªDangerous tools, warningâœªâ˜£â˜¢
 
 tooltip.HeatGenerator=A generator that uses the heat of lava or other burnable resources to produce energy.
 tooltip.SolarGenerator=A generator that uses the power of the sun to produce energy.

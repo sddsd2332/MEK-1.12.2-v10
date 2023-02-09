@@ -59,6 +59,10 @@ public final class RecipeHandler {
         addRecipe(Recipe.ENRICHMENT_CHAMBER, new EnrichmentRecipe(input, output));
     }
 
+    public static void addSmeltingRecipe(ItemStack input, ItemStack output){
+        addRecipe(Recipe.ENERGIZED_SMELTER, new SmeltingRecipe(input, output));
+    }
+
     /**
      * Add an Osmium Compressor recipe.
      *

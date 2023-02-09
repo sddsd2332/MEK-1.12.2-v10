@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "mekanism:items/Ultimate_Energy_Cube"
+  }
+}

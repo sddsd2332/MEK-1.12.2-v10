@@ -470,6 +470,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
     }
 
     public ItemStack getRecipeOutput(MachineRecipe recipe) {
+
         if (recipe.recipeOutput instanceof ItemStackOutput) {
             return ((ItemStackOutput) recipe.recipeOutput).output;
         } else if (recipe.recipeOutput instanceof ChanceOutput) {
@@ -479,6 +480,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         } else {
             return ItemStack.EMPTY;
         }
+
     }
 
     public ItemStack getRecipeInput(MachineRecipe recipe) {
@@ -547,6 +549,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
      * @return True if the recipe produces the given output.
      */
     public boolean inputProducesOutput(int slotID, ItemStack fallbackInput, ItemStack output, boolean updateCache) {
+
         if (output.isEmpty()) {
             return true;
         }
@@ -736,67 +739,31 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             if (slotID >= 8 && slotID <= 10) {
                 return false;
             } else if (slotID >= 5 && slotID <= 7) {
-                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
-                        || recipeType.getFuelType() == MachineFuelType.FARM
-                        || recipeType == RecipeType.INFUSING
-                        || recipeType.getFuelType() == MachineFuelType.CHANCE
-                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
-                ) {
-                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
-
-                }else return recipeType.getRecipe(itemstack) !=null;
+                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
             }
         } else if (tier == FactoryTier.ADVANCED) {
             if (slotID >= 10 && slotID <= 14) {
                 return false;
             } else if (slotID >= 5 && slotID <= 9) {
-                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
-                        || recipeType.getFuelType() == MachineFuelType.FARM
-                        || recipeType == RecipeType.INFUSING
-                        || recipeType.getFuelType() == MachineFuelType.CHANCE
-                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
-                ) {
-                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
-                }else return recipeType.getRecipe(itemstack) !=null;
+                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
             }
         } else if (tier == FactoryTier.ELITE) {
             if (slotID >= 12 && slotID <= 18) {
                 return false;
             } else if (slotID >= 5 && slotID <= 11) {
-                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
-                        || recipeType.getFuelType() == MachineFuelType.FARM
-                        || recipeType == RecipeType.INFUSING
-                        || recipeType.getFuelType() == MachineFuelType.CHANCE
-                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
-                ) {
-                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
-                }else return recipeType.getRecipe(itemstack) !=null;
+                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
             }
         } else if (tier == FactoryTier.ULTIMATE) {
             if (slotID >= 14 && slotID <= 22) {
                 return false;
             } else if (slotID >= 5 && slotID <= 13) {
-                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
-                        || recipeType.getFuelType() == MachineFuelType.FARM
-                        || recipeType == RecipeType.INFUSING
-                        || recipeType.getFuelType() == MachineFuelType.CHANCE
-                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
-                ) {
-                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
-                }else return recipeType.getRecipe(itemstack) !=null;
+                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
             }
         }else if (tier == FactoryTier.CREATIVE) {
             if (slotID >= 16 && slotID <= 26) {
                 return false;
             } else if (slotID >= 5 && slotID <= 15) {
-                if(recipeType.getFuelType() == MachineFuelType.ADVANCED
-                        || recipeType.getFuelType() == MachineFuelType.FARM
-                        || recipeType == RecipeType.INFUSING
-                        || recipeType.getFuelType() == MachineFuelType.CHANCE
-                        || recipeType.getFuelType() == MachineFuelType.DOUBLE
-                ) {
-                    return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
-                }else return recipeType.getRecipe(itemstack) !=null;
+                return recipeType.getAnyRecipe(itemstack, inventory.get(4), gasTank.getGasType(), infuseStored) != null;
             }
         }
 

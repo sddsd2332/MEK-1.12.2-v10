@@ -282,7 +282,15 @@ public class ClientProxy extends CommonProxy {
         registerItemRender(MekanismItems.YellowCakeUranium);
         registerItemRender(MekanismItems.PoloniumPellet);
 
+        registerItemRender(MekanismItems.EnergyTabletCraft);
+        /*
+        registerItemRender(MekanismItems.EnergyCubeBasicCraft);
+        registerItemRender(MekanismItems.EnergyCubeAdvancedCraft);
+        registerItemRender(MekanismItems.EnergyCubeEliteCraft);
+        registerItemRender(MekanismItems.EnergyCubeUltimateCraft);
+        registerItemRender(MekanismItems.EnergyCubeCreativeCraft);
 
+         */
      //   registerItemRender(MekanismItems.MekaSuitHelmet);
     //    registerItemRender(MekanismItems.MekaSuitChest);
 

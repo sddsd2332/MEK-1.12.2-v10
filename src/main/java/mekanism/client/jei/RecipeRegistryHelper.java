@@ -349,9 +349,7 @@ public class RecipeRegistryHelper {
             Collection<SmeltingRecipe> recipeList = Recipe.ENERGIZED_SMELTER.get().values();
             registry.addRecipes(recipeList.stream().map(MachineRecipeWrapper::new).collect(Collectors.toList()),
                   Recipe.ENERGIZED_SMELTER.getJEICategory());
-
-            registry
-                  .addRecipeClickArea(GuiEnergizedSmelter.class, 79, 40, 24, 7,
+            registry.addRecipeClickArea(GuiEnergizedSmelter.class, 79, 40, 24, 7,
                         Recipe.ENERGIZED_SMELTER.getJEICategory());
         } else if (Mekanism.hooks.CraftTweakerLoaded && EnergizedSmelter.hasAddedRecipe()) {// Added but not removed
             // Only add added recipes

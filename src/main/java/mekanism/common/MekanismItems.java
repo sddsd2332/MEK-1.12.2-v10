@@ -62,8 +62,14 @@ public class MekanismItems {
   //  public static final ItemMekaSuitHelmet MekaSuitHelmet = new ItemMekaSuitHelmet();
  //   public static final ItemMekaSuitChest MekaSuitChest = new ItemMekaSuitChest();
 
-
-
+    public static final Item EnergyTabletCraft = new ItemMekanism();
+    /*
+    public static final Item EnergyCubeBasicCraft = new ItemMekanism();
+    public static final Item EnergyCubeAdvancedCraft = new ItemMekanism();
+    public static final Item EnergyCubeEliteCraft = new ItemMekanism();
+    public static final Item EnergyCubeUltimateCraft = new ItemMekanism();
+    public static final Item EnergyCubeCreativeCraft = new ItemMekanism();
+    */
 
     //Multi-ID Items
     public static final Item OtherDust = new ItemOtherDust();
@@ -140,9 +146,17 @@ public class MekanismItems {
         registry.register(init(TierInstaller, "TierInstaller"));
         registry.register(init(OtherDust, "OtherDust"));
 
-   //     registry.register(init(MekaSuitHelmet, "MekaSuitHelmet"));
-  //      registry.register(init(MekaSuitChest, "MekaSuitChest"));
+    //    registry.register(init(MekaSuitHelmet, "MekaSuitHelmet"));
+    //    registry.register(init(MekaSuitChest, "MekaSuitChest"));
 
+        registry.register(init(EnergyTabletCraft,"EnergyTabletCraft"));
+        /*
+        registry.register(init(EnergyCubeBasicCraft,"EnergyCubeBasicCraft"));
+        registry.register(init(EnergyCubeAdvancedCraft,"EnergyCubeAdvancedCraft"));
+        registry.register(init(EnergyCubeEliteCraft,"EnergyCubeEliteCraft"));
+        registry.register(init(EnergyCubeUltimateCraft,"EnergyCubeUltimateCraft"));
+        registry.register(init(EnergyCubeCreativeCraft,"EnergyCubeCreativeCraft"));
+        */
         registry.register(init(PlutoniumPellet,"PlutoniumPellet"));
         registry.register(init(AntimatterPellet,"AntimatterPellet"));
         registry.register(init(ReprocessedFissileFragment,"ReprocessedFissileFragment"));

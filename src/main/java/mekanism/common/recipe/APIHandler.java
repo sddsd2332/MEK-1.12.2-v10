@@ -31,6 +31,12 @@ public class APIHandler implements MekanismRecipeHelper {
     }
 
     @Override
+    public void addSmeltingRecipe(ItemStack input, ItemStack output){
+        checkPhase();
+        RecipeHandler.addSmeltingRecipe(input, output);
+    }
+
+    @Override
     @Deprecated
     public void addCombinerRecipe(ItemStack input, ItemStack output) {
         addCombinerRecipe(input, new ItemStack(Blocks.COBBLESTONE), output);

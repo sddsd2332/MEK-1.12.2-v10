@@ -71,6 +71,7 @@ import mekanism.common.transmitters.grid.EnergyNetwork.EnergyTransferEvent;
 import mekanism.common.transmitters.grid.FluidNetwork.FluidTransferEvent;
 import mekanism.common.transmitters.grid.GasNetwork.GasTransferEvent;
 import mekanism.common.util.MekanismUtils;
+import mekanism.common.util.StackUtils;
 import mekanism.common.voice.VoiceServerManager;
 import mekanism.common.world.GenHandler;
 import net.minecraft.block.Block;
@@ -438,14 +439,14 @@ public class Mekanism {
         }
 
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ORGANIC_FARM)) {
-            // 木头
+            //Farm log
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 0), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG, 6, 0), new ItemStack(Blocks.SAPLING, 1, 0), MekanismConfig.current().general.log.val());
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 1), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG, 6, 1), new ItemStack(Blocks.SAPLING, 1, 1), MekanismConfig.current().general.log.val());
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 2), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG, 6, 2), new ItemStack(Blocks.SAPLING, 1, 2), MekanismConfig.current().general.log.val());
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 3), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG, 6, 3), new ItemStack(Blocks.SAPLING, 1, 3), MekanismConfig.current().general.log.val());
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 4), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG2, 6, 0), new ItemStack(Blocks.SAPLING, 1, 4), MekanismConfig.current().general.log.val());
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Blocks.SAPLING, 1, 5), MekanismFluids.NutrientSolution, new ItemStack(Blocks.LOG2, 6, 1), new ItemStack(Blocks.SAPLING, 1, 5), MekanismConfig.current().general.log.val());
-            // 农作物
+            // Farm seed
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.NETHER_WART, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.NETHER_WART, 3));
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.REEDS, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.REEDS, 3));
             RecipeHandler.addOrganicFarmRecipe(new ItemStack(Items.CARROT, 1), MekanismFluids.NutrientSolution, new ItemStack(Items.CARROT, 3));
@@ -1012,9 +1013,25 @@ public class Mekanism {
         // Add all furnace recipes to the energized smelter
         // Must happen after CraftTweaker for vanilla stuff has run.
         for (Entry<ItemStack, ItemStack> entry : FurnaceRecipes.instance().getSmeltingList().entrySet()) {
-            SmeltingRecipe recipe = new SmeltingRecipe(new ItemStackInput(entry.getKey()), new ItemStackOutput(entry.getValue()));
-            Recipe.ENERGIZED_SMELTER.put(recipe);
+            if (entry.getKey().getItemDamage() == OreDictionary.WILDCARD_VALUE){
+                for (ItemStack logEntry : OreDictionary.getOres("logWood", false)) {
+                    logEntry = StackUtils.size(logEntry, 1);
+                    if (!Recipe.ENERGIZED_SMELTER.containsRecipe(logEntry)) {
+                        for (int i = 0; i < 16; i++) {
+                            RecipeHandler.addSmeltingRecipe(new ItemStack(logEntry.getItem(),1,i),new ItemStack(Items.COAL,1,1));
+                        }
+                    }else {
+                        RecipeHandler.addSmeltingRecipe(logEntry,new ItemStack(Items.COAL,1,1));
+                    }
+                }
+                SmeltingRecipe recipe = new SmeltingRecipe(new ItemStack(entry.getKey().getItem()), new ItemStack(entry.getValue().getItem()));
+                Recipe.ENERGIZED_SMELTER.put(recipe);
+            } else {
+                SmeltingRecipe recipe = new SmeltingRecipe(new ItemStackInput(entry.getKey()), new ItemStackOutput(entry.getValue()));
+                Recipe.ENERGIZED_SMELTER.put(recipe);
+            }
         }
+
 
         hooks.hookPostInit();
 
