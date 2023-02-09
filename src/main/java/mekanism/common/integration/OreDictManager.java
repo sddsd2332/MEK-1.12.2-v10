@@ -53,13 +53,8 @@ public final class OreDictManager {
         for (ItemStack plank : OreDictionary.getOres("plankWood", false)) {
             plank = StackUtils.size(plank, 1);
             if (!Recipe.PRECISION_SAWMILL.containsRecipe(plank)) {
-                if (plank.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
-                    for (int i = 0; i < 5; i++) {
-                        RecipeHandler.addPrecisionSawmillRecipe(new ItemStack(plank.getItem(),1,i), new ItemStack(Items.STICK, 6),new ItemStack(MekanismItems.Sawdust), MekanismConfig.current().general.sawdustChancePlank.val());
-                    }
-                } else {
-                RecipeHandler.addPrecisionSawmillRecipe(plank, new ItemStack(Items.STICK, 6), new ItemStack(MekanismItems.Sawdust), MekanismConfig.current().general.sawdustChancePlank.val());
-                }
+                RecipeHandler.addPrecisionSawmillRecipe(plank, new ItemStack(Items.STICK, 6),
+                      new ItemStack(MekanismItems.Sawdust), MekanismConfig.current().general.sawdustChancePlank.val());
             }
             RecipeHandler.addPRCRecipe(plank, new FluidStack(FluidRegistry.WATER, 20), new GasStack(MekanismFluids.Oxygen, 20), ItemStack.EMPTY,
                   new GasStack(MekanismFluids.Hydrogen, 20), 0, 30);
@@ -68,13 +63,8 @@ public final class OreDictManager {
         for (ItemStack slab : OreDictionary.getOres("slabWood", false)) {
             slab = StackUtils.size(slab, 1);
             if (!Recipe.PRECISION_SAWMILL.containsRecipe(slab)) {
-                if (slab.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
-                    for (int i = 0; i < 5; i++) {
-                        RecipeHandler.addPrecisionSawmillRecipe(new ItemStack(slab.getItem(),1,i), new ItemStack(Items.STICK, 3), new ItemStack(MekanismItems.Sawdust), MekanismConfig.current().general.sawdustChancePlank.val() / 2);
-                    }
-                }else {
-                    RecipeHandler.addPrecisionSawmillRecipe(slab, new ItemStack(Items.STICK, 3), new ItemStack(MekanismItems.Sawdust), MekanismConfig.current().general.sawdustChancePlank.val() / 2);
-                }
+                RecipeHandler.addPrecisionSawmillRecipe(slab, new ItemStack(Items.STICK, 3), new ItemStack(MekanismItems.Sawdust),
+                      MekanismConfig.current().general.sawdustChancePlank.val() / 2);
             }
             RecipeHandler.addPRCRecipe(slab, new FluidStack(FluidRegistry.WATER, 10), new GasStack(MekanismFluids.Oxygen, 10), ItemStack.EMPTY,
                   new GasStack(MekanismFluids.Hydrogen, 10), 0, 15);
