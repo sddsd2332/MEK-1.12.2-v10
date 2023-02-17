@@ -143,7 +143,7 @@ public class FusionReactor {
             injectionRate = MAX_INJECTION;
         }
         int amountToInject = Math.min(amountNeeded, Math.min(amountAvailable, injectionRate));
-        if (amountToInject >MAX_INJECTION){
+        if (amountToInject > MAX_INJECTION){
             amountToInject = MAX_INJECTION;
         }
         amountToInject -= amountToInject % 2;

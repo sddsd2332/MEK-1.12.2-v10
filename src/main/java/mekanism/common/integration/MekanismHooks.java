@@ -8,21 +8,19 @@ import dan200.computercraft.api.ComputerCraftAPI;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.MachineRecipe;
 import ic2.api.recipe.Recipes;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import li.cil.oc.api.Driver;
 import mekanism.api.transmitters.TransmissionType;
-import mekanism.common.Mekanism;
-import mekanism.common.MekanismBlocks;
-import mekanism.common.MekanismItems;
-import mekanism.common.OreDictCache;
-import mekanism.common.Resource;
+import mekanism.common.*;
 import mekanism.common.block.states.BlockStateTransmitter.TransmitterType;
 import mekanism.common.integration.computer.CCPeripheral;
 import mekanism.common.integration.computer.OCDriver;
 import mekanism.common.integration.crafttweaker.CrafttweakerIntegration;
 import mekanism.common.integration.groovyscript.mekgrs;
+import mekanism.common.integration.mysticalagriculture.MysticalAgricultureSeed;
 import mekanism.common.integration.wrenches.Wrenches;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
@@ -136,6 +134,7 @@ public final class MekanismHooks {
         }
         if (MALoaded) {
             registerMysticalAgricultureRecipes();
+            MysticalAgricultureSeed.seed();
             Mekanism.logger.info("Hooked into Mystical Agriculture successfully.");
         }
         if (CraftTweakerLoaded) {
