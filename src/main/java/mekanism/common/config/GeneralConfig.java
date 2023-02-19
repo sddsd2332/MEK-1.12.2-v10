@@ -341,6 +341,9 @@ public class GeneralConfig extends BaseConfig {
     public final DoubleOption log = new DoubleOption(this, "general", "log", 1D,
             "When turning seeds into crops, the opportunity to produce log in each operation in Organic Farm.").setRequiresGameRestart(true);
 
+    public final BooleanOption newfactoryautosorting = new BooleanOption(this, "general", "New Factory Auto Sorting(WIP)", false,
+            "Do you use New Factory Auto Sorting? This can cause problems.");
+
     public final TypeConfigManager<MachineType> machinesManager = new TypeConfigManager<>(this, "machines", MachineType.class, MachineType::getValidMachines, MachineType::getBlockName);
 
     public final EnumMap<BaseTier, TierConfig> tiers = TierConfig.create(this);
