@@ -377,23 +377,19 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                                 !InventoryUtils.areItemsStackable(stack, checkStack)) {
                             continue;
                         }
-
                         //Output/Input will not match
                         // Only check if the input spot is empty otherwise assume it works
                         if (stack.isEmpty() && !inputProducesOutput(checkSlotID, checkStack, output, true) ||
                                 checkStack.isEmpty() && !inputProducesOutput(slotID, stack, inventory.get(tier.processes + checkSlotID), true)) {
                             continue;
                         }
-
                         //Balance the two slots
                         int total = count + checkStack.getCount();
                         ItemStack newStack = stack.isEmpty() ? checkStack : stack;
                         inventory.set(slotID, StackUtils.size(newStack, (total + 1) / 2));
                         inventory.set(checkSlotID, StackUtils.size(newStack, total / 2));
-
                         markDirty();
                         return;
-
                     }
                 }
             } else {
@@ -415,7 +411,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                         if (!InventoryUtils.areItemsStackable(inStack, recipeIn)){
                             recipeIn.setItemDamage(inStack.getItemDamage());
                         }
-
 
                         if (!recipeSlots.containsKey(id)) {
                             recipeSlots.put(id, new ProcessDescription(recipeIn, recipeOut));

@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mekanism:elite_energy_cube_frame"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}
+

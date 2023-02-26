@@ -38,7 +38,7 @@ public class GuiReactorController extends GuiMekanismTile<TileEntityReactorContr
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRenderer.drawString(tileEntity.getName(), 46, 6, 0x404040);
+        fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
         if (tileEntity.getActive()) {
             fontRenderer.drawString(LangUtils.localize("gui.formed"), 8, 16, 0x404040);
         } else {

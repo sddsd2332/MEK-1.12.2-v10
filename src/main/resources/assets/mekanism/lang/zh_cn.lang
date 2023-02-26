@@ -55,11 +55,6 @@ item.CraftingFormula.name=合成配方
 item.Canteen.name=水壶
 item.MekTool.name=☢☣✪拓荒者工具✪☣☢
 item.EnergyTabletCraft.name=能量板 - 合成用
-item.EnergyCubeBasicCraft.name=基础能量立方 - 合成用
-item.EnergyCubeAdvancedCraft.name=高级能量立方 - 合成用
-item.EnergyCubeEliteCraft.name=精英能量立方 - 合成用
-item.EnergyCubeUltimateCraft.name=终极能量立方 - 合成用
-item.EnergyCubeCreativeCraft.name=创造能量立方 - 合成用
 # Control Circuits
 item.BasicControlCircuit.name=基础控制电路
 item.AdvancedControlCircuit.name=高级控制电路
@@ -68,11 +63,11 @@ item.UltimateControlCircuit.name=终极控制电路
 item.CreativeControlCircuit.name=创造控制电路
 
 # Gas Tank
-tile.GasTankBasic.name=基础燃气储罐
-tile.GasTankAdvanced.name=高级燃气储罐
-tile.GasTankElite.name=精英燃气储罐
-tile.GasTankUltimate.name=终极燃气储罐
-tile.GasTankCreative.name=创造燃气储罐
+tile.GasTankBasic.name=基础化学品储罐
+tile.GasTankAdvanced.name=高级化学品储罐
+tile.GasTankElite.name=精英化学品储罐
+tile.GasTankUltimate.name=终极化学品储罐
+tile.GasTankCreative.name=创造化学品储罐
 
 # Fluid Tank (part of MachineBlock2, naming handled differently)
 tile.FluidTankBasic.name=基础液体储罐
@@ -136,6 +131,18 @@ tile.BasicBlock3.SpsCasing.name=超临界移相器外壳[WIP]
 tile.BasicBlock3.FissionReacherCasing.name=裂变反应堆外壳[WIP]
 tile.BasicBlock3.ControlRodAssembly.name=控制棒组件[WIP]
 tile.BasicBlock3.FissionFuelAssembly.name=裂变燃料组件[WIP]
+tile.BasicBlock3.BasicEnergyCubeCraft.name=基础能量立方 - 合成用
+tile.BasicBlock3.AdvancedEnergyCubeCraft.name=高级能量立方 - 合成用
+tile.BasicBlock3.EliteEnergyCubeCraft.name=精英能量立方 - 合成用
+tile.BasicBlock3.UltimateEnergyCubeCraft.name=终极能量立方 - 合成用
+tile.BasicBlock3.CreativeEnergyCubeCraft.name=创造能量立方 - 合成用
+
+tile.BasicBlock3.BasicEnergyCubeFrame.name=基础能量立方框架
+tile.BasicBlock3.AdvancedEnergyCubeFrame.name=高级能量立方框架
+tile.BasicBlock3.EliteEnergyCubeFrame.name=精英能量立方框架
+tile.BasicBlock3.UltimateEnergyCubeFrame.name=终极能量立方框架
+tile.BasicBlock3.CreativeEnergyCubeFrame.name=创造能量立方框架
+
 # Machine Block
 tile.MachineBlock.EnrichmentChamber.name=富集仓
 tile.MachineBlock.OsmiumCompressor.name=锇压缩机
@@ -1139,16 +1146,18 @@ gui.solarGenerator.sun=太阳
 gui.bioGenerator.bioFuel=生物燃料
 gui.electrolyticSeparator.dump=导出
 
-gui.passive=气冷
-gui.active=水冷
+gui.passiveCooled=气冷
+gui.activeCooled=液冷
 
 gui.minInject=最小输入率
 gui.ignition=引燃温度
+gui.Plasma=等离子体温度
 gui.maxPlasma=等离子体最高温度
+gui.Casing=壳体温度
 gui.maxCasing=壳体最高温度
 gui.passiveGeneration=被动产能
 gui.steamProduction=蒸汽产量
-
+gui.EditRate=输入率设置
 # Config Gui
 mekanism.configgui.ctgy.generators.general=常规设置
 mekanism.configgui.ctgy.generators.generators=发电机设置

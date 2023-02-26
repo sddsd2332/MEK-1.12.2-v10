@@ -118,7 +118,9 @@ public class ItemBlockBasic extends ItemBlock implements IEnergizedItem, ITierIt
             }else if (tier == BinTier.ULTIMATE){
                 return EnumColor.PURPLE + LangUtils.localize("tile.BasicBlock.Bin" + getBaseTier(itemstack).getSimpleName() + ".name");
             }else return EnumColor.ORANGE + LangUtils.localize("tile.BasicBlock.Bin" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else if (type == BasicBlockType.INDUCTION_CELL){
+        }
+
+        else if (type == BasicBlockType.INDUCTION_CELL){
             InductionCellTier tier = InductionCellTier.values()[getBaseTier(itemstack).ordinal()];
             if (tier == InductionCellTier.BASIC){
                 return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.BasicBlock2.InductionCell"+ getBaseTier(itemstack).getSimpleName() + ".name");
@@ -127,9 +129,9 @@ public class ItemBlockBasic extends ItemBlock implements IEnergizedItem, ITierIt
             }else if (tier == InductionCellTier.ELITE){
                 return EnumColor.AQUA + LangUtils.localize("tile.BasicBlock2.InductionCell"+ getBaseTier(itemstack).getSimpleName() + ".name");
             }else return EnumColor.PURPLE + LangUtils.localize("tile.BasicBlock2.InductionCell"+ getBaseTier(itemstack).getSimpleName() + ".name");
+        }
 
-
-        }else if (type == BasicBlockType.INDUCTION_PROVIDER){
+        else if (type == BasicBlockType.INDUCTION_PROVIDER){
             InductionProviderTier tier = InductionProviderTier.values()[getBaseTier(itemstack).ordinal()];
             if (tier == InductionProviderTier.BASIC){
                 return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.BasicBlock2.InductionProvider"+ getBaseTier(itemstack).getSimpleName() + ".name");
@@ -139,6 +141,31 @@ public class ItemBlockBasic extends ItemBlock implements IEnergizedItem, ITierIt
                 return EnumColor.AQUA + LangUtils.localize("tile.BasicBlock2.InductionProvider"+ getBaseTier(itemstack).getSimpleName() + ".name");
             }return EnumColor.PURPLE + LangUtils.localize("tile.BasicBlock2.InductionProvider"+ getBaseTier(itemstack).getSimpleName() + ".name");
         }
+
+        else if (type == BasicBlockType.BASIC_ENERGY_CUBE_CRAFT){
+            return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.BasicBlock3.BasicEnergyCubeCraft.name");
+        }else if (type == BasicBlockType.ADVANCED_ENERGY_CUBE_CRAFT){
+            return EnumColor.RED + LangUtils.localize("tile.BasicBlock3.AdvancedEnergyCubeCraft.name");
+        }else if (type == BasicBlockType.ELITE_ENERGY_CUBE_CRAFT){
+            return EnumColor.AQUA + LangUtils.localize("tile.BasicBlock3.EliteEnergyCubeCraft.name");
+        }else if (type == BasicBlockType.ULTIMATE_ENERGY_CUBE_CRAFT){
+            return EnumColor.PURPLE + LangUtils.localize("tile.BasicBlock3.UltimateEnergyCubeCraft.name");
+        }else if (type == BasicBlockType.CREATIVE_ENERGY_CUBE_CRAFT){
+            return EnumColor.ORANGE + LangUtils.localize("tile.BasicBlock3.CreativeEnergyCubeCraft.name");
+        }
+
+        else if (type == BasicBlockType.BASIC_ENERGY_CUBE_FRAME){
+            return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.BasicBlock3.BasicEnergyCubeFrame.name");
+        }else if (type == BasicBlockType.ADVANCED_ENERGY_CUBE_FRAME){
+            return EnumColor.RED + LangUtils.localize("tile.BasicBlock3.AdvancedEnergyCubeFrame.name");
+        }else if (type == BasicBlockType.ELITE_ENERGY_CUBE_FRAME){
+            return EnumColor.AQUA + LangUtils.localize("tile.BasicBlock3.EliteEnergyCubeFrame.name");
+        }else if (type == BasicBlockType.ULTIMATE_ENERGY_CUBE_FRAME){
+            return EnumColor.PURPLE + LangUtils.localize("tile.BasicBlock3.UltimateEnergyCubeFrame.name");
+        }else if (type == BasicBlockType.CREATIVE_ENERGY_CUBE_FRAME){
+            return EnumColor.ORANGE + LangUtils.localize("tile.BasicBlock3.CreativeEnergyCubeFrame.name");
+        }
+
         return super.getItemStackDisplayName(itemstack);
     }
 

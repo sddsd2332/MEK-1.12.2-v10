@@ -35,9 +35,9 @@ public class GuiReactorStats extends GuiReactorInfo {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRenderer.drawString(tileEntity.getName(), 46, 6, 0x404040);
+        fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
         if (tileEntity.isFormed()) {
-            fontRenderer.drawString(EnumColor.DARK_GREEN + LangUtils.localize("gui.passive"), 6, 26, 0x404040);
+            fontRenderer.drawString(EnumColor.DARK_GREEN + LangUtils.localize("gui.passiveCooled"), 6, 26, 0x404040);
             fontRenderer.drawString(LangUtils.localize("gui.minInject") + ": " + tileEntity.getReactor().getMinInjectionRate(false), 16, 36, 0x404040);
             fontRenderer.drawString(LangUtils.localize("gui.ignition") + ": " +
                                     MekanismUtils.getTemperatureDisplay(tileEntity.getReactor().getIgnitionTemperature(false), TemperatureUnit.AMBIENT), 16, 46, 0x404040);
@@ -47,7 +47,7 @@ public class GuiReactorStats extends GuiReactorInfo {
                                     MekanismUtils.getTemperatureDisplay(tileEntity.getReactor().getMaxCasingTemperature(false), TemperatureUnit.AMBIENT), 16, 66, 0x404040);
             fontRenderer.drawString(LangUtils.localize("gui.passiveGeneration") + ": " +
                                     MekanismUtils.getEnergyDisplay(tileEntity.getReactor().getPassiveGeneration(false, false)) + "/t", 16, 76, 0x404040);
-            fontRenderer.drawString(EnumColor.DARK_BLUE + LangUtils.localize("gui.active"), 6, 92, 0x404040);
+            fontRenderer.drawString(EnumColor.DARK_BLUE + LangUtils.localize("gui.activeCooled"), 6, 92, 0x404040);
             fontRenderer.drawString(LangUtils.localize("gui.minInject") + ": " + tileEntity.getReactor().getMinInjectionRate(true), 16, 102, 0x404040);
             fontRenderer.drawString(LangUtils.localize("gui.ignition") + ": " +
                                     MekanismUtils.getTemperatureDisplay(tileEntity.getReactor().getIgnitionTemperature(true), TemperatureUnit.AMBIENT), 16, 112, 0x404040);

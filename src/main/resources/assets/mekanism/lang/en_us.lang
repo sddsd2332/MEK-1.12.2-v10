@@ -56,11 +56,6 @@ item.Canteen.name=Canteen
 item.MekTool.name=Meka-Tool
 
 item.EnergyTabletCraft.name=Energy Tablet - Crafting
-item.EnergyCubeBasicCraft.name=Basic Energy Cube - Crafting
-item.EnergyCubeAdvancedCraft.name=Advanced Energy Cube - Crafting
-item.EnergyCubeEliteCraft.name=Elite Energy Cube - Crafting
-item.EnergyCubeUltimateCraft.name=Ultimate Energy Cube - Crafting
-item.EnergyCubeCreativeCraft.name=Creative Energy Cube - Crafting
 
 # Control Circuits
 item.BasicControlCircuit.name=Basic Control Circuit
@@ -70,11 +65,11 @@ item.UltimateControlCircuit.name=Ultimate Control Circuit
 item.CreativeControlCircuit.name=Creative Control Circuit
 
 # Gas Tank
-tile.GasTankBasic.name=Basic Gas Tank
-tile.GasTankAdvanced.name=Advanced Gas Tank
-tile.GasTankElite.name=Elite Gas Tank
-tile.GasTankUltimate.name=Ultimate Gas Tank
-tile.GasTankCreative.name=Creative Gas Tank
+tile.GasTankBasic.name=Basic Chemical Tank
+tile.GasTankAdvanced.name=Advanced Chemical Tank
+tile.GasTankElite.name=Elite Chemical Tank
+tile.GasTankUltimate.name=Ultimate Chemical Tank
+tile.GasTankCreative.name=Creative Chemical Tank
 
 # Fluid Tank (part of MachineBlock2, naming handled differently)
 tile.FluidTankBasic.name=Basic Fluid Tank
@@ -138,7 +133,20 @@ tile.BasicBlock2.LeadBlock.name=Lead Block
 tile.BasicBlock3.SpsCasing.name=SPS Casing[WIP]
 tile.BasicBlock3.FissionReacherCasing.name=Fission Reactor Casing[WIP]
 tile.BasicBlock3.ControlRodAssembly.name=Control Rod Assembly[WIP]
-tile.BasicBlock3.FissionFuelAssembly.name=Fission Fuel Assembly[WIP]															 
+tile.BasicBlock3.FissionFuelAssembly.name=Fission Fuel Assembly[WIP]
+tile.BasicBlock3.BasicEnergyCubeCraft.name=Basic Energy Cube - Crafting
+tile.BasicBlock3.AdvancedEnergyCubeCraft.name=Advanced Energy Cube - Crafting
+tile.BasicBlock3.EliteEnergyCubeCraft.name=Elite Energy Cube - Crafting
+tile.BasicBlock3.UltimateEnergyCubeCraft.name=Ultimate Energy Cube - Crafting
+tile.BasicBlock3.CreativeEnergyCubeCraft.name=Creative Energy Cube - Crafting
+
+tile.BasicBlock3.BasicEnergyCubeFrame.name=Basic Energy Cube Frame
+tile.BasicBlock3.AdvancedEnergyCubeFrame.name=Advanced Energy Cube Frame
+tile.BasicBlock3.EliteEnergyCubeFrame.name=Elite Energy Cube Frame
+tile.BasicBlock3.UltimateEnergyCubeFrame.name=Ultimate Energy Cube Frame
+tile.BasicBlock3.CreativeEnergyCubeFrame.name=Creative Energy Cube Frame
+
+
 # Machine Block
 tile.MachineBlock.EnrichmentChamber.name=Enrichment Chamber
 tile.MachineBlock.OsmiumCompressor.name=Osmium Compressor
@@ -1141,16 +1149,18 @@ gui.solarGenerator.sun=Sun
 gui.bioGenerator.bioFuel=BioFuel
 gui.electrolyticSeparator.dump=Dump
 
-gui.passive=Air-Cooled
-gui.active=Water-Cooled
+gui.passiveCooled=Air-Cooled
+gui.activeCooled=Liquid-Cooled
 
 gui.minInject=Min. Inject Rate
 gui.ignition=Ignition Temp
+gui.Plasma=Plasma
 gui.maxPlasma=Max. Plasma Temp
+gui.Casing=Casing
 gui.maxCasing=Max. Casing Temp
 gui.passiveGeneration=Passive Generation
 gui.steamProduction=Steam Production
-
+gui.EditRate=Edit Rate
 # Config Gui
 mekanism.configgui.ctgy.generators.general=General Settings
 mekanism.configgui.ctgy.generators.generators=Generator Settings
