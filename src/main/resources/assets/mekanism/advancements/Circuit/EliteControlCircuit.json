@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:controlcircuit",
+      "data": 2
+    },
+    "title": {
+      "translate": "advancements.mekanism:EliteControlCircuit"
+    },
+    "description": {
+      "translate": "advancements.mekanism:EliteControlCircuit.description"
+    }
+  },
+  "parent": "mekanism:Circuit/AdvancedControlCircuit",
+  "criteria": {
+    "EliteControlCircuit_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:controlcircuit",
+            "data": 2
+          }
+        ]
+      }
+    }
+  }
+}

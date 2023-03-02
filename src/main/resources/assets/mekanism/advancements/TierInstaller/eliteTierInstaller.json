@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:tierinstaller",
+      "data": 2
+    },
+    "title": {
+      "translate": "advancements.mekanism:eliteTierInstaller"
+    },
+    "description": {
+      "translate": "advancements.mekanism:eliteTierInstaller.description"
+    }
+  },
+  "parent": "mekanism:Circuit/EliteControlCircuit",
+  "criteria": {
+    "eliteTierInstaller_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:tierinstaller",
+            "data": 2
+          }
+        ]
+      }
+    }
+  }
+}

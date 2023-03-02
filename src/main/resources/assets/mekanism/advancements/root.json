@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:cosmicalloy"
+    },
+    "title": {
+      "translate": "itemGroup.tabMekanism"
+    },
+    "description": {
+      "translate": "advancements.mekanism:mekanism.description"
+    },
+    "background": "mekanism:textures/blocks/steelblock.png"
+  },
+  "criteria": {
+    "mekanism_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:ingot",
+            "data": 1
+          }
+        ]
+      }
+    }
+  }
+}

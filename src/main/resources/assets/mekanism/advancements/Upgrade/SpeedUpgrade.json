@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:speedupgrade"
+    },
+    "title": {
+      "translate": "advancements.mekanism:SpeedUpgrade"
+    },
+    "description": {
+      "translate": "advancements.mekanism:SpeedUpgrade.description"
+    }
+  },
+  "parent": "mekanism:Alloy/EnrichedAlloy",
+  "criteria": {
+    "SpeedUpgrade_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:speedupgrade"
+          }
+        ]
+      }
+    }
+  }
+}

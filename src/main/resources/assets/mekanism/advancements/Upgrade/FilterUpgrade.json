@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:filterupgrade"
+    },
+    "title": {
+      "translate": "advancements.mekanism:FilterUpgrade"
+    },
+    "description": {
+      "translate": "advancements.mekanism:FilterUpgrade.description"
+    }
+  },
+  "parent": "mekanism:Alloy/EnrichedAlloy",
+  "criteria": {
+    "FilterUpgrade_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:filterupgrade"
+          }
+        ]
+      }
+    }
+  }
+}

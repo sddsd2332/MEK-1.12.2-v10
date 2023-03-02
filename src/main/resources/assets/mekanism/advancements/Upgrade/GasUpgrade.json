@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:gasupgrade"
+    },
+    "title": {
+      "translate": "advancements.mekanism:GasUpgrade"
+    },
+    "description": {
+      "translate": "advancements.mekanism:GasUpgrade.description"
+    }
+  },
+  "parent": "mekanism:Alloy/EnrichedAlloy",
+  "criteria": {
+    "GasUpgrade_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:gasupgrade"
+          }
+        ]
+      }
+    }
+  }
+}

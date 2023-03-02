@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:controlcircuit",
+      "data": 3
+    },
+    "title": {
+      "translate": "advancements.mekanism:UltimateControlCircuit"
+    },
+    "description": {
+      "translate": "advancements.mekanism:UltimateControlCircuit.description"
+    }
+  },
+  "parent": "mekanism:Circuit/EliteControlCircuit",
+  "criteria": {
+    "UltimateControlCircuit_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:controlcircuit",
+            "data": 3
+          }
+        ]
+      }
+    }
+  }
+}

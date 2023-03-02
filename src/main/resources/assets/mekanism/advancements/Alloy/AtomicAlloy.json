@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:atomicalloy"
+    },
+    "title": {
+      "translate": "advancements.mekanism:AtomicAlloy"
+    },
+    "description": {
+      "translate": "advancements.mekanism:AtomicAlloy.description"
+    }
+  },
+  "parent": "mekanism:Alloy/ReinforcedAlloy",
+  "criteria": {
+    "atomicalloy_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:atomicalloy"
+          }
+        ]
+      }
+    }
+  }
+}

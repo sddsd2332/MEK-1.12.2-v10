@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:machineblock",
+      "data": 10
+    },
+    "title": {
+      "translate": "advancements.mekanism:EnergizedSmelter"
+    },
+    "description": {
+      "translate": "advancements.mekanism:EnergizedSmelter.description"
+    }
+  },
+  "parent": "mekanism:SteelCasing",
+  "criteria": {
+    "EnergizedSmelter_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:machineblock",
+            "data": 10
+          }
+        ]
+      }
+    }
+  }
+}

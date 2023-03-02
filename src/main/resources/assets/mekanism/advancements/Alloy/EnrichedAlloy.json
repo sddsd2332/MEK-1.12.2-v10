@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:enrichedalloy"
+    },
+    "title": {
+      "translate": "advancements.mekanism:EnrichedAlloy"
+    },
+    "description": {
+      "translate": "advancements.mekanism:EnrichedAlloy.description"
+    }
+  },
+  "parent": "mekanism:MetallurgicInfuser",
+  "criteria": {
+    "enrichedalloy_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:enrichedalloy"
+          }
+        ]
+      }
+    }
+  }
+}

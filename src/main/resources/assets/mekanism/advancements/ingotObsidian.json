@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:ingot",
+      "data": 0
+    },
+    "title": {
+      "translate": "advancements.mekanism:obsidianIngot"
+    },
+    "description": {
+      "translate": "advancements.mekanism:obsidianIngot.description"
+    }
+  },
+  "parent": "mekanism:Machines/OsmiumCompressor",
+  "criteria": {
+    "ingotObsidian_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:ingot",
+            "data": 0
+          }
+        ]
+      }
+    }
+  }
+}

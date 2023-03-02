@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:mufflingupgrade"
+    },
+    "title": {
+      "translate": "advancements.mekanism:MufflingUpgrade"
+    },
+    "description": {
+      "translate": "advancements.mekanism:MufflingUpgrade.description"
+    }
+  },
+  "parent": "mekanism:Alloy/EnrichedAlloy",
+  "criteria": {
+    "MufflingUpgrade_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:mufflingupgrade"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:anchorupgrade"
+    },
+    "title": {
+      "translate": "advancements.mekanism:AnchorUpgrade"
+    },
+    "description": {
+      "translate": "advancements.mekanism:AnchorUpgrade.description"
+    }
+  },
+  "parent": "mekanism:Alloy/EnrichedAlloy",
+  "criteria": {
+    "AnchorUpgrade_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:anchorupgrade"
+          }
+        ]
+      }
+    }
+  }
+}

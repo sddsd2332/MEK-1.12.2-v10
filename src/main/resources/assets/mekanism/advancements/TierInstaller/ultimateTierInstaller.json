@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:tierinstaller",
+      "data": 3
+    },
+    "title": {
+      "translate": "advancements.mekanism:ultimateTierInstaller"
+    },
+    "description": {
+      "translate": "advancements.mekanism:ultimateTierInstaller.description"
+    }
+  },
+  "parent": "mekanism:Circuit/UltimateControlCircuit",
+  "criteria": {
+    "ultimateTierInstaller_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:tierinstaller",
+            "data": 3
+          }
+        ]
+      }
+    }
+  }
+}

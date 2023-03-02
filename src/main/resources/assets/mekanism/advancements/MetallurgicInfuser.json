@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:machineblock",
+      "data": 8
+    },
+    "title": {
+      "translate": "advancements.mekanism:Metal_Infuser"
+    },
+    "description": {
+      "translate": "advancements.mekanism:Metal_Infuser.description"
+    }
+  },
+  "parent": "mekanism:ingotOsmium",
+  "criteria": {
+    "MetallurgicInfuser_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:machineblock",
+            "data": 8
+          }
+        ]
+      }
+    }
+  }
+}

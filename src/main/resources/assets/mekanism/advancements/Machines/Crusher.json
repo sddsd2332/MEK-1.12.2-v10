@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:machineblock",
+      "data": 3
+    },
+    "title": {
+      "translate": "advancements.mekanism:Crusher"
+    },
+    "description": {
+      "translate": "advancements.mekanism:Crusher.description"
+    }
+  },
+  "parent": "mekanism:SteelCasing",
+  "criteria": {
+    "Crusher_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:machineblock",
+            "data": 3
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mekanism:energyupgrade"
+    },
+    "title": {
+      "translate": "advancements.mekanism:EnergyUpgrade"
+    },
+    "description": {
+      "translate": "advancements.mekanism:EnergyUpgrade.description"
+    }
+  },
+  "parent": "mekanism:Alloy/EnrichedAlloy",
+  "criteria": {
+    "EnergyUpgrade_in_inventory": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mekanism:energyupgrade"
+          }
+        ]
+      }
+    }
+  }
+}
