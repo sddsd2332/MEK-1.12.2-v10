@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
         super(input, MekanismFluids.LiquidOsmium, output);
     }
 
+
     @Override
     public OsmiumCompressorRecipe copy() {
         return new OsmiumCompressorRecipe(getInput().copy(), getOutput().copy());

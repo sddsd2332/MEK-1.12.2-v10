@@ -2,6 +2,8 @@ package mekanism.common.integration.groovyscript;
 
 import com.cleanroommc.groovyscript.compat.mods.mekanism.Mekanism;
 import mekanism.common.integration.groovyscript.machinerecipe.*;
+import mekanism.generators.common.MekanismGenerators;
+import net.minecraftforge.fml.common.Loader;
 
 
 public class GrSMekanismAdd extends Mekanism {
@@ -22,7 +24,7 @@ public class GrSMekanismAdd extends Mekanism {
     public CellSeparator cellSeparator = new CellSeparator();
     public Smelter smelter = new Smelter();
     public FusionCooling fusion = new FusionCooling();
-
+    public Recycler recycler = new Recycler();
 
 
     public GrSMekanismAdd(){
@@ -40,9 +42,10 @@ public class GrSMekanismAdd extends Mekanism {
         addRegistry(cellExtractor);
         addRegistry(cellSeparator);
         addRegistry(smelter);
-       // if (){
+        addRegistry(recycler);
+        if (Loader.isModLoaded(MekanismGenerators.MODID)){
             addRegistry(fusion);
-      //  }
+       }
     }
 
 

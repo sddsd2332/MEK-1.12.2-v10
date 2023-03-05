@@ -105,6 +105,8 @@ public class StorageConfig extends BaseConfig {
 
     public final DoubleOption stamping = new DoubleOption(this, "storage", "StampingStorage", 20000D,
             "Base energy storage (Joules).");
+    public final DoubleOption recycler = new DoubleOption(this, "storage", "RecyclerStorage", 20000D,
+            "Base energy storage (Joules).");
 
     public final DoubleOption rolling = new DoubleOption(this, "storage", "RollingStorage", 20000D,
             "Base energy storage (Joules).");

@@ -217,7 +217,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCellCultivate.class, new RenderConfigurableMachine<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCellExtractor.class, new RenderConfigurableMachine<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCellSeparator.class, new RenderConfigurableMachine<>());
-
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRecycler.class, new RenderConfigurableMachine<>());
     }
 
     @Override
@@ -283,6 +283,10 @@ public class ClientProxy extends CommonProxy {
         registerItemRender(MekanismItems.PoloniumPellet);
 
         registerItemRender(MekanismItems.EnergyTabletCraft);
+        registerItemRender(MekanismItems.CosmicMatter);
+        registerItemRender(MekanismItems.Scrap);
+        registerItemRender(MekanismItems.ScrapBox);
+        registerItemRender(MekanismItems.EmptyCrystals);
         /*
         registerItemRender(MekanismItems.EnergyCubeBasicCraft);
         registerItemRender(MekanismItems.EnergyCubeAdvancedCraft);
@@ -815,10 +819,8 @@ public class ClientProxy extends CommonProxy {
                 return new GuiCellExtractor(player.inventory, (TileEntityChanceMachine) tileEntity);
             case 71:
                 return new GuiCellSeparator(player.inventory, (TileEntityCellSeparator) tileEntity);
-            /*case 72:
-                return new GuiFactory2(player.inventory, (TileEntityFactory) tileEntity);
-
-             */
+            case 72:
+                return new GuiRecycler(player.inventory, (TileEntityRecycler) tileEntity);
         }
         return null;
     }

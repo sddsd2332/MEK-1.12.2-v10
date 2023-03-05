@@ -339,6 +339,8 @@ public class ModelEnergyCube extends ModelBase {
         ledLeft2.mirror = true;
         setRotation(ledLeft2, 0F, 0F, 0F);
 
+
+
         leds1 = new ModelRenderer[]{ledBottom1, ledTop1, ledFront1, ledBack1, ledLeft1, ledRight1};
         leds2 = new ModelRenderer[]{ledBottom2, ledTop2, ledFront2, ledBack2, ledLeft2, ledRight2};
 

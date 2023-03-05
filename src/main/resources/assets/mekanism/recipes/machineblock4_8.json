@@ -1,0 +1,35 @@
+{
+  "result": {
+      "item": "mekanism:machineblock4",
+      "data": 8
+  },
+  "pattern": [
+    "RCR",
+    "iOi",
+    "RCR"
+  ],
+  "type": "mekanism:ore_shaped",
+  "conditions": [
+    {
+      "type": "mekanism:recipe_enabled",
+      "machineType": "Factory"
+    }
+  ],
+  "key": {
+    "R": {
+      "ore": "alloyAdvanced",
+      "type": "forge:ore_dict"
+    },
+    "C": {
+      "item": "#CIRCUITBASIC"
+    },
+    "i": {
+      "ore": "dirt",
+      "type": "forge:ore_dict"
+    },
+    "O": {
+      "item": "mekanism:machineblock",
+      "data": 3
+    }
+  }
+}

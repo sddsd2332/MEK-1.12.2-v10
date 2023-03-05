@@ -47,27 +47,26 @@ public final class OreDictManager {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void init(RegistryEvent.Register<IRecipe> event) {
         addLogRecipes();
-
         List<ItemStack> oreDict;
 
         for (ItemStack plank : OreDictionary.getOres("plankWood", false)) {
             plank = StackUtils.size(plank, 1);
             if (!Recipe.PRECISION_SAWMILL.containsRecipe(plank)) {
                 RecipeHandler.addPrecisionSawmillRecipe(plank, new ItemStack(Items.STICK, 6),
-                      new ItemStack(MekanismItems.Sawdust), MekanismConfig.current().general.sawdustChancePlank.val());
+                        new ItemStack(MekanismItems.Sawdust), MekanismConfig.current().general.sawdustChancePlank.val());
             }
             RecipeHandler.addPRCRecipe(plank, new FluidStack(FluidRegistry.WATER, 20), new GasStack(MekanismFluids.Oxygen, 20), ItemStack.EMPTY,
-                  new GasStack(MekanismFluids.Hydrogen, 20), 0, 30);
+                    new GasStack(MekanismFluids.Hydrogen, 20), 0, 30);
         }
 
         for (ItemStack slab : OreDictionary.getOres("slabWood", false)) {
             slab = StackUtils.size(slab, 1);
             if (!Recipe.PRECISION_SAWMILL.containsRecipe(slab)) {
                 RecipeHandler.addPrecisionSawmillRecipe(slab, new ItemStack(Items.STICK, 3), new ItemStack(MekanismItems.Sawdust),
-                      MekanismConfig.current().general.sawdustChancePlank.val() / 2);
+                        MekanismConfig.current().general.sawdustChancePlank.val() / 2);
             }
             RecipeHandler.addPRCRecipe(slab, new FluidStack(FluidRegistry.WATER, 10), new GasStack(MekanismFluids.Oxygen, 10), ItemStack.EMPTY,
-                  new GasStack(MekanismFluids.Hydrogen, 10), 0, 15);
+                    new GasStack(MekanismFluids.Hydrogen, 10), 0, 15);
         }
 
         for (ItemStack stick : OreDictionary.getOres("stickWood", false)) {
@@ -76,7 +75,7 @@ public final class OreDictManager {
                 RecipeHandler.addPrecisionSawmillRecipe(stick, new ItemStack(MekanismItems.Sawdust));
             }
             RecipeHandler.addPRCRecipe(stick, new FluidStack(FluidRegistry.WATER, 4), new GasStack(MekanismFluids.Oxygen, 4), ItemStack.EMPTY,
-                  new GasStack(MekanismFluids.Hydrogen, 4), 0, 6);
+                    new GasStack(MekanismFluids.Hydrogen, 4), 0, 6);
         }
 
         for (ItemStack ore : OreDictionary.getOres("oreNetherSteel", false)) {
@@ -88,7 +87,7 @@ public final class OreDictManager {
             ItemStack itemRubber = StackUtils.size(oreDict.get(0), 1);
             for (ItemStack rubber : OreDictionary.getOres("woodRubber", false)) {
                 RecipeHandler.addPrecisionSawmillRecipe(StackUtils.size(rubber, 1), new ItemStack(Blocks.PLANKS, BlockPlanks.EnumType.JUNGLE.getMetadata(), 4),
-                      itemRubber, 1F);
+                        itemRubber, 1F);
             }
         }
 
@@ -120,7 +119,7 @@ public final class OreDictManager {
 
             for (ItemStack crystal : OreDictionary.getOres("crystal" + resource.getName(), false)) {
                 RecipeHandler.addChemicalInjectionChamberRecipe(StackUtils.size(crystal, 1), MekanismFluids.HydrogenChloride,
-                      new ItemStack(MekanismItems.Shard, 1, resource.ordinal()));
+                        new ItemStack(MekanismItems.Shard, 1, resource.ordinal()));
             }
 
             for (ItemStack dust : OreDictionary.getOres("dustDirty" + resource.getName(), false)) {
@@ -131,7 +130,7 @@ public final class OreDictManager {
                 RecipeHandler.addEnrichmentChamberRecipe(StackUtils.size(ore, 1), new ItemStack(MekanismItems.Dust, 2, resource.ordinal()));
                 RecipeHandler.addPurificationChamberRecipe(StackUtils.size(ore, 1), new ItemStack(MekanismItems.Clump, 3, resource.ordinal()));
                 RecipeHandler.addChemicalInjectionChamberRecipe(StackUtils.size(ore, 1), MekanismFluids.HydrogenChloride,
-                      new ItemStack(MekanismItems.Shard, 4, resource.ordinal()));
+                        new ItemStack(MekanismItems.Shard, 4, resource.ordinal()));
                 RecipeHandler.addChemicalDissolutionChamberRecipe(StackUtils.size(ore, 1), new GasStack(GasRegistry.getGas(resource.getName()), 1000));
             }
 
@@ -299,7 +298,7 @@ public final class OreDictManager {
         InfuseType tinInfuseType = InfuseRegistry.get("TIN");
         for (ItemStack ingot : OreDictionary.getOres("ingotCopper", false)) {
             RecipeHandler.addMetallurgicInfuserRecipe(tinInfuseType, 10, StackUtils.size(ingot, 3),
-                  new ItemStack(MekanismItems.Ingot, 4, 2));
+                    new ItemStack(MekanismItems.Ingot, 4, 2));
         }
 
         for (ItemStack ingot : OreDictionary.getOres("ingotRefinedObsidian", false)) {
@@ -309,7 +308,7 @@ public final class OreDictManager {
         InfuseType redstoneInfuseType = InfuseRegistry.get("REDSTONE");
         for (ItemStack ingot : OreDictionary.getOres("ingotOsmium", false)) {
             RecipeHandler.addMetallurgicInfuserRecipe(redstoneInfuseType, 10, StackUtils.size(ingot, 1),
-                  new ItemStack(MekanismItems.ControlCircuit, 1, 0));
+                    new ItemStack(MekanismItems.ControlCircuit, 1, 0));
         }
 
         for (ItemStack ingot : OreDictionary.getOres("ingotRedstone", false)) {
@@ -395,7 +394,7 @@ public final class OreDictManager {
         for (ItemStack dust : OreDictionary.getOres("dustObsidian", false)) {
             RecipeHandler.addCombinerRecipe(StackUtils.size(dust, 4), new ItemStack(Blocks.COBBLESTONE), new ItemStack(Blocks.OBSIDIAN));
             RecipeHandler.addMetallurgicInfuserRecipe(diamondInfuseType, 10, StackUtils.size(dust, 1),
-                  new ItemStack(MekanismItems.OtherDust, 1, 5));
+                    new ItemStack(MekanismItems.OtherDust, 1, 5));
         }
 
         for (ItemStack dust : OreDictionary.getOres("dustDiamond", false)) {
@@ -414,26 +413,26 @@ public final class OreDictManager {
 
         for (ItemStack coal : OreDictionary.getOres("blockCoal", false)) {
             RecipeHandler.addPRCRecipe(StackUtils.size(coal, 1), new FluidStack(FluidRegistry.WATER, 1000), new GasStack(MekanismFluids.Oxygen, 1000),
-                  new ItemStack(MekanismItems.OtherDust, 9, 3), new GasStack(MekanismFluids.Hydrogen, 1000), 0, 900);
+                    new ItemStack(MekanismItems.OtherDust, 9, 3), new GasStack(MekanismFluids.Hydrogen, 1000), 0, 900);
         }
 
         for (ItemStack coal : OreDictionary.getOres("blockCharcoal", false)) {
             RecipeHandler.addPRCRecipe(StackUtils.size(coal, 1), new FluidStack(FluidRegistry.WATER, 1000), new GasStack(MekanismFluids.Oxygen, 1000),
-                  new ItemStack(MekanismItems.OtherDust, 9, 3), new GasStack(MekanismFluids.Hydrogen, 1000), 0, 900);
+                    new ItemStack(MekanismItems.OtherDust, 9, 3), new GasStack(MekanismFluids.Hydrogen, 1000), 0, 900);
         }
 
         for (ItemStack sawdust : OreDictionary.getOres("dustWood", false)) {
             //TODO: 1.14 evaluate adding a charcoal dust item to Mekanism, and if so use that instead of charcoal here
             RecipeHandler.addEnrichmentChamberRecipe(StackUtils.size(sawdust, 8), new ItemStack(Items.COAL, 1, 1));
             RecipeHandler.addPRCRecipe(StackUtils.size(sawdust, 1), new FluidStack(FluidRegistry.WATER, 20), new GasStack(MekanismFluids.Oxygen, 20),
-                  ItemStack.EMPTY, new GasStack(MekanismFluids.Hydrogen, 20), 0, 30);
+                    ItemStack.EMPTY, new GasStack(MekanismFluids.Hydrogen, 20), 0, 30);
         }
     }
 
     @Method(modid = MekanismHooks.IC2_MOD_ID)
     private static void addIC2BronzeRecipe() {
         Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotBronze"), null, false,
-              StackUtils.size(OreDictionary.getOres("dustBronze", false).get(0), 1));
+                StackUtils.size(OreDictionary.getOres("dustBronze", false).get(0), 1));
     }
 
 
@@ -479,7 +478,7 @@ public final class OreDictManager {
 
         if (!resultEntry.isEmpty()) {
             RecipeHandler.addPrecisionSawmillRecipe(log, StackUtils.size(resultEntry, 6), new ItemStack(MekanismItems.Sawdust),
-                  MekanismConfig.current().general.sawdustChanceLog.val());
+                    MekanismConfig.current().general.sawdustChanceLog.val());
         }
     }
 
@@ -534,4 +533,5 @@ public final class OreDictManager {
             }
         }
     }
+
 }

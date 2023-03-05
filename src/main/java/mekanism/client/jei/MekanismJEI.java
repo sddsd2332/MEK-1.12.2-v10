@@ -160,8 +160,8 @@ public class MekanismJEI implements IModPlugin {
                 "tile.MachineBlock4.CellExtractor.name", ProgressBar.PURPLE));
         addRecipeCategory(registry, MachineType.CELL_SEPARATOR, new ChanceMachineRecipeCategory(guiHelper, Recipe.CELL_SEPARATOR.getJEICategory(),
                 "tile.MachineBlock4.CellSeparator.name", ProgressBar.PURPLE));
-
-
+        addRecipeCategory(registry, MachineType.RECYCLER, new Chance2MachineRecipeCategory(guiHelper, Recipe.RECYCLER.getJEICategory(), "tile.MachineBlock4.Recycler.name",
+                ProgressBar.CRUSH));
 
 
         //There is no config option to disable the thermal evaporation plant
@@ -222,6 +222,7 @@ public class MekanismJEI implements IModPlugin {
 
         RecipeRegistryHelper.registerCellExtractor(registry);
         RecipeRegistryHelper.registerCellSeparator(registry);
+        RecipeRegistryHelper.registerRecycler(registry);
 
         if (Loader.isModLoaded(MekanismGenerators.MODID)){
             RecipeRegistryHelper.registerFusionCooling(registry);

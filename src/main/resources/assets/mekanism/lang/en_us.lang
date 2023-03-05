@@ -54,9 +54,11 @@ item.BioFuel.name=Bio Fuel
 item.CraftingFormula.name=Crafting Formula
 item.Canteen.name=Canteen
 item.MekTool.name=Meka-Tool
-
 item.EnergyTabletCraft.name=Energy Tablet - Crafting
-
+item.CosmicMatter.name=Cosmic Matter
+item.Scrap.name=Scrap
+item.ScrapBox.name=Scrap Box
+item.EmptyCrystals.name=Empty Crystals
 # Control Circuits
 item.BasicControlCircuit.name=Basic Control Circuit
 item.AdvancedControlCircuit.name=Advanced Control Circuit
@@ -204,6 +206,8 @@ tile.MachineBlock4.Alloy.name=Alloy furnace
 tile.MachineBlock4.CellCultivate.name=Cell culture machines
 tile.MachineBlock4.CellExtractor.name=Cell extractor
 tile.MachineBlock4.CellSeparator.name=Cell separator
+tile.MachineBlock4.Recycler.name=Recycler
+
 # Plastic
 tile.PlasticBlock.name=Plastic Block
 tile.SlickPlasticBlock.name=Slick Plastic Block
@@ -713,7 +717,7 @@ gui.factory.Brushed=Brushed
 gui.factory.Turning=Turning
 gui.factory.Alloy=Alloy
 gui.factory.Extractor=Extractor
-gui.factory.Separator=Separator
+gui.factory.Recycler=Recycler
 
 gui.seismicReader.short=S. Reader
 gui.seismicReader.solids=Solids

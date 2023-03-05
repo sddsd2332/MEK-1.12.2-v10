@@ -506,7 +506,9 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return ((ItemStackOutput) recipe.recipeOutput).output;
         } else if (recipe.recipeOutput instanceof ChanceOutput) {
             return ((ChanceOutput) recipe.recipeOutput).primaryOutput;
-        } else if (recipe.recipeOutput instanceof PressurizedOutput) {
+        }  else if (recipe.recipeOutput instanceof ChanceOutput2) {
+            return ((ChanceOutput2) recipe.recipeOutput).primaryOutput;
+        }else if (recipe.recipeOutput instanceof PressurizedOutput) {
             return ((PressurizedOutput) recipe.recipeOutput).getItemOutput();
         } else {
             return ItemStack.EMPTY;
@@ -572,6 +574,8 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                 recipeOutput = ((ItemStackOutput) cached.recipeOutput).output;
             }else if (cached.recipeOutput instanceof ChanceOutput) {
                 recipeOutput =  ((ChanceOutput) cached.recipeOutput).primaryOutput;
+            }else if (cached.recipeOutput instanceof ChanceOutput2) {
+                recipeOutput =  ((ChanceOutput2) cached.recipeOutput).primaryOutput;
             } else if (cached.recipeOutput instanceof PressurizedOutput) {
                 recipeOutput =  ((PressurizedOutput) cached.recipeOutput).getItemOutput();
             }
@@ -650,7 +654,10 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             ItemStack recipeOutput = ItemStack.EMPTY;
             if (cached.recipeOutput instanceof ItemStackOutput) {
                 recipeOutput = ((ItemStackOutput) cached.recipeOutput).output;
-            }/* else if (cached.recipeOutput instanceof PressurizedOutput) {
+            } else if (cached.recipeOutput instanceof ChanceOutput2) {
+                recipeOutput = ((ChanceOutput2) cached.recipeOutput).primaryOutput;
+            }
+            /* else if (cached.recipeOutput instanceof PressurizedOutput) {
                 //TODO: uncomment if we add a PRC factory
                 recipeOutput = ((PressurizedOutput) cached.recipeOutput).getItemOutput();
             }*/
@@ -891,6 +898,13 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             ChanceMachineRecipe<?> recipe = recipeType.getChanceRecipe(inventory.get(inputSlot));
             cachedRecipe[process] = recipe;
             return recipe != null && recipe.canOperate(inventory, inputSlot, outputSlot, 4);
+        } else if (recipeType.getFuelType() == MachineFuelType.CHANCE2) {
+            if (cachedRecipe[process] instanceof Chance2MachineRecipe && ((Chance2MachineRecipe) cachedRecipe[process]).inputMatches(inventory, inputSlot)) {
+                return ((Chance2MachineRecipe) cachedRecipe[process]).canOperate(inventory, inputSlot, outputSlot);
+            }
+            Chance2MachineRecipe<?> recipe = recipeType.getChance2Recipe(inventory.get(inputSlot));
+            cachedRecipe[process] = recipe;
+            return recipe != null && recipe.canOperate(inventory, inputSlot, outputSlot);
         }
 
         if (recipeType == RecipeType.INFUSING) {
@@ -937,6 +951,9 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
         }*/else if (recipeType.getFuelType() == MachineFuelType.CHANCE && cachedRecipe[process] instanceof ChanceMachineRecipe) {
             ChanceMachineRecipe<?> recipe = (ChanceMachineRecipe<?>) cachedRecipe[process];
             recipe.operate(inventory, inputSlot, outputSlot, 4);
+        } else if (recipeType.getFuelType() == MachineFuelType.CHANCE2 && cachedRecipe[process] instanceof Chance2MachineRecipe) {
+            Chance2MachineRecipe<?> recipe = (Chance2MachineRecipe<?>) cachedRecipe[process];
+            recipe.operate(inventory, inputSlot, outputSlot);
         } else if (recipeType.getFuelType() == MachineFuelType.FARM && cachedRecipe[process] instanceof FarmMachineRecipe) {
             FarmMachineRecipe<?> recipe = (FarmMachineRecipe<?>) cachedRecipe[process];
             recipe.operate(inventory, inputSlot,gasTank, secondaryEnergyThisTick, outputSlot, 4);

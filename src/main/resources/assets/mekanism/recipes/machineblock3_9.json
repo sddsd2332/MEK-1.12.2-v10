@@ -1,0 +1,35 @@
+{
+  "result": {
+    "item": "mekanism:machineblock3",
+    "data": 9
+  },
+  "pattern": [
+    "BBB",
+    "CPC",
+    "BBB"
+  ],
+  "type": "mekanism:ore_shaped",
+  "conditions": [
+    {
+      "type": "mekanism:recipe_enabled",
+      "machineType": "IsotopicCentrifuge"
+    }
+  ],
+  "key": {
+    "C": {
+      "item": "#CIRCUITULTIMATE"
+    },
+    "B": {
+      "ore": "ingotLead",
+      "type": "forge:ore_dict"
+    },
+    "P": {
+      "nbt": {
+        "tier": 0
+      },
+      "item": "mekanism:gastank",
+      "data": 0,
+      "type": "mekanism:item_nbt"
+    }
+  }
+}

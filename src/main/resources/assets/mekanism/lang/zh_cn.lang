@@ -55,6 +55,10 @@ item.CraftingFormula.name=合成配方
 item.Canteen.name=水壶
 item.MekTool.name=☢☣✪拓荒者工具✪☣☢
 item.EnergyTabletCraft.name=能量板 - 合成用
+item.CosmicMatter.name=宇宙物质
+item.Scrap.name=废料
+item.ScrapBox.name=废料盒
+item.EmptyCrystals.name=空晶体
 # Control Circuits
 item.BasicControlCircuit.name=基础控制电路
 item.AdvancedControlCircuit.name=高级控制电路
@@ -199,6 +203,8 @@ tile.MachineBlock4.Alloy.name=合金炉
 tile.MachineBlock4.CellCultivate.name=细胞培养机
 tile.MachineBlock4.CellExtractor.name=细胞提取机
 tile.MachineBlock4.CellSeparator.name=细胞分离机
+tile.MachineBlock4.Recycler.name=回收机
+
 # Plastic
 tile.PlasticBlock.name=塑料方块
 tile.SlickPlasticBlock.name=光滑塑料方块
@@ -711,7 +717,7 @@ gui.factory.Turning=车削
 gui.factory.Alloy=合金
 gui.factory.Extractor=提取
 gui.factory.Separator=分离
-
+gui.factory.Recycler=回收
 
 gui.seismicReader.short=地震读取器
 gui.seismicReader.solids=固体

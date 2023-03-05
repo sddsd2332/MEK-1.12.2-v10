@@ -241,4 +241,12 @@ public class APIHandler implements MekanismRecipeHelper {
         RecipeHandler.addFusionCoolingRecipe(inputFluid, outputFluid);
     }
 
+    @Override
+    public void addRecyclerRecipe(ItemStack input, ItemStack primaryOutput, double chance) {
+        checkPhase();
+        RecipeHandler.addRecyclerRecipe(input,primaryOutput,chance);
+    }
+
+
+
 }

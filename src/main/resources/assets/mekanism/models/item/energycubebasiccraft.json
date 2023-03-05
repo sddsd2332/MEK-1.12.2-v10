@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "mekanism:items/Basic_Energy_Cube"
-  }
-}

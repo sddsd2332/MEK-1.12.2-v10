@@ -1,0 +1,43 @@
+{
+  "result": {
+    "item": "mekanism:machineblock3",
+    "data": 12
+  },
+  "pattern": [
+    "RDR",
+    "CIC",
+    "RLR"
+  ],
+  "type": "mekanism:ore_shaped",
+  "conditions": [
+    {
+      "type": "mekanism:recipe_enabled",
+      "machineType": "Crusher"
+    }
+  ],
+  "key": {
+    "R": {
+      "ore": "alloyUltimate",
+      "type": "forge:ore_dict"
+    },
+    "C": {
+      "item": "#CIRCUITULTIMATE"
+    },
+    "I": {
+      "item": "mekanism:basicblock",
+      "data": 8
+    },
+    "D": {
+      "ore": "dirt",
+      "type": "forge:ore_dict"
+    },	
+    "L": {
+      "nbt": {
+        "tier": 0
+      },
+      "item": "mekanism:gastank",
+      "data": 0,
+      "type": "mekanism:item_nbt"
+    }
+  }
+}

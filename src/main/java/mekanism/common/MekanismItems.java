@@ -63,6 +63,10 @@ public class MekanismItems {
  //   public static final ItemMekaSuitChest MekaSuitChest = new ItemMekaSuitChest();
 
     public static final Item EnergyTabletCraft = new ItemMekanism();
+    public static final Item CosmicMatter = new ItemMekanism();
+    public static final Item Scrap = new ItemMekanism();
+    public static final Item ScrapBox = new ItemMekanism();
+    public static final Item EmptyCrystals = new ItemMekanism();
     /*
     public static final Item EnergyCubeBasicCraft = new ItemMekanism();
     public static final Item EnergyCubeAdvancedCraft = new ItemMekanism();
@@ -150,6 +154,10 @@ public class MekanismItems {
     //    registry.register(init(MekaSuitChest, "MekaSuitChest"));
 
         registry.register(init(EnergyTabletCraft,"EnergyTabletCraft"));
+        registry.register(init(CosmicMatter,"CosmicMatter"));
+        registry.register(init(Scrap,"Scrap"));
+        registry.register(init(ScrapBox,"ScrapBox"));
+        registry.register(init(EmptyCrystals,"EmptyCrystals"));
         /*
         registry.register(init(EnergyCubeBasicCraft,"EnergyCubeBasicCraft"));
         registry.register(init(EnergyCubeAdvancedCraft,"EnergyCubeAdvancedCraft"));

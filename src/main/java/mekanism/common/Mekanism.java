@@ -61,6 +61,7 @@ import mekanism.common.recipe.GasConversionHandler;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.inputs.ItemStackInput;
+import mekanism.common.recipe.inputs.MachineInput;
 import mekanism.common.recipe.machines.SmeltingRecipe;
 import mekanism.common.recipe.outputs.ItemStackOutput;
 import mekanism.common.security.SecurityFrequency;
@@ -116,6 +117,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.LogManager;
@@ -319,6 +321,7 @@ public class Mekanism {
         //Osmium Compressor Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.OSMIUM_COMPRESSOR)) {
             RecipeHandler.addOsmiumCompressorRecipe(new ItemStack(Items.GLOWSTONE_DUST), new ItemStack(MekanismItems.Ingot, 1, 3));
+            RecipeHandler.addOsmiumCompressorRecipe(new ItemStack(MekanismItems.Scrap, 63), new ItemStack(MekanismItems.ScrapBox,1));
         }
 
         //Crusher Recipes
@@ -588,8 +591,10 @@ public class Mekanism {
                     new ItemStack(MekanismItems.PlutoniumPellet, 1), new GasStack(MekanismFluids.SpentNuclearWaste, 1000), 100000, 2000);
             RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.OtherDust, 1, 8), new FluidStack(FluidRegistry.WATER, 10000), new GasStack(MekanismFluids.Polonium, 1000),
                     new ItemStack(MekanismItems.PoloniumPellet, 1), new GasStack(MekanismFluids.SpentNuclearWaste, 1000), 100000, 2000);
-            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.ReprocessedFissileFragment, 64), FluidRegistry.getFluidStack("liquidsuperheatedsodium", 10000), new GasStack(MekanismFluids.Polonium, 10000),
-                    new ItemStack(MekanismItems.OtherDust, 1, 9), new GasStack(MekanismFluids.Antimatter, 1000), 100000, 10000);
+            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.CosmicMatter, 64), FluidRegistry.getFluidStack("liquidsuperheatedsodium", 10000), new GasStack(MekanismFluids.UnstableDimensional, 10000),
+                    null, new GasStack(MekanismFluids.Antimatter, 100), 100000, 24000);
+            RecipeHandler.addPRCRecipe(new ItemStack(MekanismItems.ScrapBox,64), FluidRegistry.getFluidStack("liquidfusionfuel", 10000),new GasStack(MekanismFluids.UnstableDimensional, 10000),
+                    new ItemStack(MekanismItems.EmptyCrystals,1),null, 100000, 10000);
         }
         //Antiprotonic Nucleosynthesizer Recipes
         if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER)) {
@@ -600,6 +605,7 @@ public class Mekanism {
             RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Items.DIAMOND), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Items.EMERALD), 0, 1000);
             RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL, 1, 14), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Blocks.REDSTONE_BLOCK), 0, 500);
             RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(Blocks.WOOL, 1, 11), new GasStack(MekanismFluids.Antimatter, 500), new ItemStack(Blocks.LAPIS_BLOCK), 0, 500);
+            RecipeHandler.addNucleosynthesizerRecipe(new ItemStack(MekanismItems.EmptyCrystals,64), new GasStack(MekanismFluids.UnstableDimensional, 10000),new ItemStack(MekanismItems.CosmicMatter), 80000, 2000);
         }
 
 
@@ -656,6 +662,10 @@ public class Mekanism {
             RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.ROTTEN_FLESH, 1), new GasStack(MekanismFluids.NutritionalPaste, 10));
             RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.SPIDER_EYE, 1), new GasStack(MekanismFluids.NutritionalPaste, 10));
 
+        }
+
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.RECYCLER)) {
+            RecipeHandler.addRecyclerRecipe(new ItemStack(Blocks.DIRT), new ItemStack(MekanismItems.Scrap, 1),1F/6F);
         }
 
         //Fuel Gases
@@ -858,6 +868,7 @@ public class Mekanism {
         registerTileEntity(TileEntityCellCultivate.class, "cell_cultivate");
         registerTileEntity(TileEntityCellExtractor.class, "cell_extractor");
         registerTileEntity(TileEntityCellSeparator.class, "cell_separator");
+        registerTileEntity(TileEntityRecycler.class, "Recycler");
         //Register the TESRs
         proxy.registerTESRs();
 

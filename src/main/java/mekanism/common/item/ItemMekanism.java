@@ -70,19 +70,9 @@ public class ItemMekanism extends Item {
             return EnumColor.YELLOW +  LangUtils.localize("item.AnchorUpgrade.name");
         }else if (this == MekanismItems.EnergyTabletCraft){
             return EnumColor.YELLOW +  LangUtils.localize("item.EnergyTabletCraft.name");
-        }/*
-        else if (this == MekanismItems.EnergyCubeBasicCraft){
-            return EnumColor.BRIGHT_GREEN +  LangUtils.localize("item.EnergyCubeBasicCraft.name");
-        }else if (this == MekanismItems.EnergyCubeAdvancedCraft){
-            return EnumColor.RED +  LangUtils.localize("item.EnergyCubeAdvancedCraft.name");
-        }else if (this == MekanismItems.EnergyCubeEliteCraft){
-            return EnumColor.AQUA +  LangUtils.localize("item.EnergyCubeEliteCraft.name");
-        }else if (this == MekanismItems.EnergyCubeUltimateCraft){
-            return EnumColor.PURPLE +  LangUtils.localize("item.EnergyCubeUltimateCraft.name");
-        }else if (this == MekanismItems.EnergyCubeCreativeCraft){
-            return EnumColor.ORANGE +  LangUtils.localize("item.EnergyCubeCreativeCraft.name");
-        } */
-        else
-            return super.getItemStackDisplayName(itemstack);
+        } else if (this == MekanismItems.CosmicMatter){
+            return EnumColor.ORANGE +  LangUtils.localize("item.CosmicMatter.name");
+        }
+        else return super.getItemStackDisplayName(itemstack);
     }
 }

@@ -73,6 +73,7 @@ public final class RecipeHandler {
         addRecipe(Recipe.OSMIUM_COMPRESSOR, new OsmiumCompressorRecipe(input, output));
     }
 
+
     /**
      * Add a Combiner recipe.
      *
@@ -294,6 +295,12 @@ public final class RecipeHandler {
         addRecipe(Recipe.STAMPING, new StampingRecipe(input, output));
     }
 
+
+    public static void addRecyclerRecipe(ItemStack input, ItemStack primaryOutput, double chance) {
+        addRecipe(Recipe.RECYCLER,new RecyclerRecipe(input, primaryOutput,chance));
+    }
+
+
     public static void addRollingRecipe(ItemStack input, ItemStack output) {
         addRecipe(Recipe.ROLLING, new RollingRecipe(input, output));
     }
@@ -419,6 +426,11 @@ public final class RecipeHandler {
      */
     @Nullable
     public static <RECIPE extends ChanceMachineRecipe<RECIPE>> RECIPE getChanceRecipe(@Nonnull ItemStackInput input, @Nonnull Map<ItemStackInput, RECIPE> recipes) {
+        return getRecipe(input, recipes);
+    }
+
+    @Nullable
+    public static <RECIPE extends Chance2MachineRecipe<RECIPE>> RECIPE getChance2Recipe(@Nonnull ItemStackInput input, @Nonnull Map<ItemStackInput, RECIPE> recipes) {
         return getRecipe(input, recipes);
     }
 
@@ -548,6 +560,8 @@ public final class RecipeHandler {
         return false;
     }
 
+
+
     public static class Recipe<INPUT extends MachineInput<INPUT>, OUTPUT extends MachineOutput<OUTPUT>, RECIPE extends MachineRecipe<INPUT, OUTPUT, RECIPE>> {
 
         private static List<Recipe> values = new ArrayList<>();
@@ -643,6 +657,9 @@ public final class RecipeHandler {
 
         public static final Recipe<ItemStackInput, ItemStackOutput, StampingRecipe> STAMPING = new Recipe<>(
                 MachineType.STAMPING, ItemStackInput.class, ItemStackOutput.class, StampingRecipe.class);
+
+        public static final Recipe<ItemStackInput, ChanceOutput2, RecyclerRecipe> RECYCLER = new Recipe<>(
+                MachineType.RECYCLER, ItemStackInput.class, ChanceOutput2.class, RecyclerRecipe.class);
 
         public static final Recipe<ItemStackInput, ItemStackOutput, RollingRecipe> ROLLING = new Recipe<>(
                 MachineType.ROLLING, ItemStackInput.class, ItemStackOutput.class, RollingRecipe.class);

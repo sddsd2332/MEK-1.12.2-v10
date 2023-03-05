@@ -50,3 +50,7 @@ mods.mekanism.Smelter.add(item('minecraft:iron_ore'),item('minecraft:iron_ingot'
 //Fusion reactor cooling recipes
 mods.Mekanism.FusionReactor.removeByInput(fluid('liquidsodium'))
 mods.Mekanism.FusionReactor.add(fluid('liquidsodium'),fluid('water'))
+
+//Recycler
+mods.Mekanism.Recycler.add(item('minecraft:diamond_block'),item('mekanism:scrap'),1/5)
+mods.Mekanism.Recycler.removeByInput(item('minecraft:dirt'))

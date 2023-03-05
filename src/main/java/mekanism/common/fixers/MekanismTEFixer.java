@@ -82,6 +82,7 @@ public class MekanismTEFixer extends TEFixer {
        // putEntry("COMPOUNDCATHETER", "compound_catheter");
         putEntry("OrganicFarm", "organic_farm");
         putEntry("Stamping", "stamping");
+        putEntry("Recycler", "Recycler");
         putEntry("Rolling", "rolling");
         putEntry("Brushed", "brushed");
         putEntry("Turning", "turning");

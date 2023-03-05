@@ -205,4 +205,6 @@ public interface MekanismRecipeHelper {
     void addCellSeparatorRecipe(ItemStack input, ItemStack primaryOutput);
 
     void addFusionCoolingRecipe(FluidStack inputFluid, FluidStack outputFluid);
+
+    void addRecyclerRecipe(ItemStack input, ItemStack primaryOutput, double chance);
 }

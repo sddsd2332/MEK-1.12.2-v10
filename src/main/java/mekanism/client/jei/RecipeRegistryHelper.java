@@ -75,6 +75,15 @@ public class RecipeRegistryHelper {
         registerRecipeItem(registry, MachineType.STAMPING, Recipe.STAMPING);
     }
 
+    public static void registerRecycler(IModRegistry registry) {
+        if (!MachineType.RECYCLER.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.RECYCLER,  Chance2MachineRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiRecycler.class, 79, 40, 24, 7, Recipe.RECYCLER.getJEICategory());
+        registerRecipeItem(registry, MachineType.RECYCLER, Recipe.RECYCLER);
+    }
+
     public static void registerRolling(IModRegistry registry) {
         if (!MachineType.ROLLING.isEnabled()) {
             return;

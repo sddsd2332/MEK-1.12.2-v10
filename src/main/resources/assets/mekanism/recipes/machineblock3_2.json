@@ -1,0 +1,48 @@
+{
+  "result": {
+    "item": "mekanism:machineblock3",
+    "data": 2
+  },
+  "pattern": [
+    "ASA",
+    "CPC",
+    "BBB"
+  ],
+  "type": "mekanism:ore_shaped",
+  "conditions": [
+    {
+      "type": "mekanism:recipe_enabled",
+      "machineType": "AmbientAccumulator"
+    }
+  ],
+  "key": {
+    "P": {
+      "item": "mekanism:basicblock",
+      "data": 8
+    },
+    "A": {
+      "ore": "alloyAdvanced",
+      "type": "forge:ore_dict"
+    },
+    "B": {
+      "ore": "blockSteel",
+      "type": "forge:ore_dict"
+    },
+    "S": {
+      "nbt": {
+        "tier": 0
+      },
+      "item": "mekanism:transmitter",
+      "data": 2,
+      "type": "mekanism:item_nbt"
+    },
+    "C": {
+      "nbt": {
+        "tier": 0
+      },
+      "item": "mekanism:gastank",
+      "data": 0,
+      "type": "mekanism:item_nbt"
+    }
+  }
+}

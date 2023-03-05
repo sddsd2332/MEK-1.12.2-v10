@@ -113,6 +113,5 @@ public class MekanismFluids {
         FluidRegistry.addBucketForFluid(Lithium.getFluid());
         FluidRegistry.addBucketForFluid(Polonium.getFluid());
         FluidRegistry.addBucketForFluid(Antimatter.getFluid());
-        FluidRegistry.addBucketForFluid(BioEthanol);
     }
 }

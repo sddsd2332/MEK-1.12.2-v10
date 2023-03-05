@@ -1,0 +1,37 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "mekanism:machine",
+    "textures": {
+      "sides": "mekanism:blocks/factory/basic/recycler/side",
+      "front": "mekanism:blocks/factory/basic/recycler/front",
+      "south": "mekanism:blocks/factory/basic/recycler/side",
+      "west": "mekanism:blocks/factory/basic/recycler/side",
+      "east": "mekanism:blocks/factory/basic/recycler/side",
+      "up": "mekanism:blocks/factory/basic/recycler/top",
+      "down": "mekanism:blocks/factory/basic/basicFactoryBottom"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "east":  {"y": 90},
+      "west":  {"y": -90}
+    },
+    "active": {
+      "true": {
+        "textures": {
+          "front": "mekanism:blocks/factory/basic/recycler/front_active",
+          "south": "mekanism:blocks/factory/basic/recycler/side_active",
+          "west": "mekanism:blocks/factory/basic/recycler/side_active",
+          "east": "mekanism:blocks/factory/basic/recycler/side_active",
+          "up": "mekanism:blocks/factory/basic/recycler/top_active"
+        }
+      },
+      "false": {}
+    },
+    "inventory": [{}]
+  }
+}
+

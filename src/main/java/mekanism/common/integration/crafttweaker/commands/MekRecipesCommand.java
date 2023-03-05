@@ -24,7 +24,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
     public MekRecipesCommand() {
         super("mekrecipes");
         subCommands = Stream.of("crystallizer", "dissolution", "chemicalInfuser", "injection", "oxidizer", "washer", "combiner", "crusher", "separator", "smelter",
-              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator","fusioncooling").collect(Collectors.toList());
+              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator","fusioncooling","Recycler").collect(Collectors.toList());
     }
 
     @Override
@@ -182,12 +182,23 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                 type = Recipe.PRECISION_SAWMILL;
                 for (SawmillRecipe recipe : Recipe.PRECISION_SAWMILL.get().values()) {
                     CraftTweakerAPI.logCommand(String.format("mods.mekanism.sawmill.addRecipe(%s, %s, %s, %s)",
-                          RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
-                          RecipeInfoHelper.getItemName(recipe.getOutput().primaryOutput),
-                          RecipeInfoHelper.getItemName(recipe.getOutput().secondaryOutput),
-                          recipe.getOutput().secondaryChance
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().primaryOutput),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().secondaryOutput),
+                            recipe.getOutput().secondaryChance
                     ));
                 }
+                break;
+            case "Recycler":
+                type = Recipe.RECYCLER;
+                for (RecyclerRecipe recipe :Recipe.RECYCLER.get().values()){
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.sawmill.addRecipe(%s, %s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getItemName(recipe.getOutput().primaryOutput),
+                            recipe.getOutput().primaryChance
+                    ));
+                }
+                break;
             case "cellextractor":
                 type = Recipe.CELL_EXTRACTOR;
                 for (CellExtractorRecipe recipe : Recipe.CELL_EXTRACTOR.get().values()) {
@@ -198,6 +209,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                             recipe.getOutput().secondaryChance
                     ));
                 }
+                break;
             case "cellseparator":
                 type = Recipe.CELL_SEPARATOR;
                 for (CellSeparatorRecipe recipe : Recipe.CELL_SEPARATOR.get().values()) {
@@ -208,6 +220,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                             recipe.getOutput().secondaryChance
                     ));
                 }
+                break;
             case "organicfarm":
                 type = Recipe.ORGANIC_FARM;
                 for (FarmRecipe recipe : Recipe.ORGANIC_FARM.get().values()) {

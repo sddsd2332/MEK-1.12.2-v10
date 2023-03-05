@@ -316,7 +316,7 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
 
     @Override
     protected ResourceLocation getGuiLocation() {
-        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM || tileEntity.getRecipeType() == RecipeType.INFUSING){
+        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM || tileEntity.getRecipeType() == RecipeType.INFUSING){
             if (tileEntity.tier == FactoryTier.BASIC){
                 return MekanismUtils.getResource(ResourceType.GUI_BASIC_FACTORY,"infused.png");
             }else if (tileEntity.tier == FactoryTier.ADVANCED){
