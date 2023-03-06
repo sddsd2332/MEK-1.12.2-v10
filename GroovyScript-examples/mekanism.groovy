@@ -54,3 +54,7 @@ mods.Mekanism.FusionReactor.add(fluid('liquidsodium'),fluid('water'))
 //Recycler
 mods.Mekanism.Recycler.add(item('minecraft:diamond_block'),item('mekanism:scrap'),1/5)
 mods.Mekanism.Recycler.removeByInput(item('minecraft:dirt'))
+
+//Ambient Accumulator
+mods.Mekanism.AmbientAccumulator.removeByInput(0)
+mods.Mekanism.AmbientAccumulator.add(0,gas('water'))

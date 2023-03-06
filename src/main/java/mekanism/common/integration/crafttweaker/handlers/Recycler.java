@@ -23,7 +23,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import java.util.ArrayList;
 import java.util.List;
 
-@ZenClass("mods.mekanism.Recycler")
+@ZenClass("mods.mekanism.recycler")
 @ZenRegister
 public class Recycler {
 

@@ -13,8 +13,7 @@ public class GrSMekanismAdd extends Mekanism {
     public AntiprotonicNucleosynthesizer antiprotonicNucleosynthesizer = new AntiprotonicNucleosynthesizer();
     public IsotopicCentrifuge isotopicCentrifuge =new IsotopicCentrifuge();
     public OrganicFarm organicFarm = new OrganicFarm();
-    // TODO: To be repaired
-    //public AmbientAccumulator ambientAccumulator = new AmbientAccumulator();
+    public AmbientAccumulator ambientAccumulator = new AmbientAccumulator();
     public Stamping stamping =new Stamping();
     public Rolling rolling = new Rolling();
     public Brushed brushed = new Brushed();
@@ -32,8 +31,7 @@ public class GrSMekanismAdd extends Mekanism {
         addRegistry(antiprotonicNucleosynthesizer);
         addRegistry(isotopicCentrifuge);
         addRegistry(organicFarm);
-        // TODO: To be repaired
-       //addRegistry(ambientAccumulator);
+        addRegistry(ambientAccumulator);
         addRegistry(stamping);
         addRegistry(rolling);
         addRegistry(brushed);
@@ -48,7 +46,4 @@ public class GrSMekanismAdd extends Mekanism {
        }
     }
 
-
-    // TODO: Need to replace
-    //public static boolean isEmpty(int input) { return false;}
 }

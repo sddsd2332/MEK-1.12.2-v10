@@ -126,11 +126,4 @@ public class AntiprotonicNucleosynthesizer extends VirtualizedMekanismRegistry<N
             return mekgrs.MEKANISM.get().antiprotonicNucleosynthesizer.add(input.get(0), gasInput.get(0), output.get(0), energy, duration);
         }
     }
-
-
-
-
-
-
-
 }

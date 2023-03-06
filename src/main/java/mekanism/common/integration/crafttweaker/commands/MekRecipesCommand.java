@@ -24,7 +24,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
     public MekRecipesCommand() {
         super("mekrecipes");
         subCommands = Stream.of("crystallizer", "dissolution", "chemicalInfuser", "injection", "oxidizer", "washer", "combiner", "crusher", "separator", "smelter",
-              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator","fusioncooling","Recycler").collect(Collectors.toList());
+              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator","fusioncooling","recycler").collect(Collectors.toList());
     }
 
     @Override
@@ -189,10 +189,10 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                     ));
                 }
                 break;
-            case "Recycler":
+            case "recycler":
                 type = Recipe.RECYCLER;
                 for (RecyclerRecipe recipe :Recipe.RECYCLER.get().values()){
-                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.sawmill.addRecipe(%s, %s, %s)",
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.recycler.addRecipe(%s, %s, %s)",
                             RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
                             RecipeInfoHelper.getItemName(recipe.getOutput().primaryOutput),
                             recipe.getOutput().primaryChance
