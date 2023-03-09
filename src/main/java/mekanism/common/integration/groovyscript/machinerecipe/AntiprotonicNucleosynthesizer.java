@@ -7,7 +7,7 @@ import com.cleanroommc.groovyscript.compat.mods.mekanism.recipe.VirtualizedMekan
 import com.cleanroommc.groovyscript.helper.ingredient.IngredientHelper;
 import com.cleanroommc.groovyscript.helper.recipe.AbstractRecipeBuilder;
 import mekanism.api.gas.GasStack;
-import mekanism.common.integration.groovyscript.mekgrs;
+import mekanism.common.integration.groovyscript.GrSMekanismAdd;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.NucleosynthesizerInput;
 import mekanism.common.recipe.machines.NucleosynthesizerRecipe;
@@ -17,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 
 public class AntiprotonicNucleosynthesizer extends VirtualizedMekanismRegistry<NucleosynthesizerRecipe> {
 
@@ -123,7 +124,8 @@ public class AntiprotonicNucleosynthesizer extends VirtualizedMekanismRegistry<N
         @Override
         public @Nullable NucleosynthesizerRecipe register() {
             if (!validate()) return null;
-            return mekgrs.MEKANISM.get().antiprotonicNucleosynthesizer.add(input.get(0), gasInput.get(0), output.get(0), energy, duration);
+            return GrSMekanismAdd.modSupportContainer.get().antiprotonicNucleosynthesizer.add(input.get(0), gasInput.get(0), output.get(0), energy, duration);
         }
     }
+
 }

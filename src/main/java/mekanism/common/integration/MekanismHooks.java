@@ -19,7 +19,6 @@ import mekanism.common.block.states.BlockStateTransmitter.TransmitterType;
 import mekanism.common.integration.computer.CCPeripheral;
 import mekanism.common.integration.computer.OCDriver;
 import mekanism.common.integration.crafttweaker.CrafttweakerIntegration;
-import mekanism.common.integration.groovyscript.mekgrs;
 import mekanism.common.integration.mysticalagriculture.MysticalAgricultureSeed;
 import mekanism.common.integration.wrenches.Wrenches;
 import mekanism.common.recipe.RecipeHandler;
@@ -77,7 +76,6 @@ public final class MekanismHooks {
     public boolean OCLoaded = false;
     public boolean RFLoaded = false;
     public boolean TeslaLoaded = false;
-    public boolean GroovyScriptLoaded = false;
 
     public void hookPreInit() {
         AE2Loaded = Loader.isModLoaded(APPLIED_ENERGISTICS_2_MOD_ID);
@@ -92,9 +90,6 @@ public final class MekanismHooks {
         OCLoaded = Loader.isModLoaded(OPENCOMPUTERS_MOD_ID);
         RFLoaded = Loader.isModLoaded(REDSTONEFLUX_MOD_ID);
         TeslaLoaded = Loader.isModLoaded(TESLA_MOD_ID);
-
-        GroovyScriptLoaded = Loader.isModLoaded(GROOVYSCRIPT_MOD_ID);
-
     }
 
     public void hookInit() {
@@ -110,6 +105,8 @@ public final class MekanismHooks {
             registerAE2P2P();
         }
     }
+
+
 
     public void hookPostInit() {
         if (IC2Loaded) {
@@ -144,12 +141,7 @@ public final class MekanismHooks {
             Mekanism.logger.info("Hooked into Craft Tweaker successfully.");
         }
 
-        if (GroovyScriptLoaded){
-            // GroovyScript: a new recipe modifier (can be hot loaded)
-            new mekgrs();
-            Mekanism.logger.info("Hooked into GroovyScript successfully.");
 
-        }
 
         Wrenches.initialise();
     }

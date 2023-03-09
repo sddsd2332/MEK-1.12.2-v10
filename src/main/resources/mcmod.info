@@ -27,7 +27,8 @@
       "metallurgy",
       "crafttweaker",
       "cofhcore",
-      "cyclicmagic"
+      "cyclicmagic",
+      "groovyscript@[0.4.0,)"
     ],
     "requiredMods": [
       "forge@[14.23.5.2768,)"
