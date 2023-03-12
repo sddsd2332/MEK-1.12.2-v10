@@ -15,8 +15,10 @@ import mekanism.common.integration.tesla.TeslaIntegration;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import net.darkhax.tesla.api.ITeslaConsumer;
 import net.darkhax.tesla.api.ITeslaProducer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -62,6 +64,9 @@ public final class ChargeUtils {
                 storer.setEnergy(storer.getEnergy() + gain);
             } else if (stack.getItem() == Items.REDSTONE && storer.getEnergy() + MekanismConfig.current().general.ENERGY_PER_REDSTONE.val() <= storer.getMaxEnergy()) {
                 storer.setEnergy(storer.getEnergy() + MekanismConfig.current().general.ENERGY_PER_REDSTONE.val());
+                stack.shrink(1);
+            } else if (stack.getItem() == Item.getItemFromBlock(Blocks.REDSTONE_BLOCK) && storer.getEnergy() + MekanismConfig.current().general.ENERGY_PER_REDSTONE.val() * 9 <= storer.getMaxEnergy()) {
+                storer.setEnergy(storer.getEnergy() + MekanismConfig.current().general.ENERGY_PER_REDSTONE.val() * 9);
                 stack.shrink(1);
             }
         }
@@ -150,7 +155,7 @@ public final class ChargeUtils {
                 return true;
             }
         }
-        return itemstack.getItem() == Items.REDSTONE;
+        return itemstack.getItem() == Items.REDSTONE || itemstack.getItem() == Item.getItemFromBlock(Blocks.REDSTONE_BLOCK);
     }
 
     /**

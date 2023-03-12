@@ -7,8 +7,10 @@ import mekanism.common.util.ChargeUtils;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public abstract class ContainerEnergyStorage<TILE extends TileEntityContainerBlock> extends ContainerMekanism<TILE> {
@@ -26,7 +28,7 @@ public abstract class ContainerEnergyStorage<TILE extends TileEntityContainerBlo
             ItemStack slotStack = currentSlot.getStack();
             stack = slotStack.copy();
             if (ChargeUtils.canBeCharged(slotStack) || ChargeUtils.canBeDischarged(slotStack)) {
-                if (slotStack.getItem() == Items.REDSTONE) {
+                if (slotStack.getItem() == Items.REDSTONE || slotStack.getItem() == Item.getItemFromBlock(Blocks.REDSTONE_BLOCK)) {
                     if (slotID != 1) {
                         if (!mergeItemStack(slotStack, 1, 2, false)) {
                             return ItemStack.EMPTY;

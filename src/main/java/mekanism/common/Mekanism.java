@@ -2,15 +2,9 @@ package mekanism.common;
 
 import com.mojang.authlib.GameProfile;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.UUID;
+
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.MekanismAPI;
@@ -62,7 +56,6 @@ import mekanism.common.recipe.GasConversionHandler;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.inputs.ItemStackInput;
-import mekanism.common.recipe.inputs.MachineInput;
 import mekanism.common.recipe.machines.SmeltingRecipe;
 import mekanism.common.recipe.outputs.ItemStackOutput;
 import mekanism.common.security.SecurityFrequency;
@@ -73,7 +66,6 @@ import mekanism.common.transmitters.grid.EnergyNetwork.EnergyTransferEvent;
 import mekanism.common.transmitters.grid.FluidNetwork.FluidTransferEvent;
 import mekanism.common.transmitters.grid.GasNetwork.GasTransferEvent;
 import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.StackUtils;
 import mekanism.common.voice.VoiceServerManager;
 import mekanism.common.world.GenHandler;
 import net.minecraft.block.Block;
@@ -211,7 +203,6 @@ public class Mekanism {
     }
 
 
-
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         // Register blocks and tile entities
@@ -297,7 +288,6 @@ public class Mekanism {
             RecipeHandler.addEnrichmentChamberRecipe(new ItemStack(MekanismItems.Polyethene, 3, 0), new ItemStack(MekanismItems.Polyethene, 1, 2));
             RecipeHandler.addEnrichmentChamberRecipe(new ItemStack(MekanismBlocks.OreBlock, 1, 3), new ItemStack(MekanismItems.OtherDust, 6, 7));
             RecipeHandler.addEnrichmentChamberRecipe(new ItemStack(MekanismItems.Ingot, 1, 8), new ItemStack(MekanismItems.YellowCakeUranium, 2));
-
             for (int i = 0; i < EnumColor.DYES.length; i++) {
                 RecipeHandler.addEnrichmentChamberRecipe(new ItemStack(MekanismBlocks.PlasticBlock, 1, i), new ItemStack(MekanismBlocks.SlickPlasticBlock, 1, i));
             }
