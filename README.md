@@ -38,7 +38,7 @@ Official Mekanism has a[discord](https://discord.gg/nmSjMGc) where you can come 
 
 # License #
 
-[LICENSE](https://raw.githubusercontent.com/sddsd2332/MEK-1.12.2-v10/main/README.md)
+[LICENSE](https://raw.githubusercontent.com/sddsd2332/MEK-1.12.2-v10/main/LICENSE.md)
 
 [ORIGINAL MOD](https://github.com/mekanism/Mekanism)
 
