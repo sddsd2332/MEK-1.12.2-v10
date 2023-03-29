@@ -307,31 +307,44 @@ public class GeneralConfig extends BaseConfig {
 
     public final BooleanOption blacklistForge = new BooleanOption(this, "general", "BlacklistForgePower", false,
             "Disables Forge Energy (FE,IF,uF,CF) power integration. Requires world restart (server-side option in SMP).");
+
     public final IntOption laserRange = new IntOption(this, "general", "LaserRange", 64,
             "How far (in blocks) a laser can travel.");
+
     public final IntOption laserEnergyNeededPerHardness = new IntOption(this, "general", "LaserDiggingEnergy", 100000,
             "Energy needed to destroy or attract blocks with a Laser (per block hardness level).");
+
     public final BooleanOption destroyDisabledBlocks = new BooleanOption(this, "general", "DestroyDisabledBlocks", true,
             "If machine is disabled in config, do we set its block to air if it is found in world?");
+
     public final BooleanOption voidInvalidGases = new BooleanOption(this, "general", "VoidInvalidGases", true,
             "Should machines void the gas inside of them on load if there is no recipe using that gas.");
+
     public final IntOption digitalMinerMaxRadius = new IntOption(this, "general", "digitalMinerMaxRadius", 32,
             "Maximum radius in blocks that the Digital Miner can reach. (Increasing this may have negative effects on stability and/or performance. "
                     + "We strongly recommend you leave it at the default value.)", 1, Integer.MAX_VALUE);
+
     public final DoubleOption sawdustChancePlank = new DoubleOption(this, "general", "SawdustChancePlank", 0.25D,
             "Chance of producing sawdust per operation in the precision sawmill when turning planks into sticks.").setRequiresGameRestart(true);
+
     public final DoubleOption sawdustChanceLog = new DoubleOption(this, "general", "SawdustChanceLog", 1D,
             "Chance of producing sawdust per operation in the precision sawmill when turning logs into planks.").setRequiresGameRestart(true);
+
     public final DoubleOption seed = new DoubleOption(this, "general", "seed", 1D,
             "When turning seeds into crops, the chance to produce seeds for each operation in Organic Farm").setRequiresGameRestart(true);
+
     public final DoubleOption log = new DoubleOption(this, "general", "log", 1D,
             "When turning seeds into crops, the opportunity to produce log in each operation in Organic Farm.").setRequiresGameRestart(true);
-    public final BooleanOption newfactoryautosorting = new BooleanOption(this, "general", "New Factory Auto Sorting(WIP)", false,
-            "Do you use New Factory Auto Sorting? This can cause problems.");
-    public final TypeConfigManager<MachineType> machinesManager = new TypeConfigManager<>(this, "machines", MachineType.class, MachineType::getValidMachines, MachineType::getBlockName);
+
+    public final TypeConfigManager<MachineType> machinesManager = new TypeConfigManager<>(this, "machines",
+            MachineType.class, MachineType::getValidMachines, MachineType::getBlockName);
+
     public final EnumMap<BaseTier, TierConfig> tiers = TierConfig.create(this);
+
     public EnumOption<EnergyType> energyUnit = new EnumOption<>(this, "general", "EnergyType", EnergyType.RF,
             "Displayed energy type in Mekanism GUIs.");
+
     public EnumOption<TempType> tempUnit = new EnumOption<>(this, "general", "Temperature Units", TempType.K,
             "Displayed temperature unit in Mekanism GUIs.");
+
 }

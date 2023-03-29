@@ -30,6 +30,7 @@ public class TierConfig {
     public final IntOption GasTankStorage;
     public final IntOption GasTankOutput;
     public final IntOption BinStorage;
+
     private TierConfig(BaseConfig baseConfig, BaseTier tier) {
         String name = tier.getSimpleName();
         EnergyCubeMaxEnergy = new DoubleOption(baseConfig, "tier", name + "EnergyCubeMaxEnergy", EnergyCubeTier.values()[tier.ordinal()].getBaseMaxEnergy(),

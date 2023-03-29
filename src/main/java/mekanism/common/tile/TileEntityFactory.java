@@ -53,7 +53,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-@SuppressWarnings("rawtypes")
+
 public class TileEntityFactory extends TileEntityMachine implements IComputerIntegration, ISideConfiguration, IGasHandler, ISpecialConfigData, ITierUpgradeable,
         ISustainedData, IComparatorSupport {
 
@@ -175,20 +175,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                 return new int[]{5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
             default:
                 return null;
-        }
-    }
-
-    public static ItemStack getRecipeOutput(MachineRecipe recipe) {
-        if (recipe.recipeOutput instanceof ItemStackOutput) {
-            return ((ItemStackOutput) recipe.recipeOutput).output;
-        } else if (recipe.recipeOutput instanceof ChanceOutput) {
-            return ((ChanceOutput) recipe.recipeOutput).primaryOutput;
-        } else if (recipe.recipeOutput instanceof ChanceOutput2) {
-            return ((ChanceOutput2) recipe.recipeOutput).primaryOutput;
-        } else if (recipe.recipeOutput instanceof PressurizedOutput) {
-            return ((PressurizedOutput) recipe.recipeOutput).getItemOutput();
-        } else {
-            return ItemStack.EMPTY;
         }
     }
 
