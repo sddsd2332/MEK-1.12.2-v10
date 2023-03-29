@@ -21,7 +21,6 @@ public interface ISustainedTank {
      * Gets the tank tag list from an item or block.
      *
      * @param data - ItemStack parameter if using on item
-     *
      * @return inventory tag list
      */
     FluidStack getFluidStack(Object... data);
@@ -30,7 +29,6 @@ public interface ISustainedTank {
      * Whether or not this block or item has an internal tank.
      *
      * @param data - ItemStack parameter if using on item
-     *
      * @return if the block or item has an internal tank
      */
     boolean hasTank(Object... data);

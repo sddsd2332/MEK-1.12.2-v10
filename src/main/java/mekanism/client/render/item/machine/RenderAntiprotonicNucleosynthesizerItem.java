@@ -1,7 +1,6 @@
 package mekanism.client.render.item.machine;
 
 import mekanism.client.model.ModelAntiprotonicNucleosynthesizer;
-import mekanism.client.model.ModelIsotopicCentrifuge;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MekanismUtils.ResourceType;

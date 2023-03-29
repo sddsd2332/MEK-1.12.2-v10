@@ -1,6 +1,5 @@
 package mekanism.client.render.item.gear;
 
-import javax.annotation.Nonnull;
 import mekanism.client.model.ModelFlamethrower;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.item.ItemLayerWrapper;
@@ -13,11 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderFlameThrower extends MekanismItemStackRenderer {
 
-    private static ModelFlamethrower flamethrower = new ModelFlamethrower();
     public static ItemLayerWrapper model;
+    private static ModelFlamethrower flamethrower = new ModelFlamethrower();
 
     @Override
     protected void renderBlockSpecific(@Nonnull ItemStack stack, TransformType transformType) {
@@ -33,7 +34,7 @@ public class RenderFlameThrower extends MekanismItemStackRenderer {
         GlStateManager.rotate(-20, 0, 0, 1);
 
         if (transformType == TransformType.FIRST_PERSON_RIGHT_HAND || transformType == TransformType.THIRD_PERSON_RIGHT_HAND
-            || transformType == TransformType.FIRST_PERSON_LEFT_HAND || transformType == TransformType.THIRD_PERSON_LEFT_HAND) {
+                || transformType == TransformType.FIRST_PERSON_LEFT_HAND || transformType == TransformType.THIRD_PERSON_LEFT_HAND) {
             if (transformType == TransformType.FIRST_PERSON_RIGHT_HAND) {
                 GlStateManager.rotate(55, 0, 1, 0);
             } else if (transformType == TransformType.FIRST_PERSON_LEFT_HAND) {

@@ -1,6 +1,5 @@
 package mekanism.client.render.entity;
 
-import javax.annotation.Nonnull;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.common.MekanismBlocks;
 import mekanism.common.entity.EntityObsidianTNT;
@@ -16,6 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
 public class RenderObsidianTNTPrimed extends Render<EntityObsidianTNT> {

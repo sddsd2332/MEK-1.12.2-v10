@@ -1,8 +1,5 @@
 package mekanism.generators.common.tile.turbine;
 
-import java.util.EnumSet;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.common.base.FluidHandlerWrapper;
 import mekanism.common.base.IFluidHandlerWrapper;
 import mekanism.common.util.CapabilityUtils;
@@ -15,6 +12,10 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.EnumSet;
 
 public class TileEntityTurbineVent extends TileEntityTurbineCasing implements IFluidHandlerWrapper {
 

@@ -1,6 +1,5 @@
 package mekanism.common.tile.prefab;
 
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.MekanismItems;
@@ -21,6 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
 
 public abstract class TileEntityDoubleElectricMachine<RECIPE extends DoubleMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<DoubleMachineInput, ItemStackOutput, RECIPE> {
 
@@ -43,7 +44,7 @@ public abstract class TileEntityDoubleElectricMachine<RECIPE extends DoubleMachi
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{2}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{3}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.YELLOW, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{1,0}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{1, 0}));
 
         configComponent.setConfig(TransmissionType.ITEM, new byte[]{4, 1, 0, 3, 0, 2});
         configComponent.setInputConfig(TransmissionType.ENERGY);

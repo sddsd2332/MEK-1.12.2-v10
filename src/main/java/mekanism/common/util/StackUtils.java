@@ -1,8 +1,5 @@
 package mekanism.common.util;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Nonnull;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +13,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+
 public final class StackUtils {
 
     //ignores count
@@ -24,7 +25,7 @@ public final class StackUtils {
             return true;
         }
         return wild.getItem() == check.getItem() && (wild.getItemDamage() == OreDictionary.WILDCARD_VALUE || check.getItemDamage() == OreDictionary.WILDCARD_VALUE ||
-                                                     wild.getItemDamage() == check.getItemDamage());
+                wild.getItemDamage() == check.getItemDamage());
     }
 
     //ignores count
@@ -34,7 +35,7 @@ public final class StackUtils {
             return wildcard;
         }
         return wildcard && (!wild.hasTagCompound() ? !check.hasTagCompound() : (wild.getTagCompound() == check.getTagCompound() ||
-                                                                                wild.getTagCompound().equals(check.getTagCompound())));
+                wild.getTagCompound().equals(check.getTagCompound())));
     }
 
     //assumes stacks same
@@ -117,7 +118,6 @@ public final class StackUtils {
      * @param world  which universe
      * @param pos    where
      * @param player our fake player, usually
-     *
      * @return the result of {@link Block#getStateForPlacement(net.minecraft.world.World, net.minecraft.util.math.BlockPos, net.minecraft.util.EnumFacing, float, float,
      * float, int, net.minecraft.entity.EntityLivingBase, net.minecraft.util.EnumHand)}
      */

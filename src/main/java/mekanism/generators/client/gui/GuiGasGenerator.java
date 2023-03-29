@@ -1,6 +1,5 @@
 package mekanism.generators.client.gui;
 
-import java.util.Arrays;
 import mekanism.client.gui.GuiMekanismTile;
 import mekanism.client.gui.element.GuiEnergyInfo;
 import mekanism.client.gui.element.GuiPowerBar;
@@ -21,6 +20,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Arrays;
+
 @SideOnly(Side.CLIENT)
 public class GuiGasGenerator extends GuiMekanismTile<TileEntityGasGenerator> {
 
@@ -30,8 +31,8 @@ public class GuiGasGenerator extends GuiMekanismTile<TileEntityGasGenerator> {
         addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
         addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
         addGuiElement(new GuiEnergyInfo(() -> Arrays.asList(
-              LangUtils.localize("gui.producing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.generationRate * tileEntity.clientUsed) + "/t",
-              LangUtils.localize("gui.maxOutput") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxOutput()) + "/t"), this, resource));
+                LangUtils.localize("gui.producing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.generationRate * tileEntity.clientUsed) + "/t",
+                LangUtils.localize("gui.maxOutput") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxOutput()) + "/t"), this, resource));
         addGuiElement(new GuiGasGauge(() -> tileEntity.fuelTank, Type.WIDE, this, resource, 55, 18));
         addGuiElement(new GuiPowerBar(this, tileEntity, resource, 164, 15));
         addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 16, 34));

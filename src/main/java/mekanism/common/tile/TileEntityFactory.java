@@ -48,7 +48,10 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 @SuppressWarnings("rawtypes")
 public class TileEntityFactory extends TileEntityMachine implements IComputerIntegration, ISideConfiguration, IGasHandler, ISpecialConfigData, ITierUpgradeable,
@@ -172,6 +175,37 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
                 return new int[]{5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
             default:
                 return null;
+        }
+    }
+
+    public static ItemStack getRecipeOutput(MachineRecipe recipe) {
+        if (recipe.recipeOutput instanceof ItemStackOutput) {
+            return ((ItemStackOutput) recipe.recipeOutput).output;
+        } else if (recipe.recipeOutput instanceof ChanceOutput) {
+            return ((ChanceOutput) recipe.recipeOutput).primaryOutput;
+        } else if (recipe.recipeOutput instanceof ChanceOutput2) {
+            return ((ChanceOutput2) recipe.recipeOutput).primaryOutput;
+        } else if (recipe.recipeOutput instanceof PressurizedOutput) {
+            return ((PressurizedOutput) recipe.recipeOutput).getItemOutput();
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    public static ItemStack getRecipeInput(MachineRecipe recipe) {
+        if (recipe.recipeInput instanceof ItemStackInput) {
+            return ((ItemStackInput) recipe.recipeInput).ingredient;
+        } else if (recipe.recipeInput instanceof AdvancedMachineInput) {
+            AdvancedMachineInput advancedInput = (AdvancedMachineInput) recipe.recipeInput;
+            return advancedInput.itemStack;
+        } else if (recipe.recipeInput instanceof DoubleMachineInput) {
+            DoubleMachineInput doubleMachineInput = (DoubleMachineInput) recipe.recipeInput;
+            return doubleMachineInput.itemStack;
+        } else if (recipe.recipeInput instanceof InfusionInput) {
+            InfusionInput infusionInput = (InfusionInput) recipe.recipeInput;
+            return infusionInput.inputStack;
+        } else {
+            return ItemStack.EMPTY;
         }
     }
 
@@ -302,7 +336,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             secondaryEnergyThisTick = recipeType.fuelEnergyUpgrades() ? StatUtils.inversePoisson(secondaryEnergyPerTick) : (int) Math.ceil(secondaryEnergyPerTick);
             for (int process = 0; process < tier.processes; process++) {
                 if (MekanismUtils.canFunction(this) && canOperate(getInputSlot(process), getOutputSlot(process))
-                    && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
+                        && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
                     if ((progress[process] + 1) < ticksRequired) {
                         progress[process]++;
                         gasTank.draw(secondaryEnergyThisTick, true);
@@ -383,37 +417,6 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
     @Override
     public boolean sideIsConsumer(EnumFacing side) {
         return configComponent.hasSideForData(TransmissionType.ENERGY, facing, 1, side);
-    }
-
-    public static ItemStack getRecipeOutput(MachineRecipe recipe) {
-        if (recipe.recipeOutput instanceof ItemStackOutput) {
-            return ((ItemStackOutput) recipe.recipeOutput).output;
-        } else if (recipe.recipeOutput instanceof ChanceOutput) {
-            return ((ChanceOutput) recipe.recipeOutput).primaryOutput;
-        } else if (recipe.recipeOutput instanceof ChanceOutput2) {
-            return ((ChanceOutput2) recipe.recipeOutput).primaryOutput;
-        } else if (recipe.recipeOutput instanceof PressurizedOutput) {
-            return ((PressurizedOutput) recipe.recipeOutput).getItemOutput();
-        } else {
-            return ItemStack.EMPTY;
-        }
-    }
-
-    public static ItemStack getRecipeInput(MachineRecipe recipe) {
-        if (recipe.recipeInput instanceof ItemStackInput) {
-            return ((ItemStackInput) recipe.recipeInput).ingredient;
-        } else if (recipe.recipeInput instanceof AdvancedMachineInput) {
-            AdvancedMachineInput advancedInput = (AdvancedMachineInput) recipe.recipeInput;
-            return advancedInput.itemStack;
-        } else if (recipe.recipeInput instanceof DoubleMachineInput) {
-            DoubleMachineInput doubleMachineInput = (DoubleMachineInput) recipe.recipeInput;
-            return doubleMachineInput.itemStack;
-        } else if (recipe.recipeInput instanceof InfusionInput) {
-            InfusionInput infusionInput = (InfusionInput) recipe.recipeInput;
-            return infusionInput.inputStack;
-        } else {
-            return ItemStack.EMPTY;
-        }
     }
 
     public MachineRecipe getSlotRecipe(int slotID, ItemStack fallbackInput, ItemStack output) {
@@ -1092,7 +1095,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return false;
         }
         return capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.CONFIG_CARD_CAPABILITY
-               || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY || super.hasCapability(capability, side);
+                || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override
@@ -1101,7 +1104,7 @@ public class TileEntityFactory extends TileEntityMachine implements IComputerInt
             return null;
         }
         if (capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.CONFIG_CARD_CAPABILITY
-            || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY) {
+                || capability == Capabilities.SPECIAL_CONFIG_DATA_CAPABILITY) {
             return (T) this;
         }
         return super.getCapability(capability, side);

@@ -1,8 +1,5 @@
 package mekanism.generators.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import mekanism.api.TileNetworkList;
 import mekanism.client.gui.element.GuiEnergyInfo;
 import mekanism.client.gui.element.GuiProgress;
@@ -26,6 +23,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @SideOnly(Side.CLIENT)
 public class GuiReactorFuel extends GuiReactorInfo {
 
@@ -35,9 +36,9 @@ public class GuiReactorFuel extends GuiReactorInfo {
         super(tile, new ContainerNull(inventory.player, tile));
         ResourceLocation resource = getGuiLocation();
         addGuiElement(new GuiEnergyInfo(() -> tileEntity.isFormed() ? Arrays.asList(
-              LangUtils.localize("gui.storing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()),
-              LangUtils.localize("gui.producing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getReactor().getPassiveGeneration(false, true)) + "/t")
-                                                                    : new ArrayList<>(), this, resource));
+                LangUtils.localize("gui.storing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()),
+                LangUtils.localize("gui.producing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getReactor().getPassiveGeneration(false, true)) + "/t")
+                : new ArrayList<>(), this, resource));
         addGuiElement(new GuiGasGauge(() -> tileEntity.deuteriumTank, Type.SMALL_RED, this, resource, 25, 64));
         addGuiElement(new GuiGasGauge(() -> tileEntity.fuelTank, Type.STANDARD, this, resource, 79, 50));
         addGuiElement(new GuiGasGauge(() -> tileEntity.tritiumTank, Type.SMALL_RED, this, resource, 133, 64));

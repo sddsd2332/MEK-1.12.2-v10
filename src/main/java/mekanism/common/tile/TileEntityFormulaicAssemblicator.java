@@ -1,8 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.IConfigCardAccess;
 import mekanism.api.TileNetworkList;
@@ -37,9 +35,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 public class TileEntityFormulaicAssemblicator extends TileEntityElectricBlock implements ISideConfiguration, IUpgradeTile, IRedstoneControl, IConfigCardAccess, ISecurityTile {
 
-    private static final NonNullList<ItemStack> EMPTY_LIST = NonNullList.create();
     public static final int SLOT_UPGRADE = 0;
     public static final int SLOT_ENERGY = 1;
     public static final int SLOT_FORMULA = 2;
@@ -49,7 +49,7 @@ public class TileEntityFormulaicAssemblicator extends TileEntityElectricBlock im
     public static final int SLOT_OUTPUT_LAST = 26;
     public static final int SLOT_CRAFT_MATRIX_FIRST = 27;
     public static final int SLOT_CRAFT_MATRIX_LAST = 35;
-
+    private static final NonNullList<ItemStack> EMPTY_LIST = NonNullList.create();
     public InventoryCrafting dummyInv = MekanismUtils.getDummyCraftingInv();
 
     public double BASE_ENERGY_PER_TICK = MachineType.FORMULAIC_ASSEMBLICATOR.getUsage();
@@ -72,19 +72,16 @@ public class TileEntityFormulaicAssemblicator extends TileEntityElectricBlock im
     public int pulseOperations;
 
     public RecipeFormula formula;
-    private IRecipe cachedRecipe;
-    private NonNullList<ItemStack> lastRemainingItems = EMPTY_LIST;
-
     public RedstoneControl controlType = RedstoneControl.DISABLED;
-
     public TileComponentUpgrade upgradeComponent;
     public TileComponentEjector ejectorComponent;
     public TileComponentConfig configComponent;
     public TileComponentSecurity securityComponent;
-
     public ItemStack lastFormulaStack = ItemStack.EMPTY;
     public boolean needsFormulaUpdate = false;
     public ItemStack lastOutputStack = ItemStack.EMPTY;
+    private IRecipe cachedRecipe;
+    private NonNullList<ItemStack> lastRemainingItems = EMPTY_LIST;
 
     public TileEntityFormulaicAssemblicator() {
         super("FormulaicAssemblicator", MachineType.FORMULAIC_ASSEMBLICATOR.getStorage());
@@ -92,7 +89,7 @@ public class TileEntityFormulaicAssemblicator extends TileEntityElectricBlock im
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[]{SLOT_INPUT_FIRST, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-                                                                                                             16, 17, 18, 19, SLOT_INPUT_LAST}));
+                16, 17, 18, 19, SLOT_INPUT_LAST}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{SLOT_OUTPUT_FIRST, 22, 23, 24, 25, SLOT_OUTPUT_LAST}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{SLOT_ENERGY}));
 
@@ -242,7 +239,7 @@ public class TileEntityFormulaicAssemblicator extends TileEntityElectricBlock im
 
     private boolean doSingleCraft() {
         for (int i = 0; i < 9; i++) {
-            dummyInv.setInventorySlotContents(i,  StackUtils.size(inventory.get(SLOT_CRAFT_MATRIX_FIRST + i), 1));
+            dummyInv.setInventorySlotContents(i, StackUtils.size(inventory.get(SLOT_CRAFT_MATRIX_FIRST + i), 1));
         }
         recalculateRecipe();
 

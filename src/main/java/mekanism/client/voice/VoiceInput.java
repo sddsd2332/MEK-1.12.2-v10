@@ -1,13 +1,14 @@
 package mekanism.client.voice;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.TargetDataLine;
 import mekanism.client.MekanismKeyHandler;
 import mekanism.common.Mekanism;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.TargetDataLine;
 
 @SideOnly(Side.CLIENT)
 public class VoiceInput extends Thread {

@@ -1,8 +1,5 @@
 package mekanism.common.item;
 
-import java.util.List;
-import java.util.UUID;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
@@ -44,6 +41,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.UUID;
+
 public class ItemBlockGasTank extends ItemBlock implements IGasItem, ISustainedInventory, ITierItem, ISecurityItem {
 
     /**
@@ -73,21 +74,22 @@ public class ItemBlockGasTank extends ItemBlock implements IGasItem, ISustainedI
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
         GasTankTier tier = GasTankTier.values()[getBaseTier(itemstack).ordinal()];
-        if (tier == GasTankTier.BASIC){
+        if (tier == GasTankTier.BASIC) {
             return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else if (tier == GasTankTier.ADVANCED){
+        } else if (tier == GasTankTier.ADVANCED) {
             return EnumColor.RED + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else if (tier == GasTankTier.ELITE){
+        } else if (tier == GasTankTier.ELITE) {
             return EnumColor.AQUA + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else if (tier == GasTankTier.ULTIMATE){
+        } else if (tier == GasTankTier.ULTIMATE) {
             return EnumColor.PURPLE + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else return EnumColor.ORANGE + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
+        } else
+            return EnumColor.ORANGE + LangUtils.localize("tile.GasTank" + getBaseTier(itemstack).getSimpleName() + ".name");
 
     }
 
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY,
-          float hitZ, @Nonnull IBlockState state) {
+                                float hitZ, @Nonnull IBlockState state) {
         boolean place = super.placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, state);
         if (place) {
             TileEntityGasTank tileEntity = (TileEntityGasTank) world.getTileEntity(pos);
@@ -131,7 +133,7 @@ public class ItemBlockGasTank extends ItemBlock implements IGasItem, ISustainedI
 
         if (!MekKeyHandler.getIsKeyPressed(MekanismKeyHandler.sneakKey)) {
             list.add(LangUtils.localize("tooltip.hold") + " " + EnumColor.AQUA + GameSettings.getKeyDisplayString(MekanismKeyHandler.sneakKey.getKeyCode()) +
-                     EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails") + ".");
+                    EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails") + ".");
         } else {
             if (hasSecurity(itemstack)) {
                 list.add(SecurityUtils.getOwnerDisplay(Minecraft.getMinecraft().player, MekanismClient.clientUUIDMap.get(getOwnerUUID(itemstack))));
@@ -142,7 +144,7 @@ public class ItemBlockGasTank extends ItemBlock implements IGasItem, ISustainedI
             }
 
             list.add(EnumColor.AQUA + LangUtils.localize("tooltip.inventory") + ": " + EnumColor.GREY +
-                     LangUtils.transYesNo(getInventory(itemstack) != null && getInventory(itemstack).tagCount() != 0));
+                    LangUtils.transYesNo(getInventory(itemstack) != null && getInventory(itemstack).tagCount() != 0));
         }
     }
 

@@ -1,10 +1,11 @@
 package mekanism.api.transmitters;
 
-import java.util.Collection;
-import javax.annotation.Nullable;
 import mekanism.api.Coord4D;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
 
 public interface IGridTransmitter<ACCEPTOR, NETWORK extends DynamicNetwork<ACCEPTOR, NETWORK, BUFFER>, BUFFER> extends ITransmitter {
 
@@ -92,7 +93,7 @@ public interface IGridTransmitter<ACCEPTOR, NETWORK extends DynamicNetwork<ACCEP
     /**
      * Gets called on an orphan if at least one attempted network fails to connect due to having connected to another network that is incompatible with the next attempted
      * ones.
-     *
+     * <p>
      * This is primarily used for if extra handling needs to be done, such as refreshing the connections visually on a minor delay so that it has time to have the buffer
      * no longer be null and properly compare the connection.
      */

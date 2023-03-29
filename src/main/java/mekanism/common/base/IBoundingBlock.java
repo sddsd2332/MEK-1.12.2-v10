@@ -1,9 +1,10 @@
 package mekanism.common.base;
 
-import javax.annotation.Nonnull;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.Vec3i;
+
+import javax.annotation.Nonnull;
 
 /**
  * Internal interface.  A bounding block is not actually a 'bounding' block, it is really just a fake block that is used to mimic actual block bounds.
@@ -27,7 +28,6 @@ public interface IBoundingBlock {
      *
      * @param face   The face of the block at the offset that the shape is needed for.
      * @param offset Offset from the implementation of IBoundingBlock
-     *
      * @return A BlockFaceShape
      */
     @Nonnull

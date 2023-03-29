@@ -1,7 +1,5 @@
 package mekanism.client.gui.filter;
 
-import java.io.IOException;
-import java.util.List;
 import mekanism.api.Coord4D;
 import mekanism.client.gui.button.GuiButtonDisableableImage;
 import mekanism.client.render.MekanismRenderer;
@@ -24,6 +22,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.io.IOException;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiOredictionificatorFilter extends GuiTextFilterBase<OredictionificatorFilter, TileEntityOredictionificator> {

@@ -3,9 +3,6 @@ package mekanism.common.item;
 import cofh.redstoneflux.api.IEnergyContainerItem;
 import ic2.api.item.IElectricItemManager;
 import ic2.api.item.ISpecialElectricItem;
-import java.util.List;
-import java.util.UUID;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.energy.IEnergizedItem;
 import mekanism.api.transmitters.TransmissionType;
@@ -54,9 +51,13 @@ import net.minecraftforge.fml.common.Optional.Method;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.UUID;
+
 @InterfaceList({
-      @Interface(iface = "cofh.redstoneflux.api.IEnergyContainerItem", modid = MekanismHooks.REDSTONEFLUX_MOD_ID),
-      @Interface(iface = "ic2.api.item.ISpecialElectricItem", modid = MekanismHooks.IC2_MOD_ID)
+        @Interface(iface = "cofh.redstoneflux.api.IEnergyContainerItem", modid = MekanismHooks.REDSTONEFLUX_MOD_ID),
+        @Interface(iface = "ic2.api.item.ISpecialElectricItem", modid = MekanismHooks.IC2_MOD_ID)
 })
 public class ItemBlockEnergyCube extends ItemBlock implements IEnergizedItem, ISpecialElectricItem, ISustainedInventory, IEnergyContainerItem, ISecurityItem, ITierItem {
 
@@ -76,11 +77,11 @@ public class ItemBlockEnergyCube extends ItemBlock implements IEnergizedItem, IS
     public void addInformation(@Nonnull ItemStack itemstack, World world, @Nonnull List<String> list, @Nonnull ITooltipFlag flag) {
         list.add(EnumColor.BRIGHT_GREEN + LangUtils.localize("tooltip.storedEnergy") + ": " + EnumColor.GREY + MekanismUtils.getEnergyDisplay(getEnergy(itemstack)));
         list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY +
-                 MekanismUtils.getEnergyDisplay(EnergyCubeTier.values()[getBaseTier(itemstack).ordinal()].getMaxEnergy()));
+                MekanismUtils.getEnergyDisplay(EnergyCubeTier.values()[getBaseTier(itemstack).ordinal()].getMaxEnergy()));
 
         if (!MekKeyHandler.getIsKeyPressed(MekanismKeyHandler.sneakKey)) {
             list.add(LangUtils.localize("tooltip.hold") + " " + EnumColor.AQUA + GameSettings.getKeyDisplayString(MekanismKeyHandler.sneakKey.getKeyCode()) +
-                     EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails") + ".");
+                    EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails") + ".");
         } else {
             if (hasSecurity(itemstack)) {
                 list.add(SecurityUtils.getOwnerDisplay(Minecraft.getMinecraft().player, MekanismClient.clientUUIDMap.get(getOwnerUUID(itemstack))));
@@ -90,7 +91,7 @@ public class ItemBlockEnergyCube extends ItemBlock implements IEnergizedItem, IS
                 }
             }
             list.add(EnumColor.AQUA + LangUtils.localize("tooltip.inventory") + ": " + EnumColor.GREY +
-                     LangUtils.transYesNo(getInventory(itemstack) != null && getInventory(itemstack).tagCount() != 0));
+                    LangUtils.transYesNo(getInventory(itemstack) != null && getInventory(itemstack).tagCount() != 0));
         }
     }
 
@@ -106,18 +107,19 @@ public class ItemBlockEnergyCube extends ItemBlock implements IEnergizedItem, IS
         EnergyCubeTier tier = EnergyCubeTier.values()[getBaseTier(itemstack).ordinal()];
         if (tier == EnergyCubeTier.BASIC) {
             return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else if (tier == EnergyCubeTier.ADVANCED){
+        } else if (tier == EnergyCubeTier.ADVANCED) {
             return EnumColor.RED + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else if (tier == EnergyCubeTier.ELITE){
+        } else if (tier == EnergyCubeTier.ELITE) {
             return EnumColor.AQUA + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else if (tier == EnergyCubeTier.ULTIMATE){
-            return EnumColor.PURPLE +LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
-        }else return EnumColor.ORANGE + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
+        } else if (tier == EnergyCubeTier.ULTIMATE) {
+            return EnumColor.PURPLE + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
+        } else
+            return EnumColor.ORANGE + LangUtils.localize("tile.EnergyCube" + getBaseTier(itemstack).getSimpleName() + ".name");
     }
 
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY,
-          float hitZ, @Nonnull IBlockState state) {
+                                float hitZ, @Nonnull IBlockState state) {
         boolean place = super.placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, state);
 
         if (place) {

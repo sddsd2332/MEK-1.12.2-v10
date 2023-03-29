@@ -14,17 +14,17 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 
-public class CultivateMachineRecipeCategory <RECIPE extends CultivateMachineRecipe<RECIPE>, WRAPPER extends CultivateMachineRecipeWrapper<RECIPE>> extends BaseRecipeCategory<WRAPPER> {
+public class CultivateMachineRecipeCategory<RECIPE extends CultivateMachineRecipe<RECIPE>, WRAPPER extends CultivateMachineRecipeWrapper<RECIPE>> extends BaseRecipeCategory<WRAPPER> {
 
-    public  CultivateMachineRecipeCategory(IGuiHelper helper, String name, String unlocalized, GuiProgress.ProgressBar progress){
+    public CultivateMachineRecipeCategory(IGuiHelper helper, String name, String unlocalized, GuiProgress.ProgressBar progress) {
         super(helper, "mekanism:gui/GuiAdvancedMachine.png", name, unlocalized, progress, 28, 16, 144, 54);
     }
 
     @Override
-    protected void addGuiElements(){
+    protected void addGuiElements() {
         guiElements.add(new GuiSlot(GuiSlot.SlotType.INPUT, this, guiLocation, 55, 16));
         guiElements.add(new GuiSlot(GuiSlot.SlotType.POWER, this, guiLocation, 30, 34).with(GuiSlot.SlotOverlay.POWER));
-        guiElements.add(new GuiSlot(GuiSlot.SlotType.EXTRA_LOG, this, guiLocation, 55-9, 53));
+        guiElements.add(new GuiSlot(GuiSlot.SlotType.EXTRA_LOG, this, guiLocation, 55 - 9, 53));
         guiElements.add(new GuiSlot(GuiSlot.SlotType.OUTPUT_LARGE, this, guiLocation, 111, 30));
         guiElements.add(new GuiPowerBar(this, new GuiPowerBar.IPowerInfoHandler() {
             @Override
@@ -39,14 +39,15 @@ public class CultivateMachineRecipeCategory <RECIPE extends CultivateMachineReci
             }
         }, progressBar, this, guiLocation, 77, 37));
     }
+
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, WRAPPER recipeWrapper, IIngredients ingredients) {
         CultivateMachineRecipe<?> tempRecipe = recipeWrapper.getRecipe();
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
         itemStacks.init(0, true, 27, 0);
         itemStacks.init(1, false, 87, 18);
-        itemStacks.init(2, false, 27+9, 36+1);
-        itemStacks.init(3, false, 27-9, 36+1);
+        itemStacks.init(2, false, 27 + 9, 36 + 1);
+        itemStacks.init(3, false, 27 - 9, 36 + 1);
         itemStacks.set(0, tempRecipe.recipeInput.itemStack);
         itemStacks.set(1, tempRecipe.recipeOutput.output);
         itemStacks.set(3, tempRecipe.recipeInput.extraStack);

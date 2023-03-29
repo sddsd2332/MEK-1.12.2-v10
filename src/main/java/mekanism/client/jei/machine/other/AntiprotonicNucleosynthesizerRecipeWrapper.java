@@ -2,7 +2,6 @@ package mekanism.client.jei.machine.other;
 
 import mekanism.client.jei.MekanismJEI;
 import mekanism.client.jei.machine.MekanismRecipeWrapper;
-import mekanism.common.recipe.machines.IsotopicRecipe;
 import mekanism.common.recipe.machines.NucleosynthesizerRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;

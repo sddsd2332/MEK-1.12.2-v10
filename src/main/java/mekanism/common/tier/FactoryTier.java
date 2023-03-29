@@ -1,9 +1,8 @@
 package mekanism.common.tier;
 
-import java.util.function.Consumer;
-import mekanism.common.Mekanism;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
-import net.minecraft.util.ResourceLocation;
+
+import java.util.function.Consumer;
 
 
 public enum FactoryTier implements ITier {
@@ -16,7 +15,6 @@ public enum FactoryTier implements ITier {
     CREATIVE(11);
 
 
-
     public final int processes;
 
 
@@ -25,11 +23,6 @@ public enum FactoryTier implements ITier {
     FactoryTier(int process) {
         processes = process;
         baseTier = BaseTier.values()[ordinal()];
-    }
-
-    @Override
-    public BaseTier getBaseTier() {
-        return baseTier;
     }
 
     public static void forEnabled(Consumer<FactoryTier> consumer) {
@@ -48,5 +41,10 @@ public enum FactoryTier implements ITier {
         if (MachineType.CREATIVE_FACTORY.isEnabled()) {
             consumer.accept(FactoryTier.CREATIVE);
         }
+    }
+
+    @Override
+    public BaseTier getBaseTier() {
+        return baseTier;
     }
 }

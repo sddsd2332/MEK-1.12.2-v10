@@ -1,7 +1,5 @@
 package mekanism.generators.client.gui;
 
-import java.text.DecimalFormat;
-import java.util.Arrays;
 import mekanism.api.EnumColor;
 import mekanism.client.gui.GuiMekanismTile;
 import mekanism.client.gui.element.GuiEnergyInfo;
@@ -22,6 +20,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.text.DecimalFormat;
+import java.util.Arrays;
+
 @SideOnly(Side.CLIENT)
 public class GuiWindGenerator extends GuiMekanismTile<TileEntityWindGenerator> {
 
@@ -33,9 +34,9 @@ public class GuiWindGenerator extends GuiMekanismTile<TileEntityWindGenerator> {
         addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
         addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
         addGuiElement(new GuiEnergyInfo(() -> Arrays.asList(
-              LangUtils.localize("gui.producing") + ": " +
-              MekanismUtils.getEnergyDisplay(tileEntity.getActive() ? MekanismConfig.current().generators.windGenerationMin.val() * tileEntity.getCurrentMultiplier() : 0) + "/t",
-              LangUtils.localize("gui.maxOutput") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxOutput()) + "/t"), this, resource));
+                LangUtils.localize("gui.producing") + ": " +
+                        MekanismUtils.getEnergyDisplay(tileEntity.getActive() ? MekanismConfig.current().generators.windGenerationMin.val() * tileEntity.getCurrentMultiplier() : 0) + "/t",
+                LangUtils.localize("gui.maxOutput") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxOutput()) + "/t"), this, resource));
         addGuiElement(new GuiPowerBar(this, tileEntity, resource, 164, 15));
         addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 142, 34).with(SlotOverlay.POWER));
     }
@@ -46,7 +47,7 @@ public class GuiWindGenerator extends GuiMekanismTile<TileEntityWindGenerator> {
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
         fontRenderer.drawString(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), 51, 26, 0x33ff99);
         fontRenderer.drawString(LangUtils.localize("gui.power") + ": " + powerFormat.format(MekanismUtils.convertToDisplay(
-              MekanismConfig.current().generators.windGenerationMin.val() * tileEntity.getCurrentMultiplier())), 51, 35, 0x33ff99);
+                MekanismConfig.current().generators.windGenerationMin.val() * tileEntity.getCurrentMultiplier())), 51, 35, 0x33ff99);
         fontRenderer.drawString(LangUtils.localize("gui.out") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxOutput()) + "/t", 51, 44, 0x33ff99);
         int size = 44;
         if (!tileEntity.getActive()) {

@@ -1,6 +1,5 @@
 package mekanism.common.block;
 
-import javax.annotation.Nonnull;
 import mekanism.api.IMekWrench;
 import mekanism.api.gas.IGasItem;
 import mekanism.common.Mekanism;
@@ -31,13 +30,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
 
 public class BlockGasTank extends BlockMekanismContainer {
 

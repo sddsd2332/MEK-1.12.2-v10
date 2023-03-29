@@ -72,7 +72,6 @@ public class Gas {
      * Returns the Gas stored in the defined tag compound.
      *
      * @param nbtTags - tag compound to get the Gas from
-     *
      * @return Gas stored in the tag compound
      */
     public static Gas readFromNBT(NBTTagCompound nbtTags) {
@@ -106,7 +105,6 @@ public class Gas {
      * mods.
      *
      * @param v - new visible state
-     *
      * @return this Gas object
      */
     public Gas setVisible(boolean v) {
@@ -129,7 +127,6 @@ public class Gas {
      * DEPRECATED: Sets the unlocalized name of this Gas. Use setTranslationKey instead.
      *
      * @param s - unlocalized name to set
-     *
      * @return this Gas object
      */
     @Deprecated
@@ -150,7 +147,6 @@ public class Gas {
      * Sets the unlocalized name of this Gas.
      *
      * @param s - unlocalized name to set
-     *
      * @return this Gas object
      */
     public Gas setTranslationKey(String s) {
@@ -206,7 +202,6 @@ public class Gas {
      * Sets this gas's icon.
      *
      * @param map - IIcon to associate with this Gas
-     *
      * @return this Gas object
      */
     public Gas registerIcon(TextureMap map) {
@@ -239,7 +234,6 @@ public class Gas {
      * Writes this Gas to a defined tag compound.
      *
      * @param nbtTags - tag compound to write this Gas to
-     *
      * @return the tag compound this gas was written to
      */
     public NBTTagCompound write(NBTTagCompound nbtTags) {

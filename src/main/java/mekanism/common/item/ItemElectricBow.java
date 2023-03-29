@@ -1,8 +1,6 @@
 package mekanism.common.item;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.common.base.IItemNetwork;
 import mekanism.common.util.ItemDataUtils;
@@ -28,6 +26,9 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class ItemElectricBow extends ItemEnergized implements IItemNetwork {
 
@@ -87,7 +88,7 @@ public class ItemElectricBow extends ItemEnergized implements IItemNetwork {
                 }
 
                 world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL,
-                      1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                        1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
                 if (!noConsume) {
                     ammo.shrink(1);

@@ -3,8 +3,6 @@ package mekanism.common.item;
 import cofh.redstoneflux.api.IEnergyContainerItem;
 import ic2.api.item.IElectricItemManager;
 import ic2.api.item.ISpecialElectricItem;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.energy.IEnergizedItem;
 import mekanism.client.render.ModelCustomArmor;
@@ -43,10 +41,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 @InterfaceList({
-      @Interface(iface = "ic2.api.item.ISpecialElectricItem", modid = MekanismHooks.IC2_MOD_ID),
-      @Interface(iface = "cofh.redstoneflux.api.IEnergyContainerItem", modid = MekanismHooks.REDSTONEFLUX_MOD_ID),
-      @Interface(iface = "ic2.api.item.ISpecialElectricItem", modid = MekanismHooks.IC2_MOD_ID)
+        @Interface(iface = "ic2.api.item.ISpecialElectricItem", modid = MekanismHooks.IC2_MOD_ID),
+        @Interface(iface = "cofh.redstoneflux.api.IEnergyContainerItem", modid = MekanismHooks.REDSTONEFLUX_MOD_ID),
+        @Interface(iface = "ic2.api.item.ISpecialElectricItem", modid = MekanismHooks.IC2_MOD_ID)
 })
 public class ItemFreeRunners extends ItemArmor implements IEnergizedItem, ISpecialElectricItem, IEnergyContainerItem {
 
@@ -57,7 +58,7 @@ public class ItemFreeRunners extends ItemArmor implements IEnergizedItem, ISpeci
 
     public ItemFreeRunners() {
         super(EnumHelper.addArmorMaterial("FRICTIONBOOTS", "frictionboots", 0, new int[]{0, 0, 0, 0}, 0,
-              SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0), 0, EntityEquipmentSlot.FEET);
+                SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0), 0, EntityEquipmentSlot.FEET);
         setMaxStackSize(1);
         setCreativeTab(Mekanism.tabMekanism);
     }
@@ -83,7 +84,7 @@ public class ItemFreeRunners extends ItemArmor implements IEnergizedItem, ISpeci
     @Nonnull
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return EnumColor.AQUA +  LangUtils.localize("item.FreeRunners.name");
+        return EnumColor.AQUA + LangUtils.localize("item.FreeRunners.name");
     }
 
     @Override
@@ -207,7 +208,7 @@ public class ItemFreeRunners extends ItemArmor implements IEnergizedItem, ISpeci
         if (!stack.isEmpty() && stack.getItem() instanceof ItemFreeRunners) {
             ItemFreeRunners boots = (ItemFreeRunners) stack.getItem();
             if (boots.getMode(stack) == FreeRunnerMode.NORMAL && boots.getEnergy(stack) > 0
-                && event.getSource() == DamageSource.FALL) {
+                    && event.getSource() == DamageSource.FALL) {
                 boots.setEnergy(stack, boots.getEnergy(stack) - event.getAmount() * 50);
                 event.setCanceled(true);
             }

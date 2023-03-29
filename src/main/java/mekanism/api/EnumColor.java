@@ -1,11 +1,12 @@
 package mekanism.api;
 
-import java.util.Locale;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+
+import java.util.Locale;
 
 /**
  * Simple color enum for adding colors to in-game GUI strings of text.
@@ -34,7 +35,7 @@ public enum EnumColor implements IStringSerializable {
     BRIGHT_PINK("\u00a7d", "brightPink", "Pink", new int[]{255, 192, 203}, 9, TextFormatting.LIGHT_PURPLE);
 
     public static EnumColor[] DYES = new EnumColor[]{BLACK, RED, DARK_GREEN, BROWN, DARK_BLUE, PURPLE, DARK_AQUA, GREY, DARK_GREY, BRIGHT_PINK, BRIGHT_GREEN, YELLOW,
-                                                     INDIGO, PINK, ORANGE, WHITE};
+            INDIGO, PINK, ORANGE, WHITE};
 
     /**
      * The color code that will be displayed
@@ -123,7 +124,6 @@ public enum EnumColor implements IStringSerializable {
      * Gets the 0-1 of this color's RGB value by dividing by 255 (used for OpenGL coloring).
      *
      * @param index - R:0, G:1, B:2
-     *
      * @return the color value
      */
     public float getColor(int index) {

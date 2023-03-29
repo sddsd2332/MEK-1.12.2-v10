@@ -17,10 +17,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class MekanismParticleHelper {
 
-    /** Centre offset? */
+    /**
+     * Centre offset?
+     */
     private static final double OFFSET_1 = 0.20000000298023224D;
 
-    /** Side offset? */
+    /**
+     * Side offset?
+     */
     private static final double OFFSET_2 = 0.10000000149011612D;
 
     /**
@@ -30,9 +34,7 @@ public class MekanismParticleHelper {
      * @param pos     position of block
      * @param side    which side was hit
      * @param manager vanilla particle manager in use
-     *
      * @return true if handled (always true)
-     *
      * @see ParticleManager#addBlockHitEffects(net.minecraft.util.math.BlockPos, net.minecraft.util.EnumFacing) for source of copy
      */
     public static boolean addBlockHitEffects(World world, BlockPos pos, EnumFacing side, ParticleManager manager) {
@@ -76,7 +78,7 @@ public class MekanismParticleHelper {
             }
 
             manager.addEffect(new TieredParticleDigging(world, particleX, particleY, particleZ, 0, 0, 0, iblockstate, color)
-                  .setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+                    .setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
         }
         return true;
     }

@@ -1,24 +1,12 @@
 package mekanism.client.sound;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.client.sound.PlayerSound.SoundType;
 import mekanism.common.Mekanism;
 import mekanism.common.Upgrade;
 import mekanism.common.base.IUpgradeTile;
 import mekanism.common.config.MekanismConfig;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.ITickableSound;
-import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.audio.Sound;
-import net.minecraft.client.audio.SoundEventAccessor;
+import net.minecraft.client.audio.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -32,6 +20,11 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 // SoundHandler is the central point for sounds on Mek client side. There are roughly three classes of sounds to deal
 // with:
@@ -121,7 +114,7 @@ public class SoundHandler {
         if (s == null || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(s)) {
             // No sound playing, start one up - we assume that tile sounds will play until explicitly stopped
             s = new PositionedSoundRecord(soundLoc, SoundCategory.BLOCKS, (float) (volume * MekanismConfig.current().client.baseSoundVolume.val()), 1.0f,
-                  true, 0, ISound.AttenuationType.LINEAR, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f) {
+                    true, 0, ISound.AttenuationType.LINEAR, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f) {
                 @Override
                 public float getVolume() {
                     if (this.sound == null) {

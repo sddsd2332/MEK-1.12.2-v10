@@ -1,10 +1,11 @@
 package mekanism.common.fixers;
 
-import javax.annotation.Nonnull;
 import mekanism.common.util.LangUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javax.annotation.Nonnull;
 
 /**
  * Attempt to remap old localised names to lang key based names

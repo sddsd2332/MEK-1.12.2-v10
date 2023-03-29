@@ -1,9 +1,5 @@
 package mekanism.client.render.item.machine;
 
-import java.util.EnumMap;
-import java.util.Map;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.client.render.item.ItemLayerWrapper;
 import mekanism.client.render.item.SubTypeItemRenderer;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
@@ -11,6 +7,11 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.EnumMap;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class RenderMachineItem extends SubTypeItemRenderer<MachineType> {
@@ -47,7 +48,7 @@ public class RenderMachineItem extends SubTypeItemRenderer<MachineType> {
                 RenderDigitalMinerItem.renderStack(stack, transformType);
             } else if (machineType == MachineType.ISOTOPIC_CENTRIFUGE) {
                 RenderIsotopicCentrifugeItem.renderStack(stack, transformType);
-			} else if (machineType == MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER) {
+            } else if (machineType == MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER) {
                 RenderAntiprotonicNucleosynthesizerItem.renderStack(stack, transformType);
             }
         }

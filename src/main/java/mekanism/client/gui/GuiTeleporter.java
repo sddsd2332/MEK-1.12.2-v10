@@ -1,9 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.client.ClientTickHandler;
@@ -44,9 +40,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 @SideOnly(Side.CLIENT)
 public class GuiTeleporter extends GuiMekanismTile<TileEntityTeleporter> {
 
+    private final boolean isPortable;
     private EnumHand currentHand;
     private ItemStack itemStack = ItemStack.EMPTY;
     private EntityPlayer entityPlayer;
@@ -64,7 +66,6 @@ public class GuiTeleporter extends GuiMekanismTile<TileEntityTeleporter> {
     private List<Frequency> clientPublicCache = new ArrayList<>();
     private List<Frequency> clientPrivateCache = new ArrayList<>();
     private boolean isInit = true;
-    private final boolean isPortable;
 
     public GuiTeleporter(InventoryPlayer inventory, TileEntityTeleporter tile) {
         super(tile, new ContainerTeleporter(inventory, tile));
@@ -144,22 +145,6 @@ public class GuiTeleporter extends GuiMekanismTile<TileEntityTeleporter> {
                 isInit = false;
             }
         }
-    }
-
-    public void setFrequency(Frequency newFrequency) {
-        clientFreq = newFrequency;
-    }
-
-    public void setPublicCache(List<Frequency> cache) {
-        clientPublicCache = cache;
-    }
-
-    public void setPrivateCache(List<Frequency> cache) {
-        clientPrivateCache = cache;
-    }
-
-    public void setStatus(byte status) {
-        clientStatus = status;
     }
 
     public String getSecurity(Frequency freq) {
@@ -279,13 +264,13 @@ public class GuiTeleporter extends GuiMekanismTile<TileEntityTeleporter> {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString(getName(), (xSize / 2) - (fontRenderer.getStringWidth(getName()) / 2), 4, 0x404040);
         fontRenderer.drawString(LangUtils.localize("gui.owner") + ": " + (getOwnerUsername() != null ? getOwnerUsername() : LangUtils.localize("gui.none")),
-              8, !itemStack.isEmpty() ? ySize - 12 : (ySize - 96) + 4, 0x404040);
+                8, !itemStack.isEmpty() ? ySize - 12 : (ySize - 96) + 4, 0x404040);
         fontRenderer.drawString(LangUtils.localize("gui.freq") + ":", 32, 81, 0x404040);
         fontRenderer.drawString(LangUtils.localize("gui.security") + ":", 32, 91, 0x404040);
         fontRenderer.drawString(" " + (getFrequency() != null ? getFrequency().name : EnumColor.DARK_RED + LangUtils.localize("gui.none")),
-              32 + fontRenderer.getStringWidth(LangUtils.localize("gui.freq") + ":"), 81, 0x797979);
+                32 + fontRenderer.getStringWidth(LangUtils.localize("gui.freq") + ":"), 81, 0x797979);
         fontRenderer.drawString(" " + (getFrequency() != null ? getSecurity(getFrequency()) : EnumColor.DARK_RED + LangUtils.localize("gui.none")),
-              32 + fontRenderer.getStringWidth(LangUtils.localize("gui.security") + ":"), 91, 0x797979);
+                32 + fontRenderer.getStringWidth(LangUtils.localize("gui.security") + ":"), 91, 0x797979);
         String str = LangUtils.localize("gui.set") + ":";
         renderScaledText(str, 27, 104, 0x404040, 20);
         int xAxis = mouseX - guiLeft;
@@ -341,16 +326,32 @@ public class GuiTeleporter extends GuiMekanismTile<TileEntityTeleporter> {
         return tileEntity != null ? tileEntity.status : clientStatus;
     }
 
+    public void setStatus(byte status) {
+        clientStatus = status;
+    }
+
     private List<Frequency> getPublicCache() {
         return tileEntity != null ? tileEntity.publicCache : clientPublicCache;
+    }
+
+    public void setPublicCache(List<Frequency> cache) {
+        clientPublicCache = cache;
     }
 
     private List<Frequency> getPrivateCache() {
         return tileEntity != null ? tileEntity.privateCache : clientPrivateCache;
     }
 
+    public void setPrivateCache(List<Frequency> cache) {
+        clientPrivateCache = cache;
+    }
+
     private Frequency getFrequency() {
         return tileEntity != null ? tileEntity.frequency : clientFreq;
+    }
+
+    public void setFrequency(Frequency newFrequency) {
+        clientFreq = newFrequency;
     }
 
     public void setFrequency(String freq) {

@@ -1,17 +1,10 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
-import mekanism.api.gas.IGasItem;
+import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.Mekanism;
 import mekanism.common.SideData;
@@ -42,8 +35,11 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock implements IRedstoneControl, IBoundingBlock, IGasHandler, IActiveState, ISustainedData,
-      ITankManager, ISecurityTile, IUpgradeTile, IUpgradeInfoHandler, IComparatorSupport , ISideConfiguration {
+        ITankManager, ISecurityTile, IUpgradeTile, IUpgradeInfoHandler, IComparatorSupport, ISideConfiguration {
 
     public static final int MAX_GAS = 10000;
     private static final int[] INPUT_SLOT = {0};
@@ -53,26 +49,21 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
     public GasTank outputTank = new GasTank(MAX_GAS);
 
     public int gasOutput = 256;
-
+    public RedstoneControl controlType = RedstoneControl.DISABLED;
+    public TileComponentUpgrade upgradeComponent = new TileComponentUpgrade(this, 3);
+    public TileComponentSecurity securityComponent = new TileComponentSecurity(this);
+    public TileComponentEjector ejectorComponent;
+    public TileComponentConfig configComponent;
     private SolarNeutronRecipe cachedRecipe;
-
     private int currentRedstoneLevel;
     private boolean isActive;
     private boolean needsRainCheck;
-
-    public RedstoneControl controlType = RedstoneControl.DISABLED;
-
-    public TileComponentUpgrade upgradeComponent = new TileComponentUpgrade(this, 3);
-    public TileComponentSecurity securityComponent = new TileComponentSecurity(this);
-
-    public TileComponentEjector ejectorComponent;
-    public TileComponentConfig configComponent;
 
     public TileEntitySolarNeutronActivator() {
         super("SolarNeutronActivator");
         upgradeComponent.setSupported(Upgrade.ENERGY, false);
 
-        configComponent = new TileComponentConfig(this,TransmissionType.ITEM,TransmissionType.GAS);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.GAS);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.BRIGHT_GREEN, new int[]{0}));
@@ -121,7 +112,7 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
                 setActive(false);
             }
 
-           // TileUtils.emitGas(this, outputTank, gasOutput, facing);
+            // TileUtils.emitGas(this, outputTank, gasOutput, facing);
             // Every 20 ticks (once a second), send update to client. Note that this is a 50% reduction in network
             // traffic from previous implementation that send the update every 10 ticks.
             if (world.getTotalWorldTime() % 20 == 0) {
@@ -243,13 +234,13 @@ public class TileEntitySolarNeutronActivator extends TileEntityContainerBlock im
 
     @Override
     public boolean canReceiveGas(EnumFacing side, Gas type) {
-      //  return side == EnumFacing.DOWN && inputTank.canReceive(type);
+        //  return side == EnumFacing.DOWN && inputTank.canReceive(type);
         return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(0) && inputTank.canReceive(type);
     }
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-      //  return side == facing && outputTank.canDraw(type);
+        //  return side == facing && outputTank.canDraw(type);
         return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1) && outputTank.canDraw(type);
     }
 

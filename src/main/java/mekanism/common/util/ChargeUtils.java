@@ -118,7 +118,6 @@ public final class ChargeUtils {
      * Whether or not a defined ItemStack can be discharged for energy in some way. Note: The ItemStack must also have energy to discharge.
      *
      * @param itemstack - ItemStack to check
-     *
      * @return if the ItemStack can be discharged
      */
     public static boolean canBeDischarged(ItemStack itemstack) {
@@ -162,7 +161,6 @@ public final class ChargeUtils {
      * Whether or not a defined ItemStack can be charged with energy in some way. Note: The ItemStack must also have room for more energy.
      *
      * @param itemstack - ItemStack to check
-     *
      * @return if the ItemStack can be discharged
      */
     public static boolean canBeCharged(ItemStack itemstack) {
@@ -209,7 +207,6 @@ public final class ChargeUtils {
      *
      * @param itemstack  - ItemStack to perform the check on
      * @param chargeSlot - whether or not the outputting slot is for charging or discharging
-     *
      * @return if the ItemStack can be outputted
      */
     public static boolean canBeOutputted(ItemStack itemstack, boolean chargeSlot) {

@@ -1,16 +1,9 @@
 package mekanism.common.tile.prefab;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
-import mekanism.api.gas.IGasItem;
+import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.MekanismItems;
 import mekanism.common.SideData;
@@ -26,13 +19,8 @@ import mekanism.common.recipe.outputs.ItemStackOutput;
 import mekanism.common.tile.TileEntityFactory;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.GasUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.MekanismUtils;
+import mekanism.common.util.*;
 import mekanism.common.util.MekanismUtils.ResourceType;
-import mekanism.common.util.StatUtils;
-import mekanism.common.util.TileUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -41,13 +29,16 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedMachineRecipe<RECIPE>> extends
-      TileEntityUpgradeableMachine<AdvancedMachineInput, ItemStackOutput, RECIPE> implements IGasHandler, ISustainedData {
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-    private static final String[] methods = new String[]{"getEnergy", "getSecondaryStored", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy",
-                                                         "getEnergyNeeded"};
+public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedMachineRecipe<RECIPE>> extends
+        TileEntityUpgradeableMachine<AdvancedMachineInput, ItemStackOutput, RECIPE> implements IGasHandler, ISustainedData {
+
     public static final int BASE_TICKS_REQUIRED = 200;
     public static final int BASE_GAS_PER_TICK = 1;
+    private static final String[] methods = new String[]{"getEnergy", "getSecondaryStored", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy",
+            "getEnergyNeeded"};
     public static int MAX_GAS = 210;
     /**
      * How much secondary energy (fuel) this machine uses per tick, not including upgrades.
@@ -79,7 +70,7 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{2}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{3}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.YELLOW, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{1,0}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{1, 0}));
 
         configComponent.setConfig(TransmissionType.ITEM, new byte[]{4, 1, 0, 3, 0, 2});
         configComponent.setInputConfig(TransmissionType.ENERGY);
@@ -114,7 +105,6 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
      * Gets the amount of ticks the declared itemstack can fuel this machine.
      *
      * @param itemStack - itemstack to check with
-     *
      * @return fuel ticks
      */
     @Nullable
@@ -264,7 +254,6 @@ public abstract class TileEntityAdvancedElectricMachine<RECIPE extends AdvancedM
      * Gets the scaled secondary energy level for the GUI.
      *
      * @param i - multiplier
-     *
      * @return scaled secondary energy
      */
     public int getScaledGasLevel(int i) {

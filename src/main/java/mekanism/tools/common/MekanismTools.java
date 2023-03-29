@@ -1,8 +1,6 @@
 package mekanism.tools.common;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import java.util.Random;
 import mekanism.common.Mekanism;
 import mekanism.common.MekanismItems;
 import mekanism.common.Version;
@@ -31,6 +29,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import java.util.List;
+import java.util.Random;
+
 @Mod(modid = MekanismTools.MODID, useMetadata = true, guiFactory = "mekanism.tools.client.gui.ToolsGuiFactory")
 @Mod.EventBusSubscriber()
 public class MekanismTools implements IModule {
@@ -48,7 +49,7 @@ public class MekanismTools implements IModule {
      */
     public static Version versionNumber = new Version(999, 999, 999);
 
-    public static CreativeTabMekanismTools  tabMekanismTools = new CreativeTabMekanismTools();
+    public static CreativeTabMekanismTools tabMekanismTools = new CreativeTabMekanismTools();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -59,6 +60,26 @@ public class MekanismTools implements IModule {
     public static void registerModels(ModelRegistryEvent event) {
         // Register models
         proxy.registerItemRenders();
+    }
+
+    @SubscribeEvent
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        //Furnace Recipes
+        addSmeltingRecipe(ToolsItem.IRON_PAXEL, new ItemStack(Items.IRON_NUGGET));
+        addSmeltingRecipe(ToolsItem.GOLD_PAXEL, new ItemStack(Items.GOLD_NUGGET));
+        addSmeltingRecipe(ToolsItem.OBSIDIAN_SET, new ItemStack(MekanismItems.Nugget));
+        addSmeltingRecipe(ToolsItem.OSMIUM_SET, new ItemStack(MekanismItems.Nugget, 1, 1));
+        addSmeltingRecipe(ToolsItem.BRONZE_SET, new ItemStack(MekanismItems.Nugget, 1, 2));
+        addSmeltingRecipe(ToolsItem.GLOWSTONE_SET, new ItemStack(MekanismItems.Nugget, 1, 3));
+        addSmeltingRecipe(ToolsItem.STEEL_SET, new ItemStack(MekanismItems.Nugget, 1, 4));
+    }
+
+    private static void addSmeltingRecipe(List<ToolsItem> itemSet, ItemStack nugget) {
+        itemSet.forEach(toolsItem -> addSmeltingRecipe(toolsItem, nugget));
+    }
+
+    private static void addSmeltingRecipe(ToolsItem toolsItem, ItemStack nugget) {
+        GameRegistry.addSmelting(toolsItem.getItemStackAnyDamage(), nugget, 0.1F);
     }
 
     @EventHandler
@@ -83,26 +104,6 @@ public class MekanismTools implements IModule {
     @EventHandler
     public void modRemapping(FMLModIdMappingEvent event) {
         ToolsItem.remapItems();
-    }
-
-    @SubscribeEvent
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-        //Furnace Recipes
-        addSmeltingRecipe(ToolsItem.IRON_PAXEL, new ItemStack(Items.IRON_NUGGET));
-        addSmeltingRecipe(ToolsItem.GOLD_PAXEL, new ItemStack(Items.GOLD_NUGGET));
-        addSmeltingRecipe(ToolsItem.OBSIDIAN_SET, new ItemStack(MekanismItems.Nugget));
-        addSmeltingRecipe(ToolsItem.OSMIUM_SET, new ItemStack(MekanismItems.Nugget, 1, 1));
-        addSmeltingRecipe(ToolsItem.BRONZE_SET, new ItemStack(MekanismItems.Nugget, 1, 2));
-        addSmeltingRecipe(ToolsItem.GLOWSTONE_SET, new ItemStack(MekanismItems.Nugget, 1, 3));
-        addSmeltingRecipe(ToolsItem.STEEL_SET, new ItemStack(MekanismItems.Nugget, 1, 4));
-    }
-
-    private static void addSmeltingRecipe(List<ToolsItem> itemSet, ItemStack nugget) {
-        itemSet.forEach(toolsItem -> addSmeltingRecipe(toolsItem, nugget));
-    }
-
-    private static void addSmeltingRecipe(ToolsItem toolsItem, ItemStack nugget) {
-        GameRegistry.addSmelting(toolsItem.getItemStackAnyDamage(), nugget, 0.1F);
     }
 
     private void setStackIfEmpty(EntityLivingBase entity, EntityEquipmentSlot slot, ItemStack item) {
@@ -140,19 +141,19 @@ public class MekanismTools implements IModule {
                 int armorType = random.nextInt(4);
                 if (armorType == 0) {
                     setEntityArmorWithChance(random, entity, ToolsItem.GLOWSTONE_SWORD, ToolsItem.GLOWSTONE_HELMET, ToolsItem.GLOWSTONE_CHESTPLATE,
-                          ToolsItem.GLOWSTONE_LEGGINGS, ToolsItem.GLOWSTONE_BOOTS);
+                            ToolsItem.GLOWSTONE_LEGGINGS, ToolsItem.GLOWSTONE_BOOTS);
                 } else if (armorType == 1) {
                     setEntityArmorWithChance(random, entity, ToolsItem.LAPIS_LAZULI_SWORD, ToolsItem.LAPIS_LAZULI_HELMET, ToolsItem.LAPIS_LAZULI_CHESTPLATE,
-                          ToolsItem.LAPIS_LAZULI_LEGGINGS, ToolsItem.LAPIS_LAZULI_BOOTS);
+                            ToolsItem.LAPIS_LAZULI_LEGGINGS, ToolsItem.LAPIS_LAZULI_BOOTS);
                 } else if (armorType == 2) {
                     setEntityArmorWithChance(random, entity, ToolsItem.OBSIDIAN_SWORD, ToolsItem.OBSIDIAN_HELMET, ToolsItem.OBSIDIAN_CHESTPLATE,
-                          ToolsItem.OBSIDIAN_LEGGINGS, ToolsItem.OBSIDIAN_BOOTS);
+                            ToolsItem.OBSIDIAN_LEGGINGS, ToolsItem.OBSIDIAN_BOOTS);
                 } else if (armorType == 3) {
                     setEntityArmorWithChance(random, entity, ToolsItem.STEEL_SWORD, ToolsItem.STEEL_HELMET, ToolsItem.STEEL_CHESTPLATE,
-                          ToolsItem.STEEL_LEGGINGS, ToolsItem.STEEL_BOOTS);
+                            ToolsItem.STEEL_LEGGINGS, ToolsItem.STEEL_BOOTS);
                 } else if (armorType == 4) {
                     setEntityArmorWithChance(random, entity, ToolsItem.BRONZE_SWORD, ToolsItem.BRONZE_HELMET, ToolsItem.BRONZE_CHESTPLATE,
-                          ToolsItem.BRONZE_LEGGINGS, ToolsItem.BRONZE_BOOTS);
+                            ToolsItem.BRONZE_LEGGINGS, ToolsItem.BRONZE_BOOTS);
                 }
             }
         }

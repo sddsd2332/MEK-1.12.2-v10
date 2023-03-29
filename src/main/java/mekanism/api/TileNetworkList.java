@@ -1,11 +1,12 @@
 package mekanism.api;
 
+import net.minecraft.util.NonNullList;
+import org.apache.commons.lang3.Validate;
+
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.annotation.Nonnull;
-import net.minecraft.util.NonNullList;
-import org.apache.commons.lang3.Validate;
 
 public class TileNetworkList extends NonNullList<Object> {
 

@@ -1,10 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import mekanism.api.Coord4D;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.client.gui.button.GuiButtonDisableableImage;
@@ -32,6 +27,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlock> {
@@ -76,11 +77,11 @@ public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlo
             GuiPos guiPos = slotPosMap.get(i);
             EnumFacing facing = EnumFacing.byIndex(i);
             GuiSideDataButton button = new GuiSideDataButton(buttonID++, guiLeft + guiPos.xPos, guiTop + guiPos.yPos, getGuiLocation(), i,
-                  () -> configurable.getConfig().getOutput(currentType, facing), () -> configurable.getConfig().getOutput(currentType, facing).color);
+                    () -> configurable.getConfig().getOutput(currentType, facing), () -> configurable.getConfig().getOutput(currentType, facing).color);
             buttonList.add(button);
             sideDataButtons.add(button);
         }
-        buttonList.add(clearButton = new GuiButtonDisableableImage(buttonID++,guiLeft + 156,guiTop + 75,14,14,218,14,-14, getGuiLocation()));
+        buttonList.add(clearButton = new GuiButtonDisableableImage(buttonID++, guiLeft + 156, guiTop + 75, 14, 14, 218, 14, -14, getGuiLocation()));
     }
 
     @Override
@@ -92,9 +93,9 @@ public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlo
             Mekanism.packetHandler.sendToServer(new SimpleGuiMessage(Coord4D.get(tile), 0, guiId));
         } else if (guibutton.id == autoEjectButton.id) {
             Mekanism.packetHandler.sendToServer(new ConfigurationUpdateMessage(ConfigurationPacket.EJECT, Coord4D.get(tile), 0, 0, currentType));
-        } else if(guibutton.id == clearButton.id){
-            for (int i = 0; i < slotPosMap.size(); i++){
-                Mekanism.packetHandler.sendToServer(new ConfigurationUpdateMessage(ConfigurationPacket.SIDE_DATA,Coord4D.get(tile),2, i,currentType));
+        } else if (guibutton.id == clearButton.id) {
+            for (int i = 0; i < slotPosMap.size(); i++) {
+                Mekanism.packetHandler.sendToServer(new ConfigurationUpdateMessage(ConfigurationPacket.SIDE_DATA, Coord4D.get(tile), 2, i, currentType));
             }
         } else {
             for (GuiSideDataButton button : sideDataButtons) {
@@ -150,7 +151,7 @@ public class GuiSideConfiguration extends GuiMekanismTile<TileEntityContainerBlo
         if (autoEjectButton.isMouseOver()) {
             displayTooltip(LangUtils.localize("gui.autoEject"), xAxis, yAxis);
         }
-        if (clearButton.isMouseOver()){
+        if (clearButton.isMouseOver()) {
             displayTooltip(LangUtils.localize("gui.clear"), xAxis, yAxis);
         }
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);

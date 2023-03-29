@@ -1,6 +1,5 @@
 package mekanism.client.gui.element.tab;
 
-import java.util.Arrays;
 import mekanism.client.gui.IGuiWrapper;
 import mekanism.common.tile.TileEntityDigitalMiner;
 import mekanism.common.util.LangUtils;
@@ -10,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class GuiVisualsTab extends GuiTabElement<TileEntityDigitalMiner> {
@@ -24,7 +25,7 @@ public class GuiVisualsTab extends GuiTabElement<TileEntityDigitalMiner> {
             displayTooltip(LangUtils.localize("gui.visuals") + ": " + LangUtils.transOnOff(tileEntity.clientRendering), xAxis, yAxis);
         } else {
             displayTooltips(Arrays.asList(LangUtils.localize("gui.visuals") + ": " + LangUtils.transOnOff(tileEntity.clientRendering),
-                  TextFormatting.RED.toString() + LangUtils.localize("mekanism.gui.visuals.toobig")), xAxis, yAxis);
+                    TextFormatting.RED.toString() + LangUtils.localize("mekanism.gui.visuals.toobig")), xAxis, yAxis);
         }
     }
 

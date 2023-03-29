@@ -1,20 +1,13 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Objects;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.IConfigCardAccess;
 import mekanism.api.TileNetworkList;
 import mekanism.api.infuse.InfuseObject;
 import mekanism.api.infuse.InfuseRegistry;
 import mekanism.api.transmitters.TransmissionType;
-import mekanism.common.InfuseStorage;
-import mekanism.common.MekanismBlocks;
-import mekanism.common.MekanismItems;
-import mekanism.common.PacketHandler;
-import mekanism.common.SideData;
-import mekanism.common.Upgrade;
+import mekanism.common.*;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.base.ISideConfiguration;
 import mekanism.common.base.ISustainedData;
@@ -43,11 +36,14 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.Contract;
 
+import javax.annotation.Nonnull;
+import java.util.Objects;
+
 public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine implements IComputerIntegration, ISideConfiguration, IConfigCardAccess, ITierUpgradeable,
-      ISustainedData {
+        ISustainedData {
 
     private static final String[] methods = new String[]{"getEnergy", "getProgress", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded", "getInfuse",
-                                                         "getInfuseNeeded"};
+            "getInfuseNeeded"};
     /**
      * The maxiumum amount of infuse this machine can store.
      */
@@ -68,7 +64,7 @@ public class TileEntityMetallurgicInfuser extends TileEntityOperationalMachine i
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{3}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{4}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Infuse", EnumColor.YELLOW, new int[]{1}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{1,2}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Input_Extra", EnumColor.ORANGE, new int[]{1, 2}));
         configComponent.setConfig(TransmissionType.ITEM, new byte[]{4, 0, 0, 3, 1, 2});
 
         inventory = NonNullList.withSize(5, ItemStack.EMPTY);

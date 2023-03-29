@@ -1,8 +1,6 @@
 package mekanism.common.tile.prefab;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Objects;
-import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Upgrade;
 import mekanism.common.base.IRedstoneControl;
@@ -16,6 +14,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import javax.annotation.Nonnull;
+import java.util.Objects;
+
 public abstract class TileEntityMachine extends TileEntityEffectsBlock implements IUpgradeTile, IRedstoneControl, ISecurityTile {
 
     public double prevEnergy;
@@ -23,14 +24,12 @@ public abstract class TileEntityMachine extends TileEntityEffectsBlock implement
     public double BASE_ENERGY_PER_TICK;
 
     public double energyPerTick;
-
+    public TileComponentUpgrade upgradeComponent;
+    public TileComponentSecurity securityComponent = new TileComponentSecurity(this);
     /**
      * This machine's current RedstoneControl type.
      */
     private RedstoneControl controlType = RedstoneControl.DISABLED;
-
-    public TileComponentUpgrade upgradeComponent;
-    public TileComponentSecurity securityComponent = new TileComponentSecurity(this);
 
     public TileEntityMachine(String sound, MachineType type, int upgradeSlot) {
         super(sound, type.getBlockName(), type.getStorage());

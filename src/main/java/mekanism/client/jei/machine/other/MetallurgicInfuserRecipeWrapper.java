@@ -1,8 +1,5 @@
 package mekanism.client.jei.machine.other;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import mekanism.client.jei.machine.MekanismRecipeWrapper;
 import mekanism.common.InfuseStorage;
 import mekanism.common.recipe.machines.MetallurgicInfuserRecipe;
@@ -11,6 +8,10 @@ import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class MetallurgicInfuserRecipeWrapper<RECIPE extends MetallurgicInfuserRecipe> extends MekanismRecipeWrapper<RECIPE> {
 

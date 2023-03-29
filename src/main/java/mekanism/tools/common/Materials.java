@@ -1,8 +1,5 @@
 package mekanism.tools.common;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-import javax.annotation.Nonnull;
 import mekanism.common.MekanismItems;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.config.ToolsConfig;
@@ -15,6 +12,10 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.util.EnumHelper;
+
+import javax.annotation.Nonnull;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public enum Materials {
     OBSIDIAN("OBSIDIAN", cfg -> cfg.toolOBSIDIAN, cfg -> cfg.toolOBSIDIAN2, cfg -> cfg.armorOBSIDIAN, () -> new ItemStack(MekanismItems.Ingot)),
@@ -38,12 +39,12 @@ public enum Materials {
     private float axeSpeed;
 
     Materials(@Nonnull String name, @Nonnull Function<ToolsConfig, ToolBalance> material, @Nonnull Function<ToolsConfig, ToolBalance> paxelMaterial,
-          @Nonnull Function<ToolsConfig, ArmorBalance> armorMaterial, @Nonnull Supplier<ItemStack> repairStack) {
+              @Nonnull Function<ToolsConfig, ArmorBalance> armorMaterial, @Nonnull Supplier<ItemStack> repairStack) {
         this(name, material, paxelMaterial, armorMaterial, repairStack, SoundEvents.ITEM_ARMOR_EQUIP_IRON);
     }
 
     Materials(@Nonnull String name, @Nonnull Function<ToolsConfig, ToolBalance> material, @Nonnull Function<ToolsConfig, ToolBalance> paxelMaterial,
-          @Nonnull Function<ToolsConfig, ArmorBalance> armorMaterial, @Nonnull  Supplier<ItemStack> repairStack, @Nonnull SoundEvent equipSound) {
+              @Nonnull Function<ToolsConfig, ArmorBalance> armorMaterial, @Nonnull Supplier<ItemStack> repairStack, @Nonnull SoundEvent equipSound) {
         this.materialName = name;
         this.materialFunction = material;
         this.paxelMaterialFunction = paxelMaterial;
@@ -58,8 +59,8 @@ public enum Materials {
 
     private static ArmorMaterial getArmorMaterial(@Nonnull String enumName, @Nonnull ArmorBalance config, @Nonnull SoundEvent equipSound) {
         return EnumHelper.addArmorMaterial(enumName, "TODO", config.durability.val(), new int[]{
-              config.feetProtection.val(), config.legsProtection.val(), config.chestProtection.val(), config.headProtection.val(),
-              }, config.enchantability.val(), equipSound, config.toughness.val());
+                config.feetProtection.val(), config.legsProtection.val(), config.chestProtection.val(), config.headProtection.val(),
+        }, config.enchantability.val(), equipSound, config.toughness.val());
     }
 
     public static void load() {

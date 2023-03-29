@@ -5,9 +5,9 @@ import mekanism.common.recipe.machines.CellCultivateRecipe;
 import mekanism.common.tile.prefab.TileEntityCultivateElectricMachine;
 import net.minecraft.entity.player.InventoryPlayer;
 
-public class GuiCellCultivate extends GuiCultivateElectricMachine<CellCultivateRecipe>{
+public class GuiCellCultivate extends GuiCultivateElectricMachine<CellCultivateRecipe> {
 
-    public GuiCellCultivate(InventoryPlayer inventory, TileEntityCultivateElectricMachine<CellCultivateRecipe> tile){
+    public GuiCellCultivate(InventoryPlayer inventory, TileEntityCultivateElectricMachine<CellCultivateRecipe> tile) {
         super(inventory, tile);
     }
 

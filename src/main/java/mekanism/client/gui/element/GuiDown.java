@@ -5,17 +5,15 @@ import mekanism.client.gui.IGuiWrapper;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.util.ResourceLocation;
 
-public  class GuiDown extends GuiElement {
+public class GuiDown extends GuiElement {
 
     private final int xLocation;
     private final int yLocation;
     private final int textureX;
     private final int textureY;
-
-    private StorageOverlay overlay = null;
-
     private final int width;
     private final int height;
+    private StorageOverlay overlay = null;
 
     public GuiDown(StorageType type, IGuiWrapper gui, ResourceLocation def, int x, int y) {
         super(MekanismUtils.getResource(MekanismUtils.ResourceType.GUI_ELEMENT, "GuiDown.png"), gui, def);
@@ -62,7 +60,7 @@ public  class GuiDown extends GuiElement {
     }
 
     public enum StorageType {
-        NORMAL(8,20,0,0);
+        NORMAL(8, 20, 0, 0);
 
 
         public final int width;
@@ -82,8 +80,8 @@ public  class GuiDown extends GuiElement {
     }
 
     public enum StorageOverlay {
-        DOWN(8,20,9,0),
-        DOWN2(8,20,17,0);
+        DOWN(8, 20, 9, 0),
+        DOWN2(8, 20, 17, 0);
 
 
         public final int width;

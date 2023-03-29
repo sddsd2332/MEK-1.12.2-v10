@@ -1,14 +1,6 @@
 package mekanism.common.util;
 
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Predicate;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.IGasHandler;
-import mekanism.api.gas.IGasItem;
+import mekanism.api.gas.*;
 import mekanism.common.base.target.GasHandlerTarget;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.config.MekanismConfig;
@@ -18,6 +10,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.EnumSet;
+import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * A handy class containing several utilities for efficient gas transfer.
@@ -29,7 +25,7 @@ public final class GasUtils {
     public static IGasHandler[] getConnectedAcceptors(BlockPos pos, World world, Set<EnumFacing> sides) {
         final IGasHandler[] acceptors = new IGasHandler[]{null, null, null, null, null, null};
         EmitUtils.forEachSide(world, pos, sides, (tile, side) ->
-              acceptors[side.ordinal()] = CapabilityUtils.getCapability(tile, Capabilities.GAS_HANDLER_CAPABILITY, side.getOpposite()));
+                acceptors[side.ordinal()] = CapabilityUtils.getCapability(tile, Capabilities.GAS_HANDLER_CAPABILITY, side.getOpposite()));
         return acceptors;
     }
 
@@ -64,7 +60,6 @@ public final class GasUtils {
      * @param itemStack - ItemStack of the IGasItem
      * @param type      - type of gas to remove from the IGasItem, null if it doesn't matter
      * @param amount    - amount of gas to remove from the ItemStack
-     *
      * @return the GasStack removed by the IGasItem
      */
     public static GasStack removeGas(ItemStack itemStack, Gas type, int amount) {
@@ -83,7 +78,6 @@ public final class GasUtils {
      *
      * @param itemStack - ItemStack of the IGasItem
      * @param stack     - stack to add to the IGasItem
-     *
      * @return amount of gas accepted by the IGasItem
      */
     public static int addGas(ItemStack itemStack, GasStack stack) {
@@ -99,7 +93,6 @@ public final class GasUtils {
      * @param stack - the stack to output
      * @param from  - the TileEntity to output from
      * @param sides - the list of sides to output from
-     *
      * @return the amount of gas emitted
      */
     public static int emit(GasStack stack, TileEntity from, Set<EnumFacing> sides) {
@@ -117,11 +110,11 @@ public final class GasUtils {
 
             //Collect cap
             CapabilityUtils.runIfCap(acceptor, Capabilities.GAS_HANDLER_CAPABILITY, accessSide,
-                  (handler) -> {
-                      if (handler.canReceiveGas(accessSide, stack.getGas())) {
-                          target.addHandler(accessSide, handler);
-                      }
-                  });
+                    (handler) -> {
+                        if (handler.canReceiveGas(accessSide, stack.getGas())) {
+                            target.addHandler(accessSide, handler);
+                        }
+                    });
         });
 
         int curHandlers = target.getHandlers().size();

@@ -1,5 +1,5 @@
 package mekanism.common.tile;
 
-public class TileEntitySawingFactory extends  TileEntityFactory {
+public class TileEntitySawingFactory extends TileEntityFactory {
 
 }

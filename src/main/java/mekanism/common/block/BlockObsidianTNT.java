@@ -1,6 +1,5 @@
 package mekanism.common.block;
 
-import javax.annotation.Nonnull;
 import mekanism.common.Mekanism;
 import mekanism.common.entity.EntityObsidianTNT;
 import net.minecraft.block.Block;
@@ -17,6 +16,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
 
 public class BlockObsidianTNT extends Block {
 

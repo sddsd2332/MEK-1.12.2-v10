@@ -1,14 +1,5 @@
 package mekanism.client;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
 import mekanism.api.IClientTicker;
 import mekanism.api.gas.GasStack;
 import mekanism.client.render.RenderTickHandler;
@@ -17,13 +8,9 @@ import mekanism.common.KeySync;
 import mekanism.common.Mekanism;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.frequency.Frequency;
-import mekanism.common.item.ItemConfigurator;
+import mekanism.common.item.*;
 import mekanism.common.item.ItemConfigurator.ConfiguratorMode;
-import mekanism.common.item.ItemFlamethrower;
-import mekanism.common.item.ItemFreeRunners;
-import mekanism.common.item.ItemJetpack;
 import mekanism.common.item.ItemJetpack.JetpackMode;
-import mekanism.common.item.ItemScubaTank;
 import mekanism.common.network.PacketFreeRunnerData;
 import mekanism.common.network.PacketItemStack.ItemStackMessage;
 import mekanism.common.network.PacketPortableTeleporter.PortableTeleporterMessage;
@@ -42,6 +29,9 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Client-side tick handler for Mekanism. Used mainly for the update check upon startup.

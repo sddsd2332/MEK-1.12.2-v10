@@ -1,11 +1,5 @@
 package mekanism.generators.common.block.states;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import javax.annotation.Nonnull;
 import mekanism.common.base.IBlockType;
 import mekanism.common.block.states.BlockStateFacing;
 import mekanism.common.block.states.BlockStateUtils;
@@ -14,19 +8,8 @@ import mekanism.common.util.LangUtils;
 import mekanism.generators.common.GeneratorsBlocks;
 import mekanism.generators.common.MekanismGenerators;
 import mekanism.generators.common.block.BlockGenerator;
-import mekanism.generators.common.tile.TileEntityAdvancedSolarGenerator;
-import mekanism.generators.common.tile.TileEntityBioGenerator;
-import mekanism.generators.common.tile.TileEntityGasGenerator;
-import mekanism.generators.common.tile.TileEntityHeatGenerator;
-import mekanism.generators.common.tile.TileEntitySolarGenerator;
-import mekanism.generators.common.tile.TileEntityWindGenerator;
-import mekanism.generators.common.tile.turbine.TileEntityElectromagneticCoil;
-import mekanism.generators.common.tile.turbine.TileEntityRotationalComplex;
-import mekanism.generators.common.tile.turbine.TileEntitySaturatingCondenser;
-import mekanism.generators.common.tile.turbine.TileEntityTurbineCasing;
-import mekanism.generators.common.tile.turbine.TileEntityTurbineRotor;
-import mekanism.generators.common.tile.turbine.TileEntityTurbineValve;
-import mekanism.generators.common.tile.turbine.TileEntityTurbineVent;
+import mekanism.generators.common.tile.*;
+import mekanism.generators.common.tile.turbine.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -42,6 +25,13 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class BlockStateGenerator extends ExtendedBlockState {
 
@@ -111,12 +101,12 @@ public class BlockStateGenerator extends ExtendedBlockState {
         public boolean hasRedstoneOutput;
 
         GeneratorType(GeneratorBlock block, int m, String name, int gui, double energy, Supplier<TileEntity> tileClass, boolean model, Predicate<EnumFacing> predicate,
-              boolean hasActiveTexture) {
+                      boolean hasActiveTexture) {
             this(block, m, name, gui, energy, tileClass, model, predicate, hasActiveTexture, false);
         }
 
         GeneratorType(GeneratorBlock block, int m, String name, int gui, double energy, Supplier<TileEntity> tileClass, boolean model, Predicate<EnumFacing> predicate,
-              boolean hasActiveTexture, boolean hasRedstoneOutput) {
+                      boolean hasActiveTexture, boolean hasRedstoneOutput) {
             blockType = block;
             meta = m;
             blockName = name;

@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import javax.annotation.Nonnull;
-
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
 import mekanism.common.base.IMetaItem;
@@ -9,6 +7,8 @@ import mekanism.common.util.LangUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+
+import javax.annotation.Nonnull;
 
 public class ItemHDPE extends ItemMekanism implements IMetaItem {
 

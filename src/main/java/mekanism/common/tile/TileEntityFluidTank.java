@@ -1,21 +1,11 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.api.Coord4D;
 import mekanism.api.IConfigurable;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
-import mekanism.common.base.FluidHandlerWrapper;
-import mekanism.common.base.IActiveState;
-import mekanism.common.base.IComparatorSupport;
-import mekanism.common.base.IFluidContainerManager;
-import mekanism.common.base.IFluidHandlerWrapper;
-import mekanism.common.base.ISustainedTank;
-import mekanism.common.base.ITankManager;
-import mekanism.common.base.ITierUpgradeable;
-import mekanism.common.base.ITieredTile;
+import mekanism.common.base.*;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.security.ISecurityTile;
@@ -23,14 +13,8 @@ import mekanism.common.tier.BaseTier;
 import mekanism.common.tier.FluidTankTier;
 import mekanism.common.tile.component.TileComponentSecurity;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.FluidContainerUtils;
+import mekanism.common.util.*;
 import mekanism.common.util.FluidContainerUtils.ContainerEditMode;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.LangUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.PipeUtils;
-import mekanism.common.util.TileUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -49,8 +33,11 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class TileEntityFluidTank extends TileEntityContainerBlock implements IActiveState, IConfigurable, IFluidHandlerWrapper, ISustainedTank, IFluidContainerManager,
-      ITankManager, ISecurityTile, ITierUpgradeable, ITieredTile, IComparatorSupport {
+        ITankManager, ISecurityTile, ITierUpgradeable, ITieredTile, IComparatorSupport {
 
     public boolean isActive;
 

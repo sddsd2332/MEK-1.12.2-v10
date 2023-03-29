@@ -1,8 +1,5 @@
 package mekanism.client.render.tileentity;
 
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Objects;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.MekanismRenderer.DisplayInteger;
@@ -30,6 +27,10 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class RenderConfigurableMachine<S extends TileEntity & ISideConfiguration> extends TileEntitySpecialRenderer<S> {

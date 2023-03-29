@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
 import mekanism.common.OreDictCache;
@@ -19,6 +17,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 public class ItemDictionary extends ItemMekanism {
 
     public ItemDictionary() {
@@ -29,7 +30,7 @@ public class ItemDictionary extends ItemMekanism {
     @Nonnull
     @Override
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
-          float hitY, float hitZ, EnumHand hand) {
+                                           float hitY, float hitZ, EnumHand hand) {
         ItemStack stack = player.getHeldItem(hand);
         if (!player.isSneaking()) {
             IBlockState state = world.getBlockState(pos);

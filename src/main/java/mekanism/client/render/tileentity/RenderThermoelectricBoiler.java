@@ -27,7 +27,7 @@ public class RenderThermoelectricBoiler extends TileEntitySpecialRenderer<TileEn
     @Override
     public void render(TileEntityBoilerCasing tileEntity, double x, double y, double z, float partialTick, int destroyStage, float alpha) {
         if (tileEntity.clientHasStructure && tileEntity.isRendering && tileEntity.structure != null && tileEntity.structure.renderLocation != null &&
-            tileEntity.structure.upperRenderLocation != null) {
+                tileEntity.structure.upperRenderLocation != null) {
             FluidStack waterStored = tileEntity.structure.waterStored;
             boolean glChanged = false;
             if (waterStored != null && waterStored.amount != 0) {

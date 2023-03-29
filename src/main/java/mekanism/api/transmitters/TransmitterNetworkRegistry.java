@@ -1,11 +1,5 @@
 package mekanism.api.transmitters;
 
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
 import mekanism.api.Coord4D;
 import mekanism.api.MekanismAPI;
 import net.minecraft.util.EnumFacing;
@@ -16,6 +10,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.*;
 
 public class TransmitterNetworkRegistry {
 
@@ -193,10 +189,8 @@ public class TransmitterNetworkRegistry {
 
         public HashSet<IGridTransmitter<A, N, BUFFER>> connectedTransmitters = new HashSet<>();
         public HashSet<N> networksFound = new HashSet<>();
-
-        private Deque<Coord4D> queue = new LinkedList<>();
-
         public boolean someNetworksFailed;
+        private Deque<Coord4D> queue = new LinkedList<>();
 
         public OrphanPathFinder(IGridTransmitter<A, N, BUFFER> start) {
             startPoint = start;
@@ -224,7 +218,7 @@ public class TransmitterNetworkRegistry {
                 IGridTransmitter<A, N, BUFFER> transmitter = orphanTransmitters.get(from);
 
                 if (transmitter.isValid() && transmitter.isOrphan() &&
-                    (connectedTransmitters.isEmpty() || connectedTransmitters.stream().anyMatch(existing -> existing.isCompatibleWith(transmitter)))) {
+                        (connectedTransmitters.isEmpty() || connectedTransmitters.stream().anyMatch(existing -> existing.isCompatibleWith(transmitter)))) {
                     connectedTransmitters.add(transmitter);
                     transmitter.setOrphan(false);
 

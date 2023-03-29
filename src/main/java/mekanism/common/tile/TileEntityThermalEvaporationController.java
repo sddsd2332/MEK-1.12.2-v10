@@ -1,9 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.HashSet;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.IEvaporationSolar;
 import mekanism.api.TileNetworkList;
@@ -17,12 +14,8 @@ import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.inputs.FluidInput;
 import mekanism.common.recipe.machines.ThermalEvaporationRecipe;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.FluidContainerUtils;
+import mekanism.common.util.*;
 import mekanism.common.util.FluidContainerUtils.FluidChecker;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.TileUtils;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -40,6 +33,10 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
+
+import javax.annotation.Nonnull;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TileEntityThermalEvaporationController extends TileEntityThermalEvaporationBlock implements IActiveState, ITankManager {
 

@@ -1,6 +1,5 @@
 package mekanism.common.block;
 
-import javax.annotation.Nonnull;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlowerPot;
 import net.minecraft.block.material.Material;
@@ -13,6 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
 
 /**
  * Special handling for block drops that need TileEntity data

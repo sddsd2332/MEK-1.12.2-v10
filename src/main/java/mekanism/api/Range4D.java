@@ -1,10 +1,11 @@
 package mekanism.api;
 
-import java.util.HashSet;
-import java.util.Set;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Range4D {
 
@@ -73,7 +74,7 @@ public class Range4D {
 
     public boolean intersects(Range4D range) {
         return (xMax + 0.99999 > range.xMin) && (range.xMax + 0.99999 > xMin) && (yMax + 0.99999 > range.yMin) &&
-               (range.yMax + 0.99999 > yMin) && (zMax + 0.99999 > range.zMin) && (range.zMax + 0.99999 > zMin);
+                (range.yMax + 0.99999 > yMin) && (zMax + 0.99999 > range.zMin) && (range.zMax + 0.99999 > zMin);
     }
 
     public boolean hasPlayerInRange(EntityPlayerMP player) {
@@ -87,7 +88,7 @@ public class Range4D {
         //playerX/Z + radius is the max, so to stay in line with how it was before,
         // it has an extra + 1 added to it
         return (playerX + radius + 1.99999 > xMin) && (xMax + 0.99999 > playerX - radius) &&
-               (playerZ + radius + 1.99999 > zMin) && (zMax + 0.99999 > playerZ - radius);
+                (playerZ + radius + 1.99999 > zMin) && (zMax + 0.99999 > playerZ - radius);
     }
 
     @Override
@@ -103,13 +104,13 @@ public class Range4D {
     @Override
     public boolean equals(Object obj) {
         return obj instanceof Range4D &&
-               ((Range4D) obj).xMin == xMin &&
-               ((Range4D) obj).yMin == yMin &&
-               ((Range4D) obj).zMin == zMin &&
-               ((Range4D) obj).xMax == xMax &&
-               ((Range4D) obj).yMax == yMax &&
-               ((Range4D) obj).zMax == zMax &&
-               ((Range4D) obj).dimensionId == dimensionId;
+                ((Range4D) obj).xMin == xMin &&
+                ((Range4D) obj).yMin == yMin &&
+                ((Range4D) obj).zMin == zMin &&
+                ((Range4D) obj).xMax == xMax &&
+                ((Range4D) obj).yMax == yMax &&
+                ((Range4D) obj).zMax == zMax &&
+                ((Range4D) obj).dimensionId == dimensionId;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class GuiGasGauge extends GuiTankGauge<Gas, GasTank> {
             return dummyType.getSprite();
         }
         return (infoHandler.getTank() != null && infoHandler.getTank().getGas() != null && infoHandler.getTank().getGas().getGas() != null) ?
-               infoHandler.getTank().getGas().getGas().getSprite() : null;
+                infoHandler.getTank().getGas().getGas().getSprite() : null;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class GuiGasGauge extends GuiTankGauge<Gas, GasTank> {
             return dummyType.getLocalizedName();
         }
         return (infoHandler.getTank().getGas() != null) ? infoHandler.getTank().getGas().getGas().getLocalizedName() + ": " + infoHandler.getTank().getStored()
-                                                        : LangUtils.localize("gui.empty");
+                : LangUtils.localize("gui.empty");
     }
 
     @Override

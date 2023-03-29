@@ -1,7 +1,5 @@
 package mekanism.common.util;
 
-import java.util.Map;
-import java.util.Map.Entry;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
 import mekanism.common.base.ISideConfiguration;
@@ -18,6 +16,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 public final class InventoryUtils {
 
@@ -66,7 +67,6 @@ public final class InventoryUtils {
      *
      * @param toInsert stack a
      * @param inSlot   stack b
-     *
      * @return true if they are compatible
      */
     public static boolean areItemsStackable(ItemStack toInsert, ItemStack inSlot) {
@@ -161,7 +161,7 @@ public final class InventoryUtils {
     //TODO: Check what the difference between this method and areItemsStackable is
     public static boolean canStack(ItemStack stack1, ItemStack stack2) {
         return stack1.isEmpty() || stack2.isEmpty() ||
-               stack1.getItem() == stack2.getItem() && (!stack2.getHasSubtypes() || stack2.getItemDamage() == stack1.getItemDamage())
-               && ItemStack.areItemStackTagsEqual(stack2, stack1) && stack1.isStackable();
+                stack1.getItem() == stack2.getItem() && (!stack2.getHasSubtypes() || stack2.getItemDamage() == stack1.getItemDamage())
+                        && ItemStack.areItemStackTagsEqual(stack2, stack1) && stack1.isStackable();
     }
 }

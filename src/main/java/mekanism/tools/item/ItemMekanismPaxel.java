@@ -1,8 +1,5 @@
 package mekanism.tools.item;
 
-import java.util.HashSet;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.common.util.LangUtils;
 import mekanism.tools.common.IHasRepairType;
 import mekanism.tools.common.Materials;
@@ -16,6 +13,10 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.HashSet;
+import java.util.List;
 
 public class ItemMekanismPaxel extends ItemTool implements IHasRepairType {
 

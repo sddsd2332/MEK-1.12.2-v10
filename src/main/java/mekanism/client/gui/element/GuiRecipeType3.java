@@ -22,7 +22,7 @@ public class GuiRecipeType3 extends GuiTileEntityElement<TileEntityFactory> {
 
     @Override
     protected boolean inBounds(int xAxis, int yAxis) {
-        return xAxis >= 180  + 72 && xAxis <= 196  + 72 && (yAxis >= 75 && yAxis <= 91 || yAxis >= 112 && yAxis <= 128);
+        return xAxis >= 180 + 72 && xAxis <= 196 + 72 && (yAxis >= 75 && yAxis <= 91 || yAxis >= 112 && yAxis <= 128);
     }
 
     @Override

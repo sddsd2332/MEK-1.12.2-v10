@@ -53,7 +53,7 @@ public class ItemMekTool extends ItemEnergized {
     @Nonnull
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return EnumColor.PURPLE +  LangUtils.localize("item.MekTool.name");
+        return EnumColor.PURPLE + LangUtils.localize("item.MekTool.name");
     }
 
     @SideOnly(Side.CLIENT)
@@ -63,10 +63,10 @@ public class ItemMekTool extends ItemEnergized {
         Mode mode = getMode(itemstack);
         list.add(LangUtils.localize("tooltip.mode") + ": " + EnumColor.INDIGO + mode.getModeName());
         list.add(LangUtils.localize("tooltip.efficiency") + ": " + EnumColor.INDIGO + mode.getEfficiency());
-        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool1"),itemstack));
-        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool2"),itemstack));
-        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool3"),itemstack));
-        list.addAll(MekanismUtils.splitTooltip(EnumColor.RED + LangUtils.localize("tooltip.MekTool4"),itemstack));
+        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool1"), itemstack));
+        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool2"), itemstack));
+        list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.MekTool3"), itemstack));
+        list.addAll(MekanismUtils.splitTooltip(EnumColor.RED + LangUtils.localize("tooltip.MekTool4"), itemstack));
     }
 
     @Override
@@ -84,36 +84,35 @@ public class ItemMekTool extends ItemEnergized {
         }
         float damage = (float) (minDamage + damageDifference * percent);
         if (attacker instanceof EntityPlayer) {
-            if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.9 ) {
-                if(target.getHealth()/ target.getMaxHealth() > 0.1) {
+            if (energy > MekanismConfig.current().general.toolBatteryCapacity.val() * 0.9) {
+                if (target.getHealth() / target.getMaxHealth() > 0.1) {
                     target.setHealth(0.1F);
-                }
-                else {
+                } else {
                     target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage * 8096);
                     //target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 8096);
                 }
-            }else if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.75 ) {
+            } else if (energy > MekanismConfig.current().general.toolBatteryCapacity.val() * 0.75) {
                 target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage * 4096);
-               // target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 4096);
-            }else if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.5 ) {
-               target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage * 2048);
-               // target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 2048);
-            }else if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.25 ) {
+                // target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 4096);
+            } else if (energy > MekanismConfig.current().general.toolBatteryCapacity.val() * 0.5) {
+                target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage * 2048);
+                // target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 2048);
+            } else if (energy > MekanismConfig.current().general.toolBatteryCapacity.val() * 0.25) {
                 target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage * 1024);
-               // target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 1024);
-            }else{
-               target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage);
-             //   target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage);
+                // target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage * 1024);
+            } else {
+                target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), damage);
+                //   target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(attacker, attacker), damage);
             }
         } else {
-            if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.75 ) {
-                target.attackEntityFrom(DamageSource.causeMobDamage(attacker), damage*4096);
-            }else if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.5 ) {
+            if (energy > MekanismConfig.current().general.toolBatteryCapacity.val() * 0.75) {
+                target.attackEntityFrom(DamageSource.causeMobDamage(attacker), damage * 4096);
+            } else if (energy > MekanismConfig.current().general.toolBatteryCapacity.val() * 0.5) {
                 target.attackEntityFrom(DamageSource.causeMobDamage(attacker), damage * 2048);
-            }else if(energy > MekanismConfig.current().general.toolBatteryCapacity.val()*0.25 ) {
+            } else if (energy > MekanismConfig.current().general.toolBatteryCapacity.val() * 0.25) {
                 target.attackEntityFrom(DamageSource.causeMobDamage(attacker), damage * 1024);
-            }else{
-            target.attackEntityFrom(DamageSource.causeMobDamage(attacker), damage);
+            } else {
+                target.attackEntityFrom(DamageSource.causeMobDamage(attacker), damage);
             }
         }
 
@@ -207,7 +206,7 @@ public class ItemMekTool extends ItemEnergized {
                 toggleMode(itemstack);
                 Mode mode = getMode(itemstack);
                 entityplayer.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY + LangUtils.localize("tooltip.modeToggle")
-                                                                 + " " + EnumColor.INDIGO + mode.getModeName() + EnumColor.AQUA + " (" + mode.getEfficiency() + ")"));
+                        + " " + EnumColor.INDIGO + mode.getModeName() + EnumColor.AQUA + " (" + mode.getEfficiency() + ")"));
             }
             return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
         }
@@ -400,6 +399,13 @@ public class ItemMekTool extends ItemEnergized {
         }
     }
 
+    @FunctionalInterface
+    interface ItemUseConsumer {
+
+        //Used to reference useHoe and useShovel via lambda references
+        EnumActionResult use(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing);
+    }
+
     public static class Finder {
 
         public static Map<Block, List<Block>> ignoreBlocks = new HashMap<>();
@@ -409,11 +415,11 @@ public class ItemMekTool extends ItemEnergized {
             ignoreBlocks.put(Blocks.LIT_REDSTONE_ORE, Arrays.asList(Blocks.REDSTONE_ORE, Blocks.LIT_REDSTONE_ORE));
         }
 
-        private final EntityPlayer player;
         public final World world;
         public final ItemStack stack;
         public final Coord4D location;
         public final Set<Coord4D> found = new HashSet<>();
+        private final EntityPlayer player;
         private final RayTraceResult rayTraceResult;
         private final Block startBlock;
         private final boolean isWood;
@@ -465,15 +471,6 @@ public class ItemMekTool extends ItemEnergized {
             return ignored == null ? b == origBlock : ignored.contains(b);
         }
     }
-
-    @FunctionalInterface
-    interface ItemUseConsumer {
-
-        //Used to reference useHoe and useShovel via lambda references
-        EnumActionResult use(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing);
-    }
-
-
 
 
 }

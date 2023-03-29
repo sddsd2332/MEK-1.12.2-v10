@@ -1,11 +1,12 @@
 package mekanism.common.util;
 
-import java.util.IllegalFormatException;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.IllegalFormatException;
 
 public final class LangUtils {
 
@@ -33,7 +34,6 @@ public final class LangUtils {
      * Localizes the defined string.
      *
      * @param s - string to localized
-     *
      * @return localized string
      */
     public static String localize(String s) {

@@ -1,6 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
 import mekanism.client.gui.element.GuiScrollList;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.sound.SoundHandler;
@@ -18,12 +17,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
+import java.io.IOException;
+
 @SideOnly(Side.CLIENT)
 public class GuiDictionary extends GuiMekanism {
 
-    public ItemStack itemType = ItemStack.EMPTY;
-
     private final GuiScrollList scrollList;
+    public ItemStack itemType = ItemStack.EMPTY;
 
     public GuiDictionary(InventoryPlayer inventory) {
         super(new ContainerDictionary(inventory));

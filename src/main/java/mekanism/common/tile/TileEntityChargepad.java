@@ -1,9 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import java.util.Random;
-import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
@@ -26,6 +23,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Random;
+
 public class TileEntityChargepad extends TileEntityEffectsBlock {
 
     public boolean isActive;
@@ -44,7 +45,7 @@ public class TileEntityChargepad extends TileEntityEffectsBlock {
         if (!world.isRemote) {
             isActive = false;
             List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class,
-                  new AxisAlignedBB(getPos().getX(), getPos().getY(), getPos().getZ(), getPos().getX() + 1, getPos().getY() + 0.2, getPos().getZ() + 1));
+                    new AxisAlignedBB(getPos().getX(), getPos().getY(), getPos().getZ(), getPos().getX() + 1, getPos().getY() + 0.2, getPos().getZ() + 1));
 
             for (EntityLivingBase entity : entities) {
                 if (entity instanceof EntityPlayer || entity instanceof EntityRobit) {
@@ -79,16 +80,16 @@ public class TileEntityChargepad extends TileEntityEffectsBlock {
             if (clientActive != isActive) {
                 if (isActive) {
                     world.playSound(null, getPos().getX() + 0.5, getPos().getY() + 0.1, getPos().getZ() + 0.5,
-                          SoundEvents.BLOCK_STONE_PRESSPLATE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.8F);
+                            SoundEvents.BLOCK_STONE_PRESSPLATE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.8F);
                 } else {
                     world.playSound(null, getPos().getX() + 0.5, getPos().getY() + 0.1, getPos().getZ() + 0.5,
-                          SoundEvents.BLOCK_STONE_PRESSPLATE_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.7F);
+                            SoundEvents.BLOCK_STONE_PRESSPLATE_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.7F);
                 }
                 setActive(isActive);
             }
         } else if (isActive) {
             world.spawnParticle(EnumParticleTypes.REDSTONE, getPos().getX() + random.nextDouble(), getPos().getY() + 0.15,
-                  getPos().getZ() + random.nextDouble(), 0, 0, 0);
+                    getPos().getZ() + random.nextDouble(), 0, 0, 0);
         }
     }
 

@@ -1,6 +1,5 @@
 package mekanism.generators.client.gui.button;
 
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.generators.common.tile.reactor.TileEntityReactorLogicAdapter;
@@ -10,6 +9,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
 public class GuiReactorLogicButton extends GuiButton {

@@ -1,11 +1,12 @@
 package mekanism.common.base.target;
 
+import mekanism.common.base.SplitInfo;
+import net.minecraft.util.EnumFacing;
+
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import mekanism.common.base.SplitInfo;
-import net.minecraft.util.EnumFacing;
 
 /**
  * Keeps track of a target for emitting from various networks.
@@ -56,7 +57,6 @@ public abstract class Target<HANDLER, TYPE extends Number & Comparable<TYPE>, EX
      * @param splitInfo Information about current overall split. The given split will be increased by the actual amount accepted, in case it is less than the offered
      *                  amount.
      * @param amount    Amount to give.
-     *
      * @implNote Must call {@link SplitInfo#send(Number)} with the amount actually accepted.
      */
     protected abstract void acceptAmount(EnumFacing side, SplitInfo<TYPE> splitInfo, TYPE amount);
@@ -67,7 +67,6 @@ public abstract class Target<HANDLER, TYPE extends Number & Comparable<TYPE>, EX
      * @param handler The handler (should correspond with the side we are simulating).
      * @param side    The side we are simulating
      * @param extra   All the information we are inserting.
-     *
      * @return The amount it was actually willing to accept.
      */
     protected abstract TYPE simulate(HANDLER handler, EnumFacing side, EXTRA extra);

@@ -1,6 +1,5 @@
 package mekanism.generators.common.inventory.container;
 
-import javax.annotation.Nonnull;
 import mekanism.common.inventory.container.ContainerMekanism;
 import mekanism.common.tile.prefab.TileEntityElectricBlock;
 import mekanism.common.util.ChargeUtils;
@@ -8,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
 
 public abstract class ContainerFuelGenerator<TILE extends TileEntityElectricBlock> extends ContainerMekanism<TILE> {
 

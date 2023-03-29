@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
@@ -30,20 +28,23 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 public class ItemScubaTank extends ItemArmor implements IGasItem {
 
     public int TRANSFER_RATE = 16;
 
     public ItemScubaTank() {
         super(EnumHelper.addArmorMaterial("SCUBATANK", "scubatank", 0, new int[]{0, 0, 0, 0}, 0,
-              SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0), 0, EntityEquipmentSlot.CHEST);
+                SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0), 0, EntityEquipmentSlot.CHEST);
         setCreativeTab(Mekanism.tabMekanism);
     }
 
     @Nonnull
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return EnumColor.AQUA +  LangUtils.localize("item.ScubaTank.name");
+        return EnumColor.AQUA + LangUtils.localize("item.ScubaTank.name");
     }
 
     @Override

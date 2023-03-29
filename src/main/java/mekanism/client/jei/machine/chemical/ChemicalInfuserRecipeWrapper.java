@@ -1,10 +1,11 @@
 package mekanism.client.jei.machine.chemical;
 
-import java.util.Arrays;
 import mekanism.client.jei.MekanismJEI;
 import mekanism.client.jei.machine.MekanismRecipeWrapper;
 import mekanism.common.recipe.machines.ChemicalInfuserRecipe;
 import mezz.jei.api.ingredients.IIngredients;
+
+import java.util.Arrays;
 
 public class ChemicalInfuserRecipeWrapper<RECIPE extends ChemicalInfuserRecipe> extends MekanismRecipeWrapper<RECIPE> {
 

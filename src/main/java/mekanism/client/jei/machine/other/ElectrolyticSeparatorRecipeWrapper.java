@@ -1,11 +1,12 @@
 package mekanism.client.jei.machine.other;
 
-import java.util.Arrays;
 import mekanism.client.jei.MekanismJEI;
 import mekanism.client.jei.machine.MekanismRecipeWrapper;
 import mekanism.common.recipe.machines.SeparatorRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
+
+import java.util.Arrays;
 
 public class ElectrolyticSeparatorRecipeWrapper<RECIPE extends SeparatorRecipe> extends MekanismRecipeWrapper<RECIPE> {
 

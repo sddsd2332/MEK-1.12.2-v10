@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import java.util.Optional;
-import javax.annotation.Nonnull;
 import mcmultipart.api.container.IMultipartContainer;
 import mcmultipart.api.multipart.IMultipart;
 import mcmultipart.api.multipart.MultipartHelper;
@@ -21,6 +19,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
+import java.util.Optional;
 
 /**
  * Created by Thiakil on 19/11/2017.
@@ -100,7 +101,7 @@ public abstract class ItemBlockMultipartAble extends ItemBlock {
 
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY,
-          float hitZ, @Nonnull IBlockState newState) {
+                                float hitZ, @Nonnull IBlockState newState) {
         if (!world.getBlockState(pos).getBlock().isReplaceable(world, pos)) {
             return false;
         }

@@ -6,9 +6,6 @@ import ic2.api.energy.EnergyNet;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.energy.tile.IEnergyTile;
 import io.netty.buffer.ByteBuf;
-import java.util.Collection;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.api.energy.EnergyStack;
 import mekanism.api.energy.IStrictEnergyAcceptor;
@@ -40,11 +37,15 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.common.Optional;
 
+import javax.annotation.Nonnull;
+import java.util.Collection;
+import java.util.List;
+
 @Optional.InterfaceList(
-      @Optional.Interface(iface = "cofh.redstoneflux.api.IEnergyReceiver", modid = MekanismHooks.REDSTONEFLUX_MOD_ID)
+        @Optional.Interface(iface = "cofh.redstoneflux.api.IEnergyReceiver", modid = MekanismHooks.REDSTONEFLUX_MOD_ID)
 )
 public class TileEntityUniversalCable extends TileEntityTransmitter<EnergyAcceptorWrapper, EnergyNetwork, EnergyStack> implements IStrictEnergyAcceptor,
-      IStrictEnergyStorage, IEnergyReceiver {
+        IStrictEnergyStorage, IEnergyReceiver {
 
     public CableTier tier = CableTier.BASIC;
 
@@ -114,6 +115,7 @@ public class TileEntityUniversalCable extends TileEntityTransmitter<EnergyAccept
 
     /**
      * Takes a certain amount of energy and returns how much was actually taken
+     *
      * @param toDraw Amount to take
      * @return Amount actually taken
      */
@@ -322,7 +324,7 @@ public class TileEntityUniversalCable extends TileEntityTransmitter<EnergyAccept
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing) {
         return capability == Capabilities.ENERGY_STORAGE_CAPABILITY || capability == Capabilities.ENERGY_ACCEPTOR_CAPABILITY
-               || capability == Capabilities.TESLA_CONSUMER_CAPABILITY || capability == CapabilityEnergy.ENERGY || super.hasCapability(capability, facing);
+                || capability == Capabilities.TESLA_CONSUMER_CAPABILITY || capability == CapabilityEnergy.ENERGY || super.hasCapability(capability, facing);
     }
 
     @Override

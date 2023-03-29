@@ -13,7 +13,7 @@ public class ThermalEvaporationRecipeCategory<WRAPPER extends ThermalEvaporation
 
     public ThermalEvaporationRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/GuiThermalEvaporationController.png",
-              Recipe.THERMAL_EVAPORATION_PLANT.getJEICategory(), "gui.thermalEvaporationController.short", null, 3, 12, 170, 62);
+                Recipe.THERMAL_EVAPORATION_PLANT.getJEICategory(), "gui.thermalEvaporationController.short", null, 3, 12, 170, 62);
     }
 
     @Override
@@ -27,9 +27,9 @@ public class ThermalEvaporationRecipeCategory<WRAPPER extends ThermalEvaporation
         ThermalEvaporationRecipe tempRecipe = recipeWrapper.getRecipe();
         IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
         fluidStacks.init(0, true, 7 - xOffset, 14 - yOffset, 16, 58, tempRecipe.getInput().ingredient.amount, false,
-              fluidOverlayLarge);
+                fluidOverlayLarge);
         fluidStacks.init(1, false, 153 - xOffset, 14 - yOffset, 16, 58, tempRecipe.getOutput().output.amount, false,
-              fluidOverlayLarge);
+                fluidOverlayLarge);
         fluidStacks.set(0, tempRecipe.recipeInput.ingredient);
         fluidStacks.set(1, tempRecipe.recipeOutput.output);
     }

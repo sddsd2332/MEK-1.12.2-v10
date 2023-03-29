@@ -1,8 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
@@ -28,24 +26,26 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements ISustainedData,IBoundingBlock,IGasHandler,IUpgradeInfoHandler,ITankManager,IComparatorSupport,ISideConfiguration{
+import javax.annotation.Nonnull;
+import java.util.List;
+
+public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements ISustainedData, IBoundingBlock, IGasHandler, IUpgradeInfoHandler, ITankManager, IComparatorSupport, ISideConfiguration {
     public static final int MAX_GAS = 10000;
-    public GasTank inputTank = new GasTank(MAX_GAS);
-    public GasTank outputTank = new GasTank(MAX_GAS);
     private static final int[] INPUT_SLOT = {0};
     private static final int[] OUTPUT_SLOT = {1};
+    public GasTank inputTank = new GasTank(MAX_GAS);
+    public GasTank outputTank = new GasTank(MAX_GAS);
     public int gasOutput = 256;
     public IsotopicRecipe cachedRecipe;
-    private int currentRedstoneLevel;
     public double clientEnergyUsed;
-
     public TileComponentEjector ejectorComponent;
     public TileComponentConfig configComponent;
+    private int currentRedstoneLevel;
 
     public TileEntityIsotopicCentrifuge() {
         super("machine.washer", BlockStateMachine.MachineType.ISOTOPIC_CENTRIFUGE, 4);
-        configComponent = new TileComponentConfig(this,TransmissionType.ITEM,TransmissionType.ENERGY,TransmissionType.GAS);
-        
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS);
+
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.BRIGHT_GREEN, new int[]{0}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{1}));
@@ -53,19 +53,20 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
         configComponent.setConfig(TransmissionType.ITEM, new byte[]{1, 3, 2, 0, 0, 0});
         configComponent.setCanEject(TransmissionType.ITEM, false);
 
-        
+
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.YELLOW, new int[]{0}));
         configComponent.addOutput(TransmissionType.GAS, new SideData("Output", EnumColor.INDIGO, new int[]{1}));
         configComponent.setConfig(TransmissionType.GAS, new byte[]{1, 0, 2, 0, 0, 0});
-        
+
         configComponent.setInputConfig(TransmissionType.ENERGY);
-        
+
         ejectorComponent = new TileComponentEjector(this);
         ejectorComponent.setOutputData(TransmissionType.GAS, configComponent.getOutputs(TransmissionType.GAS).get(2));
 
         inventory = NonNullList.withSize(5, ItemStack.EMPTY);
     }
+
     @Override
     public void onUpdate() {
         super.onUpdate();
@@ -83,7 +84,7 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
             } else if (prevEnergy >= getEnergy()) {
                 setActive(false);
             }
-         //   TileUtils.emitGas(this, outputTank, gasOutput, facing);
+            //   TileUtils.emitGas(this, outputTank, gasOutput, facing);
             prevEnergy = getEnergy();
             int newRedstoneLevel = getRedstoneLevel();
             if (newRedstoneLevel != currentRedstoneLevel) {
@@ -92,6 +93,7 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
             }
         }
     }
+
     public IsotopicRecipe getRecipe() {
         GasInput input = getInput();
         if (cachedRecipe == null || !input.testEquality(cachedRecipe.getInput())) {
@@ -105,8 +107,9 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
     }
 
     public boolean canOperate(IsotopicRecipe recipe) {
-        return recipe != null && recipe.canOperate(inputTank , outputTank);
+        return recipe != null && recipe.canOperate(inputTank, outputTank);
     }
+
     public int operate(IsotopicRecipe recipe) {
         int operations = getUpgradedUsage();
         recipe.operate(inputTank, outputTank, operations);
@@ -119,6 +122,7 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
         possibleProcess = Math.min((int) (getEnergy() / energyPerTick), possibleProcess);
         return possibleProcess;
     }
+
     @Override
     public void handlePacketData(ByteBuf dataStream) {
         super.handlePacketData(dataStream);
@@ -264,10 +268,12 @@ public class TileEntityIsotopicCentrifuge extends TileEntityMachine implements I
     public int getRedstoneLevel() {
         return MekanismUtils.redstoneLevelFromContents(inputTank.getStored(), inputTank.getMaxGas());
     }
+
     @Override
     public void onPlace() {
         MekanismUtils.makeBoundingBlock(world, Coord4D.get(this).offset(EnumFacing.UP).getPos(), Coord4D.get(this));
     }
+
     @Override
     public void onBreak() {
         world.setBlockToAir(getPos().up());

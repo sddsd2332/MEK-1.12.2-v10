@@ -1,10 +1,11 @@
 package mekanism.client.jei.machine;
 
-import java.util.Arrays;
 import mekanism.common.recipe.inputs.DoubleMachineInput;
 import mekanism.common.recipe.machines.DoubleMachineRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
+
+import java.util.Arrays;
 
 public class DoubleMachineRecipeWrapper<RECIPE extends DoubleMachineRecipe<RECIPE>> extends MekanismRecipeWrapper<RECIPE> {
 

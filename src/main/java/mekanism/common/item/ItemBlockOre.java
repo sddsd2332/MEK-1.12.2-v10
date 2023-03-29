@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.client.MekKeyHandler;
 import mekanism.client.MekanismKeyHandler;
@@ -15,6 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * Item class for handling multiple ore block IDs. 0: Osmium Ore 1: Copper Ore 2: Tin Ore 3:Fluorite Ore 4: Lead Ore 5:Uranium Ore
@@ -34,10 +35,10 @@ public class ItemBlockOre extends ItemBlock {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(@Nonnull ItemStack itemstack, World world, @Nonnull List<String> list,
-          @Nonnull ITooltipFlag flag) {
+                               @Nonnull ITooltipFlag flag) {
         if (!MekKeyHandler.getIsKeyPressed(MekanismKeyHandler.sneakKey)) {
             list.add("Hold " + EnumColor.AQUA + GameSettings.getKeyDisplayString(MekanismKeyHandler.sneakKey.getKeyCode()) + EnumColor.GREY + " " +
-                     LangUtils.localize("tooltip.forDetails") + ".");
+                    LangUtils.localize("tooltip.forDetails") + ".");
         } else {
             list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip." + getTranslationKey(itemstack).replace("tile.OreBlock.", "")), itemstack));
         }

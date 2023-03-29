@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.common.base.ISustainedInventory;
@@ -22,6 +20,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+
 public class ItemRobit extends ItemEnergized implements ISustainedInventory {
 
     public ItemRobit() {
@@ -31,7 +32,7 @@ public class ItemRobit extends ItemEnergized implements ISustainedInventory {
     @Nonnull
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return EnumColor.AQUA +  LangUtils.localize("item.Robit.name");
+        return EnumColor.AQUA + LangUtils.localize("item.Robit.name");
     }
 
     @Override

@@ -1,16 +1,9 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
-
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
-import mekanism.api.gas.IGasItem;
+import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.SideData;
 import mekanism.common.base.ISideConfiguration;
@@ -24,21 +17,17 @@ import mekanism.common.recipe.machines.OxidationRecipe;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityOperationalMachine;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.TileUtils;
+import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine implements ISustainedData, ISideConfiguration,ITankManager, IGasHandler {
+import javax.annotation.Nonnull;
+
+public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine implements ISustainedData, ISideConfiguration, ITankManager, IGasHandler {
 
     public static final int MAX_GAS = 10000;
     public GasTank gasTank = new GasTank(MAX_GAS);
@@ -52,7 +41,7 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
 
     public TileEntityChemicalOxidizer() {
         super("machine.oxidizer", MachineType.CHEMICAL_OXIDIZER, 3, 100);
-        configComponent = new TileComponentConfig(this, TransmissionType.ITEM,TransmissionType.ENERGY, TransmissionType.GAS);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[]{0}));
@@ -93,7 +82,7 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
                 setActive(false);
             }
             prevEnergy = getEnergy();
-          //  TileUtils.emitGas(this, gasTank, gasOutput, MekanismUtils.getRight(facing));
+            //  TileUtils.emitGas(this, gasTank, gasOutput, MekanismUtils.getRight(facing));
         }
     }
 
@@ -255,7 +244,7 @@ public class TileEntityChemicalOxidizer extends TileEntityOperationalMachine imp
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-       // return side == MekanismUtils.getRight(facing) && gasTank.canDraw(type);
+        // return side == MekanismUtils.getRight(facing) && gasTank.canDraw(type);
         return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(2) && gasTank.canDraw(type);
     }
 

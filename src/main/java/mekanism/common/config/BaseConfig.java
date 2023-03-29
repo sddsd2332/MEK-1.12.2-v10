@@ -1,10 +1,11 @@
 package mekanism.common.config;
 
 import io.netty.buffer.ByteBuf;
-import java.util.ArrayList;
-import java.util.List;
 import mekanism.common.config.options.Option;
 import net.minecraftforge.common.config.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Thiakil on 15/03/2019.

@@ -1,9 +1,5 @@
 package mekanism.common.block;
 
-import java.util.Collections;
-import java.util.List;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.api.IMekWrench;
 import mekanism.client.render.particle.MekanismParticleHelper;
 import mekanism.common.Mekanism;
@@ -16,15 +12,8 @@ import mekanism.common.block.states.BlockStateTransmitter.TransmitterType.Size;
 import mekanism.common.integration.multipart.MultipartMekanism;
 import mekanism.common.integration.wrenches.Wrenches;
 import mekanism.common.tier.BaseTier;
-import mekanism.common.tile.transmitter.TileEntityDiversionTransporter;
-import mekanism.common.tile.transmitter.TileEntityLogisticalTransporter;
-import mekanism.common.tile.transmitter.TileEntityMechanicalPipe;
-import mekanism.common.tile.transmitter.TileEntityPressurizedTube;
-import mekanism.common.tile.transmitter.TileEntityRestrictiveTransporter;
-import mekanism.common.tile.transmitter.TileEntitySidedPipe;
+import mekanism.common.tile.transmitter.*;
 import mekanism.common.tile.transmitter.TileEntitySidedPipe.ConnectionType;
-import mekanism.common.tile.transmitter.TileEntityThermodynamicConductor;
-import mekanism.common.tile.transmitter.TileEntityUniversalCable;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MultipartUtils;
 import mekanism.common.util.MultipartUtils.AdvancedRayTraceResult;
@@ -42,11 +31,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -59,6 +44,11 @@ import net.minecraftforge.client.model.obj.OBJModel.OBJState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 
 public class BlockTransmitter extends BlockTileDrops implements ITileEntityProvider {
 
@@ -171,7 +161,7 @@ public class BlockTransmitter extends BlockTileDrops implements ITileEntityProvi
             return tile.getExtendedState(state);
         }
         ConnectionType[] typeArray = new ConnectionType[]{ConnectionType.NORMAL, ConnectionType.NORMAL, ConnectionType.NORMAL,
-                                                          ConnectionType.NORMAL, ConnectionType.NORMAL, ConnectionType.NORMAL};
+                ConnectionType.NORMAL, ConnectionType.NORMAL, ConnectionType.NORMAL};
         PropertyConnection connectionProp = new PropertyConnection((byte) 0, (byte) 0, typeArray, true);
         return ((IExtendedBlockState) state).withProperty(OBJProperty.INSTANCE, new OBJState(Collections.emptyList(), true)).withProperty(PropertyConnection.INSTANCE, connectionProp);
     }
@@ -190,7 +180,7 @@ public class BlockTransmitter extends BlockTileDrops implements ITileEntityProvi
     @Override
     @Deprecated
     public void addCollisionBoxToList(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox,
-          @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean b) {
+                                      @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean b) {
         TileEntitySidedPipe tile = getTileEntitySidedPipe(world, pos);
         if (tile != null) {
             List<AxisAlignedBB> boxes = tile.getCollisionBoxes(entityBox.offset(-pos.getX(), -pos.getY(), -pos.getZ()));

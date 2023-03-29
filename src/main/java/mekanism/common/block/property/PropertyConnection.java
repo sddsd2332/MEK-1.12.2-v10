@@ -1,8 +1,9 @@
 package mekanism.common.block.property;
 
-import java.util.Arrays;
 import mekanism.common.tile.transmitter.TileEntitySidedPipe.ConnectionType;
 import net.minecraftforge.common.property.IUnlistedProperty;
+
+import java.util.Arrays;
 
 public class PropertyConnection implements IUnlistedProperty<PropertyConnection> {
 

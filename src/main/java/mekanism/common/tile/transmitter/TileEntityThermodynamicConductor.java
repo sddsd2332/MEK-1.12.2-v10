@@ -1,8 +1,6 @@
 package mekanism.common.tile.transmitter;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Collection;
-import javax.annotation.Nonnull;
 import mekanism.api.IHeatTransfer;
 import mekanism.api.TileNetworkList;
 import mekanism.api.transmitters.TransmissionType;
@@ -20,6 +18,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+
+import javax.annotation.Nonnull;
+import java.util.Collection;
 
 public class TileEntityThermodynamicConductor extends TileEntityTransmitter<IHeatTransfer, HeatNetwork, Void> implements IHeatTransfer {
 

@@ -22,9 +22,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
-public class GuiFarmMachine<RECIPE extends FarmMachineRecipe <RECIPE>> extends GuiMekanismTile<TileEntityFarmMachine<RECIPE>> {
+public class GuiFarmMachine<RECIPE extends FarmMachineRecipe<RECIPE>> extends GuiMekanismTile<TileEntityFarmMachine<RECIPE>> {
 
-    public GuiFarmMachine(InventoryPlayer inventory,TileEntityFarmMachine<RECIPE> tile) {
+    public GuiFarmMachine(InventoryPlayer inventory, TileEntityFarmMachine<RECIPE> tile) {
         super(tile, new ContainerFarmMachine<>(inventory, tile));
         ResourceLocation resource = getGuiLocation();
         addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));

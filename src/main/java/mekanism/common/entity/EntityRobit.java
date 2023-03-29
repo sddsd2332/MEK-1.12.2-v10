@@ -3,11 +3,6 @@ package mekanism.common.entity;
 import cofh.redstoneflux.api.IEnergyContainerItem;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.List;
-import java.util.UUID;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.energy.EnergizedItemManager;
 import mekanism.api.energy.IEnergizedItem;
@@ -62,6 +57,12 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional.Interface;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
+import java.util.UUID;
 
 @Interface(iface = "micdoodle8.mods.galacticraft.api.entity.IEntityBreathable", modid = MekanismHooks.GALACTICRAFT_MOD_ID)
 public class EntityRobit extends EntityCreature implements IInventory, ISustainedInventory, IEntityBreathable {
@@ -262,7 +263,7 @@ public class EntityRobit extends EntityCreature implements IInventory, ISustaine
         setFollowing(false);
         if (world.provider.getDimension() != homeLocation.dimensionId) {
             changeDimension(homeLocation.dimensionId, (world1, entity, yaw) ->
-                  entity.setLocationAndAngles(homeLocation.x + 0.5, homeLocation.y + 0.3, homeLocation.z + 0.5, yaw, rotationPitch));
+                    entity.setLocationAndAngles(homeLocation.x + 0.5, homeLocation.y + 0.3, homeLocation.z + 0.5, yaw, rotationPitch));
         } else {
             setPositionAndUpdate(homeLocation.x + 0.5, homeLocation.y + 0.3, homeLocation.z + 0.5);
         }

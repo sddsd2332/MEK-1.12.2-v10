@@ -1,6 +1,5 @@
 package mekanism.common.tile;
 
-import javax.annotation.Nonnull;
 import mekanism.common.security.ISecurityTile;
 import mekanism.common.tile.component.TileComponentSecurity;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
@@ -14,6 +13,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.CapabilityItemHandler;
+
+import javax.annotation.Nonnull;
 
 public class TileEntityPersonalChest extends TileEntityContainerBlock implements ISecurityTile {
 
@@ -37,7 +38,7 @@ public class TileEntityPersonalChest extends TileEntityContainerBlock implements
         float increment = 0.1F;
         if ((playersUsing.size() > 0) && (lidAngle == 0.0F)) {
             world.playSound(null, getPos().getX() + 0.5F, getPos().getY() + 0.5D, getPos().getZ() + 0.5F,
-                  SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, (world.rand.nextFloat() * 0.1F) + 0.9F);
+                    SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, (world.rand.nextFloat() * 0.1F) + 0.9F);
         }
 
         if ((playersUsing.size() == 0 && lidAngle > 0.0F) || (playersUsing.size() > 0 && lidAngle < 1.0F)) {
@@ -53,7 +54,7 @@ public class TileEntityPersonalChest extends TileEntityContainerBlock implements
             float split = 0.5F;
             if (lidAngle < split && angle >= split) {
                 world.playSound(null, getPos().getX() + 0.5D, getPos().getY() + 0.5D, getPos().getZ() + 0.5D,
-                      SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, (world.rand.nextFloat() * 0.1F) + 0.9F);
+                        SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, (world.rand.nextFloat() * 0.1F) + 0.9F);
             }
             if (lidAngle < 0.0F) {
                 lidAngle = 0.0F;

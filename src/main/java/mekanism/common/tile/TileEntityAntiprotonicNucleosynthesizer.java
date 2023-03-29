@@ -1,15 +1,9 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Map;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
+import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.Mekanism;
 import mekanism.common.SideData;
@@ -26,12 +20,7 @@ import mekanism.common.recipe.outputs.NucleosynthesizerOutput;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityBasicMachine;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.LangUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.TileUtils;
+import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -40,17 +29,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMachine<NucleosynthesizerInput, NucleosynthesizerOutput, NucleosynthesizerRecipe> implements  IGasHandler,
+import javax.annotation.Nonnull;
+import java.util.Map;
+
+public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMachine<NucleosynthesizerInput, NucleosynthesizerOutput, NucleosynthesizerRecipe> implements IGasHandler,
         ISustainedData, ITankManager {
 
     private static final String[] methods = new String[]{"getEnergy", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded",
-             "getGasStored"};
+            "getGasStored"};
     public GasTank inputGasTank = new GasTank(10000);
 
 
     public TileEntityAntiprotonicNucleosynthesizer() {
         super("prc", MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER, 3, 100, new ResourceLocation(Mekanism.MODID, "gui/GuiPRC.png"));
-        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY,  TransmissionType.GAS);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[]{0}));
@@ -131,7 +123,7 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
 
     @Override
     public NucleosynthesizerInput getInput() {
-        return new NucleosynthesizerInput(inventory.get(0),  inputGasTank.getGas());
+        return new NucleosynthesizerInput(inventory.get(0), inputGasTank.getGas());
     }
 
     @Override
@@ -256,7 +248,7 @@ public class TileEntityAntiprotonicNucleosynthesizer extends TileEntityBasicMach
         if (isCapabilityDisabled(capability, side)) {
             return false;
         }
-        return capability == Capabilities.GAS_HANDLER_CAPABILITY  || super.hasCapability(capability, side);
+        return capability == Capabilities.GAS_HANDLER_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override

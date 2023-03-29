@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mcmultipart.api.multipart.IMultipart;
 import mekanism.api.EnumColor;
 import mekanism.api.transmitters.TransmissionType;
@@ -9,16 +7,10 @@ import mekanism.client.MekKeyHandler;
 import mekanism.client.MekanismKeyHandler;
 import mekanism.common.Mekanism;
 import mekanism.common.base.ITierItem;
-import mekanism.common.block.states.BlockStateTransmitter;
 import mekanism.common.block.states.BlockStateTransmitter.TransmitterType;
 import mekanism.common.integration.MekanismHooks;
 import mekanism.common.integration.multipart.MultipartMekanism;
-import mekanism.common.tier.BaseTier;
-import mekanism.common.tier.CableTier;
-import mekanism.common.tier.ConductorTier;
-import mekanism.common.tier.PipeTier;
-import mekanism.common.tier.TransporterTier;
-import mekanism.common.tier.TubeTier;
+import mekanism.common.tier.*;
 import mekanism.common.tile.transmitter.TileEntitySidedPipe;
 import mekanism.common.util.LangUtils;
 import mekanism.common.util.MekanismUtils;
@@ -35,6 +27,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class ItemBlockTransmitter extends ItemBlockMultipartAble implements ITierItem {
 
@@ -54,7 +49,7 @@ public class ItemBlockTransmitter extends ItemBlockMultipartAble implements ITie
 
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY,
-          float hitZ, @Nonnull IBlockState state) {
+                                float hitZ, @Nonnull IBlockState state) {
         boolean place = super.placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, state);
         if (place) {
             TileEntitySidedPipe tileEntity = (TileEntitySidedPipe) world.getTileEntity(pos);
@@ -74,15 +69,15 @@ public class ItemBlockTransmitter extends ItemBlockMultipartAble implements ITie
         BaseTier tier = getBaseTier(itemstack);
         boolean not1 = type != TransmitterType.RESTRICTIVE_TRANSPORTER;
         boolean not2 = type != TransmitterType.DIVERSION_TRANSPORTER;
-        if (tier == BaseTier.BASIC && (not1 && not2)){
+        if (tier == BaseTier.BASIC && (not1 && not2)) {
             return EnumColor.BRIGHT_GREEN + LangUtils.localize("tile.Transmitter." + getBaseTier(itemstack).getSimpleName() + type.getTranslationKey() + ".name");
-        }else if (tier == BaseTier.ADVANCED && (not1 && not2)){
+        } else if (tier == BaseTier.ADVANCED && (not1 && not2)) {
             return EnumColor.RED + LangUtils.localize("tile.Transmitter." + getBaseTier(itemstack).getSimpleName() + type.getTranslationKey() + ".name");
-        }else if (tier == BaseTier.ELITE && (not1 && not2)){
+        } else if (tier == BaseTier.ELITE && (not1 && not2)) {
             return EnumColor.AQUA + LangUtils.localize("tile.Transmitter." + getBaseTier(itemstack).getSimpleName() + type.getTranslationKey() + ".name");
-        }else if (tier == BaseTier.ULTIMATE && (not1 && not2)){
+        } else if (tier == BaseTier.ULTIMATE && (not1 && not2)) {
             return EnumColor.PURPLE + LangUtils.localize("tile.Transmitter." + getBaseTier(itemstack).getSimpleName() + type.getTranslationKey() + ".name");
-        }else return LangUtils.localize("tile.Transmitter." + type.getTranslationKey() + ".name");
+        } else return LangUtils.localize("tile.Transmitter." + type.getTranslationKey() + ".name");
     }
 
     @Override
@@ -109,7 +104,7 @@ public class ItemBlockTransmitter extends ItemBlockMultipartAble implements ITie
             }
 
             list.add(LangUtils.localize("tooltip.hold") + " " + EnumColor.AQUA + GameSettings.getKeyDisplayString(MekanismKeyHandler.sneakKey.getKeyCode()) +
-                     EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails"));
+                    EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails"));
         } else {
             TransmitterType type = TransmitterType.values()[itemstack.getItemDamage()];
             switch (type) {

@@ -1,6 +1,5 @@
 package mekanism.client.render.item.gear;
 
-import javax.annotation.Nonnull;
 import mekanism.client.model.ModelArmoredJetpack;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.item.ItemLayerWrapper;
@@ -13,11 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderArmoredJetpack extends MekanismItemStackRenderer {
 
-    private static ModelArmoredJetpack armoredJetpack = new ModelArmoredJetpack();
     public static ItemLayerWrapper model;
+    private static ModelArmoredJetpack armoredJetpack = new ModelArmoredJetpack();
 
     @Override
     protected void renderBlockSpecific(@Nonnull ItemStack stack, TransformType transformType) {

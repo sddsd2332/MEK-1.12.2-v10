@@ -1,8 +1,6 @@
 package mekanism.common.entity;
 
 import io.netty.buffer.ByteBuf;
-import java.util.UUID;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.Pos3D;
@@ -24,6 +22,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.UUID;
 
 public class EntityBalloon extends Entity implements IEntityAdditionalSpawnData {
 

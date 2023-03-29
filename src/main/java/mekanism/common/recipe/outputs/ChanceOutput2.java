@@ -38,7 +38,7 @@ public class ChanceOutput2 extends MachineOutput<ChanceOutput2> {
         return !primaryOutput.isEmpty();
     }
 
-    public boolean applyOutputs(NonNullList<ItemStack> inventory, int primaryIndex,  boolean doEmit) {
+    public boolean applyOutputs(NonNullList<ItemStack> inventory, int primaryIndex, boolean doEmit) {
         if (hasPrimary() && (!doEmit || checkSecondary())) {
             if (applyOutputs(inventory, primaryIndex, doEmit, primaryOutput)) {
                 return false;

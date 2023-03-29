@@ -1,11 +1,6 @@
 package mekanism.common.tile.component;
 
 import io.netty.buffer.ByteBuf;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
 import mekanism.common.Upgrade;
@@ -13,6 +8,12 @@ import mekanism.common.base.ITileComponent;
 import mekanism.common.base.IUpgradeItem;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class TileComponentUpgrade implements ITileComponent {
 

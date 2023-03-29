@@ -1,8 +1,5 @@
 package mekanism.common.block;
 
-import static mekanism.common.block.states.BlockStatePlastic.colorProperty;
-
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
 import net.minecraft.block.BlockFence;
@@ -15,6 +12,10 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nonnull;
+
+import static mekanism.common.block.states.BlockStatePlastic.colorProperty;
 
 public class BlockPlasticFence extends BlockFence {
 

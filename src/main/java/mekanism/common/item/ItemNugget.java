@@ -1,11 +1,12 @@
 package mekanism.common.item;
 
-import java.util.Locale;
-import javax.annotation.Nonnull;
 import mekanism.common.base.IMetaItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+
+import javax.annotation.Nonnull;
+import java.util.Locale;
 
 public class ItemNugget extends ItemMekanism implements IMetaItem {
 

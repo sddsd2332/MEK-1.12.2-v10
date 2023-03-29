@@ -1,6 +1,5 @@
 package mekanism.common.block;
 
-import javax.annotation.Nonnull;
 import mekanism.common.Mekanism;
 import mekanism.common.block.states.BlockStateOre;
 import mekanism.common.block.states.BlockStateOre.EnumOreType;
@@ -11,6 +10,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+
+import javax.annotation.Nonnull;
 
 /**
  * Block class for handling multiple ore block IDs.

@@ -1,8 +1,5 @@
 package mekanism.common.util;
 
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Set;
 import mekanism.common.base.target.FluidHandlerTarget;
 import mekanism.common.capabilities.Capabilities;
 import net.minecraft.tileentity.TileEntity;
@@ -15,13 +12,17 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
+
 public final class PipeUtils {
 
     public static final FluidTankInfo[] EMPTY = new FluidTankInfo[]{};
 
     public static boolean isValidAcceptorOnSide(TileEntity tile, EnumFacing side) {
         if (tile == null || CapabilityUtils.hasCapability(tile, Capabilities.GRID_TRANSMITTER_CAPABILITY, side.getOpposite()) ||
-            !CapabilityUtils.hasCapability(tile, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side.getOpposite())) {
+                !CapabilityUtils.hasCapability(tile, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side.getOpposite())) {
             return false;
         }
 
@@ -49,7 +50,7 @@ public final class PipeUtils {
     public static IFluidHandler[] getConnectedAcceptors(BlockPos pos, World world) {
         final IFluidHandler[] acceptors = new IFluidHandler[]{null, null, null, null, null, null};
         EmitUtils.forEachSide(world, pos, EnumSet.allOf(EnumFacing.class), (tile, side) ->
-              acceptors[side.ordinal()] = CapabilityUtils.getCapability(tile, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side.getOpposite()));
+                acceptors[side.ordinal()] = CapabilityUtils.getCapability(tile, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side.getOpposite()));
         return acceptors;
     }
 
@@ -59,7 +60,6 @@ public final class PipeUtils {
      * @param sides - the list of sides to output from
      * @param stack - the stack to output
      * @param from  - the TileEntity to output from
-     *
      * @return the amount of gas emitted
      */
     public static int emit(Set<EnumFacing> sides, FluidStack stack, TileEntity from) {
@@ -76,11 +76,11 @@ public final class PipeUtils {
 
             //Collect cap
             CapabilityUtils.runIfCap(acceptor, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, accessSide,
-                  (handler) -> {
-                      if (canFill(handler, stack)) {
-                          target.addHandler(accessSide, handler);
-                      }
-                  });
+                    (handler) -> {
+                        if (canFill(handler, stack)) {
+                            target.addHandler(accessSide, handler);
+                        }
+                    });
         });
 
         int curHandlers = target.getHandlers().size();

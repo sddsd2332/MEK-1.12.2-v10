@@ -1,7 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.api.energy.IStrictEnergyOutputter;
@@ -31,8 +30,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+import javax.annotation.Nonnull;
+
 public class TileEntityLaserAmplifier extends TileEntityContainerBlock implements ILaserReceptor, IRedstoneControl, IStrictEnergyOutputter, IStrictEnergyStorage,
-      IComputerIntegration, ISecurityTile {
+        IComputerIntegration, ISecurityTile {
 
     public static final double MAX_ENERGY = 5E9;
     private static final String[] methods = new String[]{"getEnergy", "getMaxEnergy"};
@@ -315,7 +316,7 @@ public class TileEntityLaserAmplifier extends TileEntityContainerBlock implement
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing) {
         return capability == Capabilities.ENERGY_STORAGE_CAPABILITY || capability == Capabilities.ENERGY_OUTPUTTER_CAPABILITY
-               || capability == Capabilities.LASER_RECEPTOR_CAPABILITY || super.hasCapability(capability, facing);
+                || capability == Capabilities.LASER_RECEPTOR_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override

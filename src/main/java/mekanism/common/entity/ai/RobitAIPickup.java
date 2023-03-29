@@ -1,10 +1,11 @@
 package mekanism.common.entity.ai;
 
-import java.util.Iterator;
-import java.util.List;
 import mekanism.common.entity.EntityRobit;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.math.AxisAlignedBB;
+
+import java.util.Iterator;
+import java.util.List;
 
 /*
  * 	Written by pixlepix (I'm in mekanism! Yay!)
@@ -27,7 +28,7 @@ public class RobitAIPickup extends RobitAIBase {
             return true;
         }
         List<EntityItem> items = theRobit.world.getEntitiesWithinAABB(EntityItem.class,
-              new AxisAlignedBB(theRobit.posX - 10, theRobit.posY - 10, theRobit.posZ - 10, theRobit.posX + 10, theRobit.posY + 10, theRobit.posZ + 10));
+                new AxisAlignedBB(theRobit.posX - 10, theRobit.posY - 10, theRobit.posZ - 10, theRobit.posX + 10, theRobit.posY + 10, theRobit.posZ + 10));
         Iterator<EntityItem> iter = items.iterator();
         //Cached for slight performance
         double closestDistance = -1;
@@ -51,7 +52,7 @@ public class RobitAIPickup extends RobitAIBase {
     @Override
     public boolean shouldContinueExecuting() {
         return !closest.isDead && !thePathfinder.noPath() && theRobit.getDistanceSq(closest) > 100 && theRobit.getDropPickup() && theRobit.getEnergy() > 0
-               && closest.world.provider.getDimension() == theRobit.world.provider.getDimension();
+                && closest.world.provider.getDimension() == theRobit.world.provider.getDimension();
     }
 
     @Override

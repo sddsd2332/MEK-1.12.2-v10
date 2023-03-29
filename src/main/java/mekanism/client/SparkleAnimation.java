@@ -1,7 +1,5 @@
 package mekanism.client;
 
-import java.util.Iterator;
-import java.util.concurrent.ThreadLocalRandom;
 import mekanism.common.MekanismSounds;
 import mekanism.common.config.MekanismConfig;
 import net.minecraft.tileentity.TileEntity;
@@ -12,6 +10,9 @@ import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Iterator;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SideOnly(Side.CLIENT)
 public class SparkleAnimation {
@@ -60,13 +61,13 @@ public class SparkleAnimation {
 
             for (int i = 0; i < 2; i++) {
                 world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(),
-                      pos.getZ() + -.01, 0, 0, 0);
+                        pos.getZ() + -.01, 0, 0, 0);
                 world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(),
-                      pos.getZ() + 1.01, 0, 0, 0);
+                        pos.getZ() + 1.01, 0, 0, 0);
                 world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + -.01, pos.getY() + random.nextDouble(),
-                      pos.getZ() + random.nextDouble(), 0, 0, 0);
+                        pos.getZ() + random.nextDouble(), 0, 0, 0);
                 world.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX() + 1.01, pos.getY() + random.nextDouble(),
-                      pos.getZ() + random.nextDouble(), 0, 0, 0);
+                        pos.getZ() + random.nextDouble(), 0, 0, 0);
             }
         }
     }

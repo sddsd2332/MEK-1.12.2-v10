@@ -1,14 +1,6 @@
 package mekanism.common.item;
 
 import com.google.common.collect.Multimap;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
@@ -29,12 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -45,6 +32,10 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
+import java.util.*;
+import java.util.function.Supplier;
 
 public class ItemAtomicDisassembler extends ItemEnergized {
 
@@ -171,7 +162,7 @@ public class ItemAtomicDisassembler extends ItemEnergized {
                 toggleMode(itemstack);
                 Mode mode = getMode(itemstack);
                 entityplayer.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY + LangUtils.localize("tooltip.modeToggle")
-                                                                 + " " + EnumColor.INDIGO + mode.getModeName() + EnumColor.AQUA + " (" + mode.getEfficiency() + ")"));
+                        + " " + EnumColor.INDIGO + mode.getModeName() + EnumColor.AQUA + " (" + mode.getEfficiency() + ")"));
             }
             return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
         }
@@ -363,6 +354,13 @@ public class ItemAtomicDisassembler extends ItemEnergized {
         }
     }
 
+    @FunctionalInterface
+    interface ItemUseConsumer {
+
+        //Used to reference useHoe and useShovel via lambda references
+        EnumActionResult use(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing);
+    }
+
     public static class Finder {
 
         public static Map<Block, List<Block>> ignoreBlocks = new HashMap<>();
@@ -372,11 +370,11 @@ public class ItemAtomicDisassembler extends ItemEnergized {
             ignoreBlocks.put(Blocks.LIT_REDSTONE_ORE, Arrays.asList(Blocks.REDSTONE_ORE, Blocks.LIT_REDSTONE_ORE));
         }
 
-        private final EntityPlayer player;
         public final World world;
         public final ItemStack stack;
         public final Coord4D location;
         public final Set<Coord4D> found = new HashSet<>();
+        private final EntityPlayer player;
         private final RayTraceResult rayTraceResult;
         private final Block startBlock;
         private final boolean isWood;
@@ -427,12 +425,5 @@ public class ItemAtomicDisassembler extends ItemEnergized {
             List<Block> ignored = ignoreBlocks.get(origBlock);
             return ignored == null ? b == origBlock : ignored.contains(b);
         }
-    }
-
-    @FunctionalInterface
-    interface ItemUseConsumer {
-
-        //Used to reference useHoe and useShovel via lambda references
-        EnumActionResult use(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing);
     }
 }

@@ -1,8 +1,9 @@
 package mekanism.common.tier;
 
-import java.util.Locale;
 import mekanism.common.config.MekanismConfig;
 import net.minecraft.util.IStringSerializable;
+
+import java.util.Locale;
 
 public enum GasTankTier implements ITier, IStringSerializable {
     BASIC(64000, 256),

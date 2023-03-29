@@ -1,7 +1,5 @@
 package mekanism.generators.client.render;
 
-import java.util.EnumMap;
-import java.util.Map;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.MekanismRenderer.DisplayInteger;
 import mekanism.client.render.MekanismRenderer.GlowInfo;
@@ -19,6 +17,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.EnumMap;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class RenderBioGenerator extends TileEntitySpecialRenderer<TileEntityBioGenerator> {

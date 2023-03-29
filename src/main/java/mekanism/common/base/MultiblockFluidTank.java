@@ -1,11 +1,12 @@
 package mekanism.common.base;
 
-import javax.annotation.Nullable;
 import mekanism.common.tile.TileEntityMultiblock;
 import mekanism.common.util.MekanismUtils;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
+
+import javax.annotation.Nullable;
 
 public abstract class MultiblockFluidTank<MULTIBLOCK extends TileEntityMultiblock> implements IFluidTank {
 

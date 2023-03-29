@@ -1,7 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.Arrays;
 import mekanism.api.TileNetworkList;
 import mekanism.client.gui.button.GuiButtonDisableableImage;
 import mekanism.client.gui.element.GuiEnergyInfo;
@@ -32,6 +30,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 @SideOnly(Side.CLIENT)
 public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCondensentrator> {
 
@@ -53,17 +54,16 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
         addGuiElement(new GuiEnergyInfo(() -> {
             String usage = MekanismUtils.getEnergyDisplay(tileEntity.clientEnergyUsed);
             return Arrays.asList(LangUtils.localize("gui.using") + ": " + usage + "/t",
-                  LangUtils.localize("gui.needed") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxEnergy() - tileEntity.getEnergy()));
+                    LangUtils.localize("gui.needed") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getMaxEnergy() - tileEntity.getEnergy()));
         }, this, resource));
 
-        if (tileEntity.mode == 1){
+        if (tileEntity.mode == 1) {
             addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD_RED, this, resource, 133, 13));
             addGuiElement(new GuiGasGauge(() -> tileEntity.gasTank, GuiGauge.Type.STANDARD_BLUE, this, resource, 25, 13));
-        }else if (tileEntity.mode == 0){
+        } else if (tileEntity.mode == 0) {
             addGuiElement(new GuiFluidGauge(() -> tileEntity.fluidTank, GuiGauge.Type.STANDARD_BLUE, this, resource, 133, 13));
             addGuiElement(new GuiGasGauge(() -> tileEntity.gasTank, GuiGauge.Type.STANDARD_RED, this, resource, 25, 13));
         }
-
 
 
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
@@ -103,7 +103,6 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
     }
 
 
-
     @Override
     protected void actionPerformed(GuiButton guibutton) throws IOException {
         super.actionPerformed(guibutton);
@@ -116,7 +115,7 @@ public class GuiRotaryCondensentrator extends GuiMekanismTile<TileEntityRotaryCo
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 4, 0x404040);
         fontRenderer.drawString(tileEntity.mode == 0 ? LangUtils.localize("gui.condensentrating")
-                                                     : LangUtils.localize("gui.decondensentrating"), 6, (ySize - 94) + 2, 0x404040);
+                : LangUtils.localize("gui.decondensentrating"), 6, (ySize - 94) + 2, 0x404040);
         int xAxis = mouseX - guiLeft;
         int yAxis = mouseY - guiTop;
         if (toggleButton.isMouseOver()) {

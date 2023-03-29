@@ -1,18 +1,11 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
 import mekanism.common.PacketHandler;
-import mekanism.common.multiblock.IMultiblock;
-import mekanism.common.multiblock.IStructuralMultiblock;
-import mekanism.common.multiblock.MultiblockCache;
-import mekanism.common.multiblock.MultiblockManager;
-import mekanism.common.multiblock.SynchronizedData;
-import mekanism.common.multiblock.UpdateProtocol;
+import mekanism.common.multiblock.*;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +19,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public abstract class TileEntityMultiblock<T extends SynchronizedData<T>> extends TileEntityContainerBlock implements IMultiblock<T> {
 
@@ -78,7 +74,7 @@ public abstract class TileEntityMultiblock<T extends SynchronizedData<T>> extend
             }
             if (structure != null && structure.renderLocation != null && clientHasStructure && isRendering && !prevStructure) {
                 Mekanism.proxy.doMultiblockSparkle(this, structure.renderLocation.getPos(), structure.volLength, structure.volWidth, structure.volHeight,
-                      tile -> MultiblockManager.areEqual(this, tile));
+                        tile -> MultiblockManager.areEqual(this, tile));
             }
             prevStructure = clientHasStructure;
         }

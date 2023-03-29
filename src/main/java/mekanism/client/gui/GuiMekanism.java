@@ -1,10 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.client.gui.element.GuiElement;
 import mekanism.client.render.MekanismRenderer;
@@ -23,6 +18,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @SideOnly(Side.CLIENT)
 public abstract class GuiMekanism extends GuiContainer implements IGuiWrapper {
 
@@ -34,7 +35,7 @@ public abstract class GuiMekanism extends GuiContainer implements IGuiWrapper {
 
     public static boolean isTextboxKey(char c, int i) {
         return i == Keyboard.KEY_BACK || i == Keyboard.KEY_DELETE || i == Keyboard.KEY_LEFT || i == Keyboard.KEY_RIGHT || i == Keyboard.KEY_END ||
-               i == Keyboard.KEY_HOME || isKeyComboCtrlA(i) || isKeyComboCtrlC(i) || isKeyComboCtrlV(i) || isKeyComboCtrlX(i);
+                i == Keyboard.KEY_HOME || isKeyComboCtrlA(i) || isKeyComboCtrlC(i) || isKeyComboCtrlV(i) || isKeyComboCtrlX(i);
     }
 
     public Set<GuiElement> getGuiElements() {

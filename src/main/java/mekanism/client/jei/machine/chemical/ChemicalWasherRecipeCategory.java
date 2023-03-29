@@ -18,7 +18,7 @@ public class ChemicalWasherRecipeCategory<WRAPPER extends ChemicalWasherRecipeWr
 
     public ChemicalWasherRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/nei/GuiChemicalWasher.png", Recipe.CHEMICAL_WASHER.getJEICategory(),
-              "tile.MachineBlock2.ChemicalWasher.name", null, 3, 3, 170, 79);
+                "tile.MachineBlock2.ChemicalWasher.name", null, 3, 3, 170, 79);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ChemicalWasherRecipeCategory<WRAPPER extends ChemicalWasherRecipeWr
         WasherRecipe tempRecipe = recipeWrapper.getRecipe();
         IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
         fluidStacks.init(0, true, 6 - xOffset, 5 - yOffset, 16, 58, TileEntityChemicalWasher.WATER_USAGE, false,
-              fluidOverlayLarge);
+                fluidOverlayLarge);
         fluidStacks.set(0, ingredients.getInputs(VanillaTypes.FLUID).get(0));
         IGuiIngredientGroup<GasStack> gasStacks = recipeLayout.getIngredientsGroup(MekanismJEI.TYPE_GAS);
         initGas(gasStacks, 0, true, 27 - xOffset, 14 - yOffset, 16, 58, tempRecipe.getInput().ingredient, true);

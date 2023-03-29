@@ -1,15 +1,16 @@
 package mekanism.coremod;
 
-import java.util.Map;
-import javax.annotation.Nullable;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.SortingIndex;
+
+import javax.annotation.Nullable;
+import java.util.Map;
 
 @SortingIndex(9999)//must be > 1000 so we're after the srg transformer
 public class MekanismCoremod implements IFMLLoadingPlugin {
 
     private static final String[] transformers = {
-          "mekanism.coremod.KeybindingMigrationHelper"
+            "mekanism.coremod.KeybindingMigrationHelper"
     };
 
     @Override

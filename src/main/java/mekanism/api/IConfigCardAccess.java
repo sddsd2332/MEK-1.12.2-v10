@@ -15,7 +15,6 @@ public interface IConfigCardAccess {
          * Collects the TileEntity's filter card data into the parameterized NBTTagCompound.
          *
          * @param nbtTags - the NBTTagCompound of the filter card ItemStack
-         *
          * @return the NBTTagCompound that now contains the TileEntity's filter card data
          */
         NBTTagCompound getConfigurationData(NBTTagCompound nbtTags);

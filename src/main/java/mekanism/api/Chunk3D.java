@@ -56,7 +56,6 @@ public class Chunk3D {
      * Whether or not this chunk exists in the given world.
      *
      * @param world - the world to check in
-     *
      * @return if the chunk exists
      */
     public boolean exists(World world) {
@@ -67,7 +66,6 @@ public class Chunk3D {
      * Gets a Chunk object corresponding to this Chunk3D's coordinates.
      *
      * @param world - the world to get the Chunk object from
-     *
      * @return the corresponding Chunk object
      */
     public Chunk getChunk(World world) {

@@ -1,7 +1,5 @@
 package mekanism.client.gui.button;
 
-import java.util.function.Supplier;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.common.SideData;
@@ -11,6 +9,9 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
 @SideOnly(Side.CLIENT)
 public class GuiSideDataButton extends GuiButton {

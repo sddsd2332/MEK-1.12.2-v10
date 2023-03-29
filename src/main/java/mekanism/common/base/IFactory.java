@@ -1,16 +1,15 @@
 package mekanism.common.base;
 
-import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-import javax.annotation.Nullable;
 import mekanism.api.gas.Gas;
 import mekanism.common.InfuseStorage;
 import mekanism.common.Mekanism;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
-import mekanism.common.recipe.inputs.*;
+import mekanism.common.recipe.inputs.AdvancedMachineInput;
+import mekanism.common.recipe.inputs.DoubleMachineInput;
+import mekanism.common.recipe.inputs.InfusionInput;
+import mekanism.common.recipe.inputs.ItemStackInput;
 import mekanism.common.recipe.machines.*;
 import mekanism.common.tier.FactoryTier;
 import mekanism.common.tile.TileEntityFarmMachine;
@@ -25,6 +24,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import javax.annotation.Nullable;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+
 /**
  * Internal interface for managing various Factory types.
  *
@@ -36,7 +40,6 @@ public interface IFactory {
      * Gets the recipe type this Smelting Factory currently has.
      *
      * @param itemStack - stack to check
-     *
      * @return RecipeType ordinal
      */
     int getRecipeType(ItemStack itemStack);
@@ -45,7 +48,6 @@ public interface IFactory {
      * Gets the recipe type this Factory currently has.
      *
      * @param itemStack - stack to check
-     *
      * @return RecipeType or null if it has invalid NBT
      */
     @Nullable
@@ -79,15 +81,15 @@ public interface IFactory {
         INJECTING("Injecting", "injection", MachineType.CHEMICAL_INJECTION_CHAMBER, MachineFuelType.ADVANCED, true, Recipe.CHEMICAL_INJECTION_CHAMBER),
         INFUSING("Infusing", "metalinfuser", MachineType.METALLURGIC_INFUSER, MachineFuelType.BASIC, false, Recipe.METALLURGIC_INFUSER),
         SAWING("Sawing", "sawmill", MachineType.PRECISION_SAWMILL, MachineFuelType.CHANCE, false, Recipe.PRECISION_SAWMILL),
-        STAMPING("Stamping","stamping",MachineType.STAMPING,MachineFuelType.BASIC, false, Recipe.STAMPING),
-        ROLLING("Rolling","rolling",MachineType.ROLLING,MachineFuelType.BASIC, false, Recipe.ROLLING),
-        BRUSHED ("Brushed","brushed",MachineType.BRUSHED,MachineFuelType.BASIC, false, Recipe.BRUSHED),
-        TURNING("Turning","turning",MachineType.TURNING,MachineFuelType.BASIC, false, Recipe.TURNING),
-        AllOY("Alloy","alloy",MachineType.ALLOY,MachineFuelType.DOUBLE,false,Recipe.ALLOY),
-        EXTRACTOR("Extractor","extractor",MachineType.CELL_EXTRACTOR,MachineFuelType.CHANCE,false, Recipe.CELL_EXTRACTOR),
-        SEPARATOR("Separator","separator",MachineType.CELL_SEPARATOR,MachineFuelType.CHANCE,false, Recipe.CELL_SEPARATOR),
-        FARM("Farm","farm",MachineType.ORGANIC_FARM,MachineFuelType.FARM,false,Recipe.ORGANIC_FARM),
-        RECYCLER("Recycler","Recycler",MachineType.RECYCLER,MachineFuelType.CHANCE2,false,Recipe.RECYCLER);
+        STAMPING("Stamping", "stamping", MachineType.STAMPING, MachineFuelType.BASIC, false, Recipe.STAMPING),
+        ROLLING("Rolling", "rolling", MachineType.ROLLING, MachineFuelType.BASIC, false, Recipe.ROLLING),
+        BRUSHED("Brushed", "brushed", MachineType.BRUSHED, MachineFuelType.BASIC, false, Recipe.BRUSHED),
+        TURNING("Turning", "turning", MachineType.TURNING, MachineFuelType.BASIC, false, Recipe.TURNING),
+        AllOY("Alloy", "alloy", MachineType.ALLOY, MachineFuelType.DOUBLE, false, Recipe.ALLOY),
+        EXTRACTOR("Extractor", "extractor", MachineType.CELL_EXTRACTOR, MachineFuelType.CHANCE, false, Recipe.CELL_EXTRACTOR),
+        SEPARATOR("Separator", "separator", MachineType.CELL_SEPARATOR, MachineFuelType.CHANCE, false, Recipe.CELL_SEPARATOR),
+        FARM("Farm", "farm", MachineType.ORGANIC_FARM, MachineFuelType.FARM, false, Recipe.ORGANIC_FARM),
+        RECYCLER("Recycler", "Recycler", MachineType.RECYCLER, MachineFuelType.CHANCE2, false, Recipe.RECYCLER);
 
 
         private String name;
@@ -172,7 +174,7 @@ public interface IFactory {
         }
 
         public FarmMachineRecipe getFarmRecipe(ItemStack input, Gas gas) {
-            return getFarmRecipe(new AdvancedMachineInput(input,gas));
+            return getFarmRecipe(new AdvancedMachineInput(input, gas));
         }
 
         public MetallurgicInfuserRecipe getRecipe(InfusionInput input) {
@@ -193,9 +195,8 @@ public interface IFactory {
         }
 
 
-
         @Nullable
-        public MachineRecipe getAnyRecipe(ItemStack slotStack, ItemStack extraStack,Gas gasType, InfuseStorage infuse) {
+        public MachineRecipe getAnyRecipe(ItemStack slotStack, ItemStack extraStack, Gas gasType, InfuseStorage infuse) {
             if (fuelType == MachineFuelType.ADVANCED) {
                 return getRecipe(slotStack, gasType);
             } else if (fuelType == MachineFuelType.DOUBLE) {
@@ -205,7 +206,7 @@ public interface IFactory {
             } else if (fuelType == MachineFuelType.CHANCE2) {
                 return getChance2Recipe(slotStack);
             } else if (fuelType == MachineFuelType.FARM) {
-                return getFarmRecipe(slotStack,gasType);
+                return getFarmRecipe(slotStack, gasType);
             } else if (this == INFUSING) {
                 if (infuse.getType() != null) {
                     return RecipeHandler.getMetallurgicInfuserRecipe(new InfusionInput(infuse, slotStack));
@@ -220,9 +221,9 @@ public interface IFactory {
         }
 
         public int getSecondaryEnergyPerTick() {
-            if (fuelType == MachineFuelType.ADVANCED ) {
+            if (fuelType == MachineFuelType.ADVANCED) {
                 return getTile().BASE_SECONDARY_ENERGY_PER_TICK;
-            }else if (fuelType ==MachineFuelType.FARM){
+            } else if (fuelType == MachineFuelType.FARM) {
                 return getTile2().BASE_SECONDARY_ENERGY_PER_TICK;
             }
             return 0;
@@ -231,18 +232,20 @@ public interface IFactory {
         public boolean canReceiveGas(EnumFacing side, Gas type) {
             if (fuelType == MachineFuelType.ADVANCED) {
                 return getTile().canReceiveGas(side, type);
-            }else if (fuelType ==MachineFuelType.FARM){
+            } else if (fuelType == MachineFuelType.FARM) {
                 return getTile2().canReceiveGas(side, type);
             }
             return false;
         }
 
-        public boolean supportsGas() { return fuelType == MachineFuelType.ADVANCED||fuelType == MachineFuelType.FARM;}
+        public boolean supportsGas() {
+            return fuelType == MachineFuelType.ADVANCED || fuelType == MachineFuelType.FARM;
+        }
 
         public boolean isValidGas(Gas gas) {
             if (fuelType == MachineFuelType.ADVANCED) {
                 return getTile().isValidGas(gas);
-            }else if (fuelType == MachineFuelType.FARM) {
+            } else if (fuelType == MachineFuelType.FARM) {
                 return getTile2().isValidGas(gas);
             }
             return false;
@@ -288,6 +291,7 @@ public interface IFactory {
             }
             return cacheTile;
         }
+
         public TileEntityFarmMachine getTile2() {
             if (cacheTile2 == null) {
                 MachineType type = MachineType.get(getStack());
@@ -297,9 +301,9 @@ public interface IFactory {
         }
 
         public double getEnergyUsage() {
-            if (type.factoryTier == FactoryTier.CREATIVE){
+            if (type.factoryTier == FactoryTier.CREATIVE) {
                 return 0;
-            }else {
+            } else {
                 return type.getUsage();
             }
         }
@@ -309,9 +313,9 @@ public interface IFactory {
         }
 
         public double getEnergyStorage() {
-            if (type.factoryTier == FactoryTier.CREATIVE){
-                return  Double.MAX_VALUE;
-            }else {
+            if (type.factoryTier == FactoryTier.CREATIVE) {
+                return Double.MAX_VALUE;
+            } else {
                 return type.getStorage();
             }
         }

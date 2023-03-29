@@ -4,7 +4,6 @@ import cofh.redstoneflux.api.IEnergyReceiver;
 import ic2.api.energy.EnergyNet;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergyTile;
-import java.util.function.Function;
 import mekanism.api.Coord4D;
 import mekanism.api.energy.IStrictEnergyAcceptor;
 import mekanism.common.capabilities.Capabilities;
@@ -22,6 +21,8 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.function.Function;
 
 public abstract class EnergyAcceptorWrapper implements IStrictEnergyAcceptor {
 

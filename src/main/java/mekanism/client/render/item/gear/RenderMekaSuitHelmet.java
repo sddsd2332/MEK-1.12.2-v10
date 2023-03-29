@@ -17,8 +17,8 @@ import javax.annotation.Nonnull;
 @SideOnly(Side.CLIENT)
 public class RenderMekaSuitHelmet extends MekanismItemStackRenderer {
 
-    private static ModelMekaSuitHelmet mekaSuitHelmet = new ModelMekaSuitHelmet();
     public static ItemLayerWrapper model;
+    private static ModelMekaSuitHelmet mekaSuitHelmet = new ModelMekaSuitHelmet();
 
     @Override
     protected void renderBlockSpecific(@Nonnull ItemStack stack, TransformType transformType) {

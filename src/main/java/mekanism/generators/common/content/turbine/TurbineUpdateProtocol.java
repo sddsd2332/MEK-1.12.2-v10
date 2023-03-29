@@ -1,8 +1,5 @@
 package mekanism.generators.common.content.turbine;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import mekanism.api.Coord4D;
 import mekanism.common.content.tank.TankUpdateProtocol;
 import mekanism.common.multiblock.MultiblockCache;
@@ -11,16 +8,15 @@ import mekanism.common.multiblock.UpdateProtocol;
 import mekanism.common.tile.TileEntityPressureDisperser;
 import mekanism.generators.common.MekanismGenerators;
 import mekanism.generators.common.block.states.BlockStateGenerator.GeneratorType;
-import mekanism.generators.common.tile.turbine.TileEntityElectromagneticCoil;
-import mekanism.generators.common.tile.turbine.TileEntityRotationalComplex;
-import mekanism.generators.common.tile.turbine.TileEntitySaturatingCondenser;
-import mekanism.generators.common.tile.turbine.TileEntityTurbineCasing;
-import mekanism.generators.common.tile.turbine.TileEntityTurbineRotor;
-import mekanism.generators.common.tile.turbine.TileEntityTurbineVent;
+import mekanism.generators.common.tile.turbine.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class TurbineUpdateProtocol extends UpdateProtocol<SynchronizedTurbineData> {
 
@@ -43,7 +39,7 @@ public class TurbineUpdateProtocol extends UpdateProtocol<SynchronizedTurbineDat
         }
         TileEntity tile = pointer.getWorld().getTileEntity(new BlockPos(x, y, z));
         return tile instanceof TileEntityTurbineRotor || tile instanceof TileEntityRotationalComplex || tile instanceof TileEntityPressureDisperser ||
-               tile instanceof TileEntityElectromagneticCoil || tile instanceof TileEntitySaturatingCondenser;
+                tile instanceof TileEntityElectromagneticCoil || tile instanceof TileEntitySaturatingCondenser;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package mekanism.client.render.item.gear;
 
-import javax.annotation.Nonnull;
 import mekanism.client.model.ModelGasMask;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.item.ItemLayerWrapper;
@@ -13,11 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderGasMask extends MekanismItemStackRenderer {
 
-    private static ModelGasMask gasMask = new ModelGasMask();
     public static ItemLayerWrapper model;
+    private static ModelGasMask gasMask = new ModelGasMask();
 
     @Override
     protected void renderBlockSpecific(@Nonnull ItemStack stack, TransformType transformType) {

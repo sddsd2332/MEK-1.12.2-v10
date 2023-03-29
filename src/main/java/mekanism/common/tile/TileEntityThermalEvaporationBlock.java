@@ -1,10 +1,5 @@
 package mekanism.common.tile;
 
-import java.util.Deque;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.common.integration.computer.IComputerIntegration;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
@@ -18,6 +13,12 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
+
+import javax.annotation.Nonnull;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 
 public class TileEntityThermalEvaporationBlock extends TileEntityContainerBlock implements IComputerIntegration {
 

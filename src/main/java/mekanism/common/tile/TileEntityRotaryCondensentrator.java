@@ -1,19 +1,9 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasRegistry;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
-import mekanism.api.gas.IGasItem;
+import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.Mekanism;
 import mekanism.common.SideData;
@@ -41,14 +31,17 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityRotaryCondensentrator extends TileEntityMachine implements ISustainedData, ISideConfiguration, IFluidHandlerWrapper, IGasHandler, IUpgradeInfoHandler, ITankManager,
-      IComparatorSupport {
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
+public class TileEntityRotaryCondensentrator extends TileEntityMachine implements ISustainedData, ISideConfiguration, IFluidHandlerWrapper, IGasHandler, IUpgradeInfoHandler, ITankManager,
+        IComparatorSupport {
+
+    public static final int MAX_FLUID = 10000;
     private static final int[] GAS_SLOTS = {0, 1};
     private static final int[] LIQUID_SLOTS = {2, 3};
     private static final int[] ENERGY_SLOT = {4};
-
-    public static final int MAX_FLUID = 10000;
     public GasTank gasTank = new GasTank(MAX_FLUID);
     public FluidTank fluidTank = new FluidTank(MAX_FLUID);
     /**
@@ -59,19 +52,18 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
     public int gasOutput = 256;
 
     public double clientEnergyUsed;
-    private int currentRedstoneLevel;
-
     public TileComponentEjector ejectorComponent;
     public TileComponentConfig configComponent;
+    private int currentRedstoneLevel;
 
     public TileEntityRotaryCondensentrator() {
         super("machine.rotarycondensentrator", MachineType.ROTARY_CONDENSENTRATOR, 5);
-        configComponent = new TileComponentConfig(this,TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS,TransmissionType.FLUID);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS, TransmissionType.FLUID);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{4}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Fluid", EnumColor.DARK_AQUA, new int[]{2,3}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Gas", EnumColor.YELLOW, new int[]{0,1}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Fluid", EnumColor.DARK_AQUA, new int[]{2, 3}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Gas", EnumColor.YELLOW, new int[]{0, 1}));
         configComponent.setConfig(TransmissionType.ITEM, new byte[]{0, 1, 0, 0, 3, 2});
 
         configComponent.addOutput(TransmissionType.FLUID, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
@@ -85,7 +77,6 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
         ejectorComponent = new TileComponentEjector(this);
         ejectorComponent.setOutputData(TransmissionType.GAS, configComponent.getOutputs(TransmissionType.GAS).get(1));
         ejectorComponent.setOutputData(TransmissionType.FLUID, configComponent.getOutputs(TransmissionType.FLUID).get(1));
-
 
 
         inventory = NonNullList.withSize(6, ItemStack.EMPTY);
@@ -105,7 +96,7 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
                 }
 
                 if (getEnergy() >= energyPerTick && MekanismUtils.canFunction(this) && isValidGas(gasTank.getGas()) &&
-                    (fluidTank.getFluid() == null || (fluidTank.getFluid().amount < MAX_FLUID && gasEquals(gasTank.getGas(), fluidTank.getFluid())))) {
+                        (fluidTank.getFluid() == null || (fluidTank.getFluid().amount < MAX_FLUID && gasEquals(gasTank.getGas(), fluidTank.getFluid())))) {
                     int operations = getUpgradedUsage();
                     double prev = getEnergy();
 
@@ -120,14 +111,14 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
             } else if (mode == 1) {
                 TileUtils.drawGas(inventory.get(0), gasTank);
                 //TODO:如果可以 则删除下面这行
-              //  TileUtils.emitGas(this, gasTank, gasOutput, MekanismUtils.getLeft(facing));
+                //  TileUtils.emitGas(this, gasTank, gasOutput, MekanismUtils.getLeft(facing));
 
                 if (FluidContainerUtils.isFluidContainer(inventory.get(2))) {
                     FluidContainerUtils.handleContainerItemEmpty(this, fluidTank, 2, 3);
                 }
 
                 if (getEnergy() >= energyPerTick && MekanismUtils.canFunction(this) && isValidFluid(fluidTank.getFluid()) &&
-                    (gasTank.getGas() == null || (gasTank.getStored() < MAX_FLUID && gasEquals(gasTank.getGas(), fluidTank.getFluid())))) {
+                        (gasTank.getGas() == null || (gasTank.getStored() < MAX_FLUID && gasEquals(gasTank.getGas(), fluidTank.getFluid())))) {
                     int operations = getUpgradedUsage();
                     double prev = getEnergy();
 
@@ -251,7 +242,7 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-       // return mode == 1 && side == MekanismUtils.getLeft(facing) && gasTank.canDraw(type);
+        // return mode == 1 && side == MekanismUtils.getLeft(facing) && gasTank.canDraw(type);
         return mode == 1 && configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(1) && gasTank.canDraw(type);
     }
 
@@ -327,14 +318,14 @@ public class TileEntityRotaryCondensentrator extends TileEntityMachine implement
 
     @Override
     public boolean canFill(EnumFacing from, @Nonnull FluidStack fluid) {
-       // return mode == 1 && from == MekanismUtils.getRight(facing) && (fluidTank.getFluid() == null ? isValidFluid(fluid) : fluidTank.getFluid().isFluidEqual(fluid));
-        return mode == 1 /*&& configComponent.getOutput(TransmissionType.FLUID, from, facing).hasSlot(3)  */&& FluidContainerUtils.canFill(fluidTank.getFluid(), fluid);
+        // return mode == 1 && from == MekanismUtils.getRight(facing) && (fluidTank.getFluid() == null ? isValidFluid(fluid) : fluidTank.getFluid().isFluidEqual(fluid));
+        return mode == 1 /*&& configComponent.getOutput(TransmissionType.FLUID, from, facing).hasSlot(3)  */ && FluidContainerUtils.canFill(fluidTank.getFluid(), fluid);
     }
 
     @Override
     public boolean canDrain(EnumFacing from, @Nullable FluidStack fluid) {
-       // return mode == 0 && from == MekanismUtils.getRight(facing) && FluidContainerUtils.canDrain(fluidTank.getFluid(), fluid);
-        return mode == 0 && configComponent.getOutput(TransmissionType.FLUID, from, facing).hasSlot(3)  && FluidContainerUtils.canDrain(fluidTank.getFluid(), fluid);
+        // return mode == 0 && from == MekanismUtils.getRight(facing) && FluidContainerUtils.canDrain(fluidTank.getFluid(), fluid);
+        return mode == 0 && configComponent.getOutput(TransmissionType.FLUID, from, facing).hasSlot(3) && FluidContainerUtils.canDrain(fluidTank.getFluid(), fluid);
     }
 
     @Override

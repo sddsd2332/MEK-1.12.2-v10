@@ -3,13 +3,6 @@ package mekanism.common.item;
 import buildcraft.api.tools.IToolWrench;
 import cofh.api.item.IToolHammer;
 import io.netty.buffer.ByteBuf;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
 import mekanism.api.EnumColor;
 import mekanism.api.IConfigurable;
@@ -24,13 +17,7 @@ import mekanism.common.integration.MekanismHooks;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.prefab.TileEntityBasicBlock;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.FieldsAreNonnullByDefault;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.LangUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.SecurityUtils;
-import mekanism.common.util.TextComponentGroup;
+import mekanism.common.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -55,9 +42,17 @@ import net.minecraftforge.fml.common.Optional.Method;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+
 @InterfaceList({
-      @Interface(iface = "buildcraft.api.tools.IToolWrench", modid = MekanismHooks.BUILDCRAFT_MOD_ID),
-      @Interface(iface = "cofh.api.item.IToolHammer", modid = MekanismHooks.COFH_API_MOD_ID)
+        @Interface(iface = "buildcraft.api.tools.IToolWrench", modid = MekanismHooks.BUILDCRAFT_MOD_ID),
+        @Interface(iface = "cofh.api.item.IToolHammer", modid = MekanismHooks.COFH_API_MOD_ID)
 })
 public class ItemConfigurator extends ItemEnergized implements IMekWrench, IToolWrench, IItemNetwork, IToolHammer {
 
@@ -91,7 +86,7 @@ public class ItemConfigurator extends ItemEnergized implements IMekWrench, ITool
                     if (initial != TileComponentConfig.EMPTY) {
                         if (!player.isSneaking()) {
                             player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + EnumColor.GREY + " " + getViewModeText(
-                                  transmissionType) + ": " + initial.color + initial.localize() + " (" + initial.color.getColoredName() + ")"));
+                                    transmissionType) + ": " + initial.color + initial.localize() + " (" + initial.color.getColoredName() + ")"));
                         } else {
                             if (getEnergy(stack) >= ENERGY_PER_CONFIGURE) {
                                 if (SecurityUtils.canAccess(player, tile)) {
@@ -99,8 +94,8 @@ public class ItemConfigurator extends ItemEnergized implements IMekWrench, ITool
                                     MekanismUtils.incrementOutput(config, transmissionType, MekanismUtils.getBaseOrientation(side, config.getOrientation()));
                                     SideData data = config.getConfig().getOutput(transmissionType, side, config.getOrientation());
                                     player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + EnumColor.GREY + " "
-                                                                               + getToggleModeText(transmissionType) + ": " + data.color + data.localize() + " (" +
-                                                                               data.color.getColoredName() + ")"));
+                                            + getToggleModeText(transmissionType) + ": " + data.color + data.localize() + " (" +
+                                            data.color.getColoredName() + ")"));
                                     if (config instanceof TileEntityBasicBlock) {
                                         Mekanism.packetHandler.sendUpdatePacket((TileEntityBasicBlock) config);
                                     }
@@ -257,9 +252,9 @@ public class ItemConfigurator extends ItemEnergized implements IMekWrench, ITool
         ROTATE("rotate", null, EnumColor.YELLOW, false),
         WRENCH("wrench", null, EnumColor.PINK, false);
 
-        private String name;
         @Nullable
         private final TransmissionType transmissionType;
+        private String name;
         private EnumColor color;
         private boolean configurating;
 

@@ -1,6 +1,5 @@
 package mekanism.client.gui.robit;
 
-import java.io.IOException;
 import mekanism.client.gui.GuiMekanism;
 import mekanism.client.gui.button.GuiButtonDisableableImage;
 import mekanism.client.render.MekanismRenderer;
@@ -19,6 +18,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public class GuiRobitMain extends GuiMekanism {
@@ -128,7 +129,7 @@ public class GuiRobitMain extends GuiMekanism {
             CharSequence owner = robit.getOwnerName().length() > 14 ? robit.getOwnerName().subSequence(0, 14) : robit.getOwnerName();
             fontRenderer.drawString(LangUtils.localize("gui.robit.greeting") + " " + robit.getName() + "!", 29, 18, 0x33ff99);
             fontRenderer.drawString(LangUtils.localize("gui.energy") + ": " + MekanismUtils.getEnergyDisplay(robit.getEnergy(), robit.MAX_ELECTRICITY),
-                  29, 36 - 4, 0x33ff99);
+                    29, 36 - 4, 0x33ff99);
             fontRenderer.drawString(LangUtils.localize("gui.robit.following") + ": " + robit.getFollowing(), 29, 45 - 4, 0x33ff99);
             fontRenderer.drawString(LangUtils.localize("gui.robit.dropPickup") + ": " + robit.getDropPickup(), 29, 54 - 4, 0x33ff99);
             fontRenderer.drawString(LangUtils.localize("gui.robit.owner") + ": " + owner, 29, 63 - 4, 0x33ff99);

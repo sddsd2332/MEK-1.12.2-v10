@@ -1,16 +1,9 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
-
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
-import mekanism.api.gas.IGasItem;
+import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.MekanismFluids;
 import mekanism.common.SideData;
@@ -28,13 +21,7 @@ import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.component.TileComponentUpgrade;
 import mekanism.common.tile.prefab.TileEntityMachine;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.GasUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.StatUtils;
-import mekanism.common.util.TileUtils;
+import mekanism.common.util.*;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -42,7 +29,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
+
+import javax.annotation.Nonnull;
 
 public class TileEntityChemicalDissolutionChamber extends TileEntityMachine implements IGasHandler, ISideConfiguration, ISustainedData, ITankManager, IComparatorSupport {
 
@@ -65,7 +53,7 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
     public TileEntityChemicalDissolutionChamber() {
         super("machine.dissolution", MachineType.CHEMICAL_DISSOLUTION_CHAMBER, 4);
         inventory = NonNullList.withSize(5, ItemStack.EMPTY);
-        configComponent = new TileComponentConfig(this, TransmissionType.ITEM,TransmissionType.ENERGY, TransmissionType.GAS);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Gas", EnumColor.YELLOW, new int[]{0}));
@@ -125,7 +113,7 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
                 operatingTicks = 0;
             }
             prevEnergy = getEnergy();
-           // TileUtils.emitGas(this, outputTank, gasOutput, MekanismUtils.getRight(facing));
+            // TileUtils.emitGas(this, outputTank, gasOutput, MekanismUtils.getRight(facing));
         }
     }
 
@@ -264,7 +252,7 @@ public class TileEntityChemicalDissolutionChamber extends TileEntityMachine impl
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-       // return false;
+        // return false;
         return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(2) && outputTank.canDraw(type);
     }
 

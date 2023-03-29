@@ -1,16 +1,17 @@
 package mekanism.client.voice;
 
+import mekanism.common.Mekanism;
+import mekanism.common.config.MekanismConfig;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.sound.sampled.AudioFormat;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
-import javax.sound.sampled.AudioFormat;
-import mekanism.common.Mekanism;
-import mekanism.common.config.MekanismConfig;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class VoiceClient extends Thread {

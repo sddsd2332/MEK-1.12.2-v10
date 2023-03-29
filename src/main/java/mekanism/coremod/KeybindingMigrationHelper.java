@@ -4,18 +4,13 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
+import org.objectweb.asm.*;
 import org.objectweb.asm.commons.GeneratorAdapter;
 import org.objectweb.asm.commons.Method;
 
 /**
  * Allows us to run a mini datafixer on the GameSettings to migrate the old keybind options (before we correctly used the translation key).
- *
+ * <p>
  * Hooks into {@link net.minecraft.client.settings.GameSettings#dataFix(net.minecraft.nbt.NBTTagCompound)} and always calls our static method datafixer {@link
  * mekanism.common.fixers.KeybindingFixer#runFix(net.minecraft.nbt.NBTTagCompound)}
  */

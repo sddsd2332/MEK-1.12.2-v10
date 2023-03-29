@@ -1,6 +1,5 @@
 package mekanism.client.gui.filter;
 
-import java.io.IOException;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
@@ -13,6 +12,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public abstract class GuiModIDFilter<FILTER extends IModIDFilter, TILE extends TileEntityContainerBlock> extends GuiTextFilter<FILTER, TILE> {
@@ -65,7 +66,7 @@ public abstract class GuiModIDFilter<FILTER extends IModIDFilter, TILE extends T
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString((isNew ? LangUtils.localize("gui.new") : LangUtils.localize("gui.edit")) + " " +
-                                LangUtils.localize("gui.modIDFilter"), 43, 6, 0x404040);
+                LangUtils.localize("gui.modIDFilter"), 43, 6, 0x404040);
         fontRenderer.drawString(LangUtils.localize("gui.status") + ": " + status, 35, 20, 0x33ff99);
         renderScaledText(LangUtils.localize("gui.id") + ": " + filter.getModID(), 35, 32, 0x33ff99, 107);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);

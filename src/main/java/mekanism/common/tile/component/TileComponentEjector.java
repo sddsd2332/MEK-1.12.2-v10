@@ -1,11 +1,6 @@
 package mekanism.common.tile.component;
 
 import io.netty.buffer.ByteBuf;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.GasStack;
@@ -20,18 +15,15 @@ import mekanism.common.capabilities.Capabilities;
 import mekanism.common.content.transporter.TransitRequest;
 import mekanism.common.content.transporter.TransitRequest.TransitResponse;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.GasUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.PipeUtils;
-import mekanism.common.util.TransporterUtils;
+import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+
+import java.util.*;
 
 public class TileComponentEjector implements ITileComponent {
 

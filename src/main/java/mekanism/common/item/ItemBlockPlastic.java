@@ -1,12 +1,13 @@
 package mekanism.common.item;
 
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.common.util.LangUtils;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
 
 public class ItemBlockPlastic extends ItemBlock {
 

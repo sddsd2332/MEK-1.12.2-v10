@@ -21,7 +21,6 @@ public interface ISustainedInventory {
      * Gets the inventory tag list from an item or block.
      *
      * @param data - ItemStack parameter if using on item
-     *
      * @return inventory tag list
      */
     NBTTagList getInventory(Object... data);

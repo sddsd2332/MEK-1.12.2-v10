@@ -1,27 +1,11 @@
 package mekanism.client.jei;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 import mekanism.client.gui.*;
-import mekanism.client.gui.chemical.GuiChemicalCrystallizer;
-import mekanism.client.gui.chemical.GuiChemicalDissolutionChamber;
-import mekanism.client.gui.chemical.GuiChemicalInfuser;
-import mekanism.client.gui.chemical.GuiChemicalInjectionChamber;
-import mekanism.client.gui.chemical.GuiChemicalOxidizer;
-import mekanism.client.gui.chemical.GuiChemicalWasher;
-import mekanism.client.gui.chemical.GuiNutritionalLiquifier;
+import mekanism.client.gui.chemical.*;
 import mekanism.client.jei.machine.*;
-import mekanism.client.jei.machine.chemical.ChemicalCrystallizerRecipeWrapper;
-import mekanism.client.jei.machine.chemical.ChemicalDissolutionChamberRecipeWrapper;
-import mekanism.client.jei.machine.chemical.ChemicalInfuserRecipeWrapper;
-import mekanism.client.jei.machine.chemical.ChemicalOxidizerRecipeWrapper;
-import mekanism.client.jei.machine.chemical.ChemicalWasherRecipeWrapper;
-import mekanism.client.jei.machine.chemical.NutritionalLiquifierRecipeWrapper;
+import mekanism.client.jei.machine.chemical.*;
 import mekanism.client.jei.machine.other.*;
 import mekanism.common.Mekanism;
 import mekanism.common.base.IFactory.RecipeType;
@@ -45,6 +29,12 @@ import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.common.Loader;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RecipeRegistryHelper {
 
@@ -79,7 +69,7 @@ public class RecipeRegistryHelper {
         if (!MachineType.RECYCLER.isEnabled()) {
             return;
         }
-        addRecipes(registry, Recipe.RECYCLER,  Chance2MachineRecipeWrapper::new);
+        addRecipes(registry, Recipe.RECYCLER, Chance2MachineRecipeWrapper::new);
         registry.addRecipeClickArea(GuiRecycler.class, 79, 40, 24, 7, Recipe.RECYCLER.getJEICategory());
         registerRecipeItem(registry, MachineType.RECYCLER, Recipe.RECYCLER);
     }
@@ -294,7 +284,6 @@ public class RecipeRegistryHelper {
     }
 
 
-
     public static void registerSeparator(IModRegistry registry) {
         if (!MachineType.ELECTROLYTIC_SEPARATOR.isEnabled()) {
             return;
@@ -311,7 +300,7 @@ public class RecipeRegistryHelper {
     }
 
     public static void registerFusionCooling(IModRegistry registry) {
-        if (Loader.isModLoaded(MekanismGenerators.MODID)){
+        if (Loader.isModLoaded(MekanismGenerators.MODID)) {
             addRecipes(registry, Recipe.FUSION_COOLING, FusionCoolingRecipeWrapper::new);
             registry.addRecipeClickArea(GuiReactorHeat.class, 133, 84, 18, 30, Recipe.FUSION_COOLING.getJEICategory());
             registry.addRecipeCatalyst(ReactorBlockType.REACTOR_CONTROLLER.getStack(1), Recipe.FUSION_COOLING.getJEICategory());
@@ -357,15 +346,15 @@ public class RecipeRegistryHelper {
             // Add all recipes
             Collection<SmeltingRecipe> recipeList = Recipe.ENERGIZED_SMELTER.get().values();
             registry.addRecipes(recipeList.stream().map(MachineRecipeWrapper::new).collect(Collectors.toList()),
-                  Recipe.ENERGIZED_SMELTER.getJEICategory());
+                    Recipe.ENERGIZED_SMELTER.getJEICategory());
             registry.addRecipeClickArea(GuiEnergizedSmelter.class, 79, 40, 24, 7,
-                        Recipe.ENERGIZED_SMELTER.getJEICategory());
+                    Recipe.ENERGIZED_SMELTER.getJEICategory());
         } else if (Mekanism.hooks.CraftTweakerLoaded && EnergizedSmelter.hasAddedRecipe()) {// Added but not removed
             // Only add added recipes
             Map<ItemStackInput, SmeltingRecipe> smeltingRecipes = Recipe.ENERGIZED_SMELTER.get();
             List<MachineRecipeWrapper> smeltingWrapper = smeltingRecipes.entrySet().stream().filter(entry ->
-                  !FurnaceRecipes.instance().getSmeltingList().containsKey(entry.getKey().ingredient)).map(entry ->
-                  new MachineRecipeWrapper<>(entry.getValue())).collect(Collectors.toList());
+                    !FurnaceRecipes.instance().getSmeltingList().containsKey(entry.getKey().ingredient)).map(entry ->
+                    new MachineRecipeWrapper<>(entry.getValue())).collect(Collectors.toList());
             registry.addRecipes(smeltingWrapper, Recipe.ENERGIZED_SMELTER.getJEICategory());
 
             registry.addRecipeClickArea(GuiEnergizedSmelter.class, 79, 40, 24, 7, VanillaRecipeCategoryUid.SMELTING, Recipe.ENERGIZED_SMELTER.getJEICategory());

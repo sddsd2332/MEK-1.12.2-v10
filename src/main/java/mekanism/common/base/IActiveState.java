@@ -24,7 +24,7 @@ public interface IActiveState {
     /**
      * Determine if a machine/generator was "recently" active, where "recently" is up to the interface implementor. This is useful for reducing rendering calls, esp. when
      * the entity can oscillate between active/inactive states rapidly.
-     *
+     * <p>
      * The default implementation just returns current active state.
      */
     default boolean wasActiveRecently() {

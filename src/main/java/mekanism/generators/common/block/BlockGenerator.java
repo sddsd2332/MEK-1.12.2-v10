@@ -1,16 +1,8 @@
 package mekanism.generators.common.block;
 
-import java.util.Random;
-import javax.annotation.Nonnull;
 import mekanism.api.IMekWrench;
 import mekanism.api.energy.IEnergizedItem;
-import mekanism.common.Mekanism;
-import mekanism.common.base.IActiveState;
-import mekanism.common.base.IBoundingBlock;
-import mekanism.common.base.IComparatorSupport;
-import mekanism.common.base.ISustainedData;
-import mekanism.common.base.ISustainedInventory;
-import mekanism.common.base.ISustainedTank;
+import mekanism.common.base.*;
 import mekanism.common.block.BlockMekanismContainer;
 import mekanism.common.block.states.BlockStateFacing;
 import mekanism.common.config.MekanismConfig;
@@ -45,22 +37,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
 
 /**
  * Block class for handling multiple generator block IDs. 0: Heat Generator 1: Solar Generator 3: Hydrogen Generator 4: Bio-Generator 5: Advanced Solar Generator 6: Wind
@@ -297,7 +283,7 @@ public abstract class BlockGenerator extends BlockMekanismContainer {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer entityplayer,
-          EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+                                    EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (world.isRemote) {
             return true;
         }

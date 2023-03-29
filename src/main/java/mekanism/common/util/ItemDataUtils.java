@@ -1,11 +1,12 @@
 package mekanism.common.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public final class ItemDataUtils {
 

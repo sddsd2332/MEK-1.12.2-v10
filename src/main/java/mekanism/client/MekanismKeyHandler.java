@@ -1,20 +1,12 @@
 package mekanism.client;
 
-import java.util.Collections;
 import mekanism.client.sound.SoundHandler;
 import mekanism.common.Mekanism;
 import mekanism.common.MekanismSounds;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
-import mekanism.common.item.ItemBlockMachine;
-import mekanism.common.item.ItemConfigurator;
+import mekanism.common.item.*;
 import mekanism.common.item.ItemConfigurator.ConfiguratorMode;
-import mekanism.common.item.ItemElectricBow;
-import mekanism.common.item.ItemFlamethrower;
-import mekanism.common.item.ItemFreeRunners;
-import mekanism.common.item.ItemJetpack;
 import mekanism.common.item.ItemJetpack.JetpackMode;
-import mekanism.common.item.ItemScubaTank;
-import mekanism.common.item.ItemWalkieTalkie;
 import mekanism.common.network.PacketFlamethrowerData.FlamethrowerDataMessage;
 import mekanism.common.network.PacketFreeRunnerData;
 import mekanism.common.network.PacketFreeRunnerData.FreeRunnerDataMessage;
@@ -40,6 +32,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
+import java.util.Collections;
+
 @SideOnly(Side.CLIENT)
 public class MekanismKeyHandler extends MekKeyHandler {
 
@@ -53,10 +47,10 @@ public class MekanismKeyHandler extends MekKeyHandler {
     public static KeyBinding jumpKey = Minecraft.getMinecraft().gameSettings.keyBindJump;
 
     private static Builder BINDINGS = new Builder()
-          .addBinding(modeSwitchKey, false)
-          .addBinding(armorModeSwitchKey, false)
-          .addBinding(freeRunnerModeSwitchKey, false)
-          .addBinding(voiceKey, true);
+            .addBinding(modeSwitchKey, false)
+            .addBinding(armorModeSwitchKey, false)
+            .addBinding(freeRunnerModeSwitchKey, false)
+            .addBinding(voiceKey, true);
 
     public MekanismKeyHandler() {
         super(BINDINGS);
@@ -89,14 +83,14 @@ public class MekanismKeyHandler extends MekKeyHandler {
                 configurator.setState(toolStack, configuratorMode);
                 Mekanism.packetHandler.sendToServer(new ItemStackMessage(EnumHand.MAIN_HAND, Collections.singletonList(toSet)));
                 player.sendMessage(new TextComponentGroup(TextFormatting.GRAY).string(Mekanism.LOG_TAG, TextFormatting.DARK_BLUE).string(" ")
-                      .translation("mekanism.tooltip.configureState", LangUtils.withColor(configuratorMode.getNameComponent(), configuratorMode.getColor().textFormatting)));
+                        .translation("mekanism.tooltip.configureState", LangUtils.withColor(configuratorMode.getNameComponent(), configuratorMode.getColor().textFormatting)));
             } else if (player.isSneaking() && item instanceof ItemElectricBow) {
                 ItemElectricBow bow = (ItemElectricBow) item;
                 boolean newBowState = !bow.getFireState(toolStack);
                 bow.setFireState(toolStack, newBowState);
                 Mekanism.packetHandler.sendToServer(new ItemStackMessage(EnumHand.MAIN_HAND, Collections.singletonList(newBowState)));
                 player.sendMessage(new TextComponentGroup(TextFormatting.GRAY).string(Mekanism.LOG_TAG, TextFormatting.DARK_BLUE).string(" ")
-                      .translation("mekanism.tooltip.fireMode", LangUtils.onOffColoured(newBowState)));
+                        .translation("mekanism.tooltip.fireMode", LangUtils.onOffColoured(newBowState)));
             } else if (player.isSneaking() && item instanceof ItemBlockMachine) {
                 ItemBlockMachine machine = (ItemBlockMachine) item;
                 if (MachineType.get(toolStack) == MachineType.FLUID_TANK) {
@@ -104,7 +98,7 @@ public class MekanismKeyHandler extends MekKeyHandler {
                     machine.setBucketMode(toolStack, newBucketMode);
                     Mekanism.packetHandler.sendToServer(new ItemStackMessage(EnumHand.MAIN_HAND, Collections.singletonList(machine.getBucketMode(toolStack))));
                     player.sendMessage(new TextComponentGroup(TextFormatting.GRAY).string(Mekanism.LOG_TAG, TextFormatting.DARK_BLUE).string(" ")
-                          .translation("mekanism.tooltip.portableTank.bucketMode", LangUtils.onOffColoured(newBucketMode)));
+                            .translation("mekanism.tooltip.portableTank.bucketMode", LangUtils.onOffColoured(newBucketMode)));
                 }
             } else if (player.isSneaking() && item instanceof ItemWalkieTalkie) {
                 ItemWalkieTalkie wt = (ItemWalkieTalkie) item;
@@ -121,7 +115,7 @@ public class MekanismKeyHandler extends MekKeyHandler {
                 flamethrower.incrementMode(toolStack);
                 Mekanism.packetHandler.sendToServer(FlamethrowerDataMessage.MODE_CHANGE(EnumHand.MAIN_HAND));
                 player.sendMessage(new TextComponentGroup(TextFormatting.GRAY).string(Mekanism.LOG_TAG, TextFormatting.DARK_BLUE).string(" ")
-                      .translation("mekanism.tooltip.flamethrower.modeBump", flamethrower.getMode(toolStack).getTextComponent()));
+                        .translation("mekanism.tooltip.flamethrower.modeBump", flamethrower.getMode(toolStack).getTextComponent()));
             }
         } else if (kb == armorModeSwitchKey) {
             EntityPlayer player = FMLClientHandler.instance().getClient().player;

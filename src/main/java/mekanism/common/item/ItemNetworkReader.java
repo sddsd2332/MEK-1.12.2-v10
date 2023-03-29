@@ -1,8 +1,5 @@
 package mekanism.common.item;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.IHeatTransfer;
@@ -23,6 +20,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ItemNetworkReader extends ItemEnergized {
 
@@ -84,11 +85,11 @@ public class ItemNetworkReader extends ItemEnergized {
                             IGridTransmitter transmitter = CapabilityUtils.getCapability(tile, Capabilities.GRID_TRANSMITTER_CAPABILITY, iterSide.getOpposite());
 
                             if (transmitter.getTransmitterNetwork().getPossibleAcceptors().contains(coord.offset(iterSide.getOpposite())) &&
-                                !iteratedNetworks.contains(transmitter.getTransmitterNetwork())) {
+                                    !iteratedNetworks.contains(transmitter.getTransmitterNetwork())) {
                                 player.sendMessage(new TextComponentString(EnumColor.GREY + "------------- " + EnumColor.DARK_BLUE + "[" +
-                                                                           transmitter.getTransmissionType().getName() + "]" + EnumColor.GREY + " -------------"));
+                                        transmitter.getTransmissionType().getName() + "]" + EnumColor.GREY + " -------------"));
                                 player.sendMessage(new TextComponentString(EnumColor.GREY + " *Connected sides: " + EnumColor.DARK_GREY +
-                                                                           transmitter.getTransmitterNetwork().getAcceptorDirections().get(coord.offset(iterSide.getOpposite()))));
+                                        transmitter.getTransmitterNetwork().getAcceptorDirections().get(coord.offset(iterSide.getOpposite()))));
                                 player.sendMessage(new TextComponentString(EnumColor.GREY + "------------- " + EnumColor.DARK_BLUE + "[=======]" + EnumColor.GREY + " -------------"));
                                 iteratedNetworks.add(transmitter.getTransmitterNetwork());
                             }
@@ -118,7 +119,7 @@ public class ItemNetworkReader extends ItemEnergized {
     @Nonnull
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return EnumColor.YELLOW +  LangUtils.localize("item.NetworkReader.name");
+        return EnumColor.YELLOW + LangUtils.localize("item.NetworkReader.name");
     }
 
 }

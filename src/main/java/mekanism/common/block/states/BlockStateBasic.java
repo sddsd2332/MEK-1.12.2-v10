@@ -1,11 +1,5 @@
 package mekanism.common.block.states;
 
-import java.util.Locale;
-import java.util.Objects;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.common.Mekanism;
 import mekanism.common.MekanismBlocks;
 import mekanism.common.block.BlockBasic;
@@ -27,6 +21,13 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class BlockStateBasic extends ExtendedBlockState {
 
@@ -99,18 +100,18 @@ public class BlockStateBasic extends ExtendedBlockState {
 
         SPS_CASING(BasicBlock.BASIC_BLOCK_3, 0, "SpsCasing", null, false, BlockStateUtils.NO_ROTATION, false, false, false),
         FISSION_REACHER_CASING(BasicBlock.BASIC_BLOCK_3, 1, "FissionReacherCasing", null, false, BlockStateUtils.NO_ROTATION, false, false, false),
-        CONTROL_ROD_ASSEMBLY(BasicBlock.BASIC_BLOCK_3, 2, "ControlRodAssembly", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        FISSION_FUEL_ASSEMBLY(BasicBlock.BASIC_BLOCK_3, 3, "FissionFuelAssembly", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        BASIC_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 4, "BasicEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        ADVANCED_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 5, "AdvancedEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        ELITE_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 6, "EliteEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        ULTIMATE_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 7, "UltimateEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        CREATIVE_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 8, "CreativeEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        BASIC_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 9, "BasicEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        ADVANCED_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 10, "AdvancedEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        ELITE_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 11, "EliteEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        ULTIMATE_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 12, "UltimateEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false),
-        CREATIVE_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 13, "CreativeEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false,false,false,false);
+        CONTROL_ROD_ASSEMBLY(BasicBlock.BASIC_BLOCK_3, 2, "ControlRodAssembly", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        FISSION_FUEL_ASSEMBLY(BasicBlock.BASIC_BLOCK_3, 3, "FissionFuelAssembly", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        BASIC_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 4, "BasicEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        ADVANCED_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 5, "AdvancedEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        ELITE_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 6, "EliteEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        ULTIMATE_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 7, "UltimateEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        CREATIVE_ENERGY_CUBE_CRAFT(BasicBlock.BASIC_BLOCK_3, 8, "CreativeEnergyCubeCraft", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        BASIC_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 9, "BasicEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        ADVANCED_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 10, "AdvancedEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        ELITE_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 11, "EliteEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        ULTIMATE_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 12, "UltimateEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false),
+        CREATIVE_ENERGY_CUBE_FRAME(BasicBlock.BASIC_BLOCK_3, 13, "CreativeEnergyCubeFrame", null, false, BlockStateUtils.NO_ROTATION, false, false, false, false, false, false);
 
 
         @Nonnull
@@ -128,22 +129,22 @@ public class BlockStateBasic extends ExtendedBlockState {
         public boolean isOpaqueCube;
 
         BasicBlockType(@Nonnull BasicBlock block, int metadata, String nameIn, Supplier<TileEntity> tileClass, boolean hasDesc, Predicate<EnumFacing> facingAllowed,
-              boolean activeState, boolean hasTiers, boolean beaconBase) {
+                       boolean activeState, boolean hasTiers, boolean beaconBase) {
             this(block, metadata, nameIn, tileClass, hasDesc, facingAllowed, activeState, hasTiers, beaconBase, false);
         }
 
         BasicBlockType(@Nonnull BasicBlock block, int metadata, String nameIn, Supplier<TileEntity> tileClass, boolean hasDesc, Predicate<EnumFacing> facingAllowed,
-              boolean activeState, boolean hasTiers, boolean beaconBase, boolean hasRedstoneOutput) {
+                       boolean activeState, boolean hasTiers, boolean beaconBase, boolean hasRedstoneOutput) {
             this(block, metadata, nameIn, tileClass, hasDesc, facingAllowed, activeState, hasTiers, beaconBase, hasRedstoneOutput, true);
         }
 
         BasicBlockType(@Nonnull BasicBlock block, int metadata, String nameIn, Supplier<TileEntity> tileClass, boolean hasDesc, Predicate<EnumFacing> facingAllowed,
-              boolean activeState, boolean hasTiers, boolean beaconBase, boolean hasRedstoneOutput, boolean fullBlock) {
+                       boolean activeState, boolean hasTiers, boolean beaconBase, boolean hasRedstoneOutput, boolean fullBlock) {
             this(block, metadata, nameIn, tileClass, hasDesc, facingAllowed, activeState, hasTiers, beaconBase, hasRedstoneOutput, fullBlock, true);
         }
 
         BasicBlockType(@Nonnull BasicBlock block, int metadata, String nameIn, Supplier<TileEntity> tileClass, boolean hasDesc, Predicate<EnumFacing> facingAllowed,
-              boolean activeState, boolean hasTiers, boolean beaconBase, boolean hasRedstoneOutput, boolean fullBlock, boolean opaque) {
+                       boolean activeState, boolean hasTiers, boolean beaconBase, boolean hasRedstoneOutput, boolean fullBlock, boolean opaque) {
             blockType = block;
             meta = metadata;
             name = nameIn;

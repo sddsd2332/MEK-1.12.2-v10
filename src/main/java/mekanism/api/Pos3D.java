@@ -1,16 +1,13 @@
 package mekanism.api;
 
-import javax.annotation.Nonnull;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.*;
+
+import javax.annotation.Nonnull;
 
 /**
  * Pos3D - a way of performing operations on objects in a three dimensional environment.
@@ -65,7 +62,6 @@ public class Pos3D extends Vec3d {
      * Returns a new Pos3D from a tag compound.
      *
      * @param tag - tag compound to read from
-     *
      * @return the Pos3D from the tag compound
      */
     public static Pos3D read(NBTTagCompound tag) {
@@ -76,7 +72,6 @@ public class Pos3D extends Vec3d {
      * Creates a new Pos3D from the motion of an entity.
      *
      * @param entity Entitiy to get the motion from
-     *
      * @return Pos3D representing the motion of the given entity
      */
     public static Pos3D fromMotion(Entity entity) {
@@ -100,12 +95,12 @@ public class Pos3D extends Vec3d {
 
     public static AxisAlignedBB getAABB(Pos3D pos1, Pos3D pos2) {
         return new AxisAlignedBB(
-              pos1.x,
-              pos1.y,
-              pos1.z,
-              pos2.x,
-              pos2.y,
-              pos2.z
+                pos1.x,
+                pos1.y,
+                pos1.z,
+                pos2.x,
+                pos2.y,
+                pos2.z
         );
     }
 
@@ -113,7 +108,6 @@ public class Pos3D extends Vec3d {
      * Writes this Pos3D's data to an NBTTagCompound.
      *
      * @param nbtTags - tag compound to write to
-     *
      * @return the tag compound with this Pos3D's data
      */
     public NBTTagCompound write(NBTTagCompound nbtTags) {
@@ -127,7 +121,6 @@ public class Pos3D extends Vec3d {
      * Creates and returns a Pos3D with values representing the difference between this and the Pos3D in the parameters.
      *
      * @param vec - Vec3 to subtract
-     *
      * @return difference of the two Pos3Ds
      */
     public Pos3D diff(Vec3d vec) {
@@ -138,7 +131,6 @@ public class Pos3D extends Vec3d {
      * Creates a new Coord4D representing this Pos3D in the provided dimension.
      *
      * @param dimensionId - the dimension this Pos3D is in
-     *
      * @return Coord4D representing this Pos3D
      */
     public Coord4D getCoord(int dimensionId) {
@@ -158,7 +150,6 @@ public class Pos3D extends Vec3d {
      * @param x - amount to translate on the x axis
      * @param y - amount to translate on the y axis
      * @param z - amount to translate on the z axis
-     *
      * @return the translated Pos3D
      */
     public Pos3D translate(double x, double y, double z) {
@@ -169,7 +160,6 @@ public class Pos3D extends Vec3d {
      * Performs the same operation as translate(x, y, z), but with a Pos3D value instead.
      *
      * @param pos - Pos3D value to translate by
-     *
      * @return translated Pos3D
      */
     public Pos3D translate(Vec3d pos) {
@@ -204,7 +194,6 @@ public class Pos3D extends Vec3d {
      * Returns the distance between this and the defined Pos3D.
      *
      * @param pos - the Pos3D to find the distance to
-     *
      * @return the distance between this and the defined Pos3D
      */
     public double distance(Vec3d pos) {
@@ -218,7 +207,6 @@ public class Pos3D extends Vec3d {
      * Rotates this Pos3D by the defined yaw value.
      *
      * @param yaw - yaw to rotate by
-     *
      * @return rotated Pos3D
      */
     @Nonnull
@@ -257,11 +245,11 @@ public class Pos3D extends Vec3d {
         double rollRadians = Math.toRadians(roll);
 
         double xPos = x * Math.cos(yawRadians) * Math.cos(pitchRadians) + z * (
-              Math.cos(yawRadians) * Math.sin(pitchRadians) * Math.sin(rollRadians) - Math.sin(yawRadians) * Math.cos(rollRadians)) +
-                      y * (Math.cos(yawRadians) * Math.sin(pitchRadians) * Math.cos(rollRadians) + Math.sin(yawRadians) * Math.sin(rollRadians));
+                Math.cos(yawRadians) * Math.sin(pitchRadians) * Math.sin(rollRadians) - Math.sin(yawRadians) * Math.cos(rollRadians)) +
+                y * (Math.cos(yawRadians) * Math.sin(pitchRadians) * Math.cos(rollRadians) + Math.sin(yawRadians) * Math.sin(rollRadians));
         double zPos = x * Math.sin(yawRadians) * Math.cos(pitchRadians) + z * (
-              Math.sin(yawRadians) * Math.sin(pitchRadians) * Math.sin(rollRadians) + Math.cos(yawRadians) * Math.cos(rollRadians)) +
-                      y * (Math.sin(yawRadians) * Math.sin(pitchRadians) * Math.cos(rollRadians) - Math.cos(yawRadians) * Math.sin(rollRadians));
+                Math.sin(yawRadians) * Math.sin(pitchRadians) * Math.sin(rollRadians) + Math.cos(yawRadians) * Math.cos(rollRadians)) +
+                y * (Math.sin(yawRadians) * Math.sin(pitchRadians) * Math.cos(rollRadians) - Math.cos(yawRadians) * Math.sin(rollRadians));
         double yPos = -x * Math.sin(pitchRadians) + z * Math.cos(pitchRadians) * Math.sin(rollRadians) + y * Math.cos(pitchRadians) * Math.cos(rollRadians);
         return new Pos3D(xPos, yPos, zPos);
     }
@@ -276,7 +264,6 @@ public class Pos3D extends Vec3d {
      * @param x - x value to scale by
      * @param y - y value to scale by
      * @param z - z value to scale by
-     *
      * @return scaled Pos3D
      */
     public Pos3D scale(double x, double y, double z) {

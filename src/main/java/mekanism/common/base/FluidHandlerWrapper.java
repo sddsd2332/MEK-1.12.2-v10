@@ -1,12 +1,13 @@
 package mekanism.common.base;
 
-import java.util.Arrays;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
+
+import java.util.Arrays;
 
 public class FluidHandlerWrapper implements IFluidHandler {
 

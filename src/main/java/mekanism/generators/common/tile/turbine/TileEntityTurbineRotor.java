@@ -1,7 +1,6 @@
 package mekanism.generators.common.tile.turbine;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
 import mekanism.common.multiblock.TileEntityInternalMultiblock;
@@ -14,17 +13,17 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 public class TileEntityTurbineRotor extends TileEntityInternalMultiblock {
 
     // Blades on this rotor
     public int blades = 0;
-
-    // Position of this rotor, relative to bottom
-    private int position = -1;
-
     // Rendering helpers
     public float rotationLower;
     public float rotationUpper;
+    // Position of this rotor, relative to bottom
+    private int position = -1;
 
     @Override
     public void onNeighborChange(Block block) {
@@ -94,7 +93,7 @@ public class TileEntityTurbineRotor extends TileEntityInternalMultiblock {
             // Remove blades from this rotor
             blades--;
 
-                // Update client state
+            // Update client state
             sendUpdatePacket();
             return true;
         }

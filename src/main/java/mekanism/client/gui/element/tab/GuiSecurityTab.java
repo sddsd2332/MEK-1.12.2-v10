@@ -1,7 +1,5 @@
 package mekanism.client.gui.element.tab;
 
-import java.util.Arrays;
-import java.util.UUID;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.client.MekanismClient;
@@ -27,6 +25,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Arrays;
+import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class GuiSecurityTab extends GuiTileEntityElement<TileEntity> {

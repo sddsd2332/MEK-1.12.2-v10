@@ -14,7 +14,6 @@ public interface IGuiProvider {
      * @param player - player that opened the GUI
      * @param world  - world the GUI was opened in
      * @param pos    - gui's position
-     *
      * @return the Container of the GUI
      */
     Container getServerGui(int ID, EntityPlayer player, World world, BlockPos pos);
@@ -26,7 +25,6 @@ public interface IGuiProvider {
      * @param player - player that opened the GUI
      * @param world  - world the GUI was opened in
      * @param pos    - gui's position
-     *
      * @return the GuiScreen of the GUI
      */
     Object getClientGui(int ID, EntityPlayer player, World world, BlockPos pos);

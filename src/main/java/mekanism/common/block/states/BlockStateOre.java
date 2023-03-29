@@ -1,10 +1,11 @@
 package mekanism.common.block.states;
 
-import java.util.Locale;
 import mekanism.common.block.BlockOre;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.util.IStringSerializable;
+
+import java.util.Locale;
 
 /**
  * Created by ben on 23/12/14.

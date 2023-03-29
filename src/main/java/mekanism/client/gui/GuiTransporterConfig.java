@@ -1,10 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.transmitters.TransmissionType;
@@ -34,6 +29,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class GuiTransporterConfig extends GuiMekanismTile<TileEntityContainerBlock> {
@@ -69,7 +70,7 @@ public class GuiTransporterConfig extends GuiMekanismTile<TileEntityContainerBlo
             GuiPos guiPos = slotPosMap.get(i);
             EnumFacing facing = EnumFacing.byIndex(i);
             GuiSideDataButton button = new GuiSideDataButton(buttonID++, guiLeft + guiPos.xPos, guiTop + guiPos.yPos, getGuiLocation(), i,
-                  () -> configurable.getConfig().getOutput(TransmissionType.ITEM, facing), () -> configurable.getEjector().getInputColor(facing));
+                    () -> configurable.getConfig().getOutput(TransmissionType.ITEM, facing), () -> configurable.getEjector().getInputColor(facing));
             buttonList.add(button);
             sideDataButtons.add(button);
         }
@@ -90,7 +91,7 @@ public class GuiTransporterConfig extends GuiMekanismTile<TileEntityContainerBlo
             for (GuiSideDataButton button : sideDataButtons) {
                 if (guibutton.id == button.id) {
                     Mekanism.packetHandler.sendToServer(new ConfigurationUpdateMessage(ConfigurationPacket.INPUT_COLOR, Coord4D.get(tile),
-                          Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? 2 : 0, button.getSlotPosMapIndex(), null));
+                            Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? 2 : 0, button.getSlotPosMapIndex(), null));
                     break;
                 }
             }

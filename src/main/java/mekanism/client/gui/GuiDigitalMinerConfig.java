@@ -1,7 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import javax.annotation.Nullable;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.client.gui.button.GuiButtonDisableableImage;
@@ -10,11 +8,7 @@ import mekanism.client.sound.SoundHandler;
 import mekanism.common.HashList;
 import mekanism.common.Mekanism;
 import mekanism.common.config.MekanismConfig;
-import mekanism.common.content.filter.IFilter;
-import mekanism.common.content.filter.IItemStackFilter;
-import mekanism.common.content.filter.IMaterialFilter;
-import mekanism.common.content.filter.IModIDFilter;
-import mekanism.common.content.filter.IOreDictFilter;
+import mekanism.common.content.filter.*;
 import mekanism.common.content.miner.MinerFilter;
 import mekanism.common.inventory.container.ContainerNull;
 import mekanism.common.network.PacketDigitalMinerGui.DigitalMinerGuiMessage;
@@ -33,6 +27,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+
+import javax.annotation.Nullable;
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public class GuiDigitalMinerConfig extends GuiFilterHolder<TileEntityDigitalMiner, MinerFilter> {

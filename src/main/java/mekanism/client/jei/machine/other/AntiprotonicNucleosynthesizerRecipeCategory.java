@@ -4,27 +4,23 @@ import mekanism.api.gas.GasStack;
 import mekanism.client.gui.element.GuiPowerBar;
 import mekanism.client.gui.element.GuiProgress;
 import mekanism.client.gui.element.GuiSlot;
-import mekanism.client.gui.element.gauge.GuiFluidGauge;
 import mekanism.client.gui.element.gauge.GuiGasGauge;
 import mekanism.client.gui.element.gauge.GuiGauge;
 import mekanism.client.jei.BaseRecipeCategory;
 import mekanism.client.jei.MekanismJEI;
 import mekanism.common.recipe.RecipeHandler.Recipe;
-import mekanism.common.recipe.machines.IsotopicRecipe;
 import mekanism.common.recipe.machines.NucleosynthesizerRecipe;
 import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiIngredientGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
-import net.minecraft.client.Minecraft;
 
 public class AntiprotonicNucleosynthesizerRecipeCategory<WRAPPER extends AntiprotonicNucleosynthesizerRecipeWrapper<NucleosynthesizerRecipe>> extends BaseRecipeCategory<WRAPPER> {
 
     public AntiprotonicNucleosynthesizerRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/nei/GuiPRC.png", Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER.getJEICategory(),
-              "tile.MachineBlock3.antiprotonicnucleosynthesizer.name",  GuiProgress.ProgressBar.MEDIUM, 20, 10, 150, 60);
+                "tile.MachineBlock3.antiprotonicnucleosynthesizer.name", GuiProgress.ProgressBar.MEDIUM, 20, 10, 150, 60);
     }
 
     @Override

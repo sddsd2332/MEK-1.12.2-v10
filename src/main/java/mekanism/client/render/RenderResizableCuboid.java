@@ -1,11 +1,6 @@
 package mekanism.client.render;
 
 import com.google.common.collect.ImmutableSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
 import mekanism.client.render.MekanismRenderer.Model3D;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -27,6 +22,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
+
+import java.util.*;
 
 /*
  * Adapted from BuildCraft
@@ -179,7 +176,7 @@ public class RenderResizableCuboid {
     }
 
     private void renderCuboidFace(BufferBuilder wr, EnumFacing face, TextureAtlasSprite[] sprites, int[] flips, Vec3d textureStart, Vec3d textureSize,
-          Vec3d size, Vec3d textureOffset, EnumShadeArgument shadeTypes, IBlockLocation locationFormula, IFacingLocation faceFormula, IBlockAccess access) {
+                                  Vec3d size, Vec3d textureOffset, EnumShadeArgument shadeTypes, IBlockLocation locationFormula, IFacingLocation faceFormula, IBlockAccess access) {
         int ordinal = face.ordinal();
         if (sprites[ordinal] == null) {
             return;
@@ -213,7 +210,7 @@ public class RenderResizableCuboid {
     }
 
     private void renderPoint(BufferBuilder wr, EnumFacing face, Axis u, Axis v, double other, RenderInfo ri, boolean minU, boolean minV, IBlockLocation locationFormula,
-          IFacingLocation faceFormula, IBlockAccess access, EnumShadeArgument shadeTypes) {
+                             IFacingLocation faceFormula, IBlockAccess access, EnumShadeArgument shadeTypes) {
         int U_ARRAY = minU ? U_MIN : U_MAX;
         int V_ARRAY = minV ? V_MIN : V_MAX;
 

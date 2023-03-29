@@ -25,7 +25,7 @@ public class ItemGasMask extends ItemArmor {
 
     public ItemGasMask() {
         super(EnumHelper.addArmorMaterial("GASMASK", "gasmask", 0, new int[]{0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
-              0), 0, EntityEquipmentSlot.HEAD);
+                0), 0, EntityEquipmentSlot.HEAD);
         setCreativeTab(Mekanism.tabMekanism);
     }
 
@@ -68,6 +68,6 @@ public class ItemGasMask extends ItemArmor {
     @Nonnull
     @Override
     public String getItemStackDisplayName(@Nonnull ItemStack itemstack) {
-        return EnumColor.AQUA +  LangUtils.localize("item.GasMask.name");
+        return EnumColor.AQUA + LangUtils.localize("item.GasMask.name");
     }
 }

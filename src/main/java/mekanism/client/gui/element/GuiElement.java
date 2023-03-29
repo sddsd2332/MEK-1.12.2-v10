@@ -1,7 +1,5 @@
 package mekanism.client.gui.element;
 
-import java.awt.Rectangle;
-import java.util.List;
 import mekanism.client.gui.IGuiWrapper;
 import mekanism.client.render.MekanismRenderer;
 import net.minecraft.client.Minecraft;
@@ -11,6 +9,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.awt.*;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public abstract class GuiElement {
@@ -101,6 +102,10 @@ public abstract class GuiElement {
 
     public abstract void mouseClicked(int xAxis, int yAxis, int button);
 
+    protected boolean inBounds(int xAxis, int yAxis) {
+        return false;
+    }
+
     public interface IInfoHandler {
 
         List<String> getInfo();
@@ -123,9 +128,5 @@ public abstract class GuiElement {
         public Rectangle toRectangle() {
             return new Rectangle(x, y, width, height);
         }
-    }
-
-    protected boolean inBounds(int xAxis, int yAxis) {
-        return false;
     }
 }

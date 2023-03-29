@@ -1,10 +1,6 @@
 package mekanism.common.item;
 
 import io.netty.buffer.ByteBuf;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
 import mekanism.common.base.IItemNetwork;
@@ -23,6 +19,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ItemWalkieTalkie extends ItemMekanismAddition implements IItemNetwork {
 

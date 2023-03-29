@@ -1,12 +1,13 @@
 package mekanism.common.config.options;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Objects;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import mekanism.common.config.BaseConfig;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Objects;
 
 /**
  * Created by Thiakil on 15/03/2019.
@@ -14,10 +15,10 @@ import net.minecraftforge.common.config.Property;
 @ParametersAreNonnullByDefault
 public class EnumOption<T extends Enum<T>> extends Option<EnumOption<T>> {
 
-    private T value;
     private final T defaultValue;
     private final Class<T> enumClass;
     private final T[] enumValues;
+    private T value;
 
     @SuppressWarnings("unchecked")
     public EnumOption(BaseConfig owner, String category, String key, T defaultValue, @Nullable String comment) {

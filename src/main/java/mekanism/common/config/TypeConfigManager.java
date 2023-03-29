@@ -1,15 +1,16 @@
 package mekanism.common.config;
 
 import io.netty.buffer.ByteBuf;
+import mekanism.common.config.options.Option;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
-import mekanism.common.config.options.Option;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 
 @ParametersAreNonnullByDefault
 public class TypeConfigManager<T extends Enum<T>> extends Option<TypeConfigManager<T>> {
@@ -41,7 +42,6 @@ public class TypeConfigManager<T extends Enum<T>> extends Option<TypeConfigManag
      * Get the enum constant from a name. Used in recipes, allowed to be non-cached
      *
      * @param name JSON supplied name
-     *
      * @return the found enum constant or null
      */
     @Nullable
@@ -59,7 +59,7 @@ public class TypeConfigManager<T extends Enum<T>> extends Option<TypeConfigManag
         for (T type : validValuesSupplier.get()) {
             String typeName = nameSupplier.apply(type);
             final Property property = config.get(this.category, typeName + "Enabled", true,
-                  "Allow " + typeName + " to be used/crafted. Requires game restart to fully take effect.");
+                    "Allow " + typeName + " to be used/crafted. Requires game restart to fully take effect.");
             property.setRequiresWorldRestart(true);
             setEntry(type, property.getBoolean());
         }

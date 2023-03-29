@@ -1,7 +1,5 @@
 package mekanism.common.util;
 
-import java.util.Set;
-import java.util.function.BiConsumer;
 import mekanism.common.base.SplitInfo;
 import mekanism.common.base.SplitInfo.DoubleSplitInfo;
 import mekanism.common.base.SplitInfo.IntegerSplitInfo;
@@ -11,6 +9,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Set;
+import java.util.function.BiConsumer;
 
 public class EmitUtils {
 
@@ -23,11 +24,10 @@ public class EmitUtils {
      * @param totalTargets     The total number of targets. Note: this number is bigger than availableTargets.size if any targets have more than one acceptor.
      * @param splitInfo        Information containing the split.
      * @param toSend           Any extra information such as gas stack or fluid stack.
-     *
      * @return The amount that actually got sent.
      */
     private static <HANDLER, TYPE extends Number & Comparable<TYPE>, EXTRA, TARGET extends Target<HANDLER, TYPE, EXTRA>> TYPE sendToAcceptors(
-          Set<TARGET> availableTargets, int totalTargets, SplitInfo<TYPE> splitInfo, EXTRA toSend) {
+            Set<TARGET> availableTargets, int totalTargets, SplitInfo<TYPE> splitInfo, EXTRA toSend) {
         if (availableTargets.isEmpty() || totalTargets == 0) {
             return splitInfo.getTotalSent();
         }
@@ -58,7 +58,6 @@ public class EmitUtils {
      * @param totalTargets     The total number of targets. Note: this number is bigger than availableTargets.size if any targets have more than one acceptor.
      * @param amountToSplit    The amount to split between all the targets
      * @param toSend           Any extra information such as gas stack or fluid stack.
-     *
      * @return The amount that actually got sent.
      */
     public static <HANDLER, EXTRA, TARGET extends Target<HANDLER, Integer, EXTRA>> int sendToAcceptors(Set<TARGET> availableTargets, int totalTargets, int amountToSplit, EXTRA toSend) {
@@ -69,7 +68,6 @@ public class EmitUtils {
      * @param availableTargets The EnergyAcceptorWrapper targets to send energy fairly to.
      * @param totalTargets     The total number of targets. Note: this number is bigger than availableTargets.size if any targets have more than one acceptor.
      * @param amountToSplit    The amount of energy to attempt to send
-     *
      * @return The amount that actually got sent
      */
     public static double sendToAcceptors(Set<EnergyAcceptorTarget> availableTargets, int totalTargets, double amountToSplit) {

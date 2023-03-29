@@ -1,10 +1,11 @@
 package mekanism.api.infuse;
 
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.ItemHandlerHelper;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 /**
  * Use this class to add a new object that registers as an infuse object.
@@ -39,7 +40,6 @@ public class InfuseRegistry {
      * Gets an InfuseType from it's name, or null if it doesn't exist.
      *
      * @param name - the name of the InfuseType to get
-     *
      * @return the name's corresponding InfuseType
      */
     public static InfuseType get(String name) {
@@ -53,7 +53,6 @@ public class InfuseRegistry {
      * Whether or not the registry contains a correspondent InfuseType to a name.
      *
      * @param name - the name to check
-     *
      * @return if the name has a coorespondent InfuseType
      */
     public static boolean contains(String name) {
@@ -79,7 +78,6 @@ public class InfuseRegistry {
      * Gets the InfuseObject data from an ItemStack.
      *
      * @param itemStack - the ItemStack to check
-     *
      * @return the ItemStack's InfuseObject
      */
     public static InfuseObject getObject(ItemStack itemStack) {

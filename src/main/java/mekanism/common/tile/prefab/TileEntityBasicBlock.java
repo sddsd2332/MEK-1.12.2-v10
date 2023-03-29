@@ -1,11 +1,6 @@
 package mekanism.common.tile.prefab;
 
 import io.netty.buffer.ByteBuf;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
@@ -32,6 +27,12 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional.Interface;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Interface(iface = "ic2.api.tile.IWrenchable", modid = MekanismHooks.IC2_MOD_ID)
 public abstract class TileEntityBasicBlock extends TileEntity implements ITileNetwork, IFrequencyHandler, ITickable {
@@ -210,7 +211,6 @@ public abstract class TileEntityBasicBlock extends TileEntity implements ITileNe
      * Whether or not this block's orientation can be changed to a specific direction. True by default.
      *
      * @param facing - facing to check
-     *
      * @return if the block's orientation can be changed
      */
     public boolean canSetFacing(@Nonnull EnumFacing facing) {

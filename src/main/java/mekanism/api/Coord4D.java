@@ -1,7 +1,6 @@
 package mekanism.api;
 
 import io.netty.buffer.ByteBuf;
-import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -17,6 +16,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+
+import java.util.ArrayList;
 
 /**
  * Coord4D - an integer-based way to keep track of and perform operations on blocks in a Minecraft-based environment. This also takes in account the dimension the
@@ -70,7 +71,6 @@ public class Coord4D {
      * Returns a new Coord4D from a defined TileEntity's x, y and z values.
      *
      * @param tileEntity - TileEntity at the location that will represent this Coord4D
-     *
      * @return the Coord4D object from the TileEntity
      */
     public static Coord4D get(TileEntity tileEntity) {
@@ -81,7 +81,6 @@ public class Coord4D {
      * Returns a new Coord4D from a tag compound.
      *
      * @param tag - tag compound to read from
-     *
      * @return the Coord4D from the tag compound
      */
     public static Coord4D read(NBTTagCompound tag) {
@@ -92,7 +91,6 @@ public class Coord4D {
      * Returns a new Coord4D from a ByteBuf.
      *
      * @param dataStream - data input to read from
-     *
      * @return the Coord4D from the data input
      */
     public static Coord4D read(ByteBuf dataStream) {
@@ -103,7 +101,6 @@ public class Coord4D {
      * Gets the state of the block representing this Coord4D.
      *
      * @param world - world this Coord4D is in
-     *
      * @return the state of this Coord4D's block
      */
     public IBlockState getBlockState(IBlockAccess world) {
@@ -123,7 +120,6 @@ public class Coord4D {
      * Gets the TileEntity of the block representing this Coord4D.
      *
      * @param world - world this Coord4D is in
-     *
      * @return the TileEntity of this Coord4D's block
      */
     public TileEntity getTileEntity(IBlockAccess world) {
@@ -137,7 +133,6 @@ public class Coord4D {
      * Gets the Block value of the block representing this Coord4D.
      *
      * @param world - world this Coord4D is in
-     *
      * @return the Block value of this Coord4D's block
      */
     public Block getBlock(IBlockAccess world) {
@@ -151,7 +146,6 @@ public class Coord4D {
      * Writes this Coord4D's data to an NBTTagCompound.
      *
      * @param nbtTags - tag compound to write to
-     *
      * @return the tag compound with this Coord4D's data
      */
     public NBTTagCompound write(NBTTagCompound nbtTags) {
@@ -200,7 +194,6 @@ public class Coord4D {
      * @param x - x value to translate
      * @param y - y value to translate
      * @param z - z value to translate
-     *
      * @return translated Coord4D
      */
     public Coord4D translate(int x, int y, int z) {
@@ -211,7 +204,6 @@ public class Coord4D {
      * Translates this Coord4D by the defined Coord4D's coordinates, regardless of dimension.
      *
      * @param coord - coordinates to translate by
-     *
      * @return translated Coord4D
      */
     public Coord4D translate(Coord4D coord) {
@@ -222,7 +214,6 @@ public class Coord4D {
      * Creates and returns a new Coord4D translated to the defined offsets of the side.
      *
      * @param side - side to translate this Coord4D to
-     *
      * @return translated Coord4D
      */
     public Coord4D offset(EnumFacing side) {
@@ -234,7 +225,6 @@ public class Coord4D {
      *
      * @param side   - side to translate this Coord4D to
      * @param amount - how far to translate this Coord4D
-     *
      * @return translated Coord4D
      */
     public Coord4D offset(EnumFacing side, int amount) {
@@ -256,7 +246,6 @@ public class Coord4D {
      * Creates and returns a new Coord4D with values representing the difference between the defined Coord4D
      *
      * @param other - the Coord4D to subtract from this
-     *
      * @return a Coord4D representing the distance between the defined Coord4D
      */
     public Coord4D difference(Coord4D other) {
@@ -267,7 +256,6 @@ public class Coord4D {
      * A method used to find the EnumFacing represented by the distance of the defined Coord4D. Most likely won't have many applicable uses.
      *
      * @param other - Coord4D to find the side difference of
-     *
      * @return EnumFacing representing the side the defined relative Coord4D is on to this
      */
     public EnumFacing sideDifference(Coord4D other) {
@@ -284,7 +272,6 @@ public class Coord4D {
      * Gets the distance to a defined Coord4D.
      *
      * @param obj - the Coord4D to find the distance to
-     *
      * @return the distance to the defined Coord4D
      */
     public int distanceTo(Coord4D obj) {
@@ -297,7 +284,6 @@ public class Coord4D {
     /**
      * @param side  - side to check
      * @param world - world this Coord4D is in
-     *
      * @return Whether or not the defined side of this Coord4D is visible.
      */
     public boolean sideVisible(EnumFacing side, IBlockAccess world) {
@@ -308,7 +294,6 @@ public class Coord4D {
      * Gets a TargetPoint with the defined range from this Coord4D with the appropriate coordinates and dimension ID.
      *
      * @param range - the range the packet can be sent in of this Coord4D
-     *
      * @return TargetPoint relative to this Coord4D
      */
     public TargetPoint getTargetPoint(double range) {
@@ -319,7 +304,6 @@ public class Coord4D {
      * Steps this Coord4D in the defined side's offset without creating a new value.
      *
      * @param side - side to step towards
-     *
      * @return this Coord4D
      */
     public Coord4D step(EnumFacing side) {
@@ -330,7 +314,6 @@ public class Coord4D {
      * Whether or not the chunk this Coord4D is in exists and is loaded.
      *
      * @param world - world this Coord4D is in
-     *
      * @return the chunk of this Coord4D
      */
     public boolean exists(World world) {
@@ -341,7 +324,6 @@ public class Coord4D {
      * Gets the chunk this Coord4D is in.
      *
      * @param world - world this Coord4D is in
-     *
      * @return the chunk of this Coord4D
      */
     public Chunk getChunk(World world) {
@@ -361,7 +343,6 @@ public class Coord4D {
      * Whether or not the block this Coord4D represents is an air block.
      *
      * @param world - world this Coord4D is in
-     *
      * @return if this Coord4D is an air block
      */
     public boolean isAirBlock(IBlockAccess world) {
@@ -372,7 +353,6 @@ public class Coord4D {
      * Whether or not this block this Coord4D represents is replaceable.
      *
      * @param world - world this Coord4D is in
-     *
      * @return if this Coord4D is replaceable
      */
     public boolean isReplaceable(World world) {

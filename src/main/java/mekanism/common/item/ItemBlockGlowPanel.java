@@ -1,6 +1,5 @@
 package mekanism.common.item;
 
-import javax.annotation.Nonnull;
 import mcmultipart.api.multipart.IMultipart;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
@@ -18,6 +17,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
+
+import javax.annotation.Nonnull;
 
 public class ItemBlockGlowPanel extends ItemBlockMultipartAble {
 
@@ -37,7 +38,7 @@ public class ItemBlockGlowPanel extends ItemBlockMultipartAble {
 
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY,
-          float hitZ, @Nonnull IBlockState state) {
+                                float hitZ, @Nonnull IBlockState state) {
         if (stack.getItemDamage() >= EnumColor.DYES.length) {
             return false;
         }

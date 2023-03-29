@@ -1,11 +1,12 @@
 package mekanism.common.config.options;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 import mekanism.common.config.BaseConfig;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * Created by Thiakil on 15/03/2019.
@@ -13,8 +14,8 @@ import net.minecraftforge.common.config.Property;
 @ParametersAreNonnullByDefault
 public class FloatOption extends Option<FloatOption> {
 
-    private float value;
     private final float defaultValue;
+    private float value;
     private boolean hasRange = false;
     private float min;
     private float max;

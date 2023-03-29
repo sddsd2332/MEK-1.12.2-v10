@@ -1,9 +1,10 @@
 package mekanism.common.tile;
 
-import javax.annotation.Nonnull;
 import mekanism.common.block.BlockCardboardBox.BlockData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
+import javax.annotation.Nonnull;
 
 public class TileEntityCardboardBox extends TileEntity {
 

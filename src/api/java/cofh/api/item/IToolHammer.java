@@ -16,7 +16,6 @@ public interface IToolHammer {
      * @param item The ItemStack for the tool. Not required to match equipped item (e.g., multi-tools that contain other tools).
      * @param user The entity using the tool.
      * @param pos  Coordinates of the block.
-     *
      * @return True if this tool can be used.
      */
     boolean isUsable(ItemStack item, EntityLivingBase user, BlockPos pos);
@@ -27,7 +26,6 @@ public interface IToolHammer {
      * @param item   The ItemStack for the tool. Not required to match equipped item (e.g., multi-tools that contain other tools).
      * @param user   The entity using the tool.
      * @param entity The entity the tool is being used on.
-     *
      * @return True if this tool can be used.
      */
     boolean isUsable(ItemStack item, EntityLivingBase user, Entity entity);

@@ -1,6 +1,5 @@
 package mekanism.client.jei.machine.other;
 
-import javax.annotation.Nonnull;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.client.jei.MekanismJEI;
@@ -11,6 +10,8 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nonnull;
 
 public class RotaryCondensentratorRecipeWrapper implements IRecipeWrapper {
 
@@ -40,7 +41,7 @@ public class RotaryCondensentratorRecipeWrapper implements IRecipeWrapper {
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         minecraft.fontRenderer.drawString(condensentrating ? LangUtils.localize("gui.condensentrating") : LangUtils.localize("gui.decondensentrating"),
-              6 - 3, 74 - 12, 0x404040, false);
+                6 - 3, 74 - 12, 0x404040, false);
     }
 
     public Gas getGasType() {

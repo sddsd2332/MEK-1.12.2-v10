@@ -1,6 +1,5 @@
 package mekanism.common.block.states;
 
-import javax.annotation.Nonnull;
 import mekanism.common.Mekanism;
 import mekanism.common.block.BlockCardboardBox;
 import net.minecraft.block.properties.PropertyBool;
@@ -9,6 +8,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nonnull;
 
 public class BlockStateCardboardBox extends BlockStateContainer {
 

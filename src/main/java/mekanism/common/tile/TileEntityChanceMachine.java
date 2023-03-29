@@ -1,7 +1,5 @@
 package mekanism.common.tile;
 
-import java.util.Map;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.MekanismItems;
@@ -21,6 +19,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nonnull;
+import java.util.Map;
 
 public abstract class TileEntityChanceMachine<RECIPE extends ChanceMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<ItemStackInput, ChanceOutput, RECIPE> {
 

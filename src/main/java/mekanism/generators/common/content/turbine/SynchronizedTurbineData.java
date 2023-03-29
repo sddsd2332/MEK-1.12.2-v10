@@ -1,12 +1,13 @@
 package mekanism.generators.common.content.turbine;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.Nullable;
 import mekanism.api.Coord4D;
 import mekanism.common.multiblock.SynchronizedData;
 import mekanism.common.tile.TileEntityGasTank.GasMode;
 import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SynchronizedTurbineData extends SynchronizedData<SynchronizedTurbineData> {
 

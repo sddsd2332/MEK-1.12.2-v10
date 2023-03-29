@@ -1,11 +1,12 @@
 package mekanism.client.render.item;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public abstract class SubTypeItemRenderer<TYPE> extends MekanismItemStackRenderer {

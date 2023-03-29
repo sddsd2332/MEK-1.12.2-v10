@@ -9,12 +9,13 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
 
-public class FusionCoolingRecipeCategory <WRAPPER extends FusionCoolingRecipeWrapper<FusionCoolingRecipe>> extends BaseRecipeCategory<WRAPPER> {
+public class FusionCoolingRecipeCategory<WRAPPER extends FusionCoolingRecipeWrapper<FusionCoolingRecipe>> extends BaseRecipeCategory<WRAPPER> {
 
     public FusionCoolingRecipeCategory(IGuiHelper helper) {
-        super(helper,"mekanism:gui/nei/GuiSolarNeutronActivator.png",
-                Recipe.FUSION_COOLING.getJEICategory(),"gui.FusionCooling",null, 24, 12, 130, 63);
+        super(helper, "mekanism:gui/nei/GuiSolarNeutronActivator.png",
+                Recipe.FUSION_COOLING.getJEICategory(), "gui.FusionCooling", null, 24, 12, 130, 63);
     }
+
     @Override
     public void drawExtras(Minecraft minecraft) {
         super.drawExtras(minecraft);
@@ -22,10 +23,10 @@ public class FusionCoolingRecipeCategory <WRAPPER extends FusionCoolingRecipeWra
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, WRAPPER recipeWrapper, IIngredients ingredients){
+    public void setRecipe(IRecipeLayout recipeLayout, WRAPPER recipeWrapper, IIngredients ingredients) {
         FusionCoolingRecipe tempRecipe = recipeWrapper.getRecipe();
         IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-        fluidStacks.init(0, true,26 - xOffset, 14 - yOffset, 16, 58, tempRecipe.getInput().ingredient.amount, false, fluidOverlayLarge);
+        fluidStacks.init(0, true, 26 - xOffset, 14 - yOffset, 16, 58, tempRecipe.getInput().ingredient.amount, false, fluidOverlayLarge);
         fluidStacks.init(1, false, 134 - xOffset, 14 - yOffset, 16, 58, tempRecipe.getOutput().output.amount, false, fluidOverlayLarge);
         fluidStacks.set(0, tempRecipe.recipeInput.ingredient);
         fluidStacks.set(1, tempRecipe.recipeOutput.output);

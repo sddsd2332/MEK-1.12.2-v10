@@ -1,11 +1,9 @@
 package mekanism.common.item;
 
 
-import mekanism.api.EnumColor;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.IGasItem;
-import mekanism.common.Mekanism;
 import mekanism.common.MekanismFluids;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.util.ItemDataUtils;
@@ -14,7 +12,6 @@ import mekanism.common.util.MekanismUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -27,14 +24,15 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import javax.annotation.Nonnull;
 import java.util.List;
 
 public class ItemCanteen extends ItemMekanism implements IGasItem {
     public static final int TRANSFER_RATE = 100;
-    public static final int ItemStack =50 ;
+    public static final int ItemStack = 50;
 
-    public ItemCanteen(){
+    public ItemCanteen() {
         this.setMaxStackSize(1);
         this.setNoRepair();
     }
@@ -45,8 +43,8 @@ public class ItemCanteen extends ItemMekanism implements IGasItem {
         GasStack gasStack = getGas(itemstack);
         if (gasStack == null) {
             list.add(LangUtils.localize("tooltip.noGas") + ".");
-            list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen1"),itemstack));
-            list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen2"),itemstack));
+            list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen1"), itemstack));
+            list.addAll(MekanismUtils.splitTooltip(LangUtils.localize("tooltip.canteen2"), itemstack));
         } else {
             list.add(LangUtils.localize("tooltip.stored") + " " + gasStack.getGas().getLocalizedName() + ": " + gasStack.amount);
         }
@@ -158,36 +156,36 @@ public class ItemCanteen extends ItemMekanism implements IGasItem {
         setGas(filled, new GasStack(MekanismFluids.NutritionalPaste, ((IGasItem) filled.getItem()).getMaxGas(filled)));
         list.add(filled);
     }
+
     @Nonnull
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
         ItemStack stack = player.getHeldItem(hand);
-        if(player.canEat(false) ) {
+        if (player.canEat(false)) {
             player.setActiveHand(hand);
             final int max = 49;
             ItemCanteen tank = (ItemCanteen) stack.getItem();
             tank.useGas(stack);
             GasStack received = tank.useGas(stack, max - player.getFoodStats().getFoodLevel());
             if (received != null) {
-                int max2 = player.getFoodStats().getFoodLevel() +received.amount;
+                int max2 = player.getFoodStats().getFoodLevel() + received.amount;
                 player.getFoodStats().setFoodLevel(max2);
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(1),2000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(3),4000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(5),4000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(6),20,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(8),2000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(10),4000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(11),4000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(12),4000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(16),2000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(22),4000,5));
-                player.addPotionEffect(new PotionEffect(Potion.getPotionById(23),4000,5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 2000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(3), 4000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 4000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(6), 20, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(8), 2000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 4000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(11), 4000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(12), 4000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(16), 2000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(22), 4000, 5));
+                player.addPotionEffect(new PotionEffect(Potion.getPotionById(23), 4000, 5));
             }
             return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
         }
         return ActionResult.newResult(EnumActionResult.PASS, stack);
     }
-
 
 
 }

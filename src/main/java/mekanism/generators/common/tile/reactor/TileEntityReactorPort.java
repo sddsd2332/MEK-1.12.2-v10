@@ -1,14 +1,7 @@
 package mekanism.generators.common.tile.reactor;
 
 import io.netty.buffer.ByteBuf;
-import java.util.EnumSet;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import mekanism.api.Coord4D;
-import mekanism.api.EnumColor;
-import mekanism.api.IConfigurable;
-import mekanism.api.IHeatTransfer;
-import mekanism.api.TileNetworkList;
+import mekanism.api.*;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.GasTankInfo;
@@ -29,7 +22,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
@@ -37,6 +29,10 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.EnumSet;
 
 public class TileEntityReactorPort extends TileEntityReactorBlock implements IFluidHandlerWrapper, IGasHandler, IHeatTransfer, IConfigurable {
 
@@ -164,7 +160,7 @@ public class TileEntityReactorPort extends TileEntityReactorBlock implements IFl
             return false;
         }
         return capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.HEAT_TRANSFER_CAPABILITY ||
-               capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || capability == Capabilities.CONFIGURABLE_CAPABILITY || super.hasCapability(capability, side);
+                capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || capability == Capabilities.CONFIGURABLE_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override
@@ -362,7 +358,7 @@ public class TileEntityReactorPort extends TileEntityReactorBlock implements IFl
             fluidEject = !fluidEject;
             String modeText = " " + (fluidEject ? EnumColor.DARK_RED : EnumColor.DARK_GREEN) + LangUtils.transOutputInput(fluidEject) + ".";
             player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY +
-                                                       LangUtils.localize("tooltip.configurator.reactorPortEject") + modeText));
+                    LangUtils.localize("tooltip.configurator.reactorPortEject") + modeText));
             Mekanism.packetHandler.sendUpdatePacket(this);
             markDirty();
         }

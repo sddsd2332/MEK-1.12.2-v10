@@ -29,7 +29,7 @@ public class GuiRedstoneControl3 extends GuiTileEntityElement<TileEntity> {
 
     @Override
     protected boolean inBounds(int xAxis, int yAxis) {
-        return xAxis >= 179 + 72&& xAxis <= 197 + 72 && yAxis >= 142 && yAxis <= 160;
+        return xAxis >= 179 + 72 && xAxis <= 197 + 72 && yAxis >= 142 && yAxis <= 160;
     }
 
     @Override

@@ -12,7 +12,7 @@ import mekanism.common.util.FieldsAreNonnullByDefault;
 public class ToolsConfig extends BaseConfig {
 
     public final DoubleOption armorSpawnRate = new DoubleOption(this, "tools.general", "MobArmorSpawnRate", 0.03,
-          "The chance that Mekanism Armor can spawn on mobs.", 0.00, 1.00);
+            "The chance that Mekanism Armor can spawn on mobs.", 0.00, 1.00);
 
     public final ArmorBalance armorOBSIDIAN = new ArmorBalance(this, "obsidian", 50, 5, 8, 12, 5, 40, 4);
     public final ArmorBalance armorLAZULI = new ArmorBalance(this, "lapis", 13, 2, 6, 5, 2, 8, 0);
@@ -46,7 +46,7 @@ public class ToolsConfig extends BaseConfig {
         public final FloatOption toughness;
 
         private ArmorBalance(BaseConfig owner, String toolKey, int durabilityDefault, int feetProtectionDefault, int legsProtectionDefault, int chestProtectionDefault,
-              int headProtectionDefault, int enchantabilityDefault, float toughnessDefault) {
+                             int headProtectionDefault, int enchantabilityDefault, float toughnessDefault) {
             final String category = "tools.armor-balance." + toolKey;
             final String protectionCategory = category + ".protection";
             this.durability = new IntOption(owner, category, "durability", durabilityDefault, "Base durability of " + toolKey + " armor.");
@@ -79,7 +79,7 @@ public class ToolsConfig extends BaseConfig {
         public final FloatOption axeAttackSpeed;
 
         private ToolBalance(BaseConfig owner, String toolKey, String variant, int harvestLevelDefault, int maxUsesDefault, float efficiencyDefault, int damageDefault,
-              int enchantabilityDefault, float axeAttackDamageDefault, float axeAttackSpeedDefault) {
+                            int enchantabilityDefault, float axeAttackDamageDefault, float axeAttackSpeedDefault) {
             final String category = "tools.tool-balance." + toolKey + "." + variant;
             this.harvestLevel = new IntOption(owner, category, "harvestLevel", harvestLevelDefault, "Harvest level of " + toolKey + " tools.");
             this.maxUses = new IntOption(owner, category, "maxUses", maxUsesDefault, "Maximum durability of " + toolKey + " tools.");
@@ -105,7 +105,7 @@ public class ToolsConfig extends BaseConfig {
         }
 
         public ToolBalance(BaseConfig owner, String toolKey, String variant, int harvestLevelDefault, int maxUsesDefault, float efficiencyDefault, int damageDefault,
-              int enchantabilityDefault) {
+                           int enchantabilityDefault) {
             this(owner, toolKey, variant, harvestLevelDefault, maxUsesDefault, efficiencyDefault, damageDefault, enchantabilityDefault, 0, 0);
             if (!variant.equals("paxel")) {
                 throw new IllegalStateException("Wrong constructor, only paxel can use this");

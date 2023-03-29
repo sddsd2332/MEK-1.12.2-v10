@@ -2,13 +2,14 @@ package mekanism.client.jei;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.MoreObjects.ToStringHelper;
-import java.awt.Color;
-import java.util.Collections;
-import java.util.List;
-import javax.annotation.Nullable;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mezz.jei.api.ingredients.IIngredientHelper;
+
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.Collections;
+import java.util.List;
 
 public class GasStackHelper implements IIngredientHelper<GasStack> {
 

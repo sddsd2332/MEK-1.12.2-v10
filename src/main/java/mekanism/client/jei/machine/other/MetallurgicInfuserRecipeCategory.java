@@ -1,8 +1,5 @@
 package mekanism.client.jei.machine.other;
 
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
 import mekanism.api.infuse.InfuseRegistry;
 import mekanism.api.infuse.InfuseType;
 import mekanism.client.gui.element.GuiPowerBar;
@@ -22,11 +19,15 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
 
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+
 public class MetallurgicInfuserRecipeCategory<WRAPPER extends MetallurgicInfuserRecipeWrapper<MetallurgicInfuserRecipe>> extends BaseRecipeCategory<WRAPPER> {
 
     public MetallurgicInfuserRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/GuiMetallurgicInfuser.png", Recipe.METALLURGIC_INFUSER.getJEICategory(),
-              "tile.MachineBlock.MetallurgicInfuser.name", ProgressBar.MEDIUM, 5, 16, 166, 54);
+                "tile.MachineBlock.MetallurgicInfuser.name", ProgressBar.MEDIUM, 5, 16, 166, 54);
     }
 
     public static List<ItemStack> getInfuseStacks(InfuseType type) {

@@ -1,10 +1,5 @@
 package mekanism.client.jei;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.annotation.Nullable;
 import mekanism.api.gas.GasStack;
 import mekanism.client.gui.IGuiWrapper;
 import mekanism.client.gui.element.GuiElement;
@@ -27,11 +22,16 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public abstract class BaseRecipeCategory<WRAPPER extends IRecipeWrapper> implements IRecipeCategory<WRAPPER>, IGuiWrapper {
 
     private static final GuiDummy gui = new GuiDummy();
-
-    private IGuiHelper guiHelper;
+    private final IDrawable background;
     protected ResourceLocation guiLocation;
     @Nullable
     protected ProgressBar progressBar;
@@ -41,10 +41,9 @@ public abstract class BaseRecipeCategory<WRAPPER extends IRecipeWrapper> impleme
     protected IDrawable fluidOverlayLarge;
     protected IDrawable fluidOverlaySmall;
     protected Set<GuiElement> guiElements = new HashSet<>();
+    private IGuiHelper guiHelper;
     private String recipeName;
     private String unlocalizedName;
-
-    private final IDrawable background;
 
     protected BaseRecipeCategory(IGuiHelper helper, String guiTexture, String name, String unlocalized, @Nullable ProgressBar progress, int xOffset, int yOffset, int width, int height) {
         guiHelper = helper;

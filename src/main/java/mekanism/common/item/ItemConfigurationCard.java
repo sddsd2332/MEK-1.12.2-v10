@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.IConfigCardAccess.ISpecialConfigData;
 import mekanism.common.Mekanism;
@@ -28,6 +26,9 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class ItemConfigurationCard extends ItemMekanism {
 
@@ -62,8 +63,8 @@ public class ItemConfigurationCard extends ItemMekanism {
                             data.setString("dataType", getNameFromTile(tileEntity, side));
                             setData(stack, data);
                             player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.GREY +
-                                                                       LangUtils.localize("tooltip.configurationCard.got").replaceAll("%s",
-                                                                             EnumColor.INDIGO + LangUtils.localize(data.getString("dataType")) + EnumColor.GREY)));
+                                    LangUtils.localize("tooltip.configurationCard.got").replaceAll("%s",
+                                            EnumColor.INDIGO + LangUtils.localize(data.getString("dataType")) + EnumColor.GREY)));
                         }
                         return EnumActionResult.SUCCESS;
                     }
@@ -77,11 +78,11 @@ public class ItemConfigurationCard extends ItemMekanism {
                             }
                             updateTile(tileEntity);
                             player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.DARK_GREEN +
-                                                                       LangUtils.localize("tooltip.configurationCard.set").replaceAll("%s",
-                                                                             EnumColor.INDIGO + LangUtils.localize(getDataType(stack)) + EnumColor.DARK_GREEN)));
+                                    LangUtils.localize("tooltip.configurationCard.set").replaceAll("%s",
+                                            EnumColor.INDIGO + LangUtils.localize(getDataType(stack)) + EnumColor.DARK_GREEN)));
                         } else {
                             player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + " " + EnumColor.RED +
-                                                                       LangUtils.localize("tooltip.configurationCard.unequal") + "."));
+                                    LangUtils.localize("tooltip.configurationCard.unequal") + "."));
                         }
                         return EnumActionResult.SUCCESS;
                     }

@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class CultivateMachineRecipeWrapper <RECIPE extends CultivateMachineRecipe <RECIPE>> extends MekanismRecipeWrapper<RECIPE> {
+public class CultivateMachineRecipeWrapper<RECIPE extends CultivateMachineRecipe<RECIPE>> extends MekanismRecipeWrapper<RECIPE> {
 
     public CultivateMachineRecipeWrapper(RECIPE recipe) {
         super(recipe);

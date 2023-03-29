@@ -1,7 +1,5 @@
 package mekanism.common.tile;
 
-import java.util.HashSet;
-import java.util.Set;
 import mekanism.api.Coord4D;
 import mekanism.common.multiblock.IMultiblock;
 import mekanism.common.multiblock.IStructuralMultiblock;
@@ -10,6 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class TileEntityStructuralGlass extends TileEntity implements IStructuralMultiblock {
 

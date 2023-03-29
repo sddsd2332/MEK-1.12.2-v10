@@ -72,7 +72,6 @@ public class ChemicalPairInput extends MachineInput<ChemicalPairInput> {
      * Whether or not the defined input contains the same gasses and at least the required amount of the defined gasses as this input.
      *
      * @param input - input to check
-     *
      * @return if the input meets this input's requirements
      */
     public boolean meetsInput(ChemicalPairInput input) {
@@ -108,7 +107,6 @@ public class ChemicalPairInput extends MachineInput<ChemicalPairInput> {
      * Whether or not one of this ChemicalInput's GasStack entry's gas type is equal to the gas type of the given gas.
      *
      * @param stack - stack to check
-     *
      * @return if the stack's gas type is contained in this ChemicalInput
      */
     public boolean containsType(GasStack stack) {
@@ -122,7 +120,6 @@ public class ChemicalPairInput extends MachineInput<ChemicalPairInput> {
      * Actual implementation of meetsInput(), performs the checks.
      *
      * @param input - input to check
-     *
      * @return if the input meets this input's requirements
      */
     private boolean meets(ChemicalPairInput input) {
@@ -151,7 +148,7 @@ public class ChemicalPairInput extends MachineInput<ChemicalPairInput> {
             return !other.isValid();
         }
         return (other.leftGas.hashCode() == leftGas.hashCode() && other.rightGas.hashCode() == rightGas.hashCode())
-               || (other.leftGas.hashCode() == rightGas.hashCode() && other.rightGas.hashCode() == leftGas.hashCode());
+                || (other.leftGas.hashCode() == rightGas.hashCode() && other.rightGas.hashCode() == leftGas.hashCode());
     }
 
     @Override

@@ -1,6 +1,5 @@
 package mekanism.client.render.item.gear;
 
-import javax.annotation.Nonnull;
 import mekanism.client.model.ModelFreeRunners;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.item.ItemLayerWrapper;
@@ -13,11 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderFreeRunners extends MekanismItemStackRenderer {
 
-    private static ModelFreeRunners freeRunners = new ModelFreeRunners();
     public static ItemLayerWrapper model;
+    private static ModelFreeRunners freeRunners = new ModelFreeRunners();
 
     @Override
     protected void renderBlockSpecific(@Nonnull ItemStack stack, TransformType transformType) {

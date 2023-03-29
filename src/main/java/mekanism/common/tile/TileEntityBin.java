@@ -1,7 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.IConfigurable;
 import mekanism.api.TileNetworkList;
@@ -18,12 +17,7 @@ import mekanism.common.item.ItemBlockBasic;
 import mekanism.common.tier.BaseTier;
 import mekanism.common.tier.BinTier;
 import mekanism.common.tile.prefab.TileEntityBasicBlock;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.LangUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.StackUtils;
-import mekanism.common.util.TransporterUtils;
+import mekanism.common.util.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.ISidedInventory;
@@ -40,6 +34,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
 
 public class TileEntityBin extends TileEntityBasicBlock implements ISidedInventory, IActiveState, IConfigurable, ITierUpgradeable, IComparatorSupport {
 

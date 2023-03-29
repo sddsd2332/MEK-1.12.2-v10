@@ -55,7 +55,7 @@ public class DoubleMachineInput extends MachineInput<DoubleMachineInput> impleme
 
     public boolean matches(DoubleMachineInput input) {
         return StackUtils.equalsWildcard(itemStack, input.itemStack) && input.itemStack.getCount() >= itemStack.getCount()
-               && StackUtils.equalsWildcard(extraStack, input.extraStack) && input.extraStack.getCount() >= extraStack.getCount();
+                && StackUtils.equalsWildcard(extraStack, input.extraStack) && input.extraStack.getCount() >= extraStack.getCount();
     }
 
     @Override
@@ -79,6 +79,6 @@ public class DoubleMachineInput extends MachineInput<DoubleMachineInput> impleme
     @Override
     public DoubleMachineInput wildCopy() {
         return new DoubleMachineInput(new ItemStack(itemStack.getItem(), itemStack.getCount(), OreDictionary.WILDCARD_VALUE),
-              new ItemStack(extraStack.getItem(), extraStack.getCount(), OreDictionary.WILDCARD_VALUE));
+                new ItemStack(extraStack.getItem(), extraStack.getCount(), OreDictionary.WILDCARD_VALUE));
     }
 }

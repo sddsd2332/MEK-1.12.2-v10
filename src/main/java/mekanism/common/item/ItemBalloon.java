@@ -1,7 +1,5 @@
 package mekanism.common.item;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.Pos3D;
@@ -15,16 +13,15 @@ import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class ItemBalloon extends ItemMekanismAddition implements IMetaItem {
 
@@ -132,7 +129,7 @@ public class ItemBalloon extends ItemMekanismAddition implements IMetaItem {
         if (player.isSneaking()) {
             if (!player.world.isRemote) {
                 AxisAlignedBB bound = new AxisAlignedBB(entity.posX - 0.2, entity.posY - 0.5, entity.posZ - 0.2, entity.posX + 0.2,
-                      entity.posY + entity.height + 4, entity.posZ + 0.2);
+                        entity.posY + entity.height + 4, entity.posZ + 0.2);
                 List<EntityBalloon> balloonsNear = player.world.getEntitiesWithinAABB(EntityBalloon.class, bound);
                 for (EntityBalloon balloon : balloonsNear) {
                     if (balloon.latchedEntity == entity) {
@@ -164,7 +161,7 @@ public class ItemBalloon extends ItemMekanismAddition implements IMetaItem {
 
             for (EntityLivingBase entity : entities) {
                 AxisAlignedBB bound = new AxisAlignedBB(entity.posX - 0.2, entity.posY - 0.5, entity.posZ - 0.2, entity.posX + 0.2,
-                      entity.posY + entity.height + 4, entity.posZ + 0.2);
+                        entity.posY + entity.height + 4, entity.posZ + 0.2);
                 List<EntityBalloon> balloonsNear = source.getWorld().getEntitiesWithinAABB(EntityBalloon.class, bound);
                 boolean hasBalloon = false;
                 for (EntityBalloon balloon : balloonsNear) {

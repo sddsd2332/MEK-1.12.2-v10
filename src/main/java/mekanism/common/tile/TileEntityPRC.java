@@ -1,15 +1,9 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Map;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
+import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.Mekanism;
 import mekanism.common.SideData;
@@ -28,13 +22,7 @@ import mekanism.common.recipe.outputs.PressurizedOutput;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityBasicMachine;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.FluidContainerUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.LangUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.TileUtils;
+import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -47,11 +35,14 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import javax.annotation.Nonnull;
+import java.util.Map;
+
 public class TileEntityPRC extends TileEntityBasicMachine<PressurizedInput, PressurizedOutput, PressurizedRecipe> implements IFluidHandlerWrapper, IGasHandler,
-      ISustainedData, ITankManager {
+        ISustainedData, ITankManager {
 
     private static final String[] methods = new String[]{"getEnergy", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded",
-                                                         "getFluidStored", "getGasStored"};
+            "getFluidStored", "getGasStored"};
     public FluidTank inputFluidTank = new FluidTank(10000);
     public GasTank inputGasTank = new GasTank(10000);
     public GasTank outputGasTank = new GasTank(10000);
@@ -92,7 +83,7 @@ public class TileEntityPRC extends TileEntityBasicMachine<PressurizedInput, Pres
             PressurizedRecipe recipe = getRecipe();
             ChargeUtils.discharge(1, this);
             if (canOperate(recipe) && MekanismUtils.canFunction(this) &&
-                getEnergy() >= MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK + recipe.extraEnergy)) {
+                    getEnergy() >= MekanismUtils.getEnergyPerTick(this, BASE_ENERGY_PER_TICK + recipe.extraEnergy)) {
                 boolean update = BASE_TICKS_REQUIRED != recipe.ticks;
                 BASE_TICKS_REQUIRED = recipe.ticks;
                 if (update) {

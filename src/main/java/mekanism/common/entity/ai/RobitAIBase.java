@@ -76,7 +76,7 @@ public abstract class RobitAIBase extends EntityAIBase {
                             BlockPos pos = new BlockPos(x + l, y, z + i1);
                             BlockPos under = new BlockPos(x + l, y - 1, z + i1);
                             if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && world.getBlockState(under).isSideSolid(world, under, EnumFacing.UP) && isEmptyBlock(pos) &&
-                                isEmptyBlock(new BlockPos(x + l, y + 1, z + i1))) {
+                                    isEmptyBlock(new BlockPos(x + l, y + 1, z + i1))) {
                                 theRobit.setLocationAndAngles((x + l) + 0.5F, y, (z + i1) + 0.5F, theRobit.rotationYaw, theRobit.rotationPitch);
                                 thePathfinder.clearPath();
                                 return;

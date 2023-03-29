@@ -1,10 +1,11 @@
 package mekanism.common.util;
 
-import javax.annotation.Nonnull;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Thiakil on 8/11/2017.

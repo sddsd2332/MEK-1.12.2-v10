@@ -1,6 +1,5 @@
 package mekanism.common.tile.prefab;
 
-import javax.annotation.Nonnull;
 import mekanism.api.IConfigCardAccess;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.base.IElectricMachine;
@@ -17,8 +16,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 
+import javax.annotation.Nonnull;
+
 public abstract class TileEntityBasicMachine<INPUT extends MachineInput<INPUT>, OUTPUT extends MachineOutput<OUTPUT>, RECIPE extends MachineRecipe<INPUT, OUTPUT, RECIPE>> extends
-      TileEntityOperationalMachine implements IElectricMachine<INPUT, OUTPUT, RECIPE>, IComputerIntegration, ISideConfiguration, IConfigCardAccess {
+        TileEntityOperationalMachine implements IElectricMachine<INPUT, OUTPUT, RECIPE>, IComputerIntegration, ISideConfiguration, IConfigCardAccess {
 
     public ResourceLocation guiLocation;
 

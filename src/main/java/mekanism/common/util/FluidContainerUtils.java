@@ -1,7 +1,5 @@
 package mekanism.common.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -14,6 +12,9 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public final class FluidContainerUtils {
 
@@ -82,7 +83,7 @@ public final class FluidContainerUtils {
                 inputCopy = handler.getContainer();
             }
             if (!inventory.get(outSlot).isEmpty() && (!ItemHandlerHelper.canItemStacksStack(inventory.get(outSlot), inputCopy) ||
-                                                      inventory.get(outSlot).getCount() == inventory.get(outSlot).getMaxStackSize())) {
+                    inventory.get(outSlot).getCount() == inventory.get(outSlot).getMaxStackSize())) {
                 return stack;
             }
             stack.amount -= drained;
@@ -106,7 +107,7 @@ public final class FluidContainerUtils {
     }
 
     public static FluidStack handleContainerItemEmpty(TileEntity tileEntity, NonNullList<ItemStack> inventory, FluidStack stored, int needed, int inSlot, int outSlot,
-          final FluidChecker checker) {
+                                                      final FluidChecker checker) {
         final Fluid storedFinal = stored != null ? stored.getFluid() : null;
         final ItemStack input = StackUtils.size(inventory.get(inSlot).copy(), 1);
         final IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
@@ -124,7 +125,7 @@ public final class FluidContainerUtils {
         ItemStack inputCopy = handler.getContainer();
         if (FluidUtil.getFluidContained(inputCopy) == null && !inputCopy.isEmpty()) {
             if (!inventory.get(outSlot).isEmpty() && (!ItemHandlerHelper.canItemStacksStack(inventory.get(outSlot), inputCopy) ||
-                                                      inventory.get(outSlot).getCount() == inventory.get(outSlot).getMaxStackSize())) {
+                    inventory.get(outSlot).getCount() == inventory.get(outSlot).getMaxStackSize())) {
                 return stored;
             }
         }
@@ -164,7 +165,7 @@ public final class FluidContainerUtils {
     }
 
     public static FluidStack handleContainerItem(TileEntity tileEntity, NonNullList<ItemStack> inventory, ContainerEditMode editMode, FluidStack stack, int needed,
-          int inSlot, int outSlot, final FluidChecker checker) {
+                                                 int inSlot, int outSlot, final FluidChecker checker) {
         FluidStack fluidStack = FluidUtil.getFluidContained(inventory.get(inSlot));
         if (editMode == ContainerEditMode.FILL || (editMode == ContainerEditMode.BOTH && fluidStack == null)) {
             return handleContainerItemFill(tileEntity, inventory, stack, inSlot, outSlot);

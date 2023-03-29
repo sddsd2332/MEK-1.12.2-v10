@@ -1,10 +1,11 @@
 package mekanism.common.util;
 
-import java.util.function.Consumer;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.Contract;
+
+import java.util.function.Consumer;
 
 public final class CapabilityUtils {
 
@@ -63,7 +64,6 @@ public final class CapabilityUtils {
          * @param side       side to give to the provider
          * @param consumer   function to use the capability
          * @param <T>        the capability type
-         *
          * @return this instance if unsuccessful, otherwise a no-op OptionalCapability
          */
         public <T> OptionalCapability orElseWith(Capability<T> capability, EnumFacing side, Consumer<T> consumer) {
@@ -83,7 +83,6 @@ public final class CapabilityUtils {
          * @param side       side to give to the provider
          * @param consumer   function to use the capability
          * @param <T>        the capability type
-         *
          * @return this instance if unsuccessful (or testResult is false), otherwise a no-op OptionalCapability
          */
         public <T> OptionalCapability orElseWith(boolean testResult, Capability<T> capability, EnumFacing side, Consumer<T> consumer) {

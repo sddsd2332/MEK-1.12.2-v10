@@ -1,11 +1,6 @@
 package mekanism.common.tile.transmitter;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
@@ -39,6 +34,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+
+import javax.annotation.Nonnull;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class TileEntityLogisticalTransporter extends TileEntityTransmitter<TileEntity, InventoryNetwork, Void> {
 
@@ -287,7 +288,7 @@ public class TileEntityLogisticalTransporter extends TileEntityTransmitter<TileE
         PathfinderCache.onChanged(new Coord4D(getPos(), getWorld()));
         Mekanism.packetHandler.sendUpdatePacket(this);
         TextComponentGroup msg = new TextComponentGroup(TextFormatting.GRAY).string(Mekanism.LOG_TAG + " ", TextFormatting.DARK_BLUE)
-              .translation("tooltip.configurator.toggleColor").string(": ");
+                .translation("tooltip.configurator.toggleColor").string(": ");
 
         if (getTransmitter().getColor() != null) {
             msg.appendSibling(getTransmitter().getColor().getTranslatedColouredComponent());
@@ -302,7 +303,7 @@ public class TileEntityLogisticalTransporter extends TileEntityTransmitter<TileE
     public EnumActionResult onRightClick(EntityPlayer player, EnumFacing side) {
         super.onRightClick(player, side);
         TextComponentGroup msg = new TextComponentGroup(TextFormatting.GRAY).string(Mekanism.LOG_TAG + " ", TextFormatting.DARK_BLUE)
-              .translation("tooltip.configurator.viewColor").string(": ");
+                .translation("tooltip.configurator.viewColor").string(": ");
 
         if (getTransmitter().getColor() != null) {
             msg.appendSibling(getTransmitter().getColor().getTranslatedColouredComponent());

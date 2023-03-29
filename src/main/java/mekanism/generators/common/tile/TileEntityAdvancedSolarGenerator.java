@@ -1,6 +1,5 @@
 package mekanism.generators.common.tile;
 
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.IEvaporationSolar;
 import mekanism.common.base.IBoundingBlock;
@@ -9,6 +8,8 @@ import mekanism.common.config.MekanismConfig;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+
+import javax.annotation.Nonnull;
 
 public class TileEntityAdvancedSolarGenerator extends TileEntitySolarGenerator implements IBoundingBlock, IEvaporationSolar {
 

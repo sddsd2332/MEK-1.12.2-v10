@@ -14,10 +14,9 @@ public class GuiSlot extends GuiElement {
     private final int yLocation;
     private final int textureX;
     private final int textureY;
-
-    private SlotOverlay overlay = null;
     private final int width;
     private final int height;
+    private SlotOverlay overlay = null;
 
     public GuiSlot(SlotType type, IGuiWrapper gui, ResourceLocation def, int x, int y) {
         super(MekanismUtils.getResource(ResourceType.GUI_ELEMENT, "GuiSlot.png"), gui, def);
@@ -72,14 +71,14 @@ public class GuiSlot extends GuiElement {
         NORMAL(18, 18, 0, 0),
         POWER(18, 18, 18, 0),
         INPUT(18, 18, 36, 0),
-        INPUT_OUTPUT(18,18,54,0),
+        INPUT_OUTPUT(18, 18, 54, 0),
         EXTRA(18, 18, 54, 0),
         EXTRA_LOG(36, 18, 202, 0),
         OUTPUT(18, 18, 72, 0),
         OUTPUT_LARGE(26, 26, 90, 0),
         OUTPUT_WIDE(42, 26, 116, 0),
-        OUTPUT_LARGE_LOG(26,42,158,0),
-        OUTPUT_LOG(18,36,184,0);
+        OUTPUT_LARGE_LOG(26, 42, 158, 0),
+        OUTPUT_LOG(18, 36, 184, 0);
 
         public final int width;
         public final int height;
@@ -101,7 +100,7 @@ public class GuiSlot extends GuiElement {
         PLUS(18, 18, 18, 18),
         POWER(18, 18, 36, 18),
         INPUT(18, 18, 54, 18),
-        INPUT_OUTPUT(18,18,54,0),
+        INPUT_OUTPUT(18, 18, 54, 0),
         OUTPUT(18, 18, 72, 18),
         CHECK(18, 18, 0, 36);
 

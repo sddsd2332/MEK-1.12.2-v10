@@ -12,7 +12,6 @@ import mekanism.client.jei.BaseRecipeCategory;
 import mekanism.client.jei.MekanismJEI;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.machines.NutritionalRecipe;
-import mekanism.common.recipe.machines.OxidationRecipe;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IGuiIngredientGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -23,7 +22,7 @@ public class NutritionalLiquifierRecipeCategory<WRAPPER extends NutritionalLiqui
 
     public NutritionalLiquifierRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/GuiChemical.png", Recipe.Nutritional_Liquifier.getJEICategory(),
-              "tile.MachineBlock3.NutritionalLiquifier.name", ProgressBar.LARGE_RIGHT, 20, 12, 132, 62);
+                "tile.MachineBlock3.NutritionalLiquifier.name", ProgressBar.LARGE_RIGHT, 20, 12, 132, 62);
     }
 
     @Override

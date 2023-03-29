@@ -1,17 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import javax.annotation.Nonnull;
 import mekanism.api.Chunk3D;
 import mekanism.api.Coord4D;
 import mekanism.api.Range4D;
@@ -19,12 +8,7 @@ import mekanism.api.TileNetworkList;
 import mekanism.common.HashList;
 import mekanism.common.Mekanism;
 import mekanism.common.Upgrade;
-import mekanism.common.base.IActiveState;
-import mekanism.common.base.IAdvancedBoundingBlock;
-import mekanism.common.base.ILogisticalTransporter;
-import mekanism.common.base.IRedstoneControl;
-import mekanism.common.base.ISustainedData;
-import mekanism.common.base.IUpgradeTile;
+import mekanism.common.base.*;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.chunkloading.IChunkLoader;
@@ -44,14 +28,7 @@ import mekanism.common.tile.component.TileComponentChunkLoader;
 import mekanism.common.tile.component.TileComponentSecurity;
 import mekanism.common.tile.component.TileComponentUpgrade;
 import mekanism.common.tile.prefab.TileEntityElectricBlock;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.MinerUtils;
-import mekanism.common.util.StackUtils;
-import mekanism.common.util.TransporterUtils;
+import mekanism.common.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.BlockFaceShape;
@@ -84,65 +61,49 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import javax.annotation.Nonnull;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class TileEntityDigitalMiner extends TileEntityElectricBlock implements IUpgradeTile, IRedstoneControl, IActiveState, ISustainedData, IChunkLoader, IAdvancedBoundingBlock {
 
     private static final int[] INV_SLOTS = IntStream.range(0, 28).toArray();
-
+    public final double BASE_ENERGY_USAGE = MachineType.DIGITAL_MINER.getUsage();
     public Map<Chunk3D, BitSet> oresToMine = new HashMap<>();
     public Map<Integer, MinerFilter> replaceMap = new HashMap<>();
     public HashList<MinerFilter> filters = new HashList<>();
     public ThreadMinerSearch searcher = new ThreadMinerSearch(this);
-    public final double BASE_ENERGY_USAGE = MachineType.DIGITAL_MINER.getUsage();
     public double energyUsage = BASE_ENERGY_USAGE;
-
-    private int radius;
-
     public boolean inverse;
-
     public int minY = 0;
     public int maxY = 60;
-
     public boolean doEject = false;
     public boolean doPull = false;
-
     public ItemStack missingStack = ItemStack.EMPTY;
-
     public int BASE_DELAY = 80;
-
     public int delay;
-
     public int delayLength = BASE_DELAY;
-
     public int clientToMine;
-
     public boolean isActive;
     public boolean clientActive;
-
     public boolean silkTouch;
-
     public boolean running;
-
     public double prevEnergy;
-
     public int delayTicks;
-
     public boolean initCalc = false;
-
     public int numPowering;
-
     public boolean clientRendering = false;
-
-    private Set<ChunkPos> chunkSet;
-
     /**
      * This machine's current RedstoneControl type.
      */
     public RedstoneControl controlType = RedstoneControl.DISABLED;
-
     public TileComponentUpgrade upgradeComponent = new TileComponentUpgrade(this, INV_SLOTS.length);
     public TileComponentSecurity securityComponent = new TileComponentSecurity(this);
     public TileComponentChunkLoader chunkLoaderComponent = new TileComponentChunkLoader(this);
     public String[] methods = {"setRadius", "setMin", "setMax", "addFilter", "removeFilter", "addOreFilter", "removeOreFilter", "reset", "start", "stop", "getToMine"};
+    private int radius;
+    private Set<ChunkPos> chunkSet;
 
     public TileEntityDigitalMiner() {
         super("DigitalMiner", MachineType.DIGITAL_MINER.getStorage());
@@ -363,7 +324,7 @@ public class TileEntityDigitalMiner extends TileEntityElectricBlock implements I
     private boolean canMine(Coord4D coord) {
         IBlockState state = coord.getBlockState(world);
         //Check if the block is breakable, to avoid blocks like bedrock being being mined.
-        if(state.getBlockHardness(world, coord.getPos()) < 0) {
+        if (state.getBlockHardness(world, coord.getPos()) < 0) {
             return false;
         }
 

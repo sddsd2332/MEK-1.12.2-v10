@@ -1,13 +1,5 @@
 package mekanism.client.render.transmitter;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import javax.annotation.Nullable;
 import mekanism.api.EnumColor;
 import mekanism.client.model.ModelTransporterBox;
 import mekanism.client.render.MekanismRenderer;
@@ -38,10 +30,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.RayTraceResult;
 import org.lwjgl.opengl.GL11;
 
+import javax.annotation.Nullable;
+import java.util.*;
+
 public class RenderLogisticalTransporter extends RenderTransmitterBase<TileEntityLogisticalTransporter> {
 
-    private static Map<EnumFacing, Map<Integer, DisplayInteger>> cachedOverlays = new EnumMap<>(EnumFacing.class);
     private final static ResourceLocation transporterBox = MekanismUtils.getResource(ResourceType.RENDER, "TransporterBox.png");
+    private static Map<EnumFacing, Map<Integer, DisplayInteger>> cachedOverlays = new EnumMap<>(EnumFacing.class);
     private static TextureAtlasSprite gunpowderIcon;
     private static TextureAtlasSprite torchOffIcon;
     private static TextureAtlasSprite torchOnIcon;

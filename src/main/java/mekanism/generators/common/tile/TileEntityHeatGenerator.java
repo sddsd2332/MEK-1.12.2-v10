@@ -1,7 +1,6 @@
 package mekanism.generators.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.IHeatTransfer;
 import mekanism.api.TileNetworkList;
@@ -11,15 +10,8 @@ import mekanism.common.base.IFluidHandlerWrapper;
 import mekanism.common.base.ISustainedData;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.config.MekanismConfig;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.FluidContainerUtils;
+import mekanism.common.util.*;
 import mekanism.common.util.FluidContainerUtils.FluidChecker;
-import mekanism.common.util.HeatUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.PipeUtils;
-import mekanism.common.util.TileUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,13 +21,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+
+import javax.annotation.Nonnull;
 
 public class TileEntityHeatGenerator extends TileEntityGenerator implements IFluidHandlerWrapper, ISustainedData, IHeatTransfer, IComparatorSupport {
 
@@ -187,7 +177,6 @@ public class TileEntityHeatGenerator extends TileEntityGenerator implements IFlu
      * Gets the scaled fuel level for the GUI.
      *
      * @param i - multiplier
-     *
      * @return Scaled fuel level
      */
     public int getScaledFuelLevel(int i) {
@@ -337,7 +326,7 @@ public class TileEntityHeatGenerator extends TileEntityGenerator implements IFlu
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing side) {
         return capability == Capabilities.HEAT_TRANSFER_CAPABILITY || (side != facing && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) ||
-               super.hasCapability(capability, side);
+                super.hasCapability(capability, side);
     }
 
     @Override

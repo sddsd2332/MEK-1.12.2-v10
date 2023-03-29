@@ -59,7 +59,6 @@ public class PressurizedInput extends MachineInput<PressurizedInput> implements 
      * Whether or not this PressurizedReactants's ItemStack entry's item type is equal to the item type of the given item.
      *
      * @param stack - stack to check
-     *
      * @return if the stack's item type is contained in this PressurizedReactants
      */
     public boolean containsType(ItemStack stack) {
@@ -73,7 +72,6 @@ public class PressurizedInput extends MachineInput<PressurizedInput> implements 
      * Whether or not this PressurizedReactants's FluidStack entry's fluid type is equal to the fluid type of the given fluid.
      *
      * @param stack - stack to check
-     *
      * @return if the stack's fluid type is contained in this PressurizedReactants
      */
     public boolean containsType(FluidStack stack) {
@@ -87,7 +85,6 @@ public class PressurizedInput extends MachineInput<PressurizedInput> implements 
      * Whether or not this PressurizedReactants's GasStack entry's gas type is equal to the gas type of the given gas.
      *
      * @param stack - stack to check
-     *
      * @return if the stack's gas type is contained in this PressurizedReactants
      */
     public boolean containsType(GasStack stack) {
@@ -101,7 +98,6 @@ public class PressurizedInput extends MachineInput<PressurizedInput> implements 
      * Actual implementation of meetsInput(), performs the checks.
      *
      * @param input - input to check
-     *
      * @return if the input meets this input's requirements
      */
     public boolean meets(PressurizedInput input) {

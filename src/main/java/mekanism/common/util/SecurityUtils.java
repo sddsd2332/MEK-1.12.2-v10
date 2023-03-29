@@ -1,22 +1,19 @@
 package mekanism.common.util;
 
-import java.util.UUID;
 import mekanism.api.EnumColor;
 import mekanism.client.MekanismClient;
 import mekanism.common.Mekanism;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.frequency.Frequency;
-import mekanism.common.security.IOwnerItem;
-import mekanism.common.security.ISecurityItem;
-import mekanism.common.security.ISecurityTile;
+import mekanism.common.security.*;
 import mekanism.common.security.ISecurityTile.SecurityMode;
-import mekanism.common.security.SecurityData;
-import mekanism.common.security.SecurityFrequency;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
+
+import java.util.UUID;
 
 public final class SecurityUtils {
 
@@ -89,7 +86,7 @@ public final class SecurityUtils {
             return EnumColor.RED + LangUtils.localize("gui.noOwner");
         }
         return EnumColor.GREY + LangUtils.localize("gui.owner") + ": " + (player.getName().equals(ownerName)
-                                                                          ? EnumColor.BRIGHT_GREEN : EnumColor.RED) + ownerName;
+                ? EnumColor.BRIGHT_GREEN : EnumColor.RED) + ownerName;
     }
 
     public static void displayNoAccess(EntityPlayer player) {

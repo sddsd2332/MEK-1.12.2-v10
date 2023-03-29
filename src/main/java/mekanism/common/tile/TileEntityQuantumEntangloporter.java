@@ -1,12 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.api.Chunk3D;
 import mekanism.api.Coord4D;
 import mekanism.api.IHeatTransfer;
@@ -20,11 +14,7 @@ import mekanism.common.Mekanism;
 import mekanism.common.PacketHandler;
 import mekanism.common.SideData.IOState;
 import mekanism.common.Upgrade;
-import mekanism.common.base.FluidHandlerWrapper;
-import mekanism.common.base.IFluidHandlerWrapper;
-import mekanism.common.base.ISideConfiguration;
-import mekanism.common.base.ITankManager;
-import mekanism.common.base.IUpgradeTile;
+import mekanism.common.base.*;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.chunkloading.IChunkLoader;
 import mekanism.common.config.MekanismConfig;
@@ -34,19 +24,9 @@ import mekanism.common.frequency.FrequencyManager;
 import mekanism.common.frequency.IFrequencyHandler;
 import mekanism.common.integration.computer.IComputerIntegration;
 import mekanism.common.security.ISecurityTile;
-import mekanism.common.tile.component.TileComponentChunkLoader;
-import mekanism.common.tile.component.TileComponentConfig;
-import mekanism.common.tile.component.TileComponentEjector;
-import mekanism.common.tile.component.TileComponentSecurity;
-import mekanism.common.tile.component.TileComponentUpgrade;
+import mekanism.common.tile.component.*;
 import mekanism.common.tile.prefab.TileEntityElectricBlock;
-import mekanism.common.util.CableUtils;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.FluidContainerUtils;
-import mekanism.common.util.HeatUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.PipeUtils;
+import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -61,8 +41,15 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class TileEntityQuantumEntangloporter extends TileEntityElectricBlock implements ISideConfiguration, ITankManager, IFluidHandlerWrapper, IFrequencyHandler,
-      IGasHandler, IHeatTransfer, IComputerIntegration, ISecurityTile, IChunkLoader, IUpgradeTile {
+        IGasHandler, IHeatTransfer, IComputerIntegration, ISecurityTile, IChunkLoader, IUpgradeTile {
 
     private static final int INV_SIZE = 1;//this.inventory size, used for upgrades. Manually handled
     private static final String[] methods = new String[]{"setFrequency"};
@@ -550,7 +537,7 @@ public class TileEntityQuantumEntangloporter extends TileEntityElectricBlock imp
             return false;
         }
         return capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.HEAT_TRANSFER_CAPABILITY
-               || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, side);
+                || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, side);
     }
 
     @Override
@@ -572,7 +559,7 @@ public class TileEntityQuantumEntangloporter extends TileEntityElectricBlock imp
         if (configComponent.isCapabilityDisabled(capability, side, facing)) {
             return true;
         } else if (capability == Capabilities.GAS_HANDLER_CAPABILITY || capability == Capabilities.HEAT_TRANSFER_CAPABILITY ||
-                   capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+                capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             return side != null && (!hasFrequency() || configComponent.isCapabilityDisabled(capability, side, facing));
         }
         return super.isCapabilityDisabled(capability, side);

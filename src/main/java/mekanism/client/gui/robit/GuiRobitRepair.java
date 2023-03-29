@@ -1,8 +1,6 @@
 package mekanism.client.gui.robit;
 
 import io.netty.buffer.Unpooled;
-import java.io.IOException;
-import javax.annotation.Nonnull;
 import mekanism.common.entity.EntityRobit;
 import mekanism.common.inventory.container.robit.ContainerRobitRepair;
 import mekanism.common.util.LangUtils;
@@ -21,6 +19,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+
+import javax.annotation.Nonnull;
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public class GuiRobitRepair extends GuiRobit implements IContainerListener {

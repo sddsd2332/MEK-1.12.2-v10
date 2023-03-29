@@ -2,7 +2,7 @@
   {
     "modid": "mekanism",
     "name": "Mekanism",
-    "description": "This is an unofficial version of Mekanism!!! Please note that in order to add the final factory version, some items have been modified, resulting in incomplete recipes. The recipe needs to be repaired. In order to achieve the final factory GUI effect, all factory guis are close to the display of the final factory. GUI",
+    "description": "This is an unofficial version of Mekanism!!! Please do not report the issue to the Mekanism team!!! This Mekanism branch differs from MEKCE in that it mainly adds content ported back to a higher version of Mekanism.",
     "version": "${version}",
     "mcversion": "${mc_version}",
     "authorList": [

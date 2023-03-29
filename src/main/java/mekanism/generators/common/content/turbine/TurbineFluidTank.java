@@ -1,9 +1,10 @@
 package mekanism.generators.common.content.turbine;
 
-import javax.annotation.Nullable;
 import mekanism.common.base.MultiblockFluidTank;
 import mekanism.generators.common.tile.turbine.TileEntityTurbineCasing;
 import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
 
 public class TurbineFluidTank extends MultiblockFluidTank<TileEntityTurbineCasing> {
 

@@ -1,7 +1,6 @@
 package mekanism.generators.common.tile.turbine;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.api.energy.IStrictEnergyStorage;
@@ -27,6 +26,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
+
+import javax.annotation.Nonnull;
 
 public class TileEntityTurbineCasing extends TileEntityMultiblock<SynchronizedTurbineData> implements IStrictEnergyStorage {
 
@@ -59,7 +60,7 @@ public class TileEntityTurbineCasing extends TileEntityMultiblock<SynchronizedTu
 
                     if (stored > 0 && getEnergy() < structure.getEnergyCapacity()) {
                         double energyMultiplier = (MekanismConfig.current().general.maxEnergyPerSteam.val() / TurbineUpdateProtocol.MAX_BLADES) *
-                                                  Math.min(structure.blades, structure.coils * MekanismConfig.current().generators.turbineBladesPerCoil.val());
+                                Math.min(structure.blades, structure.coils * MekanismConfig.current().generators.turbineBladesPerCoil.val());
                         double rate = structure.lowerVolume * (structure.getDispersers() * MekanismConfig.current().generators.turbineDisperserGasFlow.val());
                         rate = Math.min(rate, structure.vents * MekanismConfig.current().generators.turbineVentGasFlow.val());
 

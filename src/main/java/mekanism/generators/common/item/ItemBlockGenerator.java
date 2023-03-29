@@ -3,9 +3,6 @@ package mekanism.generators.common.item;
 import cofh.redstoneflux.api.IEnergyContainerItem;
 import ic2.api.item.IElectricItemManager;
 import ic2.api.item.ISpecialElectricItem;
-import java.util.List;
-import java.util.UUID;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.api.energy.IEnergizedItem;
 import mekanism.client.MekKeyHandler;
@@ -53,6 +50,10 @@ import net.minecraftforge.fml.common.Optional.Method;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.UUID;
+
 /**
  * Item class for handling multiple generator block IDs. 0: Heat Generator 1: Solar Generator 3: Hydrogen Generator 4: Bio-Generator 5: Advanced Solar Generator 6: Wind
  * Generator 7: Turbine Rotor 8: Rotational Complex 9: Electromagnetic Coil 10: Turbine Casing 11: Turbine Valve 12: Turbine Vent 13: Saturating Condenser
@@ -60,8 +61,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * @author AidanBrady
  */
 @InterfaceList({
-      @Interface(iface = "cofh.redstoneflux.api.IEnergyContainerItem", modid = MekanismHooks.REDSTONEFLUX_MOD_ID),
-      @Interface(iface = "ic2.api.item.ISpecialElectricItem", modid = MekanismHooks.IC2_MOD_ID)
+        @Interface(iface = "cofh.redstoneflux.api.IEnergyContainerItem", modid = MekanismHooks.REDSTONEFLUX_MOD_ID),
+        @Interface(iface = "ic2.api.item.ISpecialElectricItem", modid = MekanismHooks.IC2_MOD_ID)
 })
 public class ItemBlockGenerator extends ItemBlock implements IEnergizedItem, ISpecialElectricItem, ISustainedInventory, ISustainedTank, IEnergyContainerItem, ISecurityItem {
 
@@ -107,10 +108,10 @@ public class ItemBlockGenerator extends ItemBlock implements IEnergizedItem, ISp
         if (type.maxEnergy > -1) {
             if (!MekKeyHandler.getIsKeyPressed(MekanismKeyHandler.sneakKey)) {
                 list.add(LangUtils.localize("tooltip.hold") + " " + EnumColor.INDIGO + GameSettings.getKeyDisplayString(MekanismKeyHandler.sneakKey.getKeyCode()) +
-                         EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails") + ".");
+                        EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails") + ".");
                 list.add(LangUtils.localize("tooltip.hold") + " " + EnumColor.AQUA + GameSettings.getKeyDisplayString(MekanismKeyHandler.sneakKey.getKeyCode()) +
-                         EnumColor.GREY + " " + LangUtils.localize("tooltip.and") + " " + EnumColor.AQUA +
-                         GameSettings.getKeyDisplayString(MekanismKeyHandler.modeSwitchKey.getKeyCode()) + EnumColor.GREY + " " + LangUtils.localize("tooltip.forDesc") + ".");
+                        EnumColor.GREY + " " + LangUtils.localize("tooltip.and") + " " + EnumColor.AQUA +
+                        GameSettings.getKeyDisplayString(MekanismKeyHandler.modeSwitchKey.getKeyCode()) + EnumColor.GREY + " " + LangUtils.localize("tooltip.forDesc") + ".");
             } else if (!MekKeyHandler.getIsKeyPressed(MekanismKeyHandler.modeSwitchKey)) {
                 if (hasSecurity(itemstack)) {
                     list.add(SecurityUtils.getOwnerDisplay(Minecraft.getMinecraft().player, MekanismClient.clientUUIDMap.get(getOwnerUUID(itemstack))));
@@ -121,7 +122,7 @@ public class ItemBlockGenerator extends ItemBlock implements IEnergizedItem, ISp
                 }
 
                 list.add(EnumColor.BRIGHT_GREEN + LangUtils.localize("tooltip.storedEnergy") + ": " + EnumColor.GREY
-                         + MekanismUtils.getEnergyDisplay(getEnergy(itemstack), getMaxEnergy(itemstack)));
+                        + MekanismUtils.getEnergyDisplay(getEnergy(itemstack), getMaxEnergy(itemstack)));
 
                 if (hasTank(itemstack)) {
                     if (getFluidStack(itemstack) != null) {
@@ -130,14 +131,14 @@ public class ItemBlockGenerator extends ItemBlock implements IEnergizedItem, ISp
                 }
 
                 list.add(EnumColor.AQUA + LangUtils.localize("tooltip.inventory") + ": " + EnumColor.GREY +
-                         LangUtils.transYesNo(getInventory(itemstack) != null && getInventory(itemstack).tagCount() != 0));
+                        LangUtils.transYesNo(getInventory(itemstack) != null && getInventory(itemstack).tagCount() != 0));
             } else {
                 list.addAll(MekanismUtils.splitTooltip(type.getDescription(), itemstack));
             }
         } else {
             if (!MekKeyHandler.getIsKeyPressed(MekanismKeyHandler.sneakKey)) {
                 list.add(LangUtils.localize("tooltip.hold") + " " + EnumColor.INDIGO + GameSettings.getKeyDisplayString(MekanismKeyHandler.sneakKey.getKeyCode()) +
-                         EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails") + ".");
+                        EnumColor.GREY + " " + LangUtils.localize("tooltip.forDetails") + ".");
             } else {
                 list.addAll(MekanismUtils.splitTooltip(type.getDescription(), itemstack));
             }
@@ -146,7 +147,7 @@ public class ItemBlockGenerator extends ItemBlock implements IEnergizedItem, ISp
 
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY,
-          float hitZ, @Nonnull IBlockState state) {
+                                float hitZ, @Nonnull IBlockState state) {
         boolean place = true;
         Block block = world.getBlockState(pos).getBlock();
 

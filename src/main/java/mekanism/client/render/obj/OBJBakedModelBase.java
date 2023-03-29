@@ -2,18 +2,6 @@ package mekanism.client.render.obj;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import javax.annotation.Nonnull;
-import javax.vecmath.Matrix4f;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.common.Mekanism;
 import net.minecraft.block.state.IBlockState;
@@ -25,27 +13,22 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
-import net.minecraftforge.client.model.obj.OBJModel.Face;
-import net.minecraftforge.client.model.obj.OBJModel.Group;
-import net.minecraftforge.client.model.obj.OBJModel.Normal;
-import net.minecraftforge.client.model.obj.OBJModel.OBJBakedModel;
-import net.minecraftforge.client.model.obj.OBJModel.OBJState;
-import net.minecraftforge.client.model.obj.OBJModel.TextureCoordinate;
-import net.minecraftforge.client.model.obj.OBJModel.Vertex;
+import net.minecraftforge.client.model.obj.OBJModel.*;
 import net.minecraftforge.client.model.pipeline.LightUtil;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 
+import javax.annotation.Nonnull;
+import javax.vecmath.Matrix4f;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+
 public abstract class OBJBakedModelBase extends OBJBakedModel {
 
     private static Method m_updateStateVisibilityMap;
     private static Field f_textures;
-    protected IBakedModel baseModel;
-    protected TextureAtlasSprite tempSprite = ModelLoader.White.INSTANCE;
-    protected VertexFormat vertexFormat;
-    protected ImmutableMap<String, TextureAtlasSprite> textureMap;
-    protected Map<TransformType, Matrix4f> transformationMap;
 
     static {
         try {
@@ -58,8 +41,14 @@ public abstract class OBJBakedModelBase extends OBJBakedModel {
         }
     }
 
+    protected IBakedModel baseModel;
+    protected TextureAtlasSprite tempSprite = ModelLoader.White.INSTANCE;
+    protected VertexFormat vertexFormat;
+    protected ImmutableMap<String, TextureAtlasSprite> textureMap;
+    protected Map<TransformType, Matrix4f> transformationMap;
+
     public OBJBakedModelBase(IBakedModel base, OBJModel model, IModelState state, VertexFormat format, ImmutableMap<String, TextureAtlasSprite> textures,
-          Map<TransformType, Matrix4f> transform) {
+                             Map<TransformType, Matrix4f> transform) {
         model.super(model, state, format, textures);
         baseModel = base;
         transformationMap = transform;
@@ -85,7 +74,7 @@ public abstract class OBJBakedModelBase extends OBJBakedModel {
                         d = LightUtil.diffuseLight(faceNormal.x, faceNormal.y, faceNormal.z);
                     }
                     builder.put(e, d * v.getMaterial().getColor().x * color[0], d * v.getMaterial().getColor().y * color[1], d * v.getMaterial().getColor().z * color[2],
-                          v.getMaterial().getColor().w * color[3]);
+                            v.getMaterial().getColor().w * color[3]);
 
                     break;
                 case UV:

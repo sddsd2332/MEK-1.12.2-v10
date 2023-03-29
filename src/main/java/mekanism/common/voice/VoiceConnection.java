@@ -1,5 +1,12 @@
 package mekanism.common.voice;
 
+import mekanism.common.Mekanism;
+import mekanism.common.item.ItemWalkieTalkie;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
@@ -9,12 +16,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import mekanism.common.Mekanism;
-import mekanism.common.item.ItemWalkieTalkie;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class VoiceConnection extends Thread {
 
@@ -122,7 +123,7 @@ public class VoiceConnection extends Thread {
 
     public boolean canListen(int channel) {
         return getPlayer().inventory.mainInventory.stream().anyMatch(itemStack -> canListen(channel, itemStack))
-               || getPlayer().inventory.offHandInventory.stream().anyMatch(itemStack -> canListen(channel, itemStack));
+                || getPlayer().inventory.offHandInventory.stream().anyMatch(itemStack -> canListen(channel, itemStack));
     }
 
     private boolean canListen(int channel, ItemStack itemStack) {

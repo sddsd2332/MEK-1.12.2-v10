@@ -1,6 +1,5 @@
 package mekanism.generators.client.gui;
 
-import java.io.IOException;
 import mekanism.api.Coord4D;
 import mekanism.client.gui.GuiMekanismTile;
 import mekanism.client.gui.button.GuiButtonDisableableImage;
@@ -14,6 +13,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public abstract class GuiReactorInfo extends GuiMekanismTile<TileEntityReactorController> {

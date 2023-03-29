@@ -1,7 +1,6 @@
 package mekanism.generators.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.common.base.IBoundingBlock;
@@ -12,14 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 
-public class TileEntityWindGenerator extends TileEntityGenerator implements IBoundingBlock {
+import javax.annotation.Nonnull;
 
-    private static final int[] SLOTS = {0};
+public class TileEntityWindGenerator extends TileEntityGenerator implements IBoundingBlock {
 
     public static final float SPEED = 32F;
     public static final float SPEED_SCALED = 256F / SPEED;
     static final String[] methods = new String[]{"getEnergy", "getOutput", "getMaxEnergy", "getEnergyNeeded", "getMultiplier"};
-
+    private static final int[] SLOTS = {0};
     private double angle;
     private float currentMultiplier;
     private boolean isBlacklistDimension = false;

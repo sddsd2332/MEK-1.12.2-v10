@@ -1,12 +1,13 @@
 package mekanism.common.recipe.inputs;
 
-import java.util.HashMap;
-import java.util.Map;
 import mekanism.common.OreDictCache;
 import mekanism.common.util.StackUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class MachineInput<INPUT extends MachineInput<INPUT>> {
 
@@ -24,23 +25,6 @@ public abstract class MachineInput<INPUT extends MachineInput<INPUT>> {
         return false;
     }
 
-    public abstract boolean isValid();
-
-    public abstract INPUT copy();
-
-    public abstract int hashIngredients();
-
-    public abstract void load(NBTTagCompound nbtTags);
-
-    /**
-     * Test equality to another input. This should return true if the input matches this one, IGNORING AMOUNTS. Allows usage of HashMap optimisation to get recipes.
-     *
-     * @param other The other input to check
-     *
-     * @return True if input matches this one, IGNORING AMOUNTS!
-     */
-    public abstract boolean testEquality(INPUT other);
-
     /**
      * Checks if the two item stacks match (IGNORES AMOUNTS)
      */
@@ -54,6 +38,22 @@ public abstract class MachineInput<INPUT extends MachineInput<INPUT>> {
         }
         return StackUtils.equalsWildcardWithNBT(container, contained);
     }
+
+    public abstract boolean isValid();
+
+    public abstract INPUT copy();
+
+    public abstract int hashIngredients();
+
+    public abstract void load(NBTTagCompound nbtTags);
+
+    /**
+     * Test equality to another input. This should return true if the input matches this one, IGNORING AMOUNTS. Allows usage of HashMap optimisation to get recipes.
+     *
+     * @param other The other input to check
+     * @return True if input matches this one, IGNORING AMOUNTS!
+     */
+    public abstract boolean testEquality(INPUT other);
 
     @Override
     public int hashCode() {
@@ -78,7 +78,6 @@ public abstract class MachineInput<INPUT extends MachineInput<INPUT>> {
          *
          * @param definition The ingredient stored in the ItemStackInput
          * @param test       The other input to check
-         *
          * @return True if input matches this one, IGNORING AMOUNTS!
          */
         boolean test(ItemStack definition, ItemStack test);

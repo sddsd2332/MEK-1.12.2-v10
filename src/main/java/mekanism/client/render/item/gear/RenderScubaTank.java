@@ -1,6 +1,5 @@
 package mekanism.client.render.item.gear;
 
-import javax.annotation.Nonnull;
 import mekanism.client.model.ModelScubaTank;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.item.ItemLayerWrapper;
@@ -13,11 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 public class RenderScubaTank extends MekanismItemStackRenderer {
 
-    private static ModelScubaTank scubaTank = new ModelScubaTank();
     public static ItemLayerWrapper model;
+    private static ModelScubaTank scubaTank = new ModelScubaTank();
 
     @Override
     protected void renderBlockSpecific(@Nonnull ItemStack stack, TransformType transformType) {

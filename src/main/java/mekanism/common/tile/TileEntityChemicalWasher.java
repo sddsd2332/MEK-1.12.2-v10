@@ -1,17 +1,9 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import javax.annotation.Nonnull;
-
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
-import mekanism.api.gas.Gas;
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
-import mekanism.api.gas.GasTankInfo;
-import mekanism.api.gas.IGasHandler;
-import mekanism.api.gas.IGasItem;
+import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.SideData;
 import mekanism.common.Upgrade;
@@ -20,37 +12,27 @@ import mekanism.common.base.*;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.RecipeHandler;
-import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.inputs.GasInput;
 import mekanism.common.recipe.machines.WasherRecipe;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityMachine;
-import mekanism.common.util.ChargeUtils;
-import mekanism.common.util.FluidContainerUtils;
+import mekanism.common.util.*;
 import mekanism.common.util.FluidContainerUtils.FluidChecker;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.PipeUtils;
-import mekanism.common.util.TileUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class TileEntityChemicalWasher extends TileEntityMachine implements IGasHandler, ISideConfiguration, IFluidHandlerWrapper, ISustainedData, IUpgradeInfoHandler, ITankManager,
-      IComparatorSupport {
+        IComparatorSupport {
 
     public static final int MAX_GAS = 10000;
     public static final int MAX_FLUID = 10000;
@@ -61,16 +43,14 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
     public int gasOutput = 256;
 
     public WasherRecipe cachedRecipe;
-
-    private int currentRedstoneLevel;
     public double clientEnergyUsed;
-
     public TileComponentEjector ejectorComponent;
     public TileComponentConfig configComponent;
+    private int currentRedstoneLevel;
 
     public TileEntityChemicalWasher() {
         super("machine.washer", MachineType.CHEMICAL_WASHER, 4);
-        configComponent = new TileComponentConfig(this, TransmissionType.ITEM,TransmissionType.ENERGY, TransmissionType.GAS,TransmissionType.FLUID);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS, TransmissionType.FLUID);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{3}));
@@ -113,7 +93,7 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
             } else if (prevEnergy >= getEnergy()) {
                 setActive(false);
             }
-          //  TileUtils.emitGas(this, outputTank, gasOutput, MekanismUtils.getRight(facing));
+            //  TileUtils.emitGas(this, outputTank, gasOutput, MekanismUtils.getRight(facing));
             prevEnergy = getEnergy();
             int newRedstoneLevel = getRedstoneLevel();
             if (newRedstoneLevel != currentRedstoneLevel) {
@@ -246,7 +226,7 @@ public class TileEntityChemicalWasher extends TileEntityMachine implements IGasH
 
     @Override
     public boolean canDrawGas(EnumFacing side, Gas type) {
-      //  return getTank(side) == outputTank && getTank(side).canDraw(type);
+        //  return getTank(side) == outputTank && getTank(side).canDraw(type);
         return configComponent.getOutput(TransmissionType.GAS, side, facing).hasSlot(2) && outputTank.canDraw(type);
     }
 

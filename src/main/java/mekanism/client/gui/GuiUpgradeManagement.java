@@ -1,8 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.Set;
-import javax.annotation.Nullable;
 import mekanism.api.Coord4D;
 import mekanism.client.gui.button.GuiButtonDisableableImage;
 import mekanism.client.render.MekanismRenderer;
@@ -23,6 +20,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.io.IOException;
+import java.util.Set;
 
 @SideOnly(Side.CLIENT)
 public class GuiUpgradeManagement extends GuiMekanism {

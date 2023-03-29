@@ -1,8 +1,5 @@
 package mekanism.generators.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.client.gui.GuiMekanismTile;
@@ -23,6 +20,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 @SideOnly(Side.CLIENT)
 public class GuiReactorLogicAdapter extends GuiMekanismTile<TileEntityReactorLogicAdapter> {
 
@@ -39,13 +40,12 @@ public class GuiReactorLogicAdapter extends GuiMekanismTile<TileEntityReactorLog
         super.initGui();
         buttonList.clear();
         int outputOrdinal;
-        if (tileEntity.activeCooled){
-             outputOrdinal = 1;
-        }else{
-             outputOrdinal = 0;
+        if (tileEntity.activeCooled) {
+            outputOrdinal = 1;
+        } else {
+            outputOrdinal = 0;
         }
         buttonList.add(coolingButton = new GuiButtonDisableableImage(buttonID++, guiLeft + 23, guiTop + 19, 11, 11, 176 + outputOrdinal * 11, 11, -11, getGuiLocation()));
-
 
 
         for (ReactorLogic type : ReactorLogic.values()) {

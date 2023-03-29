@@ -8,7 +8,10 @@ import mekanism.api.MekanismAPI;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 import mekanism.api.infuse.InfuseRegistry;
-import mekanism.common.*;
+import mekanism.common.FuelHandler;
+import mekanism.common.Mekanism;
+import mekanism.common.MekanismFluids;
+import mekanism.common.Version;
 import mekanism.common.base.IModule;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.fixers.MekanismDataFixers.MekFixers;
@@ -49,19 +52,15 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MekanismGenerators implements IModule {
 
     public static final String MODID = "mekanismgenerators";
-
+    public static final int DATA_VERSION = 1;
     @SidedProxy(clientSide = "mekanism.generators.client.GeneratorsClientProxy", serverSide = "mekanism.generators.common.GeneratorsCommonProxy")
     public static GeneratorsCommonProxy proxy;
-
     @Instance(MekanismGenerators.MODID)
     public static MekanismGenerators instance;
-
     /**
      * MekanismGenerators version number
      */
     public static Version versionNumber = new Version(999, 999, 999);
-    public static final int DATA_VERSION = 1;
-
     public static MultiblockManager<SynchronizedTurbineData> turbineManager = new MultiblockManager<>("industrialTurbine");
 
     public static CreativeTabMekanismGenerators tabMekanismGenerators = new CreativeTabMekanismGenerators();
@@ -84,6 +83,20 @@ public class MekanismGenerators implements IModule {
         // Register models
         proxy.registerBlockRenders();
         proxy.registerItemRenders();
+    }
+
+    @SubscribeEvent
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        //1mB hydrogen + 2*bioFuel/tick*200ticks/100mB * 20x efficiency bonus
+        FuelHandler.addGas(MekanismFluids.Ethene, MekanismConfig.current().general.ETHENE_BURN_TIME.val(),
+                MekanismConfig.current().general.FROM_H2.val() + MekanismConfig.current().generators.bioGeneration.val() * 2 * MekanismConfig.current().general.ETHENE_BURN_TIME.val());
+
+        for (ItemStack ore : OreDictionary.getOres("dustGold", false)) {
+            RecipeHandler.addMetallurgicInfuserRecipe(InfuseRegistry.get("CARBON"), 10, StackUtils.size(ore, 4), GeneratorsItems.Hohlraum.getEmptyItem());
+        }
+
+        RecipeHandler.addFusionCoolingRecipe(FluidRegistry.getFluidStack("water", 1), FluidRegistry.getFluidStack("steam", 1));
+        RecipeHandler.addFusionCoolingRecipe(FluidRegistry.getFluidStack("liquidsodium", 1), FluidRegistry.getFluidStack("liquidsuperheatedsodium", 1));
     }
 
     @EventHandler
@@ -128,20 +141,6 @@ public class MekanismGenerators implements IModule {
 
             BuildcraftFuelRegistry.fuel.addFuel(MekanismFluids.Ethene.getFluid(), (RFIntegration.toRFAsLong(12 * MjAPI.MJ)), 40 * Fluid.BUCKET_VOLUME);
         }
-    }
-
-    @SubscribeEvent
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-        //1mB hydrogen + 2*bioFuel/tick*200ticks/100mB * 20x efficiency bonus
-        FuelHandler.addGas(MekanismFluids.Ethene, MekanismConfig.current().general.ETHENE_BURN_TIME.val(),
-              MekanismConfig.current().general.FROM_H2.val() + MekanismConfig.current().generators.bioGeneration.val() * 2 * MekanismConfig.current().general.ETHENE_BURN_TIME.val());
-
-        for (ItemStack ore : OreDictionary.getOres("dustGold", false)) {
-            RecipeHandler.addMetallurgicInfuserRecipe(InfuseRegistry.get("CARBON"), 10, StackUtils.size(ore, 4), GeneratorsItems.Hohlraum.getEmptyItem());
-        }
-
-        RecipeHandler.addFusionCoolingRecipe(FluidRegistry.getFluidStack("water",1),FluidRegistry.getFluidStack("steam",1));
-        RecipeHandler.addFusionCoolingRecipe(FluidRegistry.getFluidStack("liquidsodium",1),FluidRegistry.getFluidStack("liquidsuperheatedsodium",1));
     }
 
     @Override

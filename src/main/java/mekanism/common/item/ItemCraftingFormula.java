@@ -1,8 +1,5 @@
 package mekanism.common.item;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
 import mekanism.common.util.InventoryUtils;
@@ -15,14 +12,14 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemCraftingFormula extends ItemMekanism {
 
@@ -88,7 +85,7 @@ public class ItemCraftingFormula extends ItemMekanism {
             return super.getItemStackDisplayName(stack);
         }
         return super.getItemStackDisplayName(stack) + " " + (isInvalid(stack) ? EnumColor.DARK_RED + "(" + LangUtils.localize("tooltip.invalid")
-                                                                              : EnumColor.DARK_GREEN + "(" + LangUtils.localize("tooltip.encoded")) + ")";
+                : EnumColor.DARK_GREEN + "(" + LangUtils.localize("tooltip.encoded")) + ")";
     }
 
     public boolean isInvalid(ItemStack stack) {

@@ -1,10 +1,11 @@
 package mekanism.common.recipe.outputs;
 
-import java.util.Random;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import java.util.Random;
 
 public class ChanceOutput extends MachineOutput<ChanceOutput> {
 

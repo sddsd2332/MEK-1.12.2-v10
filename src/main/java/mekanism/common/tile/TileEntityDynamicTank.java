@@ -1,9 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.HashSet;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
@@ -28,12 +25,14 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileEntityDynamicTank extends TileEntityMultiblock<SynchronizedTankData> implements IComputerIntegration,IFluidContainerManager {
+import javax.annotation.Nonnull;
+import java.util.HashSet;
+import java.util.Set;
 
-    protected static final int[] SLOTS = {0, 1};
+public class TileEntityDynamicTank extends TileEntityMultiblock<SynchronizedTankData> implements IComputerIntegration, IFluidContainerManager {
 
     public static final String[] methods = new String[]{"getAmount", "getCapacity", "getLiquidType"};
-
+    protected static final int[] SLOTS = {0, 1};
     /**
      * A client-sided set of valves on this tank's structure that are currently active, used on the client for rendering fluids.
      */

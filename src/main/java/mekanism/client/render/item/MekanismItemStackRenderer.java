@@ -1,6 +1,5 @@
 package mekanism.client.render.item;
 
-import javax.annotation.Nonnull;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.MekanismRenderer.RenderState;
 import net.minecraft.client.renderer.GlStateManager;
@@ -10,6 +9,8 @@ import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
 public abstract class MekanismItemStackRenderer extends TileEntityItemStackRenderer {

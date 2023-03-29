@@ -1,7 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.Arrays;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.GasStack;
 import mekanism.api.infuse.InfuseType;
@@ -34,6 +32,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Keyboard;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 @SideOnly(Side.CLIENT)
 public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
 
@@ -46,7 +47,7 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
             xSize += 34;
         }
         if (tile.tier == FactoryTier.CREATIVE) {
-            xSize += 34 +19 +19;
+            xSize += 34 + 19 + 19;
         }
 
         ResourceLocation resource = getGuiLocation();
@@ -55,12 +56,12 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
             addGuiElement(new GuiUpgradeTab3(this, tileEntity, resource));
             addGuiElement(new GuiRedstoneControl3(this, tileEntity, resource));
             addGuiElement(new GuiRecipeType3(this, tileEntity, resource));
-        }else if (tile.tier == FactoryTier.ULTIMATE) {
-        addGuiElement(new GuiSecurityTab2(this, tileEntity, resource));
-        addGuiElement(new GuiUpgradeTab2(this, tileEntity, resource));
-        addGuiElement(new GuiRedstoneControl2(this, tileEntity, resource));
-        addGuiElement(new GuiRecipeType2(this, tileEntity, resource));
-        }else if (tile.tier == FactoryTier.BASIC || tile.tier == FactoryTier.ADVANCED||tile.tier == FactoryTier.ELITE) {
+        } else if (tile.tier == FactoryTier.ULTIMATE) {
+            addGuiElement(new GuiSecurityTab2(this, tileEntity, resource));
+            addGuiElement(new GuiUpgradeTab2(this, tileEntity, resource));
+            addGuiElement(new GuiRedstoneControl2(this, tileEntity, resource));
+            addGuiElement(new GuiRecipeType2(this, tileEntity, resource));
+        } else if (tile.tier == FactoryTier.BASIC || tile.tier == FactoryTier.ADVANCED || tile.tier == FactoryTier.ELITE) {
             addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
             addGuiElement(new GuiUpgradeTab(this, tileEntity, resource));
             addGuiElement(new GuiRedstoneControl(this, tileEntity, resource));
@@ -80,8 +81,8 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
     @Override
     public void initGui() {
         super.initGui();
-        if (tileEntity.tier == FactoryTier.BASIC ||tileEntity.tier == FactoryTier.ADVANCED||tileEntity.tier == FactoryTier.ELITE){
-            this.buttonList.add(this.infuserDumpButton = new GuiButtonImage(1, this.guiLeft+148, this.guiTop+77, 21, 10, 147, 72, 0, MekanismUtils.getResource(ResourceType.GUI, "GuiMetallurgicInfuser.png")){
+        if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED || tileEntity.tier == FactoryTier.ELITE) {
+            this.buttonList.add(this.infuserDumpButton = new GuiButtonImage(1, this.guiLeft + 148, this.guiTop + 77, 21, 10, 147, 72, 0, MekanismUtils.getResource(ResourceType.GUI, "GuiMetallurgicInfuser.png")) {
                 @Override
                 public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
                     if (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
@@ -100,8 +101,8 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
                     ) && super.mousePressed(mc, mouseX, mouseY);
                 }
             });
-        }else if (tileEntity.tier == FactoryTier.ULTIMATE){
-            this.buttonList.add(this.infuserDumpButton = new GuiButtonImage(1, this.guiLeft+182, this.guiTop+77, 21, 10, 147, 72, 0, MekanismUtils.getResource(ResourceType.GUI, "GuiMetallurgicInfuser.png")){
+        } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+            this.buttonList.add(this.infuserDumpButton = new GuiButtonImage(1, this.guiLeft + 182, this.guiTop + 77, 21, 10, 147, 72, 0, MekanismUtils.getResource(ResourceType.GUI, "GuiMetallurgicInfuser.png")) {
                 @Override
                 public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
                     if (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
@@ -116,11 +117,11 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
                     return (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
                             || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
                             || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM
-                    )&& super.mousePressed(mc, mouseX, mouseY);
+                    ) && super.mousePressed(mc, mouseX, mouseY);
                 }
             });
-        }else {
-            this.buttonList.add(this.infuserDumpButton = new GuiButtonImage(1, this.guiLeft+220, this.guiTop+77, 21, 10, 147, 72, 0, MekanismUtils.getResource(ResourceType.GUI, "GuiMetallurgicInfuser.png")){
+        } else {
+            this.buttonList.add(this.infuserDumpButton = new GuiButtonImage(1, this.guiLeft + 220, this.guiTop + 77, 21, 10, 147, 72, 0, MekanismUtils.getResource(ResourceType.GUI, "GuiMetallurgicInfuser.png")) {
                 @Override
                 public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
                     if (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
@@ -136,7 +137,7 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
                     return (GuiFactory.this.tileEntity.getRecipeType() == RecipeType.INFUSING
                             || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED
                             || GuiFactory.this.tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM
-                    )&& super.mousePressed(mc, mouseX, mouseY);
+                    ) && super.mousePressed(mc, mouseX, mouseY);
                 }
             });
         }
@@ -146,22 +147,22 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 4, 0x404040);
-        if(tileEntity.tier == FactoryTier.CREATIVE){
-            if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM ||tileEntity.getRecipeType() ==RecipeType.INFUSING){
+        if (tileEntity.tier == FactoryTier.CREATIVE) {
+            if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM || tileEntity.getRecipeType() == RecipeType.INFUSING) {
                 fontRenderer.drawString(LangUtils.localize("container.inventory"), 44, (ySize - 94) + 2, 0x404040);
-            }else {
+            } else {
                 fontRenderer.drawString(LangUtils.localize("container.inventory"), 44, (ySize - 94 - 8) + 2, 0x404040);
             }
-        }else if (tileEntity.tier == FactoryTier.ULTIMATE){
-            if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM||tileEntity.getRecipeType() ==RecipeType.INFUSING){
+        } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+            if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM || tileEntity.getRecipeType() == RecipeType.INFUSING) {
                 fontRenderer.drawString(LangUtils.localize("container.inventory"), 27, (ySize - 94) + 2, 0x404040);
-            }else {
+            } else {
                 fontRenderer.drawString(LangUtils.localize("container.inventory"), 27, (ySize - 94 - 8) + 2, 0x404040);
             }
-        }else {
-            if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM||tileEntity.getRecipeType() ==RecipeType.INFUSING){
+        } else {
+            if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM || tileEntity.getRecipeType() == RecipeType.INFUSING) {
                 fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 94) + 2, 0x404040);
-            }else {
+            } else {
                 fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 93 - 8) + 2, 0x404040);
             }
 
@@ -169,24 +170,10 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
         int xAxis = mouseX - guiLeft;
         int yAxis = mouseY - guiTop;
         if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED || tileEntity.tier == FactoryTier.ELITE) {
-        if (xAxis >= 165 && xAxis <= 169 && yAxis >= 17 && yAxis <= 69) {
-            displayTooltip(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), xAxis, yAxis);
-        } else if (xAxis >= 8 && xAxis <= 147 && yAxis >= 78 && yAxis <= 83) {
-            if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
-                GasStack gasStack = tileEntity.gasTank.getGas();
-                displayTooltip(gasStack != null ? gasStack.getGas().getLocalizedName() + ": " + tileEntity.gasTank.getStored() : LangUtils.localize("gui.none"), xAxis, yAxis);
-            } else if (tileEntity.getRecipeType() == RecipeType.INFUSING) {
-                InfuseType type = tileEntity.infuseStored.getType();
-                displayTooltip(type != null ? type.getLocalizedName() + ": " + tileEntity.infuseStored.getAmount() : LangUtils.localize("gui.empty"), xAxis, yAxis);
-            }
-        }
-        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-        }
-        else if (tileEntity.tier == FactoryTier.ULTIMATE) {
-            if (xAxis >= 199 && xAxis <= 203 && yAxis >= 17 && yAxis <= 69) {
+            if (xAxis >= 165 && xAxis <= 169 && yAxis >= 17 && yAxis <= 69) {
                 displayTooltip(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), xAxis, yAxis);
-            } else if (xAxis >= 8 && xAxis <= 181 && yAxis >= 78 && yAxis <= 83) {
-                if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
+            } else if (xAxis >= 8 && xAxis <= 147 && yAxis >= 78 && yAxis <= 83) {
+                if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
                     GasStack gasStack = tileEntity.gasTank.getGas();
                     displayTooltip(gasStack != null ? gasStack.getGas().getLocalizedName() + ": " + tileEntity.gasTank.getStored() : LangUtils.localize("gui.none"), xAxis, yAxis);
                 } else if (tileEntity.getRecipeType() == RecipeType.INFUSING) {
@@ -195,12 +182,24 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
                 }
             }
             super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-        }
-        else if (tileEntity.tier == FactoryTier.CREATIVE) {
+        } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+            if (xAxis >= 199 && xAxis <= 203 && yAxis >= 17 && yAxis <= 69) {
+                displayTooltip(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), xAxis, yAxis);
+            } else if (xAxis >= 8 && xAxis <= 181 && yAxis >= 78 && yAxis <= 83) {
+                if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
+                    GasStack gasStack = tileEntity.gasTank.getGas();
+                    displayTooltip(gasStack != null ? gasStack.getGas().getLocalizedName() + ": " + tileEntity.gasTank.getStored() : LangUtils.localize("gui.none"), xAxis, yAxis);
+                } else if (tileEntity.getRecipeType() == RecipeType.INFUSING) {
+                    InfuseType type = tileEntity.infuseStored.getType();
+                    displayTooltip(type != null ? type.getLocalizedName() + ": " + tileEntity.infuseStored.getAmount() : LangUtils.localize("gui.empty"), xAxis, yAxis);
+                }
+            }
+            super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+        } else if (tileEntity.tier == FactoryTier.CREATIVE) {
             if (xAxis >= 237 && xAxis <= 241 && yAxis >= 17 && yAxis <= 69) {
                 displayTooltip(MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()), xAxis, yAxis);
             } else if (xAxis >= 8 && xAxis <= 219 && yAxis >= 78 && yAxis <= 83) {
-                if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
+                if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
                     GasStack gasStack = tileEntity.gasTank.getGas();
                     displayTooltip(gasStack != null ? gasStack.getGas().getLocalizedName() + ": " + tileEntity.gasTank.getStored() : LangUtils.localize("gui.none"), xAxis, yAxis);
                 } else if (tileEntity.getRecipeType() == RecipeType.INFUSING) {
@@ -218,36 +217,36 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
         int displayInt = tileEntity.getScaledEnergyLevel(52);
         if (tileEntity.tier == FactoryTier.CREATIVE) {
             drawTexturedModalRect(guiLeft + 237, guiTop + 17 + 52 - displayInt, 248, 52 - displayInt, 4, displayInt);
-        }else  if (tileEntity.tier == FactoryTier.ULTIMATE) {
+        } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
             drawTexturedModalRect(guiLeft + 199, guiTop + 17 + 52 - displayInt, 210, 52 - displayInt, 4, displayInt);
-        }else  {
+        } else {
             drawTexturedModalRect(guiLeft + 165, guiTop + 17 + 52 - displayInt, 176, 52 - displayInt, 4, displayInt);
         }
-        int xOffset = tileEntity.tier == FactoryTier.BASIC ? 59 : tileEntity.tier == FactoryTier.ADVANCED ? 39 : tileEntity.tier == FactoryTier.ULTIMATE ? 31 : tileEntity.tier == FactoryTier.CREATIVE ? 31: 33;
+        int xOffset = tileEntity.tier == FactoryTier.BASIC ? 59 : tileEntity.tier == FactoryTier.ADVANCED ? 39 : tileEntity.tier == FactoryTier.ULTIMATE ? 31 : tileEntity.tier == FactoryTier.CREATIVE ? 31 : 33;
         int xDistance = tileEntity.tier == FactoryTier.BASIC ? 38 : tileEntity.tier == FactoryTier.ADVANCED ? 26 : tileEntity.tier == FactoryTier.ULTIMATE ? 19 : tileEntity.tier == FactoryTier.CREATIVE ? 19 : 19;
 
         for (int i = 0; i < tileEntity.tier.processes; i++) {
             int xPos = xOffset + (i * xDistance);
             displayInt = tileEntity.getScaledProgress(20, i);
-            if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED ||tileEntity.tier == FactoryTier.ELITE) {
+            if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED || tileEntity.tier == FactoryTier.ELITE) {
                 drawTexturedModalRect(guiLeft + xPos, guiTop + 33, 176, 52, 8, displayInt);
-            }else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+            } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
                 drawTexturedModalRect(guiLeft + xPos, guiTop + 33, 210, 52, 8, displayInt);
-            }else if (tileEntity.tier == FactoryTier.CREATIVE) {
+            } else if (tileEntity.tier == FactoryTier.CREATIVE) {
                 drawTexturedModalRect(guiLeft + xPos, guiTop + 33, 248, 52, 8, displayInt);
             }
         }
 
-        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
+        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM) {
             if (tileEntity.getScaledGasLevel(138) > 0) {
                 GasStack gas = tileEntity.gasTank.getGas();
                 if (gas != null) {
                     MekanismRenderer.color(gas);
                     if (tileEntity.tier == FactoryTier.CREATIVE) {
                         displayGauge(8, 78, tileEntity.getScaledGasLevel(210), 5, gas.getGas().getSprite());
-                    }else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+                    } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
                         displayGauge(8, 78, tileEntity.getScaledGasLevel(172), 5, gas.getGas().getSprite());
-                    }else if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED ||tileEntity.tier == FactoryTier.ELITE) {
+                    } else if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED || tileEntity.tier == FactoryTier.ELITE) {
                         displayGauge(8, 78, tileEntity.getScaledGasLevel(138), 5, gas.getGas().getSprite());
                     }
                     MekanismRenderer.resetColor();
@@ -257,9 +256,9 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
             if (tileEntity.getScaledInfuseLevel(138) > 0) {
                 if (tileEntity.tier == FactoryTier.CREATIVE) {
                     displayGauge(8, 78, tileEntity.getScaledInfuseLevel(210), 5, tileEntity.infuseStored.getType().sprite);
-                }else  if (tileEntity.tier == FactoryTier.ULTIMATE) {
+                } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
                     displayGauge(8, 78, tileEntity.getScaledInfuseLevel(172), 5, tileEntity.infuseStored.getType().sprite);
-                }else if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED ||tileEntity.tier == FactoryTier.ELITE ) {
+                } else if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED || tileEntity.tier == FactoryTier.ELITE) {
                     displayGauge(8, 78, tileEntity.getScaledInfuseLevel(138), 5, tileEntity.infuseStored.getType().sprite);
                 }
 
@@ -280,16 +279,16 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
         if (button == 0 || Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
             int xAxis = x - guiLeft;
             int yAxis = y - guiTop;
-            if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED ||tileEntity.tier == FactoryTier.ELITE) {
+            if (tileEntity.tier == FactoryTier.BASIC || tileEntity.tier == FactoryTier.ADVANCED || tileEntity.tier == FactoryTier.ELITE) {
                 if (xAxis > 8 && xAxis < 146 && yAxis > 78 && yAxis < 83) {
                     ItemStack stack = mc.player.inventory.getItemStack();
                     if (!stack.isEmpty() && stack.getItem() instanceof ItemGaugeDropper) {
-                    TileNetworkList data = TileNetworkList.withContents(1);
-                    Mekanism.packetHandler.sendToServer(new TileEntityMessage(tileEntity, data));
-                    SoundHandler.playSound(SoundEvents.UI_BUTTON_CLICK);
+                        TileNetworkList data = TileNetworkList.withContents(1);
+                        Mekanism.packetHandler.sendToServer(new TileEntityMessage(tileEntity, data));
+                        SoundHandler.playSound(SoundEvents.UI_BUTTON_CLICK);
                     }
                 }
-            }else if(tileEntity.tier == FactoryTier.ULTIMATE) {
+            } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
                 if (xAxis > 8 && xAxis < 180 && yAxis > 78 && yAxis < 83) {
                     ItemStack stack = mc.player.inventory.getItemStack();
                     if (!stack.isEmpty() && stack.getItem() instanceof ItemGaugeDropper) {
@@ -298,7 +297,7 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
                         SoundHandler.playSound(SoundEvents.UI_BUTTON_CLICK);
                     }
                 }
-            }else {
+            } else {
                 if (xAxis > 8 && xAxis < 218 && yAxis > 78 && yAxis < 83) {
                     ItemStack stack = mc.player.inventory.getItemStack();
                     if (!stack.isEmpty() && stack.getItem() instanceof ItemGaugeDropper) {
@@ -313,43 +312,42 @@ public class GuiFactory extends GuiMekanismTile<TileEntityFactory> {
     }
 
 
-
     @Override
     protected ResourceLocation getGuiLocation() {
-        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM || tileEntity.getRecipeType() == RecipeType.INFUSING){
-            if (tileEntity.tier == FactoryTier.BASIC){
-                return MekanismUtils.getResource(ResourceType.GUI_BASIC_FACTORY,"infused.png");
-            }else if (tileEntity.tier == FactoryTier.ADVANCED){
-                return MekanismUtils.getResource(ResourceType.GUI_ADVANCED_FACTORY,"infused.png");
-            }else if (tileEntity.tier == FactoryTier.ELITE){
-                return MekanismUtils.getResource(ResourceType.GUI_ELITE_FACTORY,"infused.png");
-            }else if (tileEntity.tier == FactoryTier.ULTIMATE){
-                return MekanismUtils.getResource(ResourceType.GUI_ULTIMATE_FACTORY,"infused.png");
-            }else
-                return MekanismUtils.getResource(ResourceType.GUI_CREATIVE_FACTORY,"infused.png");
+        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM || tileEntity.getRecipeType() == RecipeType.INFUSING) {
+            if (tileEntity.tier == FactoryTier.BASIC) {
+                return MekanismUtils.getResource(ResourceType.GUI_BASIC_FACTORY, "infused.png");
+            } else if (tileEntity.tier == FactoryTier.ADVANCED) {
+                return MekanismUtils.getResource(ResourceType.GUI_ADVANCED_FACTORY, "infused.png");
+            } else if (tileEntity.tier == FactoryTier.ELITE) {
+                return MekanismUtils.getResource(ResourceType.GUI_ELITE_FACTORY, "infused.png");
+            } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+                return MekanismUtils.getResource(ResourceType.GUI_ULTIMATE_FACTORY, "infused.png");
+            } else
+                return MekanismUtils.getResource(ResourceType.GUI_CREATIVE_FACTORY, "infused.png");
 
-        }else if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.CHANCE || tileEntity.getRecipeType().getFuelType() == MachineFuelType.DOUBLE){
-            if (tileEntity.tier == FactoryTier.BASIC){
-                return MekanismUtils.getResource(ResourceType.GUI_BASIC_FACTORY,"extra.png");
-            }else if (tileEntity.tier == FactoryTier.ADVANCED){
-                return MekanismUtils.getResource(ResourceType.GUI_ADVANCED_FACTORY,"extra.png");
-            }else if (tileEntity.tier == FactoryTier.ELITE){
-                return MekanismUtils.getResource(ResourceType.GUI_ELITE_FACTORY,"extra.png");
-            }else if (tileEntity.tier == FactoryTier.ULTIMATE){
-                return MekanismUtils.getResource(ResourceType.GUI_ULTIMATE_FACTORY,"extra.png");
-            }else
-                return MekanismUtils.getResource(ResourceType.GUI_CREATIVE_FACTORY,"extra.png");
-        }else {
-            if (tileEntity.tier == FactoryTier.BASIC){
-                return MekanismUtils.getResource(ResourceType.GUI_BASIC_FACTORY,"default.png");
-            }else if (tileEntity.tier == FactoryTier.ADVANCED){
-                return MekanismUtils.getResource(ResourceType.GUI_ADVANCED_FACTORY,"default.png");
-            }else if (tileEntity.tier == FactoryTier.ELITE){
-                return MekanismUtils.getResource(ResourceType.GUI_ELITE_FACTORY,"default.png");
-            }else if (tileEntity.tier == FactoryTier.ULTIMATE){
-                return MekanismUtils.getResource(ResourceType.GUI_ULTIMATE_FACTORY,"default.png");
-            }else
-                return MekanismUtils.getResource(ResourceType.GUI_CREATIVE_FACTORY,"default.png");
+        } else if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.CHANCE || tileEntity.getRecipeType().getFuelType() == MachineFuelType.DOUBLE) {
+            if (tileEntity.tier == FactoryTier.BASIC) {
+                return MekanismUtils.getResource(ResourceType.GUI_BASIC_FACTORY, "extra.png");
+            } else if (tileEntity.tier == FactoryTier.ADVANCED) {
+                return MekanismUtils.getResource(ResourceType.GUI_ADVANCED_FACTORY, "extra.png");
+            } else if (tileEntity.tier == FactoryTier.ELITE) {
+                return MekanismUtils.getResource(ResourceType.GUI_ELITE_FACTORY, "extra.png");
+            } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+                return MekanismUtils.getResource(ResourceType.GUI_ULTIMATE_FACTORY, "extra.png");
+            } else
+                return MekanismUtils.getResource(ResourceType.GUI_CREATIVE_FACTORY, "extra.png");
+        } else {
+            if (tileEntity.tier == FactoryTier.BASIC) {
+                return MekanismUtils.getResource(ResourceType.GUI_BASIC_FACTORY, "default.png");
+            } else if (tileEntity.tier == FactoryTier.ADVANCED) {
+                return MekanismUtils.getResource(ResourceType.GUI_ADVANCED_FACTORY, "default.png");
+            } else if (tileEntity.tier == FactoryTier.ELITE) {
+                return MekanismUtils.getResource(ResourceType.GUI_ELITE_FACTORY, "default.png");
+            } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+                return MekanismUtils.getResource(ResourceType.GUI_ULTIMATE_FACTORY, "default.png");
+            } else
+                return MekanismUtils.getResource(ResourceType.GUI_CREATIVE_FACTORY, "default.png");
         }
     }
 

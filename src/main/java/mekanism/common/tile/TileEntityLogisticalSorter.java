@@ -1,8 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Iterator;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.IConfigCardAccess.ISpecialConfigData;
@@ -10,33 +8,18 @@ import mekanism.api.TileNetworkList;
 import mekanism.common.HashList;
 import mekanism.common.Mekanism;
 import mekanism.common.Upgrade;
-import mekanism.common.base.IComparatorSupport;
-import mekanism.common.base.ILogisticalTransporter;
-import mekanism.common.base.IRedstoneControl;
-import mekanism.common.base.ISustainedData;
-import mekanism.common.base.IUpgradeTile;
+import mekanism.common.base.*;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.capabilities.Capabilities;
-import mekanism.common.content.transporter.Finder;
-import mekanism.common.content.transporter.InvStack;
-import mekanism.common.content.transporter.StackSearcher;
-import mekanism.common.content.transporter.TItemStackFilter;
-import mekanism.common.content.transporter.TOreDictFilter;
-import mekanism.common.content.transporter.TransitRequest;
+import mekanism.common.content.transporter.*;
 import mekanism.common.content.transporter.TransitRequest.TransitResponse;
-import mekanism.common.content.transporter.TransporterFilter;
 import mekanism.common.integration.computer.IComputerIntegration;
 import mekanism.common.network.PacketTileEntity.TileEntityMessage;
 import mekanism.common.security.ISecurityTile;
 import mekanism.common.tile.component.TileComponentSecurity;
 import mekanism.common.tile.component.TileComponentUpgrade;
 import mekanism.common.tile.prefab.TileEntityEffectsBlock;
-import mekanism.common.util.CapabilityUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.StackUtils;
-import mekanism.common.util.TransporterUtils;
+import mekanism.common.util.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -51,8 +34,11 @@ import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+import javax.annotation.Nonnull;
+import java.util.Iterator;
+
 public class TileEntityLogisticalSorter extends TileEntityEffectsBlock implements IRedstoneControl, ISpecialConfigData, ISustainedData, ISecurityTile,
-      IComputerIntegration, IUpgradeTile, IComparatorSupport {
+        IComputerIntegration, IUpgradeTile, IComparatorSupport {
 
     public HashList<TransporterFilter> filters = new HashList<>();
     public RedstoneControl controlType = RedstoneControl.DISABLED;
@@ -547,8 +533,8 @@ public class TileEntityLogisticalSorter extends TileEntityEffectsBlock implement
                 return new Object[]{"Auto-eject mode set to " + autoEject};
             } else if (method == 3) {
                 if (arguments.length != 6 || !(arguments[0] instanceof String) || !(arguments[1] instanceof Double) ||
-                    !(arguments[2] instanceof String) || !(arguments[3] instanceof Boolean) ||
-                    !(arguments[4] instanceof Double) || !(arguments[5] instanceof Double)) {
+                        !(arguments[2] instanceof String) || !(arguments[3] instanceof Boolean) ||
+                        !(arguments[4] instanceof Double) || !(arguments[5] instanceof Double)) {
                     return new Object[]{"Invalid parameters."};
                 }
                 TItemStackFilter filter = new TItemStackFilter();

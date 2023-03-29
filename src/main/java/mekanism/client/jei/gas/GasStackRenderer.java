@@ -1,8 +1,5 @@
 package mekanism.client.jei.gas;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Nullable;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.client.render.MekanismRenderer;
@@ -22,6 +19,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.Fluid;
 import org.lwjgl.opengl.GL11;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GasStackRenderer implements IIngredientRenderer<GasStack> {
 
@@ -114,7 +115,7 @@ public class GasStackRenderer implements IIngredientRenderer<GasStack> {
     }
 
     private void drawTiledSprite(Minecraft minecraft, final int xPosition, final int yPosition, final int tiledWidth, final int tiledHeight, Gas gas, int scaledAmount,
-          TextureAtlasSprite sprite) {
+                                 TextureAtlasSprite sprite) {
         minecraft.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         MekanismRenderer.color(gas);
 

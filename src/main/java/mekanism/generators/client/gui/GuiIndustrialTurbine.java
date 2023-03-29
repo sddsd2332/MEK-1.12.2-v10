@@ -1,7 +1,5 @@
 package mekanism.generators.client.gui;
 
-import java.io.IOException;
-import java.util.Arrays;
 import mekanism.api.TileNetworkList;
 import mekanism.client.gui.GuiEmbeddedGaugeTile;
 import mekanism.client.gui.element.GuiEnergyInfo;
@@ -27,6 +25,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 @SideOnly(Side.CLIENT)
 public class GuiIndustrialTurbine extends GuiEmbeddedGaugeTile<TileEntityTurbineCasing> {
 
@@ -47,7 +48,7 @@ public class GuiIndustrialTurbine extends GuiEmbeddedGaugeTile<TileEntityTurbine
                     return 0;
                 }
                 double rate = Math.min(tileEntity.structure.lowerVolume * tileEntity.structure.clientDispersers * MekanismConfig.current().generators.turbineDisperserGasFlow.val(),
-                      tileEntity.structure.vents * MekanismConfig.current().generators.turbineVentGasFlow.val());
+                        tileEntity.structure.vents * MekanismConfig.current().generators.turbineVentGasFlow.val());
                 if (rate == 0) {
                     return 0;
                 }
@@ -56,9 +57,9 @@ public class GuiIndustrialTurbine extends GuiEmbeddedGaugeTile<TileEntityTurbine
         }, resource, 40, 13));
         addGuiElement(new GuiEnergyInfo(() -> {
             double producing = tileEntity.structure == null ? 0 : tileEntity.structure.clientFlow * (MekanismConfig.current().general.maxEnergyPerSteam.val() / TurbineUpdateProtocol.MAX_BLADES) *
-                                                                  Math.min(tileEntity.structure.blades, tileEntity.structure.coils * MekanismConfig.current().generators.turbineBladesPerCoil.val());
+                    Math.min(tileEntity.structure.blades, tileEntity.structure.coils * MekanismConfig.current().generators.turbineBladesPerCoil.val());
             return Arrays.asList(LangUtils.localize("gui.storing") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.getEnergy(), tileEntity.getMaxEnergy()),
-                  LangUtils.localize("gui.producing") + ": " + MekanismUtils.getEnergyDisplay(producing) + "/t");
+                    LangUtils.localize("gui.producing") + ": " + MekanismUtils.getEnergyDisplay(producing) + "/t");
         }, this, resource));
     }
 
@@ -68,11 +69,11 @@ public class GuiIndustrialTurbine extends GuiEmbeddedGaugeTile<TileEntityTurbine
         fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 5, 0x404040);
         if (tileEntity.structure != null) {
             double energyMultiplier = (MekanismConfig.current().general.maxEnergyPerSteam.val() / TurbineUpdateProtocol.MAX_BLADES) *
-                                      Math.min(tileEntity.structure.blades, tileEntity.structure.coils * MekanismConfig.current().generators.turbineBladesPerCoil.val());
+                    Math.min(tileEntity.structure.blades, tileEntity.structure.coils * MekanismConfig.current().generators.turbineBladesPerCoil.val());
             double rate = tileEntity.structure.lowerVolume * (tileEntity.structure.clientDispersers * MekanismConfig.current().generators.turbineDisperserGasFlow.val());
             rate = Math.min(rate, tileEntity.structure.vents * MekanismConfig.current().generators.turbineVentGasFlow.val());
             renderScaledText(LangUtils.localize("gui.production") + ": " +
-                             MekanismUtils.getEnergyDisplay(tileEntity.structure.clientFlow * energyMultiplier), 53, 26, 0x33ff99, 106);
+                    MekanismUtils.getEnergyDisplay(tileEntity.structure.clientFlow * energyMultiplier), 53, 26, 0x33ff99, 106);
             renderScaledText(LangUtils.localize("gui.flowRate") + ": " + tileEntity.structure.clientFlow + " mB/t", 53, 35, 0x33ff99, 106);
             renderScaledText(LangUtils.localize("gui.capacity") + ": " + tileEntity.structure.getFluidCapacity() + " mB", 53, 44, 0x33ff99, 106);
             renderScaledText(LangUtils.localize("gui.maxFlow") + ": " + rate + " mB/t", 53, 53, 0x33ff99, 106);
@@ -82,8 +83,8 @@ public class GuiIndustrialTurbine extends GuiEmbeddedGaugeTile<TileEntityTurbine
             int yAxis = mouseY - guiTop;
             if (xAxis >= 7 && xAxis <= 39 && yAxis >= 14 && yAxis <= 72) {
                 displayTooltip(tileEntity.structure.fluidStored != null
-                               ? LangUtils.localizeFluidStack(tileEntity.structure.fluidStored) + ": " + tileEntity.structure.fluidStored.amount + "mB"
-                               : LangUtils.localize("gui.empty"), xAxis, yAxis);
+                        ? LangUtils.localizeFluidStack(tileEntity.structure.fluidStored) + ": " + tileEntity.structure.fluidStored.amount + "mB"
+                        : LangUtils.localize("gui.empty"), xAxis, yAxis);
             }
         }
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);

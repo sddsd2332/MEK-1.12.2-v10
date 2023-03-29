@@ -18,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.Arrays;
 
-public class GuiCultivateElectricMachine <RECIPE extends CultivateMachineRecipe<RECIPE>> extends GuiMekanismTile<TileEntityCultivateElectricMachine<RECIPE>>{
+public class GuiCultivateElectricMachine<RECIPE extends CultivateMachineRecipe<RECIPE>> extends GuiMekanismTile<TileEntityCultivateElectricMachine<RECIPE>> {
 
     public GuiCultivateElectricMachine(InventoryPlayer inventory, TileEntityCultivateElectricMachine<RECIPE> tile) {
         super(tile, new ContainerCultivateElectricMachine<>(inventory, tile));
@@ -36,7 +36,7 @@ public class GuiCultivateElectricMachine <RECIPE extends CultivateMachineRecipe<
         }, this, resource));
         addGuiElement(new GuiSlot(GuiSlot.SlotType.INPUT, this, resource, 55, 16));
         addGuiElement(new GuiSlot(GuiSlot.SlotType.POWER, this, resource, 30, 34).with(GuiSlot.SlotOverlay.POWER));
-        addGuiElement(new GuiSlot(GuiSlot.SlotType.EXTRA_LOG, this, resource, 55-9, 53));
+        addGuiElement(new GuiSlot(GuiSlot.SlotType.EXTRA_LOG, this, resource, 55 - 9, 53));
         addGuiElement(new GuiSlot(GuiSlot.SlotType.OUTPUT_LARGE, this, resource, 111, 30));
         addGuiElement(new GuiProgress(new GuiProgress.IProgressInfoHandler() {
             @Override

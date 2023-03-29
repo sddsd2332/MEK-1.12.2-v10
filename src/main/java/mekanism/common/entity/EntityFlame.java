@@ -1,8 +1,6 @@
 package mekanism.common.entity;
 
 import io.netty.buffer.ByteBuf;
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.Pos3D;
 import mekanism.common.config.MekanismConfig;
@@ -29,6 +27,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.WorldEvents;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class EntityFlame extends Entity implements IEntityAdditionalSpawnData {
 
@@ -233,7 +234,7 @@ public class EntityFlame extends Entity implements IEntityAdditionalSpawnData {
     private void spawnParticlesAt(Pos3D pos) {
         for (int i = 0; i < 10; i++) {
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.x + (rand.nextFloat() - 0.5), pos.y + (rand.nextFloat() - 0.5),
-                  pos.z + (rand.nextFloat() - 0.5), 0, 0, 0);
+                    pos.z + (rand.nextFloat() - 0.5), 0, 0, 0);
         }
     }
 

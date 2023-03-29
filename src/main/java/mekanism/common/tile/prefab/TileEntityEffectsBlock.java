@@ -1,7 +1,6 @@
 package mekanism.common.tile.prefab;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.client.sound.SoundHandler;
 import mekanism.common.Mekanism;
@@ -20,20 +19,19 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 public abstract class TileEntityEffectsBlock extends TileEntityElectricBlock implements IActiveState {
 
+    // Number of ticks that the block can be inactive before it's considered not recently active
+    private final int RECENT_THRESHOLD = 100;
+    protected boolean isActive;
     private SoundEvent soundEvent;
-
     @SideOnly(Side.CLIENT)
     private ISound activeSound;
     private int playSoundCooldown = 0;
     private int rapidChangeThreshold = 10;
-
-    protected boolean isActive;
     private long lastActive = -1;
-
-    // Number of ticks that the block can be inactive before it's considered not recently active
-    private final int RECENT_THRESHOLD = 100;
 
 
     /**

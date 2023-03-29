@@ -1,7 +1,6 @@
 package mekanism.common.tile.component;
 
 import io.netty.buffer.ByteBuf;
-import java.util.UUID;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
@@ -15,6 +14,8 @@ import mekanism.common.security.SecurityFrequency;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.UUID;
 
 public class TileComponentSecurity implements ITileComponent {
 

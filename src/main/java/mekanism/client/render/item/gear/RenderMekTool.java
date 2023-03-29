@@ -17,8 +17,8 @@ import javax.annotation.Nonnull;
 @SideOnly(Side.CLIENT)
 public class RenderMekTool extends MekanismItemStackRenderer {
 
-    private static ModelMekTool mekTool = new ModelMekTool();
     public static ItemLayerWrapper model;
+    private static ModelMekTool mekTool = new ModelMekTool();
 
     @Override
     protected void renderBlockSpecific(@Nonnull ItemStack stack, TransformType transformType) {

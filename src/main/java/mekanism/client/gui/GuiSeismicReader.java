@@ -1,10 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.client.gui.button.GuiButtonSeismicReader;
 import mekanism.client.render.MekanismRenderer;
@@ -26,6 +21,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.util.Rectangle;
+
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class GuiSeismicReader extends GuiScreen {
@@ -150,7 +151,7 @@ public class GuiSeismicReader extends GuiScreen {
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(guiLeft + 72, guiTop + 26, 0);
-       // GlStateManager.scale(0.7F, 0.7F, 0.7F);
+        // GlStateManager.scale(0.7F, 0.7F, 0.7F);
         fontRenderer.drawString(LangUtils.localize("gui.abundancy") + ": " + frequency, 0, 0, 0x33ff99);
         GlStateManager.popMatrix();
         MekanismRenderer.resetColor();

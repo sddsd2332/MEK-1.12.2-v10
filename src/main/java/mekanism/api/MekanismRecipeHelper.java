@@ -86,6 +86,7 @@ public interface MekanismRecipeHelper {
      * @param output - output GasStack
      */
     void addChemicalOxidizerRecipe(ItemStack input, GasStack output);
+
     /**
      * Add a Nutritional Liquifier recipe.
      *
@@ -165,9 +166,9 @@ public interface MekanismRecipeHelper {
      * @param ticks       - amount of ticks it takes for this recipe to complete
      */
     void addPRCRecipe(ItemStack inputSolid, FluidStack inputFluid, GasStack inputGas, ItemStack outputSolid,
-          GasStack outputGas, double extraEnergy, int ticks);
+                      GasStack outputGas, double extraEnergy, int ticks);
 
-    void addAntiprotonicNucleosynthesizerRecipe(ItemStack inputSolid,  GasStack inputGas, ItemStack outputSolid, double extraEnergy, int ticks);
+    void addAntiprotonicNucleosynthesizerRecipe(ItemStack inputSolid, GasStack inputGas, ItemStack outputSolid, double extraEnergy, int ticks);
 
     void addThermalEvaporationRecipe(FluidStack inputFluid, FluidStack outputFluid);
 
@@ -175,12 +176,12 @@ public interface MekanismRecipeHelper {
 
     void addIsotopicRecipe(GasStack inputGas, GasStack outputGas);
 
-   // void addSPSRecipe(GasStack inputGas, GasStack outputGas);
+    // void addSPSRecipe(GasStack inputGas, GasStack outputGas);
 
 
-    void addOrganicFarmRecipe(ItemStack input,Gas gas, ItemStack primaryOutput, ItemStack secondaryOutput, double chance);
+    void addOrganicFarmRecipe(ItemStack input, Gas gas, ItemStack primaryOutput, ItemStack secondaryOutput, double chance);
 
-    void addOrganicFarmRecipe(ItemStack input,Gas gas, ItemStack primaryOutput);
+    void addOrganicFarmRecipe(ItemStack input, Gas gas, ItemStack primaryOutput);
 
     void addAmbientGas(int dimensionID, GasStack outputGas);
 
@@ -194,7 +195,7 @@ public interface MekanismRecipeHelper {
 
     void addAlloyRecipe(ItemStack input, ItemStack extra, ItemStack output);
 
-    void addCellCultivateRecipe(ItemStack input, ItemStack extra,Gas gas,ItemStack output);
+    void addCellCultivateRecipe(ItemStack input, ItemStack extra, Gas gas, ItemStack output);
 
     void addCellExtractorRecipe(ItemStack input, ItemStack primaryOutput, ItemStack secondaryOutput, double chance);
 

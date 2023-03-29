@@ -1,25 +1,13 @@
 package mekanism.common.block;
 
-import java.util.Random;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.IMekWrench;
 import mekanism.api.energy.IEnergizedItem;
 import mekanism.api.energy.IStrictEnergyStorage;
 import mekanism.client.render.particle.MekanismParticleHelper;
 import mekanism.common.Mekanism;
-import mekanism.common.base.IActiveState;
-import mekanism.common.base.IBoundingBlock;
-import mekanism.common.base.IComparatorSupport;
-import mekanism.common.base.IFactory;
+import mekanism.common.base.*;
 import mekanism.common.base.IFactory.RecipeType;
-import mekanism.common.base.IRedstoneControl;
-import mekanism.common.base.ISideConfiguration;
-import mekanism.common.base.ISustainedData;
-import mekanism.common.base.ISustainedInventory;
-import mekanism.common.base.ISustainedTank;
-import mekanism.common.base.ITierItem;
-import mekanism.common.base.IUpgradeTile;
 import mekanism.common.block.states.BlockStateFacing;
 import mekanism.common.block.states.BlockStateMachine;
 import mekanism.common.block.states.BlockStateMachine.MachineBlock;
@@ -37,14 +25,7 @@ import mekanism.common.tile.*;
 import mekanism.common.tile.prefab.TileEntityBasicBlock;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import mekanism.common.tile.transmitter.TileEntitySuperchargedCoil;
-import mekanism.common.util.FluidContainerUtils;
-import mekanism.common.util.InventoryUtils;
-import mekanism.common.util.ItemDataUtils;
-import mekanism.common.util.MekanismUtils;
-import mekanism.common.util.MultipartUtils;
-import mekanism.common.util.PipeUtils;
-import mekanism.common.util.SecurityUtils;
-import mekanism.common.util.StackUtils;
+import mekanism.common.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -61,18 +42,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.RayTraceResult.Type;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -81,6 +53,9 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
 
 /**
  * Block class for handling multiple machine block IDs. 0:0: Enrichment Chamber 0:1: Osmium Compressor 0:2: Combiner 0:3: Crusher 0:4: Digital Miner 0:5: Basic Factory
@@ -269,8 +244,8 @@ public abstract class BlockMachine extends BlockMekanismContainer {
         if (MekanismConfig.current().client.enableAmbientLighting.val()) {
             TileEntity tileEntity = MekanismUtils.getTileEntitySafe(world, pos);
             if (tileEntity instanceof IActiveState &&
-                ((IActiveState) tileEntity).lightUpdate() &&
-                ((IActiveState) tileEntity).wasActiveRecently()) {
+                    ((IActiveState) tileEntity).lightUpdate() &&
+                    ((IActiveState) tileEntity).wasActiveRecently()) {
                 return MekanismConfig.current().client.ambientLightingLevel.val();
             }
         }
@@ -680,8 +655,8 @@ public abstract class BlockMachine extends BlockMekanismContainer {
         switch (type) {
             case CHARGEPAD:
                 return CHARGEPAD_BOUNDS;
-           // case INDUSTRIAL_ALARM:
-                //return INDUSTRIAL_ALARM_BOUNDS;
+            // case INDUSTRIAL_ALARM:
+            //return INDUSTRIAL_ALARM_BOUNDS;
             case FLUID_TANK:
                 return TANK_BOUNDS;
             case LASER:
@@ -714,7 +689,7 @@ public abstract class BlockMachine extends BlockMekanismContainer {
         if (type != null) {
             switch (type) {
                 case CHARGEPAD:
-              //  case INDUSTRIAL_ALARM:
+                    //  case INDUSTRIAL_ALARM:
                 case PERSONAL_CHEST:
                     return false;
                 case FLUID_TANK:
@@ -740,7 +715,7 @@ public abstract class BlockMachine extends BlockMekanismContainer {
                 case FLUIDIC_PLENISHER:
                     return face == EnumFacing.UP || face == EnumFacing.DOWN ? BlockFaceShape.CENTER_BIG : BlockFaceShape.UNDEFINED;
                 case CHARGEPAD:
-            //    case INDUSTRIAL_ALARM:
+                    //    case INDUSTRIAL_ALARM:
                     return face == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
                 case FLUID_TANK:
                     return face != EnumFacing.UP && face != EnumFacing.DOWN ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;

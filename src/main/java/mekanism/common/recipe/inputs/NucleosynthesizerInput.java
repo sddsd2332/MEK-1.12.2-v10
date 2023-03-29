@@ -35,10 +35,10 @@ public class NucleosynthesizerInput extends MachineInput<NucleosynthesizerInput>
      */
     @Override
     public boolean isValid() {
-        return !theSolid.isEmpty()  && theGas != null;
+        return !theSolid.isEmpty() && theGas != null;
     }
 
-    public boolean use(NonNullList<ItemStack> inventory, int index,  GasTank gasTank, boolean deplete) {
+    public boolean use(NonNullList<ItemStack> inventory, int index, GasTank gasTank, boolean deplete) {
         if (meets(new NucleosynthesizerInput(inventory.get(index), gasTank.getGas()))) {
             if (deplete) {
                 inventory.set(index, StackUtils.subtract(inventory.get(index), theSolid));
@@ -53,7 +53,6 @@ public class NucleosynthesizerInput extends MachineInput<NucleosynthesizerInput>
      * Whether or not this PressurizedReactants's ItemStack entry's item type is equal to the item type of the given item.
      *
      * @param stack - stack to check
-     *
      * @return if the stack's item type is contained in this PressurizedReactants
      */
     public boolean containsType(ItemStack stack) {
@@ -68,7 +67,6 @@ public class NucleosynthesizerInput extends MachineInput<NucleosynthesizerInput>
      * Whether or not this PressurizedReactants's GasStack entry's gas type is equal to the gas type of the given gas.
      *
      * @param stack - stack to check
-     *
      * @return if the stack's gas type is contained in this PressurizedReactants
      */
     public boolean containsType(GasStack stack) {
@@ -82,7 +80,6 @@ public class NucleosynthesizerInput extends MachineInput<NucleosynthesizerInput>
      * Actual implementation of meetsInput(), performs the checks.
      *
      * @param input - input to check
-     *
      * @return if the input meets this input's requirements
      */
     public boolean meets(NucleosynthesizerInput input) {
@@ -92,12 +89,12 @@ public class NucleosynthesizerInput extends MachineInput<NucleosynthesizerInput>
         if (!(StackUtils.equalsWildcard(input.theSolid, theSolid) && input.theGas.isGasEqual(theGas))) {
             return false;
         }
-        return input.theSolid.getCount() >= theSolid.getCount()  && input.theGas.amount >= theGas.amount;
+        return input.theSolid.getCount() >= theSolid.getCount() && input.theGas.amount >= theGas.amount;
     }
 
     @Override
     public NucleosynthesizerInput copy() {
-        return new NucleosynthesizerInput(theSolid.copy(),  theGas.copy());
+        return new NucleosynthesizerInput(theSolid.copy(), theGas.copy());
     }
 
     public ItemStack getSolid() {
@@ -116,7 +113,7 @@ public class NucleosynthesizerInput extends MachineInput<NucleosynthesizerInput>
 
     @Override
     public boolean testEquality(NucleosynthesizerInput other) {
-        return other.containsType(theSolid)  && other.containsType(theGas);
+        return other.containsType(theSolid) && other.containsType(theGas);
     }
 
     @Override

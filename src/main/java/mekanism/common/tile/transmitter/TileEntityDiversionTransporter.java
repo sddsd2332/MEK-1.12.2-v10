@@ -1,9 +1,6 @@
 package mekanism.common.tile.transmitter;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Map;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
@@ -17,6 +14,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.TextComponentString;
+
+import javax.annotation.Nonnull;
+import java.util.Map;
+import java.util.Set;
 
 public class TileEntityDiversionTransporter extends TileEntityLogisticalTransporter {
 
@@ -106,7 +107,7 @@ public class TileEntityDiversionTransporter extends TileEntityLogisticalTranspor
         refreshConnections();
         notifyTileChange();
         player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + EnumColor.GREY + " " +
-                                                   LangUtils.localize("tooltip.configurator.toggleDiverter") + ": " + EnumColor.RED + description));
+                LangUtils.localize("tooltip.configurator.toggleDiverter") + ": " + EnumColor.RED + description));
         Mekanism.packetHandler.sendUpdatePacket(this);
         return EnumActionResult.SUCCESS;
     }

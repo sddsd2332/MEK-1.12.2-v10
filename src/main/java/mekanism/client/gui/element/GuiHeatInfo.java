@@ -1,7 +1,5 @@
 package mekanism.client.gui.element;
 
-import java.util.ArrayList;
-import java.util.List;
 import mekanism.client.gui.IGuiWrapper;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.util.LangUtils;
@@ -11,6 +9,9 @@ import mekanism.common.util.UnitDisplayUtils.TempType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiHeatInfo extends GuiElement {
@@ -37,7 +38,7 @@ public class GuiHeatInfo extends GuiElement {
         mc.renderEngine.bindTexture(RESOURCE);
         guiObj.drawTexturedRect(guiWidth - 26, guiHeight + 112, 0, 0, 26, 26);
         int outputOrdinal = (MekanismConfig.current().general.tempUnit.val().ordinal() + 1) % TempType.values().length;
-        guiObj.drawTexturedRect(guiWidth - 21, guiHeight + 116, 26 + 18 * outputOrdinal,inBounds(xAxis, yAxis) ? 0 : 0, 18, 18);
+        guiObj.drawTexturedRect(guiWidth - 21, guiHeight + 116, 26 + 18 * outputOrdinal, inBounds(xAxis, yAxis) ? 0 : 0, 18, 18);
         mc.renderEngine.bindTexture(defaultLocation);
     }
 

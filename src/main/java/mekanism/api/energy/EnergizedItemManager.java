@@ -9,7 +9,6 @@ public class EnergizedItemManager {
      *
      * @param itemStack - ItemStack to discharge
      * @param amount    - amount of energy to discharge from the item, usually the total amount of energy needed in a TileEntity
-     *
      * @return amount of energy discharged
      */
     public static double discharge(ItemStack itemStack, double amount) {
@@ -29,7 +28,6 @@ public class EnergizedItemManager {
      *
      * @param itemStack - ItemStack to charge
      * @param amount    - amount of energy to charge the item with, usually the total amount of energy stored in a TileEntity
-     *
      * @return amount of energy charged
      */
     public static double charge(ItemStack itemStack, double amount) {
@@ -37,7 +35,7 @@ public class EnergizedItemManager {
             IEnergizedItem energizedItem = (IEnergizedItem) itemStack.getItem();
             if (energizedItem.canReceive(itemStack)) {
                 double energyToSend = Math.min(energizedItem.getMaxTransfer(itemStack),
-                      Math.min(energizedItem.getMaxEnergy(itemStack) - energizedItem.getEnergy(itemStack), amount));
+                        Math.min(energizedItem.getMaxEnergy(itemStack) - energizedItem.getEnergy(itemStack), amount));
                 energizedItem.setEnergy(itemStack, energizedItem.getEnergy(itemStack) + energyToSend);
                 return energyToSend;
             }

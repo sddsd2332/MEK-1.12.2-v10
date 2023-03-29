@@ -32,13 +32,12 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public abstract class TileEntityCultivateElectricMachine <RECIPE extends CultivateMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<CultivateMachineInput, ItemStackOutput, RECIPE> implements IGasHandler, ISustainedData {
-
-    private static final String[] methods = new String[]{"getEnergy", "getSecondaryStored", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy",
-            "getEnergyNeeded"};
+public abstract class TileEntityCultivateElectricMachine<RECIPE extends CultivateMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<CultivateMachineInput, ItemStackOutput, RECIPE> implements IGasHandler, ISustainedData {
 
     public static final int BASE_TICKS_REQUIRED = 200;
     public static final int BASE_GAS_PER_TICK = 1;
+    private static final String[] methods = new String[]{"getEnergy", "getSecondaryStored", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy",
+            "getEnergyNeeded"};
     public static int MAX_GAS = 210;
 
     public int BASE_SECONDARY_ENERGY_PER_TICK;
@@ -48,7 +47,7 @@ public abstract class TileEntityCultivateElectricMachine <RECIPE extends Cultiva
     public GasTank gasTank;
     public Gas prevGas;
 
-    public TileEntityCultivateElectricMachine(String soundPath, BlockStateMachine.MachineType type, int ticksRequired, int secondaryPerTick){
+    public TileEntityCultivateElectricMachine(String soundPath, BlockStateMachine.MachineType type, int ticksRequired, int secondaryPerTick) {
         super(soundPath, type, 5, ticksRequired, MekanismUtils.getResource(MekanismUtils.ResourceType.GUI, "GuiAdvancedMachine.png"));
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY);
 
@@ -175,7 +174,7 @@ public abstract class TileEntityCultivateElectricMachine <RECIPE extends Cultiva
                     return true;
                 }
             }
-        }else if (slotID == 2)  {
+        } else if (slotID == 2) {
             return getItemGas(itemstack) != null;
         }
         return false;
@@ -183,7 +182,7 @@ public abstract class TileEntityCultivateElectricMachine <RECIPE extends Cultiva
 
     @Override
     public CultivateMachineInput getInput() {
-        return new CultivateMachineInput(inventory.get(0),inventory.get(1), prevGas);
+        return new CultivateMachineInput(inventory.get(0), inventory.get(1), prevGas);
     }
 
     @Override
@@ -197,13 +196,13 @@ public abstract class TileEntityCultivateElectricMachine <RECIPE extends Cultiva
 
     @Override
     public void operate(RECIPE recipe) {
-        recipe.operate(inventory, 0, 1,3,gasTank, secondaryEnergyThisTick );
+        recipe.operate(inventory, 0, 1, 3, gasTank, secondaryEnergyThisTick);
         markDirty();
     }
 
     @Override
     public boolean canOperate(RECIPE recipe) {
-        return recipe != null && recipe.canOperate(inventory, 0, 1,  gasTank, secondaryEnergyThisTick,3);
+        return recipe != null && recipe.canOperate(inventory, 0, 1, gasTank, secondaryEnergyThisTick, 3);
     }
 
     @Override
@@ -302,8 +301,8 @@ public abstract class TileEntityCultivateElectricMachine <RECIPE extends Cultiva
     }
 
     @Override
-    public Map<CultivateMachineInput,RECIPE> getRecipes(){
-        return null ;
+    public Map<CultivateMachineInput, RECIPE> getRecipes() {
+        return null;
     }
 
     @Override

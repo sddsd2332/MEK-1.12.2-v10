@@ -1,7 +1,6 @@
 package mekanism.generators.common.tile.reactor;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.common.integration.computer.IComputerIntegration;
 import mekanism.common.util.LangUtils;
@@ -10,11 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import javax.annotation.Nonnull;
+
 public class TileEntityReactorLogicAdapter extends TileEntityReactorBlock implements IComputerIntegration {
 
     private static final String[] methods = new String[]{"isIgnited", "canIgnite", "getPlasmaHeat", "getMaxPlasmaHeat", "getCaseHeat", "getMaxCaseHeat",
-                                                         "getInjectionRate", "setInjectionRate", "hasFuel", "getProducing", "getIgnitionTemp", "getEnergy",
-                                                         "getMaxEnergy", "getWater", "getSteam", "getFuel", "getDeuterium", "getTritium"};
+            "getInjectionRate", "setInjectionRate", "hasFuel", "getProducing", "getIgnitionTemp", "getEnergy",
+            "getMaxEnergy", "getWater", "getSteam", "getFuel", "getDeuterium", "getTritium"};
     public ReactorLogic logicType = ReactorLogic.DISABLED;
     public boolean activeCooled;
     public boolean prevOutputting;
@@ -57,7 +58,7 @@ public class TileEntityReactorLogicAdapter extends TileEntityReactorBlock implem
                 return getReactor().getPlasmaTemp() >= getReactor().getMaxPlasmaTemperature(activeCooled);
             case DEPLETED:
                 return (getReactor().getDeuteriumTank().getStored() < getReactor().getInjectionRate() / 2) ||
-                       (getReactor().getTritiumTank().getStored() < getReactor().getInjectionRate() / 2);
+                        (getReactor().getTritiumTank().getStored() < getReactor().getInjectionRate() / 2);
             default:
                 return false;
         }
@@ -142,7 +143,7 @@ public class TileEntityReactorLogicAdapter extends TileEntityReactorBlock implem
                 return new Object[]{"Invalid parameters."};
             case 8:
                 return new Object[]{(getReactor().getDeuteriumTank().getStored() >= getReactor().getInjectionRate() / 2) &&
-                                    (getReactor().getTritiumTank().getStored() >= getReactor().getInjectionRate() / 2)};
+                        (getReactor().getTritiumTank().getStored() >= getReactor().getInjectionRate() / 2)};
             case 9:
                 return new Object[]{getReactor().getPassiveGeneration(false, true)};
             case 10:

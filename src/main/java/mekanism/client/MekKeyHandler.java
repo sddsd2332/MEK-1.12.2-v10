@@ -1,11 +1,12 @@
 package mekanism.client;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.List;
 import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
 
 public abstract class MekKeyHandler {
 

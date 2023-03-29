@@ -8,18 +8,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class CultivateMachineInput extends MachineInput<CultivateMachineInput>implements IWildInput<CultivateMachineInput> {
+public class CultivateMachineInput extends MachineInput<CultivateMachineInput> implements IWildInput<CultivateMachineInput> {
     public ItemStack itemStack = ItemStack.EMPTY;
     public ItemStack extraStack = ItemStack.EMPTY;
     public Gas gasType;
 
-    public CultivateMachineInput(ItemStack item , ItemStack extra, Gas gas){
+    public CultivateMachineInput(ItemStack item, ItemStack extra, Gas gas) {
         itemStack = item;
         extraStack = extra;
         gasType = gas;
     }
 
-    public CultivateMachineInput(){}
+    public CultivateMachineInput() {
+    }
 
     @Override
     public void load(NBTTagCompound nbtTags) {
@@ -29,8 +30,8 @@ public class CultivateMachineInput extends MachineInput<CultivateMachineInput>im
     }
 
     @Override
-    public CultivateMachineInput copy(){
-        return new CultivateMachineInput(itemStack.copy(),extraStack.copy(),gasType);
+    public CultivateMachineInput copy() {
+        return new CultivateMachineInput(itemStack.copy(), extraStack.copy(), gasType);
     }
 
     @Override
@@ -64,19 +65,19 @@ public class CultivateMachineInput extends MachineInput<CultivateMachineInput>im
         return false;
     }
 
-    public boolean matches(CultivateMachineInput input){
-        return  StackUtils.equalsWildcard(itemStack,input.itemStack)&& input.itemStack.getCount()>= itemStack.getCount()
-                && StackUtils.equalsWildcard(extraStack,input.extraStack)&& input.extraStack.getCount()>= extraStack.getCount();
+    public boolean matches(CultivateMachineInput input) {
+        return StackUtils.equalsWildcard(itemStack, input.itemStack) && input.itemStack.getCount() >= itemStack.getCount()
+                && StackUtils.equalsWildcard(extraStack, input.extraStack) && input.extraStack.getCount() >= extraStack.getCount();
     }
 
     @Override
     public int hashIngredients() {
-        return  StackUtils.hashItemStack(itemStack) ^ Integer.reverse(StackUtils.hashItemStack(extraStack)) | gasType.getID();
-    //    return StackUtils.hashItemStack(itemStack) << 8 | gasType.getID();
+        return StackUtils.hashItemStack(itemStack) ^ Integer.reverse(StackUtils.hashItemStack(extraStack)) | gasType.getID();
+        //    return StackUtils.hashItemStack(itemStack) << 8 | gasType.getID();
     }
 
     @Override
-    public boolean testEquality(CultivateMachineInput other){
+    public boolean testEquality(CultivateMachineInput other) {
         if (!isValid()) {
             return !other.isValid();
         }

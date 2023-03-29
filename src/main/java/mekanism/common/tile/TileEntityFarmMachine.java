@@ -9,6 +9,7 @@ import mekanism.common.MekanismItems;
 import mekanism.common.SideData;
 import mekanism.common.Upgrade;
 import mekanism.common.base.ISustainedData;
+import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.GasConversionHandler;
 import mekanism.common.recipe.RecipeHandler;
@@ -18,7 +19,6 @@ import mekanism.common.recipe.outputs.ChanceOutput;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityUpgradeableMachine;
-import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,12 +32,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<AdvancedMachineInput, ChanceOutput, RECIPE>implements IGasHandler, ISustainedData {
-
-    private static final String[] methods = new String[]{"getEnergy","getSecondaryStored","getProgress","isActive","facing","canOperate", "getMaxEnergy", "getEnergyNeeded"};
+public abstract class TileEntityFarmMachine<RECIPE extends FarmMachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<AdvancedMachineInput, ChanceOutput, RECIPE> implements IGasHandler, ISustainedData {
 
     public static final int BASE_TICKS_REQUIRED = 200;
     public static final int BASE_GAS_PER_TICK = 1;
+    private static final String[] methods = new String[]{"getEnergy", "getSecondaryStored", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded"};
     public static int MAX_GAS = 210;
 
     /**
@@ -52,13 +51,13 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
     public GasTank gasTank;
     public Gas prevGas;
 
-    public TileEntityFarmMachine(String soundPath, MachineType type, int ticksRequired,int secondaryPerTick){
+    public TileEntityFarmMachine(String soundPath, MachineType type, int ticksRequired, int secondaryPerTick) {
         super(soundPath, type, 5, ticksRequired, MekanismUtils.getResource(MekanismUtils.ResourceType.GUI, "GuiAdvancedMachine.png"));
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Input", EnumColor.RED, new int[]{0}));
-        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{2,4}));
+        configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{2, 4}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Energy", EnumColor.BRIGHT_GREEN, new int[]{3}));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Extra", EnumColor.YELLOW, new int[]{1}));
 
@@ -107,7 +106,7 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
             boolean inactive = false;
             RECIPE recipe = getRecipe();
             secondaryEnergyThisTick = useStatisticalMechanics() ? StatUtils.inversePoisson(secondaryEnergyPerTick) : (int) Math.ceil(secondaryEnergyPerTick);
-            if (canOperate(recipe) && MekanismUtils.canFunction(this) && getEnergy() >= energyPerTick&& gasTank.getStored() >= secondaryEnergyThisTick){
+            if (canOperate(recipe) && MekanismUtils.canFunction(this) && getEnergy() >= energyPerTick && gasTank.getStored() >= secondaryEnergyThisTick) {
                 setActive(true);
                 operatingTicks++;
                 if (operatingTicks >= ticksRequired) {
@@ -129,6 +128,7 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
             }
         }
     }
+
     public void handleSecondaryFuel() {
         ItemStack itemStack = inventory.get(1);
         int needed = gasTank.getNeeded();
@@ -183,20 +183,20 @@ public abstract class TileEntityFarmMachine <RECIPE extends FarmMachineRecipe<RE
     public RECIPE getRecipe() {
         AdvancedMachineInput input = getInput();
         if (cachedRecipe == null || !input.testEquality(cachedRecipe.getInput())) {
-            cachedRecipe = RecipeHandler.getFarmRecipe(input,getRecipes());
+            cachedRecipe = RecipeHandler.getFarmRecipe(input, getRecipes());
         }
         return cachedRecipe;
     }
 
     @Override
     public void operate(RECIPE recipe) {
-        recipe.operate(inventory, 0,  gasTank, secondaryEnergyThisTick,2,4);
+        recipe.operate(inventory, 0, gasTank, secondaryEnergyThisTick, 2, 4);
         markDirty();
     }
 
     @Override
     public boolean canOperate(RECIPE recipe) {
-        return recipe != null && recipe.canOperate(inventory, 0, gasTank, secondaryEnergyThisTick,2,4);
+        return recipe != null && recipe.canOperate(inventory, 0, gasTank, secondaryEnergyThisTick, 2, 4);
     }
 
     @Override

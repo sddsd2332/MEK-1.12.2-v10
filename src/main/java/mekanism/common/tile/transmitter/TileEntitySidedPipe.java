@@ -1,10 +1,6 @@
 package mekanism.common.tile.transmitter;
 
 import io.netty.buffer.ByteBuf;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import javax.annotation.Nonnull;
 import mcmultipart.api.multipart.IMultipart;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
@@ -49,6 +45,11 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public abstract class TileEntitySidedPipe extends TileEntity implements ITileNetwork, IBlockableConnection, IConfigurable, ITransmitter, ITickable {
 
     public int delayTicks;
@@ -57,17 +58,13 @@ public abstract class TileEntitySidedPipe extends TileEntity implements ITileNet
     public byte currentTransmitterConnections = 0x00;
 
     public boolean sendDesc = false;
-    private boolean redstonePowered = false;
-
-    private boolean redstoneReactive = false;
-
     public boolean forceUpdate = true;
-
-    private boolean redstoneSet = false;
-
     public ConnectionType[] connectionTypes = {ConnectionType.NORMAL, ConnectionType.NORMAL, ConnectionType.NORMAL,
-                                               ConnectionType.NORMAL, ConnectionType.NORMAL, ConnectionType.NORMAL};
+            ConnectionType.NORMAL, ConnectionType.NORMAL, ConnectionType.NORMAL};
     public TileEntity[] cachedAcceptors = new TileEntity[6];
+    private boolean redstonePowered = false;
+    private boolean redstoneReactive = false;
+    private boolean redstoneSet = false;
 
     public static boolean connectionMapContainsSide(byte connections, EnumFacing side) {
         byte tester = (byte) (1 << side.ordinal());
@@ -132,8 +129,8 @@ public abstract class TileEntitySidedPipe extends TileEntity implements ITileNet
             if (canConnectMutual(side)) {
                 TileEntity tileEntity = MekanismUtils.getTileEntity(world, getPos().offset(side));
                 if (CapabilityUtils.hasCapability(tileEntity, Capabilities.GRID_TRANSMITTER_CAPABILITY, side.getOpposite())
-                    && TransmissionType.checkTransmissionType(CapabilityUtils.getCapability(tileEntity, Capabilities.GRID_TRANSMITTER_CAPABILITY, side.getOpposite()),
-                      getTransmitterType().getTransmission()) && isValidTransmitter(tileEntity)) {
+                        && TransmissionType.checkTransmissionType(CapabilityUtils.getCapability(tileEntity, Capabilities.GRID_TRANSMITTER_CAPABILITY, side.getOpposite()),
+                        getTransmitterType().getTransmission()) && isValidTransmitter(tileEntity)) {
                     connections |= 1 << side.ordinal();
                 }
             }
@@ -169,8 +166,8 @@ public abstract class TileEntitySidedPipe extends TileEntity implements ITileNet
         if (canConnectMutual(side)) {
             TileEntity tileEntity = MekanismUtils.getTileEntity(world, getPos().offset(side));
             return CapabilityUtils.hasCapability(tileEntity, Capabilities.GRID_TRANSMITTER_CAPABILITY, side.getOpposite())
-                   && TransmissionType.checkTransmissionType(CapabilityUtils.getCapability(tileEntity, Capabilities.GRID_TRANSMITTER_CAPABILITY, side.getOpposite()),
-                  getTransmitterType().getTransmission()) && isValidTransmitter(tileEntity);
+                    && TransmissionType.checkTransmissionType(CapabilityUtils.getCapability(tileEntity, Capabilities.GRID_TRANSMITTER_CAPABILITY, side.getOpposite()),
+                    getTransmitterType().getTransmission()) && isValidTransmitter(tileEntity);
         }
         return false;
     }
@@ -588,7 +585,7 @@ public abstract class TileEntitySidedPipe extends TileEntity implements ITileNet
             refreshConnections();
             notifyTileChange();
             player.sendMessage(new TextComponentString(EnumColor.DARK_BLUE + Mekanism.LOG_TAG + EnumColor.GREY + " Redstone sensitivity turned " + EnumColor.INDIGO
-                                                       + (redstoneReactive ? "on." : "off.")));
+                    + (redstoneReactive ? "on." : "off.")));
         }
         return EnumActionResult.SUCCESS;
     }
@@ -618,13 +615,13 @@ public abstract class TileEntitySidedPipe extends TileEntity implements ITileNet
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing) {
         return capability == Capabilities.CONFIGURABLE_CAPABILITY || capability == Capabilities.TILE_NETWORK_CAPABILITY
-               || capability == Capabilities.BLOCKABLE_CONNECTION_CAPABILITY || super.hasCapability(capability, facing);
+                || capability == Capabilities.BLOCKABLE_CONNECTION_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
         if (capability == Capabilities.CONFIGURABLE_CAPABILITY || capability == Capabilities.TILE_NETWORK_CAPABILITY
-            || capability == Capabilities.BLOCKABLE_CONNECTION_CAPABILITY) {
+                || capability == Capabilities.BLOCKABLE_CONNECTION_CAPABILITY) {
             return (T) this;
         }
         return super.getCapability(capability, facing);

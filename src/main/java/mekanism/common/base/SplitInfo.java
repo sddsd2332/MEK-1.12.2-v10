@@ -2,8 +2,8 @@ package mekanism.common.base;
 
 public abstract class SplitInfo<TYPE extends Number & Comparable<TYPE>> {
 
-    protected int toSplitAmong;
     public boolean amountPerChanged = false;
+    protected int toSplitAmong;
 
     private SplitInfo(int totalTargets) {
         this.toSplitAmong = totalTargets;

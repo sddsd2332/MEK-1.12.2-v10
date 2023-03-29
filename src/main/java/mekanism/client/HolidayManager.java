@@ -1,8 +1,5 @@
 package mekanism.client;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
 import mekanism.common.config.MekanismConfig;
@@ -10,6 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public final class HolidayManager {
 

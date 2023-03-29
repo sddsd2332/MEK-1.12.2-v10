@@ -1,6 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
 import mekanism.api.TileNetworkList;
 import mekanism.client.gui.element.GuiRedstoneControl;
 import mekanism.client.gui.element.gauge.GuiGauge.Type;
@@ -23,6 +22,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public class GuiLaserAmplifier extends GuiMekanismTile<TileEntityLaserAmplifier> {
@@ -65,7 +66,7 @@ public class GuiLaserAmplifier extends GuiMekanismTile<TileEntityLaserAmplifier>
         fontRenderer.drawString(tileEntity.getName(), 55, 6, 0x404040);
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
         fontRenderer.drawString(tileEntity.time > 0 ? LangUtils.localize("gui.delay") + ": " + tileEntity.time + "t"
-                                                    : LangUtils.localize("gui.noDelay"), 26, 30, 0x404040);
+                : LangUtils.localize("gui.noDelay"), 26, 30, 0x404040);
         fontRenderer.drawString(LangUtils.localize("gui.min") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.minThreshold), 26, 45, 0x404040);
         fontRenderer.drawString(LangUtils.localize("gui.max") + ": " + MekanismUtils.getEnergyDisplay(tileEntity.maxThreshold), 26, 60, 0x404040);
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);

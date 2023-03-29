@@ -1,12 +1,5 @@
 package mekanism.client.gui;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.client.render.MekanismRenderer;
@@ -14,11 +7,7 @@ import mekanism.client.sound.SoundHandler;
 import mekanism.common.HashList;
 import mekanism.common.Mekanism;
 import mekanism.common.OreDictCache;
-import mekanism.common.content.filter.IFilter;
-import mekanism.common.content.filter.IItemStackFilter;
-import mekanism.common.content.filter.IMaterialFilter;
-import mekanism.common.content.filter.IModIDFilter;
-import mekanism.common.content.filter.IOreDictFilter;
+import mekanism.common.content.filter.*;
 import mekanism.common.network.PacketTileEntity.TileEntityMessage;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import net.minecraft.inventory.Container;
@@ -26,6 +15,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.Map.Entry;
 
 @SideOnly(Side.CLIENT)
 public abstract class GuiFilterHolder<TILE extends TileEntityContainerBlock, FILTER extends IFilter> extends GuiMekanismTile<TILE> {
@@ -35,7 +28,8 @@ public abstract class GuiFilterHolder<TILE extends TileEntityContainerBlock, FIL
     protected final int filterY = 18;
     protected final int filterW = 96;
     protected final int filterH = 29;
-
+    // Buttons
+    protected final int BUTTON_NEW = 0;
     protected Map<IOreDictFilter, StackData> oreDictStacks = new HashMap<>();
     protected Map<IModIDFilter, StackData> modIDStacks = new HashMap<>();
     /**
@@ -48,8 +42,6 @@ public abstract class GuiFilterHolder<TILE extends TileEntityContainerBlock, FIL
     protected float scroll;
     protected int stackSwitch;
     protected int dragOffset;
-    // Buttons
-    protected final int BUTTON_NEW = 0;
 
     public GuiFilterHolder(TILE tile, Container container) {
         super(tile, container);

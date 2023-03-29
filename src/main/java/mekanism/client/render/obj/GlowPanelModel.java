@@ -2,13 +2,6 @@ package mekanism.client.render.obj;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.annotation.Nonnull;
-import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector3f;
 import mekanism.api.EnumColor;
 import mekanism.common.block.property.PropertyColor;
 import mekanism.common.tile.TileEntityGlowPanel;
@@ -36,20 +29,28 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nonnull;
+import javax.vecmath.Matrix4f;
+import javax.vecmath.Vector3f;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class GlowPanelModel extends OBJBakedModelBase {
 
     // Copy from old CTM
     public static Map<TransformType, TRSRTransformation> transforms = ImmutableMap.<TransformType, TRSRTransformation>builder()
-          .put(TransformType.GUI, get(0, 0, 0, 30, 225, 0, 0.625f))
-          .put(TransformType.THIRD_PERSON_RIGHT_HAND, get(0, 2.5f, 0, 75, 45, 0, 0.375f))
-          .put(TransformType.THIRD_PERSON_LEFT_HAND, get(0, 2.5f, 0, 75, 45, 0, 0.375f))
-          .put(TransformType.FIRST_PERSON_RIGHT_HAND, get(0, 0, 0, 0, 45, 0, 0.4f))
-          .put(TransformType.FIRST_PERSON_LEFT_HAND, get(0, 0, 0, 0, 225, 0, 0.4f))
-          .put(TransformType.GROUND, get(0, 2, 0, 0, 0, 0, 0.25f))
-          .put(TransformType.HEAD, get(0, 0, 0, 0, 0, 0, 1))
-          .put(TransformType.FIXED, get(0, 0, 0, 0, 0, 0, 1))
-          .put(TransformType.NONE, get(0, 0, 0, 0, 0, 0, 0))
-          .build();
+            .put(TransformType.GUI, get(0, 0, 0, 30, 225, 0, 0.625f))
+            .put(TransformType.THIRD_PERSON_RIGHT_HAND, get(0, 2.5f, 0, 75, 45, 0, 0.375f))
+            .put(TransformType.THIRD_PERSON_LEFT_HAND, get(0, 2.5f, 0, 75, 45, 0, 0.375f))
+            .put(TransformType.FIRST_PERSON_RIGHT_HAND, get(0, 0, 0, 0, 45, 0, 0.4f))
+            .put(TransformType.FIRST_PERSON_LEFT_HAND, get(0, 0, 0, 0, 225, 0, 0.4f))
+            .put(TransformType.GROUND, get(0, 2, 0, 0, 0, 0, 0.25f))
+            .put(TransformType.HEAD, get(0, 0, 0, 0, 0, 0, 1))
+            .put(TransformType.FIXED, get(0, 0, 0, 0, 0, 0, 1))
+            .put(TransformType.NONE, get(0, 0, 0, 0, 0, 0, 0))
+            .build();
     private static Map<Integer, List<BakedQuad>> glowPanelCache = new HashMap<>();
     private static Map<Integer, GlowPanelModel> glowPanelItemCache = new HashMap<>();
     private IBlockState tempState;
@@ -57,7 +58,7 @@ public class GlowPanelModel extends OBJBakedModelBase {
     private GlowPanelOverride override = new GlowPanelOverride();
 
     public GlowPanelModel(IBakedModel base, OBJModel model, IModelState state, VertexFormat format, ImmutableMap<String, TextureAtlasSprite> textures,
-          Map<TransformType, Matrix4f> transform) {
+                          Map<TransformType, Matrix4f> transform) {
         super(base, model, state, format, textures, transform);
     }
 
@@ -68,7 +69,7 @@ public class GlowPanelModel extends OBJBakedModelBase {
 
     private static TRSRTransformation get(float tx, float ty, float tz, float ax, float ay, float az, float s) {
         return new TRSRTransformation(new Vector3f(tx / 16, ty / 16, tz / 16), TRSRTransformation.quatFromXYZDegrees(new Vector3f(ax, ay, az)),
-              new Vector3f(s, s, s), null);
+                new Vector3f(s, s, s), null);
     }
 
     public EnumColor getColor() {

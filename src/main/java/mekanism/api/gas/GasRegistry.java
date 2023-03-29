@@ -1,8 +1,5 @@
 package mekanism.api.gas;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -11,6 +8,10 @@ import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class GasRegistry {
 
@@ -22,7 +23,6 @@ public class GasRegistry {
      * Register a new gas into GasRegistry. Call this BEFORE post-init.
      *
      * @param gas - Gas to register
-     *
      * @return the gas that has been registered, pulled right out of GasRegistry
      */
     public static Gas register(Gas gas) {
@@ -46,7 +46,6 @@ public class GasRegistry {
      * Gets the gas associated with the defined ID.
      *
      * @param id - ID to check
-     *
      * @return gas associated with defined ID
      */
     public static Gas getGas(int id) {
@@ -61,7 +60,6 @@ public class GasRegistry {
      * Gets the gas associated with the defined fluid.
      *
      * @param f - fluid to check
-     *
      * @return the gas associated with the fluid
      */
     public static Gas getGas(Fluid f) {
@@ -78,7 +76,6 @@ public class GasRegistry {
      * Whether or not GasRegistry contains a gas with the specified name
      *
      * @param name - name to check
-     *
      * @return if GasRegistry contains a gas with the defined name
      */
     public static boolean containsGas(String name) {
@@ -98,7 +95,6 @@ public class GasRegistry {
      * Gets the gas associated with the specified name.
      *
      * @param name - name of the gas to get
-     *
      * @return gas associated with the name
      */
     public static Gas getGas(String name) {
@@ -115,7 +111,6 @@ public class GasRegistry {
      * Gets the gas ID of a specified gas.
      *
      * @param gas - gas to get the ID from
-     *
      * @return gas ID
      */
     public static int getGasID(Gas gas) {

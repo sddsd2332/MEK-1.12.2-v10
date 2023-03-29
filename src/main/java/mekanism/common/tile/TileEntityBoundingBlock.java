@@ -1,7 +1,6 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.common.Mekanism;
@@ -17,16 +16,16 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
+import javax.annotation.Nonnull;
+
 /**
  * Multi-block used by wind turbines, solar panels, and other machines
  */
 public class TileEntityBoundingBlock extends TileEntity implements ITileNetwork {
 
-    private BlockPos mainPos = BlockPos.ORIGIN;
-
     public boolean receivedCoords;
-
     public int prevPower;
+    private BlockPos mainPos = BlockPos.ORIGIN;
 
     public void setMainLocation(BlockPos pos) {
         receivedCoords = pos != null;

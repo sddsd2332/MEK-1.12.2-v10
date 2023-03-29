@@ -1,21 +1,22 @@
 package mekanism.common.tile;
 
-import java.util.Map;
 import mekanism.api.EnumColor;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.SideData;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
-import mekanism.common.recipe.inputs.AdvancedMachineInput;
 import mekanism.common.recipe.RecipeHandler.Recipe;
+import mekanism.common.recipe.inputs.AdvancedMachineInput;
 import mekanism.common.recipe.machines.FarmRecipe;
 import mekanism.common.util.InventoryUtils;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityOrganicFarm extends TileEntityFarmMachine<FarmRecipe>{
+import java.util.Map;
+
+public class TileEntityOrganicFarm extends TileEntityFarmMachine<FarmRecipe> {
     public TileEntityOrganicFarm() {
-        super("injection", MachineType.ORGANIC_FARM,BASE_TICKS_REQUIRED, BASE_GAS_PER_TICK);
+        super("injection", MachineType.ORGANIC_FARM, BASE_TICKS_REQUIRED, BASE_GAS_PER_TICK);
         configComponent.addSupported(TransmissionType.GAS);
         configComponent.addOutput(TransmissionType.GAS, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.GAS, new SideData("Gas", EnumColor.RED, new int[]{0}));
@@ -24,7 +25,9 @@ public class TileEntityOrganicFarm extends TileEntityFarmMachine<FarmRecipe>{
     }
 
     @Override
-    public Map<AdvancedMachineInput, FarmRecipe> getRecipes() {return Recipe.ORGANIC_FARM.get();}
+    public Map<AdvancedMachineInput, FarmRecipe> getRecipes() {
+        return Recipe.ORGANIC_FARM.get();
+    }
 
     @Override
     public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {

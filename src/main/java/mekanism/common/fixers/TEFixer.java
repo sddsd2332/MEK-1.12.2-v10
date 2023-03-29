@@ -1,11 +1,12 @@
 package mekanism.common.fixers;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.Nonnull;
 import mekanism.common.Mekanism;
 import mekanism.common.fixers.MekanismDataFixers.MekFixers;
 import net.minecraft.nbt.NBTTagCompound;
+
+import javax.annotation.Nonnull;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TEFixer extends BaseMekanismFixer {
 

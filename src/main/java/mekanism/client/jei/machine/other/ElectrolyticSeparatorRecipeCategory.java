@@ -27,7 +27,7 @@ public class ElectrolyticSeparatorRecipeCategory<WRAPPER extends ElectrolyticSep
 
     public ElectrolyticSeparatorRecipeCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/GuiElectrolyticSeparator.png", Recipe.ELECTROLYTIC_SEPARATOR.getJEICategory(),
-              "tile.MachineBlock2.ElectrolyticSeparator.name", ProgressBar.BI, 4, 9, 167, 62);
+                "tile.MachineBlock2.ElectrolyticSeparator.name", ProgressBar.BI, 4, 9, 167, 62);
     }
 
     @Override

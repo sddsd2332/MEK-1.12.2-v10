@@ -1,13 +1,14 @@
 package mekanism.client.jei.machine;
 
-import java.util.Arrays;
-import javax.annotation.Nonnull;
 import mekanism.common.recipe.machines.ChanceMachineRecipe;
 import mekanism.common.recipe.outputs.ChanceOutput;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+
+import javax.annotation.Nonnull;
+import java.util.Arrays;
 
 public class ChanceMachineRecipeWrapper<RECIPE extends ChanceMachineRecipe<RECIPE>> extends MekanismRecipeWrapper<RECIPE> {
 

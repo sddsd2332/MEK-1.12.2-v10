@@ -1,7 +1,5 @@
 package mekanism.common.tile;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.api.Coord4D;
 import mekanism.api.IHeatTransfer;
 import mekanism.common.base.FluidHandlerWrapper;
@@ -16,6 +14,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileEntityThermalEvaporationValve extends TileEntityThermalEvaporationBlock implements IFluidHandlerWrapper, IHeatTransfer, IComparatorSupport {
 
@@ -128,7 +129,7 @@ public class TileEntityThermalEvaporationValve extends TileEntityThermalEvaporat
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing side) {
         return capability == Capabilities.HEAT_TRANSFER_CAPABILITY || (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && getController() != null) ||
-               super.hasCapability(capability, side);
+                super.hasCapability(capability, side);
     }
 
     @Override

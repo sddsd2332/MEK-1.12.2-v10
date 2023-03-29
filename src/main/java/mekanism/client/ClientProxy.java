@@ -1,30 +1,13 @@
 package mekanism.client;
 
-import static mekanism.common.block.states.BlockStatePlastic.colorProperty;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.Pos3D;
 import mekanism.client.SparkleAnimation.INodeChecker;
 import mekanism.client.entity.ParticleLaser;
 import mekanism.client.gui.*;
-import mekanism.client.gui.chemical.GuiChemicalCrystallizer;
-import mekanism.client.gui.chemical.GuiChemicalDissolutionChamber;
-import mekanism.client.gui.chemical.GuiChemicalInfuser;
-import mekanism.client.gui.chemical.GuiChemicalInjectionChamber;
-import mekanism.client.gui.chemical.GuiChemicalOxidizer;
-import mekanism.client.gui.chemical.GuiChemicalWasher;
-import mekanism.client.gui.robit.GuiRobitCrafting;
-import mekanism.client.gui.robit.GuiRobitInventory;
-import mekanism.client.gui.robit.GuiRobitMain;
-import mekanism.client.gui.robit.GuiRobitRepair;
-import mekanism.client.gui.robit.GuiRobitSmelting;
-import mekanism.client.gui.chemical.GuiNutritionalLiquifier;
+import mekanism.client.gui.chemical.*;
+import mekanism.client.gui.robit.*;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.RenderTickHandler;
 import mekanism.client.render.entity.RenderBalloon;
@@ -38,11 +21,7 @@ import mekanism.client.render.item.gear.*;
 import mekanism.client.render.item.machine.RenderMachineItem;
 import mekanism.client.render.obj.MekanismOBJLoader;
 import mekanism.client.render.tileentity.*;
-import mekanism.client.render.transmitter.RenderLogisticalTransporter;
-import mekanism.client.render.transmitter.RenderMechanicalPipe;
-import mekanism.client.render.transmitter.RenderPressurizedTube;
-import mekanism.client.render.transmitter.RenderThermodynamicConductor;
-import mekanism.client.render.transmitter.RenderUniversalCable;
+import mekanism.client.render.transmitter.*;
 import mekanism.client.sound.SoundHandler;
 import mekanism.common.CommonProxy;
 import mekanism.common.Mekanism;
@@ -64,21 +43,9 @@ import mekanism.common.block.states.BlockStatePlastic.PlasticBlockStateMapper;
 import mekanism.common.block.states.BlockStateTransmitter.TransmitterStateMapper;
 import mekanism.common.block.states.BlockStateTransmitter.TransmitterType;
 import mekanism.common.config.MekanismConfig;
-import mekanism.common.entity.EntityBabySkeleton;
-import mekanism.common.entity.EntityBalloon;
-import mekanism.common.entity.EntityFlame;
-import mekanism.common.entity.EntityObsidianTNT;
-import mekanism.common.entity.EntityRobit;
+import mekanism.common.entity.*;
 import mekanism.common.inventory.InventoryPersonalChest;
-import mekanism.common.item.ItemBlockBasic;
-import mekanism.common.item.ItemBlockGasTank;
-import mekanism.common.item.ItemBlockMachine;
-import mekanism.common.item.ItemBlockTransmitter;
-import mekanism.common.item.ItemCraftingFormula;
-import mekanism.common.item.ItemDictionary;
-import mekanism.common.item.ItemPortableTeleporter;
-import mekanism.common.item.ItemSeismicReader;
-import mekanism.common.item.ItemWalkieTalkie;
+import mekanism.common.item.*;
 import mekanism.common.network.PacketPortableTeleporter.PortableTeleporterMessage;
 import mekanism.common.recipe.machines.*;
 import mekanism.common.tier.BaseTier;
@@ -87,13 +54,7 @@ import mekanism.common.tile.*;
 import mekanism.common.tile.prefab.TileEntityAdvancedElectricMachine;
 import mekanism.common.tile.prefab.TileEntityDoubleElectricMachine;
 import mekanism.common.tile.prefab.TileEntityElectricMachine;
-import mekanism.common.tile.transmitter.TileEntityDiversionTransporter;
-import mekanism.common.tile.transmitter.TileEntityLogisticalTransporter;
-import mekanism.common.tile.transmitter.TileEntityMechanicalPipe;
-import mekanism.common.tile.transmitter.TileEntityPressurizedTube;
-import mekanism.common.tile.transmitter.TileEntityRestrictiveTransporter;
-import mekanism.common.tile.transmitter.TileEntityThermodynamicConductor;
-import mekanism.common.tile.transmitter.TileEntityUniversalCable;
+import mekanism.common.tile.transmitter.*;
 import mekanism.common.util.TextComponentGroup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -134,6 +95,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static mekanism.common.block.states.BlockStatePlastic.colorProperty;
 
 /**
  * Client proxy for the Mekanism mod.
@@ -295,8 +264,8 @@ public class ClientProxy extends CommonProxy {
         registerItemRender(MekanismItems.EnergyCubeCreativeCraft);
 
          */
-     //   registerItemRender(MekanismItems.MekaSuitHelmet);
-    //    registerItemRender(MekanismItems.MekaSuitChest);
+        //   registerItemRender(MekanismItems.MekaSuitHelmet);
+        //    registerItemRender(MekanismItems.MekaSuitChest);
 
         ModelBakery.registerItemVariants(MekanismItems.WalkieTalkie, ItemWalkieTalkie.OFF_MODEL);
 
@@ -322,8 +291,8 @@ public class ClientProxy extends CommonProxy {
         Item.getItemFromBlock(MekanismBlocks.BasicBlock3).setTileEntityItemStackRenderer(new RenderBasicBlockItem());
 
         MekanismItems.MekTool.setTileEntityItemStackRenderer(new RenderMekTool());
-    //    MekanismItems.MekaSuitHelmet.setTileEntityItemStackRenderer(new RenderMekaSuitHelmet());
-    //    MekanismItems.MekaSuitChest.setTileEntityItemStackRenderer(new RenderMekaSuitChest());
+        //    MekanismItems.MekaSuitHelmet.setTileEntityItemStackRenderer(new RenderMekaSuitHelmet());
+        //    MekanismItems.MekaSuitChest.setTileEntityItemStackRenderer(new RenderMekaSuitChest());
     }
 
     private ModelResourceLocation getInventoryMRL(String type) {
@@ -799,8 +768,8 @@ public class ClientProxy extends CommonProxy {
                 return new GuiIsotopicCentrifuge(player.inventory, (TileEntityIsotopicCentrifuge) tileEntity);
             case 62:
                 return new GuiAntiprotonicNucleosynthesizer(player.inventory, (TileEntityAntiprotonicNucleosynthesizer) tileEntity);
-         //   case 63:
-        //        return new GuiSPS(player.inventory, (TileEntitySPSCasing) tileEntity);
+            //   case 63:
+            //        return new GuiSPS(player.inventory, (TileEntitySPSCasing) tileEntity);
             case 63:
                 return new GuiOrganicFarm(player.inventory, (TileEntityOrganicFarm) tileEntity);
             case 64:
@@ -814,7 +783,7 @@ public class ClientProxy extends CommonProxy {
             case 68:
                 return new GuiAlloy(player.inventory, (TileEntityDoubleElectricMachine<AlloyRecipe>) tileEntity);
             case 69:
-                return new GuiCellCultivate(player.inventory,(TileEntityCellCultivate) tileEntity);
+                return new GuiCellCultivate(player.inventory, (TileEntityCellCultivate) tileEntity);
             case 70:
                 return new GuiCellExtractor(player.inventory, (TileEntityChanceMachine) tileEntity);
             case 71:
@@ -879,26 +848,26 @@ public class ClientProxy extends CommonProxy {
                 return (int) (color.getColor(0) * 255) << 16 | (int) (color.getColor(1) * 255) << 8 | (int) (color.getColor(2) * 255);
             }
             return -1;
-        }, MekanismBlocks.MachineBlock, MekanismBlocks.MachineBlock2, MekanismBlocks.MachineBlock3,MekanismBlocks.MachineBlock4);
+        }, MekanismBlocks.MachineBlock, MekanismBlocks.MachineBlock2, MekanismBlocks.MachineBlock3, MekanismBlocks.MachineBlock4);
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
-                  EnumDyeColor color = state.getValue(colorProperty);
-                  EnumColor dye = EnumColor.DYES[color.getDyeDamage()];
-                  return (int) (dye.getColor(0) * 255) << 16 | (int) (dye.getColor(1) * 255) << 8 | (int) (dye.getColor(2) * 255);
-              }, MekanismBlocks.PlasticBlock, MekanismBlocks.GlowPlasticBlock, MekanismBlocks.RoadPlasticBlock, MekanismBlocks.ReinforcedPlasticBlock,
-              MekanismBlocks.SlickPlasticBlock, MekanismBlocks.PlasticFence);
+                    EnumDyeColor color = state.getValue(colorProperty);
+                    EnumColor dye = EnumColor.DYES[color.getDyeDamage()];
+                    return (int) (dye.getColor(0) * 255) << 16 | (int) (dye.getColor(1) * 255) << 8 | (int) (dye.getColor(2) * 255);
+                }, MekanismBlocks.PlasticBlock, MekanismBlocks.GlowPlasticBlock, MekanismBlocks.RoadPlasticBlock, MekanismBlocks.ReinforcedPlasticBlock,
+                MekanismBlocks.SlickPlasticBlock, MekanismBlocks.PlasticFence);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
             if (MachineType.get(stack) == MachineType.FLUID_TANK) {
                 EnumColor color = ((ItemBlockMachine) stack.getItem()).getBaseTier(stack).getColor();
                 return (int) (color.getColor(0) * 255) << 16 | (int) (color.getColor(1) * 255) << 8 | (int) (color.getColor(2) * 255);
             }
             return -1;
-        }, MekanismBlocks.MachineBlock, MekanismBlocks.MachineBlock2, MekanismBlocks.MachineBlock3,MekanismBlocks.MachineBlock4);
+        }, MekanismBlocks.MachineBlock, MekanismBlocks.MachineBlock2, MekanismBlocks.MachineBlock3, MekanismBlocks.MachineBlock4);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
-                  EnumDyeColor dyeColor = EnumDyeColor.byDyeDamage(stack.getItemDamage() & 15);
-                  EnumColor dye = EnumColor.DYES[dyeColor.getDyeDamage()];
-                  return (int) (dye.getColor(0) * 255) << 16 | (int) (dye.getColor(1) * 255) << 8 | (int) (dye.getColor(2) * 255);
-              }, MekanismBlocks.PlasticBlock, MekanismBlocks.GlowPlasticBlock, MekanismBlocks.RoadPlasticBlock, MekanismBlocks.ReinforcedPlasticBlock,
-              MekanismBlocks.SlickPlasticBlock, MekanismBlocks.PlasticFence);
+                    EnumDyeColor dyeColor = EnumDyeColor.byDyeDamage(stack.getItemDamage() & 15);
+                    EnumColor dye = EnumColor.DYES[dyeColor.getDyeDamage()];
+                    return (int) (dye.getColor(0) * 255) << 16 | (int) (dye.getColor(1) * 255) << 8 | (int) (dye.getColor(2) * 255);
+                }, MekanismBlocks.PlasticBlock, MekanismBlocks.GlowPlasticBlock, MekanismBlocks.RoadPlasticBlock, MekanismBlocks.ReinforcedPlasticBlock,
+                MekanismBlocks.SlickPlasticBlock, MekanismBlocks.PlasticFence);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
             EnumColor dye = EnumColor.DYES[stack.getItemDamage()];
             return (int) (dye.getColor(0) * 255) << 16 | (int) (dye.getColor(1) * 255) << 8 | (int) (dye.getColor(2) * 255);
@@ -965,13 +934,13 @@ public class ClientProxy extends CommonProxy {
         machineModelBake(modelRegistry, "solar_neutron_activator", MachineType.SOLAR_NEUTRON_ACTIVATOR);
         machineModelBake(modelRegistry, "chemical_dissolution_chamber", MachineType.CHEMICAL_DISSOLUTION_CHAMBER);
         machineModelBake(modelRegistry, "chemical_crystallizer", MachineType.CHEMICAL_CRYSTALLIZER);
-        machineModelBake(modelRegistry,"antiprotonic_nucleosynthesizer",MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER);
+        machineModelBake(modelRegistry, "antiprotonic_nucleosynthesizer", MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER);
         machineModelBake(modelRegistry, "seismic_vibrator", MachineType.SEISMIC_VIBRATOR);
         machineModelBake(modelRegistry, "quantum_entangloporter", MachineType.QUANTUM_ENTANGLOPORTER);
         machineModelBake(modelRegistry, "resistive_heater", MachineType.RESISTIVE_HEATER);
         machineModelBake(modelRegistry, "personal_chest", MachineType.PERSONAL_CHEST);
 
-       // machineModelBake(modelRegistry, "industrial_alarm", MachineType.INDUSTRIAL_ALARM);
+        // machineModelBake(modelRegistry, "industrial_alarm", MachineType.INDUSTRIAL_ALARM);
         machineModelBake(modelRegistry, "isotopic_centrifuge", MachineType.ISOTOPIC_CENTRIFUGE);
         machineModelBake(modelRegistry, "fluid_tank", MachineType.FLUID_TANK);
 

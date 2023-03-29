@@ -1,6 +1,5 @@
 package mekanism.common.base;
 
-import javax.annotation.Nonnull;
 import mekanism.common.capabilities.ItemCapabilityWrapper.ItemCapability;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
@@ -8,6 +7,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+
+import javax.annotation.Nonnull;
 
 public class FluidItemWrapper extends ItemCapability implements IFluidHandlerItem {
 
