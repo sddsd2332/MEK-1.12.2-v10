@@ -22,9 +22,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Note that modifications made by sddsd2332, RuiXuqi,Thorfusion, Terralization, maggi373 and others contributing to this fork goes under:
-# Mekanism 1.12.2 V10 License
-## “Commons Clause” License Condition v1.0
+## Note that modifications made by sddsd2332, RuiXuqi, KasumiNova and others contributing to this fork goes under:
+# Mekanism Unofficial Edition: V10 Edition
+## MIT License
+
+Copyright (c) 2023 sddsd2332
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
