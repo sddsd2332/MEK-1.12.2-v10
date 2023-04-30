@@ -18,6 +18,7 @@ import mekanism.common.inventory.container.robit.ContainerRobitInventory;
 import mekanism.common.item.ItemBlockEnergyCube;
 import mekanism.common.item.ItemBlockGasTank;
 import mekanism.common.recipe.RecipeHandler.Recipe;
+import mekanism.common.recipe.inputs.IntegerInput;
 import mekanism.generators.common.MekanismGenerators;
 import mezz.jei.api.*;
 import mezz.jei.api.ISubtypeRegistry.ISubtypeInterpreter;
@@ -39,6 +40,7 @@ import java.util.stream.Collectors;
 public class MekanismJEI implements IModPlugin {
 
     public static final IIngredientType<GasStack> TYPE_GAS = () -> GasStack.class;
+
 
     public static final ISubtypeInterpreter NBT_INTERPRETER = itemStack -> {
         String ret = Integer.toString(itemStack.getMetadata());
@@ -155,6 +157,8 @@ public class MekanismJEI implements IModPlugin {
         addRecipeCategory(registry, MachineType.RECYCLER, new Chance2MachineRecipeCategory(guiHelper, Recipe.RECYCLER.getJEICategory(), "tile.MachineBlock4.Recycler.name",
                 ProgressBar.CRUSH));
 
+        addRecipeCategory(registry, MachineType.AMBIENT_ACCUMULATOR, new AmbientGasCategory(guiHelper));
+
 
         //There is no config option to disable the thermal evaporation plant
         registry.addRecipeCategories(new ThermalEvaporationRecipeCategory(guiHelper));
@@ -200,6 +204,7 @@ public class MekanismJEI implements IModPlugin {
         RecipeRegistryHelper.registerSeparator(registry);
         RecipeRegistryHelper.registerEvaporationPlant(registry);
         RecipeRegistryHelper.registerReactionChamber(registry);
+        RecipeRegistryHelper.registerAmbientAccumulator(registry);
         RecipeRegistryHelper.registerCondensentrator(registry);
         RecipeRegistryHelper.registerSmelter(registry);
         RecipeRegistryHelper.registerFormulaicAssemblicator(registry);

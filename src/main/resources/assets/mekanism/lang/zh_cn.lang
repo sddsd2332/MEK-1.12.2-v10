@@ -684,8 +684,10 @@ gui.upgrades.effect=效果
 gui.chemicalInfuser.short=化学灌注器
 gui.chemicalDissolutionChamber.short=化学溶解室
 gui.thermalEvaporationController.short=热力蒸馏塔
+gui.dimension2=维度需求
 gui.dimension=当前维度
-gui.dimensionGas=当前产出气体
+gui.dimensionGas=当前维度产出气体
+gui.probability2=产出概率
 gui.probability=当前概率
 gui.dictionary.noKey=无关键字.
 

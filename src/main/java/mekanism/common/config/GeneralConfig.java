@@ -6,6 +6,7 @@ import mekanism.common.config.options.DoubleOption;
 import mekanism.common.config.options.EnumOption;
 import mekanism.common.config.options.IntOption;
 import mekanism.common.tier.BaseTier;
+import mekanism.common.tier.FluidTankTier;
 import mekanism.common.tier.GasTankTier;
 import mekanism.common.util.UnitDisplayUtils.EnergyType;
 import mekanism.common.util.UnitDisplayUtils.TempType;
@@ -290,11 +291,17 @@ public class GeneralConfig extends BaseConfig {
     public final DoubleOption quantumEntangloporterEnergyTransfer = new DoubleOption(this, "general", "QuantumEntangloporterEnergyTransfer", 16000000D,
             "Maximum energy buffer (Mekanism Joules) of an Entangoloporter frequency - i.e. the maximum transfer per tick per frequency.", 0, Double.MAX_VALUE).setRequiresWorldRestart(true);
 
-    public final IntOption quantumEntangloporterFluidBuffer = new IntOption(this, "general", "quantumEntangloporterFluidBuffer", GasTankTier.ULTIMATE.getBaseStorage(),
-            "Maximum fluid buffer (mb) of an Entangoloporter frequency - i.e. the maximum transfer per tick per frequency. Default is ultimate tier tank capacity.", 0, Integer.MAX_VALUE).setRequiresWorldRestart(true);
+    public final IntOption quantumEntangloporterFluidBuffer = new IntOption(this, "general", "quantumEntangloporterFluidBuffer", FluidTankTier.ULTIMATE.getBaseStorage(),
+            "Maximum fluid buffer (mb) of an Entangoloporter frequency - i.e. the maximum transfer per tick per frequency. Default is ultimate tier fluid tank capacity.", 0, Integer.MAX_VALUE).setRequiresWorldRestart(true);
 
     public final IntOption quantumEntangloporterGasBuffer = new IntOption(this, "general", "quantumEntangloporterGasBuffer", GasTankTier.ULTIMATE.getBaseStorage(),
-            "Maximum fluid buffer (mb) of an Entangoloporter frequency - i.e. the maximum transfer per tick per frequency. Default is ultimate tier tank capacity.", 0, Integer.MAX_VALUE).setRequiresWorldRestart(true);
+            "Maximum gas buffer (mb) of an Entangoloporter frequency - i.e. the maximum transfer per tick per frequency. Default is ultimate tier gas storage tank capacity.", 0, Integer.MAX_VALUE).setRequiresWorldRestart(true);
+
+    public final IntOption MachineGasEjectionSpeed = new IntOption(this, "general", "MachineGasEjectionSpeed",GasTankTier.BASIC.getBaseOutput(),
+            "Modify this value to increase the speed of gas ejection of the machine,The default is the transmission speed of the base gas storage tank",0,Integer.MAX_VALUE).setRequiresGameRestart(true);
+
+    public final IntOption MachineFluidEjectionSpeed = new IntOption(this, "general", "MachineFluidEjectionSpeed", FluidTankTier.BASIC.getBaseOutput(),
+            "Modify this value to increase the speed of gas ejection of the machine,The default is the transfer speed of the base fluid storage tank",0,Integer.MAX_VALUE).setRequiresGameRestart(true);
 
     public final BooleanOption blacklistIC2 = new BooleanOption(this, "general", "BlacklistIC2Power", false,
             "Disables IC2 power integration. Requires world restart (server-side option in SMP).");

@@ -12,6 +12,7 @@ import mekanism.common.base.ISideConfiguration;
 import mekanism.common.base.ITankManager;
 import mekanism.common.base.ITileComponent;
 import mekanism.common.capabilities.Capabilities;
+import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.transporter.TransitRequest;
 import mekanism.common.content.transporter.TransitRequest.TransitResponse;
 import mekanism.common.tile.prefab.TileEntityContainerBlock;
@@ -27,8 +28,8 @@ import java.util.*;
 
 public class TileComponentEjector implements ITileComponent {
 
-    private static final int GAS_OUTPUT = 256;
-    private static final int FLUID_OUTPUT = 256;
+    private static final int GAS_OUTPUT = MekanismConfig.current().general.MachineGasEjectionSpeed.val();;
+    private static final int FLUID_OUTPUT = MekanismConfig.current().general.MachineFluidEjectionSpeed.val();
     private TileEntityContainerBlock tileEntity;
     private boolean strictInput;
     private EnumColor outputColor;

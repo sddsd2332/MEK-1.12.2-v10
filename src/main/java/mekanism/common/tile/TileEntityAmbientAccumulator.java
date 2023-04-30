@@ -125,4 +125,7 @@ public class TileEntityAmbientAccumulator extends TileEntityContainerBlock imple
         return nbtTags;
     }
 
+    public int getChance() {
+        return chance;
+    }
 }

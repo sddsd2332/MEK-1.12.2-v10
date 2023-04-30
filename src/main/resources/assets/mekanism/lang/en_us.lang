@@ -576,6 +576,7 @@ gui.boilerStats=Boiler Statistics
 gui.main=Main
 gui.outputting=Outputting
 gui.receiving=Receiving
+
 gui.dimensions=Dimensions
 gui.constituents=Constituents
 gui.cells=cells
@@ -685,8 +686,10 @@ gui.upgrades.effect=Effect
 gui.chemicalInfuser.short=C. Infuser
 gui.chemicalDissolutionChamber.short=C. Dissolution Chamber
 gui.thermalEvaporationController.short=Thermal E. Controller
+gui.dimension2=Dimension requirements
 gui.dimension=The current dimension
-gui.dimensionGas=The gas currently produced
+gui.dimensionGas=The current dimension produces gas
+gui.probability2=Output probability
 gui.probability=Probability
 gui.dictionary.noKey=No key.
 

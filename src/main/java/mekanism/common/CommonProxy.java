@@ -291,7 +291,7 @@ public class CommonProxy implements IGuiProvider {
             case 47:
                 return new ContainerSolarNeutronActivator(player.inventory, (TileEntitySolarNeutronActivator) tileEntity);
             case 48:
-                return new ContainerNull(player, (TileEntityContainerBlock) tileEntity);
+                return new ContainerAmbientAccumulator(player.inventory, (TileEntityAmbientAccumulator) tileEntity);
             case 49:
                 return new ContainerInductionMatrix(player.inventory, (TileEntityInductionCasing) tileEntity);
             case 50:

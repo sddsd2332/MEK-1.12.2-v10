@@ -2,12 +2,12 @@ package mekanism.client.gui;
 
 import mekanism.client.gui.element.gauge.GuiGasGauge;
 import mekanism.client.gui.element.gauge.GuiGauge.Type;
-import mekanism.common.inventory.container.ContainerNull;
+import mekanism.common.inventory.container.ContainerAmbientAccumulator;
 import mekanism.common.tile.TileEntityAmbientAccumulator;
 import mekanism.common.util.LangUtils;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MekanismUtils.ResourceType;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -15,10 +15,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiAmbientAccumulator extends GuiMekanismTile<TileEntityAmbientAccumulator> {
 
-    public GuiAmbientAccumulator(EntityPlayer player, TileEntityAmbientAccumulator tile) {
-        super(tile, new ContainerNull(player, tile));
+    public GuiAmbientAccumulator(InventoryPlayer inventory, TileEntityAmbientAccumulator tile) {
+        super(tile, new ContainerAmbientAccumulator(inventory, tile));
         addGuiElement(new GuiGasGauge(() -> tileEntity.collectedGas, Type.WIDE_ORANGE, this, getGuiLocation(), 103, 18));
     }
+
+
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {

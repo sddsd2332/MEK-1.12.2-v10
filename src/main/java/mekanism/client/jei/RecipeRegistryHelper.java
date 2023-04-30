@@ -308,6 +308,15 @@ public class RecipeRegistryHelper {
         }
     }
 
+    public static void registerAmbientAccumulator(IModRegistry registry) {
+        if (!MachineType.AMBIENT_ACCUMULATOR.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.AMBIENT_ACCUMULATOR, AmbientGasRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiAmbientAccumulator.class, 7, 18, 80, 50, Recipe.AMBIENT_ACCUMULATOR.getJEICategory());
+        registerRecipeItem(registry, MachineType.AMBIENT_ACCUMULATOR, Recipe.AMBIENT_ACCUMULATOR);
+    }
+
     public static void registerReactionChamber(IModRegistry registry) {
         if (!MachineType.PRESSURIZED_REACTION_CHAMBER.isEnabled()) {
             return;

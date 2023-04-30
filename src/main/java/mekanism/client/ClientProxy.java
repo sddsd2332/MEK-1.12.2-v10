@@ -739,7 +739,7 @@ public class ClientProxy extends CommonProxy {
             case 47:
                 return new GuiSolarNeutronActivator(player.inventory, (TileEntitySolarNeutronActivator) tileEntity);
             case 48:
-                return new GuiAmbientAccumulator(player, (TileEntityAmbientAccumulator) tileEntity);
+                return new GuiAmbientAccumulator(player.inventory, (TileEntityAmbientAccumulator) tileEntity);
             case 49:
                 return new GuiInductionMatrix(player.inventory, (TileEntityInductionCasing) tileEntity);
             case 50:
