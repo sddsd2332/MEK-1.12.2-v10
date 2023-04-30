@@ -24,7 +24,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
     public MekRecipesCommand() {
         super("mekrecipes");
         subCommands = Stream.of("crystallizer", "dissolution", "chemicalInfuser", "injection", "oxidizer", "washer", "combiner", "crusher", "separator", "smelter",
-              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator","fusioncooling","recycler").collect(Collectors.toList());
+              "enrichment", "metallurgicInfuser", "compressor", "sawmill", "prc", "purification", "solarneutronactivator", "thermalevaporation", "isotopiccentrifuge","antiprotonicnucleosynthesizer","organicfarm","stamping","rolling","brushed","turning","alloy","cellcultivate","cellextractor","cellseparator","fusioncooling","recycler","ambientaccumulator","nutritionalliquifier").collect(Collectors.toList());
     }
 
     @Override
@@ -350,6 +350,24 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                 for (IsotopicRecipe recipe : Recipe.ISOTOPIC_CENTRIFUGE.get().values()) {
                     CraftTweakerAPI.logCommand(String.format("mods.mekanism.isotopiccentrifuge.addRecipe(%s, %s)",
                             RecipeInfoHelper.getGasName(recipe.getInput().ingredient),
+                            RecipeInfoHelper.getGasName(recipe.getOutput().output)
+                    ));
+                }
+                break;
+            case "ambientaccumulator":
+                type = Recipe.AMBIENT_ACCUMULATOR;
+                for (AmbientGasRecipe recipe : Recipe.AMBIENT_ACCUMULATOR.get().values()){
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.ambientaccumulator.addRecipe(%s, %s)",
+                            recipe.recipeInput.ingredient,
+                            RecipeInfoHelper.getGasName(recipe.getOutput().output)
+                    ));
+                }
+                break;
+            case "nutritionalliquifier":
+                type = Recipe.Nutritional_Liquifier;
+                for (NutritionalRecipe recipe : Recipe.Nutritional_Liquifier.get().values()) {
+                    CraftTweakerAPI.logCommand(String.format("mods.mekanism.nutritionalliquifier.addRecipe(%s, %s)",
+                            RecipeInfoHelper.getItemName(recipe.getInput().ingredient),
                             RecipeInfoHelper.getGasName(recipe.getOutput().output)
                     ));
                 }

@@ -15,7 +15,6 @@ import mekanism.common.integration.crafttweaker.util.RemoveAllMekanismRecipe;
 import mekanism.common.integration.crafttweaker.util.RemoveMekanismRecipe;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.machines.NutritionalRecipe;
-import mekanism.common.recipe.machines.OxidationRecipe;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -24,7 +23,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import java.util.ArrayList;
 import java.util.List;
 
-@ZenClass("mods.mekanism.chemical.nutritional")
+@ZenClass("mods.mekanism.nutritionalliquifier")
 @ZenRegister
 public class NutritionalLiquifier {
 
