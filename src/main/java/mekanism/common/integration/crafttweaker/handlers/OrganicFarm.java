@@ -27,10 +27,10 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import java.util.ArrayList;
 import java.util.List;
 
-@ZenClass("mods.mekanism.farm")
+@ZenClass("mods.mekanism.organicfarm")
 @ZenRegister
-public class Farm {
-    public static final String NAME = Mekanism.MOD_NAME + " Farm";
+public class OrganicFarm {
+    public static final String NAME = Mekanism.MOD_NAME + " Organic Farm";
 
     @ZenMethod
     public static void addRecipe(IIngredient ingredientInput, IGasStack gasInput, IItemStack itemOutput, @Optional IItemStack optionalItemOutput, @Optional double optionalChance) {

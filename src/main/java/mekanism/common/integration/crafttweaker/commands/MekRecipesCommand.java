@@ -299,7 +299,7 @@ public class MekRecipesCommand extends CraftTweakerCommand {
                 type = Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER;
                 for (NucleosynthesizerRecipe recipe : Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER.get().values()) {
                     CraftTweakerAPI
-                            .logCommand(String.format("mods.mekanism.reaction.addRecipe(%s, %s, %s, %s, %s, %s, %s)",
+                            .logCommand(String.format("mods.mekanism.nucleosynthesizer.addRecipe(%s, %s, %s, %s, %s)",
                                     RecipeInfoHelper.getItemName(recipe.getInput().getSolid()),
                                     RecipeInfoHelper.getGasName(recipe.getInput().getGas()),
                                     RecipeInfoHelper.getItemName(recipe.getOutput().getItemOutput()),
