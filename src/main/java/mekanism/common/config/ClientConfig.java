@@ -3,6 +3,7 @@ package mekanism.common.config;
 import io.netty.buffer.ByteBuf;
 import mekanism.common.config.options.BooleanOption;
 import mekanism.common.config.options.DoubleOption;
+import mekanism.common.config.options.FloatOption;
 import mekanism.common.config.options.IntOption;
 
 /**
@@ -42,6 +43,11 @@ public class ClientConfig extends BaseConfig {
 
     public final BooleanOption alignHUDLeft = new BooleanOption(this, "client", "AlignHUDLeft", true,
             "Align HUD with left (if true) or right (if false)");
+    public final FloatOption UpgradeOptionSelection = new FloatOption(this, "client", "UpgradeOptionSelection", 0.8f,
+            "The 'Not Selected' font size for upgrade management is displayed");
+
+    public final FloatOption UpgradeStatusDescription = new FloatOption(this, "client", "UpgradeStatusDescription", 0.6f,
+            "The 'Upgrade' font size for upgrade management is displayed");
 
     @Override
     public void write(ByteBuf config) {

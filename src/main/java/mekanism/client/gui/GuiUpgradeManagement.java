@@ -7,6 +7,8 @@ import mekanism.common.Mekanism;
 import mekanism.common.Upgrade;
 import mekanism.common.base.IUpgradeTile;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
+import mekanism.common.config.ClientConfig;
+import mekanism.common.config.MekanismConfig;
 import mekanism.common.inventory.container.ContainerUpgradeManagement;
 import mekanism.common.network.PacketRemoveUpgrade.RemoveUpgradeMessage;
 import mekanism.common.network.PacketSimpleGui.SimpleGuiMessage;
@@ -94,14 +96,14 @@ public class GuiUpgradeManagement extends GuiMekanism {
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
         fontRenderer.drawString(LangUtils.localize("gui.upgrades.supported") + ":", 26, 59, 0x33ff99);
         if (selectedType == null) {
-            renderText(LangUtils.localize("gui.upgrades.noSelection") + ".", 92, 8, 1.0F, true);
+            renderText(LangUtils.localize("gui.upgrades.noSelection") + ".", 92, 8, MekanismConfig.current().client.UpgradeOptionSelection.val(), true);
         } else {
             int amount = tileEntity.getComponent().getUpgrades(selectedType);
-            renderText(selectedType.getName() + LangUtils.localize("gui.upgrade"), 92, 8, 1.0F, true);
-            renderText(LangUtils.localize("gui.upgrades.amount") + ": " + amount + "/" + selectedType.getMax(), 92, 16, 1.0F, true);
+            renderText(selectedType.getName() + LangUtils.localize("gui.upgrade"), 92, 8,  MekanismConfig.current().client.UpgradeStatusDescription.val(), true);
+            renderText(LangUtils.localize("gui.upgrades.amount") + ": " + amount + "/" + selectedType.getMax(), 92, 16, MekanismConfig.current().client.UpgradeStatusDescription.val(), true);
             int text = 0;
             for (String s : selectedType.getInfo((TileEntity) tileEntity)) {
-                renderText(s, 92, 24 + (6 * text++), 1.0F, true);
+                renderText(s, 92, 24 + (6 * text++), MekanismConfig.current().client.UpgradeStatusDescription.val(), true);
             }
         }
         if (!tileEntity.getComponent().getSupportedTypes().isEmpty()) {
