@@ -21,6 +21,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
+import java.util.Collections;
+
 public final class CableUtils {
 
     public static boolean isCable(TileEntity tileEntity) {
@@ -143,13 +145,7 @@ public final class CableUtils {
                 }
                 int curHandlers = target.getHandlers().size();
                 if (curHandlers > 0) {
-                    // Firestarter start :: optimize emit
-                    /*
-                    Set<EnergyAcceptorTarget> targets = new HashSet<>();
-                    targets.add(target);
-                     */
-                    double sent = EmitUtils.sendToAcceptors(java.util.Collections.singleton(target), curHandlers, energyToSend);
-                    // Firestarter end
+                    double sent = EmitUtils.sendToAcceptors(Collections.singleton(target), curHandlers, energyToSend);
                     if (emitter instanceof TileEntityInductionPort) {
                         //Streamline sideless removal method for induction port.
                         ((TileEntityInductionPort) emitter).removeEnergy(sent, false);
