@@ -275,6 +275,7 @@ public final class RecipeHandler {
 
     public static void addAmbientGas(int dimensionID, GasStack outputGas) {
         addRecipe(Recipe.AMBIENT_ACCUMULATOR, new AmbientGasRecipe(dimensionID, outputGas));
+        addRecipe(Recipe.AMBIENT_ACCUMULATOR_ENERGY,new AmbientGasRecipe(dimensionID, outputGas));
     }
 
 
@@ -520,7 +521,6 @@ public final class RecipeHandler {
         return getRecipe(input, Recipe.AMBIENT_ACCUMULATOR);
     }
 
-
     @Nullable
     public static NucleosynthesizerRecipe getNucleosynthesizerRecipe(@Nonnull NucleosynthesizerInput input) {
         return getRecipe(input, Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER);
@@ -640,6 +640,9 @@ public final class RecipeHandler {
 
         public static final Recipe<IntegerInput, GasOutput, AmbientGasRecipe> AMBIENT_ACCUMULATOR = new Recipe<>(
               MachineType.AMBIENT_ACCUMULATOR, IntegerInput.class, GasOutput.class, AmbientGasRecipe.class);
+
+        public static final Recipe<IntegerInput, GasOutput, AmbientGasRecipe> AMBIENT_ACCUMULATOR_ENERGY = new Recipe<>(
+                MachineType.AMBIENT_ACCUMULATOR_ENERGY, IntegerInput.class, GasOutput.class, AmbientGasRecipe.class);
 
 
         public static final Recipe<FluidInput, FluidOutput, ThermalEvaporationRecipe> THERMAL_EVAPORATION_PLANT = new Recipe<>(

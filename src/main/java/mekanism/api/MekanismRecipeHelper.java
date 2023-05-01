@@ -185,6 +185,7 @@ public interface MekanismRecipeHelper {
 
     void addAmbientGas(int dimensionID, GasStack outputGas);
 
+
     void addStampingRecipe(ItemStack input, ItemStack output);
 
     void addRollingRecipe(ItemStack input, ItemStack output);

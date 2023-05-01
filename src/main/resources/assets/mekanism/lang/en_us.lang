@@ -193,9 +193,10 @@ tile.MachineBlock3.FuelwoodHeater.name=Fuelwood Heater
 tile.MachineBlock3.NutritionalLiquifier.name=Nutritional Liquifier
 tile.MachineBlock3.SuperchargedCoil.name=Supercharged Coil(WIP)
 tile.MachineBlock3.AmbientAccumulator.name=Ambient gas collectors
+tile.MachineBlock3.AmbientAccumulatorEnergy.name=Ambient gas collectors(Electric type)
 tile.MachineBlock3.IsotopicCentrifuge.name=Isotopic Centrifuge
 tile.MachineBlock3.OrganicFarm.name=Organic Farm
-tile.MachineBlock3.antiprotonicnucleosynthesizer.name=Antiprotonic Nucleosynthesizer（WIP）
+tile.MachineBlock3.antiprotonicnucleosynthesizer.name=Antiprotonic Nucleosynthesizer(WIP)
 tile.MachineBlock3.Factory.name= Factory
 
 tile.MachineBlock4.Stamping.name=CNC punching machine
@@ -1112,6 +1113,7 @@ reactor.capacity.desc=The reactor's core heat capacity has been met
 reactor.depleted=Insufficient Fuel
 reactor.depleted.desc=The reactor has insufficient fuel to sustain a reaction
 gui.FusionCooling=Fusion reactor cooling formula (1:1)
+gui.FusionFuel=Fusion reactor fuel formulation
 # Creative tab
 itemGroup.tabMekanism=Mekanism
 itemGroup.tabMekanismTools=Mekanism Tools

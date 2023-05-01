@@ -10,6 +10,7 @@ import mekanism.client.jei.machine.other.*;
 import mekanism.common.Mekanism;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.states.BlockStateBasic.BasicBlockType;
+import mekanism.common.block.states.BlockStateMachine;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.integration.crafttweaker.handlers.EnergizedSmelter;
 import mekanism.common.inventory.container.ContainerFormulaicAssemblicator;
@@ -309,12 +310,15 @@ public class RecipeRegistryHelper {
     }
 
     public static void registerAmbientAccumulator(IModRegistry registry) {
-        if (!MachineType.AMBIENT_ACCUMULATOR.isEnabled()) {
+        if (!MachineType.AMBIENT_ACCUMULATOR.isEnabled() || !MachineType.AMBIENT_ACCUMULATOR_ENERGY.isEnabled()) {
             return;
         }
         addRecipes(registry, Recipe.AMBIENT_ACCUMULATOR, AmbientGasRecipeWrapper::new);
         registry.addRecipeClickArea(GuiAmbientAccumulator.class, 7, 18, 80, 50, Recipe.AMBIENT_ACCUMULATOR.getJEICategory());
         registerRecipeItem(registry, MachineType.AMBIENT_ACCUMULATOR, Recipe.AMBIENT_ACCUMULATOR);
+        registry.addRecipeClickArea(GuiAmbientAccumulatorEnergy.class,7,18,80,50,Recipe.AMBIENT_ACCUMULATOR.getJEICategory());
+        registerRecipeItem(registry,MachineType.AMBIENT_ACCUMULATOR_ENERGY,Recipe.AMBIENT_ACCUMULATOR);
+
     }
 
     public static void registerReactionChamber(IModRegistry registry) {

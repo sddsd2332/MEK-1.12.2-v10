@@ -113,7 +113,7 @@ public class BlockStateMachine extends ExtendedBlockState {
 
         QUANTUM_ENTANGLOPORTER(MachineBlock.MACHINE_BLOCK_3, 0, "QuantumEntangloporter", 46, TileEntityQuantumEntangloporter::new, true, false, false, BlockStateUtils.ALL_FACINGS, false),
         SOLAR_NEUTRON_ACTIVATOR(MachineBlock.MACHINE_BLOCK_3, 1, "SolarNeutronActivator", 47, TileEntitySolarNeutronActivator::new, false, true, false, Plane.HORIZONTAL, true),
-        AMBIENT_ACCUMULATOR(MachineBlock.MACHINE_BLOCK_3, 2, "AmbientAccumulator", 48, TileEntityAmbientAccumulator::new, true, true, false, Plane.HORIZONTAL, true),
+        AMBIENT_ACCUMULATOR(MachineBlock.MACHINE_BLOCK_3, 2, "AmbientAccumulator", 48, TileEntityAmbientAccumulator::new, false, true, false, Plane.HORIZONTAL, true),
         OREDICTIONIFICATOR(MachineBlock.MACHINE_BLOCK_3, 3, "Oredictionificator", 52, TileEntityOredictionificator::new, false, false, false, Plane.HORIZONTAL, true),
         RESISTIVE_HEATER(MachineBlock.MACHINE_BLOCK_3, 4, "ResistiveHeater", 53, TileEntityResistiveHeater::new, true, false, false, Plane.HORIZONTAL, true),
         FORMULAIC_ASSEMBLICATOR(MachineBlock.MACHINE_BLOCK_3, 5, "FormulaicAssemblicator", 56, TileEntityFormulaicAssemblicator::new, true, false, true, Plane.HORIZONTAL, true),
@@ -121,7 +121,7 @@ public class BlockStateMachine extends ExtendedBlockState {
 
         ULTIMATE_FACTORY(MachineBlock.MACHINE_BLOCK_3, 7, "Factory", 11, TileEntityUltimateFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.ULTIMATE),
         CREATIVE_FACTORY(MachineBlock.MACHINE_BLOCK_3, 8, "Factory", 11, TileEntityCreativeFactory::new, true, false, true, Plane.HORIZONTAL, true, FactoryTier.CREATIVE),
-        ISOTOPIC_CENTRIFUGE(MachineBlock.MACHINE_BLOCK_3, 9, "IsotopicCentrifuge", 61, TileEntityIsotopicCentrifuge::new, false, true, false, Plane.HORIZONTAL, false),
+        ISOTOPIC_CENTRIFUGE(MachineBlock.MACHINE_BLOCK_3, 9, "IsotopicCentrifuge", 61, TileEntityIsotopicCentrifuge::new, true, true, false, Plane.HORIZONTAL, false),
 
 
         Nutritional_Liquifier(MachineBlock.MACHINE_BLOCK_3, 10, "NutritionalLiquifier", 60, TileEntityNutritionalLiquifier::new, true, true, true, Plane.HORIZONTAL, true),
@@ -129,7 +129,7 @@ public class BlockStateMachine extends ExtendedBlockState {
         SUPERCHARGED_COIL(MachineBlock.MACHINE_BLOCK_3, 11, "SuperchargedCoil", -1, TileEntitySuperchargedCoil::new, false, true, false, BlockStateUtils.ALL_FACINGS, false),
         ORGANIC_FARM(MachineBlock.MACHINE_BLOCK_3, 12, "OrganicFarm", 63, TileEntityOrganicFarm::new, true, false, true, Plane.HORIZONTAL, true),
         ANTIPROTONIC_NUCLEOSYNTHESIZER(MachineBlock.MACHINE_BLOCK_3, 13, "antiprotonicnucleosynthesizer", 62, TileEntityAntiprotonicNucleosynthesizer::new, true, true, true, Plane.HORIZONTAL, true),
-
+        AMBIENT_ACCUMULATOR_ENERGY(MachineBlock.MACHINE_BLOCK_3,14,"AmbientAccumulatorEnergy",73,TileEntityAmbientAccumulatorEnergy::new,true,true,true,Plane.HORIZONTAL, true),
 
         STAMPING(MachineBlock.MACHINE_BLOCK_4, 0, "Stamping", 64, TileEntityStamping::new, true, false, true, Plane.HORIZONTAL, true),
         ROLLING(MachineBlock.MACHINE_BLOCK_4, 1, "Rolling", 65, TileEntityRolling::new, true, false, true, Plane.HORIZONTAL, true),
@@ -290,6 +290,8 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return 0;
                 case AMBIENT_ACCUMULATOR:
                     return 0;
+                case AMBIENT_ACCUMULATOR_ENERGY:
+                    return MekanismConfig.current().usage.AmbientAccumulatorEnergy.val();
                 case RESISTIVE_HEATER:
                     return 100;
                 case FORMULAIC_ASSEMBLICATOR:
@@ -381,6 +383,8 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return MekanismConfig.current().storage.formulaicAssemblicator.val();
                 case Nutritional_Liquifier:
                     return MekanismConfig.current().storage.liquifierNutritional.val();
+                case AMBIENT_ACCUMULATOR_ENERGY:
+                    return MekanismConfig.current().storage.AmbientAccumulatorEnergy.val();
                 case ISOTOPIC_CENTRIFUGE:
                     return MekanismConfig.current().storage.IsotopicCentrifuge.val();
                 //case INDUSTRIAL_ALARM:

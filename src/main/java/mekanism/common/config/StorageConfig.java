@@ -52,6 +52,9 @@ public class StorageConfig extends BaseConfig {
     public final DoubleOption IsotopicCentrifuge = new DoubleOption(this, "storage", "IsotopicCentrifugeStorage", 80000D,
             "Base energy storage (Joules).");
 
+    public final DoubleOption AmbientAccumulatorEnergy = new DoubleOption(this, "storage", "AmbientAccumulatorEnergyStorage", 80000D,
+            "Base energy storage (Joules).");
+
     public final DoubleOption nucleosynthesizer = new DoubleOption(this, "storage", "nucleosynthesizerStorage", 80000D,
             "Base energy storage (Joules).");
 

@@ -190,9 +190,10 @@ tile.MachineBlock3.FuelwoodHeater.name=木料加热器
 tile.MachineBlock3.NutritionalLiquifier.name=营养液化器
 tile.MachineBlock3.SuperchargedCoil.name=增压线圈(WIP)
 tile.MachineBlock3.AmbientAccumulator.name=环境气体收集器
+tile.MachineBlock3.AmbientAccumulatorEnergy.name=环境气体收集器(电动型)
 tile.MachineBlock3.IsotopicCentrifuge.name=同位素离心机
 tile.MachineBlock3.OrganicFarm.name=有机农场
-tile.MachineBlock3.antiprotonicnucleosynthesizer.name=反质子核合成器（WIP）
+tile.MachineBlock3.antiprotonicnucleosynthesizer.name=反质子核合成器(WIP)
 tile.MachineBlock3.Factory.name=工厂
 
 tile.MachineBlock4.Stamping.name=数控冲床
@@ -482,7 +483,7 @@ upgrade.muffling.desc=减少机器发出的噪音.
 upgrade.anchor=锚
 upgrade.anchor.desc=保存机器的载入.
 
-null.name=无效物品/方块（放置会导致关闭游戏！）
+null.name=无效物品/方块(放置会导致关闭游戏！)
 
 # Key description text
 mekanism.key.mode=模式切换
@@ -776,7 +777,7 @@ mekanism.gui.logisticalSorter.autoEject.tooltip=自动将物料弹出到连接�
 mekanism.gui.logisticalSorter.roundRobin=循环模式
 mekanism.gui.logisticalSorter.roundRobin.tooltip=发送物料时在所有连接的库存之间循环。
 mekanism.gui.logisticalSorter.singleItem=单个
-mekanism.gui.logisticalSorter.singleItem.tooltip=每次发送单个项目而不是整个堆栈（覆盖 ItemStack 筛选器中设置的最小值和最大值）。
+mekanism.gui.logisticalSorter.singleItem.tooltip=每次发送单个项目而不是整个堆栈(覆盖 ItemStack 筛选器中设置的最小值和最大值)。
 
 gui.teleporter.notReady=未准备
 gui.teleporter.ready=就绪
@@ -1108,6 +1109,7 @@ reactor.capacity.desc=反应堆温度已经趋于稳定
 reactor.depleted=燃料不足
 reactor.depleted.desc=反应没有足够的燃料维持
 gui.FusionCooling=聚变反应堆冷却配方(1:1)
+gui.FusionFuel=聚变反应堆燃料配方
 
 # Creative tab
 itemGroup.tabMekanism=通用机械
@@ -1274,7 +1276,7 @@ mekanism.configgui.ctgy.tools.tools.tooltip=通用机械工具的效率值以及
 cmd.mek.usage=
 cmd.mek.debug.usage=启用调试
 cmd.mek.debug=调试
-cmd.mek.testrules.usage=设置世界规则进行测试（无生物生成、日光周期或天气）
+cmd.mek.testrules.usage=设置世界规则进行测试(无生物生成、日光周期或天气)
 cmd.mek.testrules=生物生成，日光循环和天气禁用！
 cmd.mek.tp.usage=传送到新坐标，保存堆栈上的最后一个位置
 cmd.mek.tp=传送到 %d,%d,%d - 在堆栈上保存了最后一个位置

@@ -464,7 +464,7 @@ public class Mekanism {
         }
 
         //AMBIENT_ACCUMULATOR
-        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.AMBIENT_ACCUMULATOR)) {
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.AMBIENT_ACCUMULATOR) || MekanismConfig.current().general.machinesManager.isEnabled(MachineType.AMBIENT_ACCUMULATOR_ENERGY)) {
             RecipeHandler.addAmbientGas(0, new GasStack(MekanismFluids.UnstableDimensional,1));
         }
 
@@ -773,6 +773,7 @@ public class Mekanism {
         registerTileEntity(TileEntityAdvancedFactory.class, "advanced_smelting_factory");
         registerTileEntity(TileEntityCreativeFactory.class, "creative_smelting_factory");
         registerTileEntity(TileEntityAmbientAccumulator.class, "ambient_accumulator");
+        registerTileEntity(TileEntityAmbientAccumulatorEnergy.class, "ambient_accumulator_energy");
         registerTileEntity(TileEntityBin.class, "bin");
         registerTileEntity(TileEntityBoilerCasing.class, "boiler_casing");
         registerTileEntity(TileEntityBoilerValve.class, "boiler_valve");

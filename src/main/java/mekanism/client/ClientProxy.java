@@ -134,6 +134,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerTESRs() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAdvancedFactory.class, new RenderConfigurableMachine<>());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAmbientAccumulatorEnergy.class,new RenderConfigurableMachine<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBin.class, new RenderBin());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoilerCasing.class, new RenderThermoelectricBoiler());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoilerValve.class, new RenderThermoelectricBoiler());
@@ -790,6 +791,8 @@ public class ClientProxy extends CommonProxy {
                 return new GuiCellSeparator(player.inventory, (TileEntityCellSeparator) tileEntity);
             case 72:
                 return new GuiRecycler(player.inventory, (TileEntityRecycler) tileEntity);
+            case 73:
+                return new GuiAmbientAccumulatorEnergy(player.inventory, (TileEntityAmbientAccumulatorEnergy) tileEntity);
         }
         return null;
     }
