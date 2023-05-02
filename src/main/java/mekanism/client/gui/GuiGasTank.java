@@ -1,6 +1,7 @@
 package mekanism.client.gui;
 
 import mekanism.api.TileNetworkList;
+import mekanism.api.gas.GasStack;
 import mekanism.client.gui.element.GuiRedstoneControl;
 import mekanism.client.gui.element.GuiSlot;
 import mekanism.client.gui.element.GuiSlot.SlotOverlay;
@@ -8,6 +9,7 @@ import mekanism.client.gui.element.GuiSlot.SlotType;
 import mekanism.client.gui.element.tab.GuiSecurityTab;
 import mekanism.client.gui.element.tab.GuiSideConfigurationTab;
 import mekanism.client.gui.element.tab.GuiTransporterConfigTab;
+import mekanism.client.render.MekanismRenderer;
 import mekanism.client.sound.SoundHandler;
 import mekanism.common.Mekanism;
 import mekanism.common.inventory.container.ContainerGasTank;
@@ -17,6 +19,9 @@ import mekanism.common.tile.TileEntityGasTank.GasMode;
 import mekanism.common.util.LangUtils;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MekanismUtils.ResourceType;
+import mekanism.common.util.TextUtils;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
@@ -35,17 +40,17 @@ public class GuiGasTank extends GuiMekanismTile<TileEntityGasTank> {
         addGuiElement(new GuiSecurityTab(this, tileEntity, resource));
         addGuiElement(new GuiSideConfigurationTab(this, tileEntity, resource));
         addGuiElement(new GuiTransporterConfigTab(this, 34, tileEntity, resource));
-        addGuiElement(new GuiSlot(SlotType.OUTPUT, this, resource, 7, 7).with(SlotOverlay.PLUS));
-        addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 7, 39).with(SlotOverlay.MINUS));
+        addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 15, 16).with(SlotOverlay.PLUS));
+        addGuiElement(new GuiSlot(SlotType.OUTPUT, this, resource, 15, 46).with(SlotOverlay.MINUS));
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        String stored = "" + (tileEntity.gasTank.getStored() == Integer.MAX_VALUE ? LangUtils.localize("gui.infinite") : tileEntity.gasTank.getStored());
-        String capacityInfo = stored + " / " + (tileEntity.tier.getStorage() == Integer.MAX_VALUE ? LangUtils.localize("gui.infinite") : tileEntity.tier.getStorage());
+        String stored = "" + (tileEntity.gasTank.getStored() == Integer.MAX_VALUE ?  "" : tileEntity.gasTank.getStored() + " / ");
+        String capacityInfo = stored  + (tileEntity.tier.getStorage() == Integer.MAX_VALUE ? TextUtils.makeFabulous(LangUtils.localize("gui.infinite")) : tileEntity.tier.getStorage());
         fontRenderer.drawString(tileEntity.getName(), (xSize / 2) - (fontRenderer.getStringWidth(tileEntity.getName()) / 2), 6, 0x404040);
-        fontRenderer.drawString(capacityInfo, 45, 40, 0x33ff99);
-        renderScaledText(LangUtils.localize("gui.gas") + ": " + (tileEntity.gasTank.getGas() != null ? tileEntity.gasTank.getGas().getGas().getLocalizedName() : LangUtils.localize("gui.none")), 45, 49, 0x33ff99, 112);
+        renderScaledText(LangUtils.localize("gui.gas") + ": " + (tileEntity.gasTank.getGas() != null ? tileEntity.gasTank.getGas().getGas().getLocalizedName() : LangUtils.localize("gui.none")), 45, 40, 0x33ff99, 112);
+        fontRenderer.drawString(capacityInfo, 45, 50, 0x33ff99);
         fontRenderer.drawString(LangUtils.localize("container.inventory"), 8, ySize - 96 + 2, 0x404040);
         String name = LangUtils.localize(tileEntity.dumping.getLangKey());
         fontRenderer.drawString(name, 156 - fontRenderer.getStringWidth(name), 73, 0x404040);
@@ -58,9 +63,12 @@ public class GuiGasTank extends GuiMekanismTile<TileEntityGasTank> {
         super.drawGuiContainerBackgroundLayer(xAxis, yAxis);
         int displayInt = GasMode.chooseByMode(tileEntity.dumping, 10, 18, 26);
         drawTexturedModalRect(guiLeft + 160, guiTop + 73, 176, displayInt, 8, 8);
-        if (tileEntity.gasTank.getGas() != null) {
-            int scale = (int) (((double) tileEntity.gasTank.getStored() / tileEntity.tier.getStorage()) * 72);
-            drawTexturedModalRect(guiLeft + 65, guiTop + 17, 176, 0, scale, 10);
+        GasStack gas = tileEntity.gasTank.getGas();
+        if (gas != null) {
+            MekanismRenderer.color(gas);
+            int scale = (int) (((double) tileEntity.gasTank.getStored() / tileEntity.tier.getStorage()) * 116);
+            displayGauge(43, 17, scale, 10, gas.getGas().getSprite());
+            MekanismRenderer.resetColor();
         }
     }
 
@@ -79,5 +87,12 @@ public class GuiGasTank extends GuiMekanismTile<TileEntityGasTank> {
     @Override
     protected ResourceLocation getGuiLocation() {
         return MekanismUtils.getResource(ResourceType.GUI, "GuiGasTank.png");
+    }
+
+    public void displayGauge(int xPos, int yPos, int sizeX, int sizeY, TextureAtlasSprite icon) {
+        if (icon != null) {
+            mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+            drawTexturedModalRect(guiLeft + xPos, guiTop + yPos, icon, sizeX, sizeY);
+        }
     }
 }

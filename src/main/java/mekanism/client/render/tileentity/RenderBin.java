@@ -3,6 +3,7 @@ package mekanism.client.render.tileentity;
 import mekanism.api.Coord4D;
 import mekanism.common.tile.TileEntityBin;
 import mekanism.common.util.LangUtils;
+import mekanism.common.util.TextUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,7 +31,7 @@ public class RenderBin extends TileEntitySpecialRenderer<TileEntityBin> {
         if (!itemType.isEmpty()) {
             String amount = Integer.toString(clientAmount);
             if (clientAmount == Integer.MAX_VALUE) {
-                amount = LangUtils.localize("gui.infinite");
+                amount = TextUtils.makeFabulous(LangUtils.localize("gui.infinite"));
             }
             setLightmapDisabled(true);
             GlStateManager.pushMatrix();

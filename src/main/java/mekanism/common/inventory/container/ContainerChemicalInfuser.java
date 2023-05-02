@@ -71,9 +71,15 @@ public class ContainerChemicalInfuser extends ContainerMekanism<TileEntityChemic
 
     @Override
     protected void addSlots() {
-        addSlotToContainer(new SlotStorageTank(tileEntity, 0, 5, 56));
-        addSlotToContainer(new SlotStorageTank(tileEntity, 1, 155, 56));
-        addSlotToContainer(new SlotStorageTank(tileEntity, 2, 80, 65));
-        addSlotToContainer(new SlotDischarge(tileEntity, 3, 155, 5));
+        addSlotToContainer(new SlotStorageTank(tileEntity, 0, 5, 56 + 11));
+        addSlotToContainer(new SlotStorageTank(tileEntity, 1, 155, 56 + 11));
+        addSlotToContainer(new SlotStorageTank(tileEntity, 2, 80, 65 + 11));
+        addSlotToContainer(new SlotDischarge(tileEntity, 3, 155, 5 + 11));
     }
+
+    @Override
+    protected int getInventoryOffset() {
+        return 84 + 11;
+    }
+
 }

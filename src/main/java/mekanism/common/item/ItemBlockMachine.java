@@ -196,14 +196,14 @@ public class ItemBlockMachine extends ItemBlock implements IEnergizedItem, ISpec
                 FluidStack fluidStack = getFluidStack(itemstack);
                 if (fluidStack != null) {
                     int amount = getFluidStack(itemstack).amount;
-                    String amountStr = amount == Integer.MAX_VALUE ? LangUtils.localize("gui.infinite") : amount + "mB";
+                    String amountStr = amount == Integer.MAX_VALUE ? TextUtils.makeFabulous(LangUtils.localize("gui.infinite")) : amount + "mB";
                     list.add(EnumColor.AQUA + LangUtils.localizeFluidStack(fluidStack) + ": " + EnumColor.GREY + amountStr);
                 } else {
                     list.add(EnumColor.DARK_RED + LangUtils.localize("gui.empty") + ".");
                 }
                 int cap = FluidTankTier.values()[getBaseTier(itemstack).ordinal()].getStorage();
                 list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY +
-                        (cap == Integer.MAX_VALUE ? LangUtils.localize("gui.infinite") : cap + " mB"));
+                        (cap == Integer.MAX_VALUE ? TextUtils.makeFabulous(LangUtils.localize("gui.infinite")) : cap + " mB"));
             }
 
             if (type == MachineType.QUANTUM_ENTANGLOPORTER) {

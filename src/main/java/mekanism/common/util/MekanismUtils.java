@@ -692,7 +692,7 @@ public final class MekanismUtils {
      */
     public static String getEnergyDisplay(double energy) {
         if (energy == Double.MAX_VALUE) {
-            return LangUtils.localize("gui.infinite");
+            return TextUtils.makeFabulous(LangUtils.localize("gui.infinite"));
         }
         switch (MekanismConfig.current().general.energyUnit.val()) {
             case J:
@@ -709,7 +709,7 @@ public final class MekanismUtils {
 
     public static String getEnergyDisplay(double energy, double max) {
         if (energy == Double.MAX_VALUE) {
-            return LangUtils.localize("gui.infinite");
+            return TextUtils.makeFabulous(LangUtils.localize("gui.infinite"));
         }
         String energyString = getEnergyDisplay(energy);
         String maxString = getEnergyDisplay(max);

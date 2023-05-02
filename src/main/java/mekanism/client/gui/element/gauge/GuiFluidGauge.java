@@ -5,6 +5,7 @@ import mekanism.client.gui.IGuiWrapper;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.MekanismRenderer.FluidType;
 import mekanism.common.util.LangUtils;
+import mekanism.common.util.TextUtils;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
@@ -59,7 +60,7 @@ public class GuiFluidGauge extends GuiTankGauge<FluidStack, FluidTank> {
             return dummyType.getLocalizedName();
         }
         FluidTank tank = infoHandler.getTank();
-        String amountStr = tank.getFluidAmount() == Integer.MAX_VALUE ? LangUtils.localize("gui.infinite") : tank.getFluidAmount() + " mB";
+        String amountStr = tank.getFluidAmount() == Integer.MAX_VALUE ? TextUtils.makeFabulous(LangUtils.localize("gui.infinite")) : tank.getFluidAmount() + " mB";
         return tank.getFluid() != null ? LangUtils.localizeFluidStack(tank.getFluid()) + ": " + amountStr : LangUtils.localize("gui.empty");
     }
 

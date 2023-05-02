@@ -21,6 +21,7 @@ import mekanism.common.tile.TileEntityMultiblock;
 import mekanism.common.util.ItemDataUtils;
 import mekanism.common.util.LangUtils;
 import mekanism.common.util.MekanismUtils;
+import mekanism.common.util.TextUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.settings.GameSettings;
@@ -174,14 +175,14 @@ public class ItemBlockBasic extends ItemBlock implements IEnergizedItem, ITierIt
                     InventoryBin inv = new InventoryBin(itemstack);
                     if (inv.getItemCount() > 0) {
                         list.add(EnumColor.BRIGHT_GREEN + inv.getItemType().getDisplayName());
-                        String amountStr = inv.getItemCount() == Integer.MAX_VALUE ? LangUtils.localize("gui.infinite") : "" + inv.getItemCount();
+                        String amountStr = inv.getItemCount() == Integer.MAX_VALUE ? TextUtils.makeFabulous(LangUtils.localize("gui.infinite")) : "" + inv.getItemCount();
                         list.add(EnumColor.PURPLE + LangUtils.localize("tooltip.itemAmount") + ": " + EnumColor.GREY + amountStr);
                     } else {
                         list.add(EnumColor.DARK_RED + LangUtils.localize("gui.empty"));
                     }
                     int cap = BinTier.values()[getBaseTier(itemstack).ordinal()].getStorage();
-                    list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY +
-                            (cap == Integer.MAX_VALUE ? LangUtils.localize("gui.infinite") : cap) + " " + LangUtils.localize("transmission.Items"));
+                    list.add(EnumColor.INDIGO + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY + (
+                            cap == Integer.MAX_VALUE ? TextUtils.makeFabulous(LangUtils.localize("gui.infinite")) : cap) + " " + EnumColor.GREY +  LangUtils.localize("transmission.Items"));
                 } else if (type == BasicBlockType.INDUCTION_CELL) {
                     InductionCellTier tier = InductionCellTier.values()[getBaseTier(itemstack).ordinal()];
                     list.add(tier.getBaseTier().getColor() + LangUtils.localize("tooltip.capacity") + ": " + EnumColor.GREY + MekanismUtils.getEnergyDisplay(tier.getMaxEnergy()));
