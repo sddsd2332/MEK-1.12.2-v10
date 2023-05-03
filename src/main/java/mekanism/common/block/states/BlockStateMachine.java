@@ -124,7 +124,7 @@ public class BlockStateMachine extends ExtendedBlockState {
         ISOTOPIC_CENTRIFUGE(MachineBlock.MACHINE_BLOCK_3, 9, "IsotopicCentrifuge", 61, TileEntityIsotopicCentrifuge::new, true, true, false, Plane.HORIZONTAL, false),
 
 
-        Nutritional_Liquifier(MachineBlock.MACHINE_BLOCK_3, 10, "NutritionalLiquifier", 60, TileEntityNutritionalLiquifier::new, true, true, true, Plane.HORIZONTAL, true),
+        NUTRITIONAL_LIQUIFIER(MachineBlock.MACHINE_BLOCK_3, 10, "NutritionalLiquifier", 60, TileEntityNutritionalLiquifier::new, true, true, true, Plane.HORIZONTAL, false),
         //INDUSTRIAL_ALARM(MachineBlock.MACHINE_BLOCK_3,12,"IndustrialAlarm",-1,TileEntityIndustrialAlarm::new,false,true,false, Plane.HORIZONTAL,true);
         SUPERCHARGED_COIL(MachineBlock.MACHINE_BLOCK_3, 11, "SuperchargedCoil", -1, TileEntitySuperchargedCoil::new, false, true, false, BlockStateUtils.ALL_FACINGS, false),
         ORGANIC_FARM(MachineBlock.MACHINE_BLOCK_3, 12, "OrganicFarm", 63, TileEntityOrganicFarm::new, true, false, true, Plane.HORIZONTAL, true),
@@ -296,7 +296,7 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return 100;
                 case FORMULAIC_ASSEMBLICATOR:
                     return MekanismConfig.current().usage.formulaicAssemblicator.val();
-                case Nutritional_Liquifier:
+                case NUTRITIONAL_LIQUIFIER:
                     return MekanismConfig.current().usage.liquifierNutritional.val();
                 case ISOTOPIC_CENTRIFUGE:
                     return MekanismConfig.current().usage.IsotopicCentrifuge.val();
@@ -381,7 +381,7 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return MekanismConfig.current().storage.laser.val();
                 case FORMULAIC_ASSEMBLICATOR:
                     return MekanismConfig.current().storage.formulaicAssemblicator.val();
-                case Nutritional_Liquifier:
+                case NUTRITIONAL_LIQUIFIER:
                     return MekanismConfig.current().storage.liquifierNutritional.val();
                 case AMBIENT_ACCUMULATOR_ENERGY:
                     return MekanismConfig.current().storage.AmbientAccumulatorEnergy.val();

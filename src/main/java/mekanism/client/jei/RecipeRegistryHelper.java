@@ -10,7 +10,6 @@ import mekanism.client.jei.machine.other.*;
 import mekanism.common.Mekanism;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.states.BlockStateBasic.BasicBlockType;
-import mekanism.common.block.states.BlockStateMachine;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.integration.crafttweaker.handlers.EnergizedSmelter;
 import mekanism.common.inventory.container.ContainerFormulaicAssemblicator;
@@ -239,12 +238,12 @@ public class RecipeRegistryHelper {
     }
 
     public static void registerNutritional(IModRegistry registry) {
-        if (!MachineType.Nutritional_Liquifier.isEnabled()) {
+        if (!MachineType.NUTRITIONAL_LIQUIFIER.isEnabled()) {
             return;
         }
         addRecipes(registry, Recipe.Nutritional_Liquifier, NutritionalLiquifierRecipeWrapper::new);
         registry.addRecipeClickArea(GuiNutritionalLiquifier.class, 64, 40, 48, 8, Recipe.Nutritional_Liquifier.getJEICategory());
-        registerRecipeItem(registry, MachineType.Nutritional_Liquifier, Recipe.Nutritional_Liquifier);
+        registerRecipeItem(registry, MachineType.NUTRITIONAL_LIQUIFIER, Recipe.Nutritional_Liquifier);
     }
 
     public static void registerWasher(IModRegistry registry) {

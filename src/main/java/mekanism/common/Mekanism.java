@@ -610,7 +610,7 @@ public class Mekanism {
             RecipeHandler.addIsotopicRecipe(new GasStack(MekanismFluids.UraniumHexafluoride, 1), new GasStack(MekanismFluids.FissileFule, 1));
             RecipeHandler.addIsotopicRecipe(new GasStack(MekanismFluids.NuclearWaste, 10), new GasStack(MekanismFluids.Plutonium, 1));
         }
-        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.Nutritional_Liquifier)) {
+        if (MekanismConfig.current().general.machinesManager.isEnabled(MachineType.NUTRITIONAL_LIQUIFIER)) {
             RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.APPLE, 1), new GasStack(MekanismFluids.NutritionalPaste, 100));
             RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BAKED_POTATO, 1), new GasStack(MekanismFluids.NutritionalPaste, 125));
             RecipeHandler.addNutritionalLiquifierRecipe(new ItemStack(Items.BEEF, 1), new GasStack(MekanismFluids.NutritionalPaste, 75));

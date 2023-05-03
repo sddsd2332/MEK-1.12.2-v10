@@ -36,6 +36,7 @@ public class ItemLayerWrapper implements IBakedModel {
             .put(TransformType.FIXED, get(0, 0, 0, 0, 0, 0, 1))
             .put(TransformType.NONE, get(0, 0, 0, 0, 0, 0, 0))
             .build();
+
     private final IBakedModel internal;
     private TransformType transform = TransformType.NONE;
 

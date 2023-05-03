@@ -1,5 +1,6 @@
-package mekanism.client.gui.chemical;
+package mekanism.client.gui;
 
+import mekanism.client.gui.chemical.GuiChemical;
 import mekanism.client.gui.element.GuiEnergyInfo;
 import mekanism.client.gui.element.GuiProgress;
 import mekanism.client.gui.element.GuiProgress.IProgressInfoHandler;

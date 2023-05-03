@@ -40,7 +40,7 @@ public class TileEntityNutritionalLiquifier extends TileEntityOperationalMachine
 
 
     public TileEntityNutritionalLiquifier() {
-        super("machine.oxidizer", MachineType.Nutritional_Liquifier, 3, 100);
+        super("machine.oxidizer", MachineType.NUTRITIONAL_LIQUIFIER, 3, 100);
         configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.GAS, TransmissionType.ENERGY);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
@@ -214,6 +214,10 @@ public class TileEntityNutritionalLiquifier extends TileEntityOperationalMachine
     @Override
     public int receiveGas(EnumFacing side, GasStack stack, boolean doTransfer) {
         return 0;
+    }
+
+    public int getScaledFuelLevel(int i) {
+        return gasTank.getStored() * i / gasTank.getMaxGas();
     }
 
     @Override

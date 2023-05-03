@@ -18,7 +18,6 @@ import mekanism.common.inventory.container.robit.ContainerRobitInventory;
 import mekanism.common.item.ItemBlockEnergyCube;
 import mekanism.common.item.ItemBlockGasTank;
 import mekanism.common.recipe.RecipeHandler.Recipe;
-import mekanism.common.recipe.inputs.IntegerInput;
 import mekanism.generators.common.MekanismGenerators;
 import mezz.jei.api.*;
 import mezz.jei.api.ISubtypeRegistry.ISubtypeInterpreter;
@@ -104,7 +103,7 @@ public class MekanismJEI implements IModPlugin {
         addRecipeCategory(registry, MachineType.METALLURGIC_INFUSER, new MetallurgicInfuserRecipeCategory(guiHelper));
         addRecipeCategory(registry, MachineType.PRESSURIZED_REACTION_CHAMBER, new PRCRecipeCategory(guiHelper));
         addRecipeCategory(registry, MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER, new AntiprotonicNucleosynthesizerRecipeCategory(guiHelper));
-        addRecipeCategory(registry, MachineType.Nutritional_Liquifier, new NutritionalLiquifierRecipeCategory(guiHelper));
+        addRecipeCategory(registry, MachineType.NUTRITIONAL_LIQUIFIER, new NutritionalLiquifierRecipeCategory(guiHelper));
 
         addRecipeCategory(registry, MachineType.ROTARY_CONDENSENTRATOR, new RotaryCondensentratorRecipeCategory(guiHelper, true));
         addRecipeCategory(registry, MachineType.ROTARY_CONDENSENTRATOR, new RotaryCondensentratorRecipeCategory(guiHelper, false));

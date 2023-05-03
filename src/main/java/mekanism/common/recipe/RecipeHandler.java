@@ -597,7 +597,7 @@ public final class RecipeHandler {
               MachineType.CHEMICAL_OXIDIZER, ItemStackInput.class, GasOutput.class, OxidationRecipe.class);
 
         public static final Recipe<ItemStackInput, GasOutput, NutritionalRecipe> Nutritional_Liquifier = new Recipe<>(
-                MachineType.Nutritional_Liquifier, ItemStackInput.class, GasOutput.class, NutritionalRecipe.class);
+                MachineType.NUTRITIONAL_LIQUIFIER, ItemStackInput.class, GasOutput.class, NutritionalRecipe.class);
 
         public static final Recipe<AdvancedMachineInput, ItemStackOutput, InjectionRecipe> CHEMICAL_INJECTION_CHAMBER = new Recipe<>(
               MachineType.CHEMICAL_INJECTION_CHAMBER, AdvancedMachineInput.class, ItemStackOutput.class, InjectionRecipe.class);

@@ -177,6 +177,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityThermodynamicConductor.class, new RenderThermodynamicConductor());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUniversalCable.class, new RenderUniversalCable());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIsotopicCentrifuge.class, new RenderIsotopicCentrifuge());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNutritionalLiquifier.class,new RenderNutritionalLiquifier());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntiprotonicNucleosynthesizer.class, new RenderAntiprotonicNucleosynthesizer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOrganicFarm.class, new RenderConfigurableMachine<>());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStamping.class, new RenderConfigurableMachine<>());
@@ -337,6 +338,7 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 1, getInventoryMRL("solar_neutron_activator"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 4, getInventoryMRL("resistive_heater"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 9, getInventoryMRL("isotopic_centrifuge"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3),10, getInventoryMRL("nutritional_liquifier"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.MachineBlock3), 13, getInventoryMRL("antiprotonic_nucleosynthesizer"));
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MekanismBlocks.BasicBlock2), 9, getInventoryMRL("security_desk"));
@@ -945,6 +947,7 @@ public class ClientProxy extends CommonProxy {
 
         // machineModelBake(modelRegistry, "industrial_alarm", MachineType.INDUSTRIAL_ALARM);
         machineModelBake(modelRegistry, "isotopic_centrifuge", MachineType.ISOTOPIC_CENTRIFUGE);
+        machineModelBake(modelRegistry, "nutritional_liquifier", MachineType.NUTRITIONAL_LIQUIFIER);
         machineModelBake(modelRegistry, "fluid_tank", MachineType.FLUID_TANK);
 
         //basicBlockModelBake(modelRegistry, "bin", BasicBlockType.BIN);
