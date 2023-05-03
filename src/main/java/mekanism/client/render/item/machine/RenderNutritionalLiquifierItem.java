@@ -19,8 +19,8 @@ public class RenderNutritionalLiquifierItem {
 
     public static void renderStack(@Nonnull ItemStack stack, TransformType transformType) {
         GlStateManager.rotate(180, 0, 0, 1);
-        GlStateManager.scale(0.8F, 0.8F, 0.8F);
-        GlStateManager.translate(0, -0.8F, 0);
+        GlStateManager.scale(1.0F, 1.0F, 1.0F);
+        GlStateManager.translate(0, -1.0F, 0);
         MekanismRenderer.bindTexture(MekanismUtils.getResource(ResourceType.RENDER, "NutritionalLiquifier.png"));
         nutritionalliquifier.render(0.0625F);
     }
