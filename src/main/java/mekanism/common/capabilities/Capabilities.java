@@ -1,11 +1,7 @@
 package mekanism.common.capabilities;
 
-import mekanism.api.IAlloyInteraction;
-import mekanism.api.IConfigCardAccess;
+import mekanism.api.*;
 import mekanism.api.IConfigCardAccess.ISpecialConfigData;
-import mekanism.api.IConfigurable;
-import mekanism.api.IEvaporationSolar;
-import mekanism.api.IHeatTransfer;
 import mekanism.api.energy.IStrictEnergyAcceptor;
 import mekanism.api.energy.IStrictEnergyOutputter;
 import mekanism.api.energy.IStrictEnergyStorage;

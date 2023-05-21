@@ -1,8 +1,9 @@
 package mekanism.common.chunkloading;
 
-import java.util.Set;
 import mekanism.common.tile.component.TileComponentChunkLoader;
 import net.minecraft.util.math.ChunkPos;
+
+import java.util.Set;
 
 public interface IChunkLoader {
 

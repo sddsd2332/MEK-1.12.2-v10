@@ -1,5 +1,6 @@
-package mekanism.common;
+package mekanism.common.register;
 
+import mekanism.common.Mekanism;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.registries.IForgeRegistry;

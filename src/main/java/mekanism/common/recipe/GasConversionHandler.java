@@ -1,27 +1,24 @@
 package mekanism.common.recipe;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.function.BiFunction;
-import java.util.function.Predicate;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.GasTank;
 import mekanism.api.gas.IGasItem;
-import mekanism.common.MekanismFluids;
 import mekanism.common.recipe.ingredients.IMekanismIngredient;
 import mekanism.common.recipe.ingredients.ItemStackMekIngredient;
 import mekanism.common.recipe.ingredients.OredictMekIngredient;
+import mekanism.common.register.MekanismFluids;
 import mekanism.common.tier.GasTankTier;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 
 public class GasConversionHandler {
 
@@ -103,7 +100,6 @@ public class GasConversionHandler {
      *
      * @param itemStack - itemstack to check with.
      * @param needed    The max amount we need for use with IGasItem's so that we do not return a value that is too large, thus making it so it thinks there is no room.
-     *
      * @return fuel ticks
      */
     @Nullable

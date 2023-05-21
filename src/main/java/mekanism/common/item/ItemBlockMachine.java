@@ -260,6 +260,10 @@ public class ItemBlockMachine extends ItemBlock implements IEnergizedItem, ISpec
                     list.add(entry.getKey().getColor() + "- " + entry.getKey().getName() + (entry.getKey().canMultiply() ? ": " + EnumColor.GREY + "x" + entry.getValue() : ""));
                 }
             }
+            if (type == MachineType.VOID) {
+                list.add(MekanismUtils.splitTooltip(EnumColor.AQUA + LangUtils.localize("tooltip.VoidExcavatorSpecialInstructions") + EnumColor.GREY, itemstack).toString());
+                list.add(MekanismUtils.splitTooltip(EnumColor.AQUA + LangUtils.localize("tooltip.VoidExcavatorSpecialInstructions2") + EnumColor.GREY, itemstack).toString());
+            }
         } else {
             list.addAll(MekanismUtils.splitTooltip(type.getDescription(), itemstack));
         }

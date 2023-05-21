@@ -1,7 +1,7 @@
 package mekanism.client;
 
-import mekanism.common.MekanismSounds;
 import mekanism.common.config.MekanismConfig;
+import mekanism.common.register.MekanismSounds;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;

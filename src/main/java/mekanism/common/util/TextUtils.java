@@ -3,8 +3,6 @@ package mekanism.common.util;
 import mekanism.api.EnumColor;
 import net.minecraft.client.Minecraft;
 
-import mekanism.api.EnumColor.*;
-
 import static mekanism.api.EnumColor.*;
 
 
@@ -27,12 +25,11 @@ public class TextUtils {
             PINK,
             ORANGE,
             WHITE};
+    private static final EnumColor[] sanic = new EnumColor[]{INDIGO, INDIGO, INDIGO, INDIGO, WHITE, INDIGO, WHITE, WHITE, INDIGO, WHITE, WHITE, INDIGO, RED, WHITE, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY};
 
     public static String makeFabulous(String input) {
         return ludicrousFormatting(input, fabulousness, 80.0, 1, 1);
     }
-
-    private static final EnumColor[] sanic = new EnumColor[] { INDIGO, INDIGO, INDIGO, INDIGO, WHITE, INDIGO, WHITE, WHITE, INDIGO, WHITE, WHITE, INDIGO, RED, WHITE, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY, DARK_GREY };
 
     public static String makeSANIC(String input) {
         return ludicrousFormatting(input, sanic, 50.0, 2, 1);

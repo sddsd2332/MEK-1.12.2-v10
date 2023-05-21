@@ -8,8 +8,6 @@ import mekanism.client.jei.gas.GasStackRenderer;
 import mekanism.client.jei.machine.*;
 import mekanism.client.jei.machine.chemical.*;
 import mekanism.client.jei.machine.other.*;
-import mekanism.common.MekanismBlocks;
-import mekanism.common.MekanismItems;
 import mekanism.common.base.IFactory;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.base.ITierItem;
@@ -18,6 +16,8 @@ import mekanism.common.inventory.container.robit.ContainerRobitInventory;
 import mekanism.common.item.ItemBlockEnergyCube;
 import mekanism.common.item.ItemBlockGasTank;
 import mekanism.common.recipe.RecipeHandler.Recipe;
+import mekanism.common.register.MekanismBlocks;
+import mekanism.common.register.MekanismItems;
 import mekanism.generators.common.MekanismGenerators;
 import mezz.jei.api.*;
 import mezz.jei.api.ISubtypeRegistry.ISubtypeInterpreter;
@@ -111,6 +111,8 @@ public class MekanismJEI implements IModPlugin {
         addRecipeCategory(registry, MachineType.SOLAR_NEUTRON_ACTIVATOR, new SolarNeutronRecipeCategory(guiHelper));
 
         addRecipeCategory(registry, MachineType.ISOTOPIC_CENTRIFUGE, new IsotopicRecipeCategory(guiHelper));
+
+        addRecipeCategory(registry, MachineType.VOID,new VoidExcavatorCategory(guiHelper));
 
         addRecipeCategory(registry, MachineType.COMBINER, new DoubleMachineRecipeCategory(guiHelper, Recipe.COMBINER.getJEICategory(),
                 "tile.MachineBlock.Combiner.name", ProgressBar.STONE));
@@ -208,14 +210,13 @@ public class MekanismJEI implements IModPlugin {
         RecipeRegistryHelper.registerSmelter(registry);
         RecipeRegistryHelper.registerFormulaicAssemblicator(registry);
         RecipeRegistryHelper.registerFarm(registry);
-
         RecipeRegistryHelper.registerStamping(registry);
         RecipeRegistryHelper.registerRolling(registry);
         RecipeRegistryHelper.registerBrushed(registry);
         RecipeRegistryHelper.registerTurning(registry);
         RecipeRegistryHelper.registerAlloy(registry);
         RecipeRegistryHelper.registerCellCultivate(registry);
-
+        RecipeRegistryHelper.registerVoidExcavator(registry);
         RecipeRegistryHelper.registerCellExtractor(registry);
         RecipeRegistryHelper.registerCellSeparator(registry);
         RecipeRegistryHelper.registerRecycler(registry);

@@ -16,7 +16,7 @@ import javax.annotation.Nonnull;
 
 public class ContainerFarmMachine<RECIPE extends FarmMachineRecipe<RECIPE>> extends ContainerMekanism<TileEntityFarmMachine<RECIPE>> {
 
-    public ContainerFarmMachine(InventoryPlayer inventory,TileEntityFarmMachine<RECIPE> tile) {
+    public ContainerFarmMachine(InventoryPlayer inventory, TileEntityFarmMachine<RECIPE> tile) {
         super(tile, inventory);
     }
 
@@ -56,27 +56,27 @@ public class ContainerFarmMachine<RECIPE extends FarmMachineRecipe<RECIPE>> exte
                 } else if (!mergeItemStack(slotStack, 4, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }else if (slotID >= 4 && slotID <= 30) {
-            if (!mergeItemStack(slotStack, 31, inventorySlots.size(), false)) {
-                return ItemStack.EMPTY;
-            }
+            } else if (slotID >= 4 && slotID <= 30) {
+                if (!mergeItemStack(slotStack, 31, inventorySlots.size(), false)) {
+                    return ItemStack.EMPTY;
+                }
             } else if (slotID > 30) {
                 if (!mergeItemStack(slotStack, 4, 30, false)) {
-                return ItemStack.EMPTY;
+                    return ItemStack.EMPTY;
                 }
             } else if (!mergeItemStack(slotStack, 4, inventorySlots.size(), true)) {
                 return ItemStack.EMPTY;
             }
-        if (slotStack.getCount() == 0) {
-            currentSlot.putStack(ItemStack.EMPTY);
-        } else {
-            currentSlot.onSlotChanged();
+            if (slotStack.getCount() == 0) {
+                currentSlot.putStack(ItemStack.EMPTY);
+            } else {
+                currentSlot.onSlotChanged();
+            }
+            if (slotStack.getCount() == stack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            currentSlot.onTake(player, slotStack);
         }
-        if (slotStack.getCount() == stack.getCount()) {
-            return ItemStack.EMPTY;
-        }
-        currentSlot.onTake(player, slotStack);
-    }
         return stack;
     }
 

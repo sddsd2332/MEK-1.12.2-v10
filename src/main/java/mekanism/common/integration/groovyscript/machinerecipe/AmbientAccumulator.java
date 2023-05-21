@@ -8,18 +8,18 @@ import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.IntegerInput;
 import mekanism.common.recipe.machines.AmbientGasRecipe;
 
-public class AmbientAccumulator extends VirtualizedMekanismRegistry<AmbientGasRecipe>{
+public class AmbientAccumulator extends VirtualizedMekanismRegistry<AmbientGasRecipe> {
 
     public AmbientAccumulator() {
-        super(RecipeHandler.Recipe.AMBIENT_ACCUMULATOR,"AmbientAccumulator","ambient_accumulator");
+        super(RecipeHandler.Recipe.AMBIENT_ACCUMULATOR, "AmbientAccumulator", "ambient_accumulator");
     }
 
     public AmbientGasRecipe add(GasStack output) {
-        return add(1,output);
+        return add(1, output);
     }
 
 
-    public AmbientGasRecipe add(int dim,GasStack output) {
+    public AmbientGasRecipe add(int dim, GasStack output) {
         GroovyLog.Msg msg = GroovyLog.msg("Error adding Mekanism Ambient Accumulator recipe").error();
         msg.add(Mekanism.isEmpty(output), () -> "output must not be empty");
         if (msg.postIfNotEmpty()) return null;

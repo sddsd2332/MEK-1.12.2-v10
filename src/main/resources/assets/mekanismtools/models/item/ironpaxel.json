@@ -1,7 +1,7 @@
 {
-    "parent": "item/handheld",
-    "textures": { 
-        "layer0": "mekanismtools:items/IronPaxel"
-    }
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mekanismtools:items/IronPaxel"
+  }
 }
 

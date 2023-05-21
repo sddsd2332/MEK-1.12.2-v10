@@ -1,19 +1,18 @@
 package mekanism.common.integration.groovyscript.machinerecipe;
 
+import com.cleanroommc.groovyscript.api.GroovyLog;
 import com.cleanroommc.groovyscript.compat.mods.mekanism.Mekanism;
 import com.cleanroommc.groovyscript.compat.mods.mekanism.recipe.VirtualizedMekanismRegistry;
-import com.cleanroommc.groovyscript.api.GroovyLog;
 import mekanism.api.gas.GasStack;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.GasInput;
 import mekanism.common.recipe.machines.IsotopicRecipe;
 
-public class IsotopicCentrifuge extends VirtualizedMekanismRegistry<IsotopicRecipe>{
+public class IsotopicCentrifuge extends VirtualizedMekanismRegistry<IsotopicRecipe> {
 
-    public IsotopicCentrifuge(){
-        super(RecipeHandler.Recipe.ISOTOPIC_CENTRIFUGE,"IsotopicCentrifuge","Isotopic_Centrifuge");
+    public IsotopicCentrifuge() {
+        super(RecipeHandler.Recipe.ISOTOPIC_CENTRIFUGE, "IsotopicCentrifuge", "Isotopic_Centrifuge");
     }
-
 
 
     public IsotopicRecipe add(GasStack input, GasStack output) {
@@ -41,12 +40,6 @@ public class IsotopicCentrifuge extends VirtualizedMekanismRegistry<IsotopicReci
         removeError("could not find recipe for %", input);
         return false;
     }
-
-
-
-
-
-
 
 
 }

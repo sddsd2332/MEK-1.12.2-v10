@@ -1,12 +1,13 @@
 package mekanism.common;
 
-import javax.annotation.Nonnull;
 import mekanism.api.infuse.InfuseObject;
 import mekanism.api.infuse.InfuseRegistry;
 import mekanism.api.infuse.InfuseType;
 import mekanism.common.base.ISustainedData;
 import mekanism.common.util.ItemDataUtils;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
 
 public class InfuseStorage implements ISustainedData {
 

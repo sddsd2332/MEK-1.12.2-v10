@@ -1,7 +1,6 @@
 package mekanism.client.jei.machine.other;
 
 import mekanism.api.gas.GasStack;
-import mekanism.client.gui.element.gauge.GuiFluidGauge;
 import mekanism.client.gui.element.gauge.GuiGasGauge;
 import mekanism.client.gui.element.gauge.GuiGauge;
 import mekanism.client.jei.BaseRecipeCategory;
@@ -17,7 +16,7 @@ public class AmbientGasCategory<WRAPPER extends AmbientGasRecipeWrapper<AmbientG
 
     public AmbientGasCategory(IGuiHelper helper) {
         super(helper, "mekanism:gui/GuiAmbientAccumulator.png", Recipe.AMBIENT_ACCUMULATOR.getJEICategory(),
-                "tile.MachineBlock3.AmbientAccumulator.name", null, 6, 17, 103+17, 82-17);
+                "tile.MachineBlock3.AmbientAccumulator.name", null, 6, 17, 103 + 17, 82 - 17);
     }
 
     @Override

@@ -8,14 +8,24 @@
     }
   },
   "variants": {
-    "normal": [{}],
+    "normal": [
+      {}
+    ],
     "facing": {
       "north": {},
-      "south": {"y": 180},
-      "east":  {"y": 90},
-      "west":  {"y": -90}
+      "south": {
+        "y": 180
+      },
+      "east": {
+        "y": 90
+      },
+      "west": {
+        "y": -90
+      }
     },
-    "inventory": [{}],
+    "inventory": [
+      {}
+    ],
     "active": {
       "false": {},
       "true": {

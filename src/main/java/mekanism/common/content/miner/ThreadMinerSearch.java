@@ -1,8 +1,5 @@
 package mekanism.common.content.miner;
 
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Map;
 import mekanism.api.Chunk3D;
 import mekanism.api.Coord4D;
 import mekanism.api.util.BlockInfo;
@@ -17,18 +14,19 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.ChunkCache;
 import net.minecraftforge.fluids.IFluidBlock;
 
+import java.util.BitSet;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ThreadMinerSearch extends Thread {
 
-    private TileEntityDigitalMiner tileEntity;
-
     public State state = State.IDLE;
-
+    public int found = 0;
+    private TileEntityDigitalMiner tileEntity;
     private Map<Chunk3D, BitSet> oresToMine = new HashMap<>();
     private Map<Integer, MinerFilter> replaceMap = new HashMap<>();
     private Map<BlockInfo, MinerFilter> acceptedItems = new HashMap<>();
     private ChunkCache chunkCache;
-
-    public int found = 0;
 
     public ThreadMinerSearch(TileEntityDigitalMiner tile) {
         tileEntity = tile;

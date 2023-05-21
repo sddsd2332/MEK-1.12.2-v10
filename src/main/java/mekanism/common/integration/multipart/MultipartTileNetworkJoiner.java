@@ -4,8 +4,6 @@ import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.IntIterator;
-import java.util.List;
-import java.util.Optional;
 import mcmultipart.api.container.IMultipartContainer;
 import mcmultipart.api.multipart.IMultipartTile;
 import mcmultipart.api.slot.EnumFaceSlot;
@@ -16,6 +14,9 @@ import mekanism.common.base.ITileNetwork;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Used to route {@link ITileNetwork} packets sent to multipart containers with more than one possible recipient.<br>

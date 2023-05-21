@@ -4,7 +4,7 @@ import mekanism.api.EnumColor;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.IGasItem;
-import mekanism.common.MekanismFluids;
+import mekanism.common.register.MekanismFluids;
 import mekanism.common.util.ItemDataUtils;
 import mekanism.common.util.LangUtils;
 import mekanism.generators.common.tile.ItemMekanismGenerators;

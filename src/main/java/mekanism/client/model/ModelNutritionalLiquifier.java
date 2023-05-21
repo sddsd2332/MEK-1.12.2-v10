@@ -36,7 +36,7 @@ public class ModelNutritionalLiquifier extends ModelBase {
         textureHeight = 128;
 
         base = new ModelRenderer(this, 0, 0);
-        base.addBox( -8.0F, -5.0F, -8.0F, 16, 5, 16);
+        base.addBox(-8.0F, -5.0F, -8.0F, 16, 5, 16);
         base.setRotationPoint(0.0F, 24.0F, 0.0F);
         base.setTextureSize(128, 128);
         base.mirror = true;
@@ -63,7 +63,7 @@ public class ModelNutritionalLiquifier extends ModelBase {
         glass3.mirror = true;
         setRotation(glass3, 0F, 0F, 0F);
 
-        glass4 = new ModelRenderer(this,  0, 40);
+        glass4 = new ModelRenderer(this, 0, 40);
         glass4.addBox(7.0F, -15.0F, -7.0F, 1, 10, 14);
         glass4.setRotationPoint(-15.0F, 24.0F, 0.0F);
         glass4.setTextureSize(128, 128);
@@ -131,15 +131,14 @@ public class ModelNutritionalLiquifier extends ModelBase {
         blade2.setRotationPoint(0.0F, 24.0F, 0.0F);
         blade2.setTextureSize(128, 128);
         blade2.mirror = true;
-        setRotation(blade2,0.7854F, 0.0F, 0.0F);
+        setRotation(blade2, 0.7854F, 0.0F, 0.0F);
 
         blade1 = new ModelRenderer(this, 0, 12);
         blade1.addBox(-1.0F, -7.075F, -2.825F, 2, 0, 2);
         blade1.setRotationPoint(0.0F, 24.0F, 0.0F);
         blade1.setTextureSize(128, 128);
         blade1.mirror = true;
-        setRotation(blade1,-0.7854F, 0.0F, 0.0F);
-
+        setRotation(blade1, -0.7854F, 0.0F, 0.0F);
 
 
         pillar = new ModelRenderer(this, 0, 22);
@@ -148,8 +147,6 @@ public class ModelNutritionalLiquifier extends ModelBase {
         pillar.setTextureSize(128, 128);
         pillar.mirror = true;
         setRotation(pillar, 0F, 0F, 0F);
-
-
 
 
         pillar2 = new ModelRenderer(this, 10, 0);

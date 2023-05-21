@@ -26,7 +26,7 @@ public class FusionCooling {
     public static void addRecipe(ILiquidStack liquidInput, ILiquidStack liquidOutput) {
         if (IngredientHelper.checkNotNull(NAME, liquidInput, liquidOutput)) {
             CrafttweakerIntegration.LATE_ADDITIONS.add(new AddMekanismRecipe<>(NAME, Recipe.FUSION_COOLING,
-                  new FusionCoolingRecipe(IngredientHelper.toFluid(liquidInput), IngredientHelper.toFluid(liquidOutput))));
+                    new FusionCoolingRecipe(IngredientHelper.toFluid(liquidInput), IngredientHelper.toFluid(liquidOutput))));
         }
     }
 
@@ -34,7 +34,7 @@ public class FusionCooling {
     public static void removeRecipe(IIngredient liquidInput, @Optional IIngredient liquidOutput) {
         if (IngredientHelper.checkNotNull(NAME, liquidInput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.FUSION_COOLING, new IngredientWrapper(liquidOutput),
-                  new IngredientWrapper(liquidInput)));
+                    new IngredientWrapper(liquidInput)));
         }
     }
 

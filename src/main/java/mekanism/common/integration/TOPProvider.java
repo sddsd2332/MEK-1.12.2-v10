@@ -1,13 +1,6 @@
 package mekanism.common.integration;
 
-import java.util.function.Function;
-import mcjty.theoneprobe.api.IProbeHitData;
-import mcjty.theoneprobe.api.IProbeInfo;
-import mcjty.theoneprobe.api.IProbeInfoProvider;
-import mcjty.theoneprobe.api.IProgressStyle;
-import mcjty.theoneprobe.api.ITheOneProbe;
-import mcjty.theoneprobe.api.ProbeMode;
-import mcjty.theoneprobe.api.TextStyleClass;
+import mcjty.theoneprobe.api.*;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasTankInfo;
 import mekanism.api.gas.IGasHandler;
@@ -17,6 +10,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import java.util.function.Function;
 
 @SuppressWarnings("unused")//IMC bound
 public class TOPProvider implements Function<ITheOneProbe, Void>, IProbeInfoProvider {

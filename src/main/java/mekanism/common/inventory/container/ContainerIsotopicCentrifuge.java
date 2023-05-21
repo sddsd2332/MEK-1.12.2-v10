@@ -14,7 +14,9 @@ import javax.annotation.Nonnull;
 
 public class ContainerIsotopicCentrifuge extends ContainerMekanism<TileEntityIsotopicCentrifuge> {
 
-    public ContainerIsotopicCentrifuge(InventoryPlayer inventory, TileEntityIsotopicCentrifuge tile) { super(tile, inventory); }
+    public ContainerIsotopicCentrifuge(InventoryPlayer inventory, TileEntityIsotopicCentrifuge tile) {
+        super(tile, inventory);
+    }
 
     @Nonnull
     @Override
@@ -38,7 +40,7 @@ public class ContainerIsotopicCentrifuge extends ContainerMekanism<TileEntityIso
                 } else if (!mergeItemStack(slotStack, 2, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }else if (ChargeUtils.canBeDischarged(slotStack)) {
+            } else if (ChargeUtils.canBeDischarged(slotStack)) {
                 if (slotID != 2) {
                     if (!mergeItemStack(slotStack, 2, 3, false)) {
                         return ItemStack.EMPTY;
@@ -46,7 +48,7 @@ public class ContainerIsotopicCentrifuge extends ContainerMekanism<TileEntityIso
                 } else if (!mergeItemStack(slotStack, 3, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }  else if (slotID >= 3 && slotID <= 29) {
+            } else if (slotID >= 3 && slotID <= 29) {
                 if (!mergeItemStack(slotStack, 30, inventorySlots.size(), false)) {
                     return ItemStack.EMPTY;
                 }

@@ -1,9 +1,10 @@
 package mekanism.common.recipe.ingredients;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mekanism.common.OreDictCache;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 public class OredictMekIngredient implements IMekanismIngredient<ItemStack> {
 

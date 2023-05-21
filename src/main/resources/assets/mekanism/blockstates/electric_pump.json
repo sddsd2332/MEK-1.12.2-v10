@@ -4,14 +4,26 @@
     "model": "mekanism:electric_pump"
   },
   "variants": {
-    "normal": [{}],
+    "normal": [
+      {}
+    ],
     "facing": {
-      "north": {"y": 180},
-      "south": {},
-      "east":  {"y": -90},
-      "west":  {"y": 90}
+      "north": {
+        "y": 180
       },
-    "inventory": [{"y": 180}]
+      "south": {},
+      "east": {
+        "y": -90
+      },
+      "west": {
+        "y": 90
+      }
+    },
+    "inventory": [
+      {
+        "y": 180
+      }
+    ]
   }
 }
 

@@ -1,13 +1,14 @@
 package mekanism.common;
 
-import java.util.ArrayList;
-import java.util.List;
 import mekanism.api.EnumColor;
 import mekanism.api.gas.GasTank;
 import mekanism.common.base.ITankManager;
 import mekanism.common.util.LangUtils;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SideData {
 

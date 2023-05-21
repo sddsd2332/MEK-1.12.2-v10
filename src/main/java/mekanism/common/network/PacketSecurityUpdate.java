@@ -1,9 +1,6 @@
 package mekanism.common.network;
 
 import io.netty.buffer.ByteBuf;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 import mekanism.client.MekanismClient;
 import mekanism.common.Mekanism;
 import mekanism.common.PacketHandler;
@@ -15,6 +12,10 @@ import mekanism.common.util.MekanismUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class PacketSecurityUpdate implements IMessageHandler<SecurityUpdateMessage, IMessage> {
 

@@ -70,12 +70,12 @@ public class MOreDictFilter extends MinerFilter implements IOreDictFilter {
     }
 
     @Override
-    public void setOreDictName(String name) {
-        oreDictName = name;
+    public String getOreDictName() {
+        return oreDictName;
     }
 
     @Override
-    public String getOreDictName() {
-        return oreDictName;
+    public void setOreDictName(String name) {
+        oreDictName = name;
     }
 }

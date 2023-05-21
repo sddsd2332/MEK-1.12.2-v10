@@ -1,14 +1,15 @@
 package mekanism.common.recipe;
 
 import com.google.gson.JsonObject;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import mekanism.common.util.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IIngredientFactory;
 import net.minecraftforge.common.crafting.JsonContext;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class MekanismIngredient extends Ingredient {
 

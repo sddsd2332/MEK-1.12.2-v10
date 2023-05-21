@@ -1,17 +1,12 @@
 package mekanism.common.multiblock;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
 import mekanism.api.Coord4D;
 import mekanism.common.tile.TileEntityMultiblock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 public class MultiblockManager<T extends SynchronizedData<T>> {
 
@@ -57,7 +52,6 @@ public class MultiblockManager<T extends SynchronizedData<T>> {
      *
      * @param world - world the cache is stored in
      * @param id    - inventory ID to pull
-     *
      * @return correct multiblock inventory cache
      */
     public MultiblockCache<T> pullInventory(World world, String id) {
@@ -91,7 +85,7 @@ public class MultiblockManager<T extends SynchronizedData<T>> {
                 if (obj.dimensionId == world.provider.getDimension() && obj.exists(world)) {
                     TileEntity tileEntity = obj.getTileEntity(world);
                     if (!(tileEntity instanceof TileEntityMultiblock) || ((TileEntityMultiblock) tileEntity).getManager() != this ||
-                        (getStructureId(((TileEntityMultiblock<?>) tileEntity)) != null && !Objects.equals(getStructureId(((TileEntityMultiblock) tileEntity)), inventoryID))) {
+                            (getStructureId(((TileEntityMultiblock<?>) tileEntity)) != null && !Objects.equals(getStructureId(((TileEntityMultiblock) tileEntity)), inventoryID))) {
                         if (!tilesToKill.containsKey(inventoryID)) {
                             tilesToKill.put(inventoryID, new HashSet<>());
                         }

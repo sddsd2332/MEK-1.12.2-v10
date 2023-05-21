@@ -7,7 +7,6 @@ import mekanism.common.Mekanism;
 import mekanism.common.Upgrade;
 import mekanism.common.base.IUpgradeTile;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
-import mekanism.common.config.ClientConfig;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.inventory.container.ContainerUpgradeManagement;
 import mekanism.common.network.PacketRemoveUpgrade.RemoveUpgradeMessage;
@@ -99,7 +98,7 @@ public class GuiUpgradeManagement extends GuiMekanism {
             renderText(LangUtils.localize("gui.upgrades.noSelection") + ".", 92, 8, MekanismConfig.current().client.UpgradeOptionSelection.val(), true);
         } else {
             int amount = tileEntity.getComponent().getUpgrades(selectedType);
-            renderText(selectedType.getName() + LangUtils.localize("gui.upgrade"), 92, 8,  MekanismConfig.current().client.UpgradeStatusDescription.val(), true);
+            renderText(selectedType.getName() + LangUtils.localize("gui.upgrade"), 92, 8, MekanismConfig.current().client.UpgradeStatusDescription.val(), true);
             renderText(LangUtils.localize("gui.upgrades.amount") + ": " + amount + "/" + selectedType.getMax(), 92, 16, MekanismConfig.current().client.UpgradeStatusDescription.val(), true);
             int text = 0;
             for (String s : selectedType.getInfo((TileEntity) tileEntity)) {

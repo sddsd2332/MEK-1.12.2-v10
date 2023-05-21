@@ -1,7 +1,5 @@
 package mekanism.common.content.tank;
 
-import java.util.HashSet;
-import java.util.Set;
 import mekanism.api.Coord4D;
 import mekanism.common.multiblock.SynchronizedData;
 import mekanism.common.util.FluidContainerUtils.ContainerEditMode;
@@ -9,6 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class SynchronizedTankData extends SynchronizedData<SynchronizedTankData> {
 

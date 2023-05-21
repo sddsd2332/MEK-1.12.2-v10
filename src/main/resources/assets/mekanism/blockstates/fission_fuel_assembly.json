@@ -4,8 +4,12 @@
     "model": "mekanism:fission_fuel_assembly"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }
 

@@ -50,8 +50,10 @@ public class RenderMachineItem extends SubTypeItemRenderer<MachineType> {
                 RenderIsotopicCentrifugeItem.renderStack(stack, transformType);
             } else if (machineType == MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER) {
                 RenderAntiprotonicNucleosynthesizerItem.renderStack(stack, transformType);
-            } else if (machineType == MachineType.NUTRITIONAL_LIQUIFIER){
+            } else if (machineType == MachineType.NUTRITIONAL_LIQUIFIER) {
                 RenderNutritionalLiquifierItem.renderStack(stack, transformType);
+            } else if (machineType == MachineType.VOID) {
+                RenderVoidExcavatorItem.renderStack(stack, transformType);
             }
         }
     }

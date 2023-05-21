@@ -18,7 +18,7 @@ public class NucleosynthesizerRecipe extends MachineRecipe<NucleosynthesizerInpu
         this(new NucleosynthesizerInput(inputSolid, inputGas), new NucleosynthesizerOutput(outputSolid), energy, duration);
     }
 
-    public NucleosynthesizerRecipe(NucleosynthesizerInput NucleosynthesizerInput, NucleosynthesizerOutput  NucleosynthesizerOutput, double energy, int duration) {
+    public NucleosynthesizerRecipe(NucleosynthesizerInput NucleosynthesizerInput, NucleosynthesizerOutput NucleosynthesizerOutput, double energy, int duration) {
         super(NucleosynthesizerInput, NucleosynthesizerOutput);
         extraEnergy = energy;
         ticks = duration;
@@ -36,12 +36,12 @@ public class NucleosynthesizerRecipe extends MachineRecipe<NucleosynthesizerInpu
     }
 
     public boolean canOperate(NonNullList<ItemStack> inventory, GasTank inputGasTank) {
-        return getInput().use(inventory, 0,  inputGasTank, false) && getOutput().applyOutputs(inventory, 2, false);
+        return getInput().use(inventory, 0, inputGasTank, false) && getOutput().applyOutputs(inventory, 2, false);
     }
 
-    public void operate(NonNullList<ItemStack> inventory,  GasTank inputGasTank) {
-        if (getInput().use(inventory, 0,  inputGasTank, true)) {
-            getOutput().applyOutputs(inventory, 2,true);
+    public void operate(NonNullList<ItemStack> inventory, GasTank inputGasTank) {
+        if (getInput().use(inventory, 0, inputGasTank, true)) {
+            getOutput().applyOutputs(inventory, 2, true);
         }
     }
 }

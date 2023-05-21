@@ -2,7 +2,7 @@ package mekanism.common.item;
 
 import mekanism.api.EnumColor;
 import mekanism.common.Mekanism;
-import mekanism.common.MekanismItems;
+import mekanism.common.register.MekanismItems;
 import mekanism.common.util.LangUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

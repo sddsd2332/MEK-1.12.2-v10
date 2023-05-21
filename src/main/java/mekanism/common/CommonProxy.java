@@ -1,7 +1,5 @@
 package mekanism.common;
 
-import java.io.File;
-import java.lang.ref.WeakReference;
 import mekanism.api.Coord4D;
 import mekanism.api.MekanismAPI;
 import mekanism.api.Pos3D;
@@ -13,15 +11,12 @@ import mekanism.common.config.MekanismConfig;
 import mekanism.common.entity.EntityRobit;
 import mekanism.common.inventory.InventoryPersonalChest;
 import mekanism.common.inventory.container.*;
-import mekanism.common.inventory.container.robit.ContainerRobitCrafting;
-import mekanism.common.inventory.container.robit.ContainerRobitInventory;
-import mekanism.common.inventory.container.robit.ContainerRobitMain;
-import mekanism.common.inventory.container.robit.ContainerRobitRepair;
-import mekanism.common.inventory.container.robit.ContainerRobitSmelting;
+import mekanism.common.inventory.container.robit.*;
 import mekanism.common.item.ItemDictionary;
 import mekanism.common.item.ItemPortableTeleporter;
 import mekanism.common.item.ItemSeismicReader;
 import mekanism.common.network.PacketPortableTeleporter.PortableTeleporterMessage;
+import mekanism.common.register.MekanismBlocks;
 import mekanism.common.tile.*;
 import mekanism.common.tile.prefab.*;
 import mekanism.common.voice.VoiceServerManager;
@@ -44,6 +39,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 import net.minecraftforge.oredict.OreDictionary;
 
+import java.io.File;
+import java.lang.ref.WeakReference;
+
 /**
  * Common proxy for the Mekanism mod.
  *
@@ -52,7 +50,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class CommonProxy implements IGuiProvider {
 
     protected final String[] API_PRESENT_MESSAGE = {"Mekanism API jar detected (Mekanism-<version>-api.jar),",
-                                                    "please delete it from your mods folder and restart the game."};
+            "please delete it from your mods folder and restart the game."};
 
     /**
      * Register tile entities that have special models. Overwritten in client to register TESRs.
@@ -333,7 +331,7 @@ public class CommonProxy implements IGuiProvider {
             case 68:
                 return new ContainerDoubleElectricMachine<>(player.inventory, (TileEntityDoubleElectricMachine) tileEntity);
             case 69:
-                return new ContainerCultivateElectricMachine<>(player.inventory,(TileEntityCultivateElectricMachine) tileEntity);
+                return new ContainerCultivateElectricMachine<>(player.inventory, (TileEntityCultivateElectricMachine) tileEntity);
             case 70:
                 return new ContainerChanceMachine<>(player.inventory, (TileEntityChanceMachine) tileEntity);
             case 71:
@@ -342,6 +340,8 @@ public class CommonProxy implements IGuiProvider {
                 return new ContainerChanceMachine2(player.inventory, (TileEntityChanceMachine2) tileEntity);
             case 73:
                 return new ContainerAmbientAccumulatorEnergy(player.inventory, (TileEntityAmbientAccumulatorEnergy) tileEntity);
+            case 74:
+                return new ContainerVoid(player.inventory, (TileEntityVoid) tileEntity);
         }
         return null;
     }

@@ -3,12 +3,13 @@ package mekanism.common.integration.crafttweaker;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.mc1120.commands.CTChatCommand;
-import java.util.LinkedList;
-import java.util.List;
 import mekanism.common.Mekanism;
 import mekanism.common.integration.crafttweaker.commands.GasesCommand;
 import mekanism.common.integration.crafttweaker.commands.InfuseTypesCommand;
 import mekanism.common.integration.crafttweaker.commands.MekRecipesCommand;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class CrafttweakerIntegration {
 

@@ -1,8 +1,9 @@
 package mekanism.common.content.boiler;
 
-import javax.annotation.Nullable;
 import mekanism.common.tile.TileEntityBoilerCasing;
 import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
 
 public class BoilerSteamTank extends BoilerTank {
 

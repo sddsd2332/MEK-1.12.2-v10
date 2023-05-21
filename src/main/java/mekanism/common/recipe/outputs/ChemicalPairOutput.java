@@ -52,7 +52,6 @@ public class ChemicalPairOutput extends MachineOutput<ChemicalPairOutput> {
      * Whether or not the defined input contains the same gasses and at least the required amount of the defined gasses as this input.
      *
      * @param input - input to check
-     *
      * @return if the input meets this input's requirements
      */
     public boolean meetsInput(ChemicalPairOutput input) {
@@ -105,7 +104,6 @@ public class ChemicalPairOutput extends MachineOutput<ChemicalPairOutput> {
      * Whether or not one of this ChemicalInput's GasStack entry's gas type is equal to the gas type of the given gas.
      *
      * @param stack - stack to check
-     *
      * @return if the stack's gas type is contained in this ChemicalInput
      */
     public boolean containsType(GasStack stack) {
@@ -119,7 +117,6 @@ public class ChemicalPairOutput extends MachineOutput<ChemicalPairOutput> {
      * Actual implementation of meetsInput(), performs the checks.
      *
      * @param input - input to check
-     *
      * @return if the input meets this input's requirements
      */
     private boolean meets(ChemicalPairOutput input) {

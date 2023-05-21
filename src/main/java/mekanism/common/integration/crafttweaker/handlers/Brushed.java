@@ -43,7 +43,7 @@ public class Brushed {
     public static void removeRecipe(IIngredient itemOutput, @Optional IIngredient itemInput) {
         if (IngredientHelper.checkNotNull(NAME, itemOutput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.BRUSHED, new IngredientWrapper(itemOutput),
-                  new IngredientWrapper(itemInput)));
+                    new IngredientWrapper(itemInput)));
         }
     }
 

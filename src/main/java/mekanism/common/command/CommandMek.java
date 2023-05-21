@@ -1,11 +1,6 @@
 package mekanism.common.command;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
-import java.util.UUID;
-import javax.annotation.Nonnull;
 import mekanism.api.MekanismAPI;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.command.CommandBase;
@@ -19,6 +14,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.server.command.CommandTreeBase;
+
+import javax.annotation.Nonnull;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+import java.util.UUID;
 
 public class CommandMek extends CommandTreeBase {
 
@@ -115,6 +116,11 @@ public class CommandMek extends CommandTreeBase {
         }
     }
 
+    interface CmdExecute {
+
+        void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException;
+    }
+
     // Wrapper class that makes it easier to create single method commands
     public static class Cmd extends CommandBase {
 
@@ -144,10 +150,5 @@ public class CommandMek extends CommandTreeBase {
         public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] args) throws CommandException {
             ex.execute(server, sender, args);
         }
-    }
-
-    interface CmdExecute {
-
-        void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException;
     }
 }

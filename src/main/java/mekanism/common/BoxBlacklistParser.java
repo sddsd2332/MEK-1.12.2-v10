@@ -1,13 +1,9 @@
 package mekanism.common;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import mekanism.api.MekanismAPI;
 import net.minecraft.block.Block;
+
+import java.io.*;
 
 public final class BoxBlacklistParser {
 

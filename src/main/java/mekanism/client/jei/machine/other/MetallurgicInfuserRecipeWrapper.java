@@ -2,13 +2,17 @@ package mekanism.client.jei.machine.other;
 
 import mekanism.client.jei.machine.MekanismRecipeWrapper;
 import mekanism.common.InfuseStorage;
+import mekanism.common.config.MekanismConfig;
 import mekanism.common.recipe.machines.MetallurgicInfuserRecipe;
+import mekanism.common.util.LangUtils;
+import mekanism.common.util.MekanismUtils;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -38,10 +42,13 @@ public class MetallurgicInfuserRecipeWrapper<RECIPE extends MetallurgicInfuserRe
 
     @Override
     public List<String> getTooltipStrings(int mouseX, int mouseY) {
+        List<String> tooltip = new ArrayList<>();
         if (mouseX >= 2 && mouseX < 6 && mouseY >= 2 && mouseY < 54) {
             InfuseStorage infuse = recipe.getInput().infuse;
-            return Collections.singletonList(infuse.getType().getLocalizedName() + ": " + infuse.getAmount());
+             tooltip.add(infuse.getType().getLocalizedName() + ": " + infuse.getAmount());
+        } else if (mouseX >= 162 && mouseX < 166 && mouseY >= 6 && mouseY < 6 + 52) {
+            tooltip.add(LangUtils.localize("gui.additionalprocessingdescription") + ":" + MekanismUtils.convertToDisplay(MekanismConfig.current().usage.metallurgicInfuser.val()) + " " + MekanismConfig.current().general.energyUnit.val() + "/" + " " + "tick");
         }
-        return Collections.emptyList();
+        return tooltip;
     }
 }

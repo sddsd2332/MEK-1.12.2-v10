@@ -38,11 +38,11 @@ public class TileEntityInternalMultiblock extends TileEntityBasicBlock {
         return data;
     }
 
-    public void setMultiblock(String id) {
-        multiblockUUID = id;
-    }
-
     public String getMultiblock() {
         return multiblockUUID;
+    }
+
+    public void setMultiblock(String id) {
+        multiblockUUID = id;
     }
 }

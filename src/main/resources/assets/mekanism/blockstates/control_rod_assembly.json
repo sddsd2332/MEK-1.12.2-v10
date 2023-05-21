@@ -4,8 +4,12 @@
     "model": "mekanism:control_rod_assembly"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }
 

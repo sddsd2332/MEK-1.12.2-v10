@@ -1,8 +1,10 @@
 package mekanism.common;
 
-import javax.annotation.Nonnull;
+import mekanism.common.register.MekanismItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
 
 public class CreativeTabMekanism extends CreativeTabs {
 

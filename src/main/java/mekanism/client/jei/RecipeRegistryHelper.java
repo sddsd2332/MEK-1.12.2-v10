@@ -12,6 +12,7 @@ import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.states.BlockStateBasic.BasicBlockType;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.integration.crafttweaker.handlers.EnergizedSmelter;
+import mekanism.common.integration.groovyscript.machinerecipe.Smelter;
 import mekanism.common.inventory.container.ContainerFormulaicAssemblicator;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.inputs.ItemStackInput;
@@ -274,6 +275,17 @@ public class RecipeRegistryHelper {
         registerRecipeItem(registry, MachineType.ISOTOPIC_CENTRIFUGE, Recipe.ISOTOPIC_CENTRIFUGE);
     }
 
+
+    public static void registerVoidExcavator(IModRegistry registry) {
+        if (!MachineType.VOID.isEnabled()) {
+            return;
+        }
+        addRecipes(registry, Recipe.VOID, VoidExcavatorRecipeWrapper::new);
+        registry.addRecipeClickArea(GuiVoid.class, 49, 13, 121, 48, Recipe.VOID.getJEICategory());
+        registry.addRecipeClickArea(GuiVoid.class, 86, 70, 47, 7, Recipe.VOID.getJEICategory());
+        registerRecipeItem(registry, MachineType.VOID, Recipe.VOID);
+    }
+
     public static void registerAntiprotonicNucleosynthesizer(IModRegistry registry) {
         if (!MachineType.ANTIPROTONIC_NUCLEOSYNTHESIZER.isEnabled()) {
             return;
@@ -315,10 +327,11 @@ public class RecipeRegistryHelper {
         addRecipes(registry, Recipe.AMBIENT_ACCUMULATOR, AmbientGasRecipeWrapper::new);
         registry.addRecipeClickArea(GuiAmbientAccumulator.class, 7, 18, 80, 50, Recipe.AMBIENT_ACCUMULATOR.getJEICategory());
         registerRecipeItem(registry, MachineType.AMBIENT_ACCUMULATOR, Recipe.AMBIENT_ACCUMULATOR);
-        registry.addRecipeClickArea(GuiAmbientAccumulatorEnergy.class,7,18,80,50,Recipe.AMBIENT_ACCUMULATOR.getJEICategory());
-        registerRecipeItem(registry,MachineType.AMBIENT_ACCUMULATOR_ENERGY,Recipe.AMBIENT_ACCUMULATOR);
+        registry.addRecipeClickArea(GuiAmbientAccumulatorEnergy.class, 7, 18, 80, 50, Recipe.AMBIENT_ACCUMULATOR.getJEICategory());
+        registerRecipeItem(registry, MachineType.AMBIENT_ACCUMULATOR_ENERGY, Recipe.AMBIENT_ACCUMULATOR);
 
     }
+
 
     public static void registerReactionChamber(IModRegistry registry) {
         if (!MachineType.PRESSURIZED_REACTION_CHAMBER.isEnabled()) {
@@ -354,21 +367,18 @@ public class RecipeRegistryHelper {
             return;
         }
         registry.handleRecipes(SmeltingRecipe.class, MachineRecipeWrapper::new, Recipe.ENERGIZED_SMELTER.getJEICategory());
-        if (Mekanism.hooks.CraftTweakerLoaded && EnergizedSmelter.hasRemovedRecipe()) {// Removed / Removed + Added
+
+        if ((Mekanism.hooks.GroovyScript && Smelter.hasRemovedRecipe()) || (Mekanism.hooks.CraftTweakerLoaded && EnergizedSmelter.hasRemovedRecipe())) {
+            // Removed / Removed + Added
             // Add all recipes
             Collection<SmeltingRecipe> recipeList = Recipe.ENERGIZED_SMELTER.get().values();
-            registry.addRecipes(recipeList.stream().map(MachineRecipeWrapper::new).collect(Collectors.toList()),
-                    Recipe.ENERGIZED_SMELTER.getJEICategory());
-            registry.addRecipeClickArea(GuiEnergizedSmelter.class, 79, 40, 24, 7,
-                    Recipe.ENERGIZED_SMELTER.getJEICategory());
-        } else if (Mekanism.hooks.CraftTweakerLoaded && EnergizedSmelter.hasAddedRecipe()) {// Added but not removed
+            registry.addRecipes(recipeList.stream().map(MachineRecipeWrapper::new).collect(Collectors.toList()), Recipe.ENERGIZED_SMELTER.getJEICategory());
+            registry.addRecipeClickArea(GuiEnergizedSmelter.class, 79, 40, 24, 7, Recipe.ENERGIZED_SMELTER.getJEICategory());
+        } else if ((Mekanism.hooks.GroovyScript && Smelter.hasAddedRecipe()) || (Mekanism.hooks.CraftTweakerLoaded && EnergizedSmelter.hasAddedRecipe())) {// Added but not removed
             // Only add added recipes
             Map<ItemStackInput, SmeltingRecipe> smeltingRecipes = Recipe.ENERGIZED_SMELTER.get();
-            List<MachineRecipeWrapper> smeltingWrapper = smeltingRecipes.entrySet().stream().filter(entry ->
-                    !FurnaceRecipes.instance().getSmeltingList().containsKey(entry.getKey().ingredient)).map(entry ->
-                    new MachineRecipeWrapper<>(entry.getValue())).collect(Collectors.toList());
+            List<MachineRecipeWrapper> smeltingWrapper = smeltingRecipes.entrySet().stream().filter(entry -> !FurnaceRecipes.instance().getSmeltingList().containsKey(entry.getKey().ingredient)).map(entry -> new MachineRecipeWrapper<>(entry.getValue())).collect(Collectors.toList());
             registry.addRecipes(smeltingWrapper, Recipe.ENERGIZED_SMELTER.getJEICategory());
-
             registry.addRecipeClickArea(GuiEnergizedSmelter.class, 79, 40, 24, 7, VanillaRecipeCategoryUid.SMELTING, Recipe.ENERGIZED_SMELTER.getJEICategory());
             registerVanillaSmeltingRecipeCatalyst(registry);
         } else {

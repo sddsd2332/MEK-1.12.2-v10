@@ -4,8 +4,6 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import java.util.ArrayList;
-import java.util.List;
 import mekanism.common.Mekanism;
 import mekanism.common.integration.crafttweaker.CrafttweakerIntegration;
 import mekanism.common.integration.crafttweaker.helpers.IngredientHelper;
@@ -22,6 +20,9 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ZenClass("mods.mekanism.sawmill")
 @ZenRegister
 public class Sawmill {
@@ -32,7 +33,7 @@ public class Sawmill {
     public static void addRecipe(IIngredient ingredientInput, IItemStack itemOutput, @Optional IItemStack optionalItemOutput, @Optional double optionalChance) {
         if (IngredientHelper.checkNotNull(NAME, ingredientInput, itemOutput)) {
             ChanceOutput output = optionalItemOutput == null ? new ChanceOutput(CraftTweakerMC.getItemStack(itemOutput)) : new ChanceOutput(CraftTweakerMC.getItemStack(itemOutput),
-                  CraftTweakerMC.getItemStack(optionalItemOutput), optionalChance);
+                    CraftTweakerMC.getItemStack(optionalItemOutput), optionalChance);
             List<SawmillRecipe> recipes = new ArrayList<>();
             for (ItemStack stack : CraftTweakerMC.getIngredient(ingredientInput).getMatchingStacks()) {
                 recipes.add(new SawmillRecipe(new ItemStackInput(stack), output));
@@ -45,7 +46,7 @@ public class Sawmill {
     public static void removeRecipe(IIngredient itemInput, @Optional IIngredient itemOutput, @Optional IIngredient optionalItemOutput) {
         if (IngredientHelper.checkNotNull(NAME, itemInput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.PRECISION_SAWMILL, new IngredientWrapper(itemOutput, optionalItemOutput),
-                  new IngredientWrapper(itemInput)));
+                    new IngredientWrapper(itemInput)));
         }
     }
 

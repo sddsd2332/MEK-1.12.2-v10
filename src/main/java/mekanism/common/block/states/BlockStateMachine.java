@@ -1,11 +1,11 @@
 package mekanism.common.block.states;
 
 import mekanism.common.Mekanism;
-import mekanism.common.MekanismBlocks;
 import mekanism.common.base.IBlockType;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.BlockMachine;
 import mekanism.common.config.MekanismConfig;
+import mekanism.common.register.MekanismBlocks;
 import mekanism.common.tier.BaseTier;
 import mekanism.common.tier.FactoryTier;
 import mekanism.common.tile.*;
@@ -129,7 +129,7 @@ public class BlockStateMachine extends ExtendedBlockState {
         SUPERCHARGED_COIL(MachineBlock.MACHINE_BLOCK_3, 11, "SuperchargedCoil", -1, TileEntitySuperchargedCoil::new, false, true, false, BlockStateUtils.ALL_FACINGS, false),
         ORGANIC_FARM(MachineBlock.MACHINE_BLOCK_3, 12, "OrganicFarm", 63, TileEntityOrganicFarm::new, true, false, true, Plane.HORIZONTAL, true),
         ANTIPROTONIC_NUCLEOSYNTHESIZER(MachineBlock.MACHINE_BLOCK_3, 13, "antiprotonicnucleosynthesizer", 62, TileEntityAntiprotonicNucleosynthesizer::new, true, true, true, Plane.HORIZONTAL, true),
-        AMBIENT_ACCUMULATOR_ENERGY(MachineBlock.MACHINE_BLOCK_3,14,"AmbientAccumulatorEnergy",73,TileEntityAmbientAccumulatorEnergy::new,true,true,true,Plane.HORIZONTAL, true),
+        AMBIENT_ACCUMULATOR_ENERGY(MachineBlock.MACHINE_BLOCK_3, 14, "AmbientAccumulatorEnergy", 73, TileEntityAmbientAccumulatorEnergy::new, true, true, true, Plane.HORIZONTAL, true),
 
         STAMPING(MachineBlock.MACHINE_BLOCK_4, 0, "Stamping", 64, TileEntityStamping::new, true, false, true, Plane.HORIZONTAL, true),
         ROLLING(MachineBlock.MACHINE_BLOCK_4, 1, "Rolling", 65, TileEntityRolling::new, true, false, true, Plane.HORIZONTAL, true),
@@ -139,7 +139,8 @@ public class BlockStateMachine extends ExtendedBlockState {
         CELL_CULTIVATE(MachineBlock.MACHINE_BLOCK_4, 5, "CellCultivate", 69, TileEntityCellCultivate::new, true, false, true, Plane.HORIZONTAL, true),
         CELL_EXTRACTOR(MachineBlock.MACHINE_BLOCK_4, 6, "CellExtractor", 70, TileEntityCellExtractor::new, true, false, true, Plane.HORIZONTAL, true),
         CELL_SEPARATOR(MachineBlock.MACHINE_BLOCK_4, 7, "CellSeparator", 71, TileEntityCellSeparator::new, true, false, true, Plane.HORIZONTAL, true),
-        RECYCLER(MachineBlock.MACHINE_BLOCK_4, 8, "Recycler", 72, TileEntityRecycler::new, true, false, true, Plane.HORIZONTAL, true);
+        RECYCLER(MachineBlock.MACHINE_BLOCK_4, 8, "Recycler", 72, TileEntityRecycler::new, true, false, true, Plane.HORIZONTAL, true),
+        VOID(MachineBlock.MACHINE_BLOCK_4, 9, "Void", 74, TileEntityVoid::new, true, true, true, Plane.HORIZONTAL, true);
 
         private static final List<MachineType> VALID_MACHINES = new ArrayList<>();
 
@@ -324,6 +325,8 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return MekanismConfig.current().usage.cellSeparator.val();
                 case RECYCLER:
                     return MekanismConfig.current().usage.recycler.val();
+                case VOID:
+                    return MekanismConfig.current().usage.voidMiner.val();
                 default:
                     return 0;
             }
@@ -411,6 +414,8 @@ public class BlockStateMachine extends ExtendedBlockState {
                     return MekanismConfig.current().storage.cellSeparator.val();
                 case RECYCLER:
                     return MekanismConfig.current().storage.recycler.val();
+                case VOID:
+                    return MekanismConfig.current().storage.voidMiner.val();
                 default:
                     return 400 * getUsage();
             }

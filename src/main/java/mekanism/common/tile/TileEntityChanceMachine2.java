@@ -2,13 +2,13 @@ package mekanism.common.tile;
 
 import mekanism.api.EnumColor;
 import mekanism.api.transmitters.TransmissionType;
-import mekanism.common.MekanismItems;
 import mekanism.common.SideData;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.inputs.ItemStackInput;
 import mekanism.common.recipe.machines.Chance2MachineRecipe;
 import mekanism.common.recipe.outputs.ChanceOutput2;
+import mekanism.common.register.MekanismItems;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityUpgradeableMachine;
@@ -23,7 +23,8 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 import java.util.Map;
 
-public abstract class TileEntityChanceMachine2<RECIPE extends Chance2MachineRecipe<RECIPE>> extends TileEntityUpgradeableMachine<ItemStackInput, ChanceOutput2, RECIPE> {
+public abstract class TileEntityChanceMachine2<RECIPE extends Chance2MachineRecipe<RECIPE>>
+        extends TileEntityUpgradeableMachine<ItemStackInput, ChanceOutput2, RECIPE> {
 
     private static final String[] methods = new String[]{"getEnergy", "getProgress", "isActive", "facing", "canOperate", "getMaxEnergy", "getEnergyNeeded"};
 

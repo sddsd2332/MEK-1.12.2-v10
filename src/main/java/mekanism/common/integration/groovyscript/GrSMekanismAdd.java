@@ -8,11 +8,10 @@ import mekanism.generators.common.MekanismGenerators;
 import net.minecraftforge.fml.common.Loader;
 
 
-public class GrSMekanismAdd  {
-
-    private static boolean loaded = false;
+public class GrSMekanismAdd {
 
     public static ModSupport.Container<Container> modSupportContainer;
+    private static boolean loaded = false;
 
     private GrSMekanismAdd() {
     }
@@ -34,15 +33,14 @@ public class GrSMekanismAdd  {
     }
 
 
-
     public static class Container extends com.cleanroommc.groovyscript.compat.mods.mekanism.Mekanism {
 
         public NutritionalLiquifier nutritionalLiquifier = new NutritionalLiquifier();
         public AntiprotonicNucleosynthesizer antiprotonicNucleosynthesizer = new AntiprotonicNucleosynthesizer();
-        public IsotopicCentrifuge isotopicCentrifuge =new IsotopicCentrifuge();
+        public IsotopicCentrifuge isotopicCentrifuge = new IsotopicCentrifuge();
         public OrganicFarm organicFarm = new OrganicFarm();
         public AmbientAccumulator ambientAccumulator = new AmbientAccumulator();
-        public Stamping stamping =new Stamping();
+        public Stamping stamping = new Stamping();
         public Rolling rolling = new Rolling();
         public Brushed brushed = new Brushed();
         public Turning turning = new Turning();
@@ -54,7 +52,6 @@ public class GrSMekanismAdd  {
         public Recycler recycler = new Recycler();
 
         public Container() {
-            addRegistry(nutritionalLiquifier);
             addRegistry(nutritionalLiquifier);
             addRegistry(antiprotonicNucleosynthesizer);
             addRegistry(isotopicCentrifuge);

@@ -1,69 +1,38 @@
 package mekanism.common;
 
 import io.netty.buffer.ByteBuf;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.UUID;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.Range4D;
 import mekanism.common.base.ITileNetwork;
 import mekanism.common.config.MekanismConfig;
-import mekanism.common.network.PacketBoxBlacklist;
+import mekanism.common.network.*;
 import mekanism.common.network.PacketBoxBlacklist.BoxBlacklistMessage;
-import mekanism.common.network.PacketConfigSync;
 import mekanism.common.network.PacketConfigSync.ConfigSyncMessage;
-import mekanism.common.network.PacketConfigurationUpdate;
 import mekanism.common.network.PacketConfigurationUpdate.ConfigurationUpdateMessage;
-import mekanism.common.network.PacketContainerEditMode;
 import mekanism.common.network.PacketContainerEditMode.ContainerEditModeMessage;
-import mekanism.common.network.PacketDataRequest;
 import mekanism.common.network.PacketDataRequest.DataRequestMessage;
-import mekanism.common.network.PacketDigitalMinerGui;
 import mekanism.common.network.PacketDigitalMinerGui.DigitalMinerGuiMessage;
-import mekanism.common.network.PacketDropperUse;
 import mekanism.common.network.PacketDropperUse.DropperUseMessage;
-import mekanism.common.network.PacketEditFilter;
 import mekanism.common.network.PacketEditFilter.EditFilterMessage;
-import mekanism.common.network.PacketEntityMove;
 import mekanism.common.network.PacketEntityMove.EntityMoveMessage;
-import mekanism.common.network.PacketFlamethrowerData;
 import mekanism.common.network.PacketFlamethrowerData.FlamethrowerDataMessage;
-import mekanism.common.network.PacketFreeRunnerData;
 import mekanism.common.network.PacketFreeRunnerData.FreeRunnerDataMessage;
-import mekanism.common.network.PacketItemStack;
 import mekanism.common.network.PacketItemStack.ItemStackMessage;
-import mekanism.common.network.PacketJetpackData;
 import mekanism.common.network.PacketJetpackData.JetpackDataMessage;
-import mekanism.common.network.PacketKey;
 import mekanism.common.network.PacketKey.KeyMessage;
-import mekanism.common.network.PacketLogisticalSorterGui;
 import mekanism.common.network.PacketLogisticalSorterGui.LogisticalSorterGuiMessage;
-import mekanism.common.network.PacketNewFilter;
 import mekanism.common.network.PacketNewFilter.NewFilterMessage;
-import mekanism.common.network.PacketOredictionificatorGui;
 import mekanism.common.network.PacketOredictionificatorGui.OredictionificatorGuiMessage;
-import mekanism.common.network.PacketPortableTeleporter;
 import mekanism.common.network.PacketPortableTeleporter.PortableTeleporterMessage;
-import mekanism.common.network.PacketPortalFX;
 import mekanism.common.network.PacketPortalFX.PortalFXMessage;
-import mekanism.common.network.PacketRedstoneControl;
 import mekanism.common.network.PacketRedstoneControl.RedstoneControlMessage;
-import mekanism.common.network.PacketRemoveUpgrade;
 import mekanism.common.network.PacketRemoveUpgrade.RemoveUpgradeMessage;
-import mekanism.common.network.PacketRobit;
 import mekanism.common.network.PacketRobit.RobitMessage;
-import mekanism.common.network.PacketScubaTankData;
 import mekanism.common.network.PacketScubaTankData.ScubaTankDataMessage;
-import mekanism.common.network.PacketSecurityMode;
 import mekanism.common.network.PacketSecurityMode.SecurityModeMessage;
-import mekanism.common.network.PacketSecurityUpdate;
 import mekanism.common.network.PacketSecurityUpdate.SecurityUpdateMessage;
-import mekanism.common.network.PacketSimpleGui;
 import mekanism.common.network.PacketSimpleGui.SimpleGuiMessage;
-import mekanism.common.network.PacketTileEntity;
 import mekanism.common.network.PacketTileEntity.TileEntityMessage;
-import mekanism.common.network.PacketTransmitterUpdate;
 import mekanism.common.network.PacketTransmitterUpdate.TransmitterUpdateMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -84,6 +53,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.UUID;
 
 /**
  * Mekanism packet handler. As always, use packets sparingly!
@@ -178,6 +152,16 @@ public class PacketHandler {
 
     public static void handlePacket(Runnable runnable, EntityPlayer player) {
         Mekanism.proxy.handlePacket(runnable, player);
+    }
+
+    @Nonnull
+    public static UUID readUUID(ByteBuf dataStream) {
+        return new UUID(dataStream.readLong(), dataStream.readLong());
+    }
+
+    public static void writeUUID(ByteBuf dataStream, UUID uuid) {
+        dataStream.writeLong(uuid.getMostSignificantBits());
+        dataStream.writeLong(uuid.getLeastSignificantBits());
     }
 
     public void initialize() {
@@ -323,15 +307,5 @@ public class PacketHandler {
                 }
             }
         }
-    }
-
-    @Nonnull
-    public static UUID readUUID(ByteBuf dataStream) {
-        return new UUID(dataStream.readLong(), dataStream.readLong());
-    }
-
-    public static void writeUUID(ByteBuf dataStream, UUID uuid) {
-        dataStream.writeLong(uuid.getMostSignificantBits());
-        dataStream.writeLong(uuid.getLeastSignificantBits());
     }
 }

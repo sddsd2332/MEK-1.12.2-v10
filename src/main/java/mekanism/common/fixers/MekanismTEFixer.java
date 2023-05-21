@@ -60,6 +60,7 @@ public class MekanismTEFixer extends TEFixer {
         putEntry("PrecisionSawmill", "precision_sawmill");
         putEntry("PressureDisperser", "pressure_disperser");
         putEntry("PressurizedReactionChamber", "pressurized_reaction_chamber");
+        putEntry("Void", "void");
         putEntry("PressurizedTube", "pressurized_tube");
         putEntry("PurificationChamber", "purification_chamber");
         putEntry("QuantumEntangloporter", "quantum_entangloporter");

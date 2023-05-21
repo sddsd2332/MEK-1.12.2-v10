@@ -1,9 +1,6 @@
 package mekanism.common.network;
 
 import io.netty.buffer.ByteBuf;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
 import mekanism.common.Mekanism;
 import mekanism.common.PacketHandler;
 import mekanism.common.item.ItemFlamethrower;
@@ -14,6 +11,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class PacketFlamethrowerData implements IMessageHandler<FlamethrowerDataMessage, IMessage> {
 
@@ -52,12 +53,10 @@ public class PacketFlamethrowerData implements IMessageHandler<FlamethrowerDataM
     public static class FlamethrowerDataMessage implements IMessage {
 
         public FlamethrowerPacket packetType;
-
-        protected Set<UUID> activeFlamethrowers;
-
         public EnumHand currentHand;
         public UUID uuid;
         public boolean value;
+        protected Set<UUID> activeFlamethrowers;
 
         public FlamethrowerDataMessage() {
         }

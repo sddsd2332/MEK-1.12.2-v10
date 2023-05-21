@@ -1,8 +1,8 @@
 package mekanism.common.recipe.machines;
 
-import mekanism.common.MekanismFluids;
 import mekanism.common.recipe.inputs.AdvancedMachineInput;
 import mekanism.common.recipe.outputs.ItemStackOutput;
+import mekanism.common.register.MekanismFluids;
 import net.minecraft.item.ItemStack;
 
 public class PurificationRecipe extends AdvancedMachineRecipe<PurificationRecipe> {

@@ -2,7 +2,6 @@ package mekanism.common.recipe.machines;
 
 import mekanism.common.recipe.inputs.DoubleMachineInput;
 import mekanism.common.recipe.outputs.ItemStackOutput;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 public class AlloyRecipe extends DoubleMachineRecipe<AlloyRecipe> {

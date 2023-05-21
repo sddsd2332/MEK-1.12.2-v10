@@ -2,10 +2,10 @@ package mekanism.tools.common;
 
 import io.netty.buffer.ByteBuf;
 import mekanism.common.Mekanism;
-import mekanism.common.MekanismItems;
 import mekanism.common.Version;
 import mekanism.common.base.IModule;
 import mekanism.common.config.MekanismConfig;
+import mekanism.common.register.MekanismItems;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;

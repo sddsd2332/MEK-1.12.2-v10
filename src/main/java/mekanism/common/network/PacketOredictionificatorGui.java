@@ -41,10 +41,10 @@ public class PacketOredictionificatorGui implements IMessageHandler<Oredictionif
                 try {
                     if (message.packetType == OredictionificatorGuiPacket.CLIENT) {
                         FMLCommonHandler.instance().showGuiScreen(OredictionificatorGuiMessage.getGui(message.packetType, message.guiType, player, player.world,
-                              message.coord4D.getPos(), -1));
+                                message.coord4D.getPos(), -1));
                     } else if (message.packetType == OredictionificatorGuiPacket.CLIENT_INDEX) {
                         FMLCommonHandler.instance().showGuiScreen(OredictionificatorGuiMessage.getGui(message.packetType, message.guiType, player, player.world,
-                              message.coord4D.getPos(), message.index));
+                                message.coord4D.getPos(), message.index));
                     }
                     player.openContainer.windowId = message.windowId;
                 } catch (Exception e) {

@@ -11,12 +11,11 @@ import mekanism.common.recipe.inputs.ItemStackInput;
 import mekanism.common.recipe.machines.NutritionalRecipe;
 import net.minecraft.item.ItemStack;
 
-public class NutritionalLiquifier extends VirtualizedMekanismRegistry<NutritionalRecipe>{
+public class NutritionalLiquifier extends VirtualizedMekanismRegistry<NutritionalRecipe> {
 
-    public NutritionalLiquifier(){
-        super(RecipeHandler.Recipe.Nutritional_Liquifier,"NutritionalLiquifier","nutritional_liquifier");
+    public NutritionalLiquifier() {
+        super(RecipeHandler.Recipe.Nutritional_Liquifier, "NutritionalLiquifier", "nutritional_liquifier");
     }
-
 
 
     public NutritionalRecipe add(IIngredient ingredient, GasStack output) {
@@ -54,12 +53,6 @@ public class NutritionalLiquifier extends VirtualizedMekanismRegistry<Nutritiona
         }
         return found;
     }
-
-
-
-
-
-
 
 
 }

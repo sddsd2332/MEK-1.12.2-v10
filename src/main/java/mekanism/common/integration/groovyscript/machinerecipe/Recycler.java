@@ -10,18 +10,18 @@ import mekanism.common.recipe.machines.RecyclerRecipe;
 import mekanism.common.recipe.outputs.ChanceOutput2;
 import net.minecraft.item.ItemStack;
 
-public class Recycler extends VirtualizedMekanismRegistry<RecyclerRecipe>{
+public class Recycler extends VirtualizedMekanismRegistry<RecyclerRecipe> {
 
-    public Recycler(){
-        super(RecipeHandler.Recipe.RECYCLER,"Recycler","recycler");
+    public Recycler() {
+        super(RecipeHandler.Recipe.RECYCLER, "Recycler", "recycler");
     }
 
 
     public RecyclerRecipe add(IIngredient ingredient, ItemStack output) {
-        return add(ingredient, output,  1.0);
+        return add(ingredient, output, 1.0);
     }
 
-    public RecyclerRecipe add(IIngredient ingredient, ItemStack output, double chance){
+    public RecyclerRecipe add(IIngredient ingredient, ItemStack output, double chance) {
         GroovyLog.Msg msg = GroovyLog.msg("Error adding Mekanism Recycler recipe").error();
         msg.add(IngredientHelper.isEmpty(ingredient), () -> "input must not be empty");
         msg.add(IngredientHelper.isEmpty(output), () -> "output must not be empty");
@@ -34,7 +34,7 @@ public class Recycler extends VirtualizedMekanismRegistry<RecyclerRecipe>{
         RecyclerRecipe recipe1 = null;
         for (ItemStack itemStack : ingredient.getMatchingStacks()) {
             RecyclerRecipe recipe;
-            ChanceOutput2 chanceOutput =  new ChanceOutput2(output, chance) ;
+            ChanceOutput2 chanceOutput = new ChanceOutput2(output, chance);
             recipe = new RecyclerRecipe(new ItemStackInput(itemStack.copy()), chanceOutput);
             if (recipe1 == null) recipe1 = recipe;
             recipeRegistry.put(recipe);

@@ -1,14 +1,6 @@
 package mekanism.common.transmitters;
 
 import io.netty.buffer.ByteBuf;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
@@ -35,6 +27,10 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import javax.annotation.Nonnull;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class TransporterImpl extends TransmitterImpl<TileEntity, InventoryNetwork, Void> implements ILogisticalTransporter {
 
@@ -138,7 +134,7 @@ public class TransporterImpl extends TransmitterImpl<TileEntity, InventoryNetwor
                             TileEntity tile = next.getTileEntity(world());
                             if (tile != null) {
                                 TransitResponse response = InventoryUtils.putStackInInventory(tile, TransitRequest.getFromTransport(stack), stack.getSide(this),
-                                      stack.getPathType() == Path.HOME);
+                                        stack.getPathType() == Path.HOME);
                                 // Nothing was rejected; remove the stack from the prediction tracker and
                                 // schedule this stack for deletion. Continue the loop thereafter
                                 ItemStack rejected = response.getRejected(stack.itemStack);
@@ -191,7 +187,7 @@ public class TransporterImpl extends TransmitterImpl<TileEntity, InventoryNetwor
 
     private boolean checkPath(TransporterStack stack, Path dest, boolean home) {
         return stack.getPathType() == dest && (!checkSideForInsert(stack) || !InventoryUtils.canInsert(stack.getDest().getTileEntity(world()), stack.color, stack.itemStack,
-              stack.getSide(this), home));
+                stack.getSide(this), home));
     }
 
     private boolean checkSideForInsert(TransporterStack stack) {

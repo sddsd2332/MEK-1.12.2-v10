@@ -1,8 +1,5 @@
 package mekanism.common.content.transporter;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 import mekanism.common.Mekanism;
 import mekanism.common.util.InventoryUtils;
 import mekanism.common.util.StackUtils;
@@ -10,6 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.items.IItemHandler;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * An InvStack attaches to an inventory and tracks a specific homogeneous item in a variable amount of slots. An InvStack can either track the entirety of these slots or
@@ -19,10 +20,14 @@ import net.minecraftforge.items.IItemHandler;
  */
 public final class InvStack {
 
-    /** The TileEntity owning the container this InvStack belongs to. */
+    /**
+     * The TileEntity owning the container this InvStack belongs to.
+     */
     private final TileEntity tileEntity;
 
-    /** The side of the inventory we are accessing with this InvStack. */
+    /**
+     * The side of the inventory we are accessing with this InvStack.
+     */
     private final EnumFacing side;
 
     /**
@@ -31,10 +36,14 @@ public final class InvStack {
      */
     private Map<Integer, Integer> itemMap = new HashMap<>();
 
-    /** The item type of this InvStack. Will be null until we have an insertion via appendStack. */
+    /**
+     * The item type of this InvStack. Will be null until we have an insertion via appendStack.
+     */
     private HashedItem itemType;
 
-    /** The total amount of items tracked by this InvStack. */
+    /**
+     * The total amount of items tracked by this InvStack.
+     */
     private int itemCount;
 
     public InvStack(TileEntity inv, EnumFacing facing) {
@@ -53,6 +62,12 @@ public final class InvStack {
         for (Entry<Integer, Integer> entry : idMap.entrySet()) {
             appendStack(entry.getKey(), StackUtils.size(stack, entry.getValue()));
         }
+    }
+
+    private static Map<Integer, Integer> getMap(int slotID, ItemStack stack) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(slotID, stack.getCount());
+        return map;
     }
 
     /**
@@ -113,11 +128,5 @@ public final class InvStack {
      */
     public void use() {
         use(getStack().getCount());
-    }
-
-    private static Map<Integer, Integer> getMap(int slotID, ItemStack stack) {
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(slotID, stack.getCount());
-        return map;
     }
 }

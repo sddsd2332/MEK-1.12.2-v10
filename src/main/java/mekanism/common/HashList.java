@@ -1,8 +1,8 @@
 package mekanism.common;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.annotation.Nonnull;
 
 public class HashList<T> implements Iterable<T> {
 

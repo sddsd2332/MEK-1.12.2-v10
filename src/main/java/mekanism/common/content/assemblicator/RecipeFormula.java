@@ -1,7 +1,5 @@
 package mekanism.common.content.assemblicator;
 
-import java.util.ArrayList;
-import java.util.List;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.RecipeUtils;
 import mekanism.common.util.StackUtils;
@@ -10,6 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecipeFormula {
 

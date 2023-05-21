@@ -40,17 +40,17 @@ public class OrganicFarm {
             Gas gas = GasHelper.toGas(gasInput).getGas();
             List<FarmRecipe> recipes = new ArrayList<>();
             for (ItemStack stack : CraftTweakerMC.getIngredient(ingredientInput).getMatchingStacks()) {
-                recipes.add(new FarmRecipe(new AdvancedMachineInput(stack, gas),output));
+                recipes.add(new FarmRecipe(new AdvancedMachineInput(stack, gas), output));
             }
-            CrafttweakerIntegration.LATE_ADDITIONS.add(new AddMekanismRecipe<>(NAME, Recipe.ORGANIC_FARM,recipes));
+            CrafttweakerIntegration.LATE_ADDITIONS.add(new AddMekanismRecipe<>(NAME, Recipe.ORGANIC_FARM, recipes));
         }
     }
 
     @ZenMethod
-    public static void removeRecipe(IIngredient itemInput,@Optional IIngredient gasInput, @Optional IIngredient itemOutput, @Optional IIngredient optionalItemOutput) {
+    public static void removeRecipe(IIngredient itemInput, @Optional IIngredient gasInput, @Optional IIngredient itemOutput, @Optional IIngredient optionalItemOutput) {
         if (IngredientHelper.checkNotNull(NAME, itemInput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.ORGANIC_FARM, new IngredientWrapper(itemOutput, optionalItemOutput),
-                    new IngredientWrapper(itemInput,gasInput)));
+                    new IngredientWrapper(itemInput, gasInput)));
         }
     }
 
@@ -58,12 +58,6 @@ public class OrganicFarm {
     public static void removeAllRecipes() {
         CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveAllMekanismRecipe<>(NAME, Recipe.ORGANIC_FARM));
     }
-
-
-
-
-
-
 
 
 }

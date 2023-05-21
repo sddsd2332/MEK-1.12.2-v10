@@ -3,13 +3,17 @@ package mekanism.client.jei.machine;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.client.jei.MekanismJEI;
+import mekanism.common.config.MekanismConfig;
 import mekanism.common.recipe.GasConversionHandler;
 import mekanism.common.recipe.machines.AdvancedMachineRecipe;
 import mekanism.common.tile.prefab.TileEntityAdvancedElectricMachine;
+import mekanism.common.util.LangUtils;
+import mekanism.common.util.MekanismUtils;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdvancedMachineRecipeWrapper<RECIPE extends AdvancedMachineRecipe<RECIPE>> extends MekanismRecipeWrapper<RECIPE> {
@@ -29,4 +33,6 @@ public class AdvancedMachineRecipeWrapper<RECIPE extends AdvancedMachineRecipe<R
     public List<ItemStack> getFuelStacks(Gas gasType) {
         return GasConversionHandler.getStacksForGas(gasType);
     }
+
+
 }

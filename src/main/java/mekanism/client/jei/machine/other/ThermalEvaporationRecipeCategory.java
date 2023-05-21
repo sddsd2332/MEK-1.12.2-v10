@@ -19,7 +19,7 @@ public class ThermalEvaporationRecipeCategory<WRAPPER extends ThermalEvaporation
     @Override
     public void drawExtras(Minecraft minecraft) {
         super.drawExtras(minecraft);
-        drawTexturedRect(49 - xOffset, 64 - yOffset, 176, 59, 78, 8);
+        drawTexturedRect(49 - xOffset, 64 - yOffset, 176, 59,78 , 8);
     }
 
     @Override

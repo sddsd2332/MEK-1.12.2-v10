@@ -27,9 +27,6 @@ public class TileEntityPressurizedTube extends TileEntityTransmitter<IGasHandler
     public float currentScale;
 
     public GasTank buffer = new GasTank(getCapacity());
-
-    public GasStack lastWrite;
-
     //Read only handler for support with TOP and getting network data instead of this tube's data
     private IGasHandler nullHandler = new IGasHandler() {
         @Override
@@ -58,6 +55,7 @@ public class TileEntityPressurizedTube extends TileEntityTransmitter<IGasHandler
             return TileEntityPressurizedTube.this.getTankInfo();
         }
     };
+    public GasStack lastWrite;
 
     @Override
     public BaseTier getBaseTier() {

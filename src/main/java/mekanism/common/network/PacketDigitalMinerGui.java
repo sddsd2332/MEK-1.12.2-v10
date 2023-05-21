@@ -5,11 +5,7 @@ import mekanism.api.Coord4D;
 import mekanism.api.TileNetworkList;
 import mekanism.client.gui.GuiDigitalMiner;
 import mekanism.client.gui.GuiDigitalMinerConfig;
-import mekanism.client.gui.filter.GuiMFilterSelect;
-import mekanism.client.gui.filter.GuiMItemStackFilter;
-import mekanism.client.gui.filter.GuiMMaterialFilter;
-import mekanism.client.gui.filter.GuiMModIDFilter;
-import mekanism.client.gui.filter.GuiMOreDictFilter;
+import mekanism.client.gui.filter.*;
 import mekanism.common.Mekanism;
 import mekanism.common.PacketHandler;
 import mekanism.common.inventory.container.ContainerDigitalMiner;
@@ -47,10 +43,10 @@ public class PacketDigitalMinerGui implements IMessageHandler<DigitalMinerGuiMes
                 try {
                     if (message.packetType == MinerGuiPacket.CLIENT) {
                         FMLCommonHandler.instance().showGuiScreen(DigitalMinerGuiMessage.getGui(message.packetType, message.guiType, player, player.world,
-                              message.coord4D.getPos(), -1));
+                                message.coord4D.getPos(), -1));
                     } else if (message.packetType == MinerGuiPacket.CLIENT_INDEX) {
                         FMLCommonHandler.instance().showGuiScreen(DigitalMinerGuiMessage.getGui(message.packetType, message.guiType, player, player.world,
-                              message.coord4D.getPos(), message.index));
+                                message.coord4D.getPos(), message.index));
                     }
                     player.openContainer.windowId = message.windowId;
                 } catch (Exception e) {
@@ -106,7 +102,7 @@ public class PacketDigitalMinerGui implements IMessageHandler<DigitalMinerGuiMes
                     break;
                 case 4:
                     container = new ContainerDigitalMiner(playerMP.inventory,
-                          (TileEntityDigitalMiner) obj.getTileEntity(world));
+                            (TileEntityDigitalMiner) obj.getTileEntity(world));
                     break;
                 case 5:
                     container = new ContainerNull(playerMP, (TileEntityContainerBlock) obj.getTileEntity(world));
@@ -160,7 +156,7 @@ public class PacketDigitalMinerGui implements IMessageHandler<DigitalMinerGuiMes
                 } else if (packetType == MinerGuiPacket.CLIENT_INDEX) {
                     if (type == 1) {
                         return new GuiMItemStackFilter(player, (TileEntityDigitalMiner) world.getTileEntity(pos),
-                              index);
+                                index);
                     } else if (type == 2) {
                         return new GuiMOreDictFilter(player, (TileEntityDigitalMiner) world.getTileEntity(pos), index);
                     } else if (type == 3) {

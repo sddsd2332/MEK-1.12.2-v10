@@ -24,7 +24,7 @@ public class ChemicalWasherRecipeCategory<WRAPPER extends ChemicalWasherRecipeWr
     @Override
     public void drawExtras(Minecraft minecraft) {
         super.drawExtras(minecraft);
-        drawTexturedRect(61 - xOffset, 39 - yOffset, 176, 63, 55, 8);
+        drawTexturedRect(61 - xOffset, 39 - yOffset, 176, 63, (int)(55* ((float) timer.getValue() / 20F)), 8);
     }
 
     @Override

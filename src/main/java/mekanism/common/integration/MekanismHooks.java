@@ -8,13 +8,11 @@ import dan200.computercraft.api.ComputerCraftAPI;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.MachineRecipe;
 import ic2.api.recipe.Recipes;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
 import li.cil.oc.api.Driver;
 import mekanism.api.transmitters.TransmissionType;
-import mekanism.common.*;
+import mekanism.common.Mekanism;
+import mekanism.common.OreDictCache;
+import mekanism.common.Resource;
 import mekanism.common.block.states.BlockStateTransmitter.TransmitterType;
 import mekanism.common.integration.computer.CCPeripheral;
 import mekanism.common.integration.computer.OCDriver;
@@ -24,6 +22,8 @@ import mekanism.common.integration.wrenches.Wrenches;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
 import mekanism.common.recipe.inputs.MachineInput;
+import mekanism.common.register.MekanismBlocks;
+import mekanism.common.register.MekanismItems;
 import mekanism.common.util.StackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -38,6 +38,10 @@ import net.minecraftforge.fml.common.Optional.Method;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Hooks for Mekanism. Use to grab items or blocks out of different mods.
@@ -77,6 +81,8 @@ public final class MekanismHooks {
     public boolean RFLoaded = false;
     public boolean TeslaLoaded = false;
 
+    public boolean GroovyScript = false;
+
     public void hookPreInit() {
         AE2Loaded = Loader.isModLoaded(APPLIED_ENERGISTICS_2_MOD_ID);
         BuildCraftLoaded = Loader.isModLoaded(BUILDCRAFT_MOD_ID);
@@ -90,6 +96,7 @@ public final class MekanismHooks {
         OCLoaded = Loader.isModLoaded(OPENCOMPUTERS_MOD_ID);
         RFLoaded = Loader.isModLoaded(REDSTONEFLUX_MOD_ID);
         TeslaLoaded = Loader.isModLoaded(TESLA_MOD_ID);
+        GroovyScript = Loader.isModLoaded(GROOVYSCRIPT_MOD_ID);
     }
 
     public void hookInit() {
@@ -105,7 +112,6 @@ public final class MekanismHooks {
             registerAE2P2P();
         }
     }
-
 
 
     public void hookPostInit() {
@@ -142,7 +148,6 @@ public final class MekanismHooks {
         }
 
 
-
         Wrenches.initialise();
     }
 
@@ -164,26 +169,26 @@ public final class MekanismHooks {
 
         try {
             Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("oreOsmium"), null, false,
-                  new ItemStack(MekanismItems.Dust, 2, Resource.OSMIUM.ordinal()));
+                    new ItemStack(MekanismItems.Dust, 2, Resource.OSMIUM.ordinal()));
         } catch (Exception ignored) {
         }
 
         try {
             Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotOsmium"), null, false,
-                  new ItemStack(MekanismItems.Dust, 1, Resource.OSMIUM.ordinal()));
+                    new ItemStack(MekanismItems.Dust, 1, Resource.OSMIUM.ordinal()));
             Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotRefinedObsidian"), null, false,
-                  new ItemStack(MekanismItems.OtherDust, 1, 5));
+                    new ItemStack(MekanismItems.OtherDust, 1, 5));
             Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotRefinedGlowstone"), null, false,
-                  new ItemStack(Items.GLOWSTONE_DUST));
+                    new ItemStack(Items.GLOWSTONE_DUST));
             Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotSteel"), null, false,
-                  new ItemStack(MekanismItems.OtherDust, 1, 1));
+                    new ItemStack(MekanismItems.OtherDust, 1, 1));
         } catch (Exception ignored) {
         }
 
         try {
             for (Resource resource : Resource.values()) {
                 Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("clump" + resource.getName()), null, false,
-                      new ItemStack(MekanismItems.DirtyDust, 1, resource.ordinal()));
+                        new ItemStack(MekanismItems.DirtyDust, 1, resource.ordinal()));
             }
         } catch (Exception ignored) {
         }

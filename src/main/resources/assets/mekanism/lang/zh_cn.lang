@@ -205,6 +205,7 @@ tile.MachineBlock4.CellCultivate.name=细胞培养机
 tile.MachineBlock4.CellExtractor.name=细胞提取机
 tile.MachineBlock4.CellSeparator.name=细胞分离机
 tile.MachineBlock4.Recycler.name=回收机
+tile.MachineBlock4.Void.name=虚空采掘机
 
 # Plastic
 tile.PlasticBlock.name=塑料方块
@@ -685,12 +686,18 @@ gui.upgrades.effect=效果
 gui.chemicalInfuser.short=化学灌注器
 gui.chemicalDissolutionChamber.short=化学溶解室
 gui.thermalEvaporationController.short=热力蒸馏塔
-gui.dimension2=维度需求
-gui.dimension=当前维度
+gui.dimension2=维度需求id
+gui.dimension2Name=维度需求名称
+gui.dimensionId=当前维度id
+gui.dimensionName=当前维度名称
 gui.dimensionGas=当前维度产出气体
 gui.probability2=产出概率
 gui.probability=当前概率
 gui.dictionary.noKey=无关键字.
+gui.itemInputoutprobability=物品消耗/产出概率
+gui.gasInputoutprobability=气体消耗/产出概率
+gui.fluidInputoutprobability=流体消耗/产出概率
+gui.additionalprocessingdescription=能量消耗/tick
 
 gui.configuration=配置
 gui.configuration.side=侧面配置
@@ -998,7 +1005,9 @@ tooltip.antiprotonicnucleosynthesizer=一种以原子的方式利用少量反物
 tooltip.superchargedcoil=用于超临界移相器多方块结构供电。必须连接到超临界移相器端口[目前只是个装饰]
 tooltip.OrganicFarm=一个非常强大的单方块农场机器
 tooltip.AmbientAccumulator=一个能收集当前维度包含的气体[警告！退出存档，将不会保留内部气体]
-
+tooltip.Void=在虚空中挖掘不存在的物品
+tooltip.VoidExcavatorSpecialInstructions=因为某些原因，该机器的自动弹出流体无法实现
+tooltip.VoidExcavatorSpecialInstructions2=请使用其他模组的导管导出
 tooltip.MekTool1=十分强大的挖掘机器
 tooltip.MekTool2=当冲满25%以上时，伤害会超级加倍
 tooltip.MekTool3=当冲满90%以上时，可能会带有秒杀效果？

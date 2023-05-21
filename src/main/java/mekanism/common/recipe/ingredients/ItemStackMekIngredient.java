@@ -1,10 +1,11 @@
 package mekanism.common.recipe.ingredients;
 
-import java.util.Collections;
-import java.util.List;
-import javax.annotation.Nonnull;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
+import java.util.Collections;
+import java.util.List;
 
 public class ItemStackMekIngredient implements IMekanismIngredient<ItemStack> {
 

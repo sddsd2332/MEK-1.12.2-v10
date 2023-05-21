@@ -43,7 +43,7 @@ public class GuiAntiprotonicNucleosynthesizer extends GuiMekanismTile<TileEntity
         addGuiElement(new GuiGasGauge(() -> tileEntity.inputGasTank, GuiGauge.Type.STANDARD_RED, this, resource, 28, 10));
         addGuiElement(new GuiPowerBar(this, tileEntity, resource, 164, 15));
         addGuiElement(new GuiSlot(SlotType.INPUT, this, resource, 53, 34));
-        addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 140, 18).with(SlotOverlay.POWER));
+        addGuiElement(new GuiSlot(SlotType.POWER, this, resource, 140, 34).with(SlotOverlay.POWER));
         addGuiElement(new GuiSlot(SlotType.OUTPUT, this, resource, 115, 34));
         addGuiElement(new GuiProgress(new IProgressInfoHandler() {
             @Override

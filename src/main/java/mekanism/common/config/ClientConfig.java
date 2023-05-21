@@ -49,6 +49,9 @@ public class ClientConfig extends BaseConfig {
     public final FloatOption UpgradeStatusDescription = new FloatOption(this, "client", "UpgradeStatusDescription", 0.6f,
             "The 'Upgrade' font size for upgrade management is displayed");
 
+    public final FloatOption VoidExcavatordimensiondescriptiondescription = new FloatOption(this, "client", "VoidExcavatordimensiondescriptiondescription", 1.0f,
+            "Used to display the font display on the Void Excavator GUI");
+
     @Override
     public void write(ByteBuf config) {
         throw new UnsupportedOperationException("Client config shouldn't be synced");

@@ -33,8 +33,8 @@ public class Nucleosynthesizer {
     public static final String NAME = Mekanism.MOD_NAME + " Nucleosynthesizer";
 
     @ZenMethod
-    public static void addRecipe(IIngredient ingredientInput,  IGasStack gasInput, IItemStack itemOutput,  double energy, int duration) {
-        if (IngredientHelper.checkNotNull(NAME, ingredientInput,  gasInput)) {
+    public static void addRecipe(IIngredient ingredientInput, IGasStack gasInput, IItemStack itemOutput, double energy, int duration) {
+        if (IngredientHelper.checkNotNull(NAME, ingredientInput, gasInput)) {
             GasStack gas = GasHelper.toGas(gasInput);
             NucleosynthesizerOutput output = new NucleosynthesizerOutput(CraftTweakerMC.getItemStack(itemOutput));
             List<NucleosynthesizerRecipe> recipes = new ArrayList<>();
@@ -46,10 +46,10 @@ public class Nucleosynthesizer {
     }
 
     @ZenMethod
-    public static void removeRecipe(IIngredient itemOutput,  @Optional IIngredient itemInput,@Optional IIngredient gasInput) {
+    public static void removeRecipe(IIngredient itemOutput, @Optional IIngredient itemInput, @Optional IIngredient gasInput) {
         if (IngredientHelper.checkNotNull(NAME)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.ANTIPROTONIC_NUCLEOSYNTHESIZER, new IngredientWrapper(itemOutput),
-                  new IngredientWrapper(itemInput, gasInput)));
+                    new IngredientWrapper(itemInput, gasInput)));
         }
     }
 

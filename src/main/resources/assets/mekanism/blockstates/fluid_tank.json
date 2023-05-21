@@ -8,16 +8,28 @@
     }
   },
   "variants": {
-    "normal": [{}],
+    "normal": [
+      {}
+    ],
     "active": {
-      "true": {"textures": {"glass": "mekanism:blocks/models/fluid_tank_side_on"}},
-      "false": {"textures": {"glass": "mekanism:blocks/models/fluid_tank_side_off"}}
-    },
-    "inventory": [{
-      "textures": {
-        "frame": "mekanism:blocks/models/fluid_tank"
+      "true": {
+        "textures": {
+          "glass": "mekanism:blocks/models/fluid_tank_side_on"
+        }
+      },
+      "false": {
+        "textures": {
+          "glass": "mekanism:blocks/models/fluid_tank_side_off"
+        }
       }
-    }]
+    },
+    "inventory": [
+      {
+        "textures": {
+          "frame": "mekanism:blocks/models/fluid_tank"
+        }
+      }
+    ]
   }
 }
 

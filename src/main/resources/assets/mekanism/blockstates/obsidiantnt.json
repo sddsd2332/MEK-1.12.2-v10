@@ -4,8 +4,12 @@
     "model": "mekanism:obsidian_tnt"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }
 

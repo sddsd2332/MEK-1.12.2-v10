@@ -1,7 +1,6 @@
 package mekanism.common.security;
 
 import io.netty.buffer.ByteBuf;
-import java.util.UUID;
 import mekanism.api.TileNetworkList;
 import mekanism.common.HashList;
 import mekanism.common.PacketHandler;
@@ -11,6 +10,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import java.util.UUID;
 
 public class SecurityFrequency extends Frequency {
 

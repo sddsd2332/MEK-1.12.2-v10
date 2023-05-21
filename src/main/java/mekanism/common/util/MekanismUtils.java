@@ -8,7 +8,9 @@ import mekanism.api.IMekWrench;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.api.transmitters.TransmissionType;
-import mekanism.common.*;
+import mekanism.common.Mekanism;
+import mekanism.common.SideData;
+import mekanism.common.Upgrade;
 import mekanism.common.base.*;
 import mekanism.common.base.IFactory.RecipeType;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
@@ -19,11 +21,14 @@ import mekanism.common.integration.redstoneflux.RFIntegration;
 import mekanism.common.integration.tesla.TeslaIntegration;
 import mekanism.common.item.ItemBlockGasTank;
 import mekanism.common.item.ItemBlockTransmitter;
+import mekanism.common.register.MekanismBlocks;
+import mekanism.common.register.MekanismFluids;
 import mekanism.common.tier.BaseTier;
 import mekanism.common.tier.FactoryTier;
 import mekanism.common.tier.GasTankTier;
 import mekanism.common.tile.TileEntityAdvancedBoundingBlock;
 import mekanism.common.tile.TileEntityBoundingBlock;
+import mekanism.common.tile.TileEntityVoid;
 import mekanism.common.tile.component.SideConfig;
 import mekanism.common.util.UnitDisplayUtils.ElectricUnit;
 import mekanism.common.util.UnitDisplayUtils.TemperatureUnit;
@@ -495,6 +500,9 @@ public final class MekanismUtils {
         // For example the laser, or charge pad.
         world.markBlockRangeForRenderUpdate(pos, pos);
         TileEntity tileEntity = world.getTileEntity(pos);
+        if (tileEntity instanceof TileEntityVoid) {
+            return;
+        }
         if (!(tileEntity instanceof IActiveState) || ((IActiveState) tileEntity).lightUpdate() && MekanismConfig.current().client.machineEffects.val()) {
             updateAllLightTypes(world, pos);
         }

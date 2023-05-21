@@ -30,7 +30,7 @@
     "D": {
       "ore": "dirt",
       "type": "forge:ore_dict"
-    },	
+    },
     "L": {
       "nbt": {
         "tier": 0

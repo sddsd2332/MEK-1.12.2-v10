@@ -4,7 +4,7 @@ import mekanism.common.recipe.inputs.ItemStackInput;
 import mekanism.common.recipe.outputs.ItemStackOutput;
 import net.minecraft.item.ItemStack;
 
-public class TurningRecipe extends BasicMachineRecipe<TurningRecipe>{
+public class TurningRecipe extends BasicMachineRecipe<TurningRecipe> {
 
     public TurningRecipe(ItemStackInput input, ItemStackOutput output) {
         super(input, output);

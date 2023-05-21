@@ -2,16 +2,17 @@ package mekanism.common.integration.crafttweaker.util;
 
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
+import mekanism.common.integration.crafttweaker.helpers.RecipeInfoHelper;
+import mekanism.common.recipe.RecipeHandler.Recipe;
+import mekanism.common.recipe.inputs.MachineInput;
+import mekanism.common.recipe.machines.MachineRecipe;
+
 import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import mekanism.common.integration.crafttweaker.helpers.RecipeInfoHelper;
-import mekanism.common.recipe.RecipeHandler.Recipe;
-import mekanism.common.recipe.inputs.MachineInput;
-import mekanism.common.recipe.machines.MachineRecipe;
 
 public abstract class RecipeMapModification<INPUT extends MachineInput<INPUT>, RECIPE extends MachineRecipe<INPUT, ?, RECIPE>> implements IAction {
 
@@ -36,7 +37,7 @@ public abstract class RecipeMapModification<INPUT extends MachineInput<INPUT>, R
                     RECIPE value = entry.getValue();
                     if (map.put(key, value) != null) {
                         CraftTweakerAPI.logInfo(String.format("Overwritten %s Recipe for %s", name,
-                              RecipeInfoHelper.getRecipeInfo(new AbstractMap.SimpleEntry<>(entry.getKey(), value))));
+                                RecipeInfoHelper.getRecipeInfo(new AbstractMap.SimpleEntry<>(entry.getKey(), value))));
                     }
                 }
             } else {

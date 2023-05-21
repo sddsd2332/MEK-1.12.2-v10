@@ -1,11 +1,12 @@
 package mekanism.common.multiblock;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.annotation.Nullable;
 import mekanism.api.Coord4D;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+
+import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class SynchronizedData<T extends SynchronizedData<T>> {
 

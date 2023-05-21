@@ -120,6 +120,9 @@ public class UsageConfig extends BaseConfig {
     public final DoubleOption recycler = new DoubleOption(this, "usage", "RecyclerUsage", 50D,
             "Energy per operation tick (Joules).");
 
+    public final DoubleOption voidMiner = new DoubleOption(this, "usage", "VoidMinerUsage", 100D,
+            "Energy per operation tick (Joules).");
+
     public final DoubleOption rolling = new DoubleOption(this, "usage", "RollingUsage", 50D,
             "Energy per operation tick (Joules).");
 

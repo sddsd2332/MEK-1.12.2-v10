@@ -205,6 +205,9 @@ public abstract class BlockMachine extends BlockMekanismContainer {
         if (tileEntity instanceof TileEntityFluidTank) {
             return;
         }
+        if (tileEntity instanceof TileEntityVoid) {
+            return;
+        }
         if (MekanismUtils.isActive(world, pos) && ((IActiveState) tileEntity).renderUpdate() && MekanismConfig.current().client.machineEffects.val()) {
             float xRandom = (float) pos.getX() + 0.5F;
             float yRandom = (float) pos.getY() + 0.0F + random.nextFloat() * 6.0F / 16.0F;

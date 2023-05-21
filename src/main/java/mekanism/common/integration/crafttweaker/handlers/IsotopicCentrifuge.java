@@ -27,7 +27,7 @@ public class IsotopicCentrifuge {
     public static void addRecipe(IGasStack gasInput, IGasStack gasOutput) {
         if (IngredientHelper.checkNotNull(NAME, gasInput, gasOutput)) {
             CrafttweakerIntegration.LATE_ADDITIONS.add(new AddMekanismRecipe<>(NAME, Recipe.ISOTOPIC_CENTRIFUGE, new IsotopicRecipe(GasHelper.toGas(gasInput),
-                  GasHelper.toGas(gasOutput))));
+                    GasHelper.toGas(gasOutput))));
         }
     }
 
@@ -35,7 +35,7 @@ public class IsotopicCentrifuge {
     public static void removeRecipe(IIngredient gasOutput, @Optional IIngredient gasInput) {
         if (IngredientHelper.checkNotNull(NAME, gasOutput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.ISOTOPIC_CENTRIFUGE, new IngredientWrapper(gasOutput),
-                  new IngredientWrapper(gasInput)));
+                    new IngredientWrapper(gasInput)));
         }
     }
 

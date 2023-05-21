@@ -1,12 +1,7 @@
 package mekanism.common.inventory.container;
 
 import mekanism.common.tile.TileEntityAmbientAccumulator;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-
-import javax.annotation.Nonnull;
 
 public class ContainerAmbientAccumulator extends ContainerFluidStorage<TileEntityAmbientAccumulator> {
 
@@ -18,5 +13,10 @@ public class ContainerAmbientAccumulator extends ContainerFluidStorage<TileEntit
     @Override
     protected void addSlots() {
 
+    }
+
+    @Override
+    protected int getInventoryOffset() {
+        return 89;
     }
 }

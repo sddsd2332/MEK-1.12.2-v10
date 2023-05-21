@@ -1,6 +1,5 @@
 package mekanism.common.content.transporter;
 
-import java.util.List;
 import mekanism.common.OreDictCache;
 import mekanism.common.util.ItemRegistryUtils;
 import mekanism.common.util.StackUtils;
@@ -8,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public abstract class Finder {
 

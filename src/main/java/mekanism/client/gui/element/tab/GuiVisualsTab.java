@@ -25,7 +25,7 @@ public class GuiVisualsTab extends GuiTabElement<TileEntityDigitalMiner> {
             displayTooltip(LangUtils.localize("gui.visuals") + ": " + LangUtils.transOnOff(tileEntity.clientRendering), xAxis, yAxis);
         } else {
             displayTooltips(Arrays.asList(LangUtils.localize("gui.visuals") + ": " + LangUtils.transOnOff(tileEntity.clientRendering),
-                    TextFormatting.RED.toString() + LangUtils.localize("mekanism.gui.visuals.toobig")), xAxis, yAxis);
+                    TextFormatting.RED + LangUtils.localize("mekanism.gui.visuals.toobig")), xAxis, yAxis);
         }
     }
 

@@ -1,6 +1,6 @@
 package mekanism.common.integration.mysticalagriculture;
 
-import mekanism.common.MekanismFluids;
+import mekanism.common.register.MekanismFluids;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.recipe.RecipeHandler;
 import net.minecraft.item.Item;

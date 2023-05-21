@@ -21,7 +21,6 @@ public class GuiPowerBarLog extends GuiElement {
     public GuiPowerBarLog(IGuiWrapper gui, IStrictEnergyStorage tile, ResourceLocation def, int x, int y) {
         super(MekanismUtils.getResource(ResourceType.GUI_ELEMENT, "GuiPowerBarLog.png"), gui, def);
         tileEntity = tile;
-
         handler = new IPowerInfoHandler() {
             @Override
             public String getTooltip() {

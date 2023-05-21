@@ -1,11 +1,12 @@
 package mekanism.common.inventory.container.robit;
 
-import javax.annotation.Nonnull;
 import mekanism.common.entity.EntityRobit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+
+import javax.annotation.Nonnull;
 
 public abstract class ContainerRobit extends Container {
 

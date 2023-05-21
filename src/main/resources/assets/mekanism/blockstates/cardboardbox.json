@@ -11,10 +11,17 @@
   },
   "variants": {
     "storage": {
-      "true": {"textures": {"sides": "mekanism:blocks/CardboardBoxSideStorage", "front": "mekanism:blocks/CardboardBoxSideStorage"}},
+      "true": {
+        "textures": {
+          "sides": "mekanism:blocks/CardboardBoxSideStorage",
+          "front": "mekanism:blocks/CardboardBoxSideStorage"
+        }
+      },
       "false": {}
     },
-    "inventory": [{}]
+    "inventory": [
+      {}
+    ]
   }
 }
 

@@ -6,10 +6,10 @@
         "circuitOredict": ""
       }
     ],
-    "name" : "CIRCUITBASIC",
-    "ingredient" : {
-      "type" : "forge:ore_dict",
-      "ore" : "circuitBasic"
+    "name": "CIRCUITBASIC",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "circuitBasic"
     }
   },
   {
@@ -23,9 +23,9 @@
       }
     ],
     "name": "CIRCUITBASIC",
-    "ingredient" : {
-      "item" : "mekanism:controlcircuit",
-      "data" : 0
+    "ingredient": {
+      "item": "mekanism:controlcircuit",
+      "data": 0
     }
   },
   {
@@ -35,10 +35,10 @@
         "circuitOredict": ""
       }
     ],
-    "name" : "CIRCUITADVANCED",
-    "ingredient" : {
-      "type" : "forge:ore_dict",
-      "ore" : "circuitAdvanced"
+    "name": "CIRCUITADVANCED",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "circuitAdvanced"
     }
   },
   {
@@ -52,9 +52,9 @@
       }
     ],
     "name": "CIRCUITADVANCED",
-    "ingredient" : {
-      "item" : "mekanism:controlcircuit",
-      "data" : 1
+    "ingredient": {
+      "item": "mekanism:controlcircuit",
+      "data": 1
     }
   },
   {
@@ -64,10 +64,10 @@
         "circuitOredict": ""
       }
     ],
-    "name" : "CIRCUITELITE",
-    "ingredient" : {
-      "type" : "forge:ore_dict",
-      "ore" : "circuitElite"
+    "name": "CIRCUITELITE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "circuitElite"
     }
   },
   {
@@ -81,9 +81,9 @@
       }
     ],
     "name": "CIRCUITELITE",
-    "ingredient" : {
-      "item" : "mekanism:controlcircuit",
-      "data" : 2
+    "ingredient": {
+      "item": "mekanism:controlcircuit",
+      "data": 2
     }
   },
   {
@@ -93,10 +93,10 @@
         "circuitOredict": ""
       }
     ],
-    "name" : "CIRCUITULTIMATE",
-    "ingredient" : {
-      "type" : "forge:ore_dict",
-      "ore" : "circuitUltimate"
+    "name": "CIRCUITULTIMATE",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "circuitUltimate"
     }
   },
   {
@@ -110,9 +110,9 @@
       }
     ],
     "name": "CIRCUITULTIMATE",
-    "ingredient" : {
-      "item" : "mekanism:controlcircuit",
-      "data" : 3
+    "ingredient": {
+      "item": "mekanism:controlcircuit",
+      "data": 3
     }
   }
 ]

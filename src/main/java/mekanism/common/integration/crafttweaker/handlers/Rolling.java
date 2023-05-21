@@ -43,7 +43,7 @@ public class Rolling {
     public static void removeRecipe(IIngredient itemOutput, @Optional IIngredient itemInput) {
         if (IngredientHelper.checkNotNull(NAME, itemOutput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.ROLLING, new IngredientWrapper(itemOutput),
-                  new IngredientWrapper(itemInput)));
+                    new IngredientWrapper(itemInput)));
         }
     }
 

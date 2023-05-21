@@ -3,11 +3,7 @@ package mekanism.common.network;
 import io.netty.buffer.ByteBuf;
 import mekanism.api.Coord4D;
 import mekanism.client.gui.GuiLogisticalSorter;
-import mekanism.client.gui.filter.GuiTFilterSelect;
-import mekanism.client.gui.filter.GuiTItemStackFilter;
-import mekanism.client.gui.filter.GuiTMaterialFilter;
-import mekanism.client.gui.filter.GuiTModIDFilter;
-import mekanism.client.gui.filter.GuiTOreDictFilter;
+import mekanism.client.gui.filter.*;
 import mekanism.common.Mekanism;
 import mekanism.common.PacketHandler;
 import mekanism.common.inventory.container.ContainerFilter;
@@ -43,10 +39,10 @@ public class PacketLogisticalSorterGui implements IMessageHandler<LogisticalSort
                 try {
                     if (message.packetType == SorterGuiPacket.CLIENT) {
                         FMLCommonHandler.instance().showGuiScreen(LogisticalSorterGuiMessage.getGui(message.packetType, message.guiType, player, player.world,
-                              message.coord4D.getPos(), -1));
+                                message.coord4D.getPos(), -1));
                     } else if (message.packetType == SorterGuiPacket.CLIENT_INDEX) {
                         FMLCommonHandler.instance().showGuiScreen(LogisticalSorterGuiMessage.getGui(message.packetType, message.guiType, player, player.world,
-                              message.coord4D.getPos(), message.index));
+                                message.coord4D.getPos(), message.index));
                     }
                     player.openContainer.windowId = message.windowId;
                 } catch (Exception e) {

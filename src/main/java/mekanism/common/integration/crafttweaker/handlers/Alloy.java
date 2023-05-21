@@ -49,7 +49,7 @@ public class Alloy {
     public static void removeRecipe(IIngredient itemOutput, @Optional IIngredient itemInput, @Optional IIngredient extraInput) {
         if (IngredientHelper.checkNotNull(NAME, itemOutput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.ALLOY, new IngredientWrapper(itemOutput),
-                  new IngredientWrapper(itemInput, extraInput)));
+                    new IngredientWrapper(itemInput, extraInput)));
         }
     }
 

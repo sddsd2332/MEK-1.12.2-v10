@@ -3,14 +3,15 @@ package mekanism.common;
 import buildcraft.api.fuels.BuildcraftFuelRegistry;
 import buildcraft.api.fuels.IFuel;
 import buildcraft.api.mj.MjAPI;
-import java.util.HashMap;
-import java.util.Map;
 import mekanism.api.gas.Gas;
 import mekanism.common.integration.redstoneflux.RFIntegration;
 import mekanism.common.util.MekanismUtils;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.ModAPIManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FuelHandler {
 
@@ -37,7 +38,7 @@ public class FuelHandler {
 
     public static boolean BCPresent() {
         return ModAPIManager.INSTANCE.hasAPI("BuildCraftAPI|fuels") && MekanismUtils.classExists("buildcraft.api.fuels.BuildcraftFuelRegistry") &&
-               MekanismUtils.classExists("buildcraft.api.fuels.IFuel");
+                MekanismUtils.classExists("buildcraft.api.fuels.IFuel");
     }
 
     public static class FuelGas {

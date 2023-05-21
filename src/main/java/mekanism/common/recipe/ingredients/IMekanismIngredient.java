@@ -1,7 +1,7 @@
 package mekanism.common.recipe.ingredients;
 
-import java.util.List;
 import javax.annotation.Nonnull;
+import java.util.List;
 
 //TODO: Maybe eventually get rid of this and use the built in Ingredient.
 // The reason for this existing for now is to not have to implement all the

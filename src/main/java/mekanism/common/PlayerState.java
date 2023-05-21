@@ -1,8 +1,5 @@
 package mekanism.common;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
 import mekanism.client.sound.PlayerSound.SoundType;
 import mekanism.client.sound.SoundHandler;
 import mekanism.common.config.MekanismConfig;
@@ -12,6 +9,10 @@ import mekanism.common.network.PacketScubaTankData.ScubaTankDataMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class PlayerState {
 

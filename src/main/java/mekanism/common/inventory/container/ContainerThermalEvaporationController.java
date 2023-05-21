@@ -1,6 +1,5 @@
 package mekanism.common.inventory.container;
 
-import javax.annotation.Nonnull;
 import mekanism.common.inventory.slot.SlotOutput;
 import mekanism.common.tile.TileEntityThermalEvaporationController;
 import mekanism.common.util.FluidContainerUtils;
@@ -11,10 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 
+import javax.annotation.Nonnull;
+
 public class ContainerThermalEvaporationController extends ContainerMekanism<TileEntityThermalEvaporationController> {
 
     public ContainerThermalEvaporationController(InventoryPlayer inventory,
-          TileEntityThermalEvaporationController tile) {
+                                                 TileEntityThermalEvaporationController tile) {
         super(tile, inventory);
     }
 

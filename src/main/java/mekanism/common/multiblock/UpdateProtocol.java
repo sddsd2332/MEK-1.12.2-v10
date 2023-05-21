@@ -1,17 +1,13 @@
 package mekanism.common.multiblock;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 import mekanism.api.Coord4D;
 import mekanism.common.tile.TileEntityMultiblock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.*;
 
 public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
 
@@ -173,7 +169,6 @@ public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
      * @param x - x coordinate
      * @param y - y coordinate
      * @param z - z coordinate
-     *
      * @return Whether or not the block at the specified location is an air block.
      */
     protected boolean isAir(int x, int y, int z) {
@@ -194,7 +189,6 @@ public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
      *               during any call. A value of 1 also implies that it is a viable node so we start checking at 1 instead of 0.
      * @param zShift Direction z is being changed, 1 is increasing, 0 means not changing, -1 means decreasing. Only one of xShift, yShift, and zShift should not be 0
      *               during any call. A value of 1 also implies that it is a viable node so we start checking at 1 instead of 0.
-     *
      * @return x, y, or z depending on which one is not zero.
      */
     private int findViableNode(Coord4D orig, int xShift, int yShift, int zShift) {
@@ -211,15 +205,14 @@ public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
 
     private boolean isCorner(int x, int y, int z) {
         return (!isViableNode(x + 1, y, z) || !isViableNode(x - 1, y, z)) &&
-               (!isViableNode(x, y + 1, z) || !isViableNode(x, y - 1, z)) &&
-               (!isViableNode(x, y, z + 1) || !isViableNode(x, y, z - 1));
+                (!isViableNode(x, y + 1, z) || !isViableNode(x, y - 1, z)) &&
+                (!isViableNode(x, y, z + 1) || !isViableNode(x, y, z - 1));
     }
 
     /**
      * @param x - x coordinate
      * @param y - y coordinate
      * @param z - z coordinate
-     *
      * @return Whether or not the block at the specified location is a viable node for a multiblock structure.
      */
     public boolean isViableNode(int x, int y, int z) {
@@ -233,7 +226,6 @@ public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
 
     /**
      * @param pos - coordinates
-     *
      * @return Whether or not the block at the specified location is a viable node for a multiblock structure.
      */
     public boolean isViableNode(BlockPos pos) {
@@ -245,7 +237,6 @@ public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
      * @param xmin - minimum x value
      * @param ymin - minimum y value
      * @param zmin - minimum z value
-     *
      * @return If the block at the specified location is on the minimum of all angles of this multiblock structure, and the one to use for the actual calculation.
      */
     private boolean isCorrectCorner(Coord4D obj, int xmin, int ymin, int zmin) {
@@ -260,7 +251,6 @@ public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
      * @param ymax - maximum y value
      * @param zmin - minimum z value
      * @param zmax - maximum z value
-     *
      * @return Whether or not the block at the specified location is considered a frame on the multiblock structure.
      */
     private boolean isFrame(Coord4D obj, int xmin, int xmax, int ymin, int ymax, int zmin, int zmax) {
@@ -274,7 +264,6 @@ public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
      * @param x - x coordinate
      * @param y - y coordinate
      * @param z - z coordinate
-     *
      * @return Whether or not the block at the specified location serves as a frame for a multiblock structure.
      */
     protected abstract boolean isValidFrame(int x, int y, int z);
@@ -347,7 +336,7 @@ public abstract class UpdateProtocol<T extends SynchronizedData<T>> {
             for (Coord4D obj : structureFound.locations) {
                 TileEntity tileEntity = obj.getTileEntity(pointer.getWorld());
                 if (tileEntity instanceof TileEntityMultiblock
-                    && ((TileEntityMultiblock) tileEntity).cachedID != null) {
+                        && ((TileEntityMultiblock) tileEntity).cachedID != null) {
                     idsFound.add(((TileEntityMultiblock) tileEntity).cachedID);
                 }
             }

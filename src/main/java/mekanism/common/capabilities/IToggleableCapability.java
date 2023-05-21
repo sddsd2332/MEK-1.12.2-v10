@@ -1,10 +1,11 @@
 package mekanism.common.capabilities;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * A capability provider that allows for easier toggling of capabilities in subclasses where everything else may be the same but the capability may not always be
@@ -17,7 +18,6 @@ public interface IToggleableCapability extends ICapabilityProvider {
      *
      * @param capability The capability to check
      * @param side       The Side to check from: CAN BE NULL. Null is defined to represent 'internal' or 'self'
-     *
      * @return True if this given capability is disabled for the given side. If true, then {@link #hasCapability(Capability, EnumFacing)} should return false.
      */
     default boolean isCapabilityDisabled(@Nonnull Capability<?> capability, @Nullable EnumFacing side) {

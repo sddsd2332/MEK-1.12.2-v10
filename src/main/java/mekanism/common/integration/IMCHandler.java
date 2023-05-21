@@ -1,6 +1,5 @@
 package mekanism.common.integration;
 
-import java.util.List;
 import mekanism.common.Mekanism;
 import mekanism.common.recipe.RecipeHandler;
 import mekanism.common.recipe.RecipeHandler.Recipe;
@@ -8,6 +7,8 @@ import mekanism.common.recipe.inputs.MachineInput;
 import mekanism.common.recipe.machines.MachineRecipe;
 import mekanism.common.recipe.outputs.MachineOutput;
 import net.minecraftforge.fml.common.event.FMLInterModComms.IMCMessage;
+
+import java.util.List;
 
 public class IMCHandler {
 
@@ -20,7 +21,7 @@ public class IMCHandler {
                 String message = msg.key;
 
                 if (message.equals("ShapedMekanismRecipe") || message.equals("ShapelessMekanismRecipe") || message.equals("DeleteMekanismRecipes") ||
-                    message.equals("RemoveMekanismRecipes")) {
+                        message.equals("RemoveMekanismRecipes")) {
                     Mekanism.logger.warn(msg.getSender() + " tried to send IMC " + message + " which has been deleted. Please notify the mod developer to use JSON recipes.");
                     found = true;
                 }

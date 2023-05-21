@@ -26,7 +26,7 @@ public class AntiprotonicNucleosynthesizerRecipeCategory<WRAPPER extends Antipro
     @Override
     protected void addGuiElements() {
         guiElements.add(new GuiSlot(GuiSlot.SlotType.INPUT, this, guiLocation, 53, 34));
-        guiElements.add(new GuiSlot(GuiSlot.SlotType.POWER, this, guiLocation, 140, 18).with(GuiSlot.SlotOverlay.POWER));
+        guiElements.add(new GuiSlot(GuiSlot.SlotType.POWER, this, guiLocation, 140, 34).with(GuiSlot.SlotOverlay.POWER));
         guiElements.add(new GuiSlot(GuiSlot.SlotType.OUTPUT, this, guiLocation, 115, 34));
         guiElements.add(GuiGasGauge.getDummy(GuiGauge.Type.STANDARD_RED, this, guiLocation, 28, 10));
         guiElements.add(new GuiPowerBar(this, new GuiPowerBar.IPowerInfoHandler() {

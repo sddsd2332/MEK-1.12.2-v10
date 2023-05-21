@@ -1,6 +1,5 @@
 package mekanism.common.inventory.container;
 
-import javax.annotation.Nonnull;
 import mekanism.api.infuse.InfuseRegistry;
 import mekanism.common.base.IFactory.MachineFuelType;
 import mekanism.common.base.IFactory.RecipeType;
@@ -17,6 +16,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
 
 public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
 
@@ -36,7 +37,7 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
                 }
             });
             addSlotToContainer(new SlotOutput(tileEntity, 3, 180, 112));
-        }else if(tileEntity.tier == FactoryTier.ULTIMATE ) {
+        } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
             addSlotToContainer(new Slot(tileEntity, 2, 180 + 34, 75) {
                 @Override
                 public boolean isItemValid(ItemStack stack) {
@@ -44,8 +45,8 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
                     return swapType != null && !swapType.isFactory();
                 }
             });
-            addSlotToContainer(new SlotOutput(tileEntity, 3, 180 + 34, 112 ));
-        }else if (tileEntity.tier == FactoryTier.CREATIVE){
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180 + 34, 112));
+        } else if (tileEntity.tier == FactoryTier.CREATIVE) {
             addSlotToContainer(new Slot(tileEntity, 2, 180 + 72, 75) {
                 @Override
                 public boolean isItemValid(ItemStack stack) {
@@ -53,9 +54,9 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
                     return swapType != null && !swapType.isFactory();
                 }
             });
-            addSlotToContainer(new SlotOutput(tileEntity, 3, 180 + 72, 112 ));
+            addSlotToContainer(new SlotOutput(tileEntity, 3, 180 + 72, 112));
         }
-            addSlotToContainer(new Slot(tileEntity, 4, 7, 57));
+        addSlotToContainer(new Slot(tileEntity, 4, 7, 57));
         if (tileEntity.tier == FactoryTier.BASIC) {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new FactoryInputSlot(tileEntity, getInputSlotIndex(i), 55 + (i * 38), 13, i));
@@ -79,14 +80,14 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new SlotOutput(tileEntity, getOutputSlotIndex(i), 29 + (i * 19), 57));
             }
-        }else if (tileEntity.tier == FactoryTier.ULTIMATE) {
+        } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new FactoryInputSlot(tileEntity, getInputSlotIndex(i), 27 + (i * 19), 13, i));
             }
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new SlotOutput(tileEntity, getOutputSlotIndex(i), 27 + (i * 19), 57));
             }
-        }else if (tileEntity.tier == FactoryTier.CREATIVE) {
+        } else if (tileEntity.tier == FactoryTier.CREATIVE) {
             for (int i = 0; i < tileEntity.tier.processes; i++) {
                 addSlotToContainer(new FactoryInputSlot(tileEntity, getInputSlotIndex(i), 27 + (i * 19), 13, i));
             }
@@ -100,11 +101,11 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
 
     @Override
     protected int getInventoryOffset() {
-        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED ||tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM ||tileEntity.getRecipeType() == RecipeType.INFUSING){
+        if (tileEntity.getRecipeType().getFuelType() == MachineFuelType.ADVANCED || tileEntity.getRecipeType().getFuelType() == MachineFuelType.FARM || tileEntity.getRecipeType() == RecipeType.INFUSING) {
             return 95;
-        }else if (tileEntity.tier == FactoryTier.ULTIMATE|| tileEntity.tier == FactoryTier.CREATIVE){
+        } else if (tileEntity.tier == FactoryTier.ULTIMATE || tileEntity.tier == FactoryTier.CREATIVE) {
             return 87;
-        }else {
+        } else {
             return 88;
         }
     }
@@ -114,22 +115,22 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
         int offset = getInventoryOffset();
         for (int slotY = 0; slotY < 3; slotY++) {
             for (int slotX = 0; slotX < 9; slotX++) {
-                if (tileEntity.tier == FactoryTier.CREATIVE){
+                if (tileEntity.tier == FactoryTier.CREATIVE) {
                     addSlotToContainer(new Slot(inventory, slotX + slotY * 9 + 9, 44 + slotX * 18, offset + slotY * 18));
-                }else if (tileEntity.tier == FactoryTier.ULTIMATE){
+                } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
                     addSlotToContainer(new Slot(inventory, slotX + slotY * 9 + 9, 27 + slotX * 18, offset + slotY * 18));
-                }else {
+                } else {
                     addSlotToContainer(new Slot(inventory, slotX + slotY * 9 + 9, 8 + slotX * 18, offset + slotY * 18));
                 }
             }
         }
         offset += 58;
         for (int slotY = 0; slotY < 9; slotY++) {
-            if (tileEntity.tier == FactoryTier.CREATIVE){
+            if (tileEntity.tier == FactoryTier.CREATIVE) {
                 addSlotToContainer(new Slot(inventory, slotY, 44 + slotY * 18, offset));
-            }else if (tileEntity.tier == FactoryTier.ULTIMATE){
+            } else if (tileEntity.tier == FactoryTier.ULTIMATE) {
                 addSlotToContainer(new Slot(inventory, slotY, 27 + slotY * 18, offset));
-            }else {
+            } else {
                 addSlotToContainer(new Slot(inventory, slotY, 8 + slotY * 18, offset));
             }
         }
@@ -176,7 +177,7 @@ public class ContainerFactory extends ContainerMekanism<TileEntityFactory> {
                     return ItemStack.EMPTY;
                 }
             } else if (tileEntity.getRecipeType() == RecipeType.INFUSING && InfuseRegistry.getObject(slotStack) != null
-                       && (tileEntity.infuseStored.getType() == null || tileEntity.infuseStored.getType() == InfuseRegistry.getObject(slotStack).type)) {
+                    && (tileEntity.infuseStored.getType() == null || tileEntity.infuseStored.getType() == InfuseRegistry.getObject(slotStack).type)) {
                 if (transferExtraSlot(slotID, slotStack)) {
                     return ItemStack.EMPTY;
                 }

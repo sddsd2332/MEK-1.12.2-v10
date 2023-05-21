@@ -6,7 +6,7 @@ import mekanism.common.recipe.machines.MachineRecipe;
 import mekanism.common.recipe.outputs.MachineOutput;
 
 public class RemoveAllMekanismRecipe<INPUT extends MachineInput<INPUT>, OUTPUT extends MachineOutput<OUTPUT>, RECIPE extends MachineRecipe<INPUT, OUTPUT, RECIPE>> extends
-      RecipeMapModification<INPUT, RECIPE> {
+        RecipeMapModification<INPUT, RECIPE> {
 
     public RemoveAllMekanismRecipe(String name, Recipe<INPUT, OUTPUT, RECIPE> recipeType) {
         super(name, false, recipeType);

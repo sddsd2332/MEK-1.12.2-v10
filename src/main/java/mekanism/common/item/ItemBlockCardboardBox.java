@@ -2,8 +2,8 @@ package mekanism.common.item;
 
 import mekanism.api.EnumColor;
 import mekanism.api.MekanismAPI;
-import mekanism.common.MekanismBlocks;
 import mekanism.common.block.BlockCardboardBox.BlockData;
+import mekanism.common.register.MekanismBlocks;
 import mekanism.common.tile.TileEntityCardboardBox;
 import mekanism.common.util.ItemDataUtils;
 import mekanism.common.util.LangUtils;

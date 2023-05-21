@@ -30,7 +30,7 @@ public class ContainerChanceMachine2<RECIPE extends Chance2MachineRecipe<RECIPE>
             ItemStack slotStack = currentSlot.getStack();
             stack = slotStack.copy();
 
-            if (slotID == 2 ) {
+            if (slotID == 2) {
                 if (!mergeItemStack(slotStack, 3, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }

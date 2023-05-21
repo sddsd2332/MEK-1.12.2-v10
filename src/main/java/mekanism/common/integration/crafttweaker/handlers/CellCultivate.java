@@ -35,14 +35,14 @@ public class CellCultivate {
 
     @ZenMethod
     public static void addRecipe(IIngredient ingredientInput, IIngredient ingredientExtra, IGasStack gasInput, IItemStack itemOutput) {
-        if (IngredientHelper.checkNotNull(NAME, ingredientInput, ingredientExtra,gasInput,itemOutput)){
+        if (IngredientHelper.checkNotNull(NAME, ingredientInput, ingredientExtra, gasInput, itemOutput)) {
             ItemStackOutput output = new ItemStackOutput(CraftTweakerMC.getItemStack(itemOutput));
             Gas gas = GasHelper.toGas(gasInput).getGas();
             List<CellCultivateRecipe> recipes = new ArrayList<>();
             ItemStack[] extraInputs = CraftTweakerMC.getIngredient(ingredientExtra).getMatchingStacks();
             for (ItemStack stack : CraftTweakerMC.getIngredient(ingredientInput).getMatchingStacks()) {
                 for (ItemStack extra : extraInputs) {
-                    recipes.add(new CellCultivateRecipe(new CultivateMachineInput(stack, extra,gas), output));
+                    recipes.add(new CellCultivateRecipe(new CultivateMachineInput(stack, extra, gas), output));
                 }
                 CrafttweakerIntegration.LATE_ADDITIONS.add(new AddMekanismRecipe<>(NAME, RecipeHandler.Recipe.CELL_CULTIVATE, recipes));
             }
@@ -62,9 +62,6 @@ public class CellCultivate {
     public static void removeAllRecipes() {
         CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveAllMekanismRecipe<>(NAME, RecipeHandler.Recipe.CELL_CULTIVATE));
     }
-
-
-
 
 
 }

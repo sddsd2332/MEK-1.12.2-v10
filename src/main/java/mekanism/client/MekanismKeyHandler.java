@@ -2,7 +2,6 @@ package mekanism.client;
 
 import mekanism.client.sound.SoundHandler;
 import mekanism.common.Mekanism;
-import mekanism.common.MekanismSounds;
 import mekanism.common.block.states.BlockStateMachine.MachineType;
 import mekanism.common.item.*;
 import mekanism.common.item.ItemConfigurator.ConfiguratorMode;
@@ -13,6 +12,7 @@ import mekanism.common.network.PacketFreeRunnerData.FreeRunnerDataMessage;
 import mekanism.common.network.PacketItemStack.ItemStackMessage;
 import mekanism.common.network.PacketJetpackData.JetpackDataMessage;
 import mekanism.common.network.PacketScubaTankData.ScubaTankDataMessage;
+import mekanism.common.register.MekanismSounds;
 import mekanism.common.util.LangUtils;
 import mekanism.common.util.TextComponentGroup;
 import net.minecraft.client.Minecraft;
@@ -42,15 +42,13 @@ public class MekanismKeyHandler extends MekKeyHandler {
     public static KeyBinding armorModeSwitchKey = new KeyBinding("mekanism.key.armorMode", Keyboard.KEY_G, keybindCategory);
     public static KeyBinding freeRunnerModeSwitchKey = new KeyBinding("mekanism.key.feetMode", Keyboard.KEY_H, keybindCategory);
     public static KeyBinding voiceKey = new KeyBinding("mekanism.key.voice", Keyboard.KEY_U, keybindCategory);
-
-    public static KeyBinding sneakKey = Minecraft.getMinecraft().gameSettings.keyBindSneak;
-    public static KeyBinding jumpKey = Minecraft.getMinecraft().gameSettings.keyBindJump;
-
     private static Builder BINDINGS = new Builder()
             .addBinding(modeSwitchKey, false)
             .addBinding(armorModeSwitchKey, false)
             .addBinding(freeRunnerModeSwitchKey, false)
             .addBinding(voiceKey, true);
+    public static KeyBinding sneakKey = Minecraft.getMinecraft().gameSettings.keyBindSneak;
+    public static KeyBinding jumpKey = Minecraft.getMinecraft().gameSettings.keyBindJump;
 
     public MekanismKeyHandler() {
         super(BINDINGS);

@@ -26,7 +26,7 @@ public class ThermalEvaporation {
     public static void addRecipe(ILiquidStack liquidInput, ILiquidStack liquidOutput) {
         if (IngredientHelper.checkNotNull(NAME, liquidInput, liquidOutput)) {
             CrafttweakerIntegration.LATE_ADDITIONS.add(new AddMekanismRecipe<>(NAME, Recipe.THERMAL_EVAPORATION_PLANT,
-                  new ThermalEvaporationRecipe(IngredientHelper.toFluid(liquidInput), IngredientHelper.toFluid(liquidOutput))));
+                    new ThermalEvaporationRecipe(IngredientHelper.toFluid(liquidInput), IngredientHelper.toFluid(liquidOutput))));
         }
     }
 
@@ -34,7 +34,7 @@ public class ThermalEvaporation {
     public static void removeRecipe(IIngredient liquidInput, @Optional IIngredient liquidOutput) {
         if (IngredientHelper.checkNotNull(NAME, liquidInput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.THERMAL_EVAPORATION_PLANT, new IngredientWrapper(liquidOutput),
-                  new IngredientWrapper(liquidInput)));
+                    new IngredientWrapper(liquidInput)));
         }
     }
 

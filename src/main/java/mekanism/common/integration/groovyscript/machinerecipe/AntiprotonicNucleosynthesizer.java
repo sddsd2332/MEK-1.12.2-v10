@@ -30,11 +30,11 @@ public class AntiprotonicNucleosynthesizer extends VirtualizedMekanismRegistry<N
     }
 
 
-    public NucleosynthesizerRecipe add(IIngredient inputSolid, GasStack inputGas,  ItemStack outputSolid, double energy, int duration){
-        NucleosynthesizerRecipe r =null;
-        for (ItemStack item  : inputSolid.getMatchingStacks()){
-            NucleosynthesizerRecipe recipe = new NucleosynthesizerRecipe(item,inputGas.copy(),outputSolid.copy(),energy,duration);
-            if (r == null) r= recipe;
+    public NucleosynthesizerRecipe add(IIngredient inputSolid, GasStack inputGas, ItemStack outputSolid, double energy, int duration) {
+        NucleosynthesizerRecipe r = null;
+        for (ItemStack item : inputSolid.getMatchingStacks()) {
+            NucleosynthesizerRecipe recipe = new NucleosynthesizerRecipe(item, inputGas.copy(), outputSolid.copy(), energy, duration);
+            if (r == null) r = recipe;
             recipeRegistry.put(recipe);
             addScripted(recipe);
         }
@@ -62,8 +62,6 @@ public class AntiprotonicNucleosynthesizer extends VirtualizedMekanismRegistry<N
         }
         return found;
     }
-
-
 
 
     public static class RecipeBuilder extends AbstractRecipeBuilder<NucleosynthesizerRecipe> {
@@ -94,7 +92,6 @@ public class AntiprotonicNucleosynthesizer extends VirtualizedMekanismRegistry<N
             }
             return this;
         }
-
 
 
         public RecipeBuilder durazqtion(int duration) {

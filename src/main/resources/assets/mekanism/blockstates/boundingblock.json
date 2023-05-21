@@ -4,12 +4,16 @@
     "model": "mekanism:nothing"
   },
   "variants": {
-    "normal": [{}],
+    "normal": [
+      {}
+    ],
     "advanced": {
       "true": {},
       "false": {}
     },
-    "inventory": [{}]
+    "inventory": [
+      {}
+    ]
   }
 }
 

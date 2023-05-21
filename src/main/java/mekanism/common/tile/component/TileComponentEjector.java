@@ -28,7 +28,8 @@ import java.util.*;
 
 public class TileComponentEjector implements ITileComponent {
 
-    private static final int GAS_OUTPUT = MekanismConfig.current().general.MachineGasEjectionSpeed.val();;
+    private static final int GAS_OUTPUT = MekanismConfig.current().general.MachineGasEjectionSpeed.val();
+    ;
     private static final int FLUID_OUTPUT = MekanismConfig.current().general.MachineFluidEjectionSpeed.val();
     private TileEntityContainerBlock tileEntity;
     private boolean strictInput;

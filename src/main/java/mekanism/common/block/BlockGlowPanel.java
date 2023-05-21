@@ -2,11 +2,11 @@ package mekanism.common.block;
 
 import mekanism.api.Coord4D;
 import mekanism.common.Mekanism;
-import mekanism.common.MekanismBlocks;
 import mekanism.common.block.property.PropertyColor;
 import mekanism.common.block.states.BlockStateFacing;
 import mekanism.common.block.states.BlockStateGlowPanel;
 import mekanism.common.integration.multipart.MultipartMekanism;
+import mekanism.common.register.MekanismBlocks;
 import mekanism.common.tile.TileEntityGlowPanel;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MultipartUtils;

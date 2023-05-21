@@ -4,18 +4,28 @@
     "model": "mekanism:electrolytic_separator"
   },
   "variants": {
-    "normal": [{}],
+    "normal": [
+      {}
+    ],
     "facing": {
-      "north": {"y": 90},
-      "south": {"y": -90},
-      "east":  {"y": 180},
-      "west":  {}
+      "north": {
+        "y": 90
+      },
+      "south": {
+        "y": -90
+      },
+      "east": {
+        "y": 180
+      },
+      "west": {}
     },
     "active": {
       "true": {},
       "false": {}
     },
-    "inventory": [{}]
+    "inventory": [
+      {}
+    ]
   }
 }
 

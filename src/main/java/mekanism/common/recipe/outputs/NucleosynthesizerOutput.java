@@ -1,7 +1,5 @@
 package mekanism.common.recipe.outputs;
 
-import mekanism.api.gas.GasStack;
-import mekanism.api.gas.GasTank;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
@@ -39,7 +37,7 @@ public class NucleosynthesizerOutput extends MachineOutput<NucleosynthesizerOutp
         }
     }
 
-    public boolean applyOutputs(NonNullList<ItemStack> inventory, int index,  boolean doEmit) {
+    public boolean applyOutputs(NonNullList<ItemStack> inventory, int index, boolean doEmit) {
         if (canAddProducts(inventory, index)) {
             if (doEmit) {
                 addProducts(inventory, index);

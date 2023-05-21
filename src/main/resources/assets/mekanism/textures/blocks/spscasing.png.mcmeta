@@ -1,10 +1,10 @@
 {
-    "ctm":{
-        "ctm_version": 1,
-        "type":"CTM",
-        "layer":"SOLID",
-        "textures":[
-            "mekanism:blocks/spscasing-ctm"
-        ]
-    }
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "SOLID",
+    "textures": [
+      "mekanism:blocks/spscasing-ctm"
+    ]
+  }
 }

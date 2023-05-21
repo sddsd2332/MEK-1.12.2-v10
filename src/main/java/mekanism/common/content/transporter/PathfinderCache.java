@@ -1,11 +1,12 @@
 package mekanism.common.content.transporter;
 
+import mekanism.api.Coord4D;
+import net.minecraft.util.EnumFacing;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import mekanism.api.Coord4D;
-import net.minecraft.util.EnumFacing;
 
 public class PathfinderCache {
 

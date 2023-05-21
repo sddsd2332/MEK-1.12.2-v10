@@ -1,12 +1,15 @@
-package mekanism.common;
+package mekanism.common.register;
 
-import java.util.Locale;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 import mekanism.api.gas.OreGas;
+import mekanism.common.Mekanism;
+import mekanism.common.Resource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+
+import java.util.Locale;
 
 public class MekanismFluids {
 
@@ -20,9 +23,9 @@ public class MekanismFluids {
     public static final Gas HydrogenChloride = new Gas("hydrogenchloride", 0xA8F1E9);
 
     public static final Fluid HeavyWater = new Fluid("heavywater", new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidHeavyWater"),
-          new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidHeavyWater"));
+            new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidHeavyWater"));
     public static final Fluid Steam = new Fluid("steam", new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidSteam"),
-          new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidSteam")).setGaseous(true);
+            new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidSteam")).setGaseous(true);
     public static final Fluid BioEthanol = new Fluid("bioethanol", new ResourceLocation(Mekanism.MODID, "blocks/liquid/liquidBioEthanol"),
             new ResourceLocation(Mekanism.MODID, "blocks/liquid/liquidBioEthanol"));
 
@@ -38,21 +41,21 @@ public class MekanismFluids {
 
     //Add new gases in the V10 version
     public static final Gas NutritionalPaste = new Gas("nutritionalpaste", 0XEB6CA3);
-    public static final Gas NuclearWaste = new Gas( "nuclearwaste",0x4F412A);
-    public static final Gas Plutonium = new Gas("plutonium",0x1F919C);
-    public static final Gas Polonium = new Gas("polonium",0x1B9E7B);
-    public static final Gas SpentNuclearWaste = new Gas("spentnuclearwaste",0x262015);
-    public static final Gas HydrofluoricAcid = new Gas("hydrofluoricacid",0xFFC6C7BD);
-    public static final Gas Antimatter = new Gas("antimatter",0xA464B3);
-    public static final Gas FissileFule = new Gas("fissilefule",0x2E332F);
-    public static final Gas SuperheatedSodium  = new Gas("superheatedsodium",0xFFD19469);
-    public static final Gas UraniumHexafluoride  = new Gas("uraniumhexafluoride",0xFF809960);
-    public static final Gas URANIUMOXIDE  = new Gas("uraniumoxide", 0xFFE1F573);
+    public static final Gas NuclearWaste = new Gas("nuclearwaste", 0x4F412A);
+    public static final Gas Plutonium = new Gas("plutonium", 0x1F919C);
+    public static final Gas Polonium = new Gas("polonium", 0x1B9E7B);
+    public static final Gas SpentNuclearWaste = new Gas("spentnuclearwaste", 0x262015);
+    public static final Gas HydrofluoricAcid = new Gas("hydrofluoricacid", 0xFFC6C7BD);
+    public static final Gas Antimatter = new Gas("antimatter", 0xA464B3);
+    public static final Gas FissileFule = new Gas("fissilefule", 0x2E332F);
+    public static final Gas SuperheatedSodium = new Gas("superheatedsodium", 0xFFD19469);
+    public static final Gas UraniumHexafluoride = new Gas("uraniumhexafluoride", 0xFF809960);
+    public static final Gas URANIUMOXIDE = new Gas("uraniumoxide", 0xFFE1F573);
 
     //sddsd2332 add new gas
     public static final Gas NutrientSolution = new Gas("nutrientsolution", 0x1B9E7B);
     public static final Gas OxygenEnrichedWater = new Gas("oxygenenrichedwater", 0x6CE2FF);
-    public static final Gas UnstableDimensional = new Gas("unstabledimensional",0xFF9C1A);
+    public static final Gas UnstableDimensional = new Gas("unstabledimensional", 0xFF9C1A);
 
     public static void register() {
         GasRegistry.register(Hydrogen).registerFluid("liquidhydrogen");
@@ -71,7 +74,7 @@ public class MekanismFluids {
         GasRegistry.register(FusionFuel).registerFluid("liquidfusionfuel");
         GasRegistry.register(Lithium).registerFluid("liquidlithium");
 
-       //Register a new gas
+        //Register a new gas
         GasRegistry.register(NutritionalPaste);
         GasRegistry.register(NuclearWaste);
         GasRegistry.register(Plutonium);

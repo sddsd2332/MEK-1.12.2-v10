@@ -1,8 +1,5 @@
 package mekanism.common.content.boiler;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import mekanism.api.Coord4D;
 import mekanism.common.Mekanism;
 import mekanism.common.block.states.BlockStateBasic.BasicBlockType;
@@ -17,6 +14,10 @@ import mekanism.common.tile.TileEntitySuperheatingElement;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class BoilerUpdateProtocol extends UpdateProtocol<SynchronizedBoilerData> {
 
@@ -124,9 +125,9 @@ public class BoilerUpdateProtocol extends UpdateProtocol<SynchronizedBoilerData>
             @Override
             public final boolean isValid(Coord4D coord) {
                 return coord.y >= renderLocation.y - 1 && coord.y < initDisperser.y &&
-                       coord.x >= renderLocation.x && coord.x < renderLocation.x + volLength &&
-                       coord.z >= renderLocation.z && coord.z < renderLocation.z + volWidth &&
-                       (coord.isAirBlock(pointer.getWorld()) || isViableNode(coord.getPos()));
+                        coord.x >= renderLocation.x && coord.x < renderLocation.x + volLength &&
+                        coord.z >= renderLocation.z && coord.z < renderLocation.z + volWidth &&
+                        (coord.isAirBlock(pointer.getWorld()) || isViableNode(coord.getPos()));
             }
         }).calculate(initAir);
 

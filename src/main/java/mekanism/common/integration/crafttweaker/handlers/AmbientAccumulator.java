@@ -25,16 +25,16 @@ public class AmbientAccumulator {
 
     @ZenMethod
     public static void addRecipe(int Input, IGasStack gasOutput) {
-        if (IngredientHelper.checkNotNull(NAME,gasOutput)) {
+        if (IngredientHelper.checkNotNull(NAME, gasOutput)) {
             CrafttweakerIntegration.LATE_ADDITIONS.add(new AddMekanismRecipe<>(NAME, Recipe.AMBIENT_ACCUMULATOR, new AmbientGasRecipe(Input, GasHelper.toGas(gasOutput))));
         }
     }
 
     @ZenMethod
     public static void removeRecipe(IIngredient Input, @Optional IIngredient gasOutput) {
-        if (IngredientHelper.checkNotNull(NAME,Input)) {
+        if (IngredientHelper.checkNotNull(NAME, Input)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.AMBIENT_ACCUMULATOR, new IngredientWrapper(gasOutput),
-                  new IngredientWrapper(Input)));
+                    new IngredientWrapper(Input)));
         }
     }
 

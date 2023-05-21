@@ -297,11 +297,11 @@ public class GeneralConfig extends BaseConfig {
     public final IntOption quantumEntangloporterGasBuffer = new IntOption(this, "general", "quantumEntangloporterGasBuffer", GasTankTier.ULTIMATE.getBaseStorage(),
             "Maximum gas buffer (mb) of an Entangoloporter frequency - i.e. the maximum transfer per tick per frequency. Default is ultimate tier gas storage tank capacity.", 0, Integer.MAX_VALUE).setRequiresWorldRestart(true);
 
-    public final IntOption MachineGasEjectionSpeed = new IntOption(this, "general", "MachineGasEjectionSpeed",GasTankTier.BASIC.getBaseOutput(),
-            "Modify this value to increase the speed of gas ejection of the machine,The default is the transmission speed of the base gas storage tank",0,Integer.MAX_VALUE).setRequiresGameRestart(true);
+    public final IntOption MachineGasEjectionSpeed = new IntOption(this, "general", "MachineGasEjectionSpeed", GasTankTier.BASIC.getBaseOutput(),
+            "Modify this value to increase the speed of gas ejection of the machine,The default is the transmission speed of the base gas storage tank", 0, Integer.MAX_VALUE).setRequiresGameRestart(true);
 
     public final IntOption MachineFluidEjectionSpeed = new IntOption(this, "general", "MachineFluidEjectionSpeed", FluidTankTier.BASIC.getBaseOutput(),
-            "Modify this value to increase the speed of gas ejection of the machine,The default is the transfer speed of the base fluid storage tank",0,Integer.MAX_VALUE).setRequiresGameRestart(true);
+            "Modify this value to increase the speed of gas ejection of the machine,The default is the transfer speed of the base fluid storage tank", 0, Integer.MAX_VALUE).setRequiresGameRestart(true);
 
     public final BooleanOption blacklistIC2 = new BooleanOption(this, "general", "BlacklistIC2Power", false,
             "Disables IC2 power integration. Requires world restart (server-side option in SMP).");

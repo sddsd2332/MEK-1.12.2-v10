@@ -12,6 +12,7 @@ import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.MekanismUtils.ResourceType;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiIngredientGroup;
 import mezz.jei.api.gui.ITickTimer;
 import mezz.jei.api.recipe.IRecipeCategory;
@@ -33,6 +34,7 @@ public abstract class BaseRecipeCategory<WRAPPER extends IRecipeWrapper> impleme
     private static final GuiDummy gui = new GuiDummy();
     private final IDrawable background;
     protected ResourceLocation guiLocation;
+
     @Nullable
     protected ProgressBar progressBar;
     protected ITickTimer timer;
@@ -40,6 +42,7 @@ public abstract class BaseRecipeCategory<WRAPPER extends IRecipeWrapper> impleme
     protected int yOffset;
     protected IDrawable fluidOverlayLarge;
     protected IDrawable fluidOverlaySmall;
+    protected IDrawableAnimated energy;
     protected Set<GuiElement> guiElements = new HashSet<>();
     private IGuiHelper guiHelper;
     private String recipeName;

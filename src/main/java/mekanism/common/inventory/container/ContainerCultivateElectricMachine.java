@@ -32,15 +32,15 @@ public class ContainerCultivateElectricMachine<RECIPE extends CultivateMachineRe
                 if (!mergeItemStack(slotStack, 5, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }else if (ChargeUtils.canBeDischarged(slotStack)) {
+            } else if (ChargeUtils.canBeDischarged(slotStack)) {
                 if (slotID != 4) {
                     if (!mergeItemStack(slotStack, 4, 5, false)) {
                         return ItemStack.EMPTY;
                     }
-                }else if (!mergeItemStack(slotStack, 5, inventorySlots.size(), true)) {
+                } else if (!mergeItemStack(slotStack, 5, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }else if (isExtraItem(slotStack)  ) {
+            } else if (isExtraItem(slotStack)) {
                 if (slotID == 1) {
                     if (!mergeItemStack(slotStack, 1, 3, false)) {
                         return ItemStack.EMPTY;
@@ -48,7 +48,7 @@ public class ContainerCultivateElectricMachine<RECIPE extends CultivateMachineRe
                 } else if (!mergeItemStack(slotStack, 5, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }else if (tileEntity.getItemGas(slotStack) != null){
+            } else if (tileEntity.getItemGas(slotStack) != null) {
                 if (slotID != 2) {
                     if (!mergeItemStack(slotStack, 1, 3, false)) {
                         return ItemStack.EMPTY;
@@ -56,7 +56,7 @@ public class ContainerCultivateElectricMachine<RECIPE extends CultivateMachineRe
                 } else if (!mergeItemStack(slotStack, 5, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }else if (isInputItem(slotStack)) {
+            } else if (isInputItem(slotStack)) {
                 if (slotID != 0) {
                     if (!mergeItemStack(slotStack, 0, 2, false)) {
                         return ItemStack.EMPTY;
@@ -109,8 +109,8 @@ public class ContainerCultivateElectricMachine<RECIPE extends CultivateMachineRe
     @Override
     protected void addSlots() {
         addSlotToContainer(new Slot(tileEntity, 0, 56, 17));
-        addSlotToContainer(new Slot(tileEntity, 1, 56-9, 54));
-        addSlotToContainer(new Slot(tileEntity, 2, 56+9, 54));
+        addSlotToContainer(new Slot(tileEntity, 1, 56 - 9, 54));
+        addSlotToContainer(new Slot(tileEntity, 2, 56 + 9, 54));
         addSlotToContainer(new SlotOutput(tileEntity, 3, 116, 35));
         addSlotToContainer(new SlotEnergy.SlotDischarge(tileEntity, 4, 31, 35));
     }

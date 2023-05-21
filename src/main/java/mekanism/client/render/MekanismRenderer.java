@@ -368,7 +368,7 @@ public class MekanismRenderer {
         heatIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidHeat"));
         laserIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/Laser"));
         bioethanolIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/liquid/liquidbioethanol"));
-        nutritionalIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID,"blocks/liquid/liquidnutritionalpaste"));
+        nutritionalIcon = event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/liquid/liquidnutritionalpaste"));
 
         event.getMap().registerSprite(new ResourceLocation(Mekanism.MODID, "blocks/liquid/LiquidHeavyWater"));
 

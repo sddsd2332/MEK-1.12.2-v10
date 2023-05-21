@@ -1,7 +1,6 @@
 package mekanism.common.content.miner;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.common.content.filter.IItemStackFilter;
 import mekanism.common.util.MekanismUtils;
@@ -9,10 +8,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nonnull;
+
 public class MItemStackFilter extends MinerFilter implements IItemStackFilter {
 
-    private ItemStack itemType = ItemStack.EMPTY;
     public boolean fuzzy;
+    private ItemStack itemType = ItemStack.EMPTY;
 
     public MItemStackFilter(ItemStack item) {
         itemType = item;

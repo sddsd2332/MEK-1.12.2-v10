@@ -1,12 +1,13 @@
 package mekanism.common.inventory.container;
 
-import javax.annotation.Nonnull;
 import mekanism.common.tile.TileEntityFuelwoodHeater;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
+
+import javax.annotation.Nonnull;
 
 public class ContainerFuelwoodHeater extends ContainerMekanism<TileEntityFuelwoodHeater> {
 

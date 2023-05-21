@@ -1,9 +1,6 @@
 package mekanism.common.frequency;
 
 import io.netty.buffer.ByteBuf;
-import java.lang.reflect.Constructor;
-import java.util.*;
-import javax.annotation.Nonnull;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import mekanism.api.Coord4D;
@@ -15,6 +12,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.util.Constants.NBT;
+
+import javax.annotation.Nonnull;
+import java.lang.reflect.Constructor;
+import java.util.*;
 
 public class FrequencyManager {
 

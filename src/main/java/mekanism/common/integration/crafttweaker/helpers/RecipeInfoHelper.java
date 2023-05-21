@@ -1,21 +1,16 @@
 package mekanism.common.integration.crafttweaker.helpers;
 
 import crafttweaker.mc1120.item.MCItemStack;
-import java.util.Map.Entry;
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasStack;
 import mekanism.common.recipe.inputs.MachineInput;
 import mekanism.common.recipe.machines.MachineRecipe;
-import mekanism.common.recipe.outputs.ChanceOutput;
-import mekanism.common.recipe.outputs.ChemicalPairOutput;
-import mekanism.common.recipe.outputs.FluidOutput;
-import mekanism.common.recipe.outputs.GasOutput;
-import mekanism.common.recipe.outputs.ItemStackOutput;
-import mekanism.common.recipe.outputs.MachineOutput;
-import mekanism.common.recipe.outputs.PressurizedOutput;
+import mekanism.common.recipe.outputs.*;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.Map.Entry;
 
 public class RecipeInfoHelper {
 
@@ -59,7 +54,7 @@ public class RecipeInfoHelper {
     }
 
     public static String getItemName(ItemStack stack) {
-        if (stack == null || stack.isEmpty()){
+        if (stack == null || stack.isEmpty()) {
             return "nothing";
         }
         return new MCItemStack(stack).toString();

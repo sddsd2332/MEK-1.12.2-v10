@@ -5,7 +5,7 @@ import mekanism.common.recipe.outputs.FluidOutput;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
-public class FusionCoolingRecipe extends MachineRecipe<FluidInput, FluidOutput,FusionCoolingRecipe> {
+public class FusionCoolingRecipe extends MachineRecipe<FluidInput, FluidOutput, FusionCoolingRecipe> {
 
     public FusionCoolingRecipe(FluidStack input, FluidStack output) {
         super(new FluidInput(input), new FluidOutput(output));

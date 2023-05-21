@@ -1,8 +1,8 @@
 package mekanism.common.block.states;
 
 import mekanism.common.Mekanism;
-import mekanism.common.MekanismBlocks;
 import mekanism.common.block.BlockBasic;
+import mekanism.common.register.MekanismBlocks;
 import mekanism.common.tier.BaseTier;
 import mekanism.common.tile.*;
 import mekanism.common.util.LangUtils;

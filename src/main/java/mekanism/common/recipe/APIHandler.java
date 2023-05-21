@@ -15,7 +15,7 @@ public class APIHandler implements MekanismRecipeHelper {
 
     private static void checkPhase() {
         Preconditions.checkState(Loader.instance().getLoaderState().ordinal() < LoaderState.POSTINITIALIZATION.ordinal(),
-              "Recipes should be registered before PostInit. Try net.minecraftforge.event.RegistryEvent.Register<IRecipe>");
+                "Recipes should be registered before PostInit. Try net.minecraftforge.event.RegistryEvent.Register<IRecipe>");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class APIHandler implements MekanismRecipeHelper {
     }
 
     @Override
-    public void addSmeltingRecipe(ItemStack input, ItemStack output){
+    public void addSmeltingRecipe(ItemStack input, ItemStack output) {
         checkPhase();
         RecipeHandler.addSmeltingRecipe(input, output);
     }
@@ -143,6 +143,7 @@ public class APIHandler implements MekanismRecipeHelper {
         checkPhase();
         RecipeHandler.addSolarNeutronRecipe(inputGas, outputGas);
     }
+
     @Override
     public void addIsotopicRecipe(GasStack inputGas, GasStack outputGas) {
         checkPhase();
@@ -152,24 +153,24 @@ public class APIHandler implements MekanismRecipeHelper {
     @Override
     public void addOrganicFarmRecipe(ItemStack input, Gas gas, ItemStack primaryOutput, ItemStack secondaryOutput, double chance) {
         checkPhase();
-        RecipeHandler.addOrganicFarmRecipe(input, gas,primaryOutput, secondaryOutput, chance);
+        RecipeHandler.addOrganicFarmRecipe(input, gas, primaryOutput, secondaryOutput, chance);
     }
 
     @Override
     public void addOrganicFarmRecipe(ItemStack input, Gas gas, ItemStack primaryOutput) {
         checkPhase();
-        RecipeHandler.addOrganicFarmRecipe(input,gas, primaryOutput);
+        RecipeHandler.addOrganicFarmRecipe(input, gas, primaryOutput);
     }
 
     @Override
     public void addAmbientGas(int dimensionID, GasStack outputGas) {
         checkPhase();
-        RecipeHandler.addAmbientGas(dimensionID,outputGas);
+        RecipeHandler.addAmbientGas(dimensionID, outputGas);
     }
 
 
     @Override
-    public void addAntiprotonicNucleosynthesizerRecipe(ItemStack inputSolid,  GasStack inputGas, ItemStack outputSolid,  double extraEnergy, int ticks) {
+    public void addAntiprotonicNucleosynthesizerRecipe(ItemStack inputSolid, GasStack inputGas, ItemStack outputSolid, double extraEnergy, int ticks) {
         checkPhase();
         RecipeHandler.addNucleosynthesizerRecipe(inputSolid, inputGas, outputSolid, extraEnergy, ticks);
     }
@@ -198,6 +199,7 @@ public class APIHandler implements MekanismRecipeHelper {
         checkPhase();
         RecipeHandler.addCrusherRecipe(input, output);
     }
+
     public void addAlloyRecipe(ItemStack input, ItemStack extra, ItemStack output) {
         checkPhase();
         RecipeHandler.addAlloyRecipe(input, extra, output);
@@ -206,7 +208,7 @@ public class APIHandler implements MekanismRecipeHelper {
     @Override
     public void addCellCultivateRecipe(ItemStack input, ItemStack extra, Gas gas, ItemStack output) {
         checkPhase();
-        RecipeHandler.addCellCultivateRecipe(input,extra,gas,output);
+        RecipeHandler.addCellCultivateRecipe(input, extra, gas, output);
     }
 
 
@@ -244,9 +246,14 @@ public class APIHandler implements MekanismRecipeHelper {
     @Override
     public void addRecyclerRecipe(ItemStack input, ItemStack primaryOutput, double chance) {
         checkPhase();
-        RecipeHandler.addRecyclerRecipe(input,primaryOutput,chance);
+        RecipeHandler.addRecyclerRecipe(input, primaryOutput, chance);
     }
 
+    @Override
+    public void addVoidRecipe(int dimensionID, ItemStack input, double chance, FluidStack inputFluid, double inputFluidchance, GasStack inputGas, double inputGaschance, ItemStack outputSolid, double outputitemChane, FluidStack outputFluid, double outputFluidChane, GasStack outputGas, double outputGasChane, double extraEnergy, int ticks) {
+        checkPhase();
+        RecipeHandler.addVoidRecipe(dimensionID, input, chance, inputFluid, inputFluidchance, inputGas, inputGaschance, outputSolid, outputitemChane, outputFluid, outputFluidChane, outputGas, outputGasChane, extraEnergy, ticks);
+    }
 
 
 }

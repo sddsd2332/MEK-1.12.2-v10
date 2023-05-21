@@ -15,6 +15,7 @@ import javax.annotation.Nonnull;
 
 public class AmbientGasRecipeWrapper<RECIPE extends AmbientGasRecipe> extends MekanismRecipeWrapper<RECIPE> {
 
+
     public AmbientGasRecipeWrapper(RECIPE recipe) {
         super(recipe);
     }
@@ -29,13 +30,14 @@ public class AmbientGasRecipeWrapper<RECIPE extends AmbientGasRecipe> extends Me
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         GasOutput output = recipe.getOutput();
         IntegerInput input = recipe.getInput();
-        if (output != null){
+        if (output != null) {
             FontRenderer fontRendererObj = minecraft.fontRenderer;
             fontRendererObj.drawString(LangUtils.localize("gui.dimension2") + ":" + input.ingredient, 3, 3, 0x33ff99);
             fontRendererObj.drawString(LangUtils.localize("gui.dimensionGas") + ":", 3, 12, 0x33ff99);
             fontRendererObj.drawString(output.output.getGas().getLocalizedName(), 3, 21, 0x33ff99);
-            float Chance = 1F /100F;
+            float Chance = 1F / 100F;
             fontRendererObj.drawString(LangUtils.localize("gui.probability2") + ":" + Chance + "%", 3, 30, 0x33ff99);
         }
     }
+
 }

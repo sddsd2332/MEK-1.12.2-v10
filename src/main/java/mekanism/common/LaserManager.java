@@ -1,6 +1,5 @@
 package mekanism.common;
 
-import java.util.List;
 import mekanism.api.Coord4D;
 import mekanism.api.Pos3D;
 import mekanism.api.lasers.ILaserReceptor;
@@ -23,6 +22,8 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants.WorldEvents;
 import net.minecraftforge.event.world.BlockEvent;
+
+import java.util.List;
 
 public class LaserManager {
 

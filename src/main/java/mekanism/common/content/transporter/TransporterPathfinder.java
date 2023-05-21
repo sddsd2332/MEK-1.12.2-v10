@@ -1,16 +1,5 @@
 package mekanism.common.content.transporter;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
 import mekanism.api.Coord4D;
 import mekanism.common.base.ILogisticalTransporter;
 import mekanism.common.capabilities.Capabilities;
@@ -27,6 +16,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.Pair;
+
+import javax.annotation.Nonnull;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public final class TransporterPathfinder {
 
@@ -165,7 +158,7 @@ public final class TransporterPathfinder {
             }
             TransitRequest request = TransitRequest.getFromTransport(transportStack);
             Destination newPath = TransporterPathfinder.getNewBasePath(CapabilityUtils.getCapability(start.getTileEntity(world),
-                  Capabilities.LOGISTICAL_TRANSPORTER_CAPABILITY, null), transportStack, request, 0);
+                    Capabilities.LOGISTICAL_TRANSPORTER_CAPABILITY, null), transportStack, request, 0);
 
             if (newPath != null && newPath.getResponse() != null) {
                 transportStack.idleDir = null;
@@ -234,11 +227,6 @@ public final class TransporterPathfinder {
             score = gScore;
         }
 
-        public Destination setPathType(Path type) {
-            pathType = type;
-            return this;
-        }
-
         public Destination calculateScore(World world) {
             score = 0;
             for (Coord4D location : path) {
@@ -278,6 +266,11 @@ public final class TransporterPathfinder {
 
         public Path getPathType() {
             return pathType;
+        }
+
+        public Destination setPathType(Path type) {
+            pathType = type;
+            return this;
         }
 
         public List<Coord4D> getPath() {
@@ -332,7 +325,7 @@ public final class TransporterPathfinder {
             for (EnumFacing direction : EnumFacing.VALUES) {
                 Coord4D neighbor = start.offset(direction);
                 if (!transportStack.canInsertToTransporter(neighbor.getTileEntity(world), direction) &&
-                    (!neighbor.equals(finalNode) || !destChecker.isValid(transportStack, direction, neighbor.getTileEntity(world)))) {
+                        (!neighbor.equals(finalNode) || !destChecker.isValid(transportStack, direction, neighbor.getTileEntity(world)))) {
                     blockCount++;
                 }
             }
@@ -369,7 +362,7 @@ public final class TransporterPathfinder {
                     TileEntity neighborEntity = neighbor.getTileEntity(world);
                     neighborEntities[direction.ordinal()] = neighborEntity;
                     if (currentNodeTransporter == null || currentNodeTransporter.canEmitTo(neighborEntity, direction) ||
-                        (neighbor.equals(finalNode) && destChecker.isValid(transportStack, direction, neighborEntities[direction.ordinal()]))) {
+                            (neighbor.equals(finalNode) && destChecker.isValid(transportStack, direction, neighborEntities[direction.ordinal()]))) {
                         directionsToCheck.add(direction);
                     }
                 }

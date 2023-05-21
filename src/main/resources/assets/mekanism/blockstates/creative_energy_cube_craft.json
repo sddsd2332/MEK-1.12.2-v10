@@ -4,8 +4,12 @@
     "model": "mekanism:creative_energy_cube_craft"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }
 

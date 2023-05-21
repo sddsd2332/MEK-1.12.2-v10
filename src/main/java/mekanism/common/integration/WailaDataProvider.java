@@ -1,22 +1,12 @@
 package mekanism.common.integration;
 
-import java.util.List;
-import javax.annotation.Nonnull;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaRegistrar;
 import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
-import mekanism.common.tile.TileEntityAdvancedBoundingBlock;
-import mekanism.common.tile.TileEntityBin;
-import mekanism.common.tile.TileEntityBoundingBlock;
-import mekanism.common.tile.TileEntityEnergyCube;
-import mekanism.common.tile.TileEntityFactory;
-import mekanism.common.tile.TileEntityFluidTank;
-import mekanism.common.tile.TileEntityGasTank;
-import mekanism.common.tile.TileEntityInductionCell;
-import mekanism.common.tile.TileEntityInductionProvider;
+import mekanism.common.tile.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -26,6 +16,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional.Interface;
 import net.minecraftforge.fml.common.Optional.Method;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 @Interface(iface = "mcp.mobius.waila.api.IWailaDataProvider", modid = MekanismHooks.WAILA_MOD_ID)
 public class WailaDataProvider implements IWailaDataProvider {

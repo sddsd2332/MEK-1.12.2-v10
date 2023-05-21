@@ -70,12 +70,12 @@ public class MModIDFilter extends MinerFilter implements IModIDFilter {
     }
 
     @Override
-    public void setModID(String id) {
-        modID = id;
+    public String getModID() {
+        return modID;
     }
 
     @Override
-    public String getModID() {
-        return modID;
+    public void setModID(String id) {
+        modID = id;
     }
 }

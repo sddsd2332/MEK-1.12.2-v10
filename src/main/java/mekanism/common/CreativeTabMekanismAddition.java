@@ -1,5 +1,6 @@
 package mekanism.common;
 
+import mekanism.common.register.MekanismItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 

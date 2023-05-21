@@ -21,7 +21,7 @@ public class SolarNeutronRecipeCategory<WRAPPER extends SolarNeutronRecipeWrappe
     @Override
     public void drawExtras(Minecraft minecraft) {
         super.drawExtras(minecraft);
-        drawTexturedRect(64 - xOffset, 39 - yOffset, 176, 58, 55, 8);
+        drawTexturedRect(64 - xOffset, 39 - yOffset, 176, 58, (int)(55* ((float) timer.getValue() / 20F)), 8);
     }
 
     @Override

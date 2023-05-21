@@ -1,10 +1,10 @@
 package mekanism.tools.common;
 
-import mekanism.common.MekanismItems;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.config.ToolsConfig;
 import mekanism.common.config.ToolsConfig.ArmorBalance;
 import mekanism.common.config.ToolsConfig.ToolBalance;
+import mekanism.common.register.MekanismItems;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item.ToolMaterial;

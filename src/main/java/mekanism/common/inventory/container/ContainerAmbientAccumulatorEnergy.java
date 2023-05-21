@@ -14,7 +14,9 @@ import javax.annotation.Nonnull;
 
 public class ContainerAmbientAccumulatorEnergy extends ContainerMekanism<TileEntityAmbientAccumulatorEnergy> {
 
-    public ContainerAmbientAccumulatorEnergy(InventoryPlayer inventory, TileEntityAmbientAccumulatorEnergy tile) { super(tile, inventory); }
+    public ContainerAmbientAccumulatorEnergy(InventoryPlayer inventory, TileEntityAmbientAccumulatorEnergy tile) {
+        super(tile, inventory);
+    }
 
     @Nonnull
     @Override
@@ -34,7 +36,7 @@ public class ContainerAmbientAccumulatorEnergy extends ContainerMekanism<TileEnt
                 } else if (!mergeItemStack(slotStack, 1, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }else if (ChargeUtils.canBeDischarged(slotStack)) {
+            } else if (ChargeUtils.canBeDischarged(slotStack)) {
                 if (slotID != 1) {
                     if (!mergeItemStack(slotStack, 1, 2, false)) {
                         return ItemStack.EMPTY;
@@ -42,7 +44,7 @@ public class ContainerAmbientAccumulatorEnergy extends ContainerMekanism<TileEnt
                 } else if (!mergeItemStack(slotStack, 2, inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            }  else if (slotID >= 2 && slotID <= 28) {
+            } else if (slotID >= 2 && slotID <= 28) {
                 if (!mergeItemStack(slotStack, 29, inventorySlots.size(), false)) {
                     return ItemStack.EMPTY;
                 }
@@ -64,6 +66,11 @@ public class ContainerAmbientAccumulatorEnergy extends ContainerMekanism<TileEnt
             currentSlot.onTake(player, slotStack);
         }
         return stack;
+    }
+
+    @Override
+    protected int getInventoryOffset() {
+        return 89;
     }
 
     @Override

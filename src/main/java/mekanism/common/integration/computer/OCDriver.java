@@ -1,7 +1,5 @@
 package mekanism.common.integration.computer;
 
-import java.util.Arrays;
-import java.util.Locale;
 import li.cil.oc.api.Network;
 import li.cil.oc.api.driver.NamedBlock;
 import li.cil.oc.api.machine.Arguments;
@@ -15,6 +13,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Created by aidancbrady on 7/20/15.

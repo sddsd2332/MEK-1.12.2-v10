@@ -71,12 +71,12 @@ public class TOreDictFilter extends TransporterFilter implements IOreDictFilter 
     }
 
     @Override
-    public void setOreDictName(String name) {
-        oreDictName = name;
+    public String getOreDictName() {
+        return oreDictName;
     }
 
     @Override
-    public String getOreDictName() {
-        return oreDictName;
+    public void setOreDictName(String name) {
+        oreDictName = name;
     }
 }

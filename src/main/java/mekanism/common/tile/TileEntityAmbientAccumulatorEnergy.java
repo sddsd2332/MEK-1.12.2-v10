@@ -1,14 +1,16 @@
 package mekanism.common.tile;
 
 import io.netty.buffer.ByteBuf;
-import mekanism.api.Coord4D;
 import mekanism.api.EnumColor;
 import mekanism.api.TileNetworkList;
 import mekanism.api.gas.*;
 import mekanism.api.transmitters.TransmissionType;
 import mekanism.common.SideData;
 import mekanism.common.Upgrade;
-import mekanism.common.base.*;
+import mekanism.common.base.IComparatorSupport;
+import mekanism.common.base.ISideConfiguration;
+import mekanism.common.base.ISustainedData;
+import mekanism.common.base.ITankManager;
 import mekanism.common.block.states.BlockStateMachine;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.recipe.RecipeHandler;
@@ -17,7 +19,6 @@ import mekanism.common.recipe.machines.AmbientGasRecipe;
 import mekanism.common.tier.GasTankTier;
 import mekanism.common.tile.component.TileComponentConfig;
 import mekanism.common.tile.component.TileComponentEjector;
-import mekanism.common.tile.prefab.TileEntityContainerBlock;
 import mekanism.common.tile.prefab.TileEntityMachine;
 import mekanism.common.util.*;
 import net.minecraft.item.ItemStack;
@@ -26,7 +27,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -44,8 +44,8 @@ public class TileEntityAmbientAccumulatorEnergy extends TileEntityMachine implem
     private int currentRedstoneLevel;
 
     public TileEntityAmbientAccumulatorEnergy() {
-        super("machine.washer", BlockStateMachine.MachineType.AMBIENT_ACCUMULATOR_ENERGY,2);
-        configComponent = new TileComponentConfig(this, TransmissionType.ITEM,TransmissionType.ENERGY, TransmissionType.GAS);
+        super("machine.washer", BlockStateMachine.MachineType.AMBIENT_ACCUMULATOR_ENERGY, 2);
+        configComponent = new TileComponentConfig(this, TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.GAS);
 
         configComponent.addOutput(TransmissionType.ITEM, new SideData("None", EnumColor.GREY, InventoryUtils.EMPTY));
         configComponent.addOutput(TransmissionType.ITEM, new SideData("Output", EnumColor.INDIGO, new int[]{0}));
@@ -89,15 +89,16 @@ public class TileEntityAmbientAccumulatorEnergy extends TileEntityMachine implem
             }
         }
     }
-        public AmbientGasRecipe getRecipe(){
+
+    public AmbientGasRecipe getRecipe() {
         IntegerInput input = getInput();
-            if (cachedRecipe == null || !input.testEquality(cachedRecipe.getInput())) {
-                cachedRecipe = RecipeHandler.getDimensionGas(getInput());
-            }
-            return cachedRecipe;
+        if (cachedRecipe == null || !input.testEquality(cachedRecipe.getInput())) {
+            cachedRecipe = RecipeHandler.getDimensionGas(getInput());
+        }
+        return cachedRecipe;
     }
 
-    public IntegerInput getInput(){
+    public IntegerInput getInput() {
         if (cachedRecipe == null || world.provider.getDimension() != cachedDimensionId) {
             cachedDimensionId = world.provider.getDimension();
             cachedRecipe = RecipeHandler.getDimensionGas(new IntegerInput(cachedDimensionId));
@@ -109,9 +110,9 @@ public class TileEntityAmbientAccumulatorEnergy extends TileEntityMachine implem
         return recipe != null && recipe.canOperate(cachedDimensionId, outputTank);
     }
 
-    public int operate(AmbientGasRecipe recipe){
+    public int operate(AmbientGasRecipe recipe) {
         int operations = getUpgradedUsage();
-        recipe.operate(cachedDimensionId,outputTank, operations);
+        recipe.operate(cachedDimensionId, outputTank, operations);
         return operations;
     }
 

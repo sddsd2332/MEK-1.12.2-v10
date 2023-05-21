@@ -22,7 +22,7 @@ public class AmbientGasRecipe extends MachineRecipe<IntegerInput, GasOutput, Amb
 
 
     public boolean canOperate(int cachedDimensionId, GasTank outputTank) {
-        return  getInput().ingredient == cachedDimensionId && getOutput().applyOutputs(outputTank, false, 1);
+        return getInput().ingredient == cachedDimensionId && getOutput().applyOutputs(outputTank, false, 1);
     }
 
     public void operate(int cachedDimensionId, GasTank outputTank, int scale) {

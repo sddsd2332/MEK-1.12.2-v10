@@ -11,8 +11,8 @@ import net.minecraft.util.EnumHand;
 public class InventoryPersonalChest extends InventoryBasic {
 
     private final ItemStack itemStack;
-    private boolean reading;
     public EnumHand currentHand;
+    private boolean reading;
 
     public InventoryPersonalChest(ItemStack stack, EnumHand hand) {
         super("PersonalChest", false, 55);

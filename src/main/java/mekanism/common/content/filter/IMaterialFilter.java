@@ -1,7 +1,8 @@
 package mekanism.common.content.filter;
 
-import javax.annotation.Nonnull;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
 
 public interface IMaterialFilter extends IFilter {
 

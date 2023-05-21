@@ -9,8 +9,12 @@
     }
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
     "active": {
       "false": {},
       "true": {

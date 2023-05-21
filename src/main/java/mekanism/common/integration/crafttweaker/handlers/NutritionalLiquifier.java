@@ -45,7 +45,7 @@ public class NutritionalLiquifier {
     public static void removeRecipe(IIngredient gasOutput, @Optional IIngredient itemInput) {
         if (IngredientHelper.checkNotNull(NAME, gasOutput)) {
             CrafttweakerIntegration.LATE_REMOVALS.add(new RemoveMekanismRecipe<>(NAME, Recipe.Nutritional_Liquifier, new IngredientWrapper(gasOutput),
-                  new IngredientWrapper(itemInput)));
+                    new IngredientWrapper(itemInput)));
         }
     }
 

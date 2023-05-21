@@ -13,7 +13,7 @@
       "dizzyd"
     ],
     "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
-    "logoFile":"assets/mekanism/logo.png",
+    "logoFile": "assets/mekanism/logo.png",
     "useDependencyInformation": true,
     "dependencies": [
       "forge",
@@ -28,7 +28,7 @@
       "crafttweaker",
       "cofhcore",
       "cyclicmagic",
-      "groovyscript@[0.4.0,)"
+      "groovyscript@[0.4.6,)"
     ],
     "requiredMods": [
       "forge@[14.23.5.2768,)"
@@ -48,7 +48,7 @@
       "dizzyd"
     ],
     "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
-    "logoFile":"assets/mekanism/logo.png",
+    "logoFile": "assets/mekanism/logo.png",
     "useDependencyInformation": true,
     "dependencies": [
       "mekanism@[${version}]"
@@ -71,7 +71,7 @@
       "dizzyd"
     ],
     "credits": "aidancbrady, thommy101, thiakil, unpairedbracket, CyanideX and many others",
-    "logoFile":"assets/mekanism/logo.png",
+    "logoFile": "assets/mekanism/logo.png",
     "useDependencyInformation": true,
     "dependencies": [
       "mekanism@[${version}]"

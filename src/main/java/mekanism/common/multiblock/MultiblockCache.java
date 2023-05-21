@@ -1,9 +1,10 @@
 package mekanism.common.multiblock;
 
-import java.util.HashSet;
-import java.util.Set;
 import mekanism.api.Coord4D;
 import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class MultiblockCache<T extends SynchronizedData<T>> {
 

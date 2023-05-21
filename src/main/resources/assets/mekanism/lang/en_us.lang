@@ -208,6 +208,7 @@ tile.MachineBlock4.CellCultivate.name=Cell culture machines
 tile.MachineBlock4.CellExtractor.name=Cell extractor
 tile.MachineBlock4.CellSeparator.name=Cell separator
 tile.MachineBlock4.Recycler.name=Recycler
+tile.MachineBlock4.Void.name=Void Excavating
 
 # Plastic
 tile.PlasticBlock.name=Plastic Block
@@ -687,12 +688,19 @@ gui.upgrades.effect=Effect
 gui.chemicalInfuser.short=C. Infuser
 gui.chemicalDissolutionChamber.short=C. Dissolution Chamber
 gui.thermalEvaporationController.short=Thermal E. Controller
-gui.dimension2=Dimension requirements
-gui.dimension=The current dimension
+gui.dimension2=Dimension requirements id
+gui.dimension2Name=Dimension requirements name
+gui.dimensionId=The current dimension id
+gui.dimensionName=The current dimension name
 gui.dimensionGas=The current dimension produces gas
 gui.probability2=Output probability
 gui.probability=Probability
 gui.dictionary.noKey=No key.
+
+gui.itemInputoutprobability=Item consumption/output probability
+gui.gasInputoutprobability=Gas consumption/output probability
+gui.fluidInputoutprobability=Fluid consumption/output probability
+gui.additionalprocessingdescription=Energy/tick
 
 gui.configuration=Configuration
 gui.configuration.side=Side Config
@@ -1002,7 +1010,9 @@ tooltip.antiprotonicnucleosynthesizer=A machine that uses a small amount of anti
 tooltip.superchargedcoil=It is used to power supercritical phase shifter multi-block structure. Must be connected to the supercritical phase shifter port [currently just a decoration]
 tooltip.OrganicFarm=A very powerful one-block farm machine
 tooltip.AmbientAccumulator=One that can collect the gases contained in the current dimension [Warning! Exit the archive, the internal gas will not be retained]
-
+tooltip.Void=Dig into non-existent items in the void
+tooltip.VoidExcavatorSpecialInstructions=For some reason, the automatic ejection of fluid from this machine is not possible
+tooltip.VoidExcavatorSpecialInstructions2=please use the catheter export of other mods
 tooltip.MekTool1=A very powerful excavating machine
 tooltip.MekTool2=When flushed above 25%, the damage is super doubled
 tooltip.MekTool3=When it is more than 90%, it may have a flash sale effect?

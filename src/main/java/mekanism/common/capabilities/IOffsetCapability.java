@@ -1,10 +1,11 @@
 package mekanism.common.capabilities;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.common.capabilities.Capability;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Allows for handling capabilities at an offset to the actual implementer. This allows Tile Entities such as the Digital Miner to via the advanced bounding blocks be
@@ -21,7 +22,6 @@ public interface IOffsetCapability extends IToggleableCapability {
      * @param capability The capability to check
      * @param side       The Side to check from: CAN BE NULL. Null is defined to represent 'internal' or 'self'
      * @param offset     An offset position to figure out what block is actually the one that is being checked.
-     *
      * @return True if this object supports the capability. If true, then {@link #getCapability(Capability, EnumFacing)} must not return null.
      */
     boolean hasOffsetCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing side, @Nonnull Vec3i offset);
@@ -39,7 +39,6 @@ public interface IOffsetCapability extends IToggleableCapability {
      * @param side       The Side to check from,
      *                   <strong>CAN BE NULL</strong>. Null is defined to represent 'internal' or 'self'
      * @param offset     An offset position to figure out what block is actually the one that is being checked.
-     *
      * @return The requested capability. Must <strong>NOT</strong> be null when {@link #hasCapability(Capability, EnumFacing)} would return true.
      */
     @Nullable
@@ -52,7 +51,6 @@ public interface IOffsetCapability extends IToggleableCapability {
      * @param capability The capability to check
      * @param side       The Side to check from: CAN BE NULL. Null is defined to represent 'internal' or 'self'
      * @param offset     An offset position to figure out what block is actually the one that is being checked.
-     *
      * @return True if this given capability is disabled for the given side and offset. If true, then {@link #hasOffsetCapability(Capability, EnumFacing, Vec3i)} should
      * return false.
      */

@@ -8,7 +8,7 @@ import mekanism.common.recipe.machines.MachineRecipe;
 import mekanism.common.recipe.outputs.MachineOutput;
 
 public class RemoveMekanismRecipe<INPUT extends MachineInput<INPUT>, OUTPUT extends MachineOutput<OUTPUT>, RECIPE extends MachineRecipe<INPUT, OUTPUT, RECIPE>> extends
-      RecipeMapModification<INPUT, RECIPE> {
+        RecipeMapModification<INPUT, RECIPE> {
 
     private final IngredientWrapper input;
     private final IngredientWrapper output;

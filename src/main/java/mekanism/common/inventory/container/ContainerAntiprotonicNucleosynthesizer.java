@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
 import javax.annotation.Nonnull;
 
 public class ContainerAntiprotonicNucleosynthesizer extends ContainerMekanism<TileEntityAntiprotonicNucleosynthesizer> {
@@ -72,7 +73,7 @@ public class ContainerAntiprotonicNucleosynthesizer extends ContainerMekanism<Ti
     @Override
     protected void addSlots() {
         addSlotToContainer(new Slot(tileEntity, 0, 54, 35));
-        addSlotToContainer(new SlotDischarge(tileEntity, 1, 141, 19));
+        addSlotToContainer(new SlotDischarge(tileEntity, 1, 141, 35));
         addSlotToContainer(new SlotOutput(tileEntity, 2, 116, 35));
     }
 }

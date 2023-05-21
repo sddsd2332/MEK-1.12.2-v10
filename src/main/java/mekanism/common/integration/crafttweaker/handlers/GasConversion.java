@@ -53,7 +53,7 @@ public class GasConversion {
             boolean noOverride = GasConversionHandler.addGasMapping(IngredientHelper.getMekanismIngredient(ingredient), GasHelper.toGas(gas));
             if (!noOverride) {
                 CraftTweakerAPI.logWarning(String.format("%s: %s overrides another conversion. It is recommended to manually call unregisterGasItem and then registerGasItem " +
-                                                         "to override conversions as unexpected things may occur.", NAME, ingredient.toCommandString()));
+                        "to override conversions as unexpected things may occur.", NAME, ingredient.toCommandString()));
             }
         }
 

@@ -1,7 +1,6 @@
 package mekanism.common.content.transporter;
 
 import io.netty.buffer.ByteBuf;
-import javax.annotation.Nonnull;
 import mekanism.api.TileNetworkList;
 import mekanism.common.content.filter.IItemStackFilter;
 import mekanism.common.content.transporter.Finder.ItemStackFinder;
@@ -10,6 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
 
 public class TItemStackFilter extends TransporterFilter implements IItemStackFilter {
 
@@ -23,8 +24,8 @@ public class TItemStackFilter extends TransporterFilter implements IItemStackFil
     @Override
     public boolean canFilter(ItemStack itemStack, boolean strict) {
         return super.canFilter(itemStack, strict) &&
-               !(strict && sizeMode && (max == 0 || itemStack.getCount() < min)) &&
-               ItemHandlerHelper.canItemStacksStackRelaxed(itemType, itemStack);
+                !(strict && sizeMode && (max == 0 || itemStack.getCount() < min)) &&
+                ItemHandlerHelper.canItemStacksStackRelaxed(itemType, itemStack);
     }
 
     @Override
@@ -99,7 +100,7 @@ public class TItemStackFilter extends TransporterFilter implements IItemStackFil
     @Override
     public boolean equals(Object filter) {
         return super.equals(filter) && filter instanceof TItemStackFilter && ((TItemStackFilter) filter).itemType.isItemEqual(itemType)
-               && ((TItemStackFilter) filter).sizeMode == sizeMode && ((TItemStackFilter) filter).min == min && ((TItemStackFilter) filter).max == max;
+                && ((TItemStackFilter) filter).sizeMode == sizeMode && ((TItemStackFilter) filter).min == min && ((TItemStackFilter) filter).max == max;
     }
 
     @Override

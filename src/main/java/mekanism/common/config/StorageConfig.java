@@ -120,4 +120,7 @@ public class StorageConfig extends BaseConfig {
     public final DoubleOption turning = new DoubleOption(this, "storage", "TurningStorage", 20000D,
             "Base energy storage (Joules).");
 
+    public final DoubleOption voidMiner = new DoubleOption(this, "storage", "VoidMinerStorage", 40000D,
+            "Base energy storage (Joules).");
+
 }
