@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         maven {
             name "forge"
-            url "https://files.minecraftforge.net/maven"
+                url "https://files.minecraftforge.net/maven"
         }
     }
     dependencies {
@@ -12,7 +12,6 @@ buildscript {
 }
 
 plugins {
-
     id 'org.ajoberstar.grgit' version '3.1.1'
     id "com.matthewprenger.cursegradle" version "1.3.0"
     id 'java'
@@ -41,17 +40,19 @@ repositories {
         name 'amadornes'
         url 'https://maven.amadornes.com/'
     }
+    /*
     maven {
         name 'prog'
         url 'http://dvs1.progwml6.com/files/maven'
     }
+    */
     maven {
         name 'tesla'
         url 'https://maven.mcmoddev.com'
     }
     maven {
         name 'curseforge'
-        url ''
+        url 'https://cursemaven.com'
     }
     maven {
         name 'opencomputers'
@@ -129,11 +130,11 @@ dependencies {
     compileOnly "li.cil.oc:OpenComputers:MC${minecraft_version}-${opencomputers_version}:api"
     // Not updated yet
     compileOnly "mcp.mobius.waila:Hwyla:${hwyla_version}:api"
-    deobfCompile "cofh:RedstoneFlux:1.12-${redstoneflux_version}:universal"
+    deobfCompile "curse.maven:RedstoneFlux-270789:2920436"
     compileOnly "com.mod-buildcraft:buildcraft-api:${buildcraft_version}"
     compileOnly "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}:api"
     runtime "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}"
-  //  compileOnly "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+    //compileOnly "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
     compileOnly("CraftTweaker2:CraftTweaker2-API:${crafttweaker_version}") {
         exclude module: "asm-debug-all"
     }
@@ -142,16 +143,14 @@ dependencies {
     }
     compileOnly "dan200.computercraft:ComputerCraft:${computercraft_version}:api"
     compileOnly "mcjty.theoneprobe:TheOneProbe-1.12:${top_version}:api"
-    /*
-	compileOnly("appeng:appliedenergistics2:${ae2_version}:api") {
-        exclude module: "jei_1.12.2"
-    }
-	*/
-	compileOnly files("libs/appliedenergistics2-rv6-stable-7.jar")
-    compileOnly files("libs/groovyscript-0.4.0.jar")
+
+    compileOnly files("libs/appliedenergistics2-rv6-stable-7.jar")
+    compileOnly files("libs/groovyscript-0.4.6.jar")
     deobfCompile "zone.rong:mixinbooter:4.2"
 
-    //compile "codechicken:CodeChickenLib:1.12.2-3.2.0.+:deobf"
+    compileOnly files("libs/MysticalAgradditions-1.12.2-1.3.2.jar")
+    compileOnly files("libs/MysticalAgriculture-1.12.2-1.7.5.jar")
+
 }
 
 processResources {
@@ -265,6 +264,6 @@ runServer {
 //Attempt to resolve GBK errors
 tasks.withType(JavaCompile) {
 
-options.encoding = "UTF-8"
+    options.encoding = "UTF-8"
 
 }
