@@ -1,269 +1,227 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven {
-            name "forge"
-                url "https://files.minecraftforge.net/maven"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-    }
-}
+import org.jetbrains.gradle.ext.Gradle
 
 plugins {
-    id 'org.ajoberstar.grgit' version '3.1.1'
-    id "com.matthewprenger.cursegradle" version "1.3.0"
     id 'java'
-    id 'idea'
-    id 'maven'
+    id 'java-library'
     id 'maven-publish'
+    id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.7'
+    id 'eclipse'
+	id 'idea'
+    id 'com.gtnewhorizons.retrofuturagradle' version '1.3.16'
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
-defaultTasks 'fullBuild'
+version = project.mod_version
+group = project.maven_group
+archivesBaseName = project.archives_base_name
 
-idea {
-    module {
-        // For some reason this is necessary for IDEA 2014 workspaces to recognize assets
-        inheritOutputDirs = true
+// Set the toolchain version to decouple the Java we run Gradle with from the Java used to compile and run the mod
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+        // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64
+        vendor.set(org.gradle.jvm.toolchain.JvmVendorSpec.AZUL)
     }
+    // Generate sources and javadocs jars when building and publishing
+    withSourcesJar()
+    // withJavadocJar()
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+configurations {
+    embed
+    implementation.extendsFrom(embed)
+}
+
+minecraft {
+    mcVersion = '1.12.2'
+
+    // MCP Mappings
+    mcpMappingChannel = 'stable'
+    mcpMappingVersion = '39'
+    
+    // Set username here, the UUID will be looked up automatically
+    //username = 'sddsd2332'
+    // Add any additional tweaker classes here
+    // extraTweakClasses.add('org.spongepowered.asm.launch.MixinTweaker')
+    
+    // Add various JVM arguments here for runtime
+    def args = ["-ea:${project.group}"]
+    if (project.use_coremod.toBoolean()) {
+        args << '-Dfml.coreMods.load=' + coremod_plugin_class_name
+    }
+    if (project.use_mixins.toBoolean()) {
+        args << '-Dmixin.hotSwap=true'
+        args << '-Dmixin.checks.interfaces=true'
+        args << '-Dmixin.debug.export=true'
+    }
+    extraRunJvmArguments.addAll(args)
+
+    // Include and use dependencies' Access Transformer files
+    useDependencyAccessTransformers = true
+    
+    // Add any properties you want to swap out for a dynamic value at build time here
+    // Any properties here will be added to a class at build time, the name can be configured below
+    // Example:
+    // injectedTags.put('VERSION', project.version)
+    // injectedTags.put('MOD_ID', project.archives_base_name)
+
+
+
+}
+
+// Generate a group.archives_base_name.Tags class
+tasks.injectTags.configure {
+    // Change Tags class' name here:
+    outputClassName.set("${project.group}.${project.archives_base_name}.Tags")
+}
 
 repositories {
     maven {
-        name 'ForgeFS'
-        url 'https://maven.minecraftforge.net'
+        name 'CleanroomMC Maven'
+        url 'https://maven.cleanroommc.com'
     }
     maven {
-        name 'amadornes'
-        url 'https://maven.amadornes.com/'
-    }
-    /*
-    maven {
-        name 'prog'
-        url 'http://dvs1.progwml6.com/files/maven'
-    }
-    */
-    maven {
-        name 'tesla'
-        url 'https://maven.mcmoddev.com'
+        name 'SpongePowered Maven'
+        url 'https://repo.spongepowered.org/maven'
     }
     maven {
-        name 'curseforge'
+        name 'CurseMaven'
         url 'https://cursemaven.com'
+        content {
+            includeGroup 'curse.maven'
+        }
     }
-    maven {
-        name 'opencomputers'
-        url 'http://maven.cil.li/'
-    }
-    maven {
-        name 'hwyla'
-        url ''
-    }
-    maven {
-        name 'CoFH Maven'
-        url 'https://maven.covers1624.net'
-    }
-    maven {
-        name 'buildcraft'
-        url 'https://mod-buildcraft.com/maven/'
-    }
-    maven {
-        name 'tterrag'
-        url 'https://maven.tterrag.com/'
-    }
-    maven {
-        name 'ic2'
-        url 'http://maven.ic2.player.to'
-    }
-    maven {
-        name 'BlameJared - Crafttweaker'
-        url 'https://maven.blamejared.com/'
-    }
-    maven {
-        name 'thiakil'
-        url 'https://maven.thiakil.com'
-    }
-    maven {
-        name = 'GitHub Maven'
-        url = "https://jitpack.io"
-    }
-    maven {
-        setUrl("https://maven.cleanroommc.com")
-    }
-    maven {
-        name 'CB Maven'
-        url "http://chickenbones.net/maven/"
-    }
-}
-
-group = "mekanism"
-version = "${minecraft_version}-${mod_version}." + (System.env.BUILD_NUMBER ?: "${homebaked}")
-archivesBaseName = "MekanismAll"
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
-
-def explodedVersion = mod_version.split("\\.")
-
-minecraft {
-    version = "${minecraft_version}-${forge_version}"
-    mappings = "${mappings_version}"
-    runDir = "run"
-    useDepAts = true
-
-    replace '${version}', project.version
-    replace 'new Version(999, 999, 999)', "new Version(${explodedVersion[0]}, ${explodedVersion[1]}, ${explodedVersion[2]})"
-    replaceIn "Mekanism.java"
-    replaceIn "MekanismGenerators.java"
-    replaceIn "MekanismTools.java"
+    mavenLocal() // Must be last for caching to work
 }
 
 dependencies {
-    compileOnly "org.jetbrains:annotations:${jb_annotations}"
-
-    deobfCompile "MCMultiPart2:MCMultiPart:${mcmp_version}"
-    compileOnly "mezz.jei:jei_${minecraft_version}:${jei_version}:api"
-    runtime "mezz.jei:jei_${minecraft_version}:${jei_version}"
-    compileOnly "net.darkhax.tesla:Tesla-${minecraft_version}:${tesla_version}"
-    compileOnly "inventory-tweaks:InventoryTweaks:${invtweak_version}:api"
-    compileOnly "li.cil.oc:OpenComputers:MC${minecraft_version}-${opencomputers_version}:api"
-    // Not updated yet
-    compileOnly "mcp.mobius.waila:Hwyla:${hwyla_version}:api"
-    deobfCompile "curse.maven:RedstoneFlux-270789:2920436"
-    compileOnly "com.mod-buildcraft:buildcraft-api:${buildcraft_version}"
-    compileOnly "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}:api"
-    runtime "team.chisel.ctm:CTM:MC${minecraft_version}-${ctm_version}"
-    //compileOnly "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
-    compileOnly("CraftTweaker2:CraftTweaker2-API:${crafttweaker_version}") {
-        exclude module: "asm-debug-all"
+    if (project.use_assetmover.toBoolean()) {
+        implementation 'com.cleanroommc:assetmover:2.5'
     }
-    deobfCompile("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${crafttweaker_version}") {
-        exclude module: "asm-debug-all"
+
+    compileOnly "org.jetbrains:annotations:17.0.0"
+    // Example of deobfuscating a dependency
+		implementation rfg.deobf('curse.maven:mcmultipart-239431:2615930')
+		implementation rfg.deobf('curse.maven:had-enough-items-557549:4543375')
+		implementation rfg.deobf('curse.maven:tesla-244651:2487959')
+		implementation rfg.deobf('curse.maven:inventory-tweaks-223094:2923460')
+		implementation rfg.deobf('curse.maven:opencomputers-223008:4526246')
+		implementation rfg.deobf('curse.maven:hwyla-253449:2568751')
+		implementation rfg.deobf('curse.maven:redstone-flux-270789:2920436')
+		implementation rfg.deobf('curse.maven:CTM-267602:2915363')
+		implementation rfg.deobf('curse.maven:industrial-craft-242638:3838713')
+		implementation rfg.deobf('curse.maven:computercraft-67504:2478952')
+		implementation rfg.deobf('curse.maven:the-one-probe-245211:2667280')
+		implementation rfg.deobf('curse.maven:ae2-extended-life-570458:4553942')
+		implementation rfg.deobf('curse.maven:groovyscript-687577:4487379')
+		implementation rfg.deobf('curse.maven:mystical-agradditions-256247:2704832')
+		implementation rfg.deobf('curse.maven:mystical-agriculture-246640:2704562')
+        implementation rfg.deobf('curse.maven:cucumber-272335:2645867')
+		implementation 'curse.maven:buildcraft-61811:3204475'
+		implementation 'curse.maven:crafttweaker-239197:4534504'
+		implementation 'zone.rong:mixinbooter:7.1'
+		
+    if (project.use_mixins.toBoolean()) {
+        // Change your mixin refmap name here:
+        String mixin = modUtils.enableMixins('org.spongepowered:mixin:0.8.3', "mixins.${project.archives_base_name}.refmap.json")
+        api (mixin) {
+            transitive = false
+        }
+        annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
+        annotationProcessor 'com.google.guava:guava:24.1.1-jre'
+        annotationProcessor 'com.google.code.gson:gson:2.8.6'
+        annotationProcessor (mixin) {
+            transitive = false
+        }
     }
-    compileOnly "dan200.computercraft:ComputerCraft:${computercraft_version}:api"
-    compileOnly "mcjty.theoneprobe:TheOneProbe-1.12:${top_version}:api"
 
-    compileOnly files("libs/appliedenergistics2-rv6-stable-7.jar")
-    compileOnly files("libs/groovyscript-0.4.6.jar")
-    deobfCompile "zone.rong:mixinbooter:4.2"
+}
 
-    compileOnly files("libs/MysticalAgradditions-1.12.2-1.3.2.jar")
-    compileOnly files("libs/MysticalAgriculture-1.12.2-1.7.5.jar")
-
+// Adds Access Transformer files to tasks
+if (project.use_access_transformer.toBoolean()) {
+    for (File at : sourceSets.getByName("main").resources.files) {
+        if (at.name.toLowerCase().endsWith("_at.cfg")) {
+            tasks.deobfuscateMergedJarToSrg.accessTransformerFiles.from(at)
+            tasks.srgifyBinpatchedJar.accessTransformerFiles.from(at)
+        }
+    }
 }
 
 processResources {
-    inputs.property "version", project.version
-    inputs.property "mc_version", minecraft_version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include "mcmod.info"
-
-        // replace version and mcversion
-        expand "version": project.version, "mc_version": minecraft_version
+    // This will ensure that this task is redone when the versions change
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.minecraft.version
+    
+    // Replace various properties in mcmod.info and pack.mcmeta if applicable
+    filesMatching(['mcmod.info', 'pack.mcmeta']) { fcd ->
+        // Replace version and mcversion
+        fcd.expand (
+                'version': project.version,
+                'mcversion': project.minecraft.version
+        )
     }
-
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-        exclude '**/*.blend*'
+    
+    if (project.use_access_transformer.toBoolean()) {
+        rename '(.+_at.cfg)', 'META-INF/$1' // Make sure Access Transformer files are in META-INF folder
     }
-    rename '(.+_at.cfg)', 'META-INF/$1'
-}
-
-def setMainManifestProps = { Manifest manifest->
-    manifest.attributes (
-            'FMLAT': 'mekanism_at.cfg',
-            'FMLCorePluginContainsFMLMod': 'true',
-            'FMLCorePlugin': 'mekanism.coremod.MekanismCoremod'
-    )
 }
 
 jar {
-    manifest(setMainManifestProps)
-}
-
-task coreJar(type: Jar) {
-    archiveName = "Mekanism-${project.version}.jar"
-    dependsOn 'reobfJar'
-    classifier "core"
-
-    from('etc/core') {
-        include '*.info'
-        expand 'version':project.version,'mc_version':minecraft_version,'mcmp_version':mcmp_version
+    manifest {
+        def attribute_map = [:]
+        if (project.use_coremod.toBoolean()) {
+            attribute_map['FMLCorePlugin'] = project.coremod_plugin_class_name
+            if (project.include_mod.toBoolean()) {
+                attribute_map['FMLCorePluginContainsFMLMod'] = true
+                attribute_map['ForceLoadAsMod'] = project.gradle.startParameter.taskNames[0] == "build"
+            }
+        }
+        if (project.use_access_transformer.toBoolean()) {
+            attribute_map['FMLAT'] = 'mekanism_at.cfg'
+        }
+        attributes(attribute_map)
     }
-
-    from zipTree(jar.outputs.getFiles().getSingleFile()).matching {
-        exclude 'mekanism/tools/**', 'mekanism/generators/**', 'assets/mekanismtools/**', 'assets/mekanismgenerators/**', 'mcmod.info'
-    }
-
-    manifest(setMainManifestProps)
+    // Add all embedded dependencies into the jar
+    from(provider{ configurations.embed.collect {it.isDirectory() ? it : zipTree(it)} })
 }
 
-task toolsJar(type: Jar) {
-    archiveName = "MekanismTools-${project.version}.jar"
-    dependsOn 'reobfJar'
-    classifier "tools"
-
-    from('etc/tools') {
-        include '*.info'
-        expand 'version':project.version,'mc_version':minecraft_version,'mcmp_version':mcmp_version
+idea {
+    module {
+        inheritOutputDirs = true
     }
-
-    from zipTree(jar.outputs.getFiles().getSingleFile()).matching {
-        include 'mekanism/tools/**', 'assets/mekanismtools/**'
-    }
-}
-
-task generatorsJar(type: Jar) {
-    archiveName = "MekanismGenerators-${project.version}.jar"
-    dependsOn 'reobfJar'
-    classifier "generators"
-
-    from('etc/generators') {
-        include '*.info'
-        expand 'version':project.version,'mc_version':minecraft_version,'mcmp_version':mcmp_version
-    }
-
-    from zipTree(jar.outputs.getFiles().getSingleFile()).matching {
-        include 'mekanism/generators/**', 'assets/mekanismgenerators/**'
+    project {
+        settings {
+            runConfigurations {
+                "1. Run Client"(Gradle) {
+                    taskNames = ["runClient"]
+                }
+                "2. Run Server"(Gradle) {
+                    taskNames = ["runServer"]
+                }
+                "3. Run Obfuscated Client"(Gradle) {
+                    taskNames = ["runObfClient"]
+                }
+                "4. Run Obfuscated Server"(Gradle) {
+                    taskNames = ["runObfServer"]
+                }
+            }
+            compiler.javac {
+                afterEvaluate {
+                    javacAdditionalOptions = "-encoding utf8"
+                    moduleJavacAdditionalOptions = [
+                            (project.name + ".main"): tasks.compileJava.options.compilerArgs.collect { '"' + it + '"' }.join(' ')
+                    ]
+                }
+            }
+        }
     }
 }
 
-task apiJar(type: Jar) {
-    classifier "api"
-    baseName "Mekanism"
-    dependsOn "sourceMainJava"
-    include 'mekanism/api/**'
-    from sourceSets.main.java.srcDirs
-    from sourceSets.main.output
-}
 
-artifacts {
-    archives apiJar
-    archives coreJar
-    archives toolsJar
-    archives generatorsJar
-}
-
-task fullBuild(type: Delete) {
-    delete jar
-    dependsOn "build"
-}
-
-runClient {
-    jvmArgs "-Dfml.coreMods.load=mekanism.coremod.MekanismCoremod"
-    args '--username', 'sddsd2332'
-}
-
-runServer {
-    jvmArgs "-Dfml.coreMods.load=mekanism.coremod.MekanismCoremod"
-}
-
-//Attempt to resolve GBK errors
-tasks.withType(JavaCompile) {
-
-    options.encoding = "UTF-8"
-
+tasks.named("processIdeaSettings").configure {
+    dependsOn("injectTags")
 }

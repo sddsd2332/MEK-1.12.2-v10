@@ -32,6 +32,9 @@ public abstract class RenderTransmitterBase<T extends TileEntityTransmitter> ext
     private static Map<String, IBakedModel> contentsMap = new HashMap<>();
     protected Minecraft mc = Minecraft.getMinecraft();
 
+    protected boolean bufferBuilder;
+
+
     public RenderTransmitterBase() {
         if (contentsModel == null) {
             try {
@@ -56,8 +59,10 @@ public abstract class RenderTransmitterBase<T extends TileEntityTransmitter> ext
         return modelParts;
     }
 
+
+
     public void renderTransparency(BufferBuilder renderer, TextureAtlasSprite icon, IBakedModel cc, ColourRGBA color) {
-        if (!renderer.isDrawing) {
+        if (!bufferBuilder) {
             renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.ITEM);
         }
 

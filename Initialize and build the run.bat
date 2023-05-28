@@ -1,1 +1,1 @@
-./gradlew setupDevWorkspace setupDecompWorkspace build runClient--info --offline
+./gradlew setupDecompWorkspace build runClient --info
