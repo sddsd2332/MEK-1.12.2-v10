@@ -14,9 +14,6 @@ import java.util.List;
 
 public class ItemMekanismSword extends ItemSword implements IHasRepairType {
 
-
-    private ToolMaterial material;
-
     public ItemMekanismSword(Materials material) {
         super(material.getMaterial());
     }
@@ -29,7 +26,6 @@ public class ItemMekanismSword extends ItemSword implements IHasRepairType {
 
     @Override
     public ItemStack getRepairStack() {
-       return material.getRepairItemStack();
-
+        return material.getRepairItemStack();
     }
 }

@@ -64,8 +64,6 @@ public class MekanismRenderer {
     private static RenderConfigurableMachine machineRenderer = new RenderConfigurableMachine();
     private static TextureMap texMap = null;
 
-    public static boolean isDrawing;
-
     public static void init() {
         MinecraftForge.EVENT_BUS.register(new MekanismRenderer());
     }
@@ -157,11 +155,11 @@ public class MekanismRenderer {
     }
 
     public static boolean isDrawing(Tessellator tess) {
-        return isDrawing;
+        return tess.getBuffer().isDrawing;
     }
 
     public static boolean isDrawing(BufferBuilder buffer) {
-        return isDrawing;
+        return buffer.isDrawing;
     }
 
     public static BakedQuad iconTransform(BakedQuad quad, TextureAtlasSprite sprite) {

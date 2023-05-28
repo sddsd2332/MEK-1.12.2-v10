@@ -90,13 +90,6 @@ import java.util.UUID;
  */
 public abstract class BlockBasic extends BlockTileDrops {
 
-    private static World world;
-    private static int height;
-    private static int width;
-    private static BlockPos bottomLeft;
-    private static EnumFacing rightDir;
-    private static EnumFacing leftDir;
-
     public BlockBasic() {
         super(Material.IRON);
         setHardness(5F);
@@ -768,20 +761,20 @@ public abstract class BlockBasic extends BlockTileDrops {
             int i;
             for (i = 0; i < 22; ++i) {
                 BlockPos blockpos = pos.offset(facing, i);
-                if (!this.isEmptyBlock(world.getBlockState(blockpos).getBlock()) || !isFrame(world.getBlockState(blockpos.down()))) {
+                if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock()) || !isFrame(this.world.getBlockState(blockpos.down()))) {
                     break;
                 }
             }
-            return isFrame(world.getBlockState(pos.offset(facing, i))) ? i : 0;
+            return isFrame(this.world.getBlockState(pos.offset(facing, i))) ? i : 0;
         }
 
         @Override
         protected int calculatePortalHeight() {
             label56:
-            for (height = 0; height < 21; ++height) {
-                for (int i = 0; i < width; ++i) {
-                    BlockPos blockpos = bottomLeft.offset(rightDir, i).up(height);
-                    Block block = world.getBlockState(blockpos).getBlock();
+            for (this.height = 0; this.height < 21; ++this.height) {
+                for (int i = 0; i < this.width; ++i) {
+                    BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
+                    Block block = this.world.getBlockState(blockpos).getBlock();
                     if (!this.isEmptyBlock(block)) {
                         break label56;
                     }
@@ -789,29 +782,29 @@ public abstract class BlockBasic extends BlockTileDrops {
                         ++this.portalBlockCount;
                     }
                     if (i == 0) {
-                        if (!isFrame(world.getBlockState(blockpos.offset(leftDir)))) {
+                        if (!isFrame(this.world.getBlockState(blockpos.offset(this.leftDir)))) {
                             break label56;
                         }
-                    } else if (i == width - 1) {
-                        if (!isFrame(world.getBlockState(blockpos.offset(rightDir)))) {
+                    } else if (i == this.width - 1) {
+                        if (!isFrame(this.world.getBlockState(blockpos.offset(this.rightDir)))) {
                             break label56;
                         }
                     }
                 }
             }
 
-            for (int j = 0; j < width; ++j) {
-                if (!isFrame(world.getBlockState(bottomLeft.offset(rightDir, j).up(height)))) {
-                    height = 0;
+            for (int j = 0; j < this.width; ++j) {
+                if (!isFrame(this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)))) {
+                    this.height = 0;
                     break;
                 }
             }
-            if (height <= 21 && height >= 3) {
-                return height;
+            if (this.height <= 21 && this.height >= 3) {
+                return this.height;
             }
-            bottomLeft = null;
-            width = 0;
-            height = 0;
+            this.bottomLeft = null;
+            this.width = 0;
+            this.height = 0;
             return 0;
         }
     }
@@ -842,11 +835,11 @@ public abstract class BlockBasic extends BlockTileDrops {
                 return new PatternHelper(pos, EnumFacing.NORTH, EnumFacing.UP, loadingCache, 1, 1, 1);
             }
             int[] aint = new int[AxisDirection.values().length];
-            EnumFacing enumfacing = MekanismUtils.getRight(rightDir);
-            BlockPos blockpos = bottomLeft.up(size.getHeight() - 1);
+            EnumFacing enumfacing = MekanismUtils.getRight(size.rightDir);
+            BlockPos blockpos = size.bottomLeft.up(size.getHeight() - 1);
 
             for (AxisDirection direction : AxisDirection.values()) {
-                PatternHelper patternHelper = new PatternHelper(enumfacing.getAxisDirection() == direction ? blockpos : blockpos.offset(rightDir, size.getWidth() - 1),
+                PatternHelper patternHelper = new PatternHelper(enumfacing.getAxisDirection() == direction ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1),
                         EnumFacing.getFacingFromAxis(direction, axis), EnumFacing.UP, loadingCache, size.getWidth(), size.getHeight(), 1);
 
                 for (int i = 0; i < size.getWidth(); ++i) {
@@ -864,7 +857,7 @@ public abstract class BlockBasic extends BlockTileDrops {
                     axisDirection = direction;
                 }
             }
-            return new PatternHelper(enumfacing.getAxisDirection() == axisDirection ? blockpos : blockpos.offset(rightDir, size.getWidth() - 1),
+            return new PatternHelper(enumfacing.getAxisDirection() == axisDirection ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1),
                     EnumFacing.getFacingFromAxis(axisDirection, axis), EnumFacing.UP, loadingCache, size.getWidth(), size.getHeight(), 1);
         }
 
@@ -873,7 +866,7 @@ public abstract class BlockBasic extends BlockTileDrops {
             Axis axis = state.getValue(AXIS);
             if (axis == Axis.X || axis == Axis.Z) {
                 BlockBasic.Size size = new BlockBasic.Size(world, pos, axis);
-                if (!size.isValid() || size.portalBlockCount < width * height) {
+                if (!size.isValid() || size.portalBlockCount < size.width * size.height) {
                     world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 }
             }

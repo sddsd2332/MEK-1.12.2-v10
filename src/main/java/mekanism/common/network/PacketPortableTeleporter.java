@@ -87,7 +87,7 @@ public class PacketPortableTeleporter implements IMessageHandler<PortableTelepor
                                     teleporter.teleDelay = 5;
                                     item.setEnergy(itemstack, item.getEnergy(itemstack) - ItemPortableTeleporter.calculateEnergyCost(player, coords));
                                     if (player instanceof EntityPlayerMP) {
-                                        ((EntityPlayerMP) player).connection.update();
+                                        ((EntityPlayerMP) player).connection.floatingTickCount = 0;
                                     }
                                     player.closeScreen();
                                     Mekanism.packetHandler.sendToAllTracking(new PortalFXMessage(new Coord4D(player)), coords);

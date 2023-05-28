@@ -192,8 +192,6 @@ public class SoundHandler {
         private float volume;
         private boolean donePlaying = false;
 
-        private SoundManager soundManager;
-
         // Choose an interval between 60-80 ticks (3-4 seconds) to check for muffling changes. We do this
         // to ensure that not every tile sound tries to run on the same tick and thus create
         // uneven spikes of CPU usage
@@ -215,9 +213,7 @@ public class SoundHandler {
                 // flag that ensures we don't wrap already muffled sounds. This is...NOT ideal and makes some
                 // significant (hopefully well-informed) assumptions about locking/ordering of all these calls.
                 IN_MUFFLED_CHECK = true;
-                //ISound s = ForgeHooksClient.playSound(mc.getSoundHandler().sndManager, original);
-
-                ISound s = ForgeHooksClient.playSound(soundManager, original);
+                ISound s = ForgeHooksClient.playSound(mc.getSoundHandler().sndManager, original);
                 IN_MUFFLED_CHECK = false;
 
                 if (s == this) {

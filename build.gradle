@@ -11,9 +11,11 @@ plugins {
     id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
-version = project.mod_version
+version = project.mod_version +"." + project.homebaked
 group = project.maven_group
 archivesBaseName = project.archives_base_name
+
+defaultTasks 'fullBuild'
 
 // Set the toolchain version to decouple the Java we run Gradle with from the Java used to compile and run the mod
 java {
@@ -42,9 +44,10 @@ minecraft {
     // MCP Mappings
     mcpMappingChannel = 'stable'
     mcpMappingVersion = '39'
-    
+
     // Set username here, the UUID will be looked up automatically
-    //username = 'sddsd2332'
+    username = 'sddsd2332'
+
     // Add any additional tweaker classes here
     // extraTweakClasses.add('org.spongepowered.asm.launch.MixinTweaker')
     
@@ -66,11 +69,8 @@ minecraft {
     // Add any properties you want to swap out for a dynamic value at build time here
     // Any properties here will be added to a class at build time, the name can be configured below
     // Example:
-    // injectedTags.put('VERSION', project.version)
+     injectedTags.put('VERSION', project.version)
     // injectedTags.put('MOD_ID', project.archives_base_name)
-
-
-
 }
 
 // Generate a group.archives_base_name.Tags class
@@ -117,10 +117,11 @@ dependencies {
 		implementation rfg.deobf('curse.maven:computercraft-67504:2478952')
 		implementation rfg.deobf('curse.maven:the-one-probe-245211:2667280')
 		implementation rfg.deobf('curse.maven:ae2-extended-life-570458:4553942')
-		implementation rfg.deobf('curse.maven:groovyscript-687577:4487379')
 		implementation rfg.deobf('curse.maven:mystical-agradditions-256247:2704832')
 		implementation rfg.deobf('curse.maven:mystical-agriculture-246640:2704562')
         implementation rfg.deobf('curse.maven:cucumber-272335:2645867')
+
+        implementation 'curse.maven:groovyscript-687577:4487379'
 		implementation 'curse.maven:buildcraft-61811:3204475'
 		implementation 'curse.maven:crafttweaker-239197:4534504'
 		implementation 'zone.rong:mixinbooter:7.1'
@@ -189,6 +190,14 @@ jar {
     from(provider{ configurations.embed.collect {it.isDirectory() ? it : zipTree(it)} })
 }
 
+def setMainManifestProps = { Manifest manifest->
+    manifest.attributes (
+            'FMLAT': 'mekanism_at.cfg',
+            'FMLCorePluginContainsFMLMod': 'true',
+            'FMLCorePlugin': 'mekanism.coremod.MekanismCoremod'
+    )
+}
+
 idea {
     module {
         inheritOutputDirs = true
@@ -196,17 +205,20 @@ idea {
     project {
         settings {
             runConfigurations {
-                "1. Run Client"(Gradle) {
+                "1. Run Obfuscated Client"(Gradle) {
+                    taskNames = ["runObfClient --username sddsd2332"]
+                }
+                "2. Build mods"(Gradle) {
+                    taskNames = ["build"]
+                }
+                "3. Run Obfuscated Server"(Gradle) {
+                    taskNames = ["runObfServer"]
+                }
+                "4. Run Client"(Gradle) {
                     taskNames = ["runClient"]
                 }
-                "2. Run Server"(Gradle) {
+                "5. Run Server"(Gradle) {
                     taskNames = ["runServer"]
-                }
-                "3. Run Obfuscated Client"(Gradle) {
-                    taskNames = ["runObfClient"]
-                }
-                "4. Run Obfuscated Server"(Gradle) {
-                    taskNames = ["runObfServer"]
                 }
             }
             compiler.javac {
@@ -219,6 +231,75 @@ idea {
             }
         }
     }
+}
+
+task coreJar(type: Jar) {
+    archiveFileName = "Mekanism-${project.version}.jar"
+    dependsOn 'reobfJar'
+    archiveClassifier = "core"
+
+    from('etc/core') {
+        include '*.info'
+        expand 'version':project.version,'mcversion':project.minecraft.version,'mcmp_version':mcmp_version
+    }
+
+    from zipTree(jar.outputs.getFiles().getSingleFile()).matching {
+        exclude 'mekanism/tools/**', 'mekanism/generators/**', 'assets/mekanismtools/**', 'assets/mekanismgenerators/**', 'mcmod.info'
+    }
+
+    manifest(setMainManifestProps)
+}
+
+task toolsJar(type: Jar) {
+    archiveFileName = "MekanismTools-${project.version}.jar"
+    dependsOn 'reobfJar'
+    archiveClassifier =  "tools"
+
+    from('etc/tools') {
+        include '*.info'
+        expand 'version':project.version,'mcversion':project.minecraft.version,'mcmp_version':mcmp_version
+    }
+
+    from zipTree(jar.outputs.getFiles().getSingleFile()).matching {
+        include 'mekanism/tools/**', 'assets/mekanismtools/**'
+    }
+}
+
+task generatorsJar(type: Jar) {
+    archiveFileName = "MekanismGenerators-${project.version}.jar"
+    dependsOn 'reobfJar'
+    archiveClassifier =  "generators"
+
+    from('etc/generators') {
+        include '*.info'
+        expand 'version':project.version,'mcversion':project.minecraft.version,'mcmp_version':mcmp_version
+    }
+
+    from zipTree(jar.outputs.getFiles().getSingleFile()).matching {
+        include 'mekanism/generators/**', 'assets/mekanismgenerators/**'
+    }
+}
+
+task apiJar(type: Jar) {
+    archiveClassifier = "api"
+    archiveBaseName = "Mekanism"
+    dependsOn "sourcesJar"
+    include 'mekanism/api/**'
+    from sourceSets.main.java.srcDirs
+    from sourceSets.main.output
+}
+
+task fullBuild(type: Delete) {
+    delete jar
+    dependsOn ("build")
+}
+
+artifacts {
+    archives jar
+    archives apiJar
+    archives coreJar
+    archives toolsJar
+    archives generatorsJar
 }
 
 

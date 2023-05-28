@@ -102,7 +102,7 @@ public class CommonPlayerTickHandler {
             }
             player.fallDistance = 0.0F;
             if (player instanceof EntityPlayerMP) {
-                ((EntityPlayerMP)player).connection.update();
+                ((EntityPlayerMP) player).connection.floatingTickCount = 0;
             }
             jetpack.useGas(stack);
         }

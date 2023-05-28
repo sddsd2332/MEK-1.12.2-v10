@@ -25,7 +25,6 @@ public final class PipeUtils {
                 !CapabilityUtils.hasCapability(tile, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side.getOpposite())) {
             return false;
         }
-
         IFluidHandler container = CapabilityUtils.getCapability(tile, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side.getOpposite());
         if (container == null) {
             return false;

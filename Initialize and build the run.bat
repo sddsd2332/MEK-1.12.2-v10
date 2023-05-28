@@ -1,1 +1,0 @@
-./gradlew setupDecompWorkspace build runClient --info

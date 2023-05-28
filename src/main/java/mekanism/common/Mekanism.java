@@ -1,6 +1,7 @@
 package mekanism.common;
 
 import com.mojang.authlib.GameProfile;
+import mekanism.MekanismAll.Tags;
 import mekanism.api.Coord4D;
 import mekanism.api.MekanismAPI;
 import mekanism.api.MekanismAPI.BoxBlacklistEvent;
@@ -92,13 +93,14 @@ import java.io.File;
 import java.util.*;
 import java.util.Map.Entry;
 
-@Mod(modid = Mekanism.MODID, useMetadata = true, guiFactory = "mekanism.client.gui.ConfigGuiFactory", acceptedMinecraftVersions = "[1.12,1.13)", version = "${version}")
+@Mod(modid = Mekanism.MODID, useMetadata = true, guiFactory = "mekanism.client.gui.ConfigGuiFactory", acceptedMinecraftVersions = "[1.12,1.13)", version = Mekanism.VERSION)
 @Mod.EventBusSubscriber()
 public class Mekanism {
 
     public static final String MODID = "mekanism";
     public static final String MOD_NAME = "Mekanism";
     public static final String LOG_TAG = '[' + MOD_NAME + ']';
+    public static final String VERSION = Tags.VERSION;
     /**
      * The GameProfile used by the dummy Mekanism player
      */

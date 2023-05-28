@@ -51,10 +51,10 @@
     "logoFile": "assets/mekanism/logo.png",
     "useDependencyInformation": true,
     "dependencies": [
-      "mekanism"
+      "mekanism@[${version}]"
     ],
     "requiredMods": [
-      "mekanism"
+      "mekanism@[${version}]"
     ]
   },
   {
@@ -74,10 +74,10 @@
     "logoFile": "assets/mekanism/logo.png",
     "useDependencyInformation": true,
     "dependencies": [
-      "mekanism"
+      "mekanism@[${version}]"
     ],
     "requiredMods": [
-      "mekanism"
+      "mekanism@[${version}]"
     ]
   }
 ]
