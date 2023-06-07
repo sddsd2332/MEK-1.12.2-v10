@@ -39,6 +39,7 @@ public final class GasUtils {
     }
 
     public static boolean isValidAcceptorOnSide(TileEntity tile, EnumFacing side) {
+
         if (CapabilityUtils.hasCapability(tile, Capabilities.GRID_TRANSMITTER_CAPABILITY, side.getOpposite())) {
             return false;
         }

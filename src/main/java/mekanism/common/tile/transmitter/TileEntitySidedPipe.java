@@ -256,6 +256,9 @@ public abstract class TileEntitySidedPipe extends TileEntity implements ITileNet
         }
         final BlockPos testPos = getPos().offset(side);
         final TileEntity tile = MekanismUtils.getTileEntity(world, testPos);
+        if (Capabilities.BLOCKABLE_CONNECTION_CAPABILITY == null){
+            return false;
+        }
         if (!CapabilityUtils.hasCapability(tile, Capabilities.BLOCKABLE_CONNECTION_CAPABILITY, side.getOpposite())) {
             return true;
         }
