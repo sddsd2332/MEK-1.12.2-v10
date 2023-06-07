@@ -4,7 +4,7 @@
     "name": "Mekanism: Tools",
     "description": "Tools module for Mekanism",
     "version": "${version}",
-    "mcversion": "${mc_version}",
+    "mcversion": "${mcversion}",
     "authorList": [
       "aidancbrady",
       "thommy101",
