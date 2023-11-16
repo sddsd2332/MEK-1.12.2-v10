@@ -24,7 +24,8 @@ public enum Upgrade {
     FILTER("filter", 1, EnumColor.DARK_AQUA),
     GAS("gas", MekanismConfig.current().general.maxGasUpgrade.val(), EnumColor.YELLOW),
     MUFFLING("muffling", 4, EnumColor.DARK_GREY),
-    ANCHOR("anchor", 1, EnumColor.DARK_GREEN);
+    ANCHOR("anchor", 1, EnumColor.DARK_GREEN),
+    STONE_GENERATOR("stonegenerator",1,EnumColor.ORANGE);
 
     private String name;
     private int maxStack;
@@ -100,6 +101,8 @@ public enum Upgrade {
                 return new ItemStack(MekanismItems.GasUpgrade);
             case ANCHOR:
                 return new ItemStack(MekanismItems.AnchorUpgrade);
+            case STONE_GENERATOR:
+                return new ItemStack(MekanismItems.StoneGeneratorUpgrade);
         }
         return ItemStack.EMPTY;
     }

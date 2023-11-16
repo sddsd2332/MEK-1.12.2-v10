@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "mekanism:stonegeneratorupgrade"
+  },
+  "pattern": [
+    " G ",
+    "WAL",
+    " G "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "A": {
+      "item": "mekanism:enrichedalloy"
+    },
+    "G": {
+      "ore": "blockGlass",
+      "type": "forge:ore_dict"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    }
+  }
+}
