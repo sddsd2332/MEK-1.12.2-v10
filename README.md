@@ -13,6 +13,8 @@ If there is a good proposal, it can be submitted through a PR
 
 I may not have time to update, maybe this is an update for the last version
 
+The repository is no longer in use, if you need to discuss, please go to [Mekanism-CE-Unofficial-1.12.2](https://github.com/sddsd2332/Mekanism-CE-Unofficial-1.12.2) here, MEKCEU is based on MEKCE and MEKV10
+
 # Mekanism for Minecraft 1.12 #
 
 Mekanism is a Minecraft add-on featuring high-tech machinery that can be used to create powerful tools,
