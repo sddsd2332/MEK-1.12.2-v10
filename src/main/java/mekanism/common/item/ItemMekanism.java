@@ -64,6 +64,8 @@ public class ItemMekanism extends Item {
             return EnumColor.YELLOW + LangUtils.localize("item.FilterUpgrade.name");
         } else if (this == MekanismItems.GasUpgrade) {
             return EnumColor.YELLOW + LangUtils.localize("item.GasUpgrade.name");
+        } else if (this == MekanismItems.StoneGeneratorUpgrade) {
+            return EnumColor.YELLOW + LangUtils.localize("item.StoneGenerator.name");
         } else if (this == MekanismItems.MufflingUpgrade) {
             return EnumColor.YELLOW + LangUtils.localize("item.MufflingUpgrade.name");
         } else if (this == MekanismItems.AnchorUpgrade) {

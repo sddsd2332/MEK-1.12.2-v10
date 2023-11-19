@@ -32,6 +32,7 @@ public class MekanismItems {
     public static final Item MufflingUpgrade = new ItemUpgrade(Upgrade.MUFFLING);
     public static final Item GasUpgrade = new ItemUpgrade(Upgrade.GAS);
     public static final Item AnchorUpgrade = new ItemUpgrade(Upgrade.ANCHOR);
+    public static final Item StoneGeneratorUpgrade = new ItemUpgrade(Upgrade.STONE_GENERATOR);
     public static final Item TierInstaller = new ItemTierInstaller();
     public static final ItemEnergized EnergyTablet = new ItemEnergized(1000000);
     public static final ItemCanteen Canteen = new ItemCanteen();
@@ -113,6 +114,7 @@ public class MekanismItems {
         registry.register(init(MufflingUpgrade, "MufflingUpgrade"));
         registry.register(init(GasUpgrade, "GasUpgrade"));
         registry.register(init(AnchorUpgrade, "AnchorUpgrade"));
+        registry.register(init(StoneGeneratorUpgrade,"StoneGeneratorUpgrade"));
         registry.register(init(Robit, "Robit"));
         registry.register(init(AtomicDisassembler, "AtomicDisassembler"));
         registry.register(init(MekTool, "MekTool"));
